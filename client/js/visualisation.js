@@ -8,11 +8,10 @@
 // https://github.com/Fannon/isomatic                //
 ///////////////////////////////////////////////////////
 
+
 ///////////////////////////////////////
 // Visualisation Variables           //
 ///////////////////////////////////////
-
-
 
 /** isomatic Visualisation Namespace */
 isomatic.vis = {};
@@ -26,6 +25,9 @@ isomatic.vis.options = {};
 ///////////////////////////////////////
 
 $(function() {
+
+    // TODO: Replace this with Isotype Graphics
+    // TODO: Refactor Visualisation to seperate functions
 
     "use strict";
 
@@ -106,6 +108,18 @@ $(function() {
 
 });
 
+
+///////////////////////////////////////
+// Visualisation Functions           //
+///////////////////////////////////////
+
+
+
+
+///////////////////////////////////////
+// Export Functions                  //
+///////////////////////////////////////
+
 /**
  * Exports current Graphic as SVG
  * Embeds current Options and Data, too.
@@ -115,7 +129,10 @@ isomatic.vis.exportSVG = function() {
 
     isomatic.vis.embedData();
 
-    var content = $('#graph').html();
+    var content  = '<?xml version="1.0" encoding="utf-8"?>\n';
+    content     += '<!-- Generator: isomatic (http://www.isomatic.de) -->\n';
+    content     += $('#graph').html();
+
     var filename = isomatic.getFormattedTime() + ".svg";
 
     $.generateFile({
@@ -165,37 +182,10 @@ isomatic.vis.embedData = function() {
 
 
 ///////////////////////////////////////
-// General Helper Functions          //
+// Export Functions                  //
 ///////////////////////////////////////
 
-/**
- * Returns a DateString
- * @return {String}           [description]
- */
-isomatic.getFormattedTime = function() {
-    "use strict";
-
-    var a = new Date();
-
-    var year = a.getFullYear();
-    var month = isomatic.pad(a.getMonth() + 1);
-    var date = isomatic.pad(a.getDate());
-    var hour = isomatic.pad(a.getHours());
-    var min = isomatic.pad(a.getMinutes());
-    var sec = isomatic.pad(a.getSeconds());
-
-    return year + '-' + month + '-' + date + '_-_' + hour + ':' + min + ':' + sec;
-};
-
-/**
- * Pads a Number
- * @param n             Number to Pad
- * @returns {string}    Padded Number
- */
-isomatic.pad = function(n) {
-    "use strict";
-    return n < 10 ? '0' + n : n;
-};
+// TODO: Import
 
 
 ///////////////////////////////////////
@@ -208,9 +198,7 @@ isomatic.pad = function(n) {
 (function($){
     "use strict";
 
-
     // Creating a jQuery plugin:
-
     $.generateFile = function(options){
 
         options = options || {};
