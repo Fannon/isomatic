@@ -5,8 +5,6 @@
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="css/style.css">
 
-
-
     <meta charset=utf-8/>
     <title>isomatic</title>
 
@@ -31,9 +29,15 @@
         </div>
     </div>
 
+    <br>
+
     <div class="row">
         <div class="span12">
-            <div id="footer" class="">2013 | Open Source | Repository: <a href="https://github.com/Fannon/isotype">Github</a></div>
+
+            <a id='svgExport' target="_blank" class="btn btn-info" onclick="isomatic.vis.exportSVG()">Download as SVG</a>
+            <a id='jsonExport' target="_blank" class="btn btn-info"onclick="isomatic.vis.exportJSON()">Download as JSON</a>
+
+            <div id="footer" class="">2013 | Open Source | Repository: <a href="https://github.com/Fannon/isomatic">Github</a></div>
         </div>
     </div>
 
@@ -52,4 +56,5 @@
 
 <script src="js/d3.v3.min.js"></script>
 
+<script src="js/script.js"></script>
 </html>
