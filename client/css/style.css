@@ -1,0 +1,19 @@
+.container{
+    max-width: none !important;
+    width: 1200px;
+}
+
+#graph {
+    width: 100%;
+    height: 400px;
+    border: 1px solid #CCC;
+    background: #F7F7F7;
+}
+
+#footer {
+    margin: 1em 0;
+    padding: 3px;
+    font-size: 0.85em;
+    color: #777;
+    border-top: 1px solid #EEE;
+}
