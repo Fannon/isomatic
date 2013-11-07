@@ -1,4 +1,4 @@
-iA
+isomatic
 ==
-
-Interaktive Anwendung
+isomatic is an interactive Isotype Graphics Generator.
+This is work in progress right now.
