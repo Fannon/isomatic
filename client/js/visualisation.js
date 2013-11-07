@@ -1,8 +1,18 @@
 /* jshint jquery:true, devel: true */
-/* global d3 */
+/* global isomatic, d3 */
 
-/** global namespace */
-var isomatic = {};
+///////////////////////////////////////////////////////
+// isomatic                                          //
+///////////////////////////////////////////////////////
+// An Interactive Isotype Graphics Generator         //
+// https://github.com/Fannon/isomatic                //
+///////////////////////////////////////////////////////
+
+///////////////////////////////////////
+// Visualisation Variables           //
+///////////////////////////////////////
+
+
 
 /** isomatic Visualisation Namespace */
 isomatic.vis = {};
@@ -10,8 +20,13 @@ isomatic.vis = {};
 /** isomatic Visualisation current options */
 isomatic.vis.options = {};
 
-/** On DOM Ready */
+
+///////////////////////////////////////
+// On DOM Ready                      //
+///////////////////////////////////////
+
 $(function() {
+
     "use strict";
 
     console.log('ISOMATIC INIT');
@@ -91,9 +106,14 @@ $(function() {
 
 });
 
-
+/**
+ * Exports current Graphic as SVG
+ * Embeds current Options and Data, too.
+ */
 isomatic.vis.exportSVG = function() {
     "use strict";
+
+    isomatic.vis.embedData();
 
     var content = $('#graph').html();
     var filename = isomatic.getFormattedTime() + ".svg";
@@ -106,6 +126,9 @@ isomatic.vis.exportSVG = function() {
 
 };
 
+/**
+ * Exports Options and Data as JSON Object
+ */
 isomatic.vis.exportJSON = function() {
     "use strict";
 
@@ -121,6 +144,7 @@ isomatic.vis.exportJSON = function() {
 
 /**
  * Embeds current Options and Data into the SVG
+ * Helper Function
  */
 isomatic.vis.embedData = function() {
     "use strict";
@@ -138,6 +162,11 @@ isomatic.vis.embedData = function() {
 
     return jsonStringExport;
 };
+
+
+///////////////////////////////////////
+// General Helper Functions          //
+///////////////////////////////////////
 
 /**
  * Returns a DateString
@@ -168,6 +197,10 @@ isomatic.pad = function(n) {
     return n < 10 ? '0' + n : n;
 };
 
+
+///////////////////////////////////////
+// 3rd Party Scripts                 //
+///////////////////////////////////////
 
 /**
  * http://tutorialzine.com/2011/05/generating-files-javascript-php/
