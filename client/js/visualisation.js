@@ -22,6 +22,11 @@ isomatic.vis.options = {};
 /** Loaded Icons Puffer */
 isomatic.vis.icons = {};
 
+// TODO: Hardcoded Options:
+isomatic.vis.options.iconRatio = 1000000;
+isomatic.vis.options.roundDown = 0.2;
+isomatic.vis.options.roundUp = 0.8;
+
 
 ///////////////////////////////////////
 // On DOM Ready                      //
@@ -45,18 +50,40 @@ $(function() {
     ///////////////////////////////////////
 
     // TODO: Refactoring
-    isomatic.vis.newVisualisation(16/6);
+    isomatic.vis.newVisualisation(16 / 6);
 
     // Preload 3 Icons // TODO: Refactoring
     isomatic.vis.loadIcon('add', 'icons/addition1.svg');
     isomatic.vis.loadIcon('coffee', 'icons/black168.svg');
     isomatic.vis.loadIcon('cellphone', 'icons/cellphone3.svg');
 
+
     // Sets the Data, starts drawing on the Callback. TODO: This belongs into the UI
     isomatic.vis.setData("data/data.csv", function() {
-        isomatic.vis.drawIsotype();
-    });
 
+        isomatic.vis.drawIsotype();
+
+        // Icon TEST
+        var svg = isomatic.vis.icons.coffee;
+        svg.setAttribute('x', '15px');
+        svg.setAttribute('y', '5px');
+
+        // Set Icon Color (not very flexible approach)
+        svg.childNodes[1].setAttribute('fill', '#6B486B');
+
+        $('#graph svg').append(svg);
+
+        // INSERT TEST
+        // Update…
+        var p = d3.select("body").selectAll("p")
+            .data([4, 8, 15, 16, 23, 42])
+            .text(String);
+
+        // Enter…
+        p.enter().append("p")
+            .text(String);
+
+    });
 
 
 });
@@ -97,7 +124,15 @@ isomatic.vis.setData = function(filename, callback) {
             console.dir(error);
             isomatic.message('error', 'Error while loading Data!');
         } else {
+
+            isomatic.vis.rawData = data;
+
+            isomatic.vis.processData();
+
+
+
             isomatic.vis.data = data;
+            console.log('DATA loaded.');
             console.dir(data);
         }
 
@@ -107,18 +142,46 @@ isomatic.vis.setData = function(filename, callback) {
 };
 
 /**
+ * Processing RawData into data according to current options
+ */
+isomatic.vis.processData = function() {
+    "use strict";
+
+    isomatic.vis.data = isomatic.vis.rawData;
+
+    isomatic.vis.data.forEach(function(d) {
+
+        // Calculation Ratio
+        var population = d.population / isomatic.vis.options.iconRatio;
+
+        // Round the Number according to the options
+        var roundedPopulation = Math.floor(population);
+        var leftOver = population % 1;
+
+        if (leftOver > isomatic.vis.options.roundDown && leftOver < isomatic.vis.options.roundUp) {
+            d.population = roundedPopulation + leftOver;
+        } else {
+            d.population = roundedPopulation;
+        }
+
+    });
+
+};
+
+/**
  * Draws Isotype Graphic
  */
 isomatic.vis.drawIsotype = function() {
+
     "use strict";
+    console.log('drawIsotype();');
 
-    var radius = Math.min(isomatic.vis.options.width, isomatic.vis.options.height) / 2;
-
-    console.log('UI INIT');
 
     ///////////////////////////////////////
     // Visualisation Options             //
     ///////////////////////////////////////
+
+    var radius = Math.min(isomatic.vis.options.width, isomatic.vis.options.height) / 2;
 
     var color = d3.scale.ordinal()
         .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
@@ -152,15 +215,21 @@ isomatic.vis.drawIsotype = function() {
 
         g.append("path")
             .attr("d", arc)
-            .style("fill", function(d) { return color(d.data.age); })
+            .style("fill", function(d) {
+                return color(d.data.age);
+            })
             .style("stroke", '#FFFFFF');
 
         g.append("text")
-            .attr("transform", function(d) { return "translate(" + arc.centroid(d) + ")"; })
+            .attr("transform", function(d) {
+                return "translate(" + arc.centroid(d) + ")";
+            })
             .attr("dy", ".35em")
             .attr("fill", "#FFFFFF")
             .style("text-anchor", "middle")
-            .text(function(d) { return d.data.age; });
+            .text(function(d) {
+                return d.data.age;
+            });
 
     } else {
         isomatic.message('error', 'No Data loaded!');
@@ -176,8 +245,7 @@ isomatic.vis.drawIsotype = function() {
 isomatic.vis.loadIcon = function(filename, url) {
     "use strict";
 
-    $.get(url, function (response) {
-        console.dir(response);
+    $.get(url, function(response) {
         isomatic.vis.icons[filename] = response.getElementsByTagName('svg')[0];
     });
 
@@ -196,9 +264,9 @@ isomatic.vis.exportSVG = function() {
 
     isomatic.vis.embedData();
 
-    var content  = '<?xml version="1.0" encoding="utf-8"?>\n';
-    content     += '<!-- Generator: isomatic (http://www.isomatic.de) -->\n';
-    content     += $('#graph').html();
+    var content = '<?xml version="1.0" encoding="utf-8"?>\n';
+    content += '<!-- Generator: isomatic (http://www.isomatic.de) -->\n';
+    content += $('#graph').html();
 
     var filename = isomatic.getFormattedTime() + ".svg";
 
@@ -234,7 +302,7 @@ isomatic.vis.embedData = function() {
     "use strict";
 
     var jsonExport = {
-        data: isomatic.vis.data,
+        data: isomatic.vis.rawData,
         options: isomatic.vis.options
     };
 
@@ -255,38 +323,38 @@ isomatic.vis.embedData = function() {
 /**
  * http://tutorialzine.com/2011/05/generating-files-javascript-php/
  */
-(function($){
+(function($) {
     "use strict";
 
     // Creating a jQuery plugin:
-    $.generateFile = function(options){
+    $.generateFile = function(options) {
 
         options = options || {};
 
-        if(!options.script || !options.filename || !options.content){
+        if (!options.script || !options.filename || !options.content) {
             throw new Error("Please enter all the required config options!");
         }
 
         // Creating a 1 by 1 px invisible iframe:
 
-        var iframe = $('<iframe>',{
-            width:1,
-            height:1,
-            frameborder:0,
-            css:{
-                display:'none'
+        var iframe = $('<iframe>', {
+            width: 1,
+            height: 1,
+            frameborder: 0,
+            css: {
+                display: 'none'
             }
         }).appendTo('body');
 
-        var formHTML = '<form action="" method="post">'+
-            '<input type="hidden" name="filename" />'+
-            '<input type="hidden" name="content" />'+
+        var formHTML = '<form action="" method="post">' +
+            '<input type="hidden" name="filename" />' +
+            '<input type="hidden" name="content" />' +
             '</form>';
 
         // Giving IE a chance to build the DOM in
         // the iframe with a short timeout:
 
-        setTimeout(function(){
+        setTimeout(function() {
 
             // The body element of the iframe document:
 
@@ -301,7 +369,7 @@ isomatic.vis.embedData = function() {
 
             var form = body.find('form');
 
-            form.attr('action',options.script);
+            form.attr('action', options.script);
             form.find('input[name=filename]').val(options.filename);
             form.find('input[name=content]').val(options.content);
 
@@ -309,7 +377,7 @@ isomatic.vis.embedData = function() {
             // cause the file download dialog box to appear.
 
             form.submit();
-        },50);
+        }, 50);
     };
 
 })(jQuery);

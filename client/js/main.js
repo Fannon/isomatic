@@ -23,6 +23,8 @@ var isomatic = {};
 
 /**
  * Displays Message to User
+ * TODO: Integrate this into the UI
+ *
  * @param {String}  type  Type of Message
  * @param {String}  msg   HTML Text of message
  */
