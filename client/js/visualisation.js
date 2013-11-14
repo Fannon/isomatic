@@ -19,6 +19,9 @@ isomatic.vis = {};
 /** isomatic Visualisation current options */
 isomatic.vis.options = {};
 
+/** Loaded Icons Puffer */
+isomatic.vis.icons = {};
+
 
 ///////////////////////////////////////
 // On DOM Ready                      //
@@ -26,12 +29,9 @@ isomatic.vis.options = {};
 
 $(function() {
 
-    // TODO: Replace this with Isotype Graphics
-    // TODO: Refactor Visualisation to seperate functions
-
     "use strict";
-
     console.log('ISOMATIC INIT');
+
 
     ///////////////////////////////////////
     // Variables                         //
@@ -39,23 +39,86 @@ $(function() {
 
     isomatic.vis.$graph = $('#graph');
 
-    isomatic.vis.options.aspectRatio = 16/6;
 
+    ///////////////////////////////////////
+    // Init                              //
+    ///////////////////////////////////////
+
+    // TODO: Refactoring
+    isomatic.vis.newVisualisation(16/6);
+
+    // Preload 3 Icons // TODO: Refactoring
+    isomatic.vis.loadIcon('add', 'icons/addition1.svg');
+    isomatic.vis.loadIcon('coffee', 'icons/black168.svg');
+    isomatic.vis.loadIcon('cellphone', 'icons/cellphone3.svg');
+
+    // Sets the Data, starts drawing on the Callback. TODO: This belongs into the UI
+    isomatic.vis.setData("data/data.csv", function() {
+        isomatic.vis.drawIsotype();
+    });
+
+
+
+});
+
+
+///////////////////////////////////////
+// Visualisation Functions           //
+///////////////////////////////////////
+
+/**
+ * Creates a new Visualisation
+ * Empties the Drawing Area
+ */
+isomatic.vis.newVisualisation = function(aspectRatio) {
+    "use strict";
+
+    // Calculate Width and Height from Aspect Ratio
+    isomatic.vis.options.aspectRatio = aspectRatio;
     isomatic.vis.options.width = isomatic.vis.$graph.width();
-    isomatic.vis.options.height = Math.round(isomatic.vis.options.width / isomatic.vis.options.aspectRatio);
-
-    // TODO: Stub
-    var radius = Math.min(isomatic.vis.options.width, isomatic.vis.options.height) / 2;
-
-
-    ///////////////////////////////////////
-    // Init UI                           //
-    ///////////////////////////////////////
+    isomatic.vis.options.height = Math.round(isomatic.vis.options.width / aspectRatio);
 
     // Sets height of the Drawing Area according to aspect ratio
     isomatic.vis.$graph.height(isomatic.vis.options.height);
+};
+
+
+/**
+ * Sets the Data Object
+ * TODO: Imports just Files right now. Should use Object from UI
+ */
+isomatic.vis.setData = function(filename, callback) {
+
+    "use strict";
+
+    d3.csv(filename, function(error, data) {
+
+        if (error) {
+            console.dir(error);
+            isomatic.message('error', 'Error while loading Data!');
+        } else {
+            isomatic.vis.data = data;
+            console.dir(data);
+        }
+
+        callback();
+
+    });
+};
+
+/**
+ * Draws Isotype Graphic
+ */
+isomatic.vis.drawIsotype = function() {
+    "use strict";
+
+    var radius = Math.min(isomatic.vis.options.width, isomatic.vis.options.height) / 2;
 
     console.log('UI INIT');
+
+    ///////////////////////////////////////
+    // Visualisation Options             //
+    ///////////////////////////////////////
 
     var color = d3.scale.ordinal()
         .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
@@ -76,45 +139,49 @@ $(function() {
         .append("g")
         .attr("transform", "translate(" + isomatic.vis.options.width / 2 + "," + isomatic.vis.options.height / 2 + ")");
 
-    d3.csv("data/data.csv", function(error, data) {
+    if (isomatic.vis.data) {
 
-        isomatic.vis.data = data;
-
-        console.dir(data);
-
-        data.forEach(function(d) {
+        isomatic.vis.data.forEach(function(d) {
             d.population = +d.population;
         });
 
         var g = isomatic.vis.svg.selectAll(".arc")
-            .data(pie(data))
+            .data(pie(isomatic.vis.data))
             .enter().append("g")
             .attr("class", "arc");
 
         g.append("path")
             .attr("d", arc)
             .style("fill", function(d) { return color(d.data.age); })
-            .style("stroke", "#FFFFFF");
+            .style("stroke", '#FFFFFF');
 
         g.append("text")
             .attr("transform", function(d) { return "translate(" + arc.centroid(d) + ")"; })
             .attr("dy", ".35em")
+            .attr("fill", "#FFFFFF")
             .style("text-anchor", "middle")
             .text(function(d) { return d.data.age; });
 
-        console.dir(g);
+    } else {
+        isomatic.message('error', 'No Data loaded!');
+    }
 
+};
+
+/**
+ * Loads Icon from /icons/ directory into the icons Object
+ * @param filename
+ * @param url
+ */
+isomatic.vis.loadIcon = function(filename, url) {
+    "use strict";
+
+    $.get(url, function (response) {
+        console.dir(response);
+        isomatic.vis.icons[filename] = response.getElementsByTagName('svg')[0];
     });
 
-});
-
-
-///////////////////////////////////////
-// Visualisation Functions           //
-///////////////////////////////////////
-
-
-
+};
 
 ///////////////////////////////////////
 // Export Functions                  //
@@ -179,13 +246,6 @@ isomatic.vis.embedData = function() {
 
     return jsonStringExport;
 };
-
-
-///////////////////////////////////////
-// Export Functions                  //
-///////////////////////////////////////
-
-// TODO: Import
 
 
 ///////////////////////////////////////

@@ -22,8 +22,18 @@ var isomatic = {};
 ///////////////////////////////////////
 
 /**
- * Returns a formatted DateString
- * @return {String}           [description]
+ * Displays Message to User
+ * @param {String}  type  Type of Message
+ * @param {String}  msg   HTML Text of message
+ */
+isomatic.message = function(type, msg) {
+    "use strict";
+    console.log('Message [' + type + ']: ' + msg);
+};
+
+/**
+ * Returns a YYYY-MM-DD_-_HH-MM-SS formatted DateString
+ * @return {String} formatted Date String
  */
 isomatic.getFormattedTime = function() {
     "use strict";
