@@ -50,7 +50,7 @@ $(function() {
     ///////////////////////////////////////
 
     // TODO: Refactoring
-    isomatic.vis.newVisualisation(16 / 6);
+    isomatic.vis.newVisualisation(16 / 9);
 
     // Preload 3 Icons // TODO: Refactoring
     isomatic.vis.loadIcon('add', 'icons/addition1.svg');
@@ -75,13 +75,21 @@ $(function() {
 
         // INSERT TEST
         // Update…
-        var p = d3.select("body").selectAll("p")
-            .data([4, 8, 15, 16, 23, 42])
-            .text(String);
+        var p = d3.select("#playground").selectAll("p")
+            .data(isomatic.vis.data)
+
 
         // Enter…
-        p.enter().append("p")
-            .text(String);
+        p.enter()
+            .append("p")
+            .html(function(d) {
+                var html = '';
+                for (var i = 0; i < d.population; i++) {
+                    html += 'O';
+                }
+                return html;
+            }
+        );
 
     });
 
@@ -128,8 +136,6 @@ isomatic.vis.setData = function(filename, callback) {
             isomatic.vis.rawData = data;
 
             isomatic.vis.processData();
-
-
 
             isomatic.vis.data = data;
             console.log('DATA loaded.');
@@ -196,6 +202,10 @@ isomatic.vis.drawIsotype = function() {
             return d.population;
         });
 
+    ///////////////////////////////////////
+    // Create SVG Container              //
+    ///////////////////////////////////////
+
     isomatic.vis.svg = d3.select("#graph").append("svg")
         .attr("width", isomatic.vis.options.width)
         .attr("height", isomatic.vis.options.height)
@@ -203,10 +213,6 @@ isomatic.vis.drawIsotype = function() {
         .attr("transform", "translate(" + isomatic.vis.options.width / 2 + "," + isomatic.vis.options.height / 2 + ")");
 
     if (isomatic.vis.data) {
-
-        isomatic.vis.data.forEach(function(d) {
-            d.population = +d.population;
-        });
 
         var g = isomatic.vis.svg.selectAll(".arc")
             .data(pie(isomatic.vis.data))
