@@ -8,12 +8,57 @@
 // https://github.com/Fannon/isomatic                //
 ///////////////////////////////////////////////////////
 
+/**
+ * PROBLEME - LÖSUNGSANSÄTZE
+ *
+ * Icons laden:
+ *  * in HTML einbetten und pre-loaden. Anschließend mit d3.select in Variablen speichern
+ *  * per AJAX request nachladen, als DOM in Variable speichern (oder text)?
+ *  * in JSON Format als HTML-Text speichern und an einem Stück laden
+ *
+ * Icons einfärben:
+ *  * Icon SVG Inhalte in <g> Element speichern, dort Fill setzen (Was ist mit Stroke?)
+ *
+ * Isotype Grafiken generieren:
+ *  * PROBLEM: .html() funktioniert bei SVG nicht. Polyfill innersvg.js kann das fixen. Aber ist das richter Ansatz?
+ *  * D3.js .enter verwenden und Datenstruktur für Isotypes via eigene Layoutmethode erstellen. (3 Ebenen)
+ *  * D3.js .html() verwenden und Icon per for Schleife vervielfachen entsprechend der Value
+ *  * Nur JavaScript / jQuery DOM Manipulation verwenden um SVG zu bauen. (D3.js dann noch nötig?)
+ *
+ * SVG-Export:
+ *  * Über Proxy Script (PHP) -> Funktioniert immer, benötigt allerdings Internetverbindung / WebServer
+ *  * Über JavaScript btoa() Methode (Browser-Support ?)
+ *
+ * Layouting:
+ *  * Icon SVG Größe über getBBox() bestimmen ?
+ *  * Icon SVG Größe im JSON Format mit angeben ?
+ *  * Padding zwischen Icons festlegen
+ *  * Padding zwischen Zeilen festlegen
+ *  * Padding zum Rand festlegen
+ *  * Padding zum Text festlegen
+ *
+ * Problemfelder:
+ *  * Externe Icons können auf alle möglichen Weisen aufgebaut sein, einiges davon kann das UI und die Grafik brechen.
+ *  *
+ *
+ *
+ *
+ * TODO: LISTE
+ * * Datenzugriff mit .population ist nicht generisch
+ * *
+ */
+
 
 ///////////////////////////////////////
 // Visualisation Variables           //
 ///////////////////////////////////////
 
-/** isomatic Visualisation Namespace */
+/**
+ * isomatic Visualisation Namespace
+ * Contains Functions and Model / Data
+ *
+ * @singleton
+ */
 isomatic.vis = {};
 
 /** isomatic Visualisation current options */
@@ -69,15 +114,9 @@ $(function() {
         isomatic.vis.drawIsotype();
 
 
-
-
-
         ///////////////////////////////////////
         // PLAYGROUND                        //
         ///////////////////////////////////////
-
-
-
 
         // Resizing and moving Icon by Transformation Matrix TEST
 
@@ -264,7 +303,6 @@ isomatic.vis.drawIsotype = function() {
         .attr("id", "isotype")
     ;
 
-
     ///////////////////////////////////////
     // Draw Data                         //
     ///////////////////////////////////////
@@ -420,6 +458,7 @@ isomatic.vis.embedData = function() {
 ///////////////////////////////////////
 
 /**
+ * jQuery Plugin to allow File Downloads from JavaScript Variables
  * http://tutorialzine.com/2011/05/generating-files-javascript-php/
  */
 (function($) {

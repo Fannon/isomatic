@@ -24,3 +24,7 @@
     color: #777;
     border-top: 1px solid #EEE;
 }
+
+#icon-container {
+    /*display: none;*/
+}
