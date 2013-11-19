@@ -32,20 +32,19 @@
  * Layouting:
  *  * Icon SVG Größe über getBBox() bestimmen ?
  *  * Icon SVG Größe im JSON Format mit angeben ?
- *  * Padding zwischen Icons festlegen
- *  * Padding zwischen Zeilen festlegen
- *  * Padding zum Rand festlegen
- *  * Padding zum Text festlegen
+ *  * Margin zwischen Icons festlegen
+ *  * Margin zwischen Zeilen festlegen
+ *  * Margin zum Rand festlegen
+ *  * Margin zum Text festlegen
  *
  * Problemfelder:
  *  * Externe Icons können auf alle möglichen Weisen aufgebaut sein, einiges davon kann das UI und die Grafik brechen.
- *  *
- *
- *
+ *  * D3.js kann pro Datensatz die Größe, Farbe, Inhalt von Elementen umsetzen, aber nicht die Anzahl.
  *
  * TODO: LISTE
  * * Datenzugriff mit .population ist nicht generisch
- * *
+ * * Mehrspaltige Daten verwalten
+ * * Alternativen zu D3.js?
  */
 
 
@@ -73,9 +72,6 @@ isomatic.vis.options.roundDown = 0.2;
 isomatic.vis.options.roundUp = 0.8;
 
 isomatic.vis.options.outerPadding = 10;
-
-// TODO: Test SVG
-var billigSvg = '<g id="billigSVG"><path d="M49.752,37.132c-1.355,1.276-3.019,2.219-4.869,2.711c1.734,2.747,2.919,5.888,3.356,9.287c0.084,0.656-0.037,1.293-0.316,1.87h9.52c0.305,0,0.603-0.139,0.815-0.382c0.203-0.23,0.299-0.525,0.263-0.807C57.819,44.341,54.38,39.67,49.752,37.132z"/><path d="M38.772,33.381c0.381,0.271,0.747,0.56,1.11,0.853c0.364,0.294,0.724,0.593,1.069,0.909c0.981,0.897,1.885,1.877,2.7,2.933c1.541-0.281,2.951-0.938,4.131-1.876c0.297-0.236,0.581-0.485,0.847-0.754c0.249-0.252,0.479-0.521,0.698-0.799c1.256-1.595,2.012-3.6,2.012-5.783c0-5.167-4.204-9.371-9.371-9.371c-1.086,0-2.125,0.195-3.096,0.537c0.339,1.194,0.532,2.449,0.532,3.75c0,3.099-1.04,5.953-2.773,8.257C37.369,32.449,38.086,32.892,38.772,33.381z"/><path d="M24.745,51h1.75h18.199c0.476,0,0.922-0.198,1.226-0.542c0.266-0.302,0.385-0.683,0.334-1.073c-0.436-3.401-1.691-6.519-3.531-9.187c-0.226-0.327-0.456-0.651-0.699-0.964c-0.279-0.358-0.576-0.7-0.876-1.039c-0.861-0.971-1.806-1.861-2.829-2.656c-0.35-0.272-0.71-0.53-1.077-0.779c-0.358-0.244-0.717-0.484-1.09-0.705c-0.279-0.166-0.567-0.318-0.855-0.471c-0.283,0.28-0.577,0.548-0.883,0.803c-0.257,0.213-0.528,0.409-0.8,0.604c-0.27,0.193-0.549,0.374-0.833,0.547c-0.136,0.083-0.269,0.17-0.408,0.248c-0.042,0.024-0.081,0.052-0.123,0.075c-1.969,1.085-4.228,1.706-6.631,1.706c-3.77,0-7.188-1.524-9.679-3.984c-5.818,3.091-10.067,8.867-10.956,15.795c-0.051,0.392,0.069,0.775,0.338,1.081C5.624,50.802,6.07,51,6.543,51h17.094H24.745z"/><path d="M17.122,31.926c0.247,0.257,0.506,0.502,0.775,0.736c2.071,1.803,4.767,2.903,7.722,2.903c2.248,0,4.344-0.644,6.134-1.741c0.287-0.176,0.565-0.363,0.835-0.562c0.259-0.191,0.511-0.389,0.753-0.6c0.016-0.014,0.032-0.03,0.048-0.044c0.251-0.221,0.495-0.45,0.726-0.692c0.245-0.256,0.48-0.52,0.702-0.797c1.615-2.017,2.588-4.57,2.588-7.35c0-0.991-0.136-1.948-0.368-2.869c-0.085-0.337-0.182-0.668-0.295-0.993c-0.111-0.319-0.233-0.633-0.37-0.94c-1.843-4.11-5.965-6.984-10.753-6.984c-6.498,0-11.785,5.287-11.785,11.786c0,2.779,0.972,5.332,2.587,7.349C16.642,31.406,16.877,31.67,17.122,31.926z"/></g>';
 
 
 ///////////////////////////////////////
@@ -165,7 +161,7 @@ $(function() {
         // INSERT TEST
         // Update…
         var p = d3.select("#playground").selectAll("p")
-            .data(isomatic.vis.data);
+            .data(isomatic.data);
 
         // Enter…
         p.enter()
@@ -221,11 +217,11 @@ isomatic.vis.setData = function(filename, callback) {
             isomatic.message('error', 'Error while loading Data!');
         } else {
 
-            isomatic.vis.rawData = data;
+            isomatic.rawData = data;
 
             isomatic.vis.processData();
 
-            isomatic.vis.data = data;
+            isomatic.data = data;
             console.log('DATA loaded.');
             console.dir(data);
         }
@@ -241,9 +237,9 @@ isomatic.vis.setData = function(filename, callback) {
 isomatic.vis.processData = function() {
     "use strict";
 
-    isomatic.vis.data = isomatic.vis.rawData;
+    isomatic.data = isomatic.rawData;
 
-    isomatic.vis.data.forEach(function(d) {
+    isomatic.data.forEach(function(d) {
 
         // Calculation Ratio
         var population = d.population / isomatic.vis.options.iconRatio;
@@ -307,11 +303,11 @@ isomatic.vis.drawIsotype = function() {
     // Draw Data                         //
     ///////////////////////////////////////
 
-    if (isomatic.vis.data) {
+    if (isomatic.data) {
 
         // Row Group
         var g = isomatic.vis.svg.selectAll(".arc")
-            .data(pie(isomatic.vis.data))
+            .data(pie(isomatic.data))
             .enter()
                 .append("g")
                 .attr("class", "arc")
@@ -439,7 +435,7 @@ isomatic.vis.embedData = function() {
     "use strict";
 
     var jsonExport = {
-        data: isomatic.vis.rawData,
+        data: isomatic.rawData,
         options: isomatic.vis.options
     };
 
