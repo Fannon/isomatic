@@ -84,7 +84,7 @@ $(function() {
     isomatic.vis.newVisualisation(16 / 7);
 
     // Sets the Data, starts drawing on the Callback. TODO: This belongs into the UI
-    isomatic.vis.loadData("data/data.csv", function() {
+    isomatic.vis.loadData("data/data2.csv", function() {
 
         // Draw after Data is loaded (asynchronous)
         isomatic.vis.drawIsotype();

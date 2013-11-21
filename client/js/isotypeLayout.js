@@ -41,10 +41,7 @@ d3.layout.isotype = function() {
         var scale = calculateScale(data);
 
         // Calculating the processed Data
-        var index = d3.range(data.length);
-
-        // TODO: Just Step 1, further breaking into Icons needed.
-        index.forEach(function(i) {
+        for (var i = 0; i < data.length; i++) {
 
             var columnCounter = 0;
             var columnName = '';
@@ -82,8 +79,8 @@ d3.layout.isotype = function() {
 
                         var size = 1;
 
-                        if (j === columnName.length - 1) {
-                            size = leftOver;
+                        if (j === columnName.length - 1 && value % 1 !== 0) {
+                            size = value % 1;
                         }
 
                         fullyProcessedData.push({
@@ -99,7 +96,7 @@ d3.layout.isotype = function() {
                 columnCounter += 1;
             }
 
-        });
+        }
 
         console.log('Processed Data:');
         console.dir(processedData);
@@ -138,9 +135,10 @@ d3.layout.isotype = function() {
      * Returns nice Scales like 1:10000
      *
      * TODO: Test this with different Datasets
-     * TODO: Algorithm for Scale Detection is not very smart.
      *
-     * @param data
+     * @param {Array} data Raw Data Array
+     *
+     * @private
      */
     var calculateScale = function(data) {
 
@@ -172,21 +170,13 @@ d3.layout.isotype = function() {
         // Get the next bigger Scale from the Array
         for (var j = 0; j < scaleArray.length; j++) {
 
-            // TODO: Return the Scale nearest to scaleTemp, not bigger than!
-
             if (scaleTemp <= scaleArray[j]) {
 
-                var diff1 = scaleArray[j] - scaleTemp;
-                var diff2 = scaleTemp - scaleArray[j - 1];
-
-                if (diff1 < diff2) {
+                if (scaleArray[j] - scaleTemp < scaleTemp - scaleArray[j - 1]) {
                     scale = isomatic.options.scaleArray[j];
                 } else {
                     scale = isomatic.options.scaleArray[j - 1];
                 }
-
-                console.log('DIFF1: ' + diff1);
-                console.log('DIFF2: ' + diff2);
 
                 break;
             }
