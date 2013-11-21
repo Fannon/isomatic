@@ -162,6 +162,8 @@ isomatic.vis.drawIsotype = function() {
     isomatic.vis.isotypeLayout = d3.layout.isotype()
         .width(isomatic.options.width)
         .height(isomatic.options.width)
+        .roundDown(isomatic.options.roundDown)
+        .roundUp(isomatic.options.roundUp)
     ;
 
     isomatic.vis.isotypeLayout(isomatic.data);

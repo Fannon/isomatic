@@ -11,15 +11,21 @@
 /**
  * Isotype Layout
  * 2013 Simon Heimler
+ *
+ * TODO: Do not use anything from isomatic namespace (like options) -> No external dependencies!
+ * TODO: Check if every needed value is set before its used.
+ *
  * @returns {Function}
  */
 d3.layout.isotype = function() {
     "use strict";
 
-    // Private Variables
+    // Private Variables. Some with default values
     var value = Number;
-    var width;
-    var height;
+    var width, height;
+    var roundDown = 0.2;
+    var roundUp = 0.8;
+
 
     function isotype(data) {
 
@@ -40,13 +46,19 @@ d3.layout.isotype = function() {
         // Calculate the Scale
         var scale = calculateScale(data);
 
-        // Calculating the processed Data
+
+        ///////////////////////////////////////
+        // Calculating Layout                //
+        ///////////////////////////////////////
+
+        // Iterate over Rows
         for (var i = 0; i < data.length; i++) {
 
             var columnCounter = 0;
             var columnName = '';
             var row = data[i];
 
+            // Iterate over Columns
             for (var obj in row) {
 
                 var v = row[obj];
@@ -60,10 +72,12 @@ d3.layout.isotype = function() {
                     var roundedValue = Math.floor(v / scale);
                     var leftOver = (v / scale) % 1;
 
-                    if (leftOver > isomatic.options.roundDown && leftOver < isomatic.options.roundUp) {
+                    if (leftOver > roundDown && leftOver < roundUp) {
                         value = roundedValue + leftOver;
+                    } else if (leftOver > 0.5) {
+                       value = roundedValue + 1;
                     } else {
-                       value = roundedValue;
+                        value = roundedValue;
                     }
 
                     processedData.push({
@@ -74,6 +88,8 @@ d3.layout.isotype = function() {
                     });
 
                     // Calculate Fully Processed Data
+
+                    // Iterate over Icons
                     for (var j = 0; j < columnName.length; j++) {
                         var obj1 = columnName[j];
 
@@ -107,15 +123,26 @@ d3.layout.isotype = function() {
         return processedData;
     }
 
-    isotype.width = function(w) {
-        width = w;
+    isotype.width = function(n) {
+        width = n;
         return isotype;
     };
 
-    isotype.height = function(h) {
-        height = h;
+    isotype.height = function(n) {
+        height = n;
         return isotype;
     };
+
+    isotype.roundDown = function(n) {
+        roundDown = n;
+        return isotype;
+    };
+
+    isotype.roundUp = function(n) {
+        roundUp = n;
+        return isotype;
+    };
+
 
     /**
      * Specifies the value function *x*, which returns a nonnegative numeric value
@@ -149,11 +176,13 @@ d3.layout.isotype = function() {
         var scale = 0;
         var columns = 0;
 
+        // Iterate over Rows
         for (var i = 0; i < data.length; i++) {
 
             var columnCounter = 0;
             var row = data[i];
 
+            // Iterate over Columns
             for (var obj in row) {
                 if (columnCounter > 0) {
                     valueArray.push(row[obj]);
@@ -169,15 +198,12 @@ d3.layout.isotype = function() {
 
         // Get the next bigger Scale from the Array
         for (var j = 0; j < scaleArray.length; j++) {
-
             if (scaleTemp <= scaleArray[j]) {
-
                 if (scaleArray[j] - scaleTemp < scaleTemp - scaleArray[j - 1]) {
                     scale = isomatic.options.scaleArray[j];
                 } else {
                     scale = isomatic.options.scaleArray[j - 1];
                 }
-
                 break;
             }
         }

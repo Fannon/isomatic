@@ -8,7 +8,11 @@
 // https://github.com/Fannon/isomatic                //
 ///////////////////////////////////////////////////////
 
-/** isomatic current options */
+/**
+ * isomatic current options
+ *
+ * TODO: Convert this into a backbone.js model
+ */
 isomatic.options = {};
 
 
@@ -16,9 +20,13 @@ isomatic.options = {};
 // UI Default Options                //
 ///////////////////////////////////////
 
-isomatic.options.roundDown = 0.2;
-isomatic.options.roundUp = 0.8;
+isomatic.options.roundDown = 0.3;
+isomatic.options.roundUp = 0.7;
+
 isomatic.options.outerPadding = 10;
+isomatic.options.rowPadding = 10;
+isomatic.options.iconHorizontalPadding = 10;
+isomatic.options.iconVerticalPadding = 10;
 
 
 ///////////////////////////////////////
