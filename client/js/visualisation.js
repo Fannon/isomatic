@@ -107,8 +107,6 @@ $(function() {
 isomatic.vis.newVisualisation = function(aspectRatio) {
     "use strict";
 
-    //
-
     // Calculate Width and Height from Aspect Ratio
     isomatic.options.aspectRatio = aspectRatio;
     isomatic.options.width = isomatic.vis.$graph.width();
@@ -136,12 +134,8 @@ isomatic.vis.loadData = function(filename, callback) {
             isomatic.message('error', 'Error while loading Data!');
         } else {
 
-            isomatic.rawData = data;
-
-            isomatic.vis.processData();
-
             isomatic.data = data;
-            console.log('DATA loaded.');
+            console.log('Raw Data loaded from CVS:');
             console.dir(data);
         }
 
@@ -150,34 +144,6 @@ isomatic.vis.loadData = function(filename, callback) {
     });
 };
 
-/**
- * Processing RawData into data according to current options
- *
- * TODO: Move this to isotypeLayout.js
- */
-isomatic.vis.processData = function() {
-    "use strict";
-
-    isomatic.data = isomatic.rawData;
-
-    isomatic.data.forEach(function(d) {
-
-        // Calculation Ratio
-        var population = d.population / isomatic.options.iconRatio;
-
-        // Round the Number according to the options
-        var roundedPopulation = Math.floor(population);
-        var leftOver = population % 1;
-
-        if (leftOver > isomatic.options.roundDown && leftOver < isomatic.options.roundUp) {
-            d.population = roundedPopulation + leftOver;
-        } else {
-            d.population = roundedPopulation;
-        }
-
-    });
-
-};
 
 /**
  * Draws Isotype Graphic
@@ -193,6 +159,12 @@ isomatic.vis.drawIsotype = function() {
     ///////////////////////////////////////
 
     // TODO: Set Visualisation Options (Use Layout for this)
+    isomatic.vis.isotypeLayout = d3.layout.isotype()
+        .width(isomatic.options.width)
+        .height(isomatic.options.width)
+    ;
+
+    isomatic.vis.isotypeLayout(isomatic.data);
 
 
     ///////////////////////////////////////

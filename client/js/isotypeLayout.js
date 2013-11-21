@@ -16,49 +16,109 @@
 d3.layout.isotype = function() {
     "use strict";
 
+    // Private Variables
     var value = Number;
+    var width;
+    var height;
 
     function isotype(data) {
 
-        var iconData = [];
+        /**
+         * Processed Data
+         * @type {Array}
+         */
+        var processedData = [];
 
-        console.dir(data);
+        /**
+         * Processed Data with an Item per rendered Icon
+         * @type {Array}
+         */
+        var fullyProcessedData = [];
 
-//        // Compute the numeric values for each data element.
-//        var values = data.map(function(d, i) { return +value.call(isotype, d, i); });
-//
-//        // Compute the start angle.
-//        var a = +(typeof startAngle === "function"
-//            ? startAngle.apply(this, arguments)
-//            : startAngle);
-//
-//        // Compute the angular scale factor: from value to radians.
-//        var k = ((typeof endAngle === "function"
-//            ? endAngle.apply(this, arguments)
-//            : endAngle) - a)
-//            / d3.sum(values);
-//
-//        // Optionally sort the data.
-//        var index = d3.range(data.length);
-//        if (sort != null) index.sort(sort === d3_layout_isotypeSortByValue
-//            ? function(i, j) { return values[j] - values[i]; }
-//            : function(i, j) { return sort(data[i], data[j]); });
-//
-//        // Compute the arcs!
-//        // They are stored in the original data's order.
-//        var arcs = [];
-//        index.forEach(function(i) {
-//            var d;
-//            arcs[i] = {
-//                data: data[i],
-//                value: d = values[i],
-//                startAngle: a,
-//                endAngle: a += d * k
-//            };
-//        });
+        console.log('Isotype Layout: Processing Data.');
 
-        return iconData;
+        // Calculate the Scale
+        var scale = calculateScale(data);
+
+        // Calculating the processed Data
+        var index = d3.range(data.length);
+
+        // TODO: Just Step 1, further breaking into Icons needed.
+        index.forEach(function(i) {
+
+            var columnCounter = 0;
+            var columnName = '';
+            var row = data[i];
+
+            for (var obj in row) {
+
+                var v = row[obj];
+
+                if (columnCounter === 0) {
+                    columnName = v;
+                } else {
+
+                    // Round the Value according to Options
+                    var value = 0;
+                    var roundedValue = Math.floor(v / scale);
+                    var leftOver = (v / scale) % 1;
+
+                    if (leftOver > isomatic.options.roundDown && leftOver < isomatic.options.roundUp) {
+                        value = roundedValue + leftOver;
+                    } else {
+                       value = roundedValue;
+                    }
+
+                    processedData.push({
+                        column: columnName,
+                        row: obj,
+                        count: value,
+                        rawValue: v
+                    });
+
+                    // Calculate Fully Processed Data
+                    for (var j = 0; j < columnName.length; j++) {
+                        var obj1 = columnName[j];
+
+                        var size = 1;
+
+                        if (j === columnName.length - 1) {
+                            size = leftOver;
+                        }
+
+                        fullyProcessedData.push({
+                            column: columnName,
+                            row: obj,
+                            size: size,
+                            x: 0,
+                            y: 0
+                        });
+                    }
+                }
+
+                columnCounter += 1;
+            }
+
+        });
+
+        console.log('Processed Data:');
+        console.dir(processedData);
+
+        console.log('Fully Processed Data:');
+        console.dir(fullyProcessedData);
+
+        return processedData;
     }
+
+    isotype.width = function(w) {
+        width = w;
+        return isotype;
+    };
+
+    isotype.height = function(h) {
+        height = h;
+        return isotype;
+    };
 
     /**
      * Specifies the value function *x*, which returns a nonnegative numeric value
@@ -66,11 +126,76 @@ d3.layout.isotype = function() {
      * is passed two arguments: the current datum and the current index.
      */
     isotype.value = function(x) {
-        if (!arguments.length) return value;
+        if (!arguments.length) {
+            return value;
+        }
         value = x;
         return isotype;
     };
 
+    /**
+     * Calculates the Scale from the Raw Data
+     * Returns nice Scales like 1:10000
+     *
+     * TODO: Test this with different Datasets
+     * TODO: Algorithm for Scale Detection is not very smart.
+     *
+     * @param data
+     */
+    var calculateScale = function(data) {
+
+        var valueArray = [];
+        var scaleArray = isomatic.options.scaleArray;
+
+        var scaleTemp = 0;
+        var scale = 0;
+        var columns = 0;
+
+        for (var i = 0; i < data.length; i++) {
+
+            var columnCounter = 0;
+            var row = data[i];
+
+            for (var obj in row) {
+                if (columnCounter > 0) {
+                    valueArray.push(row[obj]);
+                }
+                columnCounter += 1;
+            }
+
+            columns = columnCounter;
+
+        }
+
+        scaleTemp = d3.sum(valueArray) / isomatic.options.desiredTotalIcons;
+
+        // Get the next bigger Scale from the Array
+        for (var j = 0; j < scaleArray.length; j++) {
+
+            // TODO: Return the Scale nearest to scaleTemp, not bigger than!
+
+            if (scaleTemp <= scaleArray[j]) {
+
+                var diff1 = scaleArray[j] - scaleTemp;
+                var diff2 = scaleTemp - scaleArray[j - 1];
+
+                if (diff1 < diff2) {
+                    scale = isomatic.options.scaleArray[j];
+                } else {
+                    scale = isomatic.options.scaleArray[j - 1];
+                }
+
+                console.log('DIFF1: ' + diff1);
+                console.log('DIFF2: ' + diff2);
+
+                break;
+            }
+        }
+
+        console.log('Calculated Scale: ' + scale + ' from ' + scaleTemp);
+
+        return scale;
+    };
 
 
     return isotype;
