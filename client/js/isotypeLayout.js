@@ -20,10 +20,7 @@
 d3.layout.isotype = function() {
     "use strict";
 
-
     // Private Variables. Some with default values
-    var value = Number;
-    var width, height;
     var scale;
     var roundDown = 0.2;
     var roundUp = 0.8;
@@ -53,6 +50,7 @@ d3.layout.isotype = function() {
         for (var rowCounter = 0; rowCounter < data.length; rowCounter++) {
 
             var columnCounter = 0;
+            var iconPosition = 0;
             var columnName = '';
             var currentRow = data[rowCounter];
 
@@ -68,6 +66,7 @@ d3.layout.isotype = function() {
 
                         // Round the Value according to Options
                         var value = 0;
+
                         var roundedValue = Math.floor(v / scale);
                         var leftOver = (v / scale) % 1;
 
@@ -91,21 +90,22 @@ d3.layout.isotype = function() {
                         // Calculate Fully Processed Data
 
                         // Iterate over Icons
-                        for (var j = 0; j < columnName.length; j++) {
-                            var obj1 = columnName[j];
+                        for (var j = 0; j < Math.ceil(value); j++) {
 
+                            // Calculate Size
                             var size = 1;
-
                             if (j === columnName.length - 1 && value % 1 !== 0) {
                                 size = value % 1;
                             }
 
                             fullyProcessedData.push({
                                 row: rowCounter,
-                                column: columnCounter,
-                                icon: j,
+                                col: columnCounter,
+                                pos: iconPosition,
                                 size: size
                             });
+
+                            iconPosition += 1;
                         }
                     }
 
@@ -122,50 +122,45 @@ d3.layout.isotype = function() {
         console.dir(fullyProcessedData);
         isomatic.data.processed = fullyProcessedData;
 
-        return processedData;
+        return fullyProcessedData;
     }
 
-    isotype.width = function(n) {
-        width = n;
-        return isotype;
-    };
 
-    isotype.height = function(n) {
-        height = n;
-        return isotype;
-    };
-
+    /**
+     * Sets the Scale how much one icon is representating
+     * This is mandatory!
+     *
+     * @param n Scale Factor
+     * @returns {Function}
+     */
     isotype.scale = function(n) {
         scale = n;
         return isotype;
     };
 
+    /**
+     * Sets the Option when the Size is rounded down to reduce visual clutter
+     * This is optional.
+     *
+     * @param n
+     * @returns {Function}
+     */
     isotype.roundDown = function(n) {
         roundDown = n;
         return isotype;
     };
 
+    /**
+     * Sets the Option when the Size is rounded up to reduce visual clutter
+     * This is optional.
+     *
+     * @param n
+     * @returns {Function}
+     */
     isotype.roundUp = function(n) {
         roundUp = n;
         return isotype;
     };
-
-
-    /**
-     * Specifies the value function *x*, which returns a nonnegative numeric value
-     * for each datum. The default value function is `Number`. The value function
-     * is passed two arguments: the current datum and the current index.
-     */
-    isotype.value = function(x) {
-        if (!arguments.length) {
-            return value;
-        }
-        value = x;
-        return isotype;
-    };
-
-
-
 
     return isotype;
 };

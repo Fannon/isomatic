@@ -27,8 +27,8 @@ isomatic.options.roundUp = 0.7;
 
 isomatic.options.outerPadding = 10;
 isomatic.options.rowPadding = 10;
-isomatic.options.iconHorizontalPadding = 10;
-isomatic.options.iconVerticalPadding = 10;
+isomatic.options.iconHorizontalPadding = 3;
+isomatic.options.iconVerticalPadding = 30;
 
 /** This stores which column ID maps to which color */
 isomatic.options.columnMap = [];

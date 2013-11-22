@@ -110,18 +110,12 @@ isomatic.vis.drawIsotype = function() {
     // Visualisation Options             //
     ///////////////////////////////////////
 
-    // TODO: Set Visualisation Options (Use Layout for this)
+    // Set Visualisation Options
     isomatic.vis.isotypeLayout = d3.layout.isotype()
-        .width(isomatic.options.width)
-        .height(isomatic.options.width)
         .roundDown(isomatic.options.roundDown)
         .roundUp(isomatic.options.roundUp)
         .scale(isomatic.options.scale)
     ;
-
-    // Do Layouting
-    isomatic.vis.isotypeLayout(isomatic.data.raw);
-
 
     ///////////////////////////////////////
     // Create SVG Container              //
@@ -141,8 +135,37 @@ isomatic.vis.drawIsotype = function() {
 
     if (isomatic.data.raw) {
 
-        // TODO: Draw Data to Canvas
         console.log('-> Drawing Data to Canvas: (TODO)');
+
+
+        // TODO: This should be given by the UI
+        var color = d3.scale.ordinal()
+            .range(["#0B486B", "#3B8686", "#79BD9A", "#A8DBA8", "#CFF09E"]);
+
+
+
+        // TODO: Calculate Size from Boudning Box. Now just simple fixed Radius
+        var r = 11;
+
+        var g = isomatic.vis.svg.selectAll(".icon")
+            .data(isomatic.vis.isotypeLayout(isomatic.data.raw))
+            .enter()
+                .append("circle")
+                .attr("class", "icon")
+                .attr("cx", function(d) {
+                    return d.pos * (r * 2 + isomatic.options.iconHorizontalPadding) + isomatic.options.outerPadding + r;
+                })
+                .attr("cy", function(d) {
+                    return d.row * (r * 2 + isomatic.options.iconVerticalPadding) + isomatic.options.outerPadding + r;
+                })
+                .attr("r", function(d) {
+                    return r * d.size;
+                })
+                .attr("fill", function(d) {
+                    return color(d.col + 1);
+                })
+        ;
+
 
     } else {
         isomatic.message('error', 'No Data loaded!');
