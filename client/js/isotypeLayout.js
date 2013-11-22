@@ -33,13 +33,13 @@ d3.layout.isotype = function() {
          * Processed Data
          * @type {Array}
          */
-        var processedData = [];
+        var preProcessedData = [];
 
         /**
          * Processed Data with an Item per rendered Icon
          * @type {Array}
          */
-        var fullyProcessedData = [];
+        var processedData = [];
 
 
         ///////////////////////////////////////
@@ -78,27 +78,26 @@ d3.layout.isotype = function() {
                             value = roundedValue;
                         }
 
-                        // Calculate processed Data (Just for Debugging)
-
-                        processedData.push({
+                        // Write Pre-Processed Data (Just for Debugging)
+                        preProcessedData.push({
                             column: columnName,
                             row: obj,
                             count: value,
                             rawValue: v
                         });
 
-                        // Calculate Fully Processed Data
+                        // Calculate  Processed Data
 
                         // Iterate over Icons
                         for (var j = 0; j < Math.ceil(value); j++) {
 
                             // Calculate Size
                             var size = 1;
-                            if (j === columnName.length - 1 && value % 1 !== 0) {
+                            if (j === Math.ceil(value) - 1 && value % 1 !== 0) {
                                 size = value % 1;
                             }
 
-                            fullyProcessedData.push({
+                            processedData.push({
                                 row: rowCounter,
                                 col: columnCounter,
                                 pos: iconPosition,
@@ -115,14 +114,14 @@ d3.layout.isotype = function() {
 
         }
 
+        console.log('-> Pre-Processed Data:');
+        console.dir(preProcessedData);
+
         console.log('-> Processed Data:');
         console.dir(processedData);
+        isomatic.data.processed = processedData;
 
-        console.log('-> Fully Processed Data:');
-        console.dir(fullyProcessedData);
-        isomatic.data.processed = fullyProcessedData;
-
-        return fullyProcessedData;
+        return processedData;
     }
 
 

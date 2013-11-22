@@ -22,8 +22,8 @@ isomatic.options = {};
 
 isomatic.options.aspectRatio = 16 / 5;
 
-isomatic.options.roundDown = 0.3;
-isomatic.options.roundUp = 0.7;
+isomatic.options.roundDown = 0.2;
+isomatic.options.roundUp = 0.8;
 
 isomatic.options.outerPadding = 10;
 isomatic.options.rowPadding = 10;
