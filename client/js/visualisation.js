@@ -59,45 +59,23 @@ isomatic.vis = {};
 
 
 ///////////////////////////////////////
-// On DOM Ready                      //
+// Visualisation Functions           //
 ///////////////////////////////////////
 
-
-$(function() {
-
+/**
+ * Initialize the Visualisation Module
+ */
+isomatic.vis.init = function() {
     "use strict";
-    console.log('ISOMATIC INIT');
 
-
-    ///////////////////////////////////////
-    // Variables                         //
-    ///////////////////////////////////////
+    console.log('isomatic.vis.init();');
 
     isomatic.vis.$graph = $('#graph');
 
+    isomatic.vis.newVisualisation(isomatic.options.aspectRatio);
 
-    ///////////////////////////////////////
-    // Init                              //
-    ///////////////////////////////////////
+};
 
-    // TODO: Refactoring
-    isomatic.vis.newVisualisation(16 / 7);
-
-    // Sets the Data, starts drawing on the Callback. TODO: This belongs into the UI
-    isomatic.vis.loadData("data/data2.csv", function() {
-
-        // Draw after Data is loaded (asynchronous)
-        isomatic.vis.drawIsotype();
-
-    });
-
-
-});
-
-
-///////////////////////////////////////
-// Visualisation Functions           //
-///////////////////////////////////////
 
 /**
  * Creates a new Visualisation
@@ -106,6 +84,8 @@ $(function() {
  */
 isomatic.vis.newVisualisation = function(aspectRatio) {
     "use strict";
+
+    console.log('isomatic.vis.newVisualisation(' + aspectRatio + ');');
 
     // Calculate Width and Height from Aspect Ratio
     isomatic.options.aspectRatio = aspectRatio;
@@ -118,40 +98,12 @@ isomatic.vis.newVisualisation = function(aspectRatio) {
 
 
 /**
- * Sets the Data Object
- *
- * TODO: Should support tsv and json too.
- * TODO: Imports just Files right now. Should use Object from UI
- */
-isomatic.vis.loadData = function(filename, callback) {
-
-    "use strict";
-
-    d3.csv(filename, function(error, data) {
-
-        if (error) {
-            console.dir(error);
-            isomatic.message('error', 'Error while loading Data!');
-        } else {
-
-            isomatic.data = data;
-            console.log('Raw Data loaded from CVS:');
-            console.dir(data);
-        }
-
-        callback();
-
-    });
-};
-
-
-/**
  * Draws Isotype Graphic
  */
 isomatic.vis.drawIsotype = function() {
 
     "use strict";
-    console.log('drawIsotype();');
+    console.log('isomatic.vis.drawIsotype();');
 
 
     ///////////////////////////////////////
@@ -164,9 +116,11 @@ isomatic.vis.drawIsotype = function() {
         .height(isomatic.options.width)
         .roundDown(isomatic.options.roundDown)
         .roundUp(isomatic.options.roundUp)
+        .scale(isomatic.options.scale)
     ;
 
-    isomatic.vis.isotypeLayout(isomatic.data);
+    // Do Layouting
+    isomatic.vis.isotypeLayout(isomatic.data.raw);
 
 
     ///////////////////////////////////////
@@ -185,10 +139,10 @@ isomatic.vis.drawIsotype = function() {
     // Draw Data                         //
     ///////////////////////////////////////
 
-    if (isomatic.data) {
+    if (isomatic.data.raw) {
 
         // TODO: Draw Data to Canvas
-        return false;
+        console.log('-> Drawing Data to Canvas: (TODO)');
 
     } else {
         isomatic.message('error', 'No Data loaded!');
@@ -205,6 +159,8 @@ isomatic.vis.drawIsotype = function() {
  */
 isomatic.vis.loadIcon = function(filename, url) {
     "use strict";
+
+    console.log('isomatic.vis.loadIcon(' + filename + ', ' + url + ');');
 
     $.get(url, function(response) {
         isomatic.vis.icons[filename] = response.getElementsByTagName('svg')[0];

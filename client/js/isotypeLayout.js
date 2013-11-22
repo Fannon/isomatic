@@ -20,14 +20,17 @@
 d3.layout.isotype = function() {
     "use strict";
 
+
     // Private Variables. Some with default values
     var value = Number;
     var width, height;
+    var scale;
     var roundDown = 0.2;
     var roundUp = 0.8;
 
-
     function isotype(data) {
+
+        console.log('d3.layout.isotype();');
 
         /**
          * Processed Data
@@ -41,84 +44,83 @@ d3.layout.isotype = function() {
          */
         var fullyProcessedData = [];
 
-        console.log('Isotype Layout: Processing Data.');
-
-        // Calculate the Scale
-        var scale = calculateScale(data);
-
 
         ///////////////////////////////////////
         // Calculating Layout                //
         ///////////////////////////////////////
 
         // Iterate over Rows
-        for (var i = 0; i < data.length; i++) {
+        for (var rowCounter = 0; rowCounter < data.length; rowCounter++) {
 
             var columnCounter = 0;
             var columnName = '';
-            var row = data[i];
+            var currentRow = data[rowCounter];
 
             // Iterate over Columns
-            for (var obj in row) {
+            for (var obj in currentRow) {
+                if(currentRow.hasOwnProperty(obj)){
 
-                var v = row[obj];
+                    var v = currentRow[obj];
 
-                if (columnCounter === 0) {
-                    columnName = v;
-                } else {
-
-                    // Round the Value according to Options
-                    var value = 0;
-                    var roundedValue = Math.floor(v / scale);
-                    var leftOver = (v / scale) % 1;
-
-                    if (leftOver > roundDown && leftOver < roundUp) {
-                        value = roundedValue + leftOver;
-                    } else if (leftOver > 0.5) {
-                       value = roundedValue + 1;
+                    if (columnCounter === 0) {
+                        columnName = v;
                     } else {
-                        value = roundedValue;
-                    }
 
-                    processedData.push({
-                        column: columnName,
-                        row: obj,
-                        count: value,
-                        rawValue: v
-                    });
+                        // Round the Value according to Options
+                        var value = 0;
+                        var roundedValue = Math.floor(v / scale);
+                        var leftOver = (v / scale) % 1;
 
-                    // Calculate Fully Processed Data
-
-                    // Iterate over Icons
-                    for (var j = 0; j < columnName.length; j++) {
-                        var obj1 = columnName[j];
-
-                        var size = 1;
-
-                        if (j === columnName.length - 1 && value % 1 !== 0) {
-                            size = value % 1;
+                        if (leftOver > roundDown && leftOver < roundUp) {
+                            value = roundedValue + leftOver;
+                        } else if (leftOver > 0.5) {
+                            value = roundedValue + 1;
+                        } else {
+                            value = roundedValue;
                         }
 
-                        fullyProcessedData.push({
+                        // Calculate processed Data (Just for Debugging)
+
+                        processedData.push({
                             column: columnName,
                             row: obj,
-                            size: size,
-                            x: 0,
-                            y: 0
+                            count: value,
+                            rawValue: v
                         });
-                    }
-                }
 
-                columnCounter += 1;
+                        // Calculate Fully Processed Data
+
+                        // Iterate over Icons
+                        for (var j = 0; j < columnName.length; j++) {
+                            var obj1 = columnName[j];
+
+                            var size = 1;
+
+                            if (j === columnName.length - 1 && value % 1 !== 0) {
+                                size = value % 1;
+                            }
+
+                            fullyProcessedData.push({
+                                row: rowCounter,
+                                column: columnCounter,
+                                icon: j,
+                                size: size
+                            });
+                        }
+                    }
+
+                    columnCounter += 1;
+                }
             }
 
         }
 
-        console.log('Processed Data:');
+        console.log('-> Processed Data:');
         console.dir(processedData);
 
-        console.log('Fully Processed Data:');
+        console.log('-> Fully Processed Data:');
         console.dir(fullyProcessedData);
+        isomatic.data.processed = fullyProcessedData;
 
         return processedData;
     }
@@ -130,6 +132,11 @@ d3.layout.isotype = function() {
 
     isotype.height = function(n) {
         height = n;
+        return isotype;
+    };
+
+    isotype.scale = function(n) {
+        scale = n;
         return isotype;
     };
 
@@ -157,61 +164,7 @@ d3.layout.isotype = function() {
         return isotype;
     };
 
-    /**
-     * Calculates the Scale from the Raw Data
-     * Returns nice Scales like 1:10000
-     *
-     * TODO: Test this with different Datasets
-     *
-     * @param {Array} data Raw Data Array
-     *
-     * @private
-     */
-    var calculateScale = function(data) {
 
-        var valueArray = [];
-        var scaleArray = isomatic.options.scaleArray;
-
-        var scaleTemp = 0;
-        var scale = 0;
-        var columns = 0;
-
-        // Iterate over Rows
-        for (var i = 0; i < data.length; i++) {
-
-            var columnCounter = 0;
-            var row = data[i];
-
-            // Iterate over Columns
-            for (var obj in row) {
-                if (columnCounter > 0) {
-                    valueArray.push(row[obj]);
-                }
-                columnCounter += 1;
-            }
-
-            columns = columnCounter;
-
-        }
-
-        scaleTemp = d3.sum(valueArray) / isomatic.options.desiredTotalIcons;
-
-        // Get the next bigger Scale from the Array
-        for (var j = 0; j < scaleArray.length; j++) {
-            if (scaleTemp <= scaleArray[j]) {
-                if (scaleArray[j] - scaleTemp < scaleTemp - scaleArray[j - 1]) {
-                    scale = isomatic.options.scaleArray[j];
-                } else {
-                    scale = isomatic.options.scaleArray[j - 1];
-                }
-                break;
-            }
-        }
-
-        console.log('Calculated Scale: ' + scale + ' from ' + scaleTemp);
-
-        return scale;
-    };
 
 
     return isotype;

@@ -33,6 +33,8 @@ isomatic.ui = {};
 isomatic.ui.exportSVG = function() {
     "use strict";
 
+    console.log('isomatic.ui.exportSVG();');
+
     isomatic.ui.embedData();
 
     var content = '<?xml version="1.0" encoding="utf-8"?>\n';
@@ -55,6 +57,8 @@ isomatic.ui.exportSVG = function() {
 isomatic.ui.exportJSON = function() {
     "use strict";
 
+    console.log('isomatic.ui.exportJSON();');
+
     var content = isomatic.ui.embedData();
     var filename = isomatic.getFormattedTime() + ".json";
 
@@ -71,6 +75,8 @@ isomatic.ui.exportJSON = function() {
  */
 isomatic.ui.embedData = function() {
     "use strict";
+
+    console.log('isomatic.ui.embedData();');
 
     var jsonExport = {
         data: isomatic.rawData,

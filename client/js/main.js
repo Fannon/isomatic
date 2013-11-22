@@ -16,6 +16,30 @@ var isomatic = {};
 
 
 ///////////////////////////////////////
+// On DOM Ready                      //
+///////////////////////////////////////
+
+$(function() {
+
+    "use strict";
+    console.log('ISOMATIC INIT');
+
+    isomatic.vis.init();
+
+    // Sets the Data, starts drawing on the Callback. TODO: This belongs into the UI
+    isomatic.data.load("data/data2.csv", function(data) {
+
+        isomatic.data.analyze(data);
+
+        // Draw after Data is loaded (asynchronous)
+        isomatic.vis.drawIsotype();
+
+    });
+
+});
+
+
+///////////////////////////////////////
 // General Helper Functions          //
 ///////////////////////////////////////
 
@@ -37,6 +61,8 @@ isomatic.message = function(type, msg) {
  */
 isomatic.getFormattedTime = function() {
     "use strict";
+
+    console.log('isomatic.getFormattedTime();');
 
     var a = new Date();
 

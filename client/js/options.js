@@ -20,6 +20,8 @@ isomatic.options = {};
 // UI Default Options                //
 ///////////////////////////////////////
 
+isomatic.options.aspectRatio = 16 / 5;
+
 isomatic.options.roundDown = 0.3;
 isomatic.options.roundUp = 0.7;
 
@@ -27,6 +29,11 @@ isomatic.options.outerPadding = 10;
 isomatic.options.rowPadding = 10;
 isomatic.options.iconHorizontalPadding = 10;
 isomatic.options.iconVerticalPadding = 10;
+
+/** This stores which column ID maps to which color */
+isomatic.options.columnMap = [];
+/** This stores which row ID maps to which icon */
+isomatic.options.rowMap = [];
 
 
 ///////////////////////////////////////
