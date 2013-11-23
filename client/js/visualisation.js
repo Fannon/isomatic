@@ -108,6 +108,7 @@ isomatic.vis.precalculate = function() {
     var iconsPerRow = [];
 
     for (var i = 0; i < isomatic.data.processed.length; i++) {
+
         var obj = isomatic.data.processed[i];
 
         if (!iconsPerRow[obj.row]) {
@@ -120,6 +121,11 @@ isomatic.vis.precalculate = function() {
 
     isomatic.data.meta.iconsPerRow = iconsPerRow;
     isomatic.data.meta.maxIconsPerRow = d3.max(iconsPerRow);
+
+    // Calculate Base Scale for Icons depending on biggest Row. (Fit to width)
+    var widthLeft = isomatic.options.width - (isomatic.data.meta.maxIconsPerRow * isomatic.options.iconHorizontalPadding) - 2 * isomatic.options.outerPadding;
+    isomatic.data.meta.baseScale = widthLeft / (isomatic.data.meta.maxIconsPerRow * 32);
+
 };
 
 
@@ -163,16 +169,14 @@ isomatic.vis.drawIsotype = function() {
 
         console.log('-> Drawing Data to Canvas: (TODO)');
 
+        // Generate Layout
+        isomatic.vis.isotypeLayout(isomatic.data.raw);
+
         // Precalculate Layout and save it into the Metadata Object.
         isomatic.vis.precalculate();
 
 
         // TODO: Choose different Icon via the isomatic.options.rowMap Array
-
-        // TODO: Calculate baseScale from the BBox
-        var baseScale = 0.65;
-        var finalSize = 11;
-        var colorize = 'row';
 
         // TODO: Line Return if overflowing on the right side
         // TODO: Warning if overflowing on the bottom
@@ -198,16 +202,25 @@ isomatic.vis.drawIsotype = function() {
 //        ;
 
         var g = isomatic.vis.svg.selectAll(".icon")
-                .data(isomatic.vis.isotypeLayout(isomatic.data.raw))
+                .data(isomatic.data.processed)
                 .enter()
                 .append("g")
                 .attr("class", "icon")
                 .attr("transform", function(d) {
 
-                    var x = d.pos * (finalSize * 2 + isomatic.options.iconHorizontalPadding) + isomatic.options.outerPadding + finalSize;
-                    var y = d.row * (finalSize * 2 + isomatic.options.iconVerticalPadding) + isomatic.options.outerPadding + finalSize;
+                    var finalSize = isomatic.data.meta.baseScale * isomatic.options.defaultIconSize;
 
-                    var scale = baseScale * d.size;
+                    var x = d.pos * (finalSize + isomatic.options.iconHorizontalPadding) + isomatic.options.outerPadding;
+                    var y = d.row * (finalSize + isomatic.options.iconVerticalPadding) + isomatic.options.outerPadding;
+
+                    var scale = isomatic.data.meta.baseScale * d.size;
+
+                    // If Icon is drawn smaller than full-size, center it
+                    if (d.size < 1) {
+                        console.log('Centering Icon');
+                        x += (finalSize / 2) * (1 - d.size);
+                        y += (finalSize / 2) * (1 - d.size);
+                    }
 
                     return 'translate(' + x + ', ' + y + ') scale(' + scale + ')';
 

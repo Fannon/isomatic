@@ -20,18 +20,16 @@ isomatic.options = {};
 // UI Default Options                //
 ///////////////////////////////////////
 
+// GENERAL LAYOUTING
 isomatic.options.aspectRatio = 16 / 5;
-
-isomatic.options.roundDown = 0.2;
-isomatic.options.roundUp = 0.8;
-
 isomatic.options.outerPadding = 10;
 isomatic.options.rowPadding = 10;
-isomatic.options.iconHorizontalPadding = 3;
-isomatic.options.iconVerticalPadding = 30;
 
-isomatic.options.iconize = 'row';
+// CALCULATION SETTINGS
+isomatic.options.roundDown = 0.3;
+isomatic.options.roundUp = 0.8;
 
+// ICON SETTINGS
 /** This stores which column ID maps to which icon */
 isomatic.options.iconMap = [
     {category: 'socialNetworks', name: 'facebook'},
@@ -45,10 +43,23 @@ isomatic.options.iconMap = [
  * Accepts 'row' and 'column'
  * @type {string}
  */
-isomatic.options.colorize = 'column';
+isomatic.options.iconize = 'row';
 
+isomatic.options.iconHorizontalPadding = 3;
+isomatic.options.iconVerticalPadding = 30;
+
+
+// COLOR SETTINGS
 /** This stores which row ID maps to which color */
 isomatic.options.colorMap = ["#0B486B", "#3B8686", "#79BD9A", "#A8DBA8", "#CFF09E"];
+
+/**
+ * Defines if the Color is applied to Rows or Columns
+ * Accepts 'row' and 'column'
+ * @type {string}
+ */
+isomatic.options.colorize = 'column';
+
 
 
 ///////////////////////////////////////
@@ -56,6 +67,7 @@ isomatic.options.colorMap = ["#0B486B", "#3B8686", "#79BD9A", "#A8DBA8", "#CFF09
 ///////////////////////////////////////
 
 isomatic.options.desiredTotalIcons = 64;
+isomatic.options.defaultIconSize = 32;
 isomatic.options.scaleArray = [
     1, 2, 5,
     10, 20, 50,
@@ -71,5 +83,6 @@ isomatic.options.scaleArray = [
     100000000000, 200000000000, 500000000000,
     1000000000000, 2000000000000, 5000000000000
 ];
+
 
 
