@@ -251,6 +251,17 @@ isomatic.vis.drawIsotype = function() {
 
         // TODO: Insert Text (Legend). Needs its own Layout?
 
+        var legendText = '1 : ' + isomatic.vis.printScale(isomatic.options.scale);
+
+        var legend = isomatic.vis.svg.append("g")
+            .style("text-anchor", "start")
+            .attr("transform", "translate(" + isomatic.options.outerPadding + ", " + (isomatic.options.height - 2 * isomatic.options.outerPadding) + ")");
+
+        legend.append("text")
+            .attr("class", "legend")
+            .text(legendText)
+            .attr("fill", "#999999")
+        ;
 
     } else {
         isomatic.message('error', 'No Data loaded!');
@@ -277,4 +288,17 @@ isomatic.vis.loadIcon = function(filename, url) {
 
 };
 
+/**
+ * Pretty prints the Scale (for use with the Legend and the UI)
+ *
+ * http://stackoverflow.com/a/2901298/776425
+ *
+ * @param scale
+ * @returns {string}
+ */
+isomatic.vis.printScale = function(scale) {
+    "use strict";
+
+    return scale.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+};
 
