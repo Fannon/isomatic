@@ -96,6 +96,32 @@ isomatic.vis.newVisualisation = function(aspectRatio) {
     isomatic.vis.$graph.height(isomatic.options.height);
 };
 
+/**
+ * Precalculates the visual Layout. Recommends some options like Icon-Size.
+ * Stores the data into the isomatic.data.meta Object
+ */
+isomatic.vis.precalculate = function() {
+    "use strict";
+
+    console.log('isomatic.vis.precalculate();');
+
+    var iconsPerRow = [];
+
+    for (var i = 0; i < isomatic.data.processed.length; i++) {
+        var obj = isomatic.data.processed[i];
+
+        if (!iconsPerRow[obj.row]) {
+            iconsPerRow[obj.row] = 1;
+        } else {
+            iconsPerRow[obj.row] += 1;
+        }
+
+    }
+
+    isomatic.data.meta.iconsPerRow = iconsPerRow;
+    isomatic.data.meta.maxIconsPerRow = d3.max(iconsPerRow);
+};
+
 
 /**
  * Draws Isotype Graphic
@@ -137,34 +163,80 @@ isomatic.vis.drawIsotype = function() {
 
         console.log('-> Drawing Data to Canvas: (TODO)');
 
-
-        // TODO: This should be given by the UI
-        var color = d3.scale.ordinal()
-            .range(["#0B486B", "#3B8686", "#79BD9A", "#A8DBA8", "#CFF09E"]);
+        // Precalculate Layout and save it into the Metadata Object.
+        isomatic.vis.precalculate();
 
 
+        // TODO: Choose different Icon via the isomatic.options.rowMap Array
 
-        // TODO: Calculate Size from Boudning Box. Now just simple fixed Radius
-        var r = 11;
+        // TODO: Calculate baseScale from the BBox
+        var baseScale = 0.65;
+        var finalSize = 11;
+        var colorize = 'row';
+
+        // TODO: Line Return if overflowing on the right side
+        // TODO: Warning if overflowing on the bottom
+
+        // Use SVG Circles:
+//        var g = isomatic.vis.svg.selectAll(".icon")
+//            .data(isomatic.vis.isotypeLayout(isomatic.data.raw))
+//            .enter()
+//                .append("circle")
+//                .attr("class", "icon")
+//                .attr("cx", function(d) {
+//                    return d.pos * (r * 2 + isomatic.options.iconHorizontalPadding) + isomatic.options.outerPadding + r;
+//                })
+//                .attr("cy", function(d) {
+//                    return d.row * (r * 2 + isomatic.options.iconVerticalPadding) + isomatic.options.outerPadding + r;
+//                })
+//                .attr("r", function(d) {
+//                    return r * d.size;
+//                })
+//                .attr("fill", function(d) {
+//                    return isomatic.options.columnMap[d.col];
+//                })
+//        ;
 
         var g = isomatic.vis.svg.selectAll(".icon")
-            .data(isomatic.vis.isotypeLayout(isomatic.data.raw))
-            .enter()
-                .append("circle")
+                .data(isomatic.vis.isotypeLayout(isomatic.data.raw))
+                .enter()
+                .append("g")
                 .attr("class", "icon")
-                .attr("cx", function(d) {
-                    return d.pos * (r * 2 + isomatic.options.iconHorizontalPadding) + isomatic.options.outerPadding + r;
+                .attr("transform", function(d) {
+
+                    var x = d.pos * (finalSize * 2 + isomatic.options.iconHorizontalPadding) + isomatic.options.outerPadding + finalSize;
+                    var y = d.row * (finalSize * 2 + isomatic.options.iconVerticalPadding) + isomatic.options.outerPadding + finalSize;
+
+                    var scale = baseScale * d.size;
+
+                    return 'translate(' + x + ', ' + y + ') scale(' + scale + ')';
+
                 })
-                .attr("cy", function(d) {
-                    return d.row * (r * 2 + isomatic.options.iconVerticalPadding) + isomatic.options.outerPadding + r;
-                })
-                .attr("r", function(d) {
-                    return r * d.size;
+                .html(function(d) {
+
+                    var category, name;
+
+                    if (isomatic.options.iconize === 'row') {
+                        category = isomatic.options.iconMap[d.row].category;
+                        name = isomatic.options.iconMap[d.row].name;
+                    } else {
+                        category = isomatic.options.iconMap[d.col - 1].category;
+                        name = isomatic.options.iconMap[d.col - 1].name;
+                    }
+
+
+                    return isomatic.icons[category].icons[name].svg;
                 })
                 .attr("fill", function(d) {
-                    return color(d.col + 1);
+                    if (isomatic.options.colorize === 'row') {
+                        return isomatic.options.colorMap[d.row];
+                    } else {
+                        return isomatic.options.colorMap[d.col];
+                    }
                 })
-        ;
+            ;
+
+        // TODO: Insert Text (Legend). Needs its own Layout?
 
 
     } else {

@@ -30,10 +30,25 @@ isomatic.options.rowPadding = 10;
 isomatic.options.iconHorizontalPadding = 3;
 isomatic.options.iconVerticalPadding = 30;
 
-/** This stores which column ID maps to which color */
-isomatic.options.columnMap = [];
-/** This stores which row ID maps to which icon */
-isomatic.options.rowMap = [];
+isomatic.options.iconize = 'row';
+
+/** This stores which column ID maps to which icon */
+isomatic.options.iconMap = [
+    {category: 'socialNetworks', name: 'facebook'},
+    {category: 'socialNetworks', name: 'twitter'},
+    {category: 'socialNetworks', name: 'googleplus'},
+    {category: 'socialNetworks', name: 'linkedin'}
+];
+
+/**
+ * Defines if the Color is applied to Rows or Columns
+ * Accepts 'row' and 'column'
+ * @type {string}
+ */
+isomatic.options.colorize = 'column';
+
+/** This stores which row ID maps to which color */
+isomatic.options.colorMap = ["#0B486B", "#3B8686", "#79BD9A", "#A8DBA8", "#CFF09E"];
 
 
 ///////////////////////////////////////
