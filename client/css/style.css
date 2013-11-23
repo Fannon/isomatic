@@ -25,6 +25,6 @@
     border-top: 1px solid #EEE;
 }
 
-#icon-container {
-    /*display: none;*/
+#message .alert {
+    margin-top: 7px;
 }

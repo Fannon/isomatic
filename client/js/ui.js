@@ -79,7 +79,7 @@ isomatic.ui.embedData = function() {
     console.log('isomatic.ui.embedData();');
 
     var jsonExport = {
-        data: isomatic.rawData,
+        data: isomatic.data.raw,
         options: isomatic.options
     };
 

@@ -52,6 +52,7 @@ $(function() {
  */
 isomatic.message = function(type, msg) {
     "use strict";
+    $('#message').append('<div class="alert alert-' + type + '">' + msg + '</div>');
     console.log('Message [' + type + ']: ' + msg);
 };
 

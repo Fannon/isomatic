@@ -12,6 +12,7 @@
  * isomatic current options
  *
  * TODO: Convert this into a backbone.js model
+ * TODO: Seperate UI Options from internal Options (For clean Export)
  */
 isomatic.options = {};
 

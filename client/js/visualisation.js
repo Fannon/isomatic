@@ -131,6 +131,8 @@ isomatic.vis.precalculate = function() {
 
 /**
  * Draws Isotype Graphic
+ *
+ * TODO: Line Return if overflowing on the right side
  */
 isomatic.vis.drawIsotype = function() {
 
@@ -157,7 +159,6 @@ isomatic.vis.drawIsotype = function() {
         .attr("width", isomatic.options.width)
         .attr("height", isomatic.options.height)
         .append("g")
-        .attr("transform", "translate(" + isomatic.options.outerPadding / 2 + "," + isomatic.options.outerPadding / 2 + ")")
         .attr("id", "isotype")
     ;
 
@@ -175,13 +176,7 @@ isomatic.vis.drawIsotype = function() {
         // Precalculate Layout and save it into the Metadata Object.
         isomatic.vis.precalculate();
 
-
-        // TODO: Choose different Icon via the isomatic.options.rowMap Array
-
-        // TODO: Line Return if overflowing on the right side
-        // TODO: Warning if overflowing on the bottom
-
-        // Use SVG Circles:
+        // Use SVG Circles instead of Icons:
 //        var g = isomatic.vis.svg.selectAll(".icon")
 //            .data(isomatic.vis.isotypeLayout(isomatic.data.raw))
 //            .enter()
@@ -217,9 +212,13 @@ isomatic.vis.drawIsotype = function() {
 
                     // If Icon is drawn smaller than full-size, center it
                     if (d.size < 1) {
-                        console.log('Centering Icon');
                         x += (finalSize / 2) * (1 - d.size);
                         y += (finalSize / 2) * (1 - d.size);
+                    }
+
+                    // If Icon is drawn outside of Canvas give a warning
+                    if (y > isomatic.options.height || x > isomatic.options.width) {
+                        isomatic.message('warning', '<strong>Warning: </strong>The generated Graphic is bigger than its Canvas!');
                     }
 
                     return 'translate(' + x + ', ' + y + ') scale(' + scale + ')';
@@ -236,7 +235,6 @@ isomatic.vis.drawIsotype = function() {
                         category = isomatic.options.iconMap[d.col - 1].category;
                         name = isomatic.options.iconMap[d.col - 1].name;
                     }
-
 
                     return isomatic.icons[category].icons[name].svg;
                 })
