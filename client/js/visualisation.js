@@ -171,7 +171,7 @@ isomatic.vis.drawIsotype = function() {
         console.log('-> Drawing Data to Canvas: (TODO)');
 
         // Generate Layout
-        isomatic.vis.isotypeLayout(isomatic.data.raw);
+        isomatic.data.processed = isomatic.vis.isotypeLayout(isomatic.data.raw);
 
         // Precalculate Layout and save it into the Metadata Object.
         isomatic.vis.precalculate();

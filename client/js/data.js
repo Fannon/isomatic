@@ -76,6 +76,7 @@ isomatic.data.analyze = function(data) {
     console.log('isomatic.data.analyze(data);');
 
     var values = [];
+    var rowValues = [];
     var availableScales = [];
 
 
@@ -89,6 +90,7 @@ isomatic.data.analyze = function(data) {
 
         var columnCounter = 0;
         var currentRow = data[rowCounter];
+        var rowValue = 0;
 
         // Iterate over Columns
         for (var obj in currentRow) {
@@ -102,27 +104,34 @@ isomatic.data.analyze = function(data) {
                 if (columnCounter === 0) {
                     // Put first Column (Description) into a Column Array
                     isomatic.data.meta.rows.push(currentRow[obj]);
+//                    rowValues[rowCounter] = 0;
                 } else {
-                    values.push(currentRow[obj]);
+                    values.push(parseInt(currentRow[obj], 10));
+                    rowValue += parseInt(currentRow[obj], 10);
                 }
 
                 columnCounter += 1;
             }
         }
+
+        rowValues[rowCounter] = rowValue;
     }
 
     isomatic.data.meta.min = d3.min(values);
     isomatic.data.meta.max = d3.max(values);
     isomatic.data.meta.sum = d3.sum(values);
 
+    isomatic.data.meta.rowValues = rowValues;
+    isomatic.data.meta.maxRowValues = d3.max(rowValues);
 
     ///////////////////////////////////////
     // Calculate a recommended Scale     //
     ///////////////////////////////////////
 
-    var scaleTemp = isomatic.data.meta.sum / isomatic.options.desiredTotalIcons;
+//    var scaleTemp = isomatic.data.meta.sum / isomatic.options.desiredTotalIcons;
+    var scaleTemp = isomatic.data.meta.maxRowValues / isomatic.options.desiredmaxIconsPerRow;
 
-    // Get the next bigger Scale from the Array
+    // Get fitting Scales from the Array
     // TODO: Check for Array Boundaries!
     for (var j = 0; j < isomatic.options.scaleArray.length; j++) {
         if (scaleTemp <= isomatic.options.scaleArray[j]) {

@@ -20,11 +20,32 @@
 d3.layout.isotype = function() {
     "use strict";
 
-    // Private Variables. Some with default values
-    var scale;
+    /**
+     * This is the scale how much one icon represents.
+     * Warning: This must be adjusted to the incoming data, otherwise it can lead to massive overload.
+     * @type {number}
+     */
+    var scale = 1;
+
+    /**
+     * If the remainder of a value is lower than this, the value is completely floored.
+     * This helps avoiding too small icons.
+     * @type {number}
+     */
     var roundDown = 0.2;
+
+    /**
+     * If the remainder of a value is higher than this, the value is completely ceiled.
+     * @type {number}
+     */
     var roundUp = 0.8;
 
+    /**
+     * Isotype Layout
+     * 2013 Simon Heimler
+     * @param data Incoming (raw) Data
+     * @returns {Array} Processed Data
+     */
     function isotype(data) {
 
         console.log('d3.layout.isotype();');
@@ -119,7 +140,6 @@ d3.layout.isotype = function() {
 
         console.log('-> Processed Data:');
         console.dir(processedData);
-        isomatic.data.processed = processedData;
 
         return processedData;
     }

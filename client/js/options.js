@@ -22,7 +22,7 @@ isomatic.options = {};
 ///////////////////////////////////////
 
 // GENERAL LAYOUTING
-isomatic.options.aspectRatio = 16 / 5;
+isomatic.options.aspectRatio = 16 / 8;
 isomatic.options.outerPadding = 10;
 isomatic.options.rowPadding = 10;
 
@@ -62,13 +62,20 @@ isomatic.options.colorMap = ["#0B486B", "#3B8686", "#79BD9A", "#A8DBA8", "#CFF09
 isomatic.options.colorize = 'column';
 
 
-
 ///////////////////////////////////////
 // Internal Options                  //
 ///////////////////////////////////////
 
+/** Automatically adjusts scale according to this value */
 isomatic.options.desiredTotalIcons = 64;
+
+/** Automatically adjusts scale according to this value */
+isomatic.options.desiredmaxIconsPerRow = 16;
+
+/** Icon Size of the SVG Paths in defaultIcons.js */
 isomatic.options.defaultIconSize = 32;
+
+/** Array List of available Scales */
 isomatic.options.scaleArray = [
     1, 2, 5,
     10, 20, 50,
