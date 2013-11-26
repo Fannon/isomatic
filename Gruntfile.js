@@ -2,6 +2,15 @@ module.exports = function(grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
 
+        connect: {
+            server: {
+                options: {
+                    port: 8000,
+                    base: ''
+                }
+            }
+        },
+
         uglify: {
             my_target: {
                 files: {
@@ -42,17 +51,18 @@ module.exports = function(grunt) {
             sass: {
                 files: 'scss/**/*.scss',
                 tasks: ['sass']
-            }
+            },
 
-//            js:  { files: 'js/*.js', tasks: [ 'uglify' ] }
+            js:  { files: 'js/*.js', tasks: [ 'uglify' ] }
         }
     });
 
 
     grunt.loadNpmTasks('grunt-sass');
+    grunt.loadNpmTasks('grunt-contrib-connect');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-watch');
 
-    grunt.registerTask('build', ['sass', 'uglify']);
+    grunt.registerTask('build', ['connect', 'sass', 'uglify']);
     grunt.registerTask('default', ['build', 'watch']);
 };
