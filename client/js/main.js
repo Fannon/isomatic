@@ -26,8 +26,6 @@ $(function() {
 
     isomatic.vis.init();
 
-
-
     // Sets the Data, starts drawing on the Callback. TODO: This belongs into the UI
     isomatic.data.load("data/data2.csv", function(data) {
 

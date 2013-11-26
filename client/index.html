@@ -1,72 +1,59 @@
 <!DOCTYPE html>
 <html>
 <head>
-
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
-    <link rel="stylesheet" type="text/css" href="css/style.css">
-
     <meta charset=utf-8/>
     <title>isomatic</title>
-
+    <link rel="stylesheet" type="text/css" href="css/app.css"/>
+    <script src="bower_components/modernizr/modernizr.js"></script>
 </head>
 <body>
 
 <div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <div id="header">
-                <h1>isomatic
-                    <small>An Interactive Isotype Graphics Generator</small>
-                </h1>
-            </div>
-        </div>
+
+    <div id="header">
+        <h1>isomatic
+            <small>An Interactive Isotype Graphics Generator</small>
+        </h1>
     </div>
 
-    <div class="row">
-        <div class="col-md-12">
-            <div id="graph"></div>
-        </div>
-        <div class="col-md-12">
-            <div id="message"></div>
-        </div>
-    </div>
+
+    <div id="graph"></div>
+
+    <div id="message"></div>
 
     <br>
 
-    <div class="row">
-        <div class="col-md-12">
-
-            <a id='svgExport' target="_blank" class="btn btn-info" onclick="isomatic.ui.exportSVG()">Download as
-                SVG</a>
-            <a id='jsonExport' target="_blank" class="btn btn-info" onclick="isomatic.ui.exportJSON()">Download as
-                JSON</a>
-
-            <div id="footer" class="">2013 | Open Source @ <a href="https://github.com/Fannon/isomatic" target="_blank">Github</a>
-            </div>
-        </div>
+    <div class="button-area">
+        <a id='svgExport' target="_blank" class="small button" onclick="isomatic.ui.exportSVG()">Download as
+            SVG</a>
+        <a id='jsonExport' target="_blank" class="small button" onclick="isomatic.ui.exportJSON()">Download as
+            JSON</a>
     </div>
+
+    <div id="footer" class="">2013 | Open Source @ <a href="https://github.com/Fannon/isomatic" target="_blank">Github</a></div>
+
 </div>
 
 
 </body>
 
 <!-- External Libraries -->
-<script src="lib/jquery-2.0.3.js"></script>
+<script src="bower_components/jquery/jquery.min.js"></script>
+<script src="bower_components/foundation/js/foundation.min.js"></script>
 
-<script src="lib/bootstrap.min.js"></script>
-
-<script src="lib/underscore-min.js"></script>
-<script src="lib/backbone-min.js"></script>
+<!--<script src="lib/underscore-min.js"></script>-->
+<!--<script src="lib/backbone-min.js"></script>-->
 
 <script src="lib/d3.v3.min.js"></script>
 <script src="lib/innersvg.js"></script>
 
-<!-- JavaScript -->
+<!-- Custom JavaScript -->
 <script src="js/main.js"></script>
 <script src="js/options.js"></script>
 <script src="js/ui.js"></script>
 <script src="js/data.js"></script>
 <script src="js/isotypeLayout.js"></script>
 <script src="js/visualisation.js"></script>
-<script src="icons/defaultIcons.js"></script>
+<script src="js/defaultIcons.js"></script>
+
 </html>
