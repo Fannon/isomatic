@@ -1,6 +1,26 @@
 {
-  "name": "foundation-libsass-template",
+  "name": "isomatic",
   "dependencies": {
-    "foundation": "zurb/bower-foundation"
-  }
+    "foundation": "zurb/bower-foundation",
+    "backbone": null,
+    "underscore": null,
+    "requirejs": null,
+    "d3js": null
+  },
+  "version": "0.0.1",
+  "homepage": "https://github.com/Fannon/isomatic",
+  "authors": [
+    "Fannon <heimlersimon@gmail.com>"
+  ],
+  "description": "An interactive online isotype graphics generator",
+  "main": "index.html",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
 }
