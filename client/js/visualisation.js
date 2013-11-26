@@ -128,17 +128,13 @@ isomatic.vis.precalculate = function() {
 
 };
 
-
 /**
- * Draws Isotype Graphic
- *
- * TODO: Line Return if overflowing on the right side
+ * Prepares the Drawing
+ * Creates and prepares SVG Canvas
+ * Creates and prepares the Isotype Layout
  */
-isomatic.vis.drawIsotype = function() {
-
+isomatic.vis.prepareDrawing = function() {
     "use strict";
-    console.log('isomatic.vis.drawIsotype();');
-
 
     ///////////////////////////////////////
     // Visualisation Options             //
@@ -161,6 +157,17 @@ isomatic.vis.drawIsotype = function() {
         .append("g")
         .attr("id", "isotype")
     ;
+};
+
+/**
+ * Draws Isotype Graphic
+ *
+ * TODO: Line Return if overflowing on the right side
+ */
+isomatic.vis.drawIsotype = function() {
+
+    "use strict";
+    console.log('isomatic.vis.drawIsotype();');
 
     ///////////////////////////////////////
     // Draw Data                         //
@@ -169,12 +176,6 @@ isomatic.vis.drawIsotype = function() {
     if (isomatic.data.raw) {
 
         console.log('-> Drawing Data to Canvas: (TODO)');
-
-        // Generate Layout
-        isomatic.data.processed = isomatic.vis.isotypeLayout(isomatic.data.raw);
-
-        // Precalculate Layout and save it into the Metadata Object.
-        isomatic.vis.precalculate();
 
         // Use SVG Circles instead of Icons:
 //        var g = isomatic.vis.svg.selectAll(".icon")
@@ -247,24 +248,31 @@ isomatic.vis.drawIsotype = function() {
                 })
             ;
 
-        // TODO: Insert Text (Legend). Needs its own Layout?
-
-        var legendText = '1 : ' + isomatic.vis.printScale(isomatic.options.scale);
-
-        var legend = isomatic.vis.svg.append("g")
-            .style("text-anchor", "start")
-            .attr("transform", "translate(" + isomatic.options.outerPadding + ", " + (isomatic.options.height - 2 * isomatic.options.outerPadding) + ")");
-
-        legend.append("text")
-            .attr("class", "legend")
-            .text(legendText)
-            .attr("fill", "#999999")
-        ;
-
     } else {
         isomatic.message('error', 'No Data loaded!');
     }
 
+};
+
+/**
+ * Draws Legend Overlay
+ */
+isomatic.vis.drawLegend = function() {
+    "use strict";
+
+    // TODO: Insert Text (Legend). Needs its own Layout?
+
+    var legendText = '1 : ' + isomatic.vis.printScale(isomatic.options.scale);
+
+    var legend = isomatic.vis.svg.append("g")
+        .style("text-anchor", "start")
+        .attr("transform", "translate(" + isomatic.options.outerPadding + ", " + (isomatic.options.height - 2 * isomatic.options.outerPadding) + ")");
+
+    legend.append("text")
+        .attr("class", "legend")
+        .text(legendText)
+        .attr("fill", "#999999")
+    ;
 };
 
 /**

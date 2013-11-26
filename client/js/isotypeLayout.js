@@ -85,7 +85,10 @@ d3.layout.isotype = function() {
                         columnName = v;
                     } else {
 
-                        // Round the Value according to Options
+                        ///////////////////////////////////////////
+                        // Round the Value according to Options  //
+                        ///////////////////////////////////////////
+
                         var value = 0;
 
                         var roundedValue = Math.floor(v / scale);
@@ -99,15 +102,9 @@ d3.layout.isotype = function() {
                             value = roundedValue;
                         }
 
-                        // Write Pre-Processed Data (Just for Debugging)
-                        preProcessedData.push({
-                            column: columnName,
-                            row: obj,
-                            count: value,
-                            rawValue: v
-                        });
-
-                        // Calculate  Processed Data
+                        ///////////////////////////////////////////
+                        // Calculate  Processed Data             //
+                        ///////////////////////////////////////////
 
                         // Iterate over Icons
                         for (var j = 0; j < Math.ceil(value); j++) {
@@ -134,12 +131,6 @@ d3.layout.isotype = function() {
             }
 
         }
-
-        console.log('-> Pre-Processed Data:');
-        console.dir(preProcessedData);
-
-        console.log('-> Processed Data:');
-        console.dir(processedData);
 
         return processedData;
     }

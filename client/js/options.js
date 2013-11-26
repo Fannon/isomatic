@@ -44,7 +44,7 @@ isomatic.options.iconMap = [
  * Accepts 'row' and 'column'
  * @type {string}
  */
-isomatic.options.iconize = 'row';
+isomatic.options.iconize = 'column';
 
 isomatic.options.iconHorizontalPadding = 3;
 isomatic.options.iconVerticalPadding = 30;

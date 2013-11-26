@@ -26,13 +26,29 @@ $(function() {
 
     isomatic.vis.init();
 
+
+
     // Sets the Data, starts drawing on the Callback. TODO: This belongs into the UI
     isomatic.data.load("data/data2.csv", function(data) {
 
+        // Analyze Data
         isomatic.data.analyze(data);
 
-        // Draw after Data is loaded (asynchronous)
+        // Prepare Drawing
+        isomatic.vis.prepareDrawing();
+
+        // Generate Layout
+        isomatic.data.processed = isomatic.vis.isotypeLayout(isomatic.data.raw);
+        console.dir(isomatic.data.processed);
+
+        // Precalculate Layout and save it into the Metadata Object.
+        isomatic.vis.precalculate();
+
+        // Draw Isotype Graphic
         isomatic.vis.drawIsotype();
+
+        // Draw Legend Overlay
+        isomatic.vis.drawLegend();
 
     });
 

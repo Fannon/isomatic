@@ -80,7 +80,6 @@ isomatic.data.analyze = function(data) {
     var availableScales = [];
 
 
-
     ///////////////////////////////////////
     // Analyse Values, Rows and Columns  //
     ///////////////////////////////////////
@@ -104,7 +103,6 @@ isomatic.data.analyze = function(data) {
                 if (columnCounter === 0) {
                     // Put first Column (Description) into a Column Array
                     isomatic.data.meta.rows.push(currentRow[obj]);
-//                    rowValues[rowCounter] = 0;
                 } else {
                     values.push(parseInt(currentRow[obj], 10));
                     rowValue += parseInt(currentRow[obj], 10);
@@ -128,8 +126,8 @@ isomatic.data.analyze = function(data) {
     // Calculate a recommended Scale     //
     ///////////////////////////////////////
 
-//    var scaleTemp = isomatic.data.meta.sum / isomatic.options.desiredTotalIcons;
-    var scaleTemp = isomatic.data.meta.maxRowValues / isomatic.options.desiredmaxIconsPerRow;
+    var scaleTemp = isomatic.data.meta.sum / isomatic.options.desiredTotalIcons;
+//    var scaleTemp = isomatic.data.meta.maxRowValues / isomatic.options.desiredmaxIconsPerRow;
 
     // Get fitting Scales from the Array
     // TODO: Check for Array Boundaries!
