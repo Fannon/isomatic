@@ -1,5 +1,15 @@
+// Global Settings Override
 @import "settings";
-@import "foundation";
+
+@import "normalize";
+//@import "foundation";
+
+@import "foundation/components/global";
+
+@import "foundation/components/buttons";
+@import "foundation/components/type";
+@import "foundation/components/forms";
+@import "foundation/components/labels";
 
 .container {
   margin: 10px auto;
