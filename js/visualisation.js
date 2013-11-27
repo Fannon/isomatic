@@ -123,7 +123,7 @@ isomatic.vis.precalculate = function() {
     isomatic.data.meta.maxIconsPerRow = d3.max(iconsPerRow);
 
     // Calculate Base Scale for Icons depending on biggest Row. (Fit to width)
-    var widthLeft = isomatic.options.width - (isomatic.data.meta.maxIconsPerRow * isomatic.options.iconHorizontalPadding) - 2 * isomatic.options.outerPadding;
+    var widthLeft = isomatic.options.width - (isomatic.data.meta.maxIconsPerRow * isomatic.options.iconHorizontalMargin) - 2 * isomatic.options.outerMargin;
     isomatic.data.meta.baseScale = widthLeft / (isomatic.data.meta.maxIconsPerRow * 32);
 
 };
@@ -135,6 +135,8 @@ isomatic.vis.precalculate = function() {
  */
 isomatic.vis.prepareDrawing = function() {
     "use strict";
+
+    console.log('isomatic.vis.prepareDrawing();');
 
     ///////////////////////////////////////
     // Visualisation Options             //
@@ -184,10 +186,10 @@ isomatic.vis.drawIsotype = function() {
 //                .append("circle")
 //                .attr("class", "icon")
 //                .attr("cx", function(d) {
-//                    return d.pos * (r * 2 + isomatic.options.iconHorizontalPadding) + isomatic.options.outerPadding + r;
+//                    return d.pos * (r * 2 + isomatic.options.iconHorizontalMargin) + isomatic.options.outerMargin + r;
 //                })
 //                .attr("cy", function(d) {
-//                    return d.row * (r * 2 + isomatic.options.iconVerticalPadding) + isomatic.options.outerPadding + r;
+//                    return d.row * (r * 2 + isomatic.options.iconVerticalMargin) + isomatic.options.outerMargin + r;
 //                })
 //                .attr("r", function(d) {
 //                    return r * d.size;
@@ -197,6 +199,8 @@ isomatic.vis.drawIsotype = function() {
 //                })
 //        ;
 
+        var finalSize = isomatic.data.meta.baseScale * isomatic.options.defaultIconSize;
+
         var g = isomatic.vis.svg.selectAll(".icon")
                 .data(isomatic.data.processed)
                 .enter()
@@ -204,10 +208,12 @@ isomatic.vis.drawIsotype = function() {
                 .attr("class", "icon")
                 .attr("transform", function(d) {
 
-                    var finalSize = isomatic.data.meta.baseScale * isomatic.options.defaultIconSize;
+//                    var finalSizeX = isomatic.data.meta.baseScale * isomatic.options.defaultIconSize;
 
-                    var x = d.pos * (finalSize + isomatic.options.iconHorizontalPadding) + isomatic.options.outerPadding;
-                    var y = d.row * (finalSize + isomatic.options.iconVerticalPadding) + isomatic.options.outerPadding;
+                    // TODO: Calculate X Size from defaultIcons.js
+
+                    var x = d.pos * (finalSize + isomatic.options.iconHorizontalMargin) + isomatic.options.outerMargin;
+                    var y = d.row * (finalSize + isomatic.options.rowMargin) + isomatic.options.outerMargin;
 
                     var scale = isomatic.data.meta.baseScale * d.size;
 
@@ -260,13 +266,15 @@ isomatic.vis.drawIsotype = function() {
 isomatic.vis.drawLegend = function() {
     "use strict";
 
+    console.log('isomatic.vis.drawLegend();');
+
     // TODO: Insert Text (Legend). Needs its own Layout?
 
     var legendText = '1 : ' + isomatic.vis.printScale(isomatic.options.scale);
 
     var legend = isomatic.vis.svg.append("g")
         .style("text-anchor", "start")
-        .attr("transform", "translate(" + isomatic.options.outerPadding + ", " + (isomatic.options.height - 2 * isomatic.options.outerPadding) + ")");
+        .attr("transform", "translate(" + isomatic.options.outerMargin + ", " + (isomatic.options.height - 2 * isomatic.options.outerMargin) + ")");
 
     legend.append("text")
         .attr("class", "legend")

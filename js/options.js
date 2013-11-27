@@ -1,5 +1,5 @@
 /* jshint jquery:true, devel: true */
-/* global isomatic, d3 */
+/* global isomatic, d3, Backbone */
 
 ///////////////////////////////////////////////////////
 // isomatic                                          //
@@ -9,7 +9,7 @@
 ///////////////////////////////////////////////////////
 
 /**
- * isomatic current options
+ * isomatic Options Namespace
  *
  * TODO: Convert this into a backbone.js model
  * TODO: Seperate UI Options from internal Options (For clean Export)
@@ -17,27 +17,87 @@
 isomatic.options = {};
 
 
+
+///////////////////////////////////////
+// Default Options                   //
+///////////////////////////////////////
+
+/**
+ * isomatic Preset Options
+ * @type {{}}
+ */
+isomatic.options.preset = {};
+
+/** Aspect Ratio of the Canvas. Width is always 100% */
+isomatic.options.preset.aspectRatio = 16 / 8;
+
+/** Margin to Canvas */
+isomatic.options.preset.outerMargin = 10;
+
+
+
+///////////////////////////////////////
+// Backbone.js Models                //
+///////////////////////////////////////
+
+
+/**
+ * Backbone Model
+ * @type {*|void|Object}
+ */
+isomatic.options.Model = Backbone.Model.extend({
+    initialize: function (options) {
+        "use strict";
+        console.log('isomatic.options.Model initialized.');
+    }
+});
+
+/**
+ * UI Options
+ * @type {Model}
+ */
+isomatic.options.ui = new isomatic.options.Model();
+
+// Set Default Options
+isomatic.options.ui.set(isomatic.options.preset);
+
+console.dir(isomatic.options.ui.toJSON());
+
+
+
 ///////////////////////////////////////
 // UI Default Options                //
 ///////////////////////////////////////
 
 // GENERAL LAYOUTING
+/** Aspect Ratio of the Canvas. Width is always 100% */
 isomatic.options.aspectRatio = 16 / 8;
-isomatic.options.outerPadding = 10;
-isomatic.options.rowPadding = 10;
+
+/** Margin to Canvas */
+isomatic.options.outerMargin = 10;
+
+/** Margin between Rows */
+isomatic.options.rowMargin = 30;
+
+/** Margin between Columns TODO: Not implemented */
+isomatic.options.columnMargin = 30;
+
+/** Horizontal Margin between Icons */
+isomatic.options.iconHorizontalMargin = 3;
+
+/** Vertical Margin between Icons */
+isomatic.options.iconVerticalMargin = 3;
+
+/** Break a Row into several Rows visually if number icons exceed this */
+isomatic.options.breakRow = 0;
+
 
 // CALCULATION SETTINGS
 isomatic.options.roundDown = 0.3;
 isomatic.options.roundUp = 0.8;
 
-// ICON SETTINGS
-/** This stores which column ID maps to which icon */
-isomatic.options.iconMap = [
-    {category: 'socialNetworks', name: 'facebook'},
-    {category: 'socialNetworks', name: 'twitter'},
-    {category: 'socialNetworks', name: 'googleplus'},
-    {category: 'socialNetworks', name: 'linkedin'}
-];
+
+// ICON AND COLOR MAPPING
 
 /**
  * Defines if the Color is applied to Rows or Columns
@@ -46,20 +106,23 @@ isomatic.options.iconMap = [
  */
 isomatic.options.iconize = 'column';
 
-isomatic.options.iconHorizontalPadding = 3;
-isomatic.options.iconVerticalPadding = 30;
-
-
-// COLOR SETTINGS
-/** This stores which row ID maps to which color */
-isomatic.options.colorMap = ["#0B486B", "#3B8686", "#79BD9A", "#A8DBA8", "#CFF09E"];
-
 /**
  * Defines if the Color is applied to Rows or Columns
  * Accepts 'row' and 'column'
  * @type {string}
  */
 isomatic.options.colorize = 'column';
+
+/** This stores which row ID maps to which color */
+isomatic.options.colorMap = ["#0B486B", "#3B8686", "#79BD9A", "#A8DBA8", "#CFF09E"];
+
+/** This stores which column ID maps to which icon */
+isomatic.options.iconMap = [
+    {category: 'socialNetworks', name: 'facebook'},
+    {category: 'socialNetworks', name: 'twitter'},
+    {category: 'socialNetworks', name: 'googleplus'},
+    {category: 'socialNetworks', name: 'linkedin'}
+];
 
 
 ///////////////////////////////////////

@@ -22,7 +22,6 @@ var isomatic = {};
 $(function() {
 
     "use strict";
-    console.log('ISOMATIC INIT');
 
     isomatic.vis.init();
 
