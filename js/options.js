@@ -10,12 +10,8 @@
 
 /**
  * isomatic Options Namespace
- *
- * TODO: Convert this into a backbone.js model
- * TODO: Seperate UI Options from internal Options (For clean Export)
  */
 isomatic.options = {};
-
 
 
 ///////////////////////////////////////
@@ -23,101 +19,58 @@ isomatic.options = {};
 ///////////////////////////////////////
 
 /**
- * isomatic Preset Options
- * @type {{}}
+ * isomatic Preset (default) Options
+ * @type {Object}
  */
 isomatic.options.preset = {};
 
+// GENERAL LAYOUTING
 /** Aspect Ratio of the Canvas. Width is always 100% */
 isomatic.options.preset.aspectRatio = 16 / 8;
 
 /** Margin to Canvas */
 isomatic.options.preset.outerMargin = 10;
 
-
-
-///////////////////////////////////////
-// Backbone.js Models                //
-///////////////////////////////////////
-
-
-/**
- * Backbone Model
- * @type {*|void|Object}
- */
-isomatic.options.Model = Backbone.Model.extend({
-    initialize: function (options) {
-        "use strict";
-        console.log('isomatic.options.Model initialized.');
-    }
-});
-
-/**
- * UI Options
- * @type {Model}
- */
-isomatic.options.ui = new isomatic.options.Model();
-
-// Set Default Options
-isomatic.options.ui.set(isomatic.options.preset);
-
-console.dir(isomatic.options.ui.toJSON());
-
-
-
-///////////////////////////////////////
-// UI Default Options                //
-///////////////////////////////////////
-
-// GENERAL LAYOUTING
-/** Aspect Ratio of the Canvas. Width is always 100% */
-isomatic.options.aspectRatio = 16 / 8;
-
-/** Margin to Canvas */
-isomatic.options.outerMargin = 10;
-
 /** Margin between Rows */
-isomatic.options.rowMargin = 30;
+isomatic.options.preset.rowMargin = 30;
 
 /** Margin between Columns TODO: Not implemented */
-isomatic.options.columnMargin = 30;
+isomatic.options.preset.columnMargin = 30;
 
 /** Horizontal Margin between Icons */
-isomatic.options.iconHorizontalMargin = 3;
+isomatic.options.preset.iconHorizontalMargin = 3;
 
 /** Vertical Margin between Icons */
-isomatic.options.iconVerticalMargin = 3;
+isomatic.options.preset.iconVerticalMargin = 3;
 
 /** Break a Row into several Rows visually if number icons exceed this */
-isomatic.options.breakRow = 0;
+isomatic.options.preset.breakRow = 0;
 
+/** Floor value if Remainder is below */
+isomatic.options.preset.roundDown = 0.3;
 
-// CALCULATION SETTINGS
-isomatic.options.roundDown = 0.3;
-isomatic.options.roundUp = 0.8;
-
-
-// ICON AND COLOR MAPPING
+/** Ceil value if Remainder is above */
+isomatic.options.preset.roundUp = 0.8;
 
 /**
  * Defines if the Color is applied to Rows or Columns
  * Accepts 'row' and 'column'
  * @type {string}
  */
-isomatic.options.iconize = 'column';
+isomatic.options.preset.iconize = 'column';
 
 /**
  * Defines if the Color is applied to Rows or Columns
  * Accepts 'row' and 'column'
  * @type {string}
  */
-isomatic.options.colorize = 'column';
+isomatic.options.preset.colorize = 'column';
 
 /** This stores which row ID maps to which color */
-isomatic.options.colorMap = ["#0B486B", "#3B8686", "#79BD9A", "#A8DBA8", "#CFF09E"];
+isomatic.options.preset.colorMap = ["#0B486B", "#3B8686", "#79BD9A", "#A8DBA8", "#CFF09E"];
 
 /** This stores which column ID maps to which icon */
-isomatic.options.iconMap = [
+isomatic.options.preset.iconMap = [
     {category: 'socialNetworks', name: 'facebook'},
     {category: 'socialNetworks', name: 'twitter'},
     {category: 'socialNetworks', name: 'googleplus'},
@@ -129,17 +82,26 @@ isomatic.options.iconMap = [
 // Internal Options                  //
 ///////////////////////////////////////
 
-/** Automatically adjusts scale according to this value */
-isomatic.options.desiredTotalIcons = 64;
+/**
+ * Internal Options
+ * Those are not acessable via the User-Interface and used for internal computation
+ * They should not change within runtime.
+ *
+ * @type {Object}
+ */
+isomatic.options.internal = {};
 
 /** Automatically adjusts scale according to this value */
-isomatic.options.desiredmaxIconsPerRow = 16;
+isomatic.options.internal.desiredTotalIcons = 64;
+
+/** Automatically adjusts scale according to this value */
+isomatic.options.internal.desiredmaxIconsPerRow = 16;
 
 /** Icon Size of the SVG Paths in defaultIcons.js */
-isomatic.options.defaultIconSize = 32;
+isomatic.options.internal.defaultIconSize = 32;
 
 /** Array List of available Scales */
-isomatic.options.scaleArray = [
+isomatic.options.internal.scaleArray = [
     1, 2, 5,
     10, 20, 50,
     100, 200, 500,
@@ -156,4 +118,42 @@ isomatic.options.scaleArray = [
 ];
 
 
+///////////////////////////////////////
+// Backbone.js Models                //
+///////////////////////////////////////
+
+/**
+ * Backbone Model
+ * @type {*|void|Object}
+ */
+isomatic.options.Model = Backbone.Model.extend({
+
+    // On Init
+    initialize: function (options) {
+        "use strict";
+        console.log('isomatic.options.Model initialized.');
+    },
+
+    // Model Validation
+    // TODO: Validation of Options.
+    // TODO: UI should validate Settings before writing them
+    // TODO: Display Validation Errors on UI
+    validate: function(attrs, options){
+        "use strict";
+
+        if (attrs.outerMargin < 0){
+            return "Margin Value has to be positive!";
+        }
+        return true;
+    }
+});
+
+/**
+ * UI Options
+ * @type {Model}
+ */
+isomatic.options.ui = new isomatic.options.Model();
+
+// Set Default Options
+isomatic.options.ui.set(isomatic.options.preset);
 

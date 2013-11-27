@@ -126,24 +126,26 @@ isomatic.data.analyze = function(data) {
     // Calculate a recommended Scale     //
     ///////////////////////////////////////
 
-    var scaleTemp = isomatic.data.meta.sum / isomatic.options.desiredTotalIcons;
-//    var scaleTemp = isomatic.data.meta.maxRowValues / isomatic.options.desiredmaxIconsPerRow;
+    var scaleTemp = isomatic.data.meta.sum / isomatic.options.internal.desiredTotalIcons;
+//    var scaleTemp = isomatic.data.meta.maxRowValues / isomatic.options.internal.desiredmaxIconsPerRow;
+
+    var scaleArray = isomatic.options.internal.scaleArray;
 
     // Get fitting Scales from the Array
     // TODO: Check for Array Boundaries!
-    for (var j = 0; j < isomatic.options.scaleArray.length; j++) {
-        if (scaleTemp <= isomatic.options.scaleArray[j]) {
-            if (isomatic.options.scaleArray[j] - scaleTemp < scaleTemp - isomatic.options.scaleArray[j - 1]) {
+    for (var j = 0; j < scaleArray.length; j++) {
+        if (scaleTemp <= scaleArray[j]) {
+            if (scaleArray[j] - scaleTemp < scaleTemp - scaleArray[j - 1]) {
                 availableScales = [
-                    isomatic.options.scaleArray[j - 1],
-                    isomatic.options.scaleArray[j],
-                    isomatic.options.scaleArray[j + 1]
+                    scaleArray[j - 1],
+                    scaleArray[j],
+                    scaleArray[j + 1]
                 ];
             } else {
                 availableScales = [
-                    isomatic.options.scaleArray[j - 2],
-                    isomatic.options.scaleArray[j - 1],
-                    isomatic.options.scaleArray[j]
+                    scaleArray[j - 2],
+                    scaleArray[j - 1],
+                    scaleArray[j]
                 ];
             }
             break;
@@ -152,7 +154,7 @@ isomatic.data.analyze = function(data) {
 
     console.log('-> Calculated Scale: ' + availableScales[1] + ' from ' + scaleTemp);
 
-    isomatic.options.scale = availableScales[1]; // Use the Scale in the middle
-    isomatic.options.availableScales = availableScales;
+    isomatic.options.ui.set("scale", availableScales[1]);
+    isomatic.options.ui.set("availableScales", availableScales);
 
 };

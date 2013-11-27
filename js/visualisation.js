@@ -38,10 +38,6 @@
  *  * Externe Icons können auf alle möglichen Weisen aufgebaut sein, einiges davon kann das UI und die Grafik brechen.
  *  * D3.js kann pro Datensatz die Größe, Farbe, Inhalt von Elementen umsetzen, aber nicht die Anzahl.
  *
- * TODO: LISTE
- *  * Datenzugriff mit .population ist nicht generisch
- *  * Mehrspaltige Daten verwalten
- *
  */
 
 
@@ -72,7 +68,7 @@ isomatic.vis.init = function() {
 
     isomatic.vis.$graph = $('#graph');
 
-    isomatic.vis.newVisualisation(isomatic.options.aspectRatio);
+    isomatic.vis.newVisualisation(isomatic.options.ui.get("aspectRatio"));
 
 };
 
@@ -88,12 +84,12 @@ isomatic.vis.newVisualisation = function(aspectRatio) {
     console.log('isomatic.vis.newVisualisation(' + aspectRatio + ');');
 
     // Calculate Width and Height from Aspect Ratio
-    isomatic.options.aspectRatio = aspectRatio;
-    isomatic.options.width = isomatic.vis.$graph.width();
-    isomatic.options.height = Math.round(isomatic.options.width / aspectRatio);
+    isomatic.options.ui.set("aspectRatio", aspectRatio);
+    isomatic.data.meta.width = isomatic.vis.$graph.width();
+    isomatic.data.meta.height = Math.round(isomatic.data.meta.width / aspectRatio);
 
     // Sets height of the Drawing Area according to aspect ratio
-    isomatic.vis.$graph.height(isomatic.options.height);
+    isomatic.vis.$graph.height(isomatic.data.meta.height);
 };
 
 /**
@@ -123,7 +119,9 @@ isomatic.vis.precalculate = function() {
     isomatic.data.meta.maxIconsPerRow = d3.max(iconsPerRow);
 
     // Calculate Base Scale for Icons depending on biggest Row. (Fit to width)
-    var widthLeft = isomatic.options.width - (isomatic.data.meta.maxIconsPerRow * isomatic.options.iconHorizontalMargin) - 2 * isomatic.options.outerMargin;
+    var widthLeft = isomatic.data.meta.width -
+        (isomatic.data.meta.maxIconsPerRow * isomatic.options.ui.get("iconHorizontalMargin")) -
+        2 * isomatic.options.ui.get("outerMargin");
     isomatic.data.meta.baseScale = widthLeft / (isomatic.data.meta.maxIconsPerRow * 32);
 
 };
@@ -144,9 +142,9 @@ isomatic.vis.prepareDrawing = function() {
 
     // Set Visualisation Options
     isomatic.vis.isotypeLayout = d3.layout.isotype()
-        .roundDown(isomatic.options.roundDown)
-        .roundUp(isomatic.options.roundUp)
-        .scale(isomatic.options.scale)
+        .roundDown(isomatic.options.ui.get("roundDown"))
+        .roundUp(isomatic.options.ui.get("roundUp"))
+        .scale(isomatic.options.ui.get("scale"))
     ;
 
     ///////////////////////////////////////
@@ -154,8 +152,8 @@ isomatic.vis.prepareDrawing = function() {
     ///////////////////////////////////////
 
     isomatic.vis.svg = d3.select("#graph").append("svg")
-        .attr("width", isomatic.options.width)
-        .attr("height", isomatic.options.height)
+        .attr("width",isomatic.data.meta.width)
+        .attr("height", isomatic.data.meta.height)
         .append("g")
         .attr("id", "isotype")
     ;
@@ -199,7 +197,7 @@ isomatic.vis.drawIsotype = function() {
 //                })
 //        ;
 
-        var finalSize = isomatic.data.meta.baseScale * isomatic.options.defaultIconSize;
+        var finalSize = isomatic.data.meta.baseScale * isomatic.options.internal.defaultIconSize;
 
         var g = isomatic.vis.svg.selectAll(".icon")
                 .data(isomatic.data.processed)
@@ -212,8 +210,8 @@ isomatic.vis.drawIsotype = function() {
 
                     // TODO: Calculate X Size from defaultIcons.js
 
-                    var x = d.pos * (finalSize + isomatic.options.iconHorizontalMargin) + isomatic.options.outerMargin;
-                    var y = d.row * (finalSize + isomatic.options.rowMargin) + isomatic.options.outerMargin;
+                    var x = d.pos * (finalSize + isomatic.options.ui.get("iconHorizontalMargin")) + isomatic.options.ui.get("outerMargin");
+                    var y = d.row * (finalSize + isomatic.options.ui.get("rowMargin")) + isomatic.options.ui.get("outerMargin");
 
                     var scale = isomatic.data.meta.baseScale * d.size;
 
@@ -224,7 +222,7 @@ isomatic.vis.drawIsotype = function() {
                     }
 
                     // If Icon is drawn outside of Canvas give a warning
-                    if (y > isomatic.options.height || x > isomatic.options.width) {
+                    if (y > isomatic.data.meta.height || x >isomatic.data.meta.width) {
                         isomatic.message('warning', '<strong>Warning: </strong>The generated Graphic is bigger than its Canvas!');
                     }
 
@@ -235,21 +233,21 @@ isomatic.vis.drawIsotype = function() {
 
                     var category, name;
 
-                    if (isomatic.options.iconize === 'row') {
-                        category = isomatic.options.iconMap[d.row].category;
-                        name = isomatic.options.iconMap[d.row].name;
+                    if (isomatic.options.ui.get("iconize") === 'row') {
+                        category = isomatic.options.ui.get("iconMap")[d.row].category;
+                        name = isomatic.options.ui.get("iconMap")[d.row].name;
                     } else {
-                        category = isomatic.options.iconMap[d.col - 1].category;
-                        name = isomatic.options.iconMap[d.col - 1].name;
+                        category = isomatic.options.ui.get("iconMap")[d.col - 1].category;
+                        name = isomatic.options.ui.get("iconMap")[d.col - 1].name;
                     }
 
                     return isomatic.icons[category].icons[name].svg;
                 })
                 .attr("fill", function(d) {
-                    if (isomatic.options.colorize === 'row') {
-                        return isomatic.options.colorMap[d.row];
+                    if (isomatic.options.ui.get("colorize") === 'row') {
+                        return isomatic.options.ui.get("colorMap")[d.row];
                     } else {
-                        return isomatic.options.colorMap[d.col];
+                        return isomatic.options.ui.get("colorMap")[d.col];
                     }
                 })
             ;
@@ -270,11 +268,11 @@ isomatic.vis.drawLegend = function() {
 
     // TODO: Insert Text (Legend). Needs its own Layout?
 
-    var legendText = '1 : ' + isomatic.vis.printScale(isomatic.options.scale);
+    var legendText = '1 : ' + isomatic.vis.printScale(isomatic.options.ui.get("scale"));
 
     var legend = isomatic.vis.svg.append("g")
         .style("text-anchor", "start")
-        .attr("transform", "translate(" + isomatic.options.outerMargin + ", " + (isomatic.options.height - 2 * isomatic.options.outerMargin) + ")");
+        .attr("transform", "translate(" + isomatic.options.ui.get("outerMargin") + ", " + (isomatic.data.meta.height - 2 * isomatic.options.ui.get("outerMargin")) + ")");
 
     legend.append("text")
         .attr("class", "legend")

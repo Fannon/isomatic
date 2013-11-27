@@ -80,7 +80,7 @@ isomatic.ui.embedData = function() {
 
     var jsonExport = {
         data: isomatic.data.raw,
-        options: isomatic.options
+        options: isomatic.options.ui.toJSON()
     };
 
     var jsonStringExport = JSON.stringify(jsonExport, null, 2);
