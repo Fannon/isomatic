@@ -8,27 +8,86 @@
 </head>
 <body>
 
+<nav class="top-bar" data-topbar>
+  <ul class="title-area">
+    <li class="name">
+      <h1><a href="#">isomatic</a></h1>
+    </li>
+  </ul>
+
+  <section class="top-bar-section">
+    <!-- Right Nav Section -->
+    <ul class="left">
+      <li class="active"><a href="#">New Graphic</a></li>
+      <li class="has-dropdown">
+        <a href="#">Import</a>
+        <ul class="dropdown">
+          <li><a href="#">Import from SVG</a></li>
+          <li><a href="#">Import from JSON</a></li>
+        </ul>
+      </li>
+      <li class="has-dropdown">
+        <a href="#">Export</a>
+        <ul class="dropdown">
+          <li><a id='svgExport' target="_blank" onclick="isomatic.ui.exportSVG()">Download as
+            SVG</a></li>
+          <li><a id='jsonExport' target="_blank" onclick="isomatic.ui.exportJSON()">Download as
+            JSON</a></li>
+        </ul>
+      </li>
+    </ul>
+
+    <ul class="right">
+      <li class="active"><a href="#">Help</a></li>
+    </ul>
+
+  </section>
+</nav>
+
 <div class="container">
 
-    <div id="header">
-        <h1>isomatic
-            <small>An Interactive Isotype Graphics Generator</small>
-        </h1>
+    <div id="toolbar">
+      <div class="icon" id="setData"><a href="#setData">Data</a></div>
+      <div class="icon"><a href="#setType">Type</a></div>
+      <div class="icon"><a href="#setColor">Color</a></div>
+      <div class="icon"><a href="#setIcon">Icon</a></div>
+      <div class="icon" id="setMargin"><a href="#setMargin">Marg</a></div>
+      <div class="icon"><a href="#setScale">Scale</a></div>
+      <div class="icon"><a href="#setText">Text</a></div>
     </div>
 
+    <div id="display">
+      <div id="graph"></div>
+      <div id="sidebar">
+        <div id="sidebar-margin" style="display: none">
+        <h5><strong>Margin Settings</strong></h5>
+        <form>
 
-    <div id="graph"></div>
+            <label>Outer Margin</label>
+            <input type="text" placeholder="30px">
+
+            <label>Row Margin</label>
+            <input type="text" placeholder="10px">
+
+            <label>Column Margin</label>
+            <input type="text" placeholder="10px">
+
+            <label>Vertical Icon Margin</label>
+            <input type="text" placeholder="10px">
+
+            <label>Horizontal Icon Margin</label>
+            <input type="text" placeholder="10px">
+
+        </form>
+
+        </div>
+      </div>
+      <div id="overlay">
+
+      </div>
+    </div>
 
     <div id="message"></div>
-
-    <br>
-
-    <div class="button-area">
-        <a id='svgExport' target="_blank" class="small button radius" onclick="isomatic.ui.exportSVG()">Download as
-            SVG</a>
-        <a id='jsonExport' target="_blank" class="small button radius" onclick="isomatic.ui.exportJSON()">Download as
-            JSON</a>
-    </div>
 
     <div id="footer" class="">2013 | Open Source @ <a href="https://github.com/Fannon/isomatic" target="_blank">Github</a></div>
 
@@ -44,7 +103,7 @@
 <script src="bower_components/underscore/underscore.js"></script>
 <script src="bower_components/backbone/backbone.js"></script>
 
-<script src="bower_components/d3js/build/d3.v3.js"></script>
+<script src="bower_components/d3js/build/d3.v3.min.js"></script>
 <script src="lib/innersvg.js"></script>
 
 <!-- Custom JavaScript -->

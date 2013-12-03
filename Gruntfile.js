@@ -5,7 +5,7 @@ module.exports = function(grunt) {
         connect: {
             server: {
                 options: {
-                    port: 8000,
+                    port: 8888,
                     base: ''
                 }
             }
@@ -62,6 +62,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-connect');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-contrib-requirejs');
 
     grunt.registerTask('build', ['connect', 'sass', 'uglify']);
     grunt.registerTask('default', ['build', 'watch']);

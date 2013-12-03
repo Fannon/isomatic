@@ -22,6 +22,16 @@
 isomatic.ui = {};
 
 
+isomatic.ui.init = function() {
+    "use strict";
+
+    $( "#setMargin").click(function(event) {
+        event.preventDefault();
+        $("#sidebar-margin").toggle();
+    });
+}
+
+
 ///////////////////////////////////////
 // Export Functions                  //
 ///////////////////////////////////////

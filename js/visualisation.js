@@ -66,7 +66,9 @@ isomatic.vis.init = function() {
 
     console.log('isomatic.vis.init();');
 
+    isomatic.vis.$display = $('#display');
     isomatic.vis.$graph = $('#graph');
+    isomatic.vis.$sidebar = $('#sidebar');
 
     isomatic.vis.newVisualisation(isomatic.options.ui.get("aspectRatio"));
 
@@ -85,11 +87,12 @@ isomatic.vis.newVisualisation = function(aspectRatio) {
 
     // Calculate Width and Height from Aspect Ratio
     isomatic.options.ui.set("aspectRatio", aspectRatio);
-    isomatic.data.meta.width = isomatic.vis.$graph.width();
+    isomatic.data.meta.width = isomatic.vis.$display.width();
     isomatic.data.meta.height = Math.round(isomatic.data.meta.width / aspectRatio);
 
     // Sets height of the Drawing Area according to aspect ratio
-    isomatic.vis.$graph.height(isomatic.data.meta.height);
+    isomatic.vis.$display.height(isomatic.data.meta.height);
+    isomatic.vis.$sidebar.height(isomatic.data.meta.height);
 };
 
 /**

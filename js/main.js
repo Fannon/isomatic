@@ -28,6 +28,12 @@ $(function() {
     // Sets the Data, starts drawing on the Callback. TODO: This belongs into the UI
     isomatic.data.load("data/data2.csv", function(data) {
 
+        // Init Foundation JavaScript
+        $(document).foundation();
+
+        // Init UI
+        isomatic.ui.init();
+
         // Analyze Data
         isomatic.data.analyze(data);
 
