@@ -4,6 +4,7 @@
     <meta charset=utf-8/>
     <title>isomatic</title>
     <link rel="stylesheet" type="text/css" href="css/app.css"/>
+    <link rel="stylesheet" type="text/css" href="bower_components/perfect-scrollbar/min/perfect-scrollbar-0.4.5.min.css"/>
     <script src="bower_components/modernizr/modernizr.js"></script>
 </head>
 <body>
@@ -11,19 +12,19 @@
 <nav class="top-bar" data-topbar>
   <ul class="title-area">
     <li class="name">
-      <h1><a href="#">isomatic</a></h1>
+      <h1><a href="#home">isomatic</a></h1>
     </li>
   </ul>
 
   <section class="top-bar-section">
     <!-- Right Nav Section -->
     <ul class="left">
-      <li class="active"><a href="#">New Graphic</a></li>
+      <li class="active"><a href="#new">New Graphic</a></li>
       <li class="has-dropdown">
         <a href="#">Import</a>
         <ul class="dropdown">
-          <li><a href="#">Import from SVG</a></li>
-          <li><a href="#">Import from JSON</a></li>
+          <li><a href="#import-svg">Import from SVG</a></li>
+          <li><a href="#import-json">Import from JSON</a></li>
         </ul>
       </li>
       <li class="has-dropdown">
@@ -38,7 +39,7 @@
     </ul>
 
     <ul class="right">
-      <li class="active"><a href="#">Help</a></li>
+      <li class="active"><a href="#help">Help</a></li>
     </ul>
 
   </section>
@@ -47,13 +48,13 @@
 <div class="container">
 
     <div id="toolbar">
-      <div class="icon" id="setData"><a href="#setData">Data</a></div>
-      <div class="icon"><a href="#setType">Type</a></div>
-      <div class="icon"><a href="#setColor">Color</a></div>
-      <div class="icon"><a href="#setIcon">Icon</a></div>
-      <div class="icon" id="setMargin"><a href="#setMargin">Marg</a></div>
-      <div class="icon"><a href="#setScale">Scale</a></div>
-      <div class="icon"><a href="#setText">Text</a></div>
+      <div class="icon" id="setData">Data</div>
+      <div class="icon" id="setType">Type</div>
+      <div class="icon" id="setColor">Color</div>
+      <div class="icon" id="setIcon">Icon</div>
+      <div class="icon" id="setMargin">Marg</div>
+      <div class="icon" id="setScale">Scale</div>
+      <div class="icon" id="setText">Text</div>
     </div>
 
     <div id="display">
@@ -77,6 +78,8 @@
 
             <label>Horizontal Icon Margin</label>
             <input type="text" placeholder="10px">
+
+            <a href="#" class="tiny button radius expand">Apply</a>
 
         </form>
 
@@ -104,7 +107,11 @@
 <script src="bower_components/backbone/backbone.js"></script>
 
 <script src="bower_components/d3js/build/d3.v3.min.js"></script>
-<script src="lib/innersvg.js"></script>
+
+<script src="bower_components/perfect-scrollbar/min/perfect-scrollbar-0.4.5.with-mousewheel.min.js"></script>
+
+<!-- TODO: Remove innersvg Dependency ? -->
+<script src="js/lib/innersvg.js"></script>
 
 <!-- Custom JavaScript -->
 <script src="js/main.js"></script>

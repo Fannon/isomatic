@@ -25,11 +25,36 @@ isomatic.ui = {};
 isomatic.ui.init = function() {
     "use strict";
 
-    $( "#setMargin").click(function(event) {
+
+    // Sidebar Scrolling
+//    $('#sidebar-margin').perfectScrollbar({
+//        wheelSpeed: 20,
+//        wheelPropagation: true,
+//        minScrollbarLength: 20
+//    });
+
+
+    ///////////////////////////////////////
+    // Sidebar Event Listeners           //
+    ///////////////////////////////////////
+
+    $( "#toolbar .icon").click(function(event) {
+
         event.preventDefault();
-        $("#sidebar-margin").toggle();
+
+        var action = event.currentTarget.id.substring(3).toLowerCase();
+        var url = location.href;
+        location.href = "#" + action;
+
+        // TODO: Refactor this to use Backbone Views and Events
+        if($("#sidebar-margin").is(':visible')) {
+            $("#sidebar-" + action).hide();
+        } else {
+            $("#sidebar div").hide();
+            $("#sidebar-" + action).show();
+        }
     });
-}
+};
 
 
 ///////////////////////////////////////

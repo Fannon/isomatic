@@ -5,12 +5,15 @@
     "backbone": null,
     "underscore": null,
     "requirejs": null,
-    "d3js": null
+    "d3js": null,
+    "perfect-scrollbar": "https://github.com/noraesae/perfect-scrollbar.git"
   },
   "version": "0.0.1",
   "homepage": "https://github.com/Fannon/isomatic",
   "authors": [
-    "Fannon <heimlersimon@gmail.com>"
+    "Sebastian Huber <sebastianhuber.mod@web.de>",
+    "Lisa Borgenheimer <lisa.borgenheimer@web.de>",
+    "Simon Heimler <heimlersimon@gmail.com>"
   ],
   "description": "An interactive online isotype graphics generator",
   "main": "index.html",
