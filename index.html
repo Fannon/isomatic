@@ -4,95 +4,155 @@
     <meta charset=utf-8/>
     <title>isomatic</title>
     <link rel="stylesheet" type="text/css" href="css/app.css"/>
-    <link rel="stylesheet" type="text/css" href="bower_components/perfect-scrollbar/min/perfect-scrollbar-0.4.5.min.css"/>
+    <link rel="stylesheet" type="text/css"
+          href="bower_components/perfect-scrollbar/min/perfect-scrollbar-0.4.5.min.css"/>
     <script src="bower_components/modernizr/modernizr.js"></script>
 </head>
 <body>
 
 <nav class="top-bar" data-topbar>
-  <ul class="title-area">
-    <li class="name">
-      <h1><a href="#home">isomatic</a></h1>
-    </li>
-  </ul>
-
-  <section class="top-bar-section">
-    <!-- Right Nav Section -->
-    <ul class="left">
-      <li class="active"><a href="#new">New Graphic</a></li>
-      <li class="has-dropdown">
-        <a href="#">Import</a>
-        <ul class="dropdown">
-          <li><a href="#import-svg">Import from SVG</a></li>
-          <li><a href="#import-json">Import from JSON</a></li>
-        </ul>
-      </li>
-      <li class="has-dropdown">
-        <a href="#">Export</a>
-        <ul class="dropdown">
-          <li><a id='svgExport' target="_blank" onclick="isomatic.ui.exportSVG()">Download as
-            SVG</a></li>
-          <li><a id='jsonExport' target="_blank" onclick="isomatic.ui.exportJSON()">Download as
-            JSON</a></li>
-        </ul>
-      </li>
+    <ul class="title-area">
+        <li class="name">
+            <h1><a href="#home">isomatic</a></h1>
+        </li>
     </ul>
 
-    <ul class="right">
-      <li class="active"><a href="#help">Help</a></li>
-    </ul>
+    <section class="top-bar-section">
+        <!-- Right Nav Section -->
+        <ul class="left">
+            <li class="active"><a href="#new">New Graphic</a></li>
+            <li class="has-dropdown">
+                <a href="#">Import</a>
+                <ul class="dropdown">
+                    <li><a href="#import-svg">Import from SVG</a></li>
+                    <li><a href="#import-json">Import from JSON</a></li>
+                </ul>
+            </li>
+            <li class="has-dropdown">
+                <a href="#">Export</a>
+                <ul class="dropdown">
+                    <li><a id='svgExport' target="_blank" onclick="isomatic.ui.exportSVG()">Download as
+                        SVG</a></li>
+                    <li><a id='jsonExport' target="_blank" onclick="isomatic.ui.exportJSON()">Download as
+                        JSON</a></li>
+                </ul>
+            </li>
+        </ul>
 
-  </section>
+        <ul class="right">
+            <li class="active"><a href="#help">Help</a></li>
+        </ul>
+
+    </section>
 </nav>
 
 <div class="container">
 
     <div id="toolbar">
-      <div class="icon" id="setData">Data</div>
-      <div class="icon" id="setType">Type</div>
-      <div class="icon" id="setColor">Color</div>
-      <div class="icon" id="setIcon">Icon</div>
-      <div class="icon" id="setMargin">Marg</div>
-      <div class="icon" id="setScale">Scale</div>
-      <div class="icon" id="setText">Text</div>
+        <div class="icon" id="setData">Data</div>
+        <div class="icon" id="setType">Type</div>
+        <div class="icon" id="setColor">Color</div>
+        <div class="icon" id="setIcon">Icon</div>
+        <div class="icon" id="setMargin">Marg</div>
+        <div class="icon" id="setScale">Scale</div>
+        <div class="icon" id="setText">Text</div>
     </div>
 
     <div id="display">
-      <div id="graph"></div>
-      <div id="sidebar">
-        <div id="sidebar-margin" style="display: none">
-        <h5><strong>Margin Settings</strong></h5>
-        <form>
 
-            <label>Outer Margin</label>
-            <input type="text" placeholder="30px">
+        <div id="graph"></div>
 
-            <label>Row Margin</label>
-            <input type="text" placeholder="10px">
+        <div id="sidebar">
 
-            <label>Column Margin</label>
-            <input type="text" placeholder="10px">
+            <!-- Data Settings -->
+            <div id="sidebar-data" style="display: none">
+                <h3>Data Import</h3>
+                <form>
 
-            <label>Vertical Icon Margin</label>
-            <input type="text" placeholder="10px">
+                    <label>Data Type</label>
+                    <select>
+                        <option value="csv">Comma Seperated Values (.csv)</option>
+                        <option value="tsv">Tab Seperated Values (.tsv)</option>
+                        <option value="json">JSON</option>
+                    </select>
 
-            <label>Horizontal Icon Margin</label>
-            <input type="text" placeholder="10px">
 
-            <a href="#" class="tiny button radius expand">Apply</a>
+                    <label>Paste Data</label>
+                    <textarea rows="5" placeholder="Copy'n'Paste here"></textarea>
 
-        </form>
+                    <a href="#" class="tiny button radius expand">Import</a>
 
+                    <hr>
+
+                    <h4>Preview:</h4>
+
+                    <table>
+                        <thead>
+                        <tr>
+                            <th width="200">Table Header</th>
+                            <th>Table Header</th>
+                            <th width="150">Table Header</th>
+                            <th width="150">Table Header</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>Content Goes Here</td>
+                            <td>This is longer content Donec id elit non mi porta gravida at eget metus.</td>
+                            <td>Content Goes Here</td>
+                            <td>Content Goes Here</td>
+                        </tr>
+                        <tr>
+                            <td>Content Goes Here</td>
+                            <td>This is longer Content Goes Here Donec id elit non mi porta gravida at eget metus.</td>
+                            <td>Content Goes Here</td>
+                            <td>Content Goes Here</td>
+                        </tr>
+                        <tr>
+                            <td>Content Goes Here</td>
+                            <td>This is longer Content Goes Here Donec id elit non mi porta gravida at eget metus.</td>
+                            <td>Content Goes Here</td>
+                            <td>Content Goes Here</td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+
+                </form>
+            </div>
+
+
+
+            <!-- Margin Settings -->
+            <div id="sidebar-margin" style="display: none">
+                <h5>Margin Settings</h5>
+                <form>
+                    <label>Outer Margin</label>
+                    <input type="text" placeholder="30px">
+
+                    <label>Row Margin</label>
+                    <input type="text" placeholder="10px">
+
+                    <label>Column Margin</label>
+                    <input type="text" placeholder="10px">
+
+                    <label>Vertical Icon Margin</label>
+                    <input type="text" placeholder="10px">
+
+                    <label>Horizontal Icon Margin</label>
+                    <input type="text" placeholder="10px">
+
+                    <a href="#" class="tiny button radius expand">Apply</a>
+                </form>
+            </div>
         </div>
-      </div>
-      <div id="overlay">
 
-      </div>
     </div>
 
     <div id="message"></div>
 
-    <div id="footer" class="">2013 | Open Source @ <a href="https://github.com/Fannon/isomatic" target="_blank">Github</a></div>
+    <div id="footer" class="">2013 | Open Source @ <a href="https://github.com/Fannon/isomatic"
+                                                      target="_blank">Github</a></div>
 
 </div>
 

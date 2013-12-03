@@ -47,10 +47,14 @@ isomatic.ui.init = function() {
         location.href = "#" + action;
 
         // TODO: Refactor this to use Backbone Views and Events
-        if($("#sidebar-margin").is(':visible')) {
+        if($("#sidebar-" + action).is(':visible') || $("#" + event.currentTarget.id).hasClass('active')) {
+            $("#" + event.currentTarget.id).removeClass('active');
             $("#sidebar-" + action).hide();
         } else {
             $("#sidebar div").hide();
+            $("#toolbar .icon").removeClass('active');
+
+            $("#" + event.currentTarget.id).addClass('active');
             $("#sidebar-" + action).show();
         }
     });

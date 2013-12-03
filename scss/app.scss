@@ -11,6 +11,7 @@
 @import "foundation/components/buttons";
 @import "foundation/components/labels";
 @import "foundation/components/top-bar";
+@import "foundation/components/tables";
 
 
 .container {
@@ -45,11 +46,28 @@
     border: 1px solid #CCC;
     font-size: 0.8em;
   }
+
+  .active {
+    background-color: $primary-color;
+    color: #FFF;
+  }
 }
 
 #sidebar {
 
   height: auto;
+
+  h3 {
+    background: #EEE;
+    padding: 5px;
+    font-weight: bold;
+    font-size: 1.5em;
+  }
+
+  h4 {
+    font-weight: bold;
+    font-size: 1.2em;
+  }
 
   div {
     background: rgba(255, 255, 255, 0.9);
@@ -60,6 +78,13 @@
     top: 0px;
     border-right: 1px solid #CCC;
     padding: 5px;
+    overflow: scroll;
+    overflow-x:hidden
+  }
+
+  #sidebar-data {
+    width: 100%;
+    border-right: none;
   }
 }
 
