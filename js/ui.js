@@ -38,7 +38,7 @@ isomatic.ui.init = function() {
     // Sidebar Event Listeners           //
     ///////////////////////////////////////
 
-    $( "#toolbar .icon").click(function(event) {
+    $('.trigger-ui').click(function(event) {
 
         event.preventDefault();
 

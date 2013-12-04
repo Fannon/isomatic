@@ -21,21 +21,11 @@
         <!-- Right Nav Section -->
         <ul class="left">
             <li class="active"><a href="#new">New Graphic</a></li>
-            <li class="has-dropdown">
-                <a href="#">Import</a>
-                <ul class="dropdown">
-                    <li><a href="#import-svg">Import from SVG</a></li>
-                    <li><a href="#import-json">Import from JSON</a></li>
-                </ul>
+            <li>
+                <a id="setImport" class="trigger-ui" href="#">Import</a>
             </li>
-            <li class="has-dropdown">
-                <a href="#">Export</a>
-                <ul class="dropdown">
-                    <li><a id='svgExport' target="_blank" onclick="isomatic.ui.exportSVG()">Download as
-                        SVG</a></li>
-                    <li><a id='jsonExport' target="_blank" onclick="isomatic.ui.exportJSON()">Download as
-                        JSON</a></li>
-                </ul>
+            <li>
+                <a id="setExport" class="trigger-ui" href="#">Export</a>
             </li>
         </ul>
 
@@ -49,13 +39,13 @@
 <div class="container">
 
     <div id="toolbar">
-        <div class="icon" id="setData">Data</div>
-        <div class="icon" id="setType">Type</div>
-        <div class="icon" id="setColor">Color</div>
-        <div class="icon" id="setIcon">Icon</div>
-        <div class="icon" id="setMargin">Marg</div>
-        <div class="icon" id="setScale">Scale</div>
-        <div class="icon" id="setText">Text</div>
+        <div class="icon trigger-ui" id="setData">Data</div>
+        <div class="icon trigger-ui" id="setType">Type</div>
+        <div class="icon trigger-ui" id="setColor">Color</div>
+        <div class="icon trigger-ui" id="setIcon">Icon</div>
+        <div class="icon trigger-ui" id="setMargin">Marg</div>
+        <div class="icon trigger-ui" id="setScale">Scale</div>
+        <div class="icon trigger-ui" id="setText">Text</div>
     </div>
 
     <div id="display">
@@ -122,6 +112,35 @@
             </div>
 
 
+            <!-- Type Settings -->
+            <div id="sidebar-type" style="display: none">
+                <h3>Type Settings</h3>
+                <form>
+                    <a href="#" class="tiny button radius">Apply</a>
+                    <a href="#" class="tiny button radius">Apply & Close</a>
+                </form>
+            </div>
+
+
+            <!-- Color Settings -->
+            <div id="sidebar-color" style="display: none">
+                <h3>Color Settings</h3>
+                <form>
+                    <a href="#" class="tiny button radius">Apply</a>
+                    <a href="#" class="tiny button radius">Apply & Close</a>
+                </form>
+            </div>
+
+
+            <!-- Icon Settings -->
+            <div id="sidebar-icon" style="display: none">
+                <h3>Icon Settings</h3>
+                <form>
+                    <a href="#" class="tiny button radius">Apply</a>
+                    <a href="#" class="tiny button radius">Apply & Close</a>
+                </form>
+            </div>
+
 
             <!-- Margin Settings -->
             <div id="sidebar-margin" style="display: none">
@@ -151,22 +170,40 @@
             <div id="sidebar-scale" style="display: none">
                 <h3>Scale Settings</h3>
                 <form>
-                    <label>Outer Margin</label>
-                    <input type="text" placeholder="30px">
+                    <a href="#" class="tiny button radius">Apply</a>
+                    <a href="#" class="tiny button radius">Apply & Close</a>
+                </form>
+            </div>
 
-                    <label>Row Margin</label>
-                    <input type="text" placeholder="10px">
 
-                    <label>Column Margin</label>
-                    <input type="text" placeholder="10px">
+            <!-- Text Settings -->
+            <div id="sidebar-text" style="display: none">
+                <h3>Text/Legend Settings</h3>
+                <form>
+                    <a href="#" class="tiny button radius">Apply</a>
+                    <a href="#" class="tiny button radius">Apply & Close</a>
+                </form>
+            </div>
 
-                    <label>Vertical Icon Margin</label>
-                    <input type="text" placeholder="10px">
 
-                    <label>Horizontal Icon Margin</label>
-                    <input type="text" placeholder="10px">
+            <!-- Import Settings -->
+            <div id="sidebar-import" style="display: none">
+                <h3>Import Data</h3>
+                <form>
+                    <a href="#" class="tiny button radius">Apply</a>
+                    <a href="#" class="tiny button radius">Apply & Close</a>
+                </form>
+            </div>
 
-                    <a href="#" class="tiny button radius expand">Apply</a>
+
+            <!-- Export Settings -->
+            <div id="sidebar-export" style="display: none">
+                <h3>Export Graphic / Data</h3>
+                <form>
+
+
+                    <a href="#" class="tiny button radius">Apply</a>
+                    <a href="#" class="tiny button radius">Apply & Close</a>
                 </form>
             </div>
 
