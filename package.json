@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "devDependencies": {
     "node-sass": "~0.7.0",
+    "bower": "~1.2.8",
     "grunt": "~0.4.1",
     "grunt-contrib-uglify": "~0.2.7",
     "grunt-contrib-watch": "~0.5.3",

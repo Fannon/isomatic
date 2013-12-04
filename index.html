@@ -4,8 +4,8 @@
     <meta charset=utf-8/>
     <title>isomatic</title>
     <link rel="stylesheet" type="text/css" href="css/app.css"/>
-    <link rel="stylesheet" type="text/css"
-          href="bower_components/perfect-scrollbar/min/perfect-scrollbar-0.4.5.min.css"/>
+    <!--<script data-main="js/main" src="bower_components/requirejs/require.js"></script>-->
+
     <script src="bower_components/modernizr/modernizr.js"></script>
 </head>
 <body>
@@ -78,7 +78,7 @@
 
 
                     <label>Paste Data</label>
-                    <textarea rows="5" placeholder="Copy'n'Paste here"></textarea>
+                    <textarea placeholder="Copy'n'Paste here"></textarea>
 
                     <a href="#" class="tiny button radius expand">Import</a>
 
@@ -125,7 +125,7 @@
 
             <!-- Margin Settings -->
             <div id="sidebar-margin" style="display: none">
-                <h5>Margin Settings</h5>
+                <h3>Margin Settings</h3>
                 <form>
                     <label>Outer Margin</label>
                     <input type="text" placeholder="30px">
@@ -145,6 +145,31 @@
                     <a href="#" class="tiny button radius expand">Apply</a>
                 </form>
             </div>
+
+
+            <!-- Scale Settings -->
+            <div id="sidebar-scale" style="display: none">
+                <h3>Scale Settings</h3>
+                <form>
+                    <label>Outer Margin</label>
+                    <input type="text" placeholder="30px">
+
+                    <label>Row Margin</label>
+                    <input type="text" placeholder="10px">
+
+                    <label>Column Margin</label>
+                    <input type="text" placeholder="10px">
+
+                    <label>Vertical Icon Margin</label>
+                    <input type="text" placeholder="10px">
+
+                    <label>Horizontal Icon Margin</label>
+                    <input type="text" placeholder="10px">
+
+                    <a href="#" class="tiny button radius expand">Apply</a>
+                </form>
+            </div>
+
         </div>
 
     </div>
@@ -168,7 +193,6 @@
 
 <script src="bower_components/d3js/build/d3.v3.min.js"></script>
 
-<script src="bower_components/perfect-scrollbar/min/perfect-scrollbar-0.4.5.with-mousewheel.min.js"></script>
 
 <!-- TODO: Remove innersvg Dependency ? -->
 <script src="js/lib/innersvg.js"></script>

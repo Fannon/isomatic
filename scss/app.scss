@@ -1,8 +1,6 @@
 // Global Settings Override
 @import "settings";
-
 @import "normalize";
-//@import "foundation";
 
 @import "foundation/components/global";
 
@@ -12,7 +10,6 @@
 @import "foundation/components/labels";
 @import "foundation/components/top-bar";
 @import "foundation/components/tables";
-
 
 .container {
   margin: 10px auto;
@@ -58,15 +55,13 @@
   height: auto;
 
   h3 {
-    background: #EEE;
-    padding: 5px;
     font-weight: bold;
-    font-size: 1.5em;
+    font-size: 1.2em;
   }
 
   h4 {
     font-weight: bold;
-    font-size: 1.2em;
+    font-size: 1.1em;
   }
 
   div {
