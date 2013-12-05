@@ -50,7 +50,7 @@
   }
 }
 
-#sidebar {
+#overlay {
 
   height: auto;
 
@@ -77,7 +77,7 @@
     overflow-x:hidden
   }
 
-  #sidebar-data, #sidebar-icon {
+  #overlay-data, #overlay-icon, #overlay-import, #overlay-export {
     width: 100%;
     border-right: none;
   }

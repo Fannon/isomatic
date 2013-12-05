@@ -27,7 +27,7 @@ isomatic.ui.init = function() {
 
 
     // Sidebar Scrolling
-//    $('#sidebar-margin').perfectScrollbar({
+//    $('#overlay-margin').perfectScrollbar({
 //        wheelSpeed: 20,
 //        wheelPropagation: true,
 //        minScrollbarLength: 20
@@ -47,15 +47,15 @@ isomatic.ui.init = function() {
         location.href = "#" + action;
 
         // TODO: Refactor this to use Backbone Views and Events
-        if($("#sidebar-" + action).is(':visible') || $("#" + event.currentTarget.id).hasClass('active')) {
+        if($("#overlay-" + action).is(':visible') || $("#" + event.currentTarget.id).hasClass('active')) {
             $("#" + event.currentTarget.id).removeClass('active');
-            $("#sidebar-" + action).hide();
+            $("#overlay-" + action).hide();
         } else {
-            $("#sidebar div").hide();
+            $("#overlay div").hide();
             $("#toolbar .icon").removeClass('active');
 
             $("#" + event.currentTarget.id).addClass('active');
-            $("#sidebar-" + action).show();
+            $("#overlay-" + action).show();
         }
     });
 };

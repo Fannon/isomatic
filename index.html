@@ -52,10 +52,10 @@
 
         <div id="graph"></div>
 
-        <div id="sidebar">
+        <div id="overlay">
 
             <!-- Data Settings -->
-            <div id="sidebar-data" style="display: none">
+            <div id="overlay-data" style="display: none">
                 <h3>Data Import</h3>
                 <form>
 
@@ -113,7 +113,7 @@
 
 
             <!-- Type Settings -->
-            <div id="sidebar-type" style="display: none">
+            <div id="overlay-type" style="display: none">
                 <h3>Type Settings</h3>
                 <form>
                     <a href="#" class="tiny button radius">Apply</a>
@@ -123,7 +123,7 @@
 
 
             <!-- Color Settings -->
-            <div id="sidebar-color" style="display: none">
+            <div id="overlay-color" style="display: none">
                 <h3>Color Settings</h3>
                 <form>
                     <a href="#" class="tiny button radius">Apply</a>
@@ -133,7 +133,7 @@
 
 
             <!-- Icon Settings -->
-            <div id="sidebar-icon" style="display: none">
+            <div id="overlay-icon" style="display: none">
                 <h3>Icon Settings</h3>
                 <form>
                     <a href="#" class="tiny button radius">Apply</a>
@@ -143,7 +143,7 @@
 
 
             <!-- Margin Settings -->
-            <div id="sidebar-margin" style="display: none">
+            <div id="overlay-margin" style="display: none">
                 <h3>Margin Settings</h3>
                 <form>
                     <label>Outer Margin</label>
@@ -167,7 +167,7 @@
 
 
             <!-- Scale Settings -->
-            <div id="sidebar-scale" style="display: none">
+            <div id="overlay-scale" style="display: none">
                 <h3>Scale Settings</h3>
                 <form>
                     <a href="#" class="tiny button radius">Apply</a>
@@ -177,7 +177,7 @@
 
 
             <!-- Text Settings -->
-            <div id="sidebar-text" style="display: none">
+            <div id="overlay-text" style="display: none">
                 <h3>Text/Legend Settings</h3>
                 <form>
                     <a href="#" class="tiny button radius">Apply</a>
@@ -187,7 +187,7 @@
 
 
             <!-- Import Settings -->
-            <div id="sidebar-import" style="display: none">
+            <div id="overlay-import" style="display: none">
                 <h3>Import Data</h3>
                 <form>
                     <a href="#" class="tiny button radius">Apply</a>
@@ -197,13 +197,13 @@
 
 
             <!-- Export Settings -->
-            <div id="sidebar-export" style="display: none">
+            <div id="overlay-export" style="display: none">
                 <h3>Export Graphic / Data</h3>
                 <form>
-
-
-                    <a href="#" class="tiny button radius">Apply</a>
-                    <a href="#" class="tiny button radius">Apply & Close</a>
+                    <a id='svgExport' class="tiny button radius" target="_blank" onclick="isomatic.ui.exportSVG()">Download as
+                        SVG</a>
+                    <a id='jsonExport' class="tiny button radius" target="_blank" onclick="isomatic.ui.exportJSON()">Download as
+                        JSON</a>
                 </form>
             </div>
 
