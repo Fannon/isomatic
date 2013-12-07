@@ -2,3 +2,5 @@
 /bower_components/*
 /node_modules/*
 .idea/
+/js/app.min.js
+/css/app.css
