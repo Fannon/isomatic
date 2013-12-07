@@ -190,8 +190,9 @@
             <div id="overlay-import" style="display: none">
                 <h3>Import Data</h3>
                 <form>
-                    <a href="#" class="tiny button radius">Apply</a>
-                    <a href="#" class="tiny button radius">Apply & Close</a>
+                    <label for="imported-file">Upload SVG or JSON File:</label>
+                    <input type="file" id="imported-file">
+                    <input type="submit" name="submit" value="Upload" class="tiny button radius">
                 </form>
             </div>
 
@@ -200,10 +201,21 @@
             <div id="overlay-export" style="display: none">
                 <h3>Export Graphic / Data</h3>
                 <form>
-                    <a id='svgExport' class="tiny button radius" target="_blank" onclick="isomatic.ui.exportSVG()">Download as
-                        SVG</a>
-                    <a id='jsonExport' class="tiny button radius" target="_blank" onclick="isomatic.ui.exportJSON()">Download as
-                        JSON</a>
+                    <label >Choose Export Format:</label>
+
+                    <button type=button class="tiny button radius">SVG (Graphic)</button>
+                    <button type=button class="tiny button radius disabled">JSON (Raw Data)</button>
+
+
+                    <label>Include:</label>
+                    <input id="export-data" type="checkbox" checked><label for="export-data">Data</label>
+                    <input id="export-options" type="checkbox" checked><label for="export-options">Options</label>
+
+                    <br>
+
+                    <a id='svgExport' class="tiny button radius" target="_blank" onclick="isomatic.ui.exportSVG()">Download</a>
+                    <!-- <a id='jsonExport' class="tiny button radius" target="_blank" onclick="isomatic.ui.exportJSON()">Download as
+                        JSON</a> -->
                 </form>
             </div>
 

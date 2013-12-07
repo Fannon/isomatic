@@ -35,9 +35,10 @@ isomatic.ui.init = function() {
 
 
     ///////////////////////////////////////
-    // Sidebar Event Listeners           //
+    // Overlay Event Listeners           //
     ///////////////////////////////////////
 
+    // Overlay Buttons
     $('.trigger-ui').click(function(event) {
 
         event.preventDefault();
@@ -52,12 +53,20 @@ isomatic.ui.init = function() {
             $("#overlay-" + action).hide();
         } else {
             $("#overlay div").hide();
-            $("#toolbar .icon").removeClass('active');
+            $(".trigger-ui").removeClass('active');
 
             $("#" + event.currentTarget.id).addClass('active');
             $("#overlay-" + action).show();
         }
     });
+
+    // Import Data File Upload
+    // TODO: Use Library? -> http://blueimp.github.io/jQuery-File-Upload/basic.html
+    $( "#imported-file" ).change(function() {
+        console.log('FILE UPLOAD START');
+        console.dir(this.files[0]);
+    });
+
 };
 
 
