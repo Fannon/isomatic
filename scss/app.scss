@@ -10,6 +10,7 @@
 @import "foundation/components/labels";
 @import "foundation/components/top-bar";
 @import "foundation/components/tables";
+@import "foundation/components/tooltips";
 
 .container {
   margin: 10px auto;
@@ -64,7 +65,7 @@
     font-size: 1.1em;
   }
 
-  div {
+  .overlay-container {
     background: rgba(255, 255, 255, 0.9);
     position: absolute;
     height: 100%;
@@ -77,9 +78,23 @@
     overflow-x:hidden
   }
 
-  #overlay-data, #overlay-icon {
+  #overlay-data, #overlay-icon, #overlay-help {
     width: 100%;
     border-right: none;
+  }
+
+  .overlay-left {
+    position: absolute;
+    width: 200px;
+    display: block;
+  }
+
+  .overlay-right {
+
+    padding-left: 230px;
+    width: 500px;
+
+
   }
 }
 

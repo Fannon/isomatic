@@ -52,7 +52,7 @@ isomatic.ui.init = function() {
             $("#" + event.currentTarget.id).removeClass('active');
             $("#overlay-" + action).hide();
         } else {
-            $("#overlay div").hide();
+            $(".overlay-container").hide();
             $(".trigger-ui").removeClass('active');
 
             $("#" + event.currentTarget.id).addClass('active');

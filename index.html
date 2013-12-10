@@ -20,7 +20,9 @@
     <section class="top-bar-section">
         <!-- Right Nav Section -->
         <ul class="left">
-            <li class="active"><a href="#new">New Graphic</a></li>
+            <li >
+                <a id="setNew"  class="trigger-ui" href="#new">New Graphic</a>
+            </li>
             <li>
                 <a id="setImport" class="trigger-ui" href="#">Import</a>
             </li>
@@ -30,7 +32,9 @@
         </ul>
 
         <ul class="right">
-            <li class="active"><a href="#help">Help</a></li>
+            <li class="active">
+                <a id="setHelp"  class="trigger-ui" href="#help">Help</a>
+            </li>
         </ul>
 
     </section>
@@ -45,7 +49,7 @@
         <div class="icon trigger-ui" id="setIcon">Icon</div>
         <div class="icon trigger-ui" id="setMargin">Marg</div>
         <div class="icon trigger-ui" id="setScale">Scale</div>
-        <div class="icon trigger-ui" id="setText">Text</div>
+        <div class="icon trigger-ui" id="setLegend">Lgnd</div>
     </div>
 
     <div id="display">
@@ -55,7 +59,7 @@
         <div id="overlay">
 
             <!-- Data Settings -->
-            <div id="overlay-data" style="display: none">
+            <div id="overlay-data" class="overlay-container" style="display: none">
                 <h3>Data Import</h3>
                 <form>
 
@@ -113,9 +117,29 @@
 
 
             <!-- Type Settings -->
-            <div id="overlay-type" style="display: none">
+            <div id="overlay-type" class="overlay-container" style="display: none">
                 <h3>Type Settings</h3>
                 <form>
+
+                    <legend>Normal Isotype</legend>
+                    <a class="th" href="../img/demos/demo2.png" height="40px" width="120px">
+                      <img  height="40px" width="120px" src="../img/demos/demo2-th.png">
+                    </a>
+
+                    <br><br>
+
+                    <legend>Versus Layout</legend>
+                    <desc>May have only 2 Columns.</desc>
+
+                    <a class="th" href="../img/demos/demo2.png" height="40px" width="120px">
+                      <img  height="40px" width="120px" src="../img/demos/demo2-th.png">
+                    </a>
+
+                    <br><br>
+
+
+
+                    <input id="break-rows" type="checkbox"><label for="break-rows">Break row into multiple Lines</label>
                     <a href="#" class="tiny button radius">Apply</a>
                     <a href="#" class="tiny button radius">Apply & Close</a>
                 </form>
@@ -123,9 +147,41 @@
 
 
             <!-- Color Settings -->
-            <div id="overlay-color" style="display: none">
+            <div id="overlay-color" class="overlay-container" style="display: none">
                 <h3>Color Settings</h3>
                 <form>
+
+                    <label>
+                        <span data-tooltip class="has-tip tip-right" title="Choose if Colors are mapped to Columns or Rows">Map to</span>
+                    </label>
+                    <select value="column">
+                        <option value="column">Column</option>
+                        <option value="row">Row</option>
+                    </select>
+
+
+                    <fieldset>
+                        <legend>Column 1</legend>
+
+                        <input type="text" placeholder="0-30 Jahre">
+                        <input type="text" placeholder="#333333">
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>Column 2</legend>
+
+                        <input type="text" placeholder="0-30 Jahre">
+                        <input type="text" placeholder="#555555">
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>Column 3</legend>
+
+                        <input type="text" placeholder="0-30 Jahre">
+                        <input type="text" placeholder="#777777">
+                    </fieldset>
+
+
                     <a href="#" class="tiny button radius">Apply</a>
                     <a href="#" class="tiny button radius">Apply & Close</a>
                 </form>
@@ -133,17 +189,68 @@
 
 
             <!-- Icon Settings -->
-            <div id="overlay-icon" style="display: none">
+            <div id="overlay-icon" class="overlay-container" style="display: none">
                 <h3>Icon Settings</h3>
-                <form>
-                    <a href="#" class="tiny button radius">Apply</a>
-                    <a href="#" class="tiny button radius">Apply & Close</a>
-                </form>
+
+
+
+
+                    <div class="overlay-left">
+
+                     <form>
+                        <label>
+                            <span data-tooltip class="has-tip tip-right" title="Choose if Icons are mapped to Columns or Rows">Map to</span>
+                        </label>
+                        <select value="row">
+                            <option value="row">Row</option>
+                            <option value="column">Column</option>
+                        </select>
+
+
+                        <fieldset>
+                            <legend>Row 1</legend>
+
+                            <input type="text" placeholder="0-30 Jahre">
+                            <input type="text" placeholder="ICON">
+                        </fieldset>
+
+                        <fieldset>
+                            <legend>Row 2</legend>
+
+                            <input type="text" placeholder="0-30 Jahre">
+                            <input type="text" placeholder="ICON">
+                        </fieldset>
+
+                        <fieldset>
+                            <legend>Row 3</legend>
+
+                            <input type="text" placeholder="0-30 Jahre">
+                            <input type="text" placeholder="ICON">
+                        </fieldset>
+
+
+                        <a href="#" class="tiny button radius">Apply</a>
+                        <a href="#" class="tiny button radius">Apply & Close</a>
+
+                    </form>
+                    </div>
+
+                    <div class="overlay-right">
+                        <h3>Kategorie 1</h3>
+                        <p>ICON1, ICON2, ICON3, ICON4</p>
+                        <h3>Kategorie 2</h3>
+                        <p>ICON1, ICON2, ICON3, ICON4, ICON5, ICON6</p>
+                        <h3>Kategorie 3</h3>
+                        <p>ICON1, ICON2, ICON3</p>
+                        <h3>Kategorie 4</h3>
+                        <p>ICON1, ICON2</p>
+                    </div>
+
             </div>
 
 
             <!-- Margin Settings -->
-            <div id="overlay-margin" style="display: none">
+            <div id="overlay-margin" class="overlay-container" style="display: none">
                 <h3>Margin Settings</h3>
                 <form>
                     <label>Outer Margin</label>
@@ -167,27 +274,77 @@
 
 
             <!-- Scale Settings -->
-            <div id="overlay-scale" style="display: none">
+            <div id="overlay-scale" class="overlay-container" style="display: none">
                 <h3>Scale Settings</h3>
                 <form>
+
+                    <label>
+                        <span data-tooltip class="has-tip tip-right" title="Floor value if Remainder is below">How much one Icon represents</span>
+                    </label>
+                    <select value="1000000">
+                        <option value="100000">1:100.000</option>
+                        <option value="1000000">1:1.000.000</option>
+                        <option value="10000000">1:10.000.000</option>
+                    </select>
+
+                    <label>
+                        <span data-tooltip class="has-tip tip-right" title="Ceil value if Remainder is above">Round Up</span>
+                    </label>
+                    <input type="text" placeholder="0.8">
+
+
+
+                    <label>
+                        <span data-tooltip class="has-tip tip-right" title="Floor value if Remainder is below">Round Down</span>
+                    </label>
+                    <input type="text" placeholder="0.3">
+
+
+
                     <a href="#" class="tiny button radius">Apply</a>
                     <a href="#" class="tiny button radius">Apply & Close</a>
                 </form>
             </div>
 
 
-            <!-- Text Settings -->
-            <div id="overlay-text" style="display: none">
+            <!-- Legend Settings -->
+            <div id="overlay-legend" class="overlay-container" style="display: none">
                 <h3>Text/Legend Settings</h3>
                 <form>
+
+                    <input id="draw-column-legend" type="checkbox" checked><label for="draw-column-legend">Draw Column Legend</label>
+
+                    <label>Description</label>
+                    <textarea placeholder="Enter Description here.."></textarea>
+
                     <a href="#" class="tiny button radius">Apply</a>
                     <a href="#" class="tiny button radius">Apply & Close</a>
+                </form>
+            </div>
+
+
+            <!-- New Graphic Overlay -->
+            <div id="overlay-new" class="overlay-container" style="display: none">
+                <h3>New Graphic</h3>
+                <form>
+                    <label for="aspect-ratio">Aspect-Ratio:</label>
+                    <input id="aspect-ratio" type="text" placeholder="16/9">
+
+                    <h4>Alternative: Enter Width/Height:</h4>
+
+                    <label for="aspect-ratio-width">Width</label>
+                    <input id="aspect-ratio-width" type="text" placeholder="640">
+
+                    <label for="aspect-ratio-height">Height</label>
+                    <input id="aspect-ratio-height" type="text" placeholder="360">
+
+                    <input type="submit" name="submit" value="New Graphic" class="tiny button radius">
                 </form>
             </div>
 
 
             <!-- Import Settings -->
-            <div id="overlay-import" style="display: none">
+            <div id="overlay-import" class="overlay-container" style="display: none">
                 <h3>Import Data</h3>
                 <form>
                     <label for="imported-file">Upload SVG or JSON File:</label>
@@ -198,7 +355,7 @@
 
 
             <!-- Export Settings -->
-            <div id="overlay-export" style="display: none">
+            <div id="overlay-export" class="overlay-container" style="display: none">
                 <h3>Export Graphic / Data</h3>
                 <form>
                     <label >Choose Export Format:</label>
@@ -217,6 +374,16 @@
                     <!-- <a id='jsonExport' class="tiny button radius" target="_blank" onclick="isomatic.ui.exportJSON()">Download as
                         JSON</a> -->
                 </form>
+            </div>
+
+
+
+            <!-- Export Settings -->
+            <div id="overlay-help" class="overlay-container" style="display: none">
+                <h3>Help</h3>
+                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+                <h4>Help 2</h4>
+                <p>Drei Chinesen mit dem Kontrabass saßen auf der Straße und erzählten sich was. Da kam die Polizei, ei was ist denn das? Drei Chinesen mit dem Kontrabass.</p>
             </div>
 
         </div>
