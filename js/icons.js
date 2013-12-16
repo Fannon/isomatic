@@ -1,16 +1,10 @@
 /* jshint jquery:true, devel: true */
 /* global isomatic, d3 */
 
-///////////////////////////////////////////////////////
-// isomatic                                          //
-///////////////////////////////////////////////////////
-// An Interactive Isotype Graphics Generator         //
-// https://github.com/Fannon/isomatic                //
-///////////////////////////////////////////////////////
-
 /**
- * Default Icons in JSON Notation
+ * Default Icons Library
  *
+ * Written in JSON Notation
  * This defines both categories and the icons within
  */
 isomatic.icons = {

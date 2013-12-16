@@ -1,13 +1,6 @@
 /* jshint jquery:true, devel: true */
 /* global isomatic, _, backbone */
 
-///////////////////////////////////////////////////////
-// isomatic                                          //
-///////////////////////////////////////////////////////
-// An Interactive Isotype Graphics Generator         //
-// https://github.com/Fannon/isomatic                //
-///////////////////////////////////////////////////////
-
 
 ///////////////////////////////////////
 // UI Variables                      //
@@ -24,14 +17,6 @@ isomatic.ui = {};
 
 isomatic.ui.init = function() {
     "use strict";
-
-
-    // Sidebar Scrolling
-//    $('#overlay-margin').perfectScrollbar({
-//        wheelSpeed: 20,
-//        wheelPropagation: true,
-//        minScrollbarLength: 20
-//    });
 
 
     ///////////////////////////////////////

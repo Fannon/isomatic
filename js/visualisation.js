@@ -1,45 +1,6 @@
 /* jshint jquery:true, devel: true */
 /* global isomatic, d3 */
 
-///////////////////////////////////////////////////////
-// isomatic                                          //
-///////////////////////////////////////////////////////
-// An Interactive Isotype Graphics Generator         //
-// https://github.com/Fannon/isomatic                //
-///////////////////////////////////////////////////////
-
-/**
- * PROBLEME - LÖSUNGSANSÄTZE
- *
- * Icons laden:
- *  * in HTML einbetten und pre-loaden. Anschließend mit d3.select in Variablen speichern
- *  -> per AJAX request nachladen, als DOM in Variable speichern (oder text)?
- *  -> in JSON Format als HTML-Text speichern und an einem Stück laden
- *
- * Icons einfärben:
- *  -> Icon SVG Inhalte in <g fill="#3DD35D"> Element speichern, dort Fill setzen (Was ist mit Stroke?)
- *
- * Isotype Grafiken generieren:
- *  * PROBLEM: .html() funktioniert bei SVG nicht. Polyfill innersvg.js kann das fixen. Aber ist das richter Ansatz?
- *  -> D3.js .enter verwenden und Datenstruktur für Isotypes via eigene Layoutmethode erstellen. (3 Ebenen)
- *  * D3.js .html() verwenden und Icon per for Schleife vervielfachen entsprechend der Value
- *  * Nur JavaScript / jQuery DOM Manipulation verwenden um SVG zu bauen. (D3.js dann noch nötig?)
- *
- * SVG-Export:
- *  -> Über Proxy Script (PHP) -> Funktioniert immer, benötigt allerdings Internetverbindung / WebServer
- *  * Über JavaScript btoa() Methode (Browser-Support ?)
- *
- * Layouting:
- *  * Icon SVG Größe über getBBox() bestimmen ?
- *  -> Icon SVG Größe im JSON Format mit angeben ?
- *  -> Icon skalieren und verschieben über Transformationsmatrix auf <g> Element. (Hilfsfunktion schreiben?)
- *
- * Problemfelder:
- *  * Externe Icons können auf alle möglichen Weisen aufgebaut sein, einiges davon kann das UI und die Grafik brechen.
- *  * D3.js kann pro Datensatz die Größe, Farbe, Inhalt von Elementen umsetzen, aber nicht die Anzahl.
- *
- */
-
 
 ///////////////////////////////////////
 // Visualisation Variables           //

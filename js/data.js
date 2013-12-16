@@ -1,12 +1,10 @@
 /* jshint jquery:true, devel: true */
 /* global isomatic, d3 */
 
-///////////////////////////////////////////////////////
-// isomatic                                          //
-///////////////////////////////////////////////////////
-// An Interactive Isotype Graphics Generator         //
-// https://github.com/Fannon/isomatic                //
-///////////////////////////////////////////////////////
+
+///////////////////////////////////////
+// Variables                         //
+///////////////////////////////////////
 
 /** Data Namespace */
 isomatic.data = {};
@@ -35,6 +33,10 @@ isomatic.data.meta.rows = [];
 /** Array of all Columns. Can be used to get the readable name of an Column ID */
 isomatic.data.meta.columns = [];
 
+
+///////////////////////////////////////
+// Data Functions                    //
+///////////////////////////////////////
 
 /**
  * Loads and stores the Data Object
@@ -121,6 +123,7 @@ isomatic.data.analyze = function(data) {
 
     isomatic.data.meta.rowValues = rowValues;
     isomatic.data.meta.maxRowValues = d3.max(rowValues);
+
 
     ///////////////////////////////////////
     // Calculate a recommended Scale     //

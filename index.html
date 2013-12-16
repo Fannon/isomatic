@@ -21,13 +21,13 @@
         <!-- Right Nav Section -->
         <ul class="left">
             <li >
-                <a id="setNew"  class="trigger-ui" href="#new">New Graphic</a>
+                <a id="setNew" class="trigger-ui" href="#new">New Graphic</a>
             </li>
             <li>
-                <a id="setImport" class="trigger-ui" href="#">Import</a>
+                <a id="setImport" class="trigger-ui" href="#import">Import</a>
             </li>
             <li>
-                <a id="setExport" class="trigger-ui" href="#">Export</a>
+                <a id="setExport" class="trigger-ui" href="#export">Export</a>
             </li>
         </ul>
 
@@ -123,7 +123,7 @@
 
                     <legend>Normal Isotype</legend>
                     <a class="th" href="../img/demos/demo2.png" height="40px" width="120px">
-                      <img  height="40px" width="120px" src="../img/demos/demo2-th.png">
+                      <img  height="40px" width="120px" src="">
                     </a>
 
                     <br><br>
@@ -132,7 +132,7 @@
                     <desc>May have only 2 Columns.</desc>
 
                     <a class="th" href="../img/demos/demo2.png" height="40px" width="120px">
-                      <img  height="40px" width="120px" src="../img/demos/demo2-th.png">
+                      <img  height="40px" width="120px" src="">
                     </a>
 
                     <br><br>
@@ -288,6 +288,11 @@
                     </select>
 
                     <label>
+                        <span data-tooltip class="has-tip tip-right" title="Enter Scale manually">Manual Scale</span>
+                    </label>
+                    <input type="text" placeholder="100000">
+
+                    <label>
                         <span data-tooltip class="has-tip tip-right" title="Ceil value if Remainder is above">Round Up</span>
                     </label>
                     <input type="text" placeholder="0.8">
@@ -311,6 +316,15 @@
             <div id="overlay-legend" class="overlay-container" style="display: none">
                 <h3>Text/Legend Settings</h3>
                 <form>
+
+                    <label>
+                        <span data-tooltip class="has-tip tip-right" title="Choose Font-Family">Font-Family</span>
+                    </label>
+                    <select value="Arial">
+                        <option value="Arial">Arial</option>
+                        <option value="Times New Roman">Times New Roman</option>
+                        <option value="Comic Sans">Comic Sans</option>
+                    </select>
 
                     <input id="draw-column-legend" type="checkbox" checked><label for="draw-column-legend">Draw Column Legend</label>
 
@@ -415,12 +429,13 @@
 
 <!-- Custom JavaScript -->
 <script src="js/main.js"></script>
-<script src="js/options.js"></script>
+<script src="js/models/options.js"></script>
+<script src="js/router.js"></script>
 <script src="js/ui.js"></script>
 <script src="js/data.js"></script>
 <script src="js/isotypeLayout.js"></script>
 <script src="js/visualisation.js"></script>
-<script src="js/defaultIcons.js"></script>
+<script src="js/icons.js"></script>
 
 <!-- Minimized JavaScript -->
 <!--<script src="js/app.min.js"></script>-->

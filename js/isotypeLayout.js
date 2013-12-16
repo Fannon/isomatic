@@ -1,13 +1,6 @@
 /* jshint jquery:true, devel: true */
 /* global isomatic, d3 */
 
-///////////////////////////////////////////////////////
-// isomatic                                          //
-///////////////////////////////////////////////////////
-// An Interactive Isotype Graphics Generator         //
-// https://github.com/Fannon/isomatic                //
-///////////////////////////////////////////////////////
-
 /**
  * Isotype Layout
  * 2013 Simon Heimler
