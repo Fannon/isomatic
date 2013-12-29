@@ -12,18 +12,14 @@
 @import "foundation/components/tables";
 @import "foundation/components/tooltips";
 
-.container {
-  margin: 10px auto;
+#nav-container {
+  margin: 0px auto;
   width: 1010px;
 }
 
-#display {
-  width: 95%;
-  height: 360px;
-  margin-left: 5%;
-  border: 1px solid #CCC;
-  background: #FFF;
-  position: relative;
+.container {
+  margin: 10px auto;
+  width: 1010px;
 }
 
 #graph {
@@ -32,7 +28,7 @@
 }
 
 #toolbar {
-  width: 4%;
+  width: 40px;
   float: left;
 
   .icon {
@@ -40,15 +36,30 @@
     padding: 7px 0;
     text-align: center;
     vertical-align: middle;
-    height: 36px;
-    border: 1px solid #CCC;
+    height: 40px;
+    border: 1px solid #666;
     font-size: 0.8em;
+    background-color: #999;
+  }
+
+  #setType {
+    background-image: url(../img/type.png);
   }
 
   .active {
     background-color: $primary-color;
     color: #FFF;
   }
+}
+
+#display {
+  width: 970px;
+  height: 360px;
+  margin-left: 40px;
+  border: 1px solid #CCC;
+  background: #FFF;
+  position: relative;
+  box-shadow: 0 0 5px 1px #444;
 }
 
 #overlay {

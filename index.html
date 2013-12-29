@@ -11,40 +11,41 @@
 <body>
 
 <nav class="top-bar" data-topbar>
-    <ul class="title-area">
-        <li class="name">
-            <h1><a href="#home">isomatic</a></h1>
-        </li>
-    </ul>
-
-    <section class="top-bar-section">
-        <!-- Right Nav Section -->
-        <ul class="left">
-            <li >
-                <a id="setNew" class="trigger-ui" href="#new">New Graphic</a>
-            </li>
-            <li>
-                <a id="setImport" class="trigger-ui" href="#import">Import</a>
-            </li>
-            <li>
-                <a id="setExport" class="trigger-ui" href="#export">Export</a>
+    <div id="nav-container">
+        <ul class="title-area">
+            <li class="name">
+                <h1><a href="#home">isomatic</a></h1>
             </li>
         </ul>
 
-        <ul class="right">
-            <li class="active">
-                <a id="setHelp"  class="trigger-ui" href="#help">Help</a>
-            </li>
-        </ul>
+        <section class="top-bar-section">
+            <!-- Right Nav Section -->
+            <ul class="left">
+                <li >
+                    <a id="setNew" class="trigger-ui" href="#new">New Graphic</a>
+                </li>
+                <li>
+                    <a id="setImport" class="trigger-ui" href="#import">Import</a>
+                </li>
+                <li>
+                    <a id="setExport" class="trigger-ui" href="#export">Export</a>
+                </li>
+            </ul>
 
-    </section>
+            <ul class="right">
+                <li class="active">
+                    <a id="setHelp"  class="trigger-ui" href="#help">Help</a>
+                </li>
+            </ul>
+        </section>
+    </div>
 </nav>
 
 <div class="container">
 
     <div id="toolbar">
+        <div class="icon trigger-ui" id="setType"></div>
         <div class="icon trigger-ui" id="setData">Data</div>
-        <div class="icon trigger-ui" id="setType">Type</div>
         <div class="icon trigger-ui" id="setColor">Color</div>
         <div class="icon trigger-ui" id="setIcon">Icon</div>
         <div class="icon trigger-ui" id="setMargin">Marg</div>
