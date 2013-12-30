@@ -22,6 +22,18 @@
 }
 
 .top-bar-section {
+
+  .left {
+    margin-left: 450px !important;
+  }
+
+  .left img {
+    margin-top: 8px;
+    margin-right: 2px;
+    vertical-align: top;
+    background: repeat none;
+  }
+
   .help a {
     background: #106983 !important;
   }
@@ -53,6 +65,11 @@
     vertical-align: middle;
     background-color: #999;
     box-shadow: 0 0 4px 1px #555;
+  }
+
+  .top-bar-linie {
+   border-top: 1px solid #aaa;
+   margin: 10px 0px 10px 0px;
   }
 
   #setType {
@@ -109,17 +126,19 @@
   height: auto;
 
   h3 {
+    color: #555;
     font-weight: bold;
     font-size: 1.2em;
   }
 
   h4 {
+    color: #555;
     font-weight: bold;
     font-size: 1.1em;
   }
 
   .overlay-container {
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(225, 225, 225, 0.9);
     position: absolute;
     height: 100%;
     width: 280px;
@@ -146,10 +165,13 @@
 
     padding-left: 230px;
     width: 500px;
+  }
 
-
+  .type-linie {
+    border-bottom: 1px solid #bbb;
   }
 }
+
 
 #playground {
   width: 100%;
