@@ -12,9 +12,19 @@
 @import "foundation/components/tables";
 @import "foundation/components/tooltips";
 
+}
+
+
 #nav-container {
   margin: 0px auto;
   width: 1010px;
+
+  .name {
+    width: 182px;
+    height: 31px;
+    margin: 4px;
+    background-image: url(../img/home.svg);
+  }
 }
 
 .container {
@@ -33,17 +43,42 @@
 
   .icon {
     margin-bottom: 5px;
-    padding: 7px 0;
+    padding: 5px 0;
     text-align: center;
     vertical-align: middle;
-    height: 40px;
-    border: 1px solid #666;
+    height: 44px;
+    border: 1px solid #777;
     font-size: 0.8em;
     background-color: #999;
+    box-shadow: 0 0 1px 1px #888;
   }
 
   #setType {
-    background-image: url(../img/type.png);
+    background-image: url(../img/type.svg);
+  }
+
+  #setData {
+    background-image: url(../img/data.svg);
+  }
+
+  #setColor {
+    background-image: url(../img/color.svg);
+  }
+
+  #setIcon {
+    background-image: url(../img/icon.svg);
+  }
+
+  #setText {
+    background-image: url(../img/text.svg);
+  }
+
+  #setMargin {
+    background-image: url(../img/margin.svg);
+  }
+
+  #setScale {
+    background-image: url(../img/scale.svg);
   }
 
   .active {
