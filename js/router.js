@@ -20,7 +20,7 @@ var IsomaticRouter = Backbone.Router.extend({
         "icon": "icon",
         "margin": "margin",
         "scale": "scale",
-        "legend": "legend",
+        "text": "text"
     },
 
     home: function() {
@@ -80,9 +80,9 @@ var IsomaticRouter = Backbone.Router.extend({
         console.log('#scale');
     },
 
-    legend: function() {
+    text: function() {
         "use strict";
-        console.log('#legend');
+        console.log('#text');
     }
 });
 
