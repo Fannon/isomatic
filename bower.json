@@ -4,7 +4,6 @@
     "foundation": "zurb/bower-foundation",
     "backbone": null,
     "underscore": null,
-    "requirejs": null,
     "d3js": null,
     "perfect-scrollbar": "https://github.com/noraesae/perfect-scrollbar.git"
   },

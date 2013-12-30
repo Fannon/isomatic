@@ -12,18 +12,21 @@
 @import "foundation/components/tables";
 @import "foundation/components/tooltips";
 
-}
-
-
 #nav-container {
   margin: 0px auto;
   width: 1010px;
 
-  .name {
-    width: 182px;
-    height: 31px;
-    margin: 4px;
-    background-image: url(../img/home.svg);
+  .name img {
+    margin-top: 4px;
+  }
+}
+
+.top-bar-section {
+  .help a {
+    background: #106983 !important;
+  }
+  .help a:hover {
+    background: #055870 !important;
   }
 }
 
@@ -40,17 +43,16 @@
 #toolbar {
   width: 40px;
   float: left;
+  margin-top: 10px;
 
   .icon {
-    margin-bottom: 5px;
+    margin-bottom: 10px;
     padding: 5px 0;
-    text-align: center;
-    vertical-align: middle;
+    width: 44px;
     height: 44px;
-    border: 1px solid #777;
-    font-size: 0.8em;
+    vertical-align: middle;
     background-color: #999;
-    box-shadow: 0 0 1px 1px #888;
+    box-shadow: 0 0 4px 1px #555;
   }
 
   #setType {
@@ -81,20 +83,25 @@
     background-image: url(../img/scale.svg);
   }
 
+  :hover {
+    background-color: #777;
+  }
+
   .active {
     background-color: $primary-color;
     color: #FFF;
+    box-shadow: 0 0 2px 2px #555;
   }
+
 }
 
 #display {
   width: 970px;
   height: 360px;
   margin-left: 40px;
-  border: 1px solid #CCC;
   background: #FFF;
   position: relative;
-  box-shadow: 0 0 5px 1px #444;
+  box-shadow: 0 0 5px 1px #777;
 }
 
 #overlay {
@@ -157,7 +164,7 @@
   padding: 3px;
   font-size: 0.85em;
   color: #777;
-  border-top: 1px solid #EEE;
+  border-top: 1px solid #BBB;
 }
 
 #message .alert {

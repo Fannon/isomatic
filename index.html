@@ -14,7 +14,7 @@
     <div id="nav-container">
         <ul class="title-area">
             <li class="name">
-                <a href="#home"></a>
+                <a href="#home"><img src="img/home.svg"></a>
             </li>
         </ul>
 
@@ -33,8 +33,8 @@
             </ul>
 
             <ul class="right">
-                <li class="active">
-                    <a id="setHelp"  class="trigger-ui" href="#help">Help</a>
+                <li class="help">
+                    <a id="setHelp"  class="trigger-ui" href="#help">HELP</a>
                 </li>
             </ul>
         </section>
@@ -44,13 +44,13 @@
 <div class="container">
 
     <div id="toolbar">
-        <div class="icon trigger-ui" id="setType"></div>
         <div class="icon trigger-ui" id="setData"></div>
+        <div class="icon trigger-ui" id="setType"></div>
         <div class="icon trigger-ui" id="setIcon"></div>
+        <div class="icon trigger-ui" id="setColor"></div>
         <div class="icon trigger-ui" id="setMargin"></div>
         <div class="icon trigger-ui" id="setScale"></div>
         <div class="icon trigger-ui" id="setText"></div>
-        <div class="icon trigger-ui" id="setColor"></div>
     </div>
 
     <div id="display">
@@ -159,27 +159,14 @@
                     </select>
 
 
-                    <fieldset>
-                        <legend>Column 1</legend>
+                    <legend>Column 1</legend>
+                    <input type="text" placeholder="#333333">
 
-                        <input type="text" placeholder="0-30 Jahre">
-                        <input type="text" placeholder="#333333">
-                    </fieldset>
+                    <legend>Column 2</legend>
+                    <input type="text" placeholder="#333333">
 
-                    <fieldset>
-                        <legend>Column 2</legend>
-
-                        <input type="text" placeholder="0-30 Jahre">
-                        <input type="text" placeholder="#555555">
-                    </fieldset>
-
-                    <fieldset>
-                        <legend>Column 3</legend>
-
-                        <input type="text" placeholder="0-30 Jahre">
-                        <input type="text" placeholder="#777777">
-                    </fieldset>
-
+                    <legend>Column 3</legend>
+                    <input type="text" placeholder="#333333">
 
                     <a href="#" class="tiny button radius">Apply</a>
                     <a href="#" class="tiny button radius">Apply & Close</a>
@@ -190,9 +177,6 @@
             <!-- Icon Settings -->
             <div id="overlay-icon" class="overlay-container" style="display: none">
                 <h3>Icon Settings</h3>
-
-
-
 
                     <div class="overlay-left">
 
@@ -205,27 +189,16 @@
                             <option value="column">Column</option>
                         </select>
 
+                        <legend>Row 1</legend>
+                        <input type="text" placeholder="ICON">
 
-                        <fieldset>
-                            <legend>Row 1</legend>
+                        <legend>Row 2</legend>
+                        <input type="text" placeholder="ICON">
 
-                            <input type="text" placeholder="0-30 Jahre">
-                            <input type="text" placeholder="ICON">
-                        </fieldset>
 
-                        <fieldset>
-                            <legend>Row 2</legend>
+                        <legend>Row 3</legend>
+                        <input type="text" placeholder="ICON">
 
-                            <input type="text" placeholder="0-30 Jahre">
-                            <input type="text" placeholder="ICON">
-                        </fieldset>
-
-                        <fieldset>
-                            <legend>Row 3</legend>
-
-                            <input type="text" placeholder="0-30 Jahre">
-                            <input type="text" placeholder="ICON">
-                        </fieldset>
 
 
                         <a href="#" class="tiny button radius">Apply</a>
@@ -252,11 +225,16 @@
             <div id="overlay-margin" class="overlay-container" style="display: none">
                 <h3>Margin Settings</h3>
                 <form>
-                    <label>Outer Margin</label>
-                    <input type="text" placeholder="30px">
+                    <fieldset>
+                        <legend>Personalia:</legend>
 
-                    <label>Row Margin</label>
-                    <input type="text" placeholder="10px">
+                        <label>Outer Margin</label>
+                        <input type="text" placeholder="30px">
+
+                        <label>Row Margin</label>
+                        <input type="text" placeholder="10px">
+                    </fieldset>
+
 
                     <label>Column Margin</label>
                     <input type="text" placeholder="10px">
@@ -312,8 +290,8 @@
 
 
             <!-- Legend Settings -->
-            <div id="overlay-legend" class="overlay-container" style="display: none">
-                <h3>Text/Legend Settings</h3>
+            <div id="overlay-text" class="overlay-container" style="display: none">
+                <h3>Text Settings</h3>
                 <form>
 
                     <label>
