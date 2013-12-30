@@ -11,8 +11,12 @@
 // Global Variables                  //
 ///////////////////////////////////////
 
-/** global namespace */
+/** Global namespace */
 var isomatic = {};
+
+/** Views namespace */
+isomatic.views = {};
+
 
 
 ///////////////////////////////////////
