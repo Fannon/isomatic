@@ -34,6 +34,10 @@
     background: repeat none;
   }
 
+.social {
+  margin-left: 85px;
+}
+
   .help a {
     background: #106983 !important;
   }
@@ -41,6 +45,7 @@
     background: #055870 !important;
   }
 }
+
 
 .container {
   margin: 10px auto;
@@ -147,7 +152,7 @@
     border-right: 1px solid #CCC;
     padding: 5px;
     overflow: scroll;
-    overflow-x:hidden
+    overflow-x:hidden;
   }
 
   #overlay-data, #overlay-icon, #overlay-help {
