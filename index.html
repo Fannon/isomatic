@@ -12,16 +12,17 @@
 
 <nav class="top-bar" data-topbar>
     <div id="nav-container">
-        <ul class="title-area">
-            <li class="name">
-                <a href="#home"><img src="img/home.svg"></a>
-            </li>
-        </ul>
+        <div id="title" class="left">
+            <a href="#home"><img src="img/home.svg"></a>
+        </div>
 
-        <section class="top-bar-section">
-            <!-- Right Nav Section -->
-            <ul class="left">
-                <li >
+        <div id="setHelp" class="right trigger-ui" href="#help">
+            HELP
+        </div>
+
+        <div id="navigation" class="right">
+            <ul>
+                <li>
                     <a id="setNew" class="trigger-ui" href="#new"><img src="img/new.svg">NEW</a>
                 </li>
                 <li>
@@ -30,18 +31,15 @@
                 <li>
                     <a id="setExport" class="trigger-ui" href="#export"><img src="img/export.svg">EXPORT</a>
                 </li>
-            </ul>
-            <ul class="social">
-                    <a id="facebook"><img src="img/facebook.svg"</a>
+                <li class="social first">
+                    <a id="facebook"><img src="img/facebook.svg"></a>
+                </li>
+                <li class="social">
                     <a id="twitter"><img src="img/twitter.svg"></a>
-
-            </ul>
-            <ul class="right">
-                <li class="help">
-                    <a id="setHelp"  class="trigger-ui" href="#help">HELP</a>
                 </li>
             </ul>
-        </section>
+        </div>
+
     </div>
 </nav>
 
@@ -50,11 +48,11 @@
     <div id="toolbar">
         <div class="icon trigger-ui" id="setData"></div>
         <div class="icon trigger-ui" id="setType"></div>
-        <hr class="top-bar-linie">
+        <hr class="toolbar-line">
         <div class="icon trigger-ui" id="setIcon"></div>
         <div class="icon trigger-ui" id="setColor"></div>
         <div class="icon trigger-ui" id="setMargin"></div>
-        <hr class="top-bar-linie">
+        <hr class="toolbar-line">
         <div class="icon trigger-ui" id="setScale"></div>
         <div class="icon trigger-ui" id="setText"></div>
     </div>
@@ -73,6 +71,11 @@
                 <form>
 
                     <label>Data Type</label>
+
+                    <input type="radio" name="csv" value="CSV" id="csv"><label for="csv">CSV</label>
+                    <input type="radio" name="tsv" value="TSV" id="tsv"><label for="tsv">TSV</label>
+                    <input type="radio" name="json" value="JSON" id="json"><label for="json">JSON</label>
+
                     <select>
                         <option value="csv">Comma Seperated Values (.csv)</option>
                         <option value="tsv">Tab Seperated Values (.tsv)</option>
@@ -130,11 +133,9 @@
 
                 <form>
 
-                    <legend>Normal Isotype<img src="img/normal_isotype.svg"></legend>
+                    <legend>Normal Isotype</legend>
+                    <img src="img/normal_isotype.svg">
                     <hr class="type-linie">
-                    <a class="th" href="../img/demos/demo2.png" height="40px" width="120px">
-                      <img  height="40px" width="120px" src="">
-                    </a>
 
                     <br><br>
 
@@ -298,7 +299,7 @@
             </div>
 
 
-            <!-- Legend Settings -->
+            <!-- Text Settings -->
             <div id="overlay-text" class="overlay-container" style="display: none">
                 <h3>Text Settings</h3>
                 <form>
@@ -309,7 +310,6 @@
                     <select value="Arial">
                         <option value="Arial">Arial</option>
                         <option value="Times New Roman">Times New Roman</option>
-                        <option value="Comic Sans">Comic Sans</option>
                     </select>
 
                     <input id="draw-column-legend" type="checkbox" checked><label for="draw-column-legend">Draw Column Legend</label>

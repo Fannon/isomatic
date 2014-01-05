@@ -16,36 +16,50 @@
   margin: 0px auto;
   width: 1010px;
 
-  .name img {
-    margin-top: 4px;
+  #navigation {
+    color: #FFF;
+
+    li {
+      float: left;
+      padding-top: 11px;
+      margin-right: 20px;
+
+      img {
+        margin-right: 5px;
+        margin-top: -3px;
+      }
+    }
+
+    .social.first {
+      margin-left: 40px;
+    }
+
+    .social {
+      margin-right: 10px;
+
+      img {
+        margin: -3px 0px 0px;
+      }
+    }
+
+    a {
+      color: #FFF;
+      padding: 12px 0;
+    }
   }
+
+  #setHelp {
+    padding: 0 10px;
+    background: #666;
+    color: #FFF;
+  }
+
+  #setHelp:hover {
+    background: #888;
+    cursor: pointer;
+  }
+
 }
-
-.top-bar-section {
-
-  .left {
-    margin-left: 450px !important;
-  }
-
-  .left img {
-    margin-top: 8px;
-    margin-right: 2px;
-    vertical-align: top;
-    background: repeat none;
-  }
-
-.social {
-  margin-left: 85px;
-}
-
-  .help a {
-    background: #106983 !important;
-  }
-  .help a:hover {
-    background: #055870 !important;
-  }
-}
-
 
 .container {
   margin: 10px auto;
@@ -72,7 +86,7 @@
     box-shadow: 0 0 4px 1px #555;
   }
 
-  .top-bar-linie {
+  .toolbar-line {
    border-top: 1px solid #aaa;
    margin: 10px 0px 10px 0px;
   }
@@ -121,9 +135,13 @@
   width: 970px;
   height: 360px;
   margin-left: 40px;
+  padding: 10px 10px 0 0;
   background: #FFF;
+  background-image: url(../img/ruler.svg);
+  background-repeat: no-repeat;
   position: relative;
   box-shadow: 0 0 5px 1px #777;
+
 }
 
 #overlay {
@@ -132,8 +150,7 @@
 
   h3 {
     color: #555;
-    font-weight: bold;
-    font-size: 1.2em;
+    font-size: 1.4em;
   }
 
   h4 {
@@ -143,16 +160,30 @@
   }
 
   .overlay-container {
-    background: rgba(225, 225, 225, 0.9);
+    background: rgba(240, 240, 240, 0.9);
     position: absolute;
     height: 100%;
     width: 280px;
     left: 0px;
     top: 0px;
     border-right: 1px solid #CCC;
-    padding: 5px;
+    padding: 5px 10px;
     overflow: scroll;
     overflow-x:hidden;
+
+    button.tiny, .button.tiny {
+      font-size: 0.875rem;
+    }
+  }
+
+  #overlay-data textarea {
+    min-width: 933px;
+    max-width: 933px;
+  }
+
+  #overlay-text textarea {
+    min-width: 242px;
+    max-width: 242px;
   }
 
   #overlay-data, #overlay-icon, #overlay-help {
