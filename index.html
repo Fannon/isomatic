@@ -17,19 +17,19 @@
         </div>
 
         <div id="setHelp" class="right trigger-ui" href="#help">
-            HELP
+            Help
         </div>
 
         <div id="navigation" class="right">
             <ul>
                 <li>
-                    <a id="setNew" class="trigger-ui" href="#new"><img src="img/new.svg">NEW</a>
+                    <a id="setNew" class="trigger-ui" href="#new"><img src="img/new.svg">New</a>
                 </li>
                 <li>
-                    <a id="setImport" class="trigger-ui" href="#import"><img src="img/import.svg">IMPORT</a>
+                    <a id="setImport" class="trigger-ui" href="#import"><img src="img/import.svg">Import</a>
                 </li>
                 <li>
-                    <a id="setExport" class="trigger-ui" href="#export"><img src="img/export.svg">EXPORT</a>
+                    <a id="setExport" class="trigger-ui" href="#export"><img src="img/export.svg">Export</a>
                 </li>
                 <li class="social first">
                     <a id="facebook"><img src="img/facebook.svg"></a>
@@ -68,27 +68,29 @@
 
 
                 <h3>Data Import</h3>
+                <hr class="topic-line">
                 <form>
 
-                    <label>Data Type</label>
+                    <label><span data-tooltip class="has-tip tip-right" title="Choose the right format for Data Import">Data Type</span></label>
 
                     <input type="radio" name="csv" value="CSV" id="csv"><label for="csv">CSV</label>
                     <input type="radio" name="tsv" value="TSV" id="tsv"><label for="tsv">TSV</label>
                     <input type="radio" name="json" value="JSON" id="json"><label for="json">JSON</label>
 
-                    <select>
-                        <option value="csv">Comma Seperated Values (.csv)</option>
-                        <option value="tsv">Tab Seperated Values (.tsv)</option>
-                        <option value="json">JSON</option>
-                    </select>
+                    <!--<select>-->
+                        <!--<option value="csv">Comma Seperated Values (.csv)</option>-->
+                        <!--<option value="tsv">Tab Seperated Values (.tsv)</option>-->
+                        <!--<option value="json">JSON</option>-->
+                    <!--</select>-->
 
 
                     <label>Paste Data</label>
                     <textarea placeholder="Copy'n'Paste here"></textarea>
 
-                    <a href="#" class="tiny button radius expand">Import</a>
+                    <a href="#" class="tiny button radius">Import</a>
 
-                    <hr>
+                    <br>
+                    <hr class="normal-line">
 
                     <h4>Preview:</h4>
 
@@ -132,24 +134,31 @@
             <div id="overlay-type" class="overlay-container" style="display: none">
 
                 <form>
-
-                    <legend>Normal Isotype</legend>
+                    <div id="normal-isotype">
+                    <a>
+                    <legend><h3>Normal</h3></legend>
                     <img src="img/normal_isotype.svg">
-                    <hr class="type-linie">
-
-                    <br><br>
-
-                    <legend>Versus Layout<img src="img/versus_isotype.svg"></legend>
-                    <hr class="type-linie">
-
-                    <a class="th" href="../img/normal_isotype.svg" height="40px" width="120px">
-                      <img  height="40px" width="120px" src="">
                     </a>
+                    </div>
 
-                    <br><br>
+                    <hr class="normal-line">
+
+                    <div id="versus-isotype">
+                    <a><legend><h3>Versus</h3></legend>
+                    <img src="img/versus_isotype.svg"></a>
+                    </div>
+
+                    <hr class="normal-line">
+
+                    <!--<a class="th" href="../img/normal_isotype.svg" height="40px" width="120px">-->
+                      <!--<img  height="40px" width="120px" src="">-->
+                    <!--</a>-->
+
+                    <br>
 
                     <input id="break-rows" type="checkbox"><label for="break-rows">Break row into multiple Lines</label>
-                    <a href="#" class="tiny button radius">Apply</a>
+                    <br>
+                    <a href="#" class="tiny button radius">Check</a>
                     <a href="#" class="tiny button radius">Apply & Close</a>
                 </form>
             </div>
@@ -158,15 +167,15 @@
             <!-- Color Settings -->
             <div id="overlay-color" class="overlay-container" style="display: none">
                 <h3>Color Settings</h3>
+                <hr class="topic-line">
                 <form>
 
                     <label>
                         <span data-tooltip class="has-tip tip-right" title="Choose if Colors are mapped to Columns or Rows">Map to</span>
                     </label>
-                    <select value="column">
-                        <option value="column">Column</option>
-                        <option value="row">Row</option>
-                    </select>
+
+                    <input type="radio" name="row" value="row" id="row"><label for="row">Row</label>
+                    <input type="radio" name="column" value="column" id="column"><label for="column">Column</label>
 
 
                     <legend>Column 1</legend>
@@ -178,7 +187,7 @@
                     <legend>Column 3</legend>
                     <input type="text" placeholder="#333333">
 
-                    <a href="#" class="tiny button radius">Apply</a>
+                    <a href="#" class="tiny button radius">Check</a>
                     <a href="#" class="tiny button radius">Apply & Close</a>
                 </form>
             </div>
@@ -187,6 +196,7 @@
             <!-- Icon Settings -->
             <div id="overlay-icon" class="overlay-container" style="display: none">
                 <h3>Icon Settings</h3>
+                <hr class="topic-line">
 
                     <div class="overlay-left">
 
@@ -194,10 +204,10 @@
                         <label>
                             <span data-tooltip class="has-tip tip-right" title="Choose if Icons are mapped to Columns or Rows">Map to</span>
                         </label>
-                        <select value="row">
-                            <option value="row">Row</option>
-                            <option value="column">Column</option>
-                        </select>
+
+                         <input type="radio" name="row" value="row" id="row"><label for="row">Row</label>
+                         <input type="radio" name="column" value="column" id="column"><label for="column">Column</label>
+
 
                         <legend>Row 1</legend>
                         <input type="text" placeholder="ICON">
@@ -211,20 +221,20 @@
 
 
 
-                        <a href="#" class="tiny button radius">Apply</a>
+                        <a href="#" class="tiny button radius">Check</a>
                         <a href="#" class="tiny button radius">Apply & Close</a>
 
                     </form>
                     </div>
 
                     <div class="overlay-right">
-                        <h3>Kategorie 1</h3>
+                        <h4>Kategorie 1</h4>
                         <p>ICON1, ICON2, ICON3, ICON4</p>
-                        <h3>Kategorie 2</h3>
+                        <h4>Kategorie 2</h4>
                         <p>ICON1, ICON2, ICON3, ICON4, ICON5, ICON6</p>
-                        <h3>Kategorie 3</h3>
+                        <h4>Kategorie 3</h4>
                         <p>ICON1, ICON2, ICON3</p>
-                        <h3>Kategorie 4</h3>
+                        <h4>Kategorie 4</h4>
                         <p>ICON1, ICON2</p>
                     </div>
 
@@ -234,17 +244,18 @@
             <!-- Margin Settings -->
             <div id="overlay-margin" class="overlay-container" style="display: none">
                 <h3>Margin Settings</h3>
+                <hr class="topic-line">
                 <form>
-                    <fieldset>
-                        <legend>Personalia:</legend>
 
-                        <label>Outer Margin</label>
-                        <input type="text" placeholder="30px">
+                    <label><span data-tooltip class="has-tip tip-right" title="Change to the right Proportion">Personalia</span></label>
 
-                        <label>Row Margin</label>
-                        <input type="text" placeholder="10px">
-                    </fieldset>
+                    <label>Outer Margin</label>
+                    <input type="text" placeholder="30px">
 
+                    <label>Row Margin</label>
+                    <input type="text" placeholder="10px">
+
+                    <hr class="normal-line">
 
                     <label>Column Margin</label>
                     <input type="text" placeholder="10px">
@@ -255,7 +266,8 @@
                     <label>Horizontal Icon Margin</label>
                     <input type="text" placeholder="10px">
 
-                    <a href="#" class="tiny button radius expand">Apply</a>
+                    <a href="#" class="tiny button radius">Check</a>
+                    <a href="#" class="tiny button radius">Apply & Close</a>
                 </form>
             </div>
 
@@ -263,6 +275,7 @@
             <!-- Scale Settings -->
             <div id="overlay-scale" class="overlay-container" style="display: none">
                 <h3>Scale Settings</h3>
+                <hr class="topic-line">
                 <form>
 
                     <label>
@@ -293,7 +306,7 @@
 
 
 
-                    <a href="#" class="tiny button radius">Apply</a>
+                    <a href="#" class="tiny button radius">Check</a>
                     <a href="#" class="tiny button radius">Apply & Close</a>
                 </form>
             </div>
@@ -302,6 +315,7 @@
             <!-- Text Settings -->
             <div id="overlay-text" class="overlay-container" style="display: none">
                 <h3>Text Settings</h3>
+                <hr class="topic-line">
                 <form>
 
                     <label>
@@ -317,7 +331,7 @@
                     <label>Description</label>
                     <textarea placeholder="Enter Description here.."></textarea>
 
-                    <a href="#" class="tiny button radius">Apply</a>
+                    <a href="#" class="tiny button radius">Check</a>
                     <a href="#" class="tiny button radius">Apply & Close</a>
                 </form>
             </div>
@@ -326,11 +340,14 @@
             <!-- New Graphic Overlay -->
             <div id="overlay-new" class="overlay-container" style="display: none">
                 <h3>New Graphic</h3>
+                <hr class="topic-line">
                 <form>
                     <label for="aspect-ratio">Aspect-Ratio:</label>
                     <input id="aspect-ratio" type="text" placeholder="16/9">
 
-                    <h4>Alternative: Enter Width/Height:</h4>
+                    <hr class="normal-line">
+
+                    <h4>Alternative: Enter Width/Height</h4>
 
                     <label for="aspect-ratio-width">Width</label>
                     <input id="aspect-ratio-width" type="text" placeholder="640">
@@ -338,7 +355,7 @@
                     <label for="aspect-ratio-height">Height</label>
                     <input id="aspect-ratio-height" type="text" placeholder="360">
 
-                    <input type="submit" name="submit" value="New Graphic" class="tiny button radius">
+                    <input type="submit" name="submit" value="Generate New Graphic" class="tiny button radius">
                 </form>
             </div>
 
@@ -346,6 +363,7 @@
             <!-- Import Settings -->
             <div id="overlay-import" class="overlay-container" style="display: none">
                 <h3>Import Data</h3>
+                <hr class="topic-line">
                 <form>
                     <label for="imported-file">Upload SVG or JSON File:</label>
                     <input type="file" id="imported-file">
@@ -357,6 +375,7 @@
             <!-- Export Settings -->
             <div id="overlay-export" class="overlay-container" style="display: none">
                 <h3>Export Graphic / Data</h3>
+                <hr class="topic-line">
                 <form>
                     <label >Choose Export Format:</label>
 

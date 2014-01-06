@@ -26,7 +26,7 @@
 
       img {
         margin-right: 5px;
-        margin-top: -3px;
+        margin-top: -4px;
       }
     }
 
@@ -38,7 +38,7 @@
       margin-right: 10px;
 
       img {
-        margin: -3px 0px 0px;
+        margin: -4px 0px 0px;
       }
     }
 
@@ -49,6 +49,7 @@
   }
 
   #setHelp {
+    font: h4;
     padding: 0 10px;
     background: #666;
     color: #FFF;
@@ -150,13 +151,18 @@
 
   h3 {
     color: #555;
+    font-weight: bold;
     font-size: 1.4em;
   }
 
   h4 {
     color: #555;
     font-weight: bold;
-    font-size: 1.1em;
+    font-size: 1.2em;
+  }
+
+  label {
+    font-size: 0.9rem;
   }
 
   .overlay-container {
@@ -170,20 +176,44 @@
     padding: 5px 10px;
     overflow: scroll;
     overflow-x:hidden;
+    box-shadow: 1px 2px 4px #333;
 
     button.tiny, .button.tiny {
-      font-size: 0.875rem;
+      font-size: 0.9rem;
     }
   }
 
+  #overlay-type {
+    vertical-align: middle;
+
+    form {
+      margin-top: 5px;
+    }
+
+    legend {
+      font-weight: bold;
+      float: left;
+      margin-left: 5px;
+    }
+
+    img {
+      float: right;
+      margin-bottom: 10px;
+    }
+
+   .selectType {
+     padding: 10px 120px 15px 10px;
+   }
+  }
+
   #overlay-data textarea {
-    min-width: 933px;
-    max-width: 933px;
+    min-width: 945px;
+    max-width: 945px;
   }
 
   #overlay-text textarea {
-    min-width: 242px;
-    max-width: 242px;
+    min-width: 250px;
+    max-width: 250px;
   }
 
   #overlay-data, #overlay-icon, #overlay-help {
@@ -192,19 +222,27 @@
   }
 
   .overlay-left {
+    border-right: 1px solid #BFBFBF;
+    height: 400px;
+    padding-right: 10px;
     position: absolute;
-    width: 200px;
+    width: 270px;
     display: block;
   }
 
   .overlay-right {
-
-    padding-left: 230px;
-    width: 500px;
+    padding-left: 280px;
+    width: 430px;
   }
 
-  .type-linie {
+  .topic-line {
     border-bottom: 1px solid #bbb;
+    margin: 0px 0px 15px 0px;
+  }
+
+  .normal-line {
+    border-bottom: 1px solid #BFBFBF;
+    margin: 0px 0px 10px 0px;
   }
 }
 
