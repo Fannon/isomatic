@@ -23,7 +23,7 @@
         <div id="navigation" class="right">
             <ul>
                 <li>
-                    <a id="setNew" class="trigger-ui" href="#new"><img src="img/new.svg">New</a>
+                    <a href="#" data-reveal-id="setNew"><img src="img/new.svg">New</a>
                 </li>
                 <li>
                     <a id="setImport" class="trigger-ui" href="#import"><img src="img/import.svg">Import</a>
@@ -69,20 +69,14 @@
 
                 <h3>Data Import</h3>
                 <hr class="topic-line">
-                <form>
 
-                    <label><span data-tooltip class="has-tip tip-right" title="Choose the right format for Data Import">Data Type</span></label>
-
-                    <input type="radio" name="csv" value="CSV" id="csv"><label for="csv">CSV</label>
-                    <input type="radio" name="tsv" value="TSV" id="tsv"><label for="tsv">TSV</label>
-                    <input type="radio" name="json" value="JSON" id="json"><label for="json">JSON</label>
-
-                    <!--<select>-->
-                        <!--<option value="csv">Comma Seperated Values (.csv)</option>-->
-                        <!--<option value="tsv">Tab Seperated Values (.tsv)</option>-->
-                        <!--<option value="json">JSON</option>-->
-                    <!--</select>-->
-
+                <form class="custom">
+                    <label>
+                        <span data-tooltip class="has-tip tip-right" title="Choose the right format for Data Import">Data Type</span>
+                    </label>
+                    <input name="radio1" type="radio" id="csv" checked><label for="csv">CSV</label>
+                    <input name="radio1" type="radio" id="tsv"><label for="tsv">TSV</label>
+                    <input name="radio1" type="radio" id="json"><label for="json">JSON</label>
 
                     <label>Paste Data</label>
                     <textarea placeholder="Copy'n'Paste here"></textarea>
@@ -164,48 +158,18 @@
             </div>
 
 
-            <!-- Color Settings -->
-            <div id="overlay-color" class="overlay-container" style="display: none">
-                <h3>Color Settings</h3>
-                <hr class="topic-line">
-                <form>
-
-                    <label>
-                        <span data-tooltip class="has-tip tip-right" title="Choose if Colors are mapped to Columns or Rows">Map to</span>
-                    </label>
-                    <br>
-                    <input type="radio" name="row" value="row" id="row"><label for="row"><img src="img/row.svg"> Row</label>
-                    <input type="radio" name="column" value="column" id="column"><label for="column"><img src="img/column.svg"> Column</label>
-
-                    <legend>Column 1</legend>
-                    <input type="text" placeholder="#333333">
-
-                    <legend>Column 2</legend>
-                    <input type="text" placeholder="#333333">
-
-                    <legend>Column 3</legend>
-                    <input type="text" placeholder="#333333">
-
-                    <a href="#" class="tiny button radius">Check</a>
-                    <a href="#" class="tiny button radius">Apply & Close</a>
-                </form>
-            </div>
-
-
             <!-- Icon Settings -->
             <div id="overlay-icon" class="overlay-container" style="display: none">
                 <h3>Icon Settings</h3>
                 <hr class="topic-line">
+                <div class="overlay-left">
 
-                    <div class="overlay-left">
-
-                     <form>
+                    <form>
                         <label>
                             <span data-tooltip class="has-tip tip-right" title="Choose if Icons are mapped to Columns or Rows">Map to</span>
                         </label>
-
-                         <input type="radio" name="row" value="row" id="row"><label for="row"><img src="img/row.svg"> Row</label>
-                         <input type="radio" name="column" value="column" id="column"><label for="column"><img src="img/column.svg"> Column</label>
+                        <input type="radio" name="radio2" value="row" id="icon-row" checked><label for="icon-row"><img src="img/row.svg"> Row</label>
+                        <input type="radio" name="radio2" value="column" id="icon-column"><label for="icon-column"><img src="img/column.svg"> Column</label>
 
 
                         <legend>Row 1</legend>
@@ -224,19 +188,81 @@
                         <a href="#" class="tiny button radius">Apply & Close</a>
 
                     </form>
-                    </div>
+                </div>
 
-                    <div class="overlay-right">
-                        <h4>Kategorie 1</h4>
-                        <p>ICON1, ICON2, ICON3, ICON4</p>
-                        <h4>Kategorie 2</h4>
-                        <p>ICON1, ICON2, ICON3, ICON4, ICON5, ICON6</p>
-                        <h4>Kategorie 3</h4>
-                        <p>ICON1, ICON2, ICON3</p>
-                        <h4>Kategorie 4</h4>
-                        <p>ICON1, ICON2</p>
-                    </div>
+                <div class="overlay-right">
+                    <h4>Kategorie 1</h4>
+                    <p>ICON1, ICON2, ICON3, ICON4</p>
+                    <h4>Kategorie 2</h4>
+                    <p>ICON1, ICON2, ICON3, ICON4, ICON5, ICON6</p>
+                    <h4>Kategorie 3</h4>
+                    <p>ICON1, ICON2, ICON3</p>
+                    <h4>Kategorie 4</h4>
+                    <p>ICON1, ICON2</p>
+                </div>
+            </div>
 
+
+            <!-- Color Settings -->
+            <div id="overlay-color" class="overlay-container" style="display: none">
+                <h3>Color Settings</h3>
+                <hr class="topic-line">
+                <div class="overlay-left">
+                    <form>
+
+                        <label>
+                            <span data-tooltip class="has-tip tip-right" title="Choose if Colors are mapped to Columns or Rows">Map to</span>
+                        </label>
+                        <input type="radio" name="radio3" value="row" id="color-row" checked><label for="color-row"><img src="img/row.svg"> Row</label>
+                        <input type="radio" name="radio3" value="column" id="color-column"><label for="color-column"><img src="img/column.svg"> Column</label>
+
+                        <legend>Column 1</legend>
+                        <input type="text" placeholder="#333333">
+
+                        <legend>Column 2</legend>
+                        <input type="text" placeholder="#333333">
+
+                        <legend>Column 3</legend>
+                        <input type="text" placeholder="#333333">
+
+                        <a href="#" class="tiny button radius">Check</a>
+                        <a href="#" class="tiny button radius">Apply & Close</a>
+                    </form>
+                </div>
+                <div class="overlay-right">
+                    <form>
+                        <div class="colorsample">
+                            <h4>Colorsamples</h4>
+                            <label>Palette for max. 6 Columns</label>
+                            <br>
+                            <input type="radio" name="radio4" value="sample1" id="sample1" checked><label for="sample1">Lime</label><br>
+                            <input class="color">
+                            <input type="text" placeholder="#333333">
+                            <input type="text" placeholder="#333333">
+                            <input type="text" placeholder="#333333">
+                            <input type="text" placeholder="#333333">
+                            <input type="text" placeholder="#333333">
+                        </div>
+                        <div class="colorsample">
+                            <input type="radio" name="radio4" value="sample2" id="sample2" checked><label for="sample2">Drakula</label><br>
+                            <input type="text" placeholder="#333333">
+                            <input type="text" placeholder="#333333">
+                            <input type="text" placeholder="#333333">
+                            <input type="text" placeholder="#333333">
+                            <input type="text" placeholder="#333333">
+                            <input type="text" placeholder="#333333">
+                        </div>
+                        <div class="colorsample">
+                            <input type="radio" name="radio4" value="sample3" id="sample3" checked><label for="sample3">Blood</label><br>
+                            <input type="text" placeholder="#333333">
+                            <input type="text" placeholder="#333333">
+                            <input type="text" placeholder="#333333">
+                            <input type="text" placeholder="#333333">
+                            <input type="text" placeholder="#333333">
+                            <input type="text" placeholder="#333333">
+                        </div>
+                    </form>
+                </div>
             </div>
 
 
@@ -251,13 +277,15 @@
                     <label>Outer Margin</label>
                     <input type="text" placeholder="30px">
 
+                    <hr class="normal-line">
+
                     <label><img src="img/rowmargin.svg"> Row Margin</label>
                     <input type="text" placeholder="10px">
 
-                    <hr class="normal-line">
-
                     <label><img src="img/columnmargin.svg">Column Margin</label>
                     <input type="text" placeholder="10px">
+
+                    <hr class="normal-line">
 
                     <label>Vertical Icon Margin</label>
                     <input type="text" placeholder="10px">
@@ -336,8 +364,7 @@
             </div>
 
 
-            <!-- New Graphic Overlay -->
-            <div id="overlay-new" class="overlay-container" style="display: none">
+            <div id="setNew" class="reveal-modal">
                 <h3>New Graphic</h3>
                 <hr class="topic-line">
                 <form>
@@ -356,8 +383,8 @@
 
                     <input type="submit" name="submit" value="Generate New Graphic" class="tiny button radius">
                 </form>
+                <a class="close-reveal-modal">blabla</a>
             </div>
-
 
             <!-- Import Settings -->
             <div id="overlay-import" class="overlay-container" style="display: none">
@@ -396,7 +423,7 @@
 
 
 
-            <!-- Export Settings -->
+            <!-- Helptext -->
             <div id="overlay-help" class="overlay-container" style="display: none">
                 <h3>Help</h3>
                 <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
@@ -421,6 +448,7 @@
 <!-- External Libraries -->
 <script src="bower_components/jquery/jquery.js"></script>
 <script src="bower_components/foundation/js/foundation.min.js"></script>
+<script src="bower_components/foundation/js/foundation/foundation.reveal.js"></script>
 
 <script src="bower_components/underscore/underscore.js"></script>
 <script src="bower_components/backbone/backbone.js"></script>
@@ -440,6 +468,8 @@
 <script src="js/isotypeLayout.js"></script>
 <script src="js/visualisation.js"></script>
 <script src="js/icons.js"></script>
+<script src="js/jscolor/jscolor.js"></script>
+
 
 <script src="js/views/TypeView.js"></script>
 

@@ -163,6 +163,8 @@
 
   label {
     font-size: 0.9rem;
+    font-weight: bold;
+    vertical-align: text-top;
   }
 
   .overlay-container {
@@ -181,6 +183,11 @@
     button.tiny, .button.tiny {
       font-size: 0.9rem;
     }
+  }
+
+  #overlay-data textarea {
+    min-width: 935px;
+    max-width: 935px;
   }
 
   #overlay-type {
@@ -206,17 +213,31 @@
    }
   }
 
-  #overlay-data textarea {
-    min-width: 945px;
-    max-width: 945px;
+  #overlay-color .colorsample {
+    float: left;
+    width: 650px;
+
+    input[type=radio] {
+      margin-bottom: 7px;
+    }
+
+    input[type=text] {
+      width: 100px;
+      margin-right: 10px;
+      float: left;
+    }
+
+    input:last-of-type {
+      margin-right: 0px;
+    }
   }
 
   #overlay-text textarea {
-    min-width: 250px;
-    max-width: 250px;
+    min-width: 240px;
+    max-width: 240px;
   }
 
-  #overlay-data, #overlay-icon, #overlay-help {
+  #overlay-data, #overlay-icon, #overlay-color, #overlay-help {
     width: 100%;
     border-right: none;
   }
