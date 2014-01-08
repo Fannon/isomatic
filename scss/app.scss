@@ -11,6 +11,8 @@
 @import "foundation/components/top-bar";
 @import "foundation/components/tables";
 @import "foundation/components/tooltips";
+@import "foundation/components/reveal";
+
 
 #nav-container {
   margin: 0px auto;
@@ -167,6 +169,16 @@
     vertical-align: text-top;
   }
 
+  .picker {
+    margin: 7px 0px;
+    padding: 3px 5px;
+//    border:0;
+//    width:70px;
+//    height:20px;
+    border-right:28px solid #000;
+    line-height:20px;
+  }
+
   .overlay-container {
     background: rgba(240, 240, 240, 0.9);
     position: absolute;
@@ -175,9 +187,8 @@
     left: 0px;
     top: 0px;
     border-right: 1px solid #CCC;
-    padding: 5px 10px;
-    overflow: scroll;
-    overflow-x:hidden;
+    padding: 5px 2px 5px 10px;
+    overflow: hidden;
     box-shadow: 1px 2px 4px #333;
 
     button.tiny, .button.tiny {
@@ -266,7 +277,6 @@
     margin: 0px 0px 10px 0px;
   }
 }
-
 
 #playground {
   width: 100%;

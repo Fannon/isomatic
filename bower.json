@@ -1,28 +1,30 @@
 {
-  "name": "isomatic",
-  "dependencies": {
-    "foundation": "zurb/bower-foundation",
-    "backbone": null,
-    "underscore": null,
-    "d3js": null,
-    "perfect-scrollbar": "https://github.com/noraesae/perfect-scrollbar.git"
-  },
-  "version": "0.0.1",
-  "homepage": "https://github.com/Fannon/isomatic",
-  "authors": [
-    "Sebastian Huber <sebastianhuber.mod@web.de>",
-    "Lisa Borgenheimer <lisa.borgenheimer@web.de>",
-    "Simon Heimler <heimlersimon@gmail.com>"
-  ],
-  "description": "An interactive online isotype graphics generator",
-  "main": "index.html",
-  "license": "MIT",
-  "private": true,
-  "ignore": [
-    "**/.*",
-    "node_modules",
-    "bower_components",
-    "test",
-    "tests"
-  ]
+    "name": "isomatic",
+    "dependencies": {
+        "foundation": "zurb/bower-foundation",
+        "backbone": null,
+        "underscore": null,
+        "d3js": null,
+        "colpick": "josedvq/colpick-jQuery-Color-Picker",
+        "handsontable": "warpech/jquery-handsontable",
+        "slimScroll": "rochal/jQuery-slimScroll"
+    },
+    "version": "0.0.1",
+    "homepage": "https://github.com/Fannon/isomatic",
+    "authors": [
+        "Lisa Borgenheimer <lisa.borgenheimer@web.de>",
+        "Simon Heimler <heimlersimon@gmail.com>",
+        "Sebastian Huber <sebastianhuber.mod@web.de>"
+    ],
+    "description": "An interactive online isotype graphics generator",
+    "main": "index.html",
+    "license": "MIT",
+    "private": true,
+    "ignore": [
+        "**/.*",
+        "node_modules",
+        "bower_components",
+        "test",
+        "tests"
+    ]
 }

@@ -57,6 +57,23 @@ $(function() {
         // Draw Legend Overlay
         isomatic.vis.drawLegend();
 
+        // Init ColorPicker TODO: Move this
+        $('.picker').each(function() {
+            isomatic.registerColorpicker($(this));
+        });
+
+        // Init Handsometable TODO: Move this
+        $("#dataTable").handsontable({
+            data: isomatic.data.raw
+        });
+
+        // Init Scrollbar Plugin
+        $('.scrollbar').slimScroll({
+            height: '100%',
+            alwaysVisible: true,
+            railOpacity: 0.3
+        });
+
     });
 
 });
@@ -65,6 +82,25 @@ $(function() {
 ///////////////////////////////////////
 // General Helper Functions          //
 ///////////////////////////////////////
+
+isomatic.registerColorpicker = function(el) {
+    "use strict";
+
+    el.colpick({
+        color: el[0].value,
+        layout:'rgbhex',
+        submit:0,
+        colorScheme:'dark',
+        onChange:function(hsb,hex,rgb,fromSetColor) {
+            if(!fromSetColor) el.val(hex).css('border-color','#'+hex);
+        }
+    });
+
+
+    el[0].style.borderColor = '#' + el[0].value;
+
+
+};
 
 /**
  * Displays Message to User

@@ -4,6 +4,8 @@
     <meta charset=utf-8/>
     <title>isomatic</title>
     <link rel="stylesheet" type="text/css" href="css/app.css"/>
+    <link rel="stylesheet" type="text/css" href="bower_components/colpick/css/colpick.css"/>
+    <link rel="stylesheet" type="text/css" href="bower_components/handsontable/dist/jquery.handsontable.full.css"/>
     <!--<script data-main="js/main" src="bower_components/requirejs/require.js"></script>-->
 
     <script src="bower_components/modernizr/modernizr.js"></script>
@@ -23,13 +25,13 @@
         <div id="navigation" class="right">
             <ul>
                 <li>
-                    <a href="#" data-reveal-id="setNew"><img src="img/new.svg">New</a>
+                    <a href="#new" data-reveal-id="newModal"><img src="img/new.svg">New</a>
                 </li>
                 <li>
-                    <a id="setImport" class="trigger-ui" href="#import"><img src="img/import.svg">Import</a>
+                    <a id="openImport" class="trigger-ui" href="#import" data-reveal-id="importModal"><img src="img/import.svg">Import</a>
                 </li>
                 <li>
-                    <a id="setExport" class="trigger-ui" href="#export"><img src="img/export.svg">Export</a>
+                    <a id="openExport" class="trigger-ui" href="#export" data-reveal-id="exportModal"><img src="img/export.svg">Export</a>
                 </li>
                 <li class="social first">
                     <a id="facebook"><img src="img/facebook.svg"></a>
@@ -88,37 +90,7 @@
 
                     <h4>Preview:</h4>
 
-                    <table>
-                        <thead>
-                        <tr>
-                            <th width="200">Table Header</th>
-                            <th>Table Header</th>
-                            <th width="150">Table Header</th>
-                            <th width="150">Table Header</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td>Content Goes Here</td>
-                            <td>This is longer content Donec id elit non mi porta gravida at eget metus.</td>
-                            <td>Content Goes Here</td>
-                            <td>Content Goes Here</td>
-                        </tr>
-                        <tr>
-                            <td>Content Goes Here</td>
-                            <td>This is longer Content Goes Here Donec id elit non mi porta gravida at eget metus.</td>
-                            <td>Content Goes Here</td>
-                            <td>Content Goes Here</td>
-                        </tr>
-                        <tr>
-                            <td>Content Goes Here</td>
-                            <td>This is longer Content Goes Here Donec id elit non mi porta gravida at eget metus.</td>
-                            <td>Content Goes Here</td>
-                            <td>Content Goes Here</td>
-                        </tr>
-                        </tbody>
-                    </table>
-
+                    <div id="dataTable"></div>
 
                 </form>
             </div>
@@ -217,13 +189,13 @@
                         <input type="radio" name="radio3" value="column" id="color-column"><label for="color-column"><img src="img/column.svg"> Column</label>
 
                         <legend>Column 1</legend>
-                        <input type="text" placeholder="#333333">
+                        <input type="text" class="picker" value="2471a8">
 
                         <legend>Column 2</legend>
-                        <input type="text" placeholder="#333333">
+                        <input type="text" class="picker" value="BD4824">
 
                         <legend>Column 3</legend>
-                        <input type="text" placeholder="#333333">
+                        <input type="text" class="picker" value="A6E229">
 
                         <a href="#" class="tiny button radius">Check</a>
                         <a href="#" class="tiny button radius">Apply & Close</a>
@@ -363,66 +335,6 @@
                 </form>
             </div>
 
-
-            <div id="setNew" class="reveal-modal">
-                <h3>New Graphic</h3>
-                <hr class="topic-line">
-                <form>
-                    <label for="aspect-ratio">Aspect-Ratio:</label>
-                    <input id="aspect-ratio" type="text" placeholder="16/9">
-
-                    <hr class="normal-line">
-
-                    <h4>Alternative: Enter Width/Height</h4>
-
-                    <label for="aspect-ratio-width">Width</label>
-                    <input id="aspect-ratio-width" type="text" placeholder="640">
-
-                    <label for="aspect-ratio-height">Height</label>
-                    <input id="aspect-ratio-height" type="text" placeholder="360">
-
-                    <input type="submit" name="submit" value="Generate New Graphic" class="tiny button radius">
-                </form>
-                <a class="close-reveal-modal">blabla</a>
-            </div>
-
-            <!-- Import Settings -->
-            <div id="overlay-import" class="overlay-container" style="display: none">
-                <h3>Import Data</h3>
-                <hr class="topic-line">
-                <form>
-                    <label for="imported-file">Upload SVG or JSON File:</label>
-                    <input type="file" id="imported-file">
-                    <input type="submit" name="submit" value="Upload" class="tiny button radius">
-                </form>
-            </div>
-
-
-            <!-- Export Settings -->
-            <div id="overlay-export" class="overlay-container" style="display: none">
-                <h3>Export Graphic / Data</h3>
-                <hr class="topic-line">
-                <form>
-                    <label >Choose Export Format:</label>
-
-                    <button type=button class="tiny button radius">SVG (Graphic)</button>
-                    <button type=button class="tiny button radius disabled">JSON (Raw Data)</button>
-
-
-                    <label>Include:</label>
-                    <input id="export-data" type="checkbox" checked><label for="export-data">Data</label>
-                    <input id="export-options" type="checkbox" checked><label for="export-options">Options</label>
-
-                    <br>
-
-                    <a id='svgExport' class="tiny button radius" target="_blank" onclick="isomatic.ui.exportSVG()">Download</a>
-                    <!-- <a id='jsonExport' class="tiny button radius" target="_blank" onclick="isomatic.ui.exportJSON()">Download as
-                        JSON</a> -->
-                </form>
-            </div>
-
-
-
             <!-- Helptext -->
             <div id="overlay-help" class="overlay-container" style="display: none">
                 <h3>Help</h3>
@@ -443,33 +355,88 @@
 </div>
 
 
+<div id="newModal" class="tiny reveal-modal" data-reveal>
+    <h3>New Graphic</h3>
+    <hr class="topic-line">
+    <form>
+        <label for="aspect-ratio">Aspect-Ratio:</label>
+        <input id="aspect-ratio" type="text" placeholder="16/9">
+
+        <hr class="normal-line">
+
+        <h4>Alternative: Enter Width/Height</h4>
+
+        <label for="aspect-ratio-width">Width</label>
+        <input id="aspect-ratio-width" type="text" placeholder="640">
+
+        <label for="aspect-ratio-height">Height</label>
+        <input id="aspect-ratio-height" type="text" placeholder="360">
+
+        <input type="submit" name="submit" value="Generate New Graphic" class="tiny button radius">
+    </form>
+    <a class="close-reveal-modal">&#215;</a>
+</div>
+
+<div id="importModal" class="tiny reveal-modal" data-reveal>
+    <h3>Import Data</h3>
+    <hr class="topic-line">
+    <form>
+        <label for="imported-file">Upload SVG or JSON File:</label>
+        <input type="file" id="imported-file">
+        <input type="submit" name="submit" value="Upload" class="tiny button radius">
+    </form>
+    <a class="close-reveal-modal">&#215;</a>
+</div>
+
+<div id="exportModal" class="tiny reveal-modal" data-reveal>
+
+    <h3>Export Graphic / Data</h3>
+    <hr class="topic-line">
+    <form>
+        <label >Choose Export Format:</label>
+
+        <button type=button class="tiny button radius">SVG (Graphic)</button>
+        <button type=button class="tiny button radius disabled">JSON (Raw Data)</button>
+
+
+        <label>Include:</label>
+        <input id="export-data" type="checkbox" checked><label for="export-data">Data</label>
+        <input id="export-options" type="checkbox" checked><label for="export-options">Options</label>
+
+        <br>
+
+        <a id='svgExport' class="tiny button radius" target="_blank" onclick="isomatic.ui.exportSVG()">Download</a>
+        <!-- <a id='jsonExport' class="tiny button radius" target="_blank" onclick="isomatic.ui.exportJSON()">Download as
+            JSON</a> -->
+    </form>
+</div>
+
 </body>
 
 <!-- External Libraries -->
 <script src="bower_components/jquery/jquery.js"></script>
 <script src="bower_components/foundation/js/foundation.min.js"></script>
-<script src="bower_components/foundation/js/foundation/foundation.reveal.js"></script>
 
 <script src="bower_components/underscore/underscore.js"></script>
 <script src="bower_components/backbone/backbone.js"></script>
 
 <script src="bower_components/d3js/build/d3.v3.min.js"></script>
 
-
 <!-- TODO: Remove innersvg Dependency ? -->
 <script src="js/lib/innersvg.js"></script>
 
 <!-- Custom JavaScript -->
 <script src="js/main.js"></script>
-<script src="js/models/options.js"></script>
+<script src="js/models/Options.js"></script>
 <script src="js/router.js"></script>
 <script src="js/ui.js"></script>
 <script src="js/data.js"></script>
 <script src="js/isotypeLayout.js"></script>
 <script src="js/visualisation.js"></script>
 <script src="js/icons.js"></script>
-<script src="js/jscolor/jscolor.js"></script>
-
+<script src="bower_components/colpick/colpick.js"></script>
+<script src="bower_components/handsontable/dist/jquery.handsontable.full.js"></script>
+<script src="bower_components/slimScroll/jquery.slimscroll.js"></script>
 
 <script src="js/views/TypeView.js"></script>
 
