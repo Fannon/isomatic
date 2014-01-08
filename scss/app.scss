@@ -197,8 +197,9 @@
   }
 
   #overlay-data textarea {
-    min-width: 935px;
-    max-width: 935px;
+    // TODO: Macht Probleme mit HandsoneTable
+//    min-width: 935px;
+//    max-width: 935px;
   }
 
   #overlay-type {
@@ -275,6 +276,17 @@
   .normal-line {
     border-bottom: 1px solid #BFBFBF;
     margin: 0px 0px 10px 0px;
+  }
+}
+
+// Overlay Template
+#overlay-data {
+  #dataTable {
+
+    // First Cell of Row
+    tr td:first-child {
+      background: #EEE;
+    }
   }
 }
 

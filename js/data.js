@@ -38,32 +38,37 @@ isomatic.data.meta.columns = [];
 // Data Functions                    //
 ///////////////////////////////////////
 
+
 /**
- * Loads and stores the Data Object
+ * Process the Data
  *
- * TODO: Should support tsv and json too.
- * TODO: Imports just Files right now. Should use Object from UI
+ * @param data
  */
-isomatic.data.load = function(filename, callback) {
+isomatic.data.process = function(data) {
     "use strict";
 
-    console.log('isomatic.data.load(' + filename + ', callback);');
+    console.log('Processing Data:');
+    console.dir(data);
 
-    d3.csv(filename, function(error, data) {
+    isomatic.data.raw = data;
 
-        if (error) {
-            console.dir(error);
-            isomatic.message('error', 'Error while loading Data!');
-        } else {
+    // Analyze Data
+    isomatic.data.analyze(data);
 
-            isomatic.data.raw = data;
-            console.log('Raw Data loaded from CVS:');
-            console.dir(data);
-        }
+    // Prepare Drawing
+    isomatic.vis.prepareDrawing();
 
-        callback(data);
+    // Generate Layout
+    isomatic.data.processed = isomatic.vis.isotypeLayout(data);
 
-    });
+    // Precalculate Layout and save it into the Metadata Object.
+    isomatic.vis.precalculate();
+
+    // Draw Isotype Graphic
+    isomatic.vis.drawIsotype();
+
+    // Draw Legend Overlay
+//    isomatic.vis.drawLegend();
 };
 
 /**

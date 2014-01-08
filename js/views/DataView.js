@@ -1,7 +1,11 @@
 /* jshint jquery:true, devel: true */
 /* global isomatic, d3, Backbone, _ */
 
-// TODO: Not working
+/**
+ * Data View
+ *
+ * @type {*|void|Object}
+ */
 isomatic.views.DataView = Backbone.View.extend({
     initialize: function(){
         "use strict";
@@ -35,17 +39,36 @@ isomatic.views.DataView = Backbone.View.extend({
         "use strict";
         console.log('DataView::submitData();');
 
-        var tsv = $.tsv.parseRows($('#dataPaste')[0].value);
-        console.dir(tsv);
+        var data = d3.tsv.parse($('#dataPaste')[0].value);
+        console.dir(data);
+
+        // Convert Data to 2dim Array for previewing with HandsoneTable:
+        var handsonTableArray = [];
+
+        for (var i = 0; i < data.length; i++) {
+            handsonTableArray[i] = [];
+            var obj = data[i];
+            for (var obj_inner in data[i]) {
+                handsonTableArray[i].push(data[i][obj_inner]);
+                console.log(data[i][obj_inner]);
+
+            }
+
+        }
+
+        console.dir(handsonTableArray);
+
+
 
         $("#dataTable").handsontable({
-            data: tsv
+            data: handsonTableArray,
+            contextMenu: true
         });
 
         // TODO: Validation
 
-        // TODO: Converting to D3JS Object
+        // TODO: Redraw
+        isomatic.data.process(data);
 
-        // TODO:
     }
 });

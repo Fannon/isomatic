@@ -10,6 +10,8 @@
  * isomatic Visualisation Namespace
  * Contains Functions and Model / Data
  *
+ * TODO: Alles in dieser Datei muss auf Views ausgelagert werden!
+ *
  * @singleton
  */
 isomatic.ui = {};

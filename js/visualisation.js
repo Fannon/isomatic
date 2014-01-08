@@ -100,6 +100,8 @@ isomatic.vis.prepareDrawing = function() {
 
     console.log('isomatic.vis.prepareDrawing();');
 
+    $('#graph').html('');
+
     ///////////////////////////////////////
     // Visualisation Options             //
     ///////////////////////////////////////
@@ -274,7 +276,6 @@ isomatic.vis.loadIcon = function(filename, url) {
  */
 isomatic.vis.printScale = function(scale) {
     "use strict";
-
     return scale.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 };
 
