@@ -44,17 +44,17 @@ isomatic.views.DataView = Backbone.View.extend({
         console.dir(data);
 
         // Convert Data to 2dim Array for previewing with HandsoneTable:
-        var handsonTableArray = [];
+        var handsonTableArray = [[]];
+
+        for (var o in data[0]) {
+            handsonTableArray[0].push(o);
+        }
 
         for (var i = 0; i < data.length; i++) {
-            handsonTableArray[i] = [];
-            var obj = data[i];
-            for (var obj_inner in data[i]) {
-                handsonTableArray[i].push(data[i][obj_inner]);
-                console.log(data[i][obj_inner]);
-
+            handsonTableArray[i+1] = [];
+            for (var obj_inner in data[1]) {
+                handsonTableArray[i+1].push(data[i][obj_inner]);
             }
-
         }
 
         console.dir(handsonTableArray);

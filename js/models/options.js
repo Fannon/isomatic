@@ -109,6 +109,8 @@ isomatic.options.internal.scaleArray = [
     100000000000, 200000000000, 500000000000,
     1000000000000, 2000000000000, 5000000000000
 ];
+
+/** This example Dataset is loaded when the Application loads */
 isomatic.options.internal.exampleData = [
     {"":"Facebook","<30.000/year":"265050000","30.000-50.000":"395000777",">50.000":"135000000"},
     {"":"Twitter","<30.000/year":"178050000","30.000-50.000":"198007700",">50.000":"88000555"},
