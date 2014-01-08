@@ -28,7 +28,8 @@ isomatic.views.DataView = Backbone.View.extend({
         this.$el.html( template );
     },
     events: {
-        "click #pasteDataSubmit": "submitData"
+        "click #pasteDataSubmit": "submitData",
+        "click #pasteDataSubmitClose": "submitDataClose"
     },
 
     /**
@@ -59,7 +60,6 @@ isomatic.views.DataView = Backbone.View.extend({
         console.dir(handsonTableArray);
 
 
-
         $("#dataTable").handsontable({
             data: handsonTableArray,
             contextMenu: true
@@ -69,6 +69,15 @@ isomatic.views.DataView = Backbone.View.extend({
 
         // TODO: Redraw
         isomatic.data.process(data);
+
+    },
+
+    submitDataClose: function () {
+        "use strict";
+        this.submitData();
+
+        // TODO: Refactor this
+        $('#overlay-data').hide();
 
     }
 });
