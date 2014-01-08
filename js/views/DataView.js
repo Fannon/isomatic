@@ -12,13 +12,15 @@ isomatic.views.DataView = Backbone.View.extend({
         console.log('DataView init');
 
         this.render();
+
+        this.submitData();
     },
     render: function(){
         "use strict";
 
         //Pass variables in using Underscore.js Template
         var variables = {
-            search_label: "My Search"
+            preset_data: isomatic.options.internal.exampleData
         };
 
         // Compile the template using underscore
@@ -29,7 +31,8 @@ isomatic.views.DataView = Backbone.View.extend({
     },
     events: {
         "click #pasteDataSubmit": "submitData",
-        "click #pasteDataSubmitClose": "submitDataClose"
+        "click #pasteDataSubmitClose": "submitDataClose",
+        "click #pasteDataUpdate": "updateData"
     },
 
     /**
@@ -43,26 +46,15 @@ isomatic.views.DataView = Backbone.View.extend({
         var data = d3.tsv.parse($('#dataPaste')[0].value);
         console.dir(data);
 
-        // Convert Data to 2dim Array for previewing with HandsoneTable:
-        var handsonTableArray = [[]];
-
-        for (var o in data[0]) {
-            handsonTableArray[0].push(o);
-        }
-
-        for (var i = 0; i < data.length; i++) {
-            handsonTableArray[i+1] = [];
-            for (var obj_inner in data[1]) {
-                handsonTableArray[i+1].push(data[i][obj_inner]);
-            }
-        }
-
-        console.dir(handsonTableArray);
-
+        var handsonTableArray = this.convertDataToHandsoneTableData(data);
 
         $("#dataTable").handsontable({
             data: handsonTableArray,
-            contextMenu: true
+            contextMenu: true,
+            rowHeaders: true,
+            colHeaders: true,
+            minRows: 1,
+            stretchH: 'all'
         });
 
         // TODO: Validation
@@ -79,5 +71,32 @@ isomatic.views.DataView = Backbone.View.extend({
         // TODO: Refactor this
         $('#overlay-data').hide();
 
+    },
+
+    updateData: function() {
+        "use strict";
+        // TODO: Get new Data from edited HansoneTable
+        var data =
+        isomatic.data.process(data);
+    },
+
+
+    // Helper Functions
+    convertDataToHandsoneTableData: function(data) {
+        // Convert Data to 2dim Array for previewing with HandsoneTable:
+        var handsonTableArray = [[]];
+
+        for (var o in data[0]) {
+            handsonTableArray[0].push(o);
+        }
+
+        for (var i = 0; i < data.length; i++) {
+            handsonTableArray[i+1] = [];
+            for (var obj_inner in data[1]) {
+                handsonTableArray[i+1].push(data[i][obj_inner]);
+            }
+        }
+
+        return handsonTableArray;
     }
 });

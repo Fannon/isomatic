@@ -283,10 +283,9 @@
 #overlay-data {
   #dataTable {
 
-    // First Cell of Row
-    tr td:first-child {
-      background: #EEE;
-    }
+    width: 945px;
+    overflow: scroll;
+
   }
 }
 

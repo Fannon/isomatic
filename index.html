@@ -437,7 +437,7 @@
             <!--<input name="radio1" type="radio" id="json"><label for="json">JSON</label>-->
 
             <label>Paste Data</label>
-            <textarea placeholder="Copy'n'Paste here" id="dataPaste"></textarea>
+            <textarea value="Copy'n'Paste here" id="dataPaste"><%= preset_data %></textarea>
 
             <a id="pasteDataSubmit" href="#" class="tiny button radius">Import</a>
             <a id="pasteDataSubmitClose" href="#" class="tiny button radius">Import and Close</a>
@@ -447,6 +447,11 @@
 
             <h4>Editable Preview:</h4>
             <div id="dataTable"></div>
+
+            <br>
+
+            <a id="pasteDataUpdate" href="#" class="tiny button radius">Update Data</a>
+
 
         </form>
     </div>

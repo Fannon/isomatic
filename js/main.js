@@ -52,7 +52,7 @@ $(function() {
 
 
     // Load Sample Data
-    isomatic.data.process(isomatic.options.internal.exampleData);
+//    isomatic.data.process(isomatic.options.internal.exampleData);
 
 });
 
