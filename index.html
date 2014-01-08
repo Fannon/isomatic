@@ -66,34 +66,7 @@
         <div id="overlay">
 
             <!-- Data Settings -->
-            <div id="overlay-data" class="overlay-container" style="display: none">
-
-
-                <h3>Data Import</h3>
-                <hr class="topic-line">
-
-                <form class="custom">
-                    <label>
-                        <span data-tooltip class="has-tip tip-right" title="Choose the right format for Data Import">Data Type</span>
-                    </label>
-                    <input name="radio1" type="radio" id="csv" checked><label for="csv">CSV</label>
-                    <input name="radio1" type="radio" id="tsv"><label for="tsv">TSV</label>
-                    <input name="radio1" type="radio" id="json"><label for="json">JSON</label>
-
-                    <label>Paste Data</label>
-                    <textarea placeholder="Copy'n'Paste here"></textarea>
-
-                    <a href="#" class="tiny button radius">Import</a>
-
-                    <br>
-                    <hr class="normal-line">
-
-                    <h4>Preview:</h4>
-
-                    <div id="dataTable"></div>
-
-                </form>
-            </div>
+            <div id="data_container"></div>
 
 
             <!-- Type Settings -->
@@ -251,19 +224,21 @@
 
                     <hr class="normal-line">
 
+                    <label>Vertical Icon Margin</label>
+                    <input type="text" placeholder="10px">
+
+                    <label>Horizontal Icon Margin</label>
+                    <input type="text" placeholder="10px">
+
+                    <hr class="normal-line">
+
                     <label><img src="img/rowmargin.svg"> Row Margin</label>
                     <input type="text" placeholder="10px">
 
                     <label><img src="img/columnmargin.svg">Column Margin</label>
                     <input type="text" placeholder="10px">
 
-                    <hr class="normal-line">
 
-                    <label>Vertical Icon Margin</label>
-                    <input type="text" placeholder="10px">
-
-                    <label>Horizontal Icon Margin</label>
-                    <input type="text" placeholder="10px">
 
                     <a href="#" class="tiny button radius">Check</a>
                     <a href="#" class="tiny button radius">Apply & Close</a>
@@ -434,6 +409,9 @@
 <script src="js/isotypeLayout.js"></script>
 <script src="js/visualisation.js"></script>
 <script src="js/icons.js"></script>
+
+<script src="js/views/DataView.js"></script>
+
 <script src="bower_components/colpick/colpick.js"></script>
 <script src="bower_components/handsontable/dist/jquery.handsontable.full.js"></script>
 <script src="bower_components/slimScroll/jquery.slimscroll.js"></script>
@@ -443,3 +421,33 @@
 <!-- Minimized JavaScript -->
 <!--<script src="js/app.min.js"></script>-->
 </html>
+
+<script type="text/template" id="data_template">
+    <div id="overlay-data" class="overlay-container" style="display: none">
+
+        <h3>Data Import</h3>
+        <hr class="topic-line">
+
+        <form class="custom">
+            <label>
+                <span data-tooltip class="has-tip tip-right" title="Choose the right format for Data Import">Data Type</span>
+            </label>
+            <input name="radio1" type="radio" id="csv" checked><label for="csv">CSV</label>
+            <input name="radio1" type="radio" id="tsv"><label for="tsv">TSV</label>
+            <input name="radio1" type="radio" id="json"><label for="json">JSON</label>
+
+            <label>Paste Data</label>
+            <textarea placeholder="Copy'n'Paste here" id="dataPaste"></textarea>
+
+            <a id="pasteDataSubmit" href="#" class="tiny button radius">Import</a>
+
+            <br>
+            <hr class="normal-line">
+
+            <h4>Preview:</h4>
+
+            <div id="dataTable"></div>
+
+        </form>
+    </div>
+</script>
