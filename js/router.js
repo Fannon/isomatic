@@ -23,6 +23,7 @@ var IsomaticRouter = Backbone.Router.extend({
         "text": "text"
     },
 
+    /** Home Screen. No Overlays shown */
     home: function() {
         "use strict";
         console.log('#home');
@@ -52,36 +53,50 @@ var IsomaticRouter = Backbone.Router.extend({
 
     data: function() {
         "use strict";
+        $(".overlay-container").hide();
+        $('#overlay-data').show();
         console.log('#data');
     },
 
     type: function() {
         "use strict";
+        $(".overlay-container").hide();
+        $('#overlay-type').show();
         console.log('#type');
     },
 
     color: function() {
         "use strict";
+        $(".overlay-container").hide();
+        $('#overlay-color').show();
         console.log('#color');
     },
 
     icon: function() {
         "use strict";
+        $(".overlay-container").hide();
+        $('#overlay-icon').show();
         console.log('#icon');
     },
 
     margin: function() {
         "use strict";
+        $(".overlay-container").hide();
+        $('#overlay-margin').show();
         console.log('#margin');
     },
 
     scale: function() {
         "use strict";
+        $(".overlay-container").hide();
+        $('#overlay-scale').show();
         console.log('#scale');
     },
 
     text: function() {
         "use strict";
+        $(".overlay-container").hide();
+        $('#overlay-text').show();
         console.log('#text');
     }
 });

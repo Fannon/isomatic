@@ -20,38 +20,17 @@ isomatic.ui = {};
 isomatic.ui.init = function() {
     "use strict";
 
-
     ///////////////////////////////////////
     // Overlay Event Listeners           //
     ///////////////////////////////////////
 
     // Overlay Buttons
+    // TODO: Move this to Router
     $('.trigger-ui').click(function(event) {
-
         event.preventDefault();
-
         var action = event.currentTarget.id.substring(3).toLowerCase();
-        var url = location.href;
         location.href = "#" + action;
 
-        // TODO: Refactor this to use Backbone Views and Events
-        if($("#overlay-" + action).is(':visible') || $("#" + event.currentTarget.id).hasClass('active')) {
-            $("#" + event.currentTarget.id).removeClass('active');
-            $("#overlay-" + action).hide();
-        } else {
-            $(".overlay-container").hide();
-            $(".trigger-ui").removeClass('active');
-
-            $("#" + event.currentTarget.id).addClass('active');
-            $("#overlay-" + action).show();
-        }
-    });
-
-    // Import Data File Upload
-    // TODO: Use Library? -> http://blueimp.github.io/jQuery-File-Upload/basic.html
-    $( "#imported-file" ).change(function() {
-        console.log('FILE UPLOAD START');
-        console.dir(this.files[0]);
     });
 
 };

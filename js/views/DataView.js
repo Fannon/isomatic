@@ -14,6 +14,24 @@ isomatic.views.DataView = Backbone.View.extend({
         this.render();
 
         this.submitData();
+
+        /**
+         * Select All on Hover
+         * http://stackoverflow.com/a/5797700/776425
+         */
+        $("#dataPaste").focus(function() {
+            var $this = $(this);
+            $this.select();
+
+            // Work around Chrome's little problem
+            $this.mouseup(function() {
+                // Prevent further mouseup intervention
+                $this.unbind("mouseup");
+                return false;
+            });
+        });
+
+
     },
     render: function(){
         "use strict";
