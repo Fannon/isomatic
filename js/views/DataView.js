@@ -41,21 +41,23 @@ isomatic.views.DataView = Backbone.View.extend({
      */
     submitData: function() {
         "use strict";
+
         console.log('DataView::submitData();');
 
         var data = d3.tsv.parse($('#dataPaste')[0].value);
-        console.dir(data);
 
-        var handsonTableArray = this.convertDataToHandsoneTableData(data);
+//        var handsonTableArray = this.convertDataToHandsoneTableData(data);
 
-        $("#dataTable").handsontable({
-            data: handsonTableArray,
-            contextMenu: true,
-            rowHeaders: true,
-            colHeaders: true,
-            minRows: 1,
-            stretchH: 'all'
-        });
+//        $("#dataTable").handsontable({
+//            data: handsonTableArray,
+//            contextMenu: true,
+//            rowHeaders: true,
+//            colHeaders: true,
+//            minRows: 1,
+//            stretchH: 'all'
+//        });
+
+        this.tabulate(data);
 
         // TODO: Validation
 
@@ -80,20 +82,77 @@ isomatic.views.DataView = Backbone.View.extend({
         isomatic.data.process(data);
     },
 
+    /**
+     * Generate Preview Table via D3.js
+     *
+     * @param data  Data Array
+     */
+    tabulate: function(data) {
+        "use strict";
+
+        var table = d3.select("#dataTable");
+
+        $("#dataTable").html("");
+
+        var thead = table.append("thead");
+        var tbody = table.append("tbody");
+
+        // Get Columns from Data
+        var columns = [];
+        for (var o in data[0]) {
+            if( data[0].hasOwnProperty(o) ) {
+                columns.push(o);
+            }
+        }
+
+        // append the header row
+        thead.append("tr")
+            .selectAll("th")
+            .data(columns)
+            .enter()
+            .append("th")
+            .text(function(column) { return column; });
+
+        // create a row for each object in the data
+        var rows = tbody.selectAll("tr")
+            .data(data)
+            .enter()
+            .append("tr");
+
+        // create a cell in each row for each column
+        var cells = rows.selectAll("td")
+            .data(function(row) {
+                return columns.map(function(column) {
+                    return {column: column, value: row[column]};
+                });
+            })
+            .enter()
+            .append("td")
+            .text(function(d) { return d.value; });
+
+        return table;
+    },
+
 
     // Helper Functions
     convertDataToHandsoneTableData: function(data) {
+        "use strict";
+
         // Convert Data to 2dim Array for previewing with HandsoneTable:
         var handsonTableArray = [[]];
 
         for (var o in data[0]) {
-            handsonTableArray[0].push(o);
+            if( data[0].hasOwnProperty(o) ) {
+                handsonTableArray[0].push(o);
+            }
         }
 
         for (var i = 0; i < data.length; i++) {
             handsonTableArray[i+1] = [];
             for (var obj_inner in data[1]) {
-                handsonTableArray[i+1].push(data[i][obj_inner]);
+                if( data[1].hasOwnProperty(obj_inner) ) {
+                    handsonTableArray[i+1].push(data[i][obj_inner]);
+                }
             }
         }
 
