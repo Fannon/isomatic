@@ -27,16 +27,25 @@ $(function() {
 
     "use strict";
 
-    isomatic.vis.init();
 
-    // Init Foundation JavaScript
-    $(document).foundation();
+    ///////////////////////////////////////
+    // Init Application                  //
+    ///////////////////////////////////////
+
+    // Init Visualisation
+    isomatic.vis.init();
 
     // Init Views
     isomatic.views.dataView = new isomatic.views.DataView({el: $("#data_container")});
+    isomatic.views.exportView = new isomatic.views.ExportView({el: $("#export_container")});
 
-    // Init UI
-    isomatic.ui.init();
+
+    ///////////////////////////////////////
+    // Init 3rd Party Plugins            //
+    ///////////////////////////////////////
+
+    // Init Foundation JavaScript
+    $(document).foundation();
 
     // Init Scrollbar Plugin
     $('.scrollbar').slimScroll({
@@ -49,10 +58,6 @@ $(function() {
     $('.picker').each(function() {
         isomatic.registerColorpicker($(this));
     });
-
-
-    // Load Sample Data
-//    isomatic.data.process(isomatic.options.internal.exampleData);
 
 });
 

@@ -43,15 +43,15 @@
 <div class="container">
 
     <div id="toolbar">
-        <div class="icon trigger-ui" id="setData"></div>
-        <div class="icon trigger-ui" id="setType"></div>
+        <a href="#data"><div class="icon trigger-ui" id="setData"></div></a>
+        <a href="#type"><div class="icon trigger-ui" id="setType"></div></a>
         <hr class="toolbar-line">
-        <div class="icon trigger-ui" id="setIcon"></div>
-        <div class="icon trigger-ui" id="setColor"></div>
-        <div class="icon trigger-ui" id="setMargin"></div>
+        <a href="#icon"><div class="icon trigger-ui" id="setIcon"></div></a>
+        <a href="#color"><div class="icon trigger-ui" id="setColor"></div></a>
+        <a href="#margin"><div class="icon trigger-ui" id="setMargin"></div></a>
         <hr class="toolbar-line">
-        <div class="icon trigger-ui" id="setScale"></div>
-        <div class="icon trigger-ui" id="setText"></div>
+        <a href="#scale"><div class="icon trigger-ui" id="setScale"></div></a>
+        <a href="#text"><div class="icon trigger-ui" id="setText"></div></a>
     </div>
 
     <div id="display">
@@ -358,28 +358,7 @@
     <a class="close-reveal-modal">&#215;</a>
 </div>
 
-<div id="exportModal" class="tiny reveal-modal" data-reveal>
-
-    <h3>Export Graphic / Data</h3>
-    <hr class="topic-line">
-    <form>
-        <label >Choose Export Format:</label>
-
-        <button type=button class="tiny button radius">SVG (Graphic)</button>
-        <button type=button class="tiny button radius disabled">JSON (Raw Data)</button>
-
-
-        <label>Include:</label>
-        <input id="export-data" type="checkbox" checked><label for="export-data">Data</label>
-        <input id="export-options" type="checkbox" checked><label for="export-options">Options</label>
-
-        <br>
-
-        <a id='svgExport' class="tiny button radius" target="_blank" onclick="isomatic.ui.exportSVG()">Download</a>
-        <!-- <a id='jsonExport' class="tiny button radius" target="_blank" onclick="isomatic.ui.exportJSON()">Download as
-            JSON</a> -->
-    </form>
-</div>
+<div id="export_container"></div>
 
 </body>
 
@@ -399,24 +378,25 @@
 <script src="js/main.js"></script>
 <script src="js/models/options.js"></script>
 <script src="js/router.js"></script>
-<script src="js/ui.js"></script>
 <script src="js/data.js"></script>
 <script src="js/isotypeLayout.js"></script>
 <script src="js/visualisation.js"></script>
 <script src="js/icons.js"></script>
 
 <script src="js/views/DataView.js"></script>
+<script src="js/views/ExportView.js"></script>
 
+<!-- 3rd Party Plugins -->
 <script src="bower_components/colpick/colpick.js"></script>
-<script src="bower_components/handsontable/dist/jquery.handsontable.full.js"></script>
+<!--<script src="bower_components/handsontable/dist/jquery.handsontable.full.js"></script>-->
 <script src="bower_components/slimScroll/jquery.slimscroll.js"></script>
 
-<script src="js/views/TypeView.js"></script>
 
 <!-- Minimized JavaScript -->
 <!--<script src="js/app.min.js"></script>-->
 </html>
 
+<!-- Data Template -->
 <script type="text/template" id="data_template">
     <div id="overlay-data" class="overlay-container" style="display: none">
 
@@ -442,6 +422,30 @@
 
             <h4>Data Preview:</h4>
             <table id="dataTable"></table>
+
+        </form>
+    </div>
+</script>
+
+<!-- Export Template -->
+<script type="text/template" id="export_template">
+    <div id="exportModal" class="tiny reveal-modal" data-reveal>
+
+        <h3>Export Graphic / Data</h3>
+        <hr class="topic-line">
+
+        <form>
+            <label >Choose Export Format:</label>
+            <button type=button class="tiny button radius">SVG (Graphic)</button>
+            <button type=button class="tiny button radius disabled">JSON (Raw Data)</button>
+
+            <label>Include:</label>
+            <input id="export-data" type="checkbox" checked><label for="export-data">Data</label>
+            <input id="export-options" type="checkbox" checked><label for="export-options">Options</label>
+
+            <br>
+
+            <div id='startExport' class="tiny button radius">Download</div>
 
         </form>
     </div>
