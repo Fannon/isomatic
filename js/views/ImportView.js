@@ -11,6 +11,59 @@ isomatic.views.ImportView = Backbone.View.extend({
         "use strict";
         console.log('ImportView init');
         this.render();
+
+        // Set Up FileUpload Listener
+        $('#imported-file')[0].addEventListener("change", function(event) {
+
+            var file = event.target.files[0];
+            console.dir(file);
+
+            //////////////////////////////////////
+            // Identify File Type               //
+            //////////////////////////////////////
+
+            console.log('Filetype: ' + file.type);
+            // Only process image files.
+            if (file.type === 'image/svg+xml') {
+                // TODO: Handle SVG File
+            } else {
+                // TODO: Handle JSON File (no type)
+            }
+
+
+            //////////////////////////////////////
+            // Read File                        //
+            //////////////////////////////////////
+
+            var reader = new FileReader();
+
+            // File Read Event
+            reader.onload = (function(theFile) {
+                return function(e) {
+                    console.log('File sucessfully read:');
+                    console.log(e.target.result);
+                };
+            })(file);
+
+            // Read in the image file as a data URL.
+            reader.readAsText(file);
+
+            //////////////////////////////////////
+            // Validation                       //
+            //////////////////////////////////////
+
+            // TODO: Validation
+
+
+
+            //////////////////////////////////////
+            // Update Application State         //
+            //////////////////////////////////////
+
+            // TODO: Update Application State: Import Settings and Data
+
+        }, false);
+
     },
     render: function(){
         "use strict";

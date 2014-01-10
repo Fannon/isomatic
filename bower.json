@@ -3,6 +3,7 @@
     "dependencies": {
         "foundation": "zurb/bower-foundation",
         "backbone": null,
+        "backbone.validation": null,
         "underscore": null,
         "d3js": null,
         "colpick": "josedvq/colpick-jQuery-Color-Picker",
