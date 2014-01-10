@@ -3,17 +3,14 @@
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg version="1.1" id="Ebene_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 width="22px" height="14px" viewBox="0 0 22 14" enable-background="new 0 0 22 14" xml:space="preserve">
-<rect x="2.999" fill="#686766" width="2" height="14"/>
-<rect x="16.461" fill="#686766" width="2" height="14"/>
 <g>
 	<g>
-		<line fill="none" stroke="#686766" stroke-miterlimit="10" x1="6.642" y1="7.475" x2="14.818" y2="7.475"/>
+		<line fill="none" stroke="#686766" stroke-miterlimit="10" x1="12.266" y1="6.062" x2="14.993" y2="3.335"/>
 		<g>
-			<polygon fill="#686766" points="8.634,9.17 6.938,7.475 8.634,5.78 7.194,5.78 5.499,7.475 7.194,9.17 			"/>
-		</g>
-		<g>
-			<polygon fill="#686766" points="12.826,9.17 14.522,7.475 12.826,5.78 14.266,5.78 15.961,7.475 14.266,9.17 			"/>
+			<polygon fill="#686766" points="14.783,5.942 14.784,3.544 12.386,3.545 13.404,2.527 15.801,2.527 15.801,4.924 			"/>
 		</g>
 	</g>
 </g>
+<rect x="4.328" y="6.629" fill="#686766" width="7.371" height="7.371"/>
+<polyline fill="none" stroke="#686766" stroke-miterlimit="10" points="17.889,7 17.889,0.527 11.416,0.527 "/>
 </svg>

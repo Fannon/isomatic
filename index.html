@@ -49,7 +49,7 @@
             <hr class="toolbar-line">
             <a href="#icon"><div class="icon trigger-ui" id="setIcon"></div></a>
             <a href="#color"><div class="icon trigger-ui" id="setColor"></div></a>
-            <a href="#margin"><div class="icon trigger-ui" id="setMargin"></div></a>
+            <a href="#properties"><div class="icon trigger-ui" id="setProperties"></div></a>
             <hr class="toolbar-line">
             <a href="#scale"><div class="icon trigger-ui" id="setScale"></div></a>
             <a href="#text"><div class="icon trigger-ui" id="setText"></div></a>
@@ -69,27 +69,33 @@
                 <div id="overlay-type" class="overlay-container" style="display: none">
 
                     <form>
-                        <div id="normal-isotype">
-                        <a>
-                        <legend><h3>Normal</h3></legend>
-                        <img src="img/normal_isotype.svg">
-                        </a>
+                        <h3>Diagram Type</h3>
+                        <hr class="topic-line">
+                        <div id="normalIsotype">
+                            <div class="typeTitle">
+                                <h4>Normal</h4>
+                            </div>
+                            <div class="typeImage">
+                                <a>
+                                    <img src="img/normal_isotype.svg">
+                                </a>
+                            </div>
+                        </div>
+
+                        <div id="versusIsotype" class="active">
+                            <div class="typeTitle">
+                                <h4>Versus</h4>
+                            </div>
+                            <div class="typeImage">
+                                <a>
+                                    <img src="img/versus_isotype.svg">
+                                </a>
+                            </div>
                         </div>
 
                         <hr class="normal-line">
 
-                        <div id="versus-isotype">
-                        <a><legend><h3>Versus</h3></legend>
-                        <img src="img/versus_isotype.svg"></a>
-                        </div>
 
-                        <hr class="normal-line">
-
-                        <!--<a class="th" href="../img/normal_isotype.svg" height="40px" width="120px">-->
-                          <!--<img  height="40px" width="120px" src="">-->
-                        <!--</a>-->
-
-                        <br>
 
                         <input id="break-rows" type="checkbox"><label for="break-rows">Break row into multiple Lines</label>
                         <br>
@@ -172,69 +178,103 @@
                     </div>
                     <div class="overlay-right">
                         <form>
-                            <div class="colorsample">
-                                <h4>Colorsamples</h4>
-                                <label>Palette for max. 6 Columns</label>
-                                <br>
-                                <input type="radio" name="radio4" value="sample1" id="sample1" checked><label for="sample1">Lime</label><br>
-                                <input class="color">
-                                <input type="text" placeholder="#333333">
-                                <input type="text" placeholder="#333333">
-                                <input type="text" placeholder="#333333">
-                                <input type="text" placeholder="#333333">
-                                <input type="text" placeholder="#333333">
+                            <h4>Colorsamples</h4>
+                            <label>Palette for max. 5 Columns</label>
+                            <br>
+                            <div class="color-column-left">
+                                <div class="colorsample">
+                                    <input type="radio" name="radio4" value="sample1" id="sample1" checked><label for="sample1">Lime</label><br>
+                                    <div class="colorpalette">
+                                        <div data-tooltip class="colorbox has-tip tip-bottom" style="background-color:#0A7B83" title="#0A7B83"></div>
+                                        <div data-tooltip class="colorbox has-tip tip-bottom" style="background-color:#2AA876" title="#0A7B83"></div>
+                                        <div data-tooltip class="colorbox has-tip tip-bottom" style="background-color:#FFD265" title="#0A7B83"></div>
+                                        <div data-tooltip class="colorbox has-tip tip-bottom" style="background-color:#F19C65" title="#0A7B83"></div>
+                                        <div data-tooltip class="colorbox has-tip tip-bottom" style="background-color:#CE4D45" title="#0A7B83"></div>
+                                    </div>
+                                </div>
+                                <div class="colorsample">
+                                    <input type="radio" name="radio4" value="sample2" id="sample2"><label for="sample2">Drakula</label><br>
+                                    <div class="colorpalette">
+                                        <div data-tooltip class="colorbox has-tip tip-bottom" style="background-color:#0A7B83" title="#0A7B83"></div>
+                                        <div data-tooltip class="colorbox has-tip tip-bottom" style="background-color:#2AA876" title="#0A7B83"></div>
+                                        <div data-tooltip class="colorbox has-tip tip-bottom" style="background-color:#FFD265" title="#0A7B83"></div>
+                                        <div data-tooltip class="colorbox has-tip tip-bottom" style="background-color:#F19C65" title="#0A7B83"></div>
+                                        <div data-tooltip class="colorbox has-tip tip-bottom" style="background-color:#CE4D45" title="#0A7B83"></div>
+                                    </div>
+                                </div>
+                                <div class="colorsample">
+                                    <input type="radio" name="radio4" value="sample3" id="sample3"><label for="sample3">Blood</label><br>
+                                    <div class="colorpalette">
+                                        <div data-tooltip class="colorbox has-tip tip-bottom" style="background-color:#0A7B83" title="#0A7B83"></div>
+                                        <div data-tooltip class="colorbox has-tip tip-bottom" style="background-color:#2AA876" title="#0A7B83"></div>
+                                        <div data-tooltip class="colorbox has-tip tip-bottom" style="background-color:#FFD265" title="#0A7B83"></div>
+                                        <div data-tooltip class="colorbox has-tip tip-bottom" style="background-color:#F19C65" title="#0A7B83"></div>
+                                        <div data-tooltip class="colorbox has-tip tip-bottom" style="background-color:#CE4D45" title="#0A7B83"></div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="colorsample">
-                                <input type="radio" name="radio4" value="sample2" id="sample2" checked><label for="sample2">Drakula</label><br>
-                                <input type="text" placeholder="#333333">
-                                <input type="text" placeholder="#333333">
-                                <input type="text" placeholder="#333333">
-                                <input type="text" placeholder="#333333">
-                                <input type="text" placeholder="#333333">
-                                <input type="text" placeholder="#333333">
-                            </div>
-                            <div class="colorsample">
-                                <input type="radio" name="radio4" value="sample3" id="sample3" checked><label for="sample3">Blood</label><br>
-                                <input type="text" placeholder="#333333">
-                                <input type="text" placeholder="#333333">
-                                <input type="text" placeholder="#333333">
-                                <input type="text" placeholder="#333333">
-                                <input type="text" placeholder="#333333">
-                                <input type="text" placeholder="#333333">
+                            <div class="color-column-right">
+                                <div class="colorsample">
+                                    <input type="radio" name="radio4" value="sample1" id="sample4" checked><label for="sample1">Lime</label><br>
+                                    <div class="colorpalette">
+                                        <div data-tooltip class="colorbox has-tip tip-bottom" style="background-color:#0A7B83" title="#0A7B83"></div>
+                                        <div data-tooltip class="colorbox has-tip tip-bottom" style="background-color:#2AA876" title="#0A7B83"></div>
+                                        <div data-tooltip class="colorbox has-tip tip-bottom" style="background-color:#FFD265" title="#0A7B83"></div>
+                                        <div data-tooltip class="colorbox has-tip tip-bottom" style="background-color:#F19C65" title="#0A7B83"></div>
+                                        <div data-tooltip class="colorbox has-tip tip-bottom" style="background-color:#CE4D45" title="#0A7B83"></div>
+                                    </div>
+                                </div>
+                                <div class="colorsample">
+                                    <input type="radio" name="radio4" value="sample2" id="sample5"><label for="sample2">Drakula</label><br>
+                                    <div class="colorpalette">
+                                        <div data-tooltip class="colorbox has-tip tip-bottom" style="background-color:#0A7B83" title="#0A7B83"></div>
+                                        <div data-tooltip class="colorbox has-tip tip-bottom" style="background-color:#2AA876" title="#0A7B83"></div>
+                                        <div data-tooltip class="colorbox has-tip tip-bottom" style="background-color:#FFD265" title="#0A7B83"></div>
+                                        <div data-tooltip class="colorbox has-tip tip-bottom" style="background-color:#F19C65" title="#0A7B83"></div>
+                                        <div data-tooltip class="colorbox has-tip tip-bottom" style="background-color:#CE4D45" title="#0A7B83"></div>
+                                    </div>
+                                </div>
+                                <div class="colorsample">
+                                    <input type="radio" name="radio4" value="sample3" id="sample6"><label for="sample3">Blood</label><br>
+                                    <div class="colorpalette">
+                                        <div data-tooltip class="colorbox has-tip tip-bottom" style="background-color:#0A7B83" title="#0A7B83"></div>
+                                        <div data-tooltip class="colorbox has-tip tip-bottom" style="background-color:#2AA876" title="#0A7B83"></div>
+                                        <div data-tooltip class="colorbox has-tip tip-bottom" style="background-color:#FFD265" title="#0A7B83"></div>
+                                        <div data-tooltip class="colorbox has-tip tip-bottom" style="background-color:#F19C65" title="#0A7B83"></div>
+                                        <div data-tooltip class="colorbox has-tip tip-bottom" style="background-color:#CE4D45" title="#0A7B83"></div>
+                                    </div>
+                                </div>
                             </div>
                         </form>
                     </div>
                 </div>
 
 
-                <!-- Margin Settings -->
-                <div id="overlay-margin" class="overlay-container" style="display: none">
-                    <h3>Margin Settings</h3>
+                <!-- Properties -->
+                <div id="overlay-properties" class="overlay-container" style="display: none">
+                    <h3>Properties</h3>
                     <hr class="topic-line">
                     <form>
 
-                        <label><span data-tooltip class="has-tip tip-right" title="Change to the right Proportion">Personalia</span></label>
+                        <label><span data-tooltip class="has-tip tip-right" title="Change the general offsets">Margin</span></label><br>
 
-                        <label>Outer Margin</label>
+                        <label><img src="img/outermarign.svg">Outer Margin</label>
                         <input type="text" placeholder="30px">
 
-                        <hr class="normal-line">
-
-                        <label>Vertical Icon Margin</label>
+                        <label><img src="img/horizontalmargin.svg">Horizontal Icon Margin</label>
                         <input type="text" placeholder="10px">
 
-                        <label>Horizontal Icon Margin</label>
-                        <input type="text" placeholder="10px">
-
-                        <hr class="normal-line">
-
-                        <label><img src="img/rowmargin.svg"> Row Margin</label>
+                        <label><img src="img/rowmargin.svg">Row Margin</label>
                         <input type="text" placeholder="10px">
 
                         <label><img src="img/columnmargin.svg">Column Margin</label>
                         <input type="text" placeholder="10px">
 
+                        <hr class="normal-line">
 
+                        <label><span data-tooltip class="has-tip tip-right" title="Change the icon proportion">Size</span></label><br>
+                        <label><img src="img/iconsize.svg">Icon Size</label>
+                        <input type="text" placeholder="10px"><br>
 
                         <a href="#" class="tiny button radius">Check</a>
                         <a href="#" class="tiny button radius">Apply & Close</a>

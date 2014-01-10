@@ -18,7 +18,7 @@ var IsomaticRouter = Backbone.Router.extend({
         "type": "type",
         "color": "color",
         "icon": "icon",
-        "margin": "margin",
+        "properties": "properties",
         "scale": "scale",
         "text": "text"
     },
@@ -81,11 +81,11 @@ var IsomaticRouter = Backbone.Router.extend({
         console.log('#icon');
     },
 
-    margin: function() {
+    properties: function() {
         "use strict";
         $(".overlay-container").hide();
-        $('#overlay-margin').show();
-        console.log('#margin');
+        $('#overlay-properties').show();
+        console.log('#properties');
     },
 
     scale: function() {

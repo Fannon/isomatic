@@ -19,7 +19,7 @@ isomatic.options.preset = {};
 
 // GENERAL LAYOUTING
 /** Aspect Ratio of the Canvas. Width is always 100% */
-isomatic.options.preset.aspectRatio = 16 / 8;
+isomatic.options.preset.aspectRatio = 16 / 9;
 
 /** Margin to Canvas */
 isomatic.options.preset.outerMargin = 10;

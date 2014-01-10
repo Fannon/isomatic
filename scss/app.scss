@@ -13,6 +13,9 @@
 @import "foundation/components/tooltips";
 @import "foundation/components/reveal";
 
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+}
 
 #nav-container {
   margin: 0px auto;
@@ -114,8 +117,8 @@
     background-image: url(../img/text.svg);
   }
 
-  #setMargin {
-    background-image: url(../img/margin.svg);
+  #setProperties {
+    background-image: url(../img/properties.svg);
   }
 
   #setScale {
@@ -128,7 +131,6 @@
 
   .active {
     background-color: $primary-color;
-    color: #FFF;
     box-shadow: 0 0 2px 2px #555;
   }
 
@@ -172,9 +174,6 @@
   .picker {
     margin: 7px 0px;
     padding: 3px 5px;
-//    border:0;
-//    width:70px;
-//    height:20px;
     border-right:28px solid #000;
     line-height:20px;
   }
@@ -187,9 +186,23 @@
     left: 0px;
     top: 0px;
     border-right: 1px solid #CCC;
-    padding: 5px 2px 5px 10px;
+    padding: 5px 10px 5px 10px;
     overflow: hidden;
     box-shadow: 1px 2px 4px #333;
+
+    .overlay-left {
+      border-right: 1px solid #BFBFBF;
+      height: 400px;
+      padding-right: 10px;
+      width: 270px;
+      float: left;
+    }
+
+    .overlay-right {
+      padding-left: 10px;
+      width: 630px;
+      float: left;
+    }
 
     button.tiny, .button.tiny {
       font-size: 0.9rem;
@@ -205,42 +218,84 @@
   #overlay-type {
     vertical-align: middle;
 
-    form {
-      margin-top: 5px;
+    h4 {
+      color: #FFF;
     }
 
-    legend {
-      font-weight: bold;
+    #normalIsotype, #versusIsotype {
+      margin-bottom: 5px;
+      height: 35px;
+      background-color: #bbb;
+      border-radius: 5px;
+    }
+
+    #normalIsotype:hover, #versusIsotype:hover {
+      background-color: #999;
+    }
+
+    #normalIsotype.active, #versusIsotype.active {
+      background-color: #555;
+    }
+
+    .typeTitle {
       float: left;
-      margin-left: 5px;
+      margin: 6px 0px 0px 10px;
     }
 
-    img {
+    .typeImage {
       float: right;
-      margin-bottom: 10px;
+      margin: 5px 10px 0 0;
     }
 
-   .selectType {
-     padding: 10px 120px 15px 10px;
-   }
+    .selectType {
+      padding: 10px 120px 15px 10px;
+    }
   }
 
-  #overlay-color .colorsample {
-    float: left;
-    width: 650px;
+  #overlay-color {
 
-    input[type=radio] {
-      margin-bottom: 7px;
+    .color-column-left {
+      width: 300px;
+      float: left;
+      border-right: 1px solid #BFBFBF;
     }
 
-    input[type=text] {
-      width: 100px;
-      margin-right: 10px;
+    .color-column-right {
+      padding-left: 10px;
+      width: 300px;
       float: left;
     }
 
-    input:last-of-type {
-      margin-right: 0px;
+    .colorsample {
+    float: left;
+    width: 300px;
+
+      input[type=radio] {
+        margin-bottom: 7px;
+      }
+
+      input[type=text] {
+        width: 100px;
+        margin-right: 10px;
+        float: left;
+      }
+
+      input:last-of-type {
+        margin-right: 0px;
+      }
+
+      .colorpalette {
+        height: 30px;
+        margin-bottom: 15px;
+      }
+
+      .colorbox {
+        float: left;
+        margin-right: 10px;
+        height: 30px;
+        width: 30px;
+        border: 1px solid #333;
+      }
     }
   }
 
@@ -252,20 +307,6 @@
   #overlay-data, #overlay-icon, #overlay-color, #overlay-help {
     width: 100%;
     border-right: none;
-  }
-
-  .overlay-left {
-    border-right: 1px solid #BFBFBF;
-    height: 400px;
-    padding-right: 10px;
-    position: absolute;
-    width: 270px;
-    display: block;
-  }
-
-  .overlay-right {
-    padding-left: 280px;
-    width: 430px;
   }
 
   .topic-line {
@@ -307,4 +348,9 @@
 
 #message .alert {
   margin-top: 7px;
+}
+
+.reveal-modal button.tiny,
+.reveal-modal .button.tiny{
+  font-size: 0.9rem;
 }
