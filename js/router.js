@@ -48,6 +48,8 @@ var IsomaticRouter = Backbone.Router.extend({
 
     help: function() {
         "use strict";
+        $(".overlay-container").hide();
+        $('#overlay-help').show();
         console.log('#help');
     },
 

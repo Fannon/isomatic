@@ -3,387 +3,357 @@
 <head>
     <meta charset=utf-8/>
     <title>isomatic</title>
+
     <link rel="stylesheet" type="text/css" href="css/app.css"/>
+
+    <!-- TODO: Import via SCSS: -->
     <link rel="stylesheet" type="text/css" href="bower_components/colpick/css/colpick.css"/>
     <link rel="stylesheet" type="text/css" href="bower_components/handsontable/dist/jquery.handsontable.full.css"/>
-    <!--<script data-main="js/main" src="bower_components/requirejs/require.js"></script>-->
 
     <script src="bower_components/modernizr/modernizr.js"></script>
+
 </head>
 <body>
 
-<nav class="top-bar" data-topbar>
-    <div id="nav-container">
-        <div id="title" class="left">
-            <a href="#home"><img src="img/home.svg"></a>
-        </div>
-
-        <div id="setHelp" class="right trigger-ui" href="#help">
-            Help
-        </div>
-
-        <div id="navigation" class="right">
-            <ul>
-                <li>
-                    <a href="#new" data-reveal-id="newModal"><img src="img/new.svg">New</a>
-                </li>
-                <li>
-                    <a id="openImport" class="trigger-ui" href="#import" data-reveal-id="importModal"><img src="img/import.svg">Import</a>
-                </li>
-                <li>
-                    <a id="openExport" class="trigger-ui" href="#export" data-reveal-id="exportModal"><img src="img/export.svg">Export</a>
-                </li>
-
-            </ul>
-        </div>
-
-    </div>
-</nav>
-
-<div class="container">
-
-    <div id="toolbar">
-        <a href="#data"><div class="icon trigger-ui" id="setData"></div></a>
-        <a href="#type"><div class="icon trigger-ui" id="setType"></div></a>
-        <hr class="toolbar-line">
-        <a href="#icon"><div class="icon trigger-ui" id="setIcon"></div></a>
-        <a href="#color"><div class="icon trigger-ui" id="setColor"></div></a>
-        <a href="#margin"><div class="icon trigger-ui" id="setMargin"></div></a>
-        <hr class="toolbar-line">
-        <a href="#scale"><div class="icon trigger-ui" id="setScale"></div></a>
-        <a href="#text"><div class="icon trigger-ui" id="setText"></div></a>
-    </div>
-
-    <div id="display">
-
-        <div id="graph"></div>
-
-        <div id="overlay">
-
-            <!-- Data Settings -->
-            <div id="data_container"></div>
-
-
-            <!-- Type Settings -->
-            <div id="overlay-type" class="overlay-container" style="display: none">
-
-                <form>
-                    <div id="normal-isotype">
-                    <a>
-                    <legend><h3>Normal</h3></legend>
-                    <img src="img/normal_isotype.svg">
-                    </a>
-                    </div>
-
-                    <hr class="normal-line">
-
-                    <div id="versus-isotype">
-                    <a><legend><h3>Versus</h3></legend>
-                    <img src="img/versus_isotype.svg"></a>
-                    </div>
-
-                    <hr class="normal-line">
-
-                    <!--<a class="th" href="../img/normal_isotype.svg" height="40px" width="120px">-->
-                      <!--<img  height="40px" width="120px" src="">-->
-                    <!--</a>-->
-
-                    <br>
-
-                    <input id="break-rows" type="checkbox"><label for="break-rows">Break row into multiple Lines</label>
-                    <br>
-                    <a href="#" class="tiny button radius">Check</a>
-                    <a href="#" class="tiny button radius">Apply & Close</a>
-                </form>
+    <nav class="top-bar" data-topbar>
+        <div id="nav-container">
+            <div id="title" class="left">
+                <a href="#home"><img src="img/home.svg"></a>
             </div>
 
+            <a id="setHelp" class="right" href="#help">Help</a>
 
-            <!-- Icon Settings -->
-            <div id="overlay-icon" class="overlay-container" style="display: none">
-                <h3>Icon Settings</h3>
-                <hr class="topic-line">
-                <div class="overlay-left">
+            <div id="navigation" class="right">
+                <ul>
+                    <li>
+                        <a href="#new" data-reveal-id="newModal"><img src="img/new.svg">New</a>
+                    </li>
+                    <li>
+                        <a id="openImport" class="trigger-ui" href="#import" data-reveal-id="importModal"><img src="img/import.svg">Import</a>
+                    </li>
+                    <li>
+                        <a id="openExport" class="trigger-ui" href="#export" data-reveal-id="exportModal"><img src="img/export.svg">Export</a>
+                    </li>
+
+                </ul>
+            </div>
+
+        </div>
+    </nav>
+
+    <div class="container">
+
+        <div id="toolbar">
+            <a href="#data"><div class="icon trigger-ui" id="setData"></div></a>
+            <a href="#type"><div class="icon trigger-ui" id="setType"></div></a>
+            <hr class="toolbar-line">
+            <a href="#icon"><div class="icon trigger-ui" id="setIcon"></div></a>
+            <a href="#color"><div class="icon trigger-ui" id="setColor"></div></a>
+            <a href="#margin"><div class="icon trigger-ui" id="setMargin"></div></a>
+            <hr class="toolbar-line">
+            <a href="#scale"><div class="icon trigger-ui" id="setScale"></div></a>
+            <a href="#text"><div class="icon trigger-ui" id="setText"></div></a>
+        </div>
+
+        <div id="display">
+
+            <div id="graph"></div>
+
+            <div id="overlay">
+
+                <!-- Data Settings Container -->
+                <div id="data_container"></div>
+
+
+                <!-- Type Settings -->
+                <div id="overlay-type" class="overlay-container" style="display: none">
 
                     <form>
-                        <label>
-                            <span data-tooltip class="has-tip tip-right" title="Choose if Icons are mapped to Columns or Rows">Map to</span>
-                        </label>
-                        <input type="radio" name="radio2" value="row" id="icon-row" checked><label for="icon-row"><img src="img/row.svg"> Row</label>
-                        <input type="radio" name="radio2" value="column" id="icon-column"><label for="icon-column"><img src="img/column.svg"> Column</label>
+                        <div id="normal-isotype">
+                        <a>
+                        <legend><h3>Normal</h3></legend>
+                        <img src="img/normal_isotype.svg">
+                        </a>
+                        </div>
+
+                        <hr class="normal-line">
+
+                        <div id="versus-isotype">
+                        <a><legend><h3>Versus</h3></legend>
+                        <img src="img/versus_isotype.svg"></a>
+                        </div>
+
+                        <hr class="normal-line">
+
+                        <!--<a class="th" href="../img/normal_isotype.svg" height="40px" width="120px">-->
+                          <!--<img  height="40px" width="120px" src="">-->
+                        <!--</a>-->
+
+                        <br>
+
+                        <input id="break-rows" type="checkbox"><label for="break-rows">Break row into multiple Lines</label>
+                        <br>
+                        <a href="#" class="tiny button radius">Check</a>
+                        <a href="#" class="tiny button radius">Apply & Close</a>
+                    </form>
+                </div>
 
 
-                        <legend>Row 1</legend>
-                        <input type="text" placeholder="ICON">
+                <!-- Icon Settings -->
+                <div id="overlay-icon" class="overlay-container" style="display: none">
+                    <h3>Icon Settings</h3>
+                    <hr class="topic-line">
+                    <div class="overlay-left">
 
-                        <legend>Row 2</legend>
-                        <input type="text" placeholder="ICON">
+                        <form>
+                            <label>
+                                <span data-tooltip class="has-tip tip-right" title="Choose if Icons are mapped to Columns or Rows">Map to</span>
+                            </label>
+                            <input type="radio" name="radio2" value="row" id="icon-row" checked><label for="icon-row"><img src="img/row.svg"> Row</label>
+                            <input type="radio" name="radio2" value="column" id="icon-column"><label for="icon-column"><img src="img/column.svg"> Column</label>
 
 
-                        <legend>Row 3</legend>
-                        <input type="text" placeholder="ICON">
+                            <legend>Row 1</legend>
+                            <input type="text" placeholder="ICON">
+
+                            <legend>Row 2</legend>
+                            <input type="text" placeholder="ICON">
+
+
+                            <legend>Row 3</legend>
+                            <input type="text" placeholder="ICON">
+
+
+
+                            <a href="#" class="tiny button radius">Check</a>
+                            <a href="#" class="tiny button radius">Apply & Close</a>
+
+                        </form>
+                    </div>
+
+                    <div class="overlay-right">
+                        <h4>Kategorie 1</h4>
+                        <p>ICON1, ICON2, ICON3, ICON4</p>
+                        <h4>Kategorie 2</h4>
+                        <p>ICON1, ICON2, ICON3, ICON4, ICON5, ICON6</p>
+                        <h4>Kategorie 3</h4>
+                        <p>ICON1, ICON2, ICON3</p>
+                        <h4>Kategorie 4</h4>
+                        <p>ICON1, ICON2</p>
+                    </div>
+                </div>
+
+
+                <!-- Color Settings -->
+                <div id="overlay-color" class="overlay-container" style="display: none">
+                    <h3>Color Settings</h3>
+                    <hr class="topic-line">
+                    <div class="overlay-left">
+                        <form>
+
+                            <label>
+                                <span data-tooltip class="has-tip tip-right" title="Choose if Colors are mapped to Columns or Rows">Map to</span>
+                            </label>
+                            <input type="radio" name="radio3" value="row" id="color-row" checked><label for="color-row"><img src="img/row.svg"> Row</label>
+                            <input type="radio" name="radio3" value="column" id="color-column"><label for="color-column"><img src="img/column.svg"> Column</label>
+
+                            <legend>Column 1</legend>
+                            <input type="text" class="picker" value="2471a8">
+
+                            <legend>Column 2</legend>
+                            <input type="text" class="picker" value="BD4824">
+
+                            <legend>Column 3</legend>
+                            <input type="text" class="picker" value="A6E229">
+
+                            <a href="#" class="tiny button radius">Check</a>
+                            <a href="#" class="tiny button radius">Apply & Close</a>
+                        </form>
+                    </div>
+                    <div class="overlay-right">
+                        <form>
+                            <div class="colorsample">
+                                <h4>Colorsamples</h4>
+                                <label>Palette for max. 6 Columns</label>
+                                <br>
+                                <input type="radio" name="radio4" value="sample1" id="sample1" checked><label for="sample1">Lime</label><br>
+                                <input class="color">
+                                <input type="text" placeholder="#333333">
+                                <input type="text" placeholder="#333333">
+                                <input type="text" placeholder="#333333">
+                                <input type="text" placeholder="#333333">
+                                <input type="text" placeholder="#333333">
+                            </div>
+                            <div class="colorsample">
+                                <input type="radio" name="radio4" value="sample2" id="sample2" checked><label for="sample2">Drakula</label><br>
+                                <input type="text" placeholder="#333333">
+                                <input type="text" placeholder="#333333">
+                                <input type="text" placeholder="#333333">
+                                <input type="text" placeholder="#333333">
+                                <input type="text" placeholder="#333333">
+                                <input type="text" placeholder="#333333">
+                            </div>
+                            <div class="colorsample">
+                                <input type="radio" name="radio4" value="sample3" id="sample3" checked><label for="sample3">Blood</label><br>
+                                <input type="text" placeholder="#333333">
+                                <input type="text" placeholder="#333333">
+                                <input type="text" placeholder="#333333">
+                                <input type="text" placeholder="#333333">
+                                <input type="text" placeholder="#333333">
+                                <input type="text" placeholder="#333333">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+
+                <!-- Margin Settings -->
+                <div id="overlay-margin" class="overlay-container" style="display: none">
+                    <h3>Margin Settings</h3>
+                    <hr class="topic-line">
+                    <form>
+
+                        <label><span data-tooltip class="has-tip tip-right" title="Change to the right Proportion">Personalia</span></label>
+
+                        <label>Outer Margin</label>
+                        <input type="text" placeholder="30px">
+
+                        <hr class="normal-line">
+
+                        <label>Vertical Icon Margin</label>
+                        <input type="text" placeholder="10px">
+
+                        <label>Horizontal Icon Margin</label>
+                        <input type="text" placeholder="10px">
+
+                        <hr class="normal-line">
+
+                        <label><img src="img/rowmargin.svg"> Row Margin</label>
+                        <input type="text" placeholder="10px">
+
+                        <label><img src="img/columnmargin.svg">Column Margin</label>
+                        <input type="text" placeholder="10px">
 
 
 
                         <a href="#" class="tiny button radius">Check</a>
                         <a href="#" class="tiny button radius">Apply & Close</a>
-
                     </form>
                 </div>
 
-                <div class="overlay-right">
-                    <h4>Kategorie 1</h4>
-                    <p>ICON1, ICON2, ICON3, ICON4</p>
-                    <h4>Kategorie 2</h4>
-                    <p>ICON1, ICON2, ICON3, ICON4, ICON5, ICON6</p>
-                    <h4>Kategorie 3</h4>
-                    <p>ICON1, ICON2, ICON3</p>
-                    <h4>Kategorie 4</h4>
-                    <p>ICON1, ICON2</p>
-                </div>
-            </div>
 
-
-            <!-- Color Settings -->
-            <div id="overlay-color" class="overlay-container" style="display: none">
-                <h3>Color Settings</h3>
-                <hr class="topic-line">
-                <div class="overlay-left">
+                <!-- Scale Settings -->
+                <div id="overlay-scale" class="overlay-container" style="display: none">
+                    <h3>Scale Settings</h3>
+                    <hr class="topic-line">
                     <form>
 
                         <label>
-                            <span data-tooltip class="has-tip tip-right" title="Choose if Colors are mapped to Columns or Rows">Map to</span>
+                            <span data-tooltip class="has-tip tip-right" title="Floor value if Remainder is below">How much one Icon represents</span>
                         </label>
-                        <input type="radio" name="radio3" value="row" id="color-row" checked><label for="color-row"><img src="img/row.svg"> Row</label>
-                        <input type="radio" name="radio3" value="column" id="color-column"><label for="color-column"><img src="img/column.svg"> Column</label>
+                        <select value="1000000">
+                            <option value="100000">1:100.000</option>
+                            <option value="1000000">1:1.000.000</option>
+                            <option value="10000000">1:10.000.000</option>
+                        </select>
 
-                        <legend>Column 1</legend>
-                        <input type="text" class="picker" value="2471a8">
+                        <label>
+                            <span data-tooltip class="has-tip tip-right" title="Enter Scale manually">Manual Scale</span>
+                        </label>
+                        <input type="text" placeholder="100000">
 
-                        <legend>Column 2</legend>
-                        <input type="text" class="picker" value="BD4824">
+                        <label>
+                            <span data-tooltip class="has-tip tip-right" title="Ceil value if Remainder is above">Round Up</span>
+                        </label>
+                        <input type="text" placeholder="0.8">
 
-                        <legend>Column 3</legend>
-                        <input type="text" class="picker" value="A6E229">
+
+
+                        <label>
+                            <span data-tooltip class="has-tip tip-right" title="Floor value if Remainder is below">Round Down</span>
+                        </label>
+                        <input type="text" placeholder="0.3">
+
+
 
                         <a href="#" class="tiny button radius">Check</a>
                         <a href="#" class="tiny button radius">Apply & Close</a>
                     </form>
                 </div>
-                <div class="overlay-right">
+
+
+                <!-- Text Settings -->
+                <div id="overlay-text" class="overlay-container" style="display: none">
+                    <h3>Text Settings</h3>
+                    <hr class="topic-line">
                     <form>
-                        <div class="colorsample">
-                            <h4>Colorsamples</h4>
-                            <label>Palette for max. 6 Columns</label>
-                            <br>
-                            <input type="radio" name="radio4" value="sample1" id="sample1" checked><label for="sample1">Lime</label><br>
-                            <input class="color">
-                            <input type="text" placeholder="#333333">
-                            <input type="text" placeholder="#333333">
-                            <input type="text" placeholder="#333333">
-                            <input type="text" placeholder="#333333">
-                            <input type="text" placeholder="#333333">
-                        </div>
-                        <div class="colorsample">
-                            <input type="radio" name="radio4" value="sample2" id="sample2" checked><label for="sample2">Drakula</label><br>
-                            <input type="text" placeholder="#333333">
-                            <input type="text" placeholder="#333333">
-                            <input type="text" placeholder="#333333">
-                            <input type="text" placeholder="#333333">
-                            <input type="text" placeholder="#333333">
-                            <input type="text" placeholder="#333333">
-                        </div>
-                        <div class="colorsample">
-                            <input type="radio" name="radio4" value="sample3" id="sample3" checked><label for="sample3">Blood</label><br>
-                            <input type="text" placeholder="#333333">
-                            <input type="text" placeholder="#333333">
-                            <input type="text" placeholder="#333333">
-                            <input type="text" placeholder="#333333">
-                            <input type="text" placeholder="#333333">
-                            <input type="text" placeholder="#333333">
-                        </div>
+
+                        <label>
+                            <span data-tooltip class="has-tip tip-right" title="Choose Font-Family">Font-Family</span>
+                        </label>
+                        <select value="Arial">
+                            <option value="Arial">Arial</option>
+                            <option value="Times New Roman">Times New Roman</option>
+                        </select>
+
+                        <input id="draw-column-legend" type="checkbox" checked><label for="draw-column-legend">Draw Column Legend</label>
+
+                        <label>Add Topic Description</label>
+                        <textarea placeholder="Enter Description here.."></textarea>
+
+                        <a href="#" class="tiny button radius">Check</a>
+                        <a href="#" class="tiny button radius">Apply & Close</a>
                     </form>
                 </div>
-            </div>
 
+                <!-- Helptext -->
+                <div id="overlay-help" class="overlay-container" style="display: none">
+                    <h3>Help</h3>
+                    <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+                    <h4>Help 2</h4>
+                    <p>Drei Chinesen mit dem Kontrabass saßen auf der Straße und erzählten sich was. Da kam die Polizei, ei was ist denn das? Drei Chinesen mit dem Kontrabass.</p>
+                </div>
 
-            <!-- Margin Settings -->
-            <div id="overlay-margin" class="overlay-container" style="display: none">
-                <h3>Margin Settings</h3>
-                <hr class="topic-line">
-                <form>
-
-                    <label><span data-tooltip class="has-tip tip-right" title="Change to the right Proportion">Personalia</span></label>
-
-                    <label>Outer Margin</label>
-                    <input type="text" placeholder="30px">
-
-                    <hr class="normal-line">
-
-                    <label>Vertical Icon Margin</label>
-                    <input type="text" placeholder="10px">
-
-                    <label>Horizontal Icon Margin</label>
-                    <input type="text" placeholder="10px">
-
-                    <hr class="normal-line">
-
-                    <label><img src="img/rowmargin.svg"> Row Margin</label>
-                    <input type="text" placeholder="10px">
-
-                    <label><img src="img/columnmargin.svg">Column Margin</label>
-                    <input type="text" placeholder="10px">
-
-
-
-                    <a href="#" class="tiny button radius">Check</a>
-                    <a href="#" class="tiny button radius">Apply & Close</a>
-                </form>
-            </div>
-
-
-            <!-- Scale Settings -->
-            <div id="overlay-scale" class="overlay-container" style="display: none">
-                <h3>Scale Settings</h3>
-                <hr class="topic-line">
-                <form>
-
-                    <label>
-                        <span data-tooltip class="has-tip tip-right" title="Floor value if Remainder is below">How much one Icon represents</span>
-                    </label>
-                    <select value="1000000">
-                        <option value="100000">1:100.000</option>
-                        <option value="1000000">1:1.000.000</option>
-                        <option value="10000000">1:10.000.000</option>
-                    </select>
-
-                    <label>
-                        <span data-tooltip class="has-tip tip-right" title="Enter Scale manually">Manual Scale</span>
-                    </label>
-                    <input type="text" placeholder="100000">
-
-                    <label>
-                        <span data-tooltip class="has-tip tip-right" title="Ceil value if Remainder is above">Round Up</span>
-                    </label>
-                    <input type="text" placeholder="0.8">
-
-
-
-                    <label>
-                        <span data-tooltip class="has-tip tip-right" title="Floor value if Remainder is below">Round Down</span>
-                    </label>
-                    <input type="text" placeholder="0.3">
-
-
-
-                    <a href="#" class="tiny button radius">Check</a>
-                    <a href="#" class="tiny button radius">Apply & Close</a>
-                </form>
-            </div>
-
-
-            <!-- Text Settings -->
-            <div id="overlay-text" class="overlay-container" style="display: none">
-                <h3>Text Settings</h3>
-                <hr class="topic-line">
-                <form>
-
-                    <label>
-                        <span data-tooltip class="has-tip tip-right" title="Choose Font-Family">Font-Family</span>
-                    </label>
-                    <select value="Arial">
-                        <option value="Arial">Arial</option>
-                        <option value="Times New Roman">Times New Roman</option>
-                    </select>
-
-                    <input id="draw-column-legend" type="checkbox" checked><label for="draw-column-legend">Draw Column Legend</label>
-
-                    <label>Add Topic Description</label>
-                    <textarea placeholder="Enter Description here.."></textarea>
-
-                    <a href="#" class="tiny button radius">Check</a>
-                    <a href="#" class="tiny button radius">Apply & Close</a>
-                </form>
-            </div>
-
-            <!-- Helptext -->
-            <div id="overlay-help" class="overlay-container" style="display: none">
-                <h3>Help</h3>
-                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
-                <h4>Help 2</h4>
-                <p>Drei Chinesen mit dem Kontrabass saßen auf der Straße und erzählten sich was. Da kam die Polizei, ei was ist denn das? Drei Chinesen mit dem Kontrabass.</p>
             </div>
 
         </div>
 
+        <div id="message"></div>
+
+        <div id="footer" class="">2013 | Open Source @ <a href="https://github.com/Fannon/isomatic"
+                                                          target="_blank">Github</a></div>
+
     </div>
 
-    <div id="message"></div>
 
-    <div id="footer" class="">2013 | Open Source @ <a href="https://github.com/Fannon/isomatic"
-                                                      target="_blank">Github</a></div>
-
-</div>
-
-
-<div id="newModal" class="tiny reveal-modal" data-reveal>
-    <h3>New Graphic</h3>
-    <hr class="topic-line">
-    <form>
-        <label for="aspect-ratio">Aspect-Ratio:</label>
-        <input id="aspect-ratio" type="text" placeholder="16/9">
-
-        <hr class="normal-line">
-
-        <h4>Alternative: Enter Width/Height</h4>
-
-        <label for="aspect-ratio-width">Width</label>
-        <input id="aspect-ratio-width" type="text" placeholder="640">
-
-        <label for="aspect-ratio-height">Height</label>
-        <input id="aspect-ratio-height" type="text" placeholder="360">
-
-        <input type="submit" name="submit" value="Generate New Graphic" class="tiny button radius">
-    </form>
-    <a class="close-reveal-modal">&#215;</a>
-</div>
-
-<div id="importModal" class="tiny reveal-modal" data-reveal>
-    <h3>Import Data</h3>
-    <hr class="topic-line">
-    <form>
-        <label for="imported-file">Upload SVG or JSON File:</label>
-        <input type="file" id="imported-file">
-        <input type="submit" name="submit" value="Upload" class="tiny button radius">
-    </form>
-    <a class="close-reveal-modal">&#215;</a>
-</div>
-
-<div id="export_container"></div>
+    <!-- Modals -->
+    <div id="new_container"></div>
+    <div id="import_container"></div>
+    <div id="export_container"></div>
 
 </body>
 
-<!-- External Libraries -->
+<!-- External Libraries & Frameworks -->
 <script src="bower_components/jquery/jquery.js"></script>
 <script src="bower_components/foundation/js/foundation.min.js"></script>
-
 <script src="bower_components/underscore/underscore.js"></script>
 <script src="bower_components/backbone/backbone.js"></script>
-
 <script src="bower_components/d3js/build/d3.v3.min.js"></script>
-
-<!-- TODO: Remove innersvg Dependency ? -->
 <script src="js/lib/innersvg.js"></script>
 
-<!-- Custom JavaScript -->
+<!-- Main Logic and Models -->
 <script src="js/main.js"></script>
-<script src="js/models/options.js"></script>
 <script src="js/router.js"></script>
+<script src="js/models/options.js"></script>
 <script src="js/data.js"></script>
 <script src="js/isotypeLayout.js"></script>
 <script src="js/visualisation.js"></script>
 <script src="js/icons.js"></script>
 
+<!-- Views -->
 <script src="js/views/DataView.js"></script>
+<script src="js/views/NewView.js"></script>
+<script src="js/views/ImportView.js"></script>
 <script src="js/views/ExportView.js"></script>
 
 <!-- 3rd Party Plugins -->
@@ -424,6 +394,45 @@
             <table id="dataTable"></table>
 
         </form>
+    </div>
+</script>
+
+<!-- New Graphic Template -->
+<script type="text/template" id="new_template">
+    <div id="newModal" class="tiny reveal-modal" data-reveal>
+        <h3>New Graphic</h3>
+        <hr class="topic-line">
+        <form>
+            <label for="aspect-ratio">Aspect-Ratio:</label>
+            <input id="aspect-ratio" type="text" placeholder="16/9">
+
+            <hr class="normal-line">
+
+            <h4>Alternative: Enter Width/Height</h4>
+
+            <label for="aspect-ratio-width">Width</label>
+            <input id="aspect-ratio-width" type="text" placeholder="640">
+
+            <label for="aspect-ratio-height">Height</label>
+            <input id="aspect-ratio-height" type="text" placeholder="360">
+
+            <input type="submit" name="submit" value="Generate New Graphic" class="tiny button radius">
+        </form>
+        <a class="close-reveal-modal">&#215;</a>
+    </div>
+</script>
+
+<!-- Import Template -->
+<script type="text/template" id="import_template">
+    <div id="importModal" class="tiny reveal-modal" data-reveal>
+        <h3>Import Data</h3>
+        <hr class="topic-line">
+        <form>
+            <label for="imported-file">Upload SVG or JSON File:</label>
+            <input type="file" id="imported-file">
+            <input type="submit" name="submit" value="Upload" class="tiny button radius">
+        </form>
+        <a class="close-reveal-modal">&#215;</a>
     </div>
 </script>
 

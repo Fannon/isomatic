@@ -7,7 +7,7 @@
  * @type {*|void|Object}
  */
 isomatic.views.DataView = Backbone.View.extend({
-    initialize: function(){
+    initialize: function() {
         "use strict";
         console.log('DataView init');
 
@@ -33,7 +33,7 @@ isomatic.views.DataView = Backbone.View.extend({
 
 
     },
-    render: function(){
+    render: function() {
         "use strict";
 
         //Pass variables in using Underscore.js Template
@@ -42,10 +42,10 @@ isomatic.views.DataView = Backbone.View.extend({
         };
 
         // Compile the template using underscore
-        var template = _.template( $("#data_template").html(), variables );
+        var template = _.template($("#data_template").html(), variables);
 
         // Load the compiled HTML into the Backbone "el"
-        this.$el.html( template );
+        this.$el.html(template);
     },
     events: {
         "click #pasteDataSubmit": "submitData",
@@ -84,7 +84,7 @@ isomatic.views.DataView = Backbone.View.extend({
 
     },
 
-    submitDataClose: function () {
+    submitDataClose: function() {
         "use strict";
         this.submitData();
 
@@ -96,8 +96,7 @@ isomatic.views.DataView = Backbone.View.extend({
     updateData: function() {
         "use strict";
         // TODO: Get new Data from edited HansoneTable
-        var data =
-        isomatic.data.process(data);
+        var data = isomatic.data.process(data);
     },
 
     /**
@@ -118,7 +117,7 @@ isomatic.views.DataView = Backbone.View.extend({
         // Get Columns from Data
         var columns = [];
         for (var o in data[0]) {
-            if( data[0].hasOwnProperty(o) ) {
+            if (data[0].hasOwnProperty(o)) {
                 columns.push(o);
             }
         }
@@ -129,7 +128,9 @@ isomatic.views.DataView = Backbone.View.extend({
             .data(columns)
             .enter()
             .append("th")
-            .text(function(column) { return column; });
+            .text(function(column) {
+                return column;
+            });
 
         // create a row for each object in the data
         var rows = tbody.selectAll("tr")
@@ -146,7 +147,9 @@ isomatic.views.DataView = Backbone.View.extend({
             })
             .enter()
             .append("td")
-            .text(function(d) { return d.value; });
+            .text(function(d) {
+                return d.value;
+            });
 
         return table;
     },
@@ -157,19 +160,21 @@ isomatic.views.DataView = Backbone.View.extend({
         "use strict";
 
         // Convert Data to 2dim Array for previewing with HandsoneTable:
-        var handsonTableArray = [[]];
+        var handsonTableArray = [
+            []
+        ];
 
         for (var o in data[0]) {
-            if( data[0].hasOwnProperty(o) ) {
+            if (data[0].hasOwnProperty(o)) {
                 handsonTableArray[0].push(o);
             }
         }
 
         for (var i = 0; i < data.length; i++) {
-            handsonTableArray[i+1] = [];
+            handsonTableArray[i + 1] = [];
             for (var obj_inner in data[1]) {
-                if( data[1].hasOwnProperty(obj_inner) ) {
-                    handsonTableArray[i+1].push(data[i][obj_inner]);
+                if (data[1].hasOwnProperty(obj_inner)) {
+                    handsonTableArray[i + 1].push(data[i][obj_inner]);
                 }
             }
         }

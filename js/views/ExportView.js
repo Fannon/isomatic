@@ -15,6 +15,7 @@ isomatic.views.ExportView = Backbone.View.extend({
 
         this.render();
 
+        // Event Registration
         var self = this;
 
         $("#startExport" ).on("click", function() {
@@ -32,7 +33,6 @@ isomatic.views.ExportView = Backbone.View.extend({
         // Load the compiled HTML into the Backbone "el"
         this.$el.html(template);
 
-        console.dir(this.$el);
     },
     events: {
         // TODO: Not working, no idea why
