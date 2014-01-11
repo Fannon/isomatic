@@ -246,6 +246,10 @@ h1, h2, h3, h4, h5, h6 {
 
   #overlay-color {
 
+    form h5 {
+      clear: both;
+    }
+
     .colorpalette {
 
       height: 40px;
@@ -253,9 +257,10 @@ h1, h2, h3, h4, h5, h6 {
       background: #FFF;
       border: 5px solid #FFF;
       overflow: hidden;
+      float: left;
+      clear: both;
 
       .colorbox {
-        // display: inline-block;
         float: left;
         height: 30px;
         width: 30px;
@@ -309,7 +314,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #footer {
-  margin: 1em 0;
+  margin: 15px 0 0 0;
   padding: 3px;
   font-size: 0.85em;
   color: #777;

@@ -10,6 +10,8 @@ isomatic.views.ColorView = Backbone.View.extend({
     initialize: function(){
         "use strict";
         this.render();
+        $('#colorpalette-Dracula').addClass('active');
+
     },
     render: function(){
         "use strict";

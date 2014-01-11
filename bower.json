@@ -8,7 +8,6 @@
         "underscore": null,
         "d3js": null,
         "colpick": "josedvq/colpick-jQuery-Color-Picker",
-        "handsontable": "warpech/jquery-handsontable",
         "slimScroll": "rochal/jQuery-slimScroll"
     },
     "version": "0.0.1",

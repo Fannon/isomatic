@@ -318,7 +318,7 @@
 
                     {{#each palettes}}
                     <h5>{{@key}}</h5>
-                    <div class="colorpalette">
+                    <div id="colorpalette-{{@key}}" class="colorpalette">
                         {{#each this}}
                         <div class="colorbox" style="background-color:{{this}}" title="{{this}}"></div>
                         {{/each}}
