@@ -18,7 +18,7 @@ isomatic.views.ExportView = Backbone.View.extend({
         // Event Registration
         var self = this;
 
-        $("#startExport" ).on("click", function() {
+        $("#start-export" ).on("click", function() {
             self.exportSVG();
         });
     },
@@ -28,7 +28,7 @@ isomatic.views.ExportView = Backbone.View.extend({
         "use strict";
 
         // Compile the template using underscore
-        var template = _.template( $("#export_template").html());
+        var template = _.template( $("#export-template").html());
 
         // Load the compiled HTML into the Backbone "el"
         this.$el.html(template);

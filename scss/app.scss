@@ -97,31 +97,31 @@ h1, h2, h3, h4, h5, h6 {
    margin: 10px 0px 10px 0px;
   }
 
-  #setType {
+  #trigger-type {
     background-image: url(../img/type.svg);
   }
 
-  #setData {
+  #trigger-data {
     background-image: url(../img/data.svg);
   }
 
-  #setColor {
+  #trigger-color {
     background-image: url(../img/color.svg);
   }
 
-  #setIcon {
+  #trigger-icon {
     background-image: url(../img/icon.svg);
   }
 
-  #setText {
+  #trigger-text {
     background-image: url(../img/text.svg);
   }
 
-  #setProperties {
+  #trigger-properties {
     background-image: url(../img/properties.svg);
   }
 
-  #setScale {
+  #trigger-scale {
     background-image: url(../img/scale.svg);
   }
 
@@ -188,10 +188,10 @@ h1, h2, h3, h4, h5, h6 {
     border-right: 1px solid #CCC;
     padding: 5px 10px 5px 10px;
     overflow: hidden;
-    box-shadow: 1px 2px 4px #333;
+    box-shadow: 1px 2px 4px #AAA;
 
     .overlay-left {
-      border-right: 1px solid #BFBFBF;
+      border-right: 1px solid #BBB;
       height: 400px;
       padding-right: 10px;
       width: 270px;
@@ -305,7 +305,7 @@ h1, h2, h3, h4, h5, h6 {
   }
 
   #overlay-data, #overlay-icon, #overlay-color, #overlay-help {
-    width: 100%;
+    width: 96%;
     border-right: none;
   }
 

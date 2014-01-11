@@ -36,10 +36,10 @@ $(function() {
     isomatic.vis.init();
 
     // Init Views
-    isomatic.views.dataView = new isomatic.views.DataView({el: $("#data_container")});
-    isomatic.views.newView = new isomatic.views.NewView({el: $("#new_container")});
-    isomatic.views.importView = new isomatic.views.ImportView({el: $("#import_container")});
-    isomatic.views.exportView = new isomatic.views.ExportView({el: $("#export_container")});
+    isomatic.views.dataView = new isomatic.views.DataView({el: $("#data-container")});
+    isomatic.views.newView = new isomatic.views.NewView({el: $("#new-container")});
+    isomatic.views.importView = new isomatic.views.ImportView({el: $("#import-container")});
+    isomatic.views.exportView = new isomatic.views.ExportView({el: $("#export-container")});
 
 
     ///////////////////////////////////////

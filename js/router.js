@@ -48,6 +48,7 @@ var IsomaticRouter = Backbone.Router.extend({
 
     help: function() {
         "use strict";
+        $(".trigger-ui").removeClass('active');
         $(".overlay-container").hide();
         $('#overlay-help').show();
         console.log('#help');
@@ -55,6 +56,8 @@ var IsomaticRouter = Backbone.Router.extend({
 
     data: function() {
         "use strict";
+        $(".trigger-ui").removeClass('active');
+        $("#setData").addClass('active');
         $(".overlay-container").hide();
         $('#overlay-data').show();
         console.log('#data');
@@ -100,6 +103,17 @@ var IsomaticRouter = Backbone.Router.extend({
         $(".overlay-container").hide();
         $('#overlay-text').show();
         console.log('#text');
+    },
+
+    ////////////////////////////////////
+    // Helper Functions               //
+    ////////////////////////////////////
+
+    triggerUi: function(id) {
+        $(".trigger-ui").removeClass('active');
+        $("#setData").addClass('active');
+        $(".overlay-container").hide();
+        $('#overlay-data').show();
     }
 });
 

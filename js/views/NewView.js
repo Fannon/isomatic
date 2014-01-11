@@ -21,12 +21,16 @@ isomatic.views.NewView = Backbone.View.extend({
         };
 
         // Compile the template using underscore
-        var template = _.template( $("#new_template").html(), variables );
+        var template = _.template( $("#new-template").html(), variables );
 
         // Load the compiled HTML into the Backbone "el"
         this.$el.html(template);
     },
     events: {
-        "click #pasteDataSubmit": "submitData"
+        "click #generate-new-graphic": "generateNewGraphic"
+    },
+
+    generateNewGraphic: function() {
+        // TODO
     }
 });

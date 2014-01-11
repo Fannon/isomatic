@@ -9,6 +9,7 @@
 isomatic.views.DataView = Backbone.View.extend({
     initialize: function() {
         "use strict";
+
         console.log('DataView init');
 
         this.render();
@@ -42,15 +43,14 @@ isomatic.views.DataView = Backbone.View.extend({
         };
 
         // Compile the template using underscore
-        var template = _.template($("#data_template").html(), variables);
+        var template = _.template($("#data-template").html(), variables);
 
         // Load the compiled HTML into the Backbone "el"
         this.$el.html(template);
     },
     events: {
-        "click #pasteDataSubmit": "submitData",
-        "click #pasteDataSubmitClose": "submitDataClose",
-        "click #pasteDataUpdate": "updateData"
+        "click #import-data": "submitData",
+        "click #import-data-close": "submitDataClose"
     },
 
     /**

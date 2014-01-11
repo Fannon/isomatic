@@ -21,18 +21,18 @@
                 <a href="#home"><img src="img/home.svg"></a>
             </div>
 
-            <a id="setHelp" class="right" href="#help">Help</a>
+            <a id="trigger-help" class="right" href="#help">Help</a>
 
             <div id="navigation" class="right">
                 <ul>
                     <li>
-                        <a href="#new" data-reveal-id="newModal"><img src="img/new.svg">New</a>
+                        <a href="#new" data-reveal-id="new-modal"><img src="img/new.svg">New</a>
                     </li>
                     <li>
-                        <a id="openImport" class="trigger-ui" href="#import" data-reveal-id="importModal"><img src="img/import.svg">Import</a>
+                        <a id="openImport" class="trigger-ui" href="#import" data-reveal-id="import-modal"><img src="img/import.svg">Import</a>
                     </li>
                     <li>
-                        <a id="openExport" class="trigger-ui" href="#export" data-reveal-id="exportModal"><img src="img/export.svg">Export</a>
+                        <a id="openExport" class="trigger-ui" href="#export" data-reveal-id="export-modal"><img src="img/export.svg">Export</a>
                     </li>
 
                 </ul>
@@ -44,15 +44,15 @@
     <div class="container">
 
         <div id="toolbar">
-            <a href="#data"><div class="icon trigger-ui" id="setData"></div></a>
-            <a href="#type"><div class="icon trigger-ui" id="setType"></div></a>
+            <a href="#data"><div class="icon trigger-ui" id="trigger-data"></div></a>
+            <a href="#type"><div class="icon trigger-ui" id="trigger-type"></div></a>
             <hr class="toolbar-line">
-            <a href="#icon"><div class="icon trigger-ui" id="setIcon"></div></a>
-            <a href="#color"><div class="icon trigger-ui" id="setColor"></div></a>
-            <a href="#properties"><div class="icon trigger-ui" id="setProperties"></div></a>
+            <a href="#icon"><div class="icon trigger-ui" id="trigger-icon"></div></a>
+            <a href="#color"><div class="icon trigger-ui" id="trigger-color"></div></a>
+            <a href="#properties"><div class="icon trigger-ui" id="trigger-properties"></div></a>
             <hr class="toolbar-line">
-            <a href="#scale"><div class="icon trigger-ui" id="setScale"></div></a>
-            <a href="#text"><div class="icon trigger-ui" id="setText"></div></a>
+            <a href="#scale"><div class="icon trigger-ui" id="trigger-scale"></div></a>
+            <a href="#text"><div class="icon trigger-ui" id="trigger-text"></div></a>
         </div>
 
         <div id="display">
@@ -62,7 +62,7 @@
             <div id="overlay">
 
                 <!-- Data Settings Container -->
-                <div id="data_container"></div>
+                <div id="data-container"></div>
 
 
                 <!-- Type Settings -->
@@ -99,7 +99,7 @@
 
                         <input id="break-rows" type="checkbox"><label for="break-rows">Break row into multiple Lines</label>
                         <br>
-                        <a href="#" class="tiny button radius">Check</a>
+                        <a href="#" class="tiny button radius">Apply</a>
                         <a href="#" class="tiny button radius">Apply & Close</a>
                     </form>
                 </div>
@@ -131,7 +131,7 @@
 
 
 
-                            <a href="#" class="tiny button radius">Check</a>
+                            <a href="#" class="tiny button radius">Apply</a>
                             <a href="#" class="tiny button radius">Apply & Close</a>
 
                         </form>
@@ -172,7 +172,7 @@
                             <legend>Column 3</legend>
                             <input type="text" class="picker" value="A6E229">
 
-                            <a href="#" class="tiny button radius">Check</a>
+                            <a href="#" class="tiny button radius">Apply</a>
                             <a href="#" class="tiny button radius">Apply & Close</a>
                         </form>
                     </div>
@@ -276,7 +276,7 @@
                         <label><img src="img/iconsize.svg">Icon Size</label>
                         <input type="text" placeholder="10px"><br>
 
-                        <a href="#" class="tiny button radius">Check</a>
+                        <a href="#" class="tiny button radius">Apply</a>
                         <a href="#" class="tiny button radius">Apply & Close</a>
                     </form>
                 </div>
@@ -316,7 +316,7 @@
 
 
 
-                        <a href="#" class="tiny button radius">Check</a>
+                        <a href="#" class="tiny button radius">Apply</a>
                         <a href="#" class="tiny button radius">Apply & Close</a>
                     </form>
                 </div>
@@ -341,7 +341,7 @@
                         <label>Add Topic Description</label>
                         <textarea placeholder="Enter Description here.."></textarea>
 
-                        <a href="#" class="tiny button radius">Check</a>
+                        <a href="#" class="tiny button radius">Apply</a>
                         <a href="#" class="tiny button radius">Apply & Close</a>
                     </form>
                 </div>
@@ -367,9 +367,9 @@
 
 
     <!-- Modals -->
-    <div id="new_container"></div>
-    <div id="import_container"></div>
-    <div id="export_container"></div>
+    <div id="new-container"></div>
+    <div id="import-container"></div>
+    <div id="export-container"></div>
 
 </body>
 
@@ -404,10 +404,10 @@
 
 <!-- Minimized JavaScript -->
 <!--<script src="js/app.min.js"></script>-->
-</html>
+
 
 <!-- Data Template -->
-<script type="text/template" id="data_template">
+<script type="text/template" id="data-template">
     <div id="overlay-data" class="overlay-container" style="display: none">
 
         <h3>Data Import</h3>
@@ -424,8 +424,8 @@
             <label>Paste Data</label>
             <textarea value="Copy'n'Paste here" id="dataPaste"><%= preset_data %></textarea>
 
-            <a id="pasteDataSubmit" href="#" class="tiny button radius">Import</a>
-            <a id="pasteDataSubmitClose" href="#" class="tiny button radius">Import and Close</a>
+            <a id="import-data" href="#" class="tiny button radius">Import</a>
+            <a id="import-data-close" href="#" class="tiny button radius">Import and Close</a>
 
             <br>
             <hr class="normal-line">
@@ -438,7 +438,7 @@
 </script>
 
 <!-- New Graphic Template -->
-<script type="text/template" id="new_template">
+<script type="text/template" id="new-template">
     <div id="newModal" class="tiny reveal-modal" data-reveal>
         <h3>New Graphic</h3>
         <hr class="topic-line">
@@ -456,14 +456,14 @@
             <label for="aspect-ratio-height">Height</label>
             <input id="aspect-ratio-height" type="text" placeholder="360">
 
-            <input type="submit" name="submit" value="Generate New Graphic" class="tiny button radius">
+            <input id="generate-new-graphic" type="submit" name="submit" value="Generate New Graphic" class="tiny button radius">
         </form>
         <a class="close-reveal-modal">&#215;</a>
     </div>
 </script>
 
 <!-- Import Template -->
-<script type="text/template" id="import_template">
+<script type="text/template" id="import-template">
     <div id="importModal" class="tiny reveal-modal" data-reveal>
         <h3>Import Data</h3>
         <hr class="topic-line">
@@ -477,7 +477,7 @@
 </script>
 
 <!-- Export Template -->
-<script type="text/template" id="export_template">
+<script type="text/template" id="export-template">
     <div id="exportModal" class="tiny reveal-modal" data-reveal>
 
         <h3>Export Graphic / Data</h3>
@@ -494,8 +494,10 @@
 
             <br>
 
-            <div id='startExport' class="tiny button radius">Download</div>
+            <div id='start-export' class="tiny button radius">Download</div>
 
         </form>
     </div>
 </script>
+
+</html>

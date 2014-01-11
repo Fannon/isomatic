@@ -74,7 +74,7 @@ isomatic.views.ImportView = Backbone.View.extend({
         };
 
         // Compile the template using underscore
-        var template = _.template( $("#import_template").html(), variables );
+        var template = _.template( $("#import-template").html(), variables );
 
         // Load the compiled HTML into the Backbone "el"
         this.$el.html(template);
