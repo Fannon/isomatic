@@ -21,8 +21,6 @@
                 <a href="#home"><img src="img/home.svg"></a>
             </div>
 
-            <a id="trigger-help" class="right" href="#help">Help</a>
-
             <div id="navigation" class="right">
                 <ul>
                     <li>
@@ -34,7 +32,9 @@
                     <li>
                         <a id="openExport" class="trigger-ui" href="#export" data-reveal-id="export-modal"><img src="img/export.svg">Export</a>
                     </li>
-
+                    <li id="helpbox">
+                        <a id="trigger-help" class="trigger-ui" href="#help">Help</a>
+                    </li>
                 </ul>
             </div>
 
@@ -57,7 +57,7 @@
 
         <div id="display">
 
-            <div id="graph"></div>
+            <div id="graph-container"></div>
 
             <div id="overlay">
 
@@ -151,67 +151,8 @@
 
 
                 <!-- Color Settings -->
-                <div id="overlay-color" class="overlay-container" style="display: none">
-                    <h3>Color Settings</h3>
-                    <hr class="topic-line">
-                    <div class="overlay-left">
-                        <form>
 
-                            <label>
-                                <span data-tooltip class="has-tip tip-right" title="Choose if Colors are mapped to Columns or Rows">Map to</span>
-                            </label>
-                            <input type="radio" name="radio3" value="row" id="color-row" checked><label for="color-row"><img src="img/row.svg"> Row</label>
-                            <input type="radio" name="radio3" value="column" id="color-column"><label for="color-column"><img src="img/column.svg"> Column</label>
-
-                            <legend>Column 1</legend>
-                            <input type="text" class="picker" value="2471a8">
-
-                            <legend>Column 2</legend>
-                            <input type="text" class="picker" value="BD4824">
-
-                            <legend>Column 3</legend>
-                            <input type="text" class="picker" value="A6E229">
-
-                            <a href="#" class="tiny button radius">Apply</a>
-                            <a href="#" class="tiny button radius">Apply & Close</a>
-                        </form>
-                    </div>
-                    <div class="overlay-right">
-                        <form>
-                            <h4>Color Palettes</h4>
-
-                            <h5>Lime</h5>
-                            <div class="colorpalette">
-                                <div class="colorbox" style="background-color:#0A7B83" title="#0A7B83"></div>
-                                <div class="colorbox" style="background-color:#2AA876" title="#0A7B83"></div>
-                                <div class="colorbox" style="background-color:#FFD265" title="#0A7B83"></div>
-                                <div class="colorbox" style="background-color:#F19C65" title="#0A7B83"></div>
-                                <div class="colorbox" style="background-color:#CE4D45" title="#0A7B83"></div>
-                            </div>
-
-                            <div class="colorsample">
-                                <input type="radio" name="radio4" value="sample2" id="sample2"><label for="sample2">Drakula</label><br>
-                                <div class="colorpalette">
-                                    <div data-tooltip class="colorbox has-tip tip-bottom" style="background-color:#0A7B83" title="#0A7B83"></div>
-                                    <div data-tooltip class="colorbox has-tip tip-bottom" style="background-color:#2AA876" title="#0A7B83"></div>
-                                    <div data-tooltip class="colorbox has-tip tip-bottom" style="background-color:#FFD265" title="#0A7B83"></div>
-                                    <div data-tooltip class="colorbox has-tip tip-bottom" style="background-color:#F19C65" title="#0A7B83"></div>
-                                    <div data-tooltip class="colorbox has-tip tip-bottom" style="background-color:#CE4D45" title="#0A7B83"></div>
-                                </div>
-                            </div>
-                            <div class="colorsample">
-                                <input type="radio" name="radio4" value="sample3" id="sample3"><label for="sample3">Blood</label><br>
-                                <div class="colorpalette active">
-                                    <div data-tooltip class="colorbox has-tip tip-bottom" style="background-color:#0A7B83" title="#0A7B83"></div>
-                                    <div data-tooltip class="colorbox has-tip tip-bottom" style="background-color:#2AA876" title="#0A7B83"></div>
-                                    <div data-tooltip class="colorbox has-tip tip-bottom" style="background-color:#FFD265" title="#0A7B83"></div>
-                                    <div data-tooltip class="colorbox has-tip tip-bottom" style="background-color:#F19C65" title="#0A7B83"></div>
-                                    <div data-tooltip class="colorbox has-tip tip-bottom" style="background-color:#CE4D45" title="#0A7B83"></div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
+                <div id="color-container"></div>
 
 
                 <!-- Properties -->
@@ -342,6 +283,7 @@
 <script src="bower_components/foundation/js/foundation.min.js"></script>
 <script src="bower_components/underscore/underscore.js"></script>
 <script src="bower_components/backbone/backbone.js"></script>
+<script src="bower_components/handlebars/handlebars.min.js"></script>
 <script src="bower_components/d3js/build/d3.v3.min.js"></script>
 <script src="js/lib/innersvg.js"></script>
 
@@ -355,10 +297,12 @@
 <script src="js/icons.js"></script>
 
 <!-- Views -->
+<script src="js/views/GraphView.js"></script>
 <script src="js/views/DataView.js"></script>
 <script src="js/views/NewView.js"></script>
 <script src="js/views/ImportView.js"></script>
 <script src="js/views/ExportView.js"></script>
+<script src="js/views/ColorView.js"></script>
 
 <!-- 3rd Party Plugins -->
 <script src="bower_components/colpick/colpick.js"></script>
@@ -373,31 +317,26 @@
 <!-- Data Template -->
 <script type="text/template" id="data-template">
     <div id="overlay-data" class="overlay-container" style="display: none">
+        <div class="scrollbar">
+            <h3>Data Import</h3>
+            <hr class="topic-line">
 
-        <h3>Data Import</h3>
-        <hr class="topic-line">
+            <form class="custom">
 
-        <form class="custom">
-            <!--<label>-->
-                <!--<span data-tooltip class="has-tip tip-right" title="Choose the right format for Data Import">Data Type</span>-->
-            <!--</label>-->
-            <!--<input name="radio1" type="radio" id="csv" checked><label for="csv">CSV</label>-->
-            <!--<input name="radio1" type="radio" id="tsv"><label for="tsv">TSV</label>-->
-            <!--<input name="radio1" type="radio" id="json"><label for="json">JSON</label>-->
+                <label>Paste Data</label>
+                <textarea value="Copy'n'Paste here" id="dataPaste">{{ preset_data }}</textarea>
 
-            <label>Paste Data</label>
-            <textarea value="Copy'n'Paste here" id="dataPaste"><%= preset_data %></textarea>
+                <a id="import-data" href="#" class="tiny button radius">Import</a>
+                <a id="import-data-close" href="#" class="tiny button radius">Import and Close</a>
 
-            <a id="import-data" href="#" class="tiny button radius">Import</a>
-            <a id="import-data-close" href="#" class="tiny button radius">Import and Close</a>
+                <br>
+                <hr class="normal-line">
 
-            <br>
-            <hr class="normal-line">
+                <h4>Data Preview:</h4>
+                <table id="dataTable"></table>
 
-            <h4>Data Preview:</h4>
-            <table id="dataTable"></table>
-
-        </form>
+            </form>
+        </div>
     </div>
 </script>
 
@@ -461,6 +400,51 @@
             <div id='start-export' class="tiny button radius">Download</div>
 
         </form>
+    </div>
+</script>
+
+<script type="text/template" id="color-template">
+    <div id="overlay-color" class="overlay-container" style="display: none">
+        <div class="scrollbar">
+            <h3>Color Settings</h3>
+            <hr class="topic-line">
+            <div class="overlay-left">
+                <form>
+
+                    <label>
+                        <span data-tooltip class="has-tip tip-right" title="Choose if Colors are mapped to Columns or Rows">Map to</span>
+                    </label>
+                    <input type="radio" name="radio3" value="row" id="color-row" checked><label for="color-row"><img src="img/row.svg"> Row</label>
+                    <input type="radio" name="radio3" value="column" id="color-column"><label for="color-column"><img src="img/column.svg"> Column</label>
+
+                    <legend>Column 1</legend>
+                    <input type="text" class="picker" value="2471a8">
+
+                    <legend>Column 2</legend>
+                    <input type="text" class="picker" value="BD4824">
+
+                    <legend>Column 3</legend>
+                    <input type="text" class="picker" value="A6E229">
+
+                    <a href="#" class="tiny button radius">Apply</a>
+                    <a href="#" class="tiny button radius">Apply & Close</a>
+                </form>
+            </div>
+            <div class="overlay-right">
+                <form>
+                    <h4>Color Palettes</h4>
+
+                    {{#each palettes}}
+                    <h5>{{@key}}</h5>
+                    <div class="colorpalette">
+                        {{#each this}}
+                        <div class="colorbox" style="background-color:{{this}}" title="{{this}}"></div>
+                        {{/each}}
+                    </div>
+                    {{/each}}
+                </form>
+            </div>
+        </div>
     </div>
 </script>
 

@@ -27,7 +27,7 @@ h1, h2, h3, h4, h5, h6 {
     li {
       float: left;
       padding-top: 11px;
-      margin-right: 20px;
+      margin-left: 20px;
 
       img {
         margin-right: 5px;
@@ -53,14 +53,14 @@ h1, h2, h3, h4, h5, h6 {
     }
   }
 
-  #setHelp {
+  a#trigger-help {
     font: h4;
-    padding: 0 10px;
+    padding: 12px;
     background: #666;
     color: #FFF;
   }
 
-  #setHelp:hover {
+  #trigger-help:hover {
     background: #888;
     cursor: pointer;
   }

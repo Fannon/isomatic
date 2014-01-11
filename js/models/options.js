@@ -113,6 +113,15 @@ isomatic.options.internal.scaleArray = [
 /** This example Dataset is loaded when the Application loads */
 isomatic.options.internal.exampleData = "\t<30.000/year\t30.000-50.000\t>50.000\nFacebook\t165050000\t395000777\t135000000\nTwitter\t278050000\t198007700\t88000555\nGoogle+\t459370000\t159200000\t129000000\nLinkedIn\t102500000\t80500770\t30006000";
 
+/** Color Preset Palettes */
+isomatic.options.internal.colorPalettes = {
+    "Pastell": ["#0A7B83","#2AA876","#FFD265","#F19C65","#CE4D45"],
+    "Dracula": ["#0A7B83","#293474","#FFD265","#F19C65","#CE4D45"],
+    "Dark": ["#0A7B83","#2AA876","#FFD265","#F19C65","#CE4D45"],
+    "Bright": ["#0A7B83","#2AA876","#FFD265","#F19C65","#CE4D45"],
+    "Rainbow": ["#0A7B83","#2AA876","#FFD265","#F19C65","#CE4D45"],
+    "Oil": ["#0A7B83","#2AA876","#FFD265","#F19C65","#CE4D45"]
+};
 
 ///////////////////////////////////////
 // Backbone.js Models                //

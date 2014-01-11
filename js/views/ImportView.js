@@ -1,5 +1,5 @@
 /* jshint jquery:true, devel: true */
-/* global isomatic, d3, Backbone, _ */
+/* global isomatic, d3, Backbone, _, Handlebars */
 
 /**
  * Import View
@@ -68,16 +68,11 @@ isomatic.views.ImportView = Backbone.View.extend({
     render: function(){
         "use strict";
 
-        //Pass variables in using Underscore.js Template
-        var variables = {
-            preset_data: isomatic.options.internal.exampleData
-        };
+        var source = $('#import-template').html();
+        var template = Handlebars.compile(source);
+        var html = template();
+        this.$el.html(html);
 
-        // Compile the template using underscore
-        var template = _.template( $("#import-template").html(), variables );
-
-        // Load the compiled HTML into the Backbone "el"
-        this.$el.html(template);
     },
     events: {
         "click #pasteDataSubmit": "submitData"

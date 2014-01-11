@@ -32,14 +32,16 @@ $(function() {
     // Init Application                  //
     ///////////////////////////////////////
 
-    // Init Visualisation
-    isomatic.vis.init();
+    // Go to Home View, ignore current URL on App-Load
+    window.location = '#home';
 
     // Init Views
+    isomatic.views.graphView = new isomatic.views.GraphView({el: $("#graph-container")});
     isomatic.views.dataView = new isomatic.views.DataView({el: $("#data-container")});
     isomatic.views.newView = new isomatic.views.NewView({el: $("#new-container")});
     isomatic.views.importView = new isomatic.views.ImportView({el: $("#import-container")});
     isomatic.views.exportView = new isomatic.views.ExportView({el: $("#export-container")});
+    isomatic.views.colorView = new isomatic.views.ColorView({el: $("#color-container")});
 
 
     ///////////////////////////////////////

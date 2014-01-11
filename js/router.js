@@ -48,72 +48,58 @@ var IsomaticRouter = Backbone.Router.extend({
 
     help: function() {
         "use strict";
-        $(".trigger-ui").removeClass('active');
-        $(".overlay-container").hide();
-        $('#overlay-help').show();
-        console.log('#help');
+        this.triggerUi('help');
     },
 
     data: function() {
         "use strict";
-        $(".trigger-ui").removeClass('active');
-        $("#setData").addClass('active');
-        $(".overlay-container").hide();
-        $('#overlay-data').show();
-        console.log('#data');
+        this.triggerUi('data');
     },
 
     type: function() {
         "use strict";
-        $(".overlay-container").hide();
-        $('#overlay-type').show();
-        console.log('#type');
+        this.triggerUi('type');
     },
 
     color: function() {
         "use strict";
-        $(".overlay-container").hide();
-        $('#overlay-color').show();
-        console.log('#color');
+        this.triggerUi('color');
     },
 
     icon: function() {
         "use strict";
-        $(".overlay-container").hide();
-        $('#overlay-icon').show();
-        console.log('#icon');
+        this.triggerUi('icon');
     },
 
     properties: function() {
         "use strict";
-        $(".overlay-container").hide();
-        $('#overlay-properties').show();
-        console.log('#properties');
+        this.triggerUi('properties');
     },
 
     scale: function() {
         "use strict";
-        $(".overlay-container").hide();
-        $('#overlay-scale').show();
-        console.log('#scale');
+        this.triggerUi('scale');
     },
 
     text: function() {
         "use strict";
-        $(".overlay-container").hide();
-        $('#overlay-text').show();
-        console.log('#text');
+        this.triggerUi('text');
     },
 
     ////////////////////////////////////
     // Helper Functions               //
     ////////////////////////////////////
 
+    /**
+     * Handles UI Elements
+     * @param id
+     */
     triggerUi: function(id) {
+        "use strict";
         $(".trigger-ui").removeClass('active');
-        $("#setData").addClass('active');
         $(".overlay-container").hide();
-        $('#overlay-data').show();
+        $("#trigger-" + id).addClass('active');
+        $('#overlay-' + id).show();
     }
 });
 

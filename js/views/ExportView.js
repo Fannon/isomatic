@@ -1,5 +1,5 @@
 /* jshint jquery:true, devel: true */
-/* global isomatic, d3, Backbone, _ */
+/* global isomatic, d3, Backbone, _, Handlebars */
 
 /**
  * Data View
@@ -27,11 +27,10 @@ isomatic.views.ExportView = Backbone.View.extend({
     render: function(){
         "use strict";
 
-        // Compile the template using underscore
-        var template = _.template( $("#export-template").html());
-
-        // Load the compiled HTML into the Backbone "el"
-        this.$el.html(template);
+        var source = $('#export-template').html();
+        var template = Handlebars.compile(source);
+        var html = template();
+        this.$el.html(html);
 
     },
     events: {
