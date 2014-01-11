@@ -68,7 +68,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .container {
-  margin: 10px auto;
+  margin: 15px auto;
   width: 1010px;
 }
 
@@ -145,7 +145,7 @@ h1, h2, h3, h4, h5, h6 {
   background-image: url(../img/ruler.svg);
   background-repeat: no-repeat;
   position: relative;
-  box-shadow: 0 0 5px 1px #777;
+  box-shadow: 0 0 2px 1px #AAA;
 
 }
 
@@ -211,8 +211,8 @@ h1, h2, h3, h4, h5, h6 {
 
   #overlay-data textarea {
     // TODO: Macht Probleme mit HandsoneTable
-//    min-width: 935px;
-//    max-width: 935px;
+   // min-width: 935px;
+   // max-width: 935px;
   }
 
   #overlay-type {
@@ -254,49 +254,29 @@ h1, h2, h3, h4, h5, h6 {
 
   #overlay-color {
 
-    .color-column-left {
-      width: 300px;
-      float: left;
-      border-right: 1px solid #BFBFBF;
-    }
+    .colorpalette {
 
-    .color-column-right {
-      padding-left: 10px;
-      width: 300px;
-      float: left;
-    }
-
-    .colorsample {
-    float: left;
-    width: 300px;
-
-      input[type=radio] {
-        margin-bottom: 7px;
-      }
-
-      input[type=text] {
-        width: 100px;
-        margin-right: 10px;
-        float: left;
-      }
-
-      input:last-of-type {
-        margin-right: 0px;
-      }
-
-      .colorpalette {
-        height: 30px;
-        margin-bottom: 15px;
-      }
+      height: 40px;
+      margin-bottom: 15px;
+      background: #FFF;
+      border: 5px solid #FFF;
+      overflow: hidden;
 
       .colorbox {
+        // display: inline-block;
         float: left;
-        margin-right: 10px;
         height: 30px;
         width: 30px;
-        border: 1px solid #333;
       }
+
     }
+
+    .active {
+      background: #000;
+      border-color: #000;
+    }
+
+
   }
 
   #overlay-text textarea {
