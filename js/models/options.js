@@ -45,6 +45,9 @@ isomatic.options.preset.roundDown = 0.3;
 /** Ceil value if Remainder is above */
 isomatic.options.preset.roundUp = 0.8;
 
+/** Icon Size */
+isomatic.options.preset.iconSize = 'auto';
+
 /**
  * Defines if the Color is applied to Rows or Columns
  * Accepts 'row' and 'column'

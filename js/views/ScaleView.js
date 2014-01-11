@@ -17,7 +17,7 @@ isomatic.views.ScaleView = Backbone.View.extend({
         var source = $('#scale-template').html();
         var template = Handlebars.compile(source);
         var html = template({
-            palettes: isomatic.options.internal.colorPalettes
+            options: isomatic.options.ui.attributes
         });
         this.$el.html(html);
 

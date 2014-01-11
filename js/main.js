@@ -85,7 +85,9 @@ isomatic.registerColorpicker = function(el) {
         submit:0,
         colorScheme:'dark',
         onChange:function(hsb,hex,rgb,fromSetColor) {
-            if(!fromSetColor) el.val(hex).css('border-color','#'+hex);
+            if(!fromSetColor) {
+                el.val(hex).css('border-color','#'+hex);
+            }
         }
     });
 

@@ -387,22 +387,22 @@
             <label><span data-tooltip class="has-tip tip-right" title="Change the general offsets">Margin</span></label><br>
 
             <label><img src="img/outermarign.svg">Outer Margin</label>
-            <input type="text" placeholder="30px">
+            <input type="text" value="{{ options.outerMargin }}px">
 
-            <label><img src="img/horizontalmargin.svg">Horizontal Icon Margin</label>
-            <input type="text" placeholder="10px">
+            <label><img src="img/horizontalmargin.svg">Icon Horizontal Margin</label>
+            <input type="text" value="{{ options.iconHorizontalMargin }}px">
 
             <label><img src="img/rowmargin.svg">Row Margin</label>
-            <input type="text" placeholder="10px">
+            <input type="text" value="{{ options.rowMargin }}px">
 
             <label><img src="img/columnmargin.svg">Column Margin</label>
-            <input type="text" placeholder="10px">
+            <input type="text" value="{{ options.columnMargin }}px">
 
             <hr class="normal-line">
 
             <label><span data-tooltip class="has-tip tip-right" title="Change the icon proportion">Size</span></label><br>
             <label><img src="img/iconsize.svg">Icon Size</label>
-            <input type="text" placeholder="10px"><br>
+            <input type="text" value="{{ options.iconSize }}"><br>
 
             <a href="#" class="tiny button radius">Apply</a>
             <a href="#" class="tiny button radius">Apply & Close</a>
@@ -420,28 +420,26 @@
             <label>
                 <span data-tooltip class="has-tip tip-right" title="Floor value if Remainder is below">How much one Icon represents</span>
             </label>
-            <select value="1000000">
-                <option value="100000">1:100.000</option>
-                <option value="1000000">1:1.000.000</option>
-                <option value="10000000">1:10.000.000</option>
+            <select value="{{options.scale}}">
+                {{#each options.availableScales}}
+                <option value="{{this}}">1:{{this}}</option>
+                {{/each}}
             </select>
 
             <label>
                 <span data-tooltip class="has-tip tip-right" title="Enter Scale manually">Manual Scale</span>
             </label>
-            <input type="text" placeholder="100000">
+            <input type="text" placeholder="Enter Scale manually">
 
             <label>
                 <span data-tooltip class="has-tip tip-right" title="Ceil value if Remainder is above">Round Up</span>
             </label>
-            <input type="text" placeholder="0.8">
-
-
+            <input type="text" value="{{options.roundUp}}">
 
             <label>
                 <span data-tooltip class="has-tip tip-right" title="Floor value if Remainder is below">Round Down</span>
             </label>
-            <input type="text" placeholder="0.3">
+            <input type="text" value="{{options.roundDown}}">
 
 
 
