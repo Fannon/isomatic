@@ -47,7 +47,7 @@ isomatic.data.meta.columns = [];
 isomatic.data.process = function(data) {
     "use strict";
 
-    console.log('Processing Data:');
+    console.log('isomatic.data.process(data);');
     console.dir(data);
 
     isomatic.data.raw = data;
@@ -56,19 +56,19 @@ isomatic.data.process = function(data) {
     isomatic.data.analyze(data);
 
     // Prepare Drawing
-    isomatic.vis.prepareDrawing();
+    isomatic.views.graphView.prepareDrawing();
 
     // Generate Layout
-    isomatic.data.processed = isomatic.vis.isotypeLayout(data);
+    isomatic.data.processed = isomatic.views.graphView.isotypeLayout(data);
 
     // Precalculate Layout and save it into the Metadata Object.
-    isomatic.vis.precalculate();
+    isomatic.views.graphView.precalculate();
 
     // Draw Isotype Graphic
-    isomatic.vis.drawIsotype();
+    isomatic.views.graphView.drawIsotype();
 
     // Draw Legend Overlay
-//    isomatic.vis.drawLegend();
+//    isomatic.views.graphView.drawLegend();
 };
 
 /**
