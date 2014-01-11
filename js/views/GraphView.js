@@ -14,8 +14,6 @@ isomatic.views.GraphView = Backbone.View.extend({
     initialize: function(){
         "use strict";
 
-        console.log('GraphView init');
-
         // Cache jQuery Selectors
         this.$display = $('#display');
         this.$sidebar = $('#sidebar');

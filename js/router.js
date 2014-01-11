@@ -26,7 +26,6 @@ var IsomaticRouter = Backbone.Router.extend({
     /** Home Screen. No Overlays shown */
     home: function() {
         "use strict";
-        console.log('#home');
         $(".overlay-container").hide();
         $(".trigger-ui").removeClass('active');
     },

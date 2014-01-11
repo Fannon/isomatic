@@ -9,7 +9,6 @@
 isomatic.views.NewView = Backbone.View.extend({
     initialize: function(){
         "use strict";
-        console.log('NewView init');
         this.render();
     },
     render: function(){

@@ -11,16 +11,14 @@ isomatic.views.ExportView = Backbone.View.extend({
     /** Init Export View */
     initialize: function(){
         "use strict";
-        console.log('ExportView init');
-
         this.render();
 
         // Event Registration
-        var self = this;
-
-        $("#start-export" ).on("click", function() {
-            self.exportSVG();
-        });
+//        var self = this;
+//
+//        $("#start-export" ).on("click", function() {
+//            self.exportSVG();
+//        });
     },
 
     /** Render Export View */
@@ -35,7 +33,7 @@ isomatic.views.ExportView = Backbone.View.extend({
     },
     events: {
         // TODO: Not working, no idea why
-        "click #startExport": "exportSVG"
+        "click #start-export": "exportSVG"
     },
 
     /**

@@ -9,7 +9,6 @@
 isomatic.views.ImportView = Backbone.View.extend({
     initialize: function(){
         "use strict";
-        console.log('ImportView init');
         this.render();
 
         // Set Up FileUpload Listener
