@@ -7,33 +7,20 @@
  * @type {*|void|Object}
  */
 isomatic.views.DataView = Backbone.View.extend({
+
+    /**
+     * Init Data View
+     */
     initialize: function() {
         "use strict";
 
-        console.log('DataView init');
-
         this.render();
-
         this.submitData();
-
-        /**
-         * Select All on Hover
-         * http://stackoverflow.com/a/5797700/776425
-         */
-        $("#dataPaste").focus(function() {
-            var $this = $(this);
-            $this.select();
-
-            // Work around Chrome's little problem
-            $this.mouseup(function() {
-                // Prevent further mouseup intervention
-                $this.unbind("mouseup");
-                return false;
-            });
-        });
-
-
     },
+
+    /**
+     * Render Data View
+     */
     render: function() {
         "use strict";
 
@@ -45,9 +32,32 @@ isomatic.views.DataView = Backbone.View.extend({
         this.$el.html(html);
 
     },
+
+    /**
+     * Data view Events
+     */
     events: {
         "click #import-data": "submitData",
-        "click #import-data-close": "submitDataClose"
+        "click #import-data-close": "submitDataClose",
+        "focus #pasted-data": "focusTextarea"
+    },
+
+    /**
+     * Little Helper Function to Select all Text in Import-Textarea
+     * http://stackoverflow.com/a/5797700/776425
+     */
+    focusTextarea: function() {
+        "use strict";
+
+        var $textarea = $('#pasted-data');
+        $textarea.select();
+
+        // Work around Chrome's little problem
+        $textarea.mouseup(function() {
+            // Prevent further mouseup intervention
+            $textarea.unbind("mouseup");
+            return false;
+        });
     },
 
     /**
@@ -59,41 +69,25 @@ isomatic.views.DataView = Backbone.View.extend({
 
         console.log('DataView::submitData();');
 
-        var data = d3.tsv.parse($('#dataPaste')[0].value);
+        var data = d3.tsv.parse($('#pasted-data').val());
 
-//        var handsonTableArray = this.convertDataToHandsoneTableData(data);
-
-//        $("#dataTable").handsontable({
-//            data: handsonTableArray,
-//            contextMenu: true,
-//            rowHeaders: true,
-//            colHeaders: true,
-//            minRows: 1,
-//            stretchH: 'all'
-//        });
-
+        // Generate Preview Table from data
         this.tabulate(data);
 
         // TODO: Validation
 
-        // TODO: Redraw
+        // Process and draw Data
         isomatic.data.process(data);
 
     },
 
+    /**
+     * Submits Data and closes the Overlay
+     */
     submitDataClose: function() {
         "use strict";
         this.submitData();
-
-        // TODO: Refactor this
         $('#overlay-data').hide();
-
-    },
-
-    updateData: function() {
-        "use strict";
-        // TODO: Get new Data from edited HansoneTable
-        var data = isomatic.data.process(data);
     },
 
     /**
@@ -149,33 +143,6 @@ isomatic.views.DataView = Backbone.View.extend({
             });
 
         return table;
-    },
-
-
-    // Helper Functions
-    convertDataToHandsoneTableData: function(data) {
-        "use strict";
-
-        // Convert Data to 2dim Array for previewing with HandsoneTable:
-        var handsonTableArray = [
-            []
-        ];
-
-        for (var o in data[0]) {
-            if (data[0].hasOwnProperty(o)) {
-                handsonTableArray[0].push(o);
-            }
-        }
-
-        for (var i = 0; i < data.length; i++) {
-            handsonTableArray[i + 1] = [];
-            for (var obj_inner in data[1]) {
-                if (data[1].hasOwnProperty(obj_inner)) {
-                    handsonTableArray[i + 1].push(data[i][obj_inner]);
-                }
-            }
-        }
-
-        return handsonTableArray;
     }
+
 });

@@ -68,7 +68,7 @@ isomatic.data.process = function(data) {
     isomatic.views.graphView.drawIsotype();
 
     // Draw Legend Overlay
-//    isomatic.views.graphView.drawLegend();
+    isomatic.views.graphView.drawLegend();
 };
 
 /**

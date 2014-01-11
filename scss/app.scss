@@ -1,9 +1,7 @@
 // Global Settings Override
 @import "settings";
 @import "normalize";
-
 @import "foundation/components/global";
-
 @import "foundation/components/type";
 @import "foundation/components/forms";
 @import "foundation/components/buttons";
@@ -93,8 +91,8 @@ h1, h2, h3, h4, h5, h6 {
   }
 
   .toolbar-line {
-   border-top: 1px solid #aaa;
-   margin: 10px 0px 10px 0px;
+    border-top: 1px solid #AAA;
+    margin: 10px 0px 10px 0px;
   }
 
   #trigger-type {
@@ -174,8 +172,8 @@ h1, h2, h3, h4, h5, h6 {
   .picker {
     margin: 7px 0px;
     padding: 3px 5px;
-    border-right:28px solid #000;
-    line-height:20px;
+    border-right: 28px solid #000;
+    line-height: 20px;
   }
 
   .overlay-container {
@@ -209,12 +207,6 @@ h1, h2, h3, h4, h5, h6 {
     }
   }
 
-  #overlay-data textarea {
-    // TODO: Macht Probleme mit HandsoneTable
-   // min-width: 935px;
-   // max-width: 935px;
-  }
-
   #overlay-type {
     vertical-align: middle;
 
@@ -225,7 +217,7 @@ h1, h2, h3, h4, h5, h6 {
     #normalIsotype, #versusIsotype {
       margin-bottom: 5px;
       height: 35px;
-      background-color: #bbb;
+      background-color: #BBB;
       border-radius: 5px;
     }
 
@@ -276,7 +268,6 @@ h1, h2, h3, h4, h5, h6 {
       border-color: #000;
     }
 
-
   }
 
   #overlay-text textarea {
@@ -290,7 +281,7 @@ h1, h2, h3, h4, h5, h6 {
   }
 
   .topic-line {
-    border-bottom: 1px solid #bbb;
+    border-bottom: 1px solid #BBB;
     margin: 0px 0px 15px 0px;
   }
 
@@ -303,8 +294,7 @@ h1, h2, h3, h4, h5, h6 {
 // Overlay Template
 #overlay-data {
   #dataTable {
-
-    width: 945px;
+    width: 100%;
     overflow: scroll;
 
   }
@@ -331,6 +321,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .reveal-modal button.tiny,
-.reveal-modal .button.tiny{
+.reveal-modal .button.tiny {
   font-size: 0.9rem;
 }
