@@ -37,11 +37,17 @@ $(function() {
 
     // Init Views
     isomatic.views.graphView = new isomatic.views.GraphView({el: $("#graph-container")});
-    isomatic.views.dataView = new isomatic.views.DataView({el: $("#data-container")});
     isomatic.views.newView = new isomatic.views.NewView({el: $("#new-container")});
     isomatic.views.importView = new isomatic.views.ImportView({el: $("#import-container")});
     isomatic.views.exportView = new isomatic.views.ExportView({el: $("#export-container")});
+    isomatic.views.helpView = new isomatic.views.HelpView({el: $("#help-container")});
+    isomatic.views.dataView = new isomatic.views.DataView({el: $("#data-container")});
+    isomatic.views.typeView = new isomatic.views.TypeView({el: $("#type-container")});
+    isomatic.views.iconView = new isomatic.views.IconView({el: $("#icon-container")});
     isomatic.views.colorView = new isomatic.views.ColorView({el: $("#color-container")});
+    isomatic.views.propertiesView = new isomatic.views.PropertiesView({el: $("#properties-container")});
+    isomatic.views.scaleView = new isomatic.views.ScaleView({el: $("#scale-container")});
+    isomatic.views.textView = new isomatic.views.TextView({el: $("#text-container")});
 
 
     ///////////////////////////////////////

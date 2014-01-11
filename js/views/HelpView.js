@@ -2,11 +2,11 @@
 /* global isomatic, d3, Backbone, _, Handlebars */
 
 /**
- * Color View
+ * Help View
  *
  * @type {*|void|Object}
  */
-isomatic.views.ColorView = Backbone.View.extend({
+isomatic.views.HelpView = Backbone.View.extend({
     initialize: function(){
         "use strict";
         this.render();
@@ -14,7 +14,7 @@ isomatic.views.ColorView = Backbone.View.extend({
     render: function(){
         "use strict";
 
-        var source = $('#color-template').html();
+        var source = $('#help-template').html();
         var template = Handlebars.compile(source);
         var html = template({
             palettes: isomatic.options.internal.colorPalettes

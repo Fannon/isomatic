@@ -60,204 +60,30 @@
             <div id="graph-container"></div>
 
             <div id="overlay">
+                <!-- Help Overlay -->
+                <div id="help-container"></div>
 
                 <!-- Data Settings Container -->
                 <div id="data-container"></div>
 
-
                 <!-- Type Settings -->
-                <div id="overlay-type" class="overlay-container" style="display: none">
-
-                    <form>
-                        <h3>Diagram Type</h3>
-                        <hr class="topic-line">
-                        <div id="normalIsotype">
-                            <div class="typeTitle">
-                                <h4>Normal</h4>
-                            </div>
-                            <div class="typeImage">
-                                <a>
-                                    <img src="img/normal_isotype.svg">
-                                </a>
-                            </div>
-                        </div>
-
-                        <div id="versusIsotype" class="active">
-                            <div class="typeTitle">
-                                <h4>Versus</h4>
-                            </div>
-                            <div class="typeImage">
-                                <a>
-                                    <img src="img/versus_isotype.svg">
-                                </a>
-                            </div>
-                        </div>
-
-                        <hr class="normal-line">
-
-
-
-                        <input id="break-rows" type="checkbox"><label for="break-rows">Break row into multiple Lines</label>
-                        <br>
-                        <a href="#" class="tiny button radius">Apply</a>
-                        <a href="#" class="tiny button radius">Apply & Close</a>
-                    </form>
-                </div>
-
+                <div id="type-container"></div>
 
                 <!-- Icon Settings -->
-                <div id="overlay-icon" class="overlay-container" style="display: none">
-                    <h3>Icon Settings</h3>
-                    <hr class="topic-line">
-                    <div class="overlay-left">
-
-                        <form>
-                            <label>
-                                <span data-tooltip class="has-tip tip-right" title="Choose if Icons are mapped to Columns or Rows">Map to</span>
-                            </label>
-                            <input type="radio" name="radio2" value="row" id="icon-row" checked><label for="icon-row"><img src="img/row.svg"> Row</label>
-                            <input type="radio" name="radio2" value="column" id="icon-column"><label for="icon-column"><img src="img/column.svg"> Column</label>
-
-
-                            <legend>Row 1</legend>
-                            <input type="text" placeholder="ICON">
-
-                            <legend>Row 2</legend>
-                            <input type="text" placeholder="ICON">
-
-
-                            <legend>Row 3</legend>
-                            <input type="text" placeholder="ICON">
-
-
-
-                            <a href="#" class="tiny button radius">Apply</a>
-                            <a href="#" class="tiny button radius">Apply & Close</a>
-
-                        </form>
-                    </div>
-
-                    <div class="overlay-right">
-                        <h4>Kategorie 1</h4>
-                        <p>ICON1, ICON2, ICON3, ICON4</p>
-                        <h4>Kategorie 2</h4>
-                        <p>ICON1, ICON2, ICON3, ICON4, ICON5, ICON6</p>
-                        <h4>Kategorie 3</h4>
-                        <p>ICON1, ICON2, ICON3</p>
-                        <h4>Kategorie 4</h4>
-                        <p>ICON1, ICON2</p>
-                    </div>
-                </div>
-
+                <div id="icon-container"></div>
 
                 <!-- Color Settings -->
-
                 <div id="color-container"></div>
 
-
                 <!-- Properties -->
-                <div id="overlay-properties" class="overlay-container" style="display: none">
-                    <h3>Properties</h3>
-                    <hr class="topic-line">
-                    <form>
-
-                        <label><span data-tooltip class="has-tip tip-right" title="Change the general offsets">Margin</span></label><br>
-
-                        <label><img src="img/outermarign.svg">Outer Margin</label>
-                        <input type="text" placeholder="30px">
-
-                        <label><img src="img/horizontalmargin.svg">Horizontal Icon Margin</label>
-                        <input type="text" placeholder="10px">
-
-                        <label><img src="img/rowmargin.svg">Row Margin</label>
-                        <input type="text" placeholder="10px">
-
-                        <label><img src="img/columnmargin.svg">Column Margin</label>
-                        <input type="text" placeholder="10px">
-
-                        <hr class="normal-line">
-
-                        <label><span data-tooltip class="has-tip tip-right" title="Change the icon proportion">Size</span></label><br>
-                        <label><img src="img/iconsize.svg">Icon Size</label>
-                        <input type="text" placeholder="10px"><br>
-
-                        <a href="#" class="tiny button radius">Apply</a>
-                        <a href="#" class="tiny button radius">Apply & Close</a>
-                    </form>
-                </div>
-
+                <div id="properties-container"></div>
 
                 <!-- Scale Settings -->
-                <div id="overlay-scale" class="overlay-container" style="display: none">
-                    <h3>Scale Settings</h3>
-                    <hr class="topic-line">
-                    <form>
-
-                        <label>
-                            <span data-tooltip class="has-tip tip-right" title="Floor value if Remainder is below">How much one Icon represents</span>
-                        </label>
-                        <select value="1000000">
-                            <option value="100000">1:100.000</option>
-                            <option value="1000000">1:1.000.000</option>
-                            <option value="10000000">1:10.000.000</option>
-                        </select>
-
-                        <label>
-                            <span data-tooltip class="has-tip tip-right" title="Enter Scale manually">Manual Scale</span>
-                        </label>
-                        <input type="text" placeholder="100000">
-
-                        <label>
-                            <span data-tooltip class="has-tip tip-right" title="Ceil value if Remainder is above">Round Up</span>
-                        </label>
-                        <input type="text" placeholder="0.8">
-
-
-
-                        <label>
-                            <span data-tooltip class="has-tip tip-right" title="Floor value if Remainder is below">Round Down</span>
-                        </label>
-                        <input type="text" placeholder="0.3">
-
-
-
-                        <a href="#" class="tiny button radius">Apply</a>
-                        <a href="#" class="tiny button radius">Apply & Close</a>
-                    </form>
-                </div>
-
+                <div id="scale-container"></div>
 
                 <!-- Text Settings -->
-                <div id="overlay-text" class="overlay-container" style="display: none">
-                    <h3>Text Settings</h3>
-                    <hr class="topic-line">
-                    <form>
+                <div id="text-container"></div>
 
-                        <label>
-                            <span data-tooltip class="has-tip tip-right" title="Choose Font-Family">Font-Family</span>
-                        </label>
-                        <select value="Arial">
-                            <option value="Arial">Arial</option>
-                            <option value="Times New Roman">Times New Roman</option>
-                        </select>
-
-                        <input id="draw-column-legend" type="checkbox" checked><label for="draw-column-legend">Draw Column Legend</label>
-
-                        <label>Add Topic Description</label>
-                        <textarea placeholder="Enter Description here.."></textarea>
-
-                        <a href="#" class="tiny button radius">Apply</a>
-                        <a href="#" class="tiny button radius">Apply & Close</a>
-                    </form>
-                </div>
-
-                <!-- Helptext -->
-                <div id="overlay-help" class="overlay-container" style="display: none">
-                    <h3>Help</h3>
-                    <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
-                    <h4>Help 2</h4>
-                    <p>Drei Chinesen mit dem Kontrabass saßen auf der Straße und erzählten sich was. Da kam die Polizei, ei was ist denn das? Drei Chinesen mit dem Kontrabass.</p>
-                </div>
 
             </div>
 
@@ -298,11 +124,17 @@
 
 <!-- Views -->
 <script src="js/views/GraphView.js"></script>
-<script src="js/views/DataView.js"></script>
 <script src="js/views/NewView.js"></script>
 <script src="js/views/ImportView.js"></script>
 <script src="js/views/ExportView.js"></script>
+<script src="js/views/HelpView.js"></script>
+<script src="js/views/DataView.js"></script>
+<script src="js/views/TypeView.js"></script>
+<script src="js/views/IconView.js"></script>
 <script src="js/views/ColorView.js"></script>
+<script src="js/views/PropertiesView.js"></script>
+<script src="js/views/ScaleView.js"></script>
+<script src="js/views/TextView.js"></script>
 
 <!-- 3rd Party Plugins -->
 <script src="bower_components/colpick/colpick.js"></script>
@@ -312,33 +144,6 @@
 
 <!-- Minimized JavaScript -->
 <!--<script src="js/app.min.js"></script>-->
-
-
-<!-- Data Template -->
-<script type="text/template" id="data-template">
-    <div id="overlay-data" class="overlay-container" style="display: none">
-        <div class="scrollbar">
-            <h3>Data Import</h3>
-            <hr class="topic-line">
-
-            <form class="custom">
-
-                <label>Paste Data</label>
-                <textarea value="Copy'n'Paste here" id="dataPaste">{{ preset_data }}</textarea>
-
-                <a id="import-data" href="#" class="tiny button radius">Import</a>
-                <a id="import-data-close" href="#" class="tiny button radius">Import and Close</a>
-
-                <br>
-                <hr class="normal-line">
-
-                <h4>Data Preview:</h4>
-                <table id="dataTable"></table>
-
-            </form>
-        </div>
-    </div>
-</script>
 
 <!-- New Graphic Template -->
 <script type="text/template" id="new-template">
@@ -403,6 +208,84 @@
     </div>
 </script>
 
+<!-- Help Template -->
+<script type="text/template" id="help-template">
+    <div id="overlay-help" class="overlay-container" style="display: none">
+        <h3>Help</h3>
+        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+        <h4>Help 2</h4>
+        <p>Drei Chinesen mit dem Kontrabass saßen auf der Straße und erzählten sich was. Da kam die Polizei, ei was ist denn das? Drei Chinesen mit dem Kontrabass.</p>
+    </div>
+</script>
+
+<!-- Data Template -->
+<script type="text/template" id="data-template">
+    <div id="overlay-data" class="overlay-container" style="display: none">
+        <div class="scrollbar">
+            <h3>Data Import</h3>
+            <hr class="topic-line">
+
+            <form class="custom">
+
+                <label>Paste Data</label>
+                <textarea value="Copy'n'Paste here" id="dataPaste">{{ preset_data }}</textarea>
+
+                <a id="import-data" href="#" class="tiny button radius">Import</a>
+                <a id="import-data-close" href="#" class="tiny button radius">Import and Close</a>
+
+                <br>
+                <hr class="normal-line">
+
+                <h4>Data Preview:</h4>
+                <table id="dataTable"></table>
+
+            </form>
+        </div>
+    </div>
+</script>
+
+<!-- Type Template -->
+<script type="text/template" id="type-template">
+    <div id="overlay-type" class="overlay-container" style="display: none">
+
+        <form>
+            <h3>Diagram Type</h3>
+            <hr class="topic-line">
+            <div id="normalIsotype">
+                <div class="typeTitle">
+                    <h4>Normal</h4>
+                </div>
+                <div class="typeImage">
+                    <a>
+                        <img src="img/normal_isotype.svg">
+                    </a>
+                </div>
+            </div>
+
+            <div id="versusIsotype" class="active">
+                <div class="typeTitle">
+                    <h4>Versus</h4>
+                </div>
+                <div class="typeImage">
+                    <a>
+                        <img src="img/versus_isotype.svg">
+                    </a>
+                </div>
+            </div>
+
+            <hr class="normal-line">
+
+
+
+            <input id="break-rows" type="checkbox"><label for="break-rows">Break row into multiple Lines</label>
+            <br>
+            <a href="#" class="tiny button radius">Apply</a>
+            <a href="#" class="tiny button radius">Apply & Close</a>
+        </form>
+    </div>
+</script>
+
+<!-- Color Template -->
 <script type="text/template" id="color-template">
     <div id="overlay-color" class="overlay-container" style="display: none">
         <div class="scrollbar">
@@ -447,5 +330,153 @@
         </div>
     </div>
 </script>
+
+<!-- Icon Template -->
+<script type="text/template" id="icon-template">
+    <div id="overlay-icon" class="overlay-container" style="display: none">
+        <h3>Icon Settings</h3>
+        <hr class="topic-line">
+        <div class="overlay-left">
+
+            <form>
+                <label>
+                    <span data-tooltip class="has-tip tip-right" title="Choose if Icons are mapped to Columns or Rows">Map to</span>
+                </label>
+                <input type="radio" name="radio2" value="row" id="icon-row" checked><label for="icon-row"><img src="img/row.svg"> Row</label>
+                <input type="radio" name="radio2" value="column" id="icon-column"><label for="icon-column"><img src="img/column.svg"> Column</label>
+
+
+                <legend>Row 1</legend>
+                <input type="text" placeholder="ICON">
+
+                <legend>Row 2</legend>
+                <input type="text" placeholder="ICON">
+
+
+                <legend>Row 3</legend>
+                <input type="text" placeholder="ICON">
+
+
+
+                <a href="#" class="tiny button radius">Apply</a>
+                <a href="#" class="tiny button radius">Apply & Close</a>
+
+            </form>
+        </div>
+
+        <div class="overlay-right">
+            <h4>Kategorie 1</h4>
+            <p>ICON1, ICON2, ICON3, ICON4</p>
+            <h4>Kategorie 2</h4>
+            <p>ICON1, ICON2, ICON3, ICON4, ICON5, ICON6</p>
+            <h4>Kategorie 3</h4>
+            <p>ICON1, ICON2, ICON3</p>
+            <h4>Kategorie 4</h4>
+            <p>ICON1, ICON2</p>
+        </div>
+    </div>
+</script>
+
+<!-- Properties Template -->
+<script type="text/template" id="properties-template">
+    <div id="overlay-properties" class="overlay-container" style="display: none">
+        <h3>Properties</h3>
+        <hr class="topic-line">
+        <form>
+
+            <label><span data-tooltip class="has-tip tip-right" title="Change the general offsets">Margin</span></label><br>
+
+            <label><img src="img/outermarign.svg">Outer Margin</label>
+            <input type="text" placeholder="30px">
+
+            <label><img src="img/horizontalmargin.svg">Horizontal Icon Margin</label>
+            <input type="text" placeholder="10px">
+
+            <label><img src="img/rowmargin.svg">Row Margin</label>
+            <input type="text" placeholder="10px">
+
+            <label><img src="img/columnmargin.svg">Column Margin</label>
+            <input type="text" placeholder="10px">
+
+            <hr class="normal-line">
+
+            <label><span data-tooltip class="has-tip tip-right" title="Change the icon proportion">Size</span></label><br>
+            <label><img src="img/iconsize.svg">Icon Size</label>
+            <input type="text" placeholder="10px"><br>
+
+            <a href="#" class="tiny button radius">Apply</a>
+            <a href="#" class="tiny button radius">Apply & Close</a>
+        </form>
+    </div>
+</script>
+
+<!-- Scale Template -->
+<script type="text/template" id="scale-template">
+    <div id="overlay-scale" class="overlay-container" style="display: none">
+        <h3>Scale Settings</h3>
+        <hr class="topic-line">
+        <form>
+
+            <label>
+                <span data-tooltip class="has-tip tip-right" title="Floor value if Remainder is below">How much one Icon represents</span>
+            </label>
+            <select value="1000000">
+                <option value="100000">1:100.000</option>
+                <option value="1000000">1:1.000.000</option>
+                <option value="10000000">1:10.000.000</option>
+            </select>
+
+            <label>
+                <span data-tooltip class="has-tip tip-right" title="Enter Scale manually">Manual Scale</span>
+            </label>
+            <input type="text" placeholder="100000">
+
+            <label>
+                <span data-tooltip class="has-tip tip-right" title="Ceil value if Remainder is above">Round Up</span>
+            </label>
+            <input type="text" placeholder="0.8">
+
+
+
+            <label>
+                <span data-tooltip class="has-tip tip-right" title="Floor value if Remainder is below">Round Down</span>
+            </label>
+            <input type="text" placeholder="0.3">
+
+
+
+            <a href="#" class="tiny button radius">Apply</a>
+            <a href="#" class="tiny button radius">Apply & Close</a>
+        </form>
+    </div>
+</script>
+
+<!-- Text Template -->
+<script type="text/template" id="text-template">
+    <div id="overlay-text" class="overlay-container" style="display: none">
+        <h3>Text Settings</h3>
+        <hr class="topic-line">
+        <form>
+
+            <label>
+                <span data-tooltip class="has-tip tip-right" title="Choose Font-Family">Font-Family</span>
+            </label>
+            <select value="Arial">
+                <option value="Arial">Arial</option>
+                <option value="Times New Roman">Times New Roman</option>
+            </select>
+
+            <input id="draw-column-legend" type="checkbox" checked><label for="draw-column-legend">Draw Column Legend</label>
+
+            <label>Add Topic Description</label>
+            <textarea placeholder="Enter Description here.."></textarea>
+
+            <a href="#" class="tiny button radius">Apply</a>
+            <a href="#" class="tiny button radius">Apply & Close</a>
+        </form>
+    </div>
+</script>
+
+
 
 </html>
