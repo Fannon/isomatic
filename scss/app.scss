@@ -12,7 +12,7 @@
 @import "foundation/components/reveal";
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+  font-family: "Helvetica", Helvetica, Arial, sans-serif;
 }
 
 #nav-container {
@@ -159,7 +159,7 @@ h1, h2, h3, h4, h5, h6 {
 
   h4 {
     color: #555;
-    font-weight: bold;
+    //font-weight: bold;
     font-size: 1.2em;
   }
 
@@ -214,11 +214,12 @@ h1, h2, h3, h4, h5, h6 {
       color: #FFF;
     }
 
-    #normalIsotype, #versusIsotype {
-      margin-bottom: 5px;
-      height: 35px;
-      background-color: #BBB;
-      border-radius: 5px;
+     #normalIsotype, #versusIsotype {
+       margin-bottom: 5px;
+       height: 40px;
+       background-color: #c7c7c7;
+    // border-radius: 5px;
+     //box-shadow: 0 0 1px 1px #acacac;
     }
 
     #normalIsotype:hover, #versusIsotype:hover {
@@ -226,17 +227,17 @@ h1, h2, h3, h4, h5, h6 {
     }
 
     #normalIsotype.active, #versusIsotype.active {
-      background-color: #555;
+      background-color: #333;
     }
 
     .typeTitle {
       float: left;
-      margin: 6px 0px 0px 10px;
+      margin: 8px 0px 0px 10px;
     }
 
     .typeImage {
       float: right;
-      margin: 5px 10px 0 0;
+      margin: 6px 10px 0 0;
     }
 
     .selectType {
@@ -246,16 +247,21 @@ h1, h2, h3, h4, h5, h6 {
 
   #overlay-color {
 
-    form h5 {
+    .overlay-right {
+      padding-left: 20px;
+    }
+
+    form legend {
       clear: both;
+      margin-bottom: 3px;
     }
 
     .colorpalette {
 
-      height: 40px;
+      height: 30px;
       margin-bottom: 15px;
       background: #FFF;
-      border: 5px solid #FFF;
+      border: 2px solid #FFF;
       overflow: hidden;
       float: left;
       clear: both;

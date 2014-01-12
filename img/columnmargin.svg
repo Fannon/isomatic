@@ -3,16 +3,16 @@
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg version="1.1" id="Ebene_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 width="22px" height="14px" viewBox="0 0 22 14" enable-background="new 0 0 22 14" xml:space="preserve">
-<rect x="2.999" fill="#686766" width="2" height="14"/>
-<rect x="16.461" fill="#686766" width="2" height="14"/>
+<rect x="4.133" fill="#686766" width="2" height="14"/>
+<rect x="16.744" fill="#686766" width="2" height="14"/>
 <g>
 	<g>
-		<line fill="none" stroke="#686766" stroke-miterlimit="10" x1="6.642" y1="7.475" x2="14.818" y2="7.475"/>
+		<line fill="none" stroke="#686766" stroke-miterlimit="10" x1="7.698" y1="7.475" x2="15.319" y2="7.475"/>
 		<g>
-			<polygon fill="#686766" points="8.634,9.17 6.938,7.475 8.634,5.78 7.194,5.78 5.499,7.475 7.194,9.17 			"/>
+			<polygon fill="#686766" points="9.555,9.17 7.974,7.475 9.555,5.78 8.213,5.78 6.633,7.475 8.213,9.17 			"/>
 		</g>
 		<g>
-			<polygon fill="#686766" points="12.826,9.17 14.522,7.475 12.826,5.78 14.266,5.78 15.961,7.475 14.266,9.17 			"/>
+			<polygon fill="#686766" points="13.462,9.17 15.043,7.475 13.462,5.78 14.804,5.78 16.384,7.475 14.804,9.17 			"/>
 		</g>
 	</g>
 </g>
