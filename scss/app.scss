@@ -170,7 +170,7 @@ h1, h2, h3, h4, h5, h6 {
   }
 
   .picker {
-    margin: 7px 0px;
+    margin: 5px 0px;
     padding: 3px 5px;
     border-right: 28px solid #000;
     line-height: 20px;
@@ -198,12 +198,21 @@ h1, h2, h3, h4, h5, h6 {
 
     .overlay-right {
       padding-left: 10px;
-      width: 630px;
+      width: 530px;
       float: left;
     }
 
     button.tiny, .button.tiny {
       font-size: 0.9rem;
+      margin-top: 10px;
+
+    }
+  }
+
+  #overlay-data {
+    textarea {
+      max-width: 800px;
+      min-width: 800px;
     }
   }
 
@@ -214,35 +223,84 @@ h1, h2, h3, h4, h5, h6 {
       color: #FFF;
     }
 
-     #normalIsotype, #versusIsotype {
-       margin-bottom: 5px;
+     #normal-isotype, #versus-isotype {
+       margin-bottom: 10px;
        height: 40px;
-       background-color: #c7c7c7;
-    // border-radius: 5px;
-     //box-shadow: 0 0 1px 1px #acacac;
+       background-color: #999;
     }
 
-    #normalIsotype:hover, #versusIsotype:hover {
-      background-color: #999;
+    #normal-isotype:hover, #versus-isotype:hover {
+      background-color: #777;
     }
 
-    #normalIsotype.active, #versusIsotype.active {
+    #normal-isotype.active, #versus-isotype.active {
       background-color: #333;
     }
 
-    .typeTitle {
+    .type-title {
       float: left;
       margin: 8px 0px 0px 10px;
     }
 
-    .typeImage {
+    .type-image {
       float: right;
       margin: 6px 10px 0 0;
     }
 
-    .selectType {
-      padding: 10px 120px 15px 10px;
+  }
+
+  #overlay-icon {
+
+    input[type='text'] {
+      width: 160px;
+      height: 28px;
+      margin: 0px 0px 5px 0px;
     }
+
+    .group-id {
+      float: left;
+    }
+
+    .group-icon {
+      background-color: #FFF;
+      width: 28px;
+      height: 28px;
+      float: left;
+      border-top: 1px solid #CCC;
+      border-right: 1px solid #CCC;
+      border-bottom: 1px solid #CCC;
+    }
+
+    .category-icon {
+      background-color: #999;
+      padding: 5px;
+      width: 74px;
+      float: left;
+      margin-right: 10px;
+    }
+
+    .category-icon-image {
+      background-color: #FFF;
+      width: 64px;
+      height: 64px;
+    }
+
+    .category-icon-id p{
+      margin: 3px 0px 0px 0px;
+      text-align: center;
+      font-weight: bold;
+      color: #FFF;
+    }
+
+    legend {
+      clear: both;
+      padding-top: 5px;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+
+
   }
 
   #overlay-color {
@@ -253,7 +311,13 @@ h1, h2, h3, h4, h5, h6 {
 
     form legend {
       clear: both;
-      margin-bottom: 3px;
+      padding-top: 5px;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    input[type='text']{
+      width: 187px;
     }
 
     .colorpalette {
@@ -282,12 +346,12 @@ h1, h2, h3, h4, h5, h6 {
   }
 
   #overlay-text textarea {
-    min-width: 240px;
-    max-width: 240px;
+    min-width: 260px;
+    max-width: 260px;
   }
 
   #overlay-data, #overlay-icon, #overlay-color, #overlay-help {
-    width: 96%;
+    width: 85%;
     border-right: none;
   }
 

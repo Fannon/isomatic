@@ -69,6 +69,22 @@ $(function() {
         isomatic.registerColorpicker($(this));
     });
 
+    $('#normal-isotype').click(function() {
+        if ($('#normal-isotype').hasClass('active')) {
+        } else {
+            $('#normal-isotype').addClass('active');
+            $('#versus-isotype').removeClass('active');
+        }
+    });
+
+    $('#versus-isotype').click(function() {
+        if ($('#versus-isotype').hasClass('active')) {
+        } else {
+            $('#versus-isotype').addClass('active');
+            $('#normal-isotype').removeClass('active');
+        }
+    });
+
 });
 
 

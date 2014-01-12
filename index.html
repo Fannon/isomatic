@@ -232,7 +232,6 @@
                 <a id="import-data" href="#" class="tiny button radius">Import</a>
                 <a id="import-data-close" href="#" class="tiny button radius">Import and Close</a>
 
-                <br>
                 <hr class="normal-line">
 
                 <h4>Data Preview:</h4>
@@ -250,33 +249,116 @@
         <form>
             <h3>Diagram Type</h3>
             <hr class="topic-line">
-            <div id="normalIsotype">
-                <div class="typeTitle">
+            <div id="normal-isotype" class="active">
+                <div class="type-title">
                     <h4>Normal</h4>
                 </div>
-                <div class="typeImage">
+                <div class="type-image">
                     <a>
                         <img src="img/normal_isotype.svg">
                     </a>
                 </div>
             </div>
 
-            <div id="versusIsotype">
-                <div class="typeTitle">
+            <div id="versus-isotype">
+                <div class="type-title">
                     <h4>Versus</h4>
                 </div>
-                <div class="typeImage">
+                <div class="type-image">
                     <a>
                         <img src="img/versus_isotype.svg">
                     </a>
                 </div>
             </div>
             <br>
-            <!--<hr class="normal-line">-->
 
             <!--<input id="break-rows" type="checkbox"><label for="break-rows">Break row into multiple Lines</label>-->
 
         </form>
+    </div>
+</script>
+
+<!-- Icon Template -->
+<script type="text/template" id="icon-template">
+    <div id="overlay-icon" class="overlay-container" style="display: none">
+        <h3>Icon Settings</h3>
+        <hr class="topic-line">
+        <div class="overlay-left">
+
+            <form>
+                <label>
+                    <span data-tooltip class="has-tip tip-right" title="Choose if Icons are mapped to Columns or Rows">Map to</span>
+                </label>
+                <input type="radio" name="radio2" value="row" id="icon-row" checked><label for="icon-row"><img src="img/row.svg"> Row</label>
+                <input type="radio" name="radio2" value="column" id="icon-column"><label for="icon-column"><img src="img/column.svg"> Column</label>
+
+                <div class="group-mapping clearfix">
+                    <legend>Row 1</legend>
+                    <div class="group-preview">
+                        <div class="group-id">
+                            <input type="text" placeholder="#001">
+                        </div>
+                        <div class="group-icon">
+
+                        </div>
+                    </div>
+                    <legend>Row 2</legend>
+                    <div class="group-preview">
+                        <div class="group-id">
+                            <input type="text" placeholder="#002">
+                        </div>
+                        <div class="group-icon">
+
+                        </div>
+                    </div>
+                    <legend>Row 3</legend>
+                    <div class="group-preview">
+                        <div class="group-id">
+                            <input type="text" placeholder="#003">
+                        </div>
+                        <div class="group-icon">
+
+                        </div>
+                    </div>
+                </div>
+
+                <a href="#" class="tiny button radius">Apply</a>
+                <a href="#" class="tiny button radius">Apply & Close</a>
+
+            </form>
+        </div>
+
+        <div class="overlay-right">
+            <h4>Icon Library</h4>
+            <div class="category">
+                <legend>People</legend>
+                <div class="category-icon">
+                    <div class="category-icon-image">
+
+                    </div>
+                    <div class="category-icon-id">
+                        <p>#001</p>
+                    </div>
+                </div>
+                <div class="category-icon">
+                    <div class="category-icon-image">
+
+                    </div>
+                    <div class="category-icon-id">
+                        <p>#002</p>
+                    </div>
+                </div>
+                <div class="category-icon">
+                    <div class="category-icon-image">
+
+                    </div>
+                    <div class="category-icon-id">
+                        <p>#003</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
     </div>
 </script>
 
@@ -303,7 +385,6 @@
 
                     <legend>Column 3</legend>
                     <input type="text" class="picker" value="A6E229">
-                    <br>
 
                     <a href="#" class="tiny button radius">Apply</a>
                     <a href="#" class="tiny button radius">Apply & Close</a>
@@ -323,52 +404,6 @@
                     {{/each}}
                 </form>
             </div>
-        </div>
-    </div>
-</script>
-
-<!-- Icon Template -->
-<script type="text/template" id="icon-template">
-    <div id="overlay-icon" class="overlay-container" style="display: none">
-        <h3>Icon Settings</h3>
-        <hr class="topic-line">
-        <div class="overlay-left">
-
-            <form>
-                <label>
-                    <span data-tooltip class="has-tip tip-right" title="Choose if Icons are mapped to Columns or Rows">Map to</span>
-                </label>
-                <input type="radio" name="radio2" value="row" id="icon-row" checked><label for="icon-row"><img src="img/row.svg"> Row</label>
-                <input type="radio" name="radio2" value="column" id="icon-column"><label for="icon-column"><img src="img/column.svg"> Column</label>
-
-
-                <legend>Row 1</legend>
-                <input type="text" placeholder="ICON">
-
-                <legend>Row 2</legend>
-                <input type="text" placeholder="ICON">
-
-
-                <legend>Row 3</legend>
-                <input type="text" placeholder="ICON">
-
-
-
-                <a href="#" class="tiny button radius">Apply</a>
-                <a href="#" class="tiny button radius">Apply & Close</a>
-
-            </form>
-        </div>
-
-        <div class="overlay-right">
-            <h4>Kategorie 1</h4>
-            <p>ICON1, ICON2, ICON3, ICON4</p>
-            <h4>Kategorie 2</h4>
-            <p>ICON1, ICON2, ICON3, ICON4, ICON5, ICON6</p>
-            <h4>Kategorie 3</h4>
-            <p>ICON1, ICON2, ICON3</p>
-            <h4>Kategorie 4</h4>
-            <p>ICON1, ICON2</p>
         </div>
     </div>
 </script>
