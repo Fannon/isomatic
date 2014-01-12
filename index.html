@@ -270,7 +270,28 @@
                     </a>
                 </div>
             </div>
-            <br>
+
+            <div id="compare-isotype">
+                <div class="type-title">
+                    <h4>Compare</h4>
+                </div>
+                <div class="type-image">
+                    <a>
+                        <img src="img/compare_isotype.svg">
+                    </a>
+                </div>
+            </div>
+
+            <div id="size-isotype">
+                <div class="type-title">
+                    <h4>Size</h4>
+                </div>
+                <div class="type-image">
+                    <a>
+                        <img src="img/size_isotype.svg">
+                    </a>
+                </div>
+            </div>
 
             <!--<input id="break-rows" type="checkbox"><label for="break-rows">Break row into multiple Lines</label>-->
 
@@ -331,7 +352,7 @@
         <div class="overlay-right">
             <h4>Icon Library</h4>
             <div class="category">
-                <legend>People</legend>
+                <label>People</label>
                 <div class="category-icon">
                     <div class="category-icon-image">
 
@@ -354,6 +375,22 @@
                     </div>
                     <div class="category-icon-id">
                         <p>#003</p>
+                    </div>
+                </div>
+                <div class="category-icon">
+                    <div class="category-icon-image">
+
+                    </div>
+                    <div class="category-icon-id">
+                        <p>#004</p>
+                    </div>
+                </div>
+                <div class="category-icon">
+                    <div class="category-icon-image">
+
+                    </div>
+                    <div class="category-icon-id">
+                        <p>#005</p>
                     </div>
                 </div>
             </div>
@@ -411,7 +448,7 @@
 <!-- Properties Template -->
 <script type="text/template" id="properties-template">
     <div id="overlay-properties" class="overlay-container" style="display: none">
-        <h3>Properties</h3>
+        <h3>Adjustments</h3>
         <hr class="topic-line">
         <form>
 
@@ -430,10 +467,10 @@
             <input type="text" value="{{ options.columnMargin }}px">
 
             <hr class="normal-line">
-            <br>
+
             <label><span data-tooltip class="has-tip tip-right" title="Change the icon proportion">Size</span></label>
             <label><img src="img/iconsize.svg">Icon Size</label>
-            <input type="text" value="{{ options.iconSize }}"><br>
+            <input type="text" value="{{ options.iconSize }}">
 
             <a href="#" class="tiny button radius">Apply</a>
             <a href="#" class="tiny button radius">Apply & Close</a>
@@ -496,6 +533,8 @@
             </select>
 
             <input id="draw-column-legend" type="checkbox" checked><label for="draw-column-legend">Draw Column Legend</label>
+
+            <hr class="normal-line">
 
             <label>Add Topic Description</label>
             <textarea placeholder="Enter Description here.."></textarea>

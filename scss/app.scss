@@ -11,9 +11,54 @@
 @import "foundation/components/tooltips";
 @import "foundation/components/reveal";
 
+
+// Text Settings (all)
+
 h1, h2, h3, h4, h5, h6 {
   font-family: "Helvetica", Helvetica, Arial, sans-serif;
+  color: #4D4D4D;
 }
+
+h3 {
+  text-transform: uppercase;
+  letter-spacing: 0.05rem;
+  //font-weight: bold;
+  font-size: 1.4em;
+}
+
+h4 {
+  text-transform: uppercase;
+  letter-spacing: 0.05rem;
+  //font-weight: bold;
+  font-size: 1.2em;
+}
+
+p {
+  font-size: 0.9rem;
+}
+
+legend {
+  padding-top: 5px;
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
+label {
+  font-size: 0.9rem;
+  font-weight: bold;
+  vertical-align: text-top;
+  margin-bottom: 7px;
+}
+
+.has-tip tip-right {
+  //text-transform: uppercase;
+  font-size: 0.9rem;
+  color: #4D4D4D;
+  margin-bottom: 5px;
+}
+
+
+// Content
 
 #nav-container {
   margin: 0px auto;
@@ -46,12 +91,13 @@ h1, h2, h3, h4, h5, h6 {
     }
 
     a {
+      font-size: 0.9rem;
       color: #FFF;
       padding: 12px 0;
     }
   }
 
-  a#trigger-help {
+  a #trigger-help {
     font: h4;
     padding: 12px;
     background: #666;
@@ -151,24 +197,6 @@ h1, h2, h3, h4, h5, h6 {
 
   height: auto;
 
-  h3 {
-    color: #555;
-    font-weight: bold;
-    font-size: 1.4em;
-  }
-
-  h4 {
-    color: #555;
-    //font-weight: bold;
-    font-size: 1.2em;
-  }
-
-  label {
-    font-size: 0.9rem;
-    font-weight: bold;
-    vertical-align: text-top;
-  }
-
   .picker {
     margin: 5px 0px;
     padding: 3px 5px;
@@ -180,7 +208,7 @@ h1, h2, h3, h4, h5, h6 {
     background: rgba(240, 240, 240, 0.9);
     position: absolute;
     height: 100%;
-    width: 280px;
+    width: 220px;
     left: 0px;
     top: 0px;
     border-right: 1px solid #CCC;
@@ -192,49 +220,52 @@ h1, h2, h3, h4, h5, h6 {
       border-right: 1px solid #BBB;
       height: 400px;
       padding-right: 10px;
-      width: 270px;
+      width: 205px;
       float: left;
     }
 
     .overlay-right {
-      padding-left: 10px;
-      width: 530px;
+      padding: 0px 10px 0px 20px;
+      width: 450px;
       float: left;
     }
 
     button.tiny, .button.tiny {
       font-size: 0.9rem;
       margin-top: 10px;
-
     }
   }
 
   #overlay-data {
     textarea {
-      max-width: 800px;
-      min-width: 800px;
+      max-width: 708px;
+      min-width: 708px;
     }
   }
 
   #overlay-type {
     vertical-align: middle;
 
-    h4 {
-      color: #FFF;
-    }
-
-     #normal-isotype, #versus-isotype {
-       margin-bottom: 10px;
+     #normal-isotype, #versus-isotype, #compare-isotype, #size-isotype {
+       margin-bottom: 5px;
        height: 40px;
-       background-color: #999;
+       background-color: #BBB;
+
+       h4 {
+         color: #FFF;
+         font-size: 1em;
+         font-weight: normal;
+         margin-top: 4px;
+       }
     }
 
-    #normal-isotype:hover, #versus-isotype:hover {
-      background-color: #777;
+    #normal-isotype:hover, #versus-isotype:hover, #compare-isotype:hover, #size-isotype:hover {
+      background-color: #888;
     }
 
-    #normal-isotype.active, #versus-isotype.active {
+    #normal-isotype.active, #versus-isotype.active, #compare-isotype.active, #size-isotype.active {
       background-color: #333;
+      box-shadow: 0 0 2px 1px #AAA;
     }
 
     .type-title {
@@ -296,24 +327,15 @@ h1, h2, h3, h4, h5, h6 {
       clear: both;
       padding-top: 5px;
       margin-bottom: 5px;
-      font-weight: bold;
     }
-
-
-
   }
 
   #overlay-color {
-
-    .overlay-right {
-      padding-left: 20px;
-    }
 
     form legend {
       clear: both;
       padding-top: 5px;
       margin-bottom: 5px;
-      font-weight: bold;
     }
 
     input[type='text']{
@@ -346,12 +368,12 @@ h1, h2, h3, h4, h5, h6 {
   }
 
   #overlay-text textarea {
-    min-width: 260px;
-    max-width: 260px;
+    min-width: 200px;
+    max-width: 200px;
   }
 
   #overlay-data, #overlay-icon, #overlay-color, #overlay-help {
-    width: 85%;
+    width: 70%;
     border-right: none;
   }
 
@@ -361,7 +383,7 @@ h1, h2, h3, h4, h5, h6 {
   }
 
   .normal-line {
-    border-bottom: 1px solid #BFBFBF;
+    border-bottom: 1px solid #CCC;
     margin: 0px 0px 10px 0px;
   }
 }
