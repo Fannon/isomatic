@@ -51,7 +51,6 @@ label {
 }
 
 .has-tip tip-right {
-  //text-transform: uppercase;
   font-size: 0.9rem;
   color: #4D4D4D;
   margin-bottom: 5px;
@@ -93,13 +92,13 @@ label {
     a {
       font-size: 0.9rem;
       color: #FFF;
-      padding: 12px 0;
+      padding: 12px 0px;
     }
   }
 
-  a #trigger-help {
+  a#trigger-help {
     font: h4;
-    padding: 12px;
+    padding: 13px;
     background: #666;
     color: #FFF;
   }
@@ -303,12 +302,14 @@ label {
     }
 
     .category-icon {
-      background-color: #999;
+      background-color: #BBB;
       padding: 5px;
       width: 74px;
       float: left;
       margin-right: 10px;
     }
+
+
 
     .category-icon-image {
       background-color: #FFF;
