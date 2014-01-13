@@ -27,12 +27,12 @@ isomatic.views.ColorView = Backbone.View.extend({
         var colorMap = {};
         var i = 0;
         if (isomatic.options.ui.attributes.colorize === 'row') {
-            for (i = 0; i < isomatic.data.meta.columns.length; i++) {
-                colorMap[isomatic.data.meta.columns[i]] = isomatic.options.ui.attributes.colorMap[i];
+            for (i = 0; i < isomatic.data.meta.attributes.columns.length; i++) {
+                colorMap[isomatic.data.meta.attributes.columns[i]] = isomatic.options.ui.attributes.colorMap[i];
             }
         } else {
-            for (i = 0; i < isomatic.data.meta.rows.length; i++) {
-                colorMap[isomatic.data.meta.rows[i]] = isomatic.options.ui.attributes.colorMap[i];
+            for (i = 0; i < isomatic.data.meta.attributes.rows.length; i++) {
+                colorMap[isomatic.data.meta.attributes.rows[i]] = isomatic.options.ui.attributes.colorMap[i];
             }
         }
 

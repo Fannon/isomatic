@@ -1,7 +1,10 @@
 /* jshint jquery:true, devel: true */
 /* global isomatic, d3, Backbone */
 
-/** Data Namespace */
+/**
+ * Data Namespace
+ * Contains 3 Data Models: Raw, Meta and Processed Data.
+ */
 isomatic.data = {};
 
 /**
@@ -14,12 +17,7 @@ isomatic.data.Model = Backbone.Model.extend({
     initialize: function() {
         "use strict";
         console.log('isomatic.data.Model initialized.');
-    },
-
-    defaults: {
-        data: {}
     }
-
 });
 
 /**

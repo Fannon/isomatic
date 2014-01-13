@@ -59,17 +59,17 @@ isomatic.views.GraphView = Backbone.View.extend({
 
         // Calculate Width and Height from Aspect Ratio
         isomatic.options.ui.set("aspectRatio", aspectRatio);
-        isomatic.data.meta.width = this.$display.width();
-        isomatic.data.meta.height = Math.round(isomatic.data.meta.width / aspectRatio);
+        isomatic.data.meta.attributes.width = this.$display.width();
+        isomatic.data.meta.attributes.height = Math.round(isomatic.data.meta.attributes.width / aspectRatio);
 
         // Sets height of the Drawing Area according to aspect ratio
-        this.$display.height(isomatic.data.meta.height);
-        this.$sidebar.height(isomatic.data.meta.height);
+        this.$display.height(isomatic.data.meta.attributes.height);
+        this.$sidebar.height(isomatic.data.meta.attributes.height);
     },
 
     /**
      * Precalculates the visual Layout. Recommends some options like Icon-Size.
-     * Stores the data into the isomatic.data.meta Object
+     * Stores the data into the isomatic.data.meta.attributes Object
      */
    precalculate: function() {
         "use strict";
@@ -90,14 +90,14 @@ isomatic.views.GraphView = Backbone.View.extend({
 
         }
 
-        isomatic.data.meta.iconsPerRow = iconsPerRow;
-        isomatic.data.meta.maxIconsPerRow = d3.max(iconsPerRow);
+        isomatic.data.meta.attributes.iconsPerRow = iconsPerRow;
+        isomatic.data.meta.attributes.maxIconsPerRow = d3.max(iconsPerRow);
 
         // Calculate Base Scale for Icons depending on biggest Row. (Fit to width)
-        var widthLeft = isomatic.data.meta.width -
-            (isomatic.data.meta.maxIconsPerRow * isomatic.options.ui.get("iconHorizontalMargin")) -
+        var widthLeft = isomatic.data.meta.attributes.width -
+            (isomatic.data.meta.attributes.maxIconsPerRow * isomatic.options.ui.get("iconHorizontalMargin")) -
             2 * isomatic.options.ui.get("outerMargin");
-        isomatic.data.meta.baseScale = widthLeft / (isomatic.data.meta.maxIconsPerRow * 32);
+        isomatic.data.meta.attributes.baseScale = widthLeft / (isomatic.data.meta.attributes.maxIconsPerRow * 32);
 
     },
 
@@ -129,8 +129,8 @@ isomatic.views.GraphView = Backbone.View.extend({
         ///////////////////////////////////////
 
        this.svg = d3.select("#graph").append("svg")
-            .attr("width",isomatic.data.meta.width)
-            .attr("height", isomatic.data.meta.height)
+            .attr("width",isomatic.data.meta.attributes.width)
+            .attr("height", isomatic.data.meta.attributes.height)
             .append("g")
             .attr("id", "isotype")
         ;
@@ -152,7 +152,7 @@ isomatic.views.GraphView = Backbone.View.extend({
 
         if (isomatic.data.raw) {
 
-            var finalSize = isomatic.data.meta.baseScale * isomatic.options.internal.defaultIconSize;
+            var finalSize = isomatic.data.meta.attributes.baseScale * isomatic.options.internal.defaultIconSize;
 
             var g =this.svg.selectAll(".icon")
                 .data(isomatic.data.processed)
@@ -164,7 +164,7 @@ isomatic.views.GraphView = Backbone.View.extend({
                     var x = d.pos * (finalSize + isomatic.options.ui.get("iconHorizontalMargin")) + isomatic.options.ui.get("outerMargin");
                     var y = d.row * (finalSize + isomatic.options.ui.get("rowMargin")) + isomatic.options.ui.get("outerMargin");
 
-                    var scale = isomatic.data.meta.baseScale * d.size;
+                    var scale = isomatic.data.meta.attributes.baseScale * d.size;
 
                     // If Icon is drawn smaller than full-size, center it
                     if (d.size < 1) {
@@ -173,7 +173,7 @@ isomatic.views.GraphView = Backbone.View.extend({
                     }
 
                     // If Icon is drawn outside of Canvas give a warning
-                    if (y > isomatic.data.meta.height || x >isomatic.data.meta.width) {
+                    if (y > isomatic.data.meta.attributes.height || x >isomatic.data.meta.attributes.width) {
                         isomatic.message('warning', '<strong>Warning: </strong>The generated Graphic is bigger than its Canvas!');
                     }
 
@@ -222,7 +222,7 @@ isomatic.views.GraphView = Backbone.View.extend({
 
         var legend =this.svg.append("g")
             .style("text-anchor", "start")
-            .attr("transform", "translate(" + isomatic.options.ui.get("outerMargin") + ", " + (isomatic.data.meta.height - 2 * isomatic.options.ui.get("outerMargin")) + ")");
+            .attr("transform", "translate(" + isomatic.options.ui.get("outerMargin") + ", " + (isomatic.data.meta.attributes.height - 2 * isomatic.options.ui.get("outerMargin")) + ")");
 
         legend.append("text")
             .attr("class", "legend")
