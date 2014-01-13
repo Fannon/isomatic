@@ -74,6 +74,8 @@ $(function() {
         } else {
             $('#normal-isotype').addClass('active');
             $('#versus-isotype').removeClass('active');
+            $('#compare-isotype').removeClass('active');
+            $('#size-isotype').removeClass('active');
         }
     });
 
@@ -82,8 +84,31 @@ $(function() {
         } else {
             $('#versus-isotype').addClass('active');
             $('#normal-isotype').removeClass('active');
+            $('#compare-isotype').removeClass('active');
+            $('#size-isotype').removeClass('active');
         }
     });
+
+    $('#compare-isotype').click(function() {
+        if ($('#compare-isotype').hasClass('active')) {
+        } else {
+            $('#compare-isotype').addClass('active');
+            $('#normal-isotype').removeClass('active');
+            $('#versus-isotype').removeClass('active');
+            $('#size-isotype').removeClass('active');
+        }
+    });
+
+    $('#size-isotype').click(function() {
+        if ($('#size-isotype').hasClass('active')) {
+        } else {
+            $('#size-isotype').addClass('active');
+            $('#normal-isotype').removeClass('active');
+            $('#versus-isotype').removeClass('active');
+            $('#compare-isotype').removeClass('active');
+        }
+    });
+
 
 });
 
