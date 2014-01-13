@@ -391,20 +391,22 @@
             <div class="overlay-left">
                 <form>
 
+
+
                     <label>
                         <span data-tooltip class="has-tip tip-right" title="Choose if Colors are mapped to Columns or Rows">Map to</span>
                     </label>
                     <input type="radio" name="radio3" value="row" id="color-row" checked><label for="color-row"><img src="img/row.svg"> Row</label>
                     <input type="radio" name="radio3" value="column" id="color-column"><label for="color-column"><img src="img/column.svg"> Column</label><br>
 
-                    <legend>Column 1</legend>
-                    <input type="text" class="picker" value="2471a8">
+                    {{#if author}}
+                        <h1>{{firstName}} {{lastName}}</h1>
+                    {{/if}}
 
-                    <legend>Column 2</legend>
-                    <input type="text" class="picker" value="BD4824">
-
-                    <legend>Column 3</legend>
-                    <input type="text" class="picker" value="A6E229">
+                    {{#each colorMap}}
+                    <legend>Row {{@index}}</legend>
+                    <input type="text" id="picker-{{@index}}" class="picker" value="{{this}}">
+                    {{/each}}
 
                     <a href="#" class="tiny button radius">Apply</a>
                     <a href="#" class="tiny button radius">Apply & Close</a>

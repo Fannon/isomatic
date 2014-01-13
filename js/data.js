@@ -87,6 +87,11 @@ isomatic.data.analyze = function(data) {
     var availableScales = [];
 
 
+    // Reset previous Calculations:
+    isomatic.data.meta.rows = [];
+    isomatic.data.meta.columns = [];
+
+
     ///////////////////////////////////////
     // Analyse Values, Rows and Columns  //
     ///////////////////////////////////////

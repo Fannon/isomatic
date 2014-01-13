@@ -8,73 +8,6 @@ isomatic.options = {};
 
 
 ///////////////////////////////////////
-// Default Options                   //
-///////////////////////////////////////
-
-/**
- * isomatic Preset (default) Options
- * @type {Object}
- */
-isomatic.options.preset = {};
-
-// GENERAL LAYOUTING
-/** Aspect Ratio of the Canvas. Width is always 100% */
-isomatic.options.preset.aspectRatio = 16 / 9;
-
-/** Margin to Canvas */
-isomatic.options.preset.outerMargin = 10;
-
-/** Margin between Rows */
-isomatic.options.preset.rowMargin = 30;
-
-/** Margin between Columns TODO: Not implemented */
-isomatic.options.preset.columnMargin = 30;
-
-/** Horizontal Margin between Icons */
-isomatic.options.preset.iconHorizontalMargin = 3;
-
-/** Vertical Margin between Icons */
-isomatic.options.preset.iconVerticalMargin = 3;
-
-/** Break a Row into several Rows visually if number icons exceed this */
-isomatic.options.preset.breakRow = 0;
-
-/** Floor value if Remainder is below */
-isomatic.options.preset.roundDown = 0.3;
-
-/** Ceil value if Remainder is above */
-isomatic.options.preset.roundUp = 0.8;
-
-/** Icon Size */
-isomatic.options.preset.iconSize = 'auto';
-
-/**
- * Defines if the Color is applied to Rows or Columns
- * Accepts 'row' and 'column'
- * @type {string}
- */
-isomatic.options.preset.iconize = 'column';
-
-/**
- * Defines if the Color is applied to Rows or Columns
- * Accepts 'row' and 'column'
- * @type {string}
- */
-isomatic.options.preset.colorize = 'column';
-
-/** This stores which row ID maps to which color */
-isomatic.options.preset.colorMap = ["#0B486B", "#3B8686", "#79BD9A", "#A8DBA8", "#CFF09E"];
-
-/** This stores which column ID maps to which icon */
-isomatic.options.preset.iconMap = [
-    {category: 'socialNetworks', name: 'facebook'},
-    {category: 'socialNetworks', name: 'twitter'},
-    {category: 'socialNetworks', name: 'googleplus'},
-    {category: 'socialNetworks', name: 'linkedin'}
-];
-
-
-///////////////////////////////////////
 // Internal Options                  //
 ///////////////////////////////////////
 
@@ -131,6 +64,74 @@ isomatic.options.internal.colorPalettes = {
     "Rainbow": ["#0A7B83","#2AA876","#FFD265","#F19C65","#CE4D45"]
 
 };
+
+
+///////////////////////////////////////
+// Default Options                   //
+///////////////////////////////////////
+
+/**
+ * isomatic Preset (default) Options
+ * @type {Object}
+ */
+isomatic.options.preset = {};
+
+// GENERAL LAYOUTING
+/** Aspect Ratio of the Canvas. Width is always 100% */
+isomatic.options.preset.aspectRatio = 16 / 9;
+
+/** Margin to Canvas */
+isomatic.options.preset.outerMargin = 10;
+
+/** Margin between Rows */
+isomatic.options.preset.rowMargin = 30;
+
+/** Margin between Columns TODO: Not implemented */
+isomatic.options.preset.columnMargin = 30;
+
+/** Horizontal Margin between Icons */
+isomatic.options.preset.iconHorizontalMargin = 3;
+
+/** Vertical Margin between Icons */
+isomatic.options.preset.iconVerticalMargin = 3;
+
+/** Break a Row into several Rows visually if number icons exceed this */
+isomatic.options.preset.breakRow = 0;
+
+/** Floor value if Remainder is below */
+isomatic.options.preset.roundDown = 0.3;
+
+/** Ceil value if Remainder is above */
+isomatic.options.preset.roundUp = 0.8;
+
+/** Icon Size */
+isomatic.options.preset.iconSize = 'auto';
+
+/**
+ * Defines if the Color is applied to Rows or Columns
+ * Accepts 'row' and 'column'
+ * @type {string}
+ */
+isomatic.options.preset.iconize = 'column';
+
+/**
+ * Defines if the Color is applied to Rows or Columns
+ * Accepts 'row' and 'column'
+ * @type {string}
+ */
+isomatic.options.preset.colorize = 'column';
+
+/** This stores which row ID maps to which color */
+isomatic.options.preset.colorMap = isomatic.options.internal.colorPalettes.Rainbow;
+
+/** This stores which column ID maps to which icon */
+isomatic.options.preset.iconMap = [
+    {category: 'socialNetworks', name: 'facebook'},
+    {category: 'socialNetworks', name: 'twitter'},
+    {category: 'socialNetworks', name: 'googleplus'},
+    {category: 'socialNetworks', name: 'linkedin'}
+];
+
 
 ///////////////////////////////////////
 // Backbone.js Models                //

@@ -64,11 +64,6 @@ $(function() {
         railOpacity: 0.3
     });
 
-    // Init ColorPicker TODO: Move this
-    $('.picker').each(function() {
-        isomatic.registerColorpicker($(this));
-    });
-
     $('#normal-isotype').click(function() {
         if ($('#normal-isotype').hasClass('active')) {
         } else {
