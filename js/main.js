@@ -58,11 +58,7 @@ $(function() {
     $(document).foundation();
 
     // Init Scrollbar Plugin
-    $('.scrollbar').slimScroll({
-        height: '100%',
-        alwaysVisible: true,
-        railOpacity: 0.3
-    });
+    $('.scrollbar').slimScroll(isomatic.options.internal.slimmScrollOptions);
 
     $('#normal-isotype').click(function() {
         if ($('#normal-isotype').hasClass('active')) {

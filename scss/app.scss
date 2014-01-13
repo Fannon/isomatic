@@ -215,6 +215,10 @@ label {
     overflow: hidden;
     box-shadow: 1px 2px 4px #AAA;
 
+    .slimScrollDiv {
+      margin-right: -5px;
+    }
+
     .overlay-left {
       border-right: 1px solid #BBB;
       height: 400px;

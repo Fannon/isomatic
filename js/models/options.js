@@ -65,6 +65,12 @@ isomatic.options.internal.colorPalettes = {
 
 };
 
+isomatic.options.internal.slimmScrollOptions = {
+    height: '100%',
+    alwaysVisible: true,
+    railOpacity: 0.3
+};
+
 
 ///////////////////////////////////////
 // Default Options                   //
