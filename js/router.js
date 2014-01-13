@@ -98,7 +98,7 @@ var IsomaticRouter = Backbone.Router.extend({
         $(".trigger-ui").removeClass('active');
         $(".overlay-container").hide();
         $("#trigger-" + id).addClass('active');
-        $('#overlay-' + id).show();
+        $('#' + id + '-container').show();
     }
 });
 

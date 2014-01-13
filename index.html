@@ -43,15 +43,21 @@
     <div class="container">
 
         <div id="toolbar">
+
             <a href="#data"><div class="icon trigger-ui" id="trigger-data"></div></a>
             <a href="#type"><div class="icon trigger-ui" id="trigger-type"></div></a>
+
             <hr class="toolbar-line">
+
             <a href="#icon"><div class="icon trigger-ui" id="trigger-icon"></div></a>
             <a href="#color"><div class="icon trigger-ui" id="trigger-color"></div></a>
             <a href="#properties"><div class="icon trigger-ui" id="trigger-properties"></div></a>
+
             <hr class="toolbar-line">
+
             <a href="#scale"><div class="icon trigger-ui" id="trigger-scale"></div></a>
             <a href="#text"><div class="icon trigger-ui" id="trigger-text"></div></a>
+
         </div>
 
         <div id="display">
@@ -59,29 +65,30 @@
             <div id="graph-container"></div>
 
             <div id="overlay">
+
                 <!-- Help Overlay -->
-                <div id="help-container"></div>
+                <div id="help-container" class="overlay-container" style="display: none"></div>
 
                 <!-- Data Settings Container -->
-                <div id="data-container"></div>
+                <div id="data-container" class="overlay-container" style="display: none"></div>
 
                 <!-- Type Settings -->
-                <div id="type-container"></div>
+                <div id="type-container" class="overlay-container" style="display: none"></div>
 
                 <!-- Icon Settings -->
-                <div id="icon-container"></div>
+                <div id="icon-container" class="overlay-container" style="display: none"></div>
 
                 <!-- Color Settings -->
-                <div id="color-container"></div>
+                <div id="color-container" class="overlay-container" style="display: none"></div>
 
                 <!-- Properties -->
-                <div id="properties-container"></div>
+                <div id="properties-container" class="overlay-container" style="display: none"></div>
 
                 <!-- Scale Settings -->
-                <div id="scale-container"></div>
+                <div id="scale-container" class="overlay-container" style="display: none"></div>
 
                 <!-- Text Settings -->
-                <div id="text-container"></div>
+                <div id="text-container" class="overlay-container" style="display: none"></div>
 
 
             </div>
@@ -205,7 +212,7 @@
 
 <!-- Help Template -->
 <script type="text/template" id="help-template">
-    <div id="overlay-help" class="overlay-container" style="display: none">
+    <div id="overlay-help">
         <h3>Help</h3>
         <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
         <h4>Help 2</h4>
@@ -215,7 +222,7 @@
 
 <!-- Data Template -->
 <script type="text/template" id="data-template">
-    <div id="overlay-data" class="overlay-container" style="display: none">
+    <div id="overlay-data">
         <div class="scrollbar">
             <h3>Data Import</h3>
             <hr class="topic-line">
@@ -240,7 +247,7 @@
 
 <!-- Type Template -->
 <script type="text/template" id="type-template">
-    <div id="overlay-type" class="overlay-container" style="display: none">
+    <div id="overlay-type">
 
         <form>
             <h3>Diagram Type</h3>
@@ -297,7 +304,7 @@
 
 <!-- Icon Template -->
 <script type="text/template" id="icon-template">
-    <div id="overlay-icon" class="overlay-container" style="display: none">
+    <div id="overlay-icon">
         <h3>Icon Settings</h3>
         <hr class="topic-line">
         <div class="overlay-left">
@@ -380,7 +387,7 @@
 
 <!-- Color Template -->
 <script type="text/template" id="color-template">
-    <div id="overlay-color" class="overlay-container" style="display: none">
+    <div id="overlay-color">
         <div class="scrollbar">
             <h3>Color Settings</h3>
             <hr class="topic-line">
@@ -422,7 +429,7 @@
 
 <!-- Properties Template -->
 <script type="text/template" id="properties-template">
-    <div id="overlay-properties" class="overlay-container" style="display: none">
+    <div id="overlay-properties">
         <h3>Adjustments</h3>
         <hr class="topic-line">
         <form>
@@ -455,7 +462,7 @@
 
 <!-- Scale Template -->
 <script type="text/template" id="scale-template">
-    <div id="overlay-scale" class="overlay-container" style="display: none">
+    <div id="overlay-scale">
         <h3>Scale Settings</h3>
         <hr class="topic-line">
         <form>
@@ -494,7 +501,7 @@
 
 <!-- Text Template -->
 <script type="text/template" id="text-template">
-    <div id="overlay-text" class="overlay-container" style="display: none">
+    <div id="overlay-text">
         <h3>Text Settings</h3>
         <hr class="topic-line">
         <form>

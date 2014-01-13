@@ -24,5 +24,6 @@ isomatic.views.PropertiesView = Backbone.View.extend({
     },
     events: {
         "click #color": "colorClick"
-    }
+    },
+    model: isomatic.options.ui
 });

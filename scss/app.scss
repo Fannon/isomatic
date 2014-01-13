@@ -98,7 +98,7 @@ label {
 
   a#trigger-help {
     font: h4;
-    padding: 13px;
+    padding: 12px;
     background: #666;
     color: #FFF;
   }
@@ -313,8 +313,6 @@ label {
       margin-right: 10px;
     }
 
-
-
     .category-icon-image {
       background-color: #FFF;
       width: 64px;
@@ -377,7 +375,7 @@ label {
     max-width: 200px;
   }
 
-  #overlay-data, #overlay-icon, #overlay-color, #overlay-help {
+  #data-container, #icon-container, #color-container, #help-container {
     width: 70%;
     border-right: none;
   }
@@ -400,14 +398,6 @@ label {
     overflow: scroll;
 
   }
-}
-
-#playground {
-  width: 100%;
-  min-height: 400px;
-  border: 1px solid #CCC;
-  background: #FFF;
-  padding: 5px;
 }
 
 #footer {

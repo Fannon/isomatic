@@ -14,7 +14,7 @@ isomatic.views.ColorView = Backbone.View.extend({
         $('#colorpalette-Dracula').addClass('active');
 
         // Init Scrollbar Plugin
-        $('#overlay-color .scrollbar').slimScroll(isomatic.options.internal.slimmScrollOptions);
+
 
     },
     render: function(){
@@ -58,6 +58,9 @@ isomatic.views.ColorView = Backbone.View.extend({
             isomatic.registerColorpicker($(this));
         });
 
+        // Init Scrollbar
+        $('.scrollbar').slimScroll(isomatic.options.internal.slimmScrollOptions);
+
     },
     events: {
         "click #colorize-column": "colorizeColumn",
@@ -70,13 +73,11 @@ isomatic.views.ColorView = Backbone.View.extend({
         "use strict";
         isomatic.options.ui.set('colorize', 'column');
         this.render();
-        $('#overlay-color').show();
     },
     colorizeRow: function() {
         "use strict";
         isomatic.options.ui.set('colorize', 'row');
         this.render();
-        $('#overlay-color').show();
     },
     applyColor: function() {
         "use strict";
