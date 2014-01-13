@@ -405,7 +405,7 @@
 
                     {{#each colorMap}}
                     <legend>Row {{@index}}</legend>
-                    <input type="text" id="picker-{{@index}}" class="picker" value="{{this}}">
+                    <input type="text" id="picker-{{@index}}" class="picker" value="{{this}}" style="border-color: {{this}};">
                     {{/each}}
 
                     <a href="#" class="tiny button radius">Apply</a>
