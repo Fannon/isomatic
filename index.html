@@ -6,7 +6,6 @@
 
     <link rel="stylesheet" type="text/css" href="css/app.css"/>
 
-    <!-- TODO: Import via SCSS: -->
     <link rel="stylesheet" type="text/css" href="bower_components/colpick/css/colpick.css"/>
     <link rel="stylesheet" type="text/css" href="bower_components/handsontable/dist/jquery.handsontable.full.css"/>
 
@@ -96,7 +95,6 @@
 
     </div>
 
-
     <!-- Modals -->
     <div id="new-container"></div>
     <div id="import-container"></div>
@@ -137,9 +135,7 @@
 
 <!-- 3rd Party Plugins -->
 <script src="bower_components/colpick/colpick.js"></script>
-<!--<script src="bower_components/handsontable/dist/jquery.handsontable.full.js"></script>-->
 <script src="bower_components/slimScroll/jquery.slimscroll.js"></script>
-
 
 <!-- Minimized JavaScript -->
 <!--<script src="js/app.min.js"></script>-->
@@ -391,20 +387,14 @@
             <div class="overlay-left">
                 <form>
 
-
-
                     <label>
                         <span data-tooltip class="has-tip tip-right" title="Choose if Colors are mapped to Columns or Rows">Map to</span>
                     </label>
-                    <input type="radio" name="radio3" value="row" id="color-row" checked><label for="color-row"><img src="img/row.svg"> Row</label>
-                    <input type="radio" name="radio3" value="column" id="color-column"><label for="color-column"><img src="img/column.svg"> Column</label><br>
-
-                    {{#if author}}
-                        <h1>{{firstName}} {{lastName}}</h1>
-                    {{/if}}
+                    <input id="colorize-column" type="radio" name="radio3" value="column"><label for="colorize-column"><img src="img/column.svg"> Column</label>
+                    <input id="colorize-row" type="radio" name="radio3" value="row"><label for="colorize-row"><img src="img/row.svg"> Row</label>
 
                     {{#each colorMap}}
-                    <legend>Row {{@index}}</legend>
+                    <legend>{{@key}}</legend>
                     <input type="text" id="picker-{{@index}}" class="picker" value="{{this}}" style="border-color: {{this}};">
                     {{/each}}
 

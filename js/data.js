@@ -108,7 +108,7 @@ isomatic.data.analyze = function(data) {
             if(currentRow.hasOwnProperty(obj)){
 
                 // Put all available Columns into an array
-                if (rowCounter === 0) {
+                if (rowCounter === 0  && columnCounter >= 1) {
                     isomatic.data.meta.columns.push(obj);
                 }
 

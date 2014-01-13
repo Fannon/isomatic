@@ -121,7 +121,10 @@ isomatic.options.preset.iconize = 'column';
  */
 isomatic.options.preset.colorize = 'column';
 
-/** This stores which row ID maps to which color */
+/**
+ * This stores which row ID maps to which color
+ * Defines the default Palette
+ */
 isomatic.options.preset.colorMap = isomatic.options.internal.colorPalettes.Rainbow;
 
 /** This stores which column ID maps to which icon */
