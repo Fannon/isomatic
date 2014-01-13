@@ -38,7 +38,7 @@ isomatic.views.DataView = Backbone.View.extend({
      */
     events: {
         "click #import-data": "submitData",
-        "click #import-data-close": "submitDataClose",
+        "click #import-data-close": "submitData",
         "focus #pasted-data": "focusTextarea"
     },
 
@@ -79,15 +79,6 @@ isomatic.views.DataView = Backbone.View.extend({
         // Process and draw Data
         isomatic.data.process(data);
 
-    },
-
-    /**
-     * Submits Data and closes the Overlay
-     */
-    submitDataClose: function() {
-        "use strict";
-        this.submitData();
-        $('#overlay-data').hide();
     },
 
     /**

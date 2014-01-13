@@ -24,19 +24,11 @@ isomatic.views.ColorView = Backbone.View.extend({
         var i = 0;
         if (isomatic.options.ui.attributes.colorize === 'row') {
             for (i = 0; i < isomatic.data.meta.columns.length; i++) {
-                if (isomatic.data.meta.columns[i] !== '') {
-                    colorMap[isomatic.data.meta.columns[i]] = isomatic.options.ui.attributes.colorMap[i];
-                }  else {
-                    colorMap['Row ' + (i + 1)] = isomatic.options.ui.attributes.colorMap[i];
-                }
+                colorMap[isomatic.data.meta.columns[i]] = isomatic.options.ui.attributes.colorMap[i];
             }
         } else {
             for (i = 0; i < isomatic.data.meta.rows.length; i++) {
-                if (isomatic.data.meta.rows[i].trim() !== '') {
-                    colorMap[isomatic.data.meta.rows[i]] = isomatic.options.ui.attributes.colorMap[i];
-                }  else {
-                    colorMap['Column ' + (i + 1)] = isomatic.options.ui.attributes.colorMap[i];
-                }
+                colorMap[isomatic.data.meta.rows[i]] = isomatic.options.ui.attributes.colorMap[i];
             }
         }
 
@@ -65,7 +57,10 @@ isomatic.views.ColorView = Backbone.View.extend({
     },
     events: {
         "click #colorize-column": "colorizeColumn",
-        "click #colorize-row": "colorizeRow"
+        "click #colorize-row": "colorizeRow",
+        "click .colorpalette": "selectColorpalette",
+        "click #color-apply": "applyColor",
+        "click #color-apply-close": "applyColor"
     },
     colorizeColumn: function() {
         "use strict";
@@ -77,6 +72,24 @@ isomatic.views.ColorView = Backbone.View.extend({
         "use strict";
         isomatic.options.ui.set('colorize', 'row');
         this.render();
+        $('#overlay-color').show();
+    },
+    applyColor: function() {
+        "use strict";
+        // TODO!
+    },
+    /**
+     * Selects the Colorpalette and applies it to the Colorpickers and the Graphic
+     * @param event
+     */
+    selectColorpalette: function(event) {
+        "use strict";
+
+        var selectedColorPalette = event.currentTarget.id.split('-')[1];
+        isomatic.options.ui.set('colorMap', isomatic.options.internal.colorPalettes[selectedColorPalette]);
+
+        this.render();
+        $('#' + event.currentTarget.id).addClass('active');
         $('#overlay-color').show();
     }
 });

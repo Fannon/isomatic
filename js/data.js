@@ -109,12 +109,12 @@ isomatic.data.analyze = function(data) {
 
                 // Put all available Columns into an array
                 if (rowCounter === 0  && columnCounter >= 1) {
-                    isomatic.data.meta.columns.push(obj);
+                    isomatic.data.meta.rows.push(obj);
                 }
 
                 if (columnCounter === 0) {
                     // Put first Column (Description) into a Column Array
-                    isomatic.data.meta.rows.push(currentRow[obj]);
+                    isomatic.data.meta.columns.push(currentRow[obj]);
                 } else {
                     values.push(parseInt(currentRow[obj], 10));
                     rowValue += parseInt(currentRow[obj], 10);

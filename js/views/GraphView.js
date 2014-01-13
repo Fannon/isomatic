@@ -20,6 +20,8 @@ isomatic.views.GraphView = Backbone.View.extend({
 
         this.render();
 
+        // TODO: Refresh Graphic Method & Refresh Data Method
+
         this.newVisualisation(isomatic.options.ui.get("aspectRatio"));
 
     },
@@ -61,8 +63,8 @@ isomatic.views.GraphView = Backbone.View.extend({
         isomatic.data.meta.height = Math.round(isomatic.data.meta.width / aspectRatio);
 
         // Sets height of the Drawing Area according to aspect ratio
-       this.$display.height(isomatic.data.meta.height);
-       this.$sidebar.height(isomatic.data.meta.height);
+        this.$display.height(isomatic.data.meta.height);
+        this.$sidebar.height(isomatic.data.meta.height);
     },
 
     /**
@@ -196,7 +198,7 @@ isomatic.views.GraphView = Backbone.View.extend({
                     if (isomatic.options.ui.get("colorize") === 'row') {
                         return isomatic.options.ui.get("colorMap")[d.row];
                     } else {
-                        return isomatic.options.ui.get("colorMap")[d.col];
+                        return isomatic.options.ui.get("colorMap")[d.col - 1];
                     }
                 })
             ;

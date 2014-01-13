@@ -226,7 +226,7 @@
                 <textarea value="Copy'n'Paste here" id="pasted-data">{{ preset_data }}</textarea>
 
                 <a id="import-data" href="#" class="tiny button radius">Import</a>
-                <a id="import-data-close" href="#" class="tiny button radius">Import & Close</a>
+                <a id="import-data-close" href="#home" class="tiny button radius">Import & Close</a>
 
                 <hr class="normal-line">
 
@@ -398,8 +398,8 @@
                     <input type="text" id="picker-{{@index}}" class="picker" value="{{this}}" style="border-color: {{this}};">
                     {{/each}}
 
-                    <a href="#" class="tiny button radius">Apply</a>
-                    <a href="#" class="tiny button radius">Apply & Close</a>
+                    <a id="color-apply" href="#" class="tiny button radius">Apply</a>
+                    <a id="color-apply-close" href="#home" class="tiny button radius">Apply & Close</a>
                 </form>
             </div>
             <div class="overlay-right">

@@ -112,11 +112,11 @@ isomatic.options.preset.iconSize = 'auto';
  * Accepts 'row' and 'column'
  * @type {string}
  */
-isomatic.options.preset.iconize = 'column';
+isomatic.options.preset.iconize = 'row';
 
 /**
  * Defines if the Color is applied to Rows or Columns
- * Accepts 'row' and 'column'
+ * Accepts 'row' and 'columns'
  * @type {string}
  */
 isomatic.options.preset.colorize = 'column';
