@@ -45,7 +45,7 @@ $(function() {
     isomatic.views.typeView = new isomatic.views.TypeView({el: $("#type-container")});
     isomatic.views.iconView = new isomatic.views.IconView({el: $("#icon-container")});
     isomatic.views.colorView = new isomatic.views.ColorView({el: $("#color-container")});
-    isomatic.views.propertiesView = new isomatic.views.PropertiesView({el: $("#properties-container")});
+    isomatic.views.propertiesView = new isomatic.views.AdjustmentsView({el: $("#adjustments-container")});
     isomatic.views.scaleView = new isomatic.views.ScaleView({el: $("#scale-container")});
     isomatic.views.textView = new isomatic.views.TextView({el: $("#text-container")});
 
@@ -58,50 +58,11 @@ $(function() {
     $(document).foundation();
 
     // Init Scrollbar Plugin
-    $('.scrollbar').slimScroll({
-        height: '100%',
-        alwaysVisible: true,
-        railOpacity: 0.3
-    });
+    $('.scrollbar').slimScroll(isomatic.options.internal.slimmScrollOptions);
 
-    $('#normal-isotype').click(function() {
-        if ($('#normal-isotype').hasClass('active')) {
-        } else {
-            $('#normal-isotype').addClass('active');
-            $('#versus-isotype').removeClass('active');
-            $('#compare-isotype').removeClass('active');
-            $('#size-isotype').removeClass('active');
-        }
-    });
-
-    $('#versus-isotype').click(function() {
-        if ($('#versus-isotype').hasClass('active')) {
-        } else {
-            $('#versus-isotype').addClass('active');
-            $('#normal-isotype').removeClass('active');
-            $('#compare-isotype').removeClass('active');
-            $('#size-isotype').removeClass('active');
-        }
-    });
-
-    $('#compare-isotype').click(function() {
-        if ($('#compare-isotype').hasClass('active')) {
-        } else {
-            $('#compare-isotype').addClass('active');
-            $('#normal-isotype').removeClass('active');
-            $('#versus-isotype').removeClass('active');
-            $('#size-isotype').removeClass('active');
-        }
-    });
-
-    $('#size-isotype').click(function() {
-        if ($('#size-isotype').hasClass('active')) {
-        } else {
-            $('#size-isotype').addClass('active');
-            $('#normal-isotype').removeClass('active');
-            $('#versus-isotype').removeClass('active');
-            $('#compare-isotype').removeClass('active');
-        }
+    // Register Ugly Hack
+    $('.trigger-ui').on('click', function(el) {
+        isomatic.uglyHack(el.currentTarget);
     });
 
 
@@ -177,6 +138,17 @@ isomatic.pad = function(n) {
     return n < 10 ? '0' + n : n;
 };
 
+isomatic.uglyHack = function(el) {
+    "use strict";
+    var id = el.id.split('-')[1];
+    console.log(id);
+    if (window.location.hash === '#' + id) {
+        setTimeout(function() {
+            window.location = '#home';
+        }, 50);
+
+    }
+};
 
 ///////////////////////////////////////
 // 3rd Party Scripts                 //
@@ -242,5 +214,7 @@ isomatic.pad = function(n) {
             form.submit();
         }, 50);
     };
+
+
 
 })(jQuery);

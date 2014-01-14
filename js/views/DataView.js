@@ -15,6 +15,8 @@ isomatic.views.DataView = Backbone.View.extend({
         "use strict";
 
         this.render();
+
+        // TODO: Geht sicher eleganter
         this.submitData();
     },
 
@@ -38,7 +40,7 @@ isomatic.views.DataView = Backbone.View.extend({
      */
     events: {
         "click #import-data": "submitData",
-        "click #import-data-close": "submitDataClose",
+        "click #import-data-close": "submitData",
         "focus #pasted-data": "focusTextarea"
     },
 
@@ -72,22 +74,13 @@ isomatic.views.DataView = Backbone.View.extend({
         var data = d3.tsv.parse($('#pasted-data').val());
 
         // Generate Preview Table from data
-        this.tabulate(data);
+        this.tablePreview(data);
 
         // TODO: Validation
 
         // Process and draw Data
-        isomatic.data.process(data);
+        this.process(data);
 
-    },
-
-    /**
-     * Submits Data and closes the Overlay
-     */
-    submitDataClose: function() {
-        "use strict";
-        this.submitData();
-        $('#overlay-data').hide();
     },
 
     /**
@@ -95,7 +88,7 @@ isomatic.views.DataView = Backbone.View.extend({
      *
      * @param data  Data Array
      */
-    tabulate: function(data) {
+    tablePreview: function(data) {
         "use strict";
 
         var table = d3.select("#dataTable");
@@ -113,7 +106,7 @@ isomatic.views.DataView = Backbone.View.extend({
             }
         }
 
-        // append the header row
+        // Create Header Row (TH)
         thead.append("tr")
             .selectAll("th")
             .data(columns)
@@ -123,13 +116,13 @@ isomatic.views.DataView = Backbone.View.extend({
                 return column;
             });
 
-        // create a row for each object in the data
+        // Create Rows
         var rows = tbody.selectAll("tr")
             .data(data)
             .enter()
             .append("tr");
 
-        // create a cell in each row for each column
+        // Populate Rows with Cells
         var cells = rows.selectAll("td")
             .data(function(row) {
                 return columns.map(function(column) {
@@ -143,6 +136,139 @@ isomatic.views.DataView = Backbone.View.extend({
             });
 
         return table;
+    },
+
+    /**
+     * Process the Data
+     *
+     * @param data
+     */
+    process: function(data) {
+        "use strict";
+
+        console.log('DataView.process(data);');
+        console.dir(data);
+
+        isomatic.data.raw = data;
+
+        // Analyze Data
+        this.analyze(data);
+
+        // Prepare Drawing
+        isomatic.views.graphView.prepareDrawing();
+
+        // Generate Layout
+        isomatic.data.processed = isomatic.views.graphView.isotypeLayout(data);
+
+        // Precalculate Layout and save it into the Metadata Object.
+        isomatic.views.graphView.precalculate();
+
+        // Draw Isotype Graphic
+        isomatic.views.graphView.drawIsotype();
+
+        // Draw Legend Overlay
+        isomatic.views.graphView.drawLegend();
+    },
+
+    /**
+     * Calculates the Scale from the Raw Data
+     * Returns nice Scales like 1:10000
+     *
+     * @param {Array} data Raw Data Array
+     */
+    analyze: function(data) {
+        "use strict";
+
+        console.log('DataView.analyze(data);');
+
+        var values = [];
+        var rowValues = [];
+        var availableScales = [];
+
+
+        // Reset previous Calculations:
+        isomatic.data.meta.attributes.rows = [];
+        isomatic.data.meta.attributes.columns = [];
+
+
+        ///////////////////////////////////////
+        // Analyse Values, Rows and Columns  //
+        ///////////////////////////////////////
+
+        // Iterate over Rows
+        for (var rowCounter = 0; rowCounter < data.length; rowCounter++) {
+
+            var columnCounter = 0;
+            var currentRow = data[rowCounter];
+            var rowValue = 0;
+
+            // Iterate over Columns
+            for (var obj in currentRow) {
+                if(currentRow.hasOwnProperty(obj)){
+
+                    // Put all available Columns into an array
+                    if (rowCounter === 0  && columnCounter >= 1) {
+                        isomatic.data.meta.attributes.rows.push(obj);
+                    }
+
+                    if (columnCounter === 0) {
+                        // Put first Column (Description) into a Column Array
+                        isomatic.data.meta.attributes.columns.push(currentRow[obj]);
+                    } else {
+                        values.push(parseInt(currentRow[obj], 10));
+                        rowValue += parseInt(currentRow[obj], 10);
+                    }
+
+                    columnCounter += 1;
+                }
+            }
+
+            rowValues[rowCounter] = rowValue;
+        }
+
+        isomatic.data.meta.set('min', d3.min(values));
+        isomatic.data.meta.set('max', d3.max(values));
+        isomatic.data.meta.set('sum', d3.sum(values));
+
+        isomatic.data.meta.set('rowValues', rowValues);
+        isomatic.data.meta.set('maxRowValues', d3.max(rowValues));
+
+
+        ///////////////////////////////////////
+        // Calculate a recommended Scale     //
+        ///////////////////////////////////////
+
+        var scaleTemp = isomatic.data.meta.attributes.sum / isomatic.options.internal.desiredTotalIcons;
+    //    var scaleTemp = isomatic.data.meta.attributes.maxRowValues / isomatic.options.internal.desiredmaxIconsPerRow;
+
+        var scaleArray = isomatic.options.internal.scaleArray;
+
+        // Get fitting Scales from the Array
+        // TODO: Check for Array Boundaries!
+        for (var j = 0; j < scaleArray.length; j++) {
+            if (scaleTemp <= scaleArray[j]) {
+                if (scaleArray[j] - scaleTemp < scaleTemp - scaleArray[j - 1]) {
+                    availableScales = [
+                        scaleArray[j - 1],
+                        scaleArray[j],
+                        scaleArray[j + 1]
+                    ];
+                } else {
+                    availableScales = [
+                        scaleArray[j - 2],
+                        scaleArray[j - 1],
+                        scaleArray[j]
+                    ];
+                }
+                break;
+            }
+        }
+
+        console.log('-> Calculated Scale: ' + availableScales[1] + ' from ' + scaleTemp);
+
+        isomatic.options.ui.set("scale", availableScales[1]);
+        isomatic.options.ui.set("availableScales", availableScales);
+
     }
 
 });

@@ -23,6 +23,26 @@ isomatic.views.IconView = Backbone.View.extend({
 
     },
     events: {
-        "click #color": "colorClick"
+        "click #color": "colorClick",
+        "dragstart .category-icon": "handleDragStart",
+        "dragend .category-icon": "handleDragEnd",
+        "drop .category-icon": "handleDrop"
+    },
+    currentTarget: null,
+    handleDragStart: function(e) {
+        "use strict";
+        $(e.currentTarget).addClass('dragging');
+    },
+    handleDragEnd: function(e) {
+        "use strict";
+        //todo mapping with image-lib
+        $('.category-icon').removeClass('active');
+        $(e.currentTarget).removeClass('dragging');
+        $(e.currentTarget).addClass('active');
+    },
+    handleDrop: function(e) {
+        "use strict";
+
     }
+
 });

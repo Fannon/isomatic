@@ -6,7 +6,6 @@
 
     <link rel="stylesheet" type="text/css" href="css/app.css"/>
 
-    <!-- TODO: Import via SCSS: -->
     <link rel="stylesheet" type="text/css" href="bower_components/colpick/css/colpick.css"/>
     <link rel="stylesheet" type="text/css" href="bower_components/handsontable/dist/jquery.handsontable.full.css"/>
 
@@ -27,13 +26,13 @@
                         <a href="#new" data-reveal-id="new-modal"><img src="img/new.svg">New</a>
                     </li>
                     <li>
-                        <a id="openImport" class="trigger-ui" href="#import" data-reveal-id="import-modal"><img src="img/import.svg">Import</a>
+                        <a id="openImport" href="#import" data-reveal-id="import-modal"><img src="img/import.svg">Import</a>
                     </li>
                     <li>
-                        <a id="openExport" class="trigger-ui" href="#export" data-reveal-id="export-modal"><img src="img/export.svg">Export</a>
+                        <a id="openExport" href="#export" data-reveal-id="export-modal"><img src="img/export.svg">Export</a>
                     </li>
                     <li id="helpbox">
-                        <a id="trigger-help" class="trigger-ui" href="#help">Help</a>
+                        <a id="trigger-help" href="#help">Help</a>
                     </li>
                 </ul>
             </div>
@@ -44,15 +43,21 @@
     <div class="container">
 
         <div id="toolbar">
+
             <a href="#data"><div class="icon trigger-ui" id="trigger-data"></div></a>
             <a href="#type"><div class="icon trigger-ui" id="trigger-type"></div></a>
+
             <hr class="toolbar-line">
+
             <a href="#icon"><div class="icon trigger-ui" id="trigger-icon"></div></a>
             <a href="#color"><div class="icon trigger-ui" id="trigger-color"></div></a>
-            <a href="#properties"><div class="icon trigger-ui" id="trigger-properties"></div></a>
+            <a href="#adjustments"><div class="icon trigger-ui" id="trigger-adjustments"></div></a>
+
             <hr class="toolbar-line">
+
             <a href="#scale"><div class="icon trigger-ui" id="trigger-scale"></div></a>
             <a href="#text"><div class="icon trigger-ui" id="trigger-text"></div></a>
+
         </div>
 
         <div id="display">
@@ -60,29 +65,30 @@
             <div id="graph-container"></div>
 
             <div id="overlay">
+
                 <!-- Help Overlay -->
-                <div id="help-container"></div>
+                <div id="help-container" class="overlay-container" style="display: none"></div>
 
                 <!-- Data Settings Container -->
-                <div id="data-container"></div>
+                <div id="data-container" class="overlay-container" style="display: none"></div>
 
                 <!-- Type Settings -->
-                <div id="type-container"></div>
+                <div id="type-container" class="overlay-container" style="display: none"></div>
 
                 <!-- Icon Settings -->
-                <div id="icon-container"></div>
+                <div id="icon-container" class="overlay-container" style="display: none"></div>
 
                 <!-- Color Settings -->
-                <div id="color-container"></div>
+                <div id="color-container" class="overlay-container" style="display: none"></div>
 
-                <!-- Properties -->
-                <div id="properties-container"></div>
+                <!-- Adjustments -->
+                <div id="adjustments-container" class="overlay-container" style="display: none"></div>
 
                 <!-- Scale Settings -->
-                <div id="scale-container"></div>
+                <div id="scale-container" class="overlay-container" style="display: none"></div>
 
                 <!-- Text Settings -->
-                <div id="text-container"></div>
+                <div id="text-container" class="overlay-container" style="display: none"></div>
 
 
             </div>
@@ -96,11 +102,12 @@
 
     </div>
 
-
     <!-- Modals -->
-    <div id="new-container"></div>
-    <div id="import-container"></div>
-    <div id="export-container"></div>
+    <div id="modal-container">
+        <div id="new-container"></div>
+        <div id="import-container"></div>
+        <div id="export-container"></div>
+    </div>
 
 </body>
 
@@ -113,13 +120,15 @@
 <script src="bower_components/d3js/build/d3.v3.min.js"></script>
 <script src="js/lib/innersvg.js"></script>
 
-<!-- Main Logic and Models -->
+<!-- Main App JavaScript -->
 <script src="js/main.js"></script>
 <script src="js/router.js"></script>
-<script src="js/models/options.js"></script>
-<script src="js/data.js"></script>
+<script src="js/iconLibrary.js"></script>
 <script src="js/isotypeLayout.js"></script>
-<script src="js/icons.js"></script>
+
+<!-- Models -->
+<script src="js/models/options.js"></script>
+<script src="js/models/data.js"></script>
 
 <!-- Views -->
 <script src="js/views/GraphView.js"></script>
@@ -131,15 +140,13 @@
 <script src="js/views/TypeView.js"></script>
 <script src="js/views/IconView.js"></script>
 <script src="js/views/ColorView.js"></script>
-<script src="js/views/PropertiesView.js"></script>
+<script src="js/views/AdjustmentsView.js"></script>
 <script src="js/views/ScaleView.js"></script>
 <script src="js/views/TextView.js"></script>
 
 <!-- 3rd Party Plugins -->
 <script src="bower_components/colpick/colpick.js"></script>
-<!--<script src="bower_components/handsontable/dist/jquery.handsontable.full.js"></script>-->
 <script src="bower_components/slimScroll/jquery.slimscroll.js"></script>
-
 
 <!-- Minimized JavaScript -->
 <!--<script src="js/app.min.js"></script>-->
@@ -148,7 +155,7 @@
 <script type="text/template" id="new-template">
     <div id="new-modal" class="tiny reveal-modal" data-reveal>
         <h3>New Graphic</h3>
-        <hr class="topic-line">
+
         <form>
             <label for="aspect-ratio">Aspect-Ratio:</label>
             <input id="aspect-ratio" type="text" placeholder="16/9">
@@ -173,7 +180,7 @@
 <script type="text/template" id="import-template">
     <div id="import-modal" class="tiny reveal-modal" data-reveal>
         <h3>Import Data</h3>
-        <hr class="topic-line">
+
         <form>
             <label for="imported-file">Upload SVG or JSON File:</label>
             <input type="file" id="imported-file">
@@ -188,14 +195,13 @@
     <div id="export-modal" class="tiny reveal-modal" data-reveal>
 
         <h3>Export Graphic / Data</h3>
-        <hr class="topic-line">
 
         <form>
-            <label >Choose Export Format:</label>
+            <h4>Choose Export Format:</h4>
             <button type=button class="tiny button radius">SVG (Graphic)</button>
             <button type=button class="tiny button radius disabled">JSON (Raw Data)</button>
 
-            <label>Include:</label>
+            <h4>Include:</h4>
             <input id="export-data" type="checkbox" checked><label for="export-data">Data</label>
             <input id="export-options" type="checkbox" checked><label for="export-options">Options</label>
 
@@ -209,7 +215,7 @@
 
 <!-- Help Template -->
 <script type="text/template" id="help-template">
-    <div id="overlay-help" class="overlay-container" style="display: none">
+    <div id="overlay-help">
         <h3>Help</h3>
         <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
         <h4>Help 2</h4>
@@ -219,20 +225,17 @@
 
 <!-- Data Template -->
 <script type="text/template" id="data-template">
-    <div id="overlay-data" class="overlay-container" style="display: none">
+    <div id="overlay-data">
         <div class="scrollbar">
             <h3>Data Import</h3>
-            <hr class="topic-line">
 
             <form class="custom">
 
-                <label>Paste Data</label>
+                <h4>Paste Data</h4>
                 <textarea value="Copy'n'Paste here" id="pasted-data">{{ preset_data }}</textarea>
 
                 <a id="import-data" href="#" class="tiny button radius">Import</a>
-                <a id="import-data-close" href="#" class="tiny button radius">Import & Close</a>
-
-                <hr class="normal-line">
+                <a id="import-data-close" href="#home" class="tiny button radius">Import & Close</a>
 
                 <h4>Data Preview:</h4>
                 <table id="dataTable"></table>
@@ -244,14 +247,13 @@
 
 <!-- Type Template -->
 <script type="text/template" id="type-template">
-    <div id="overlay-type" class="overlay-container" style="display: none">
-
+    <div id="overlay-type">
         <form>
             <h3>Diagram Type</h3>
-            <hr class="topic-line">
-            <div id="normal-isotype" class="active">
+
+            <div id="normal-isotype" class="select-type active">
                 <div class="type-title">
-                    <h4>Normal</h4>
+                    Normal
                 </div>
                 <div class="type-image">
                     <a>
@@ -260,9 +262,9 @@
                 </div>
             </div>
 
-            <div id="versus-isotype">
+            <div id="versus-isotype" class="select-type">
                 <div class="type-title">
-                    <h4>Versus</h4>
+                    Versus
                 </div>
                 <div class="type-image">
                     <a>
@@ -271,9 +273,9 @@
                 </div>
             </div>
 
-            <div id="compare-isotype">
+            <div id="compare-isotype" class="select-type">
                 <div class="type-title">
-                    <h4>Compare</h4>
+                    Compare
                 </div>
                 <div class="type-image">
                     <a>
@@ -282,9 +284,9 @@
                 </div>
             </div>
 
-            <div id="size-isotype">
+            <div id="size-isotype" class="select-type">
                 <div class="type-title">
-                    <h4>Size</h4>
+                    Size
                 </div>
                 <div class="type-image">
                     <a>
@@ -301,46 +303,34 @@
 
 <!-- Icon Template -->
 <script type="text/template" id="icon-template">
-    <div id="overlay-icon" class="overlay-container" style="display: none">
+    <div id="overlay-icon">
         <h3>Icon Settings</h3>
-        <hr class="topic-line">
+
         <div class="overlay-left">
 
             <form>
-                <label>
-                    <span data-tooltip class="has-tip tip-right" title="Choose if Icons are mapped to Columns or Rows">Map to</span>
-                </label>
+                <h4><span data-tooltip class="has-tip tip-right" title="Choose if Icons are mapped to Columns or Rows">Map to</span></h4>
                 <input type="radio" name="radio2" value="row" id="icon-row" checked><label for="icon-row"><img src="img/row.svg"> Row</label>
                 <input type="radio" name="radio2" value="column" id="icon-column"><label for="icon-column"><img src="img/column.svg"> Column</label>
 
-                <div class="group-mapping clearfix">
-                    <legend>Row 1</legend>
-                    <div class="group-preview">
-                        <div class="group-id">
-                            <input type="text" placeholder="#001">
-                        </div>
-                        <div class="group-icon">
-                            <img src="img/person1_small.svg">
-                        </div>
+                <h4>Drag and Drop</h4>
+
+                <div class="icon-mapping clearfix">
+                    <div class="group-container">
+                        <div class="group-id">Row 1</div>
+                        <img class="group-icon" src="img/person1_small.svg">
                     </div>
-                    <legend>Row 2</legend>
-                    <div class="group-preview">
-                        <div class="group-id">
-                            <input type="text" placeholder="#002">
-                        </div>
-                        <div class="group-icon">
-                            <!--<img src="img/person2_small.svg">-->
-                        </div>
+
+                    <div class="group-container">
+                        <div class="group-id">Row 1</div>
+                        <img class="group-icon" src="img/person1_small.svg">
                     </div>
-                    <legend>Row 3</legend>
-                    <div class="group-preview">
-                        <div class="group-id">
-                            <input type="text" placeholder="#003">
-                        </div>
-                        <div class="group-icon">
-                            <!--<img src="img/person3_small.svg">-->
-                        </div>
+
+                    <div class="group-container">
+                        <div class="group-id">Row 1</div>
+                        <img class="group-icon" src="img/person1_small.svg">
                     </div>
+
                 </div>
 
                 <a href="#" class="tiny button radius">Apply</a>
@@ -353,29 +343,14 @@
             <h4>Icon Library</h4>
             <div class="category">
                 <label>People</label>
-                <div class="category-icon" style="background-color: #333; box-shadow: 0 0 2px 1px #AAA;">
-                    <div class="category-icon-image">
-                       <img src="img/person1_main.svg">
-                    </div>
-                    <div class="category-icon-id">
-                        <p>#001</p>
-                    </div>
+                <div class="category-icon" draggable="true">
+                   <img src="img/person1_main.svg">
                 </div>
-                <div class="category-icon">
-                    <div class="category-icon-image">
-                        <img src="img/person2_main.svg">
-                    </div>
-                    <div class="category-icon-id">
-                        <p>#002</p>
-                    </div>
+                <div class="category-icon" draggable="true">
+                    <img src="img/person2_main.svg">
                 </div>
-                <div class="category-icon">
-                    <div class="category-icon-image">
-                        <img src="img/person3_main.svg">
-                    </div>
-                    <div class="category-icon-id">
-                        <p>#003</p>
-                    </div>
+                <div class="category-icon" draggable="true">
+                    <img src="img/person3_main.svg">
                 </div>
             </div>
         </div>
@@ -384,32 +359,26 @@
 
 <!-- Color Template -->
 <script type="text/template" id="color-template">
-    <div id="overlay-color" class="overlay-container" style="display: none">
+    <div id="overlay-color">
         <div class="scrollbar">
             <h3>Color Settings</h3>
-            <hr class="topic-line">
+
             <div class="overlay-left">
                 <form>
 
+                    <h4><span data-tooltip class="has-tip tip-right" title="Choose if Colors are mapped to Columns or Rows">Map to</span></h4>
+                    <input id="colorize-column" type="radio" name="radio3" value="column"><label for="colorize-column"><img src="img/column.svg"> Column</label>
+                    <input id="colorize-row" type="radio" name="radio3" value="row"><label for="colorize-row"><img src="img/row.svg"> Row</label>
 
-
-                    <label>
-                        <span data-tooltip class="has-tip tip-right" title="Choose if Colors are mapped to Columns or Rows">Map to</span>
-                    </label>
-                    <input type="radio" name="radio3" value="row" id="color-row" checked><label for="color-row"><img src="img/row.svg"> Row</label>
-                    <input type="radio" name="radio3" value="column" id="color-column"><label for="color-column"><img src="img/column.svg"> Column</label><br>
-
-                    {{#if author}}
-                        <h1>{{firstName}} {{lastName}}</h1>
-                    {{/if}}
+                    <h4>Assign colors</h4>
 
                     {{#each colorMap}}
-                    <legend>Row {{@index}}</legend>
-                    <input type="text" id="picker-{{@index}}" class="picker" value="{{this}}">
+                    <legend>{{@key}}</legend>
+                    <input type="text" id="picker-{{@index}}" class="picker" value="{{this}}" style="border-color: {{this}};">
                     {{/each}}
 
-                    <a href="#" class="tiny button radius">Apply</a>
-                    <a href="#" class="tiny button radius">Apply & Close</a>
+                    <a id="color-apply" href="#" class="tiny button radius">Apply</a>
+                    <a id="color-apply-close" href="#home" class="tiny button radius">Apply & Close</a>
                 </form>
             </div>
             <div class="overlay-right">
@@ -420,7 +389,7 @@
                     <legend>{{@key}}</legend>
                     <div id="colorpalette-{{@key}}" class="colorpalette">
                         {{#each this}}
-                        <div class="colorbox" style="background-color:{{this}}" title="{{this}}"></div>
+                        <div class="colorbox" style="background-color: #{{this}}" title="{{this}}"></div>
                         {{/each}}
                     </div>
                     {{/each}}
@@ -430,44 +399,85 @@
     </div>
 </script>
 
-<!-- Properties Template -->
-<script type="text/template" id="properties-template">
-    <div id="overlay-properties" class="overlay-container" style="display: none">
+<!-- Adjustments Template -->
+<script type="text/template" id="adjustments-template">
+    <div id="overlay-adjustments">
         <h3>Adjustments</h3>
-        <hr class="topic-line">
-        <form>
 
-            <label><span data-tooltip class="has-tip tip-right" title="Change the general offsets">Margin</span></label>
+        <form data-abide>
 
-            <label><img src="img/outermarign.svg">Outer Margin</label>
-            <input type="text" value="{{ options.outerMargin }}px">
+            <h4><span data-tooltip class="has-tip tip-right" title="Change the general offsets">Margin</span></h4>
 
-            <label><img src="img/horizontalmargin.svg">Icon Horizontal Margin</label>
-            <input type="text" value="{{ options.iconHorizontalMargin }}px">
+            <div class="row collapse">
+                <label><img src="img/outermarign.svg">Outer Margin</label>
+                <div class="small-10 columns">
+                    <input id="outer-margin" type="text" required pattern="integer" value="{{ options.outerMargin }}">
+                    <small class="error">Invalid entry</small>
+                </div>
+                <div class="small-2 columns">
+                    <span class="postfix radius">px</span>
+                </div>
+            </div>
 
-            <label><img src="img/rowmargin.svg">Row Margin</label>
-            <input type="text" value="{{ options.rowMargin }}px">
+            <div class="row collapse">
+                <label><img src="img/horizontalmargin.svg">Icon Horizontal Margin</label>
+                <div class="small-10 columns">
+                    <input id="icon-horizontal-margin" type="text" required pattern="integer" value="{{ options.iconHorizontalMargin }}">
+                    <small class="error">Invalid entry</small>
+                </div>
+                <div class="small-2 columns">
+                    <span class="postfix radius">px</span>
+                </div>
+            </div>
 
-            <label><img src="img/columnmargin.svg">Column Margin</label>
-            <input type="text" value="{{ options.columnMargin }}px">
+            <div class="row collapse">
+                <label><img src="img/rowmargin.svg">Row Margin</label>
+                <div class="small-10 columns">
+                    <input id="row-margin" type="text" type="text" required pattern="integer" value="{{ options.rowMargin }}">
+                    <small class="error">Invalid entry</small>
+                </div>
+                <div class="small-2 columns">
+                    <span class="postfix radius">px</span>
+                </div>
+            </div>
+
+            <div class="row collapse">
+                <label><img src="img/columnmargin.svg">Column Margin</label>
+                <div class="small-10 columns">
+                    <input id="column-margin" type="text" required pattern="integer" value="{{ options.columnMargin }}">
+                    <small class="error">Invalid entry</small>
+                </div>
+                <div class="small-2 columns">
+                    <span class="postfix radius">px</span>
+                </div>
+            </div>
 
             <hr class="normal-line">
 
-            <label><span data-tooltip class="has-tip tip-right" title="Change the icon proportion">Size</span></label>
-            <label><img src="img/iconsize.svg">Icon Size</label>
-            <input type="text" value="{{ options.iconSize }}">
+            <h4><span data-tooltip class="has-tip tip-right" title="Change the icon proportion">Size</span></h4>
 
-            <a href="#" class="tiny button radius">Apply</a>
-            <a href="#" class="tiny button radius">Apply & Close</a>
+            <div class="row collapse">
+                <label><img src="img/iconsize.svg">Icon Size</label>
+                <div class="small-10 columns">
+                    <input id="icon-size" type="text" pattern="integer" value="{{ options.iconSize }}">
+                    <small class="error">Invalid entry</small>
+                </div>
+                <div class="small-2 columns">
+                    <span class="postfix radius">px</span>
+                </div>
+            </div>
+
+            <a id="adjustments-apply" href="#" class="tiny button radius">Apply</a>
+            <a id="adjustments-apply-close" href="#home" class="tiny button radius">Apply & Close</a>
         </form>
     </div>
 </script>
 
 <!-- Scale Template -->
 <script type="text/template" id="scale-template">
-    <div id="overlay-scale" class="overlay-container" style="display: none">
+    <div id="overlay-scale">
         <h3>Scale Settings</h3>
-        <hr class="topic-line">
+
         <form>
 
             <label>
@@ -504,9 +514,9 @@
 
 <!-- Text Template -->
 <script type="text/template" id="text-template">
-    <div id="overlay-text" class="overlay-container" style="display: none">
+    <div id="overlay-text">
         <h3>Text Settings</h3>
-        <hr class="topic-line">
+
         <form>
 
             <label>
@@ -529,7 +539,5 @@
         </form>
     </div>
 </script>
-
-
 
 </html>
