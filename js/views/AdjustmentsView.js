@@ -22,12 +22,48 @@ isomatic.views.AdjustmentsView = Backbone.View.extend({
         this.$el.html(html);
 
     },
+    model: isomatic.options.ui,
     events: {
         "click #adjustments-apply": "apply",
-        "click #adjustments-apply-close": "apply"
+        "click #adjustments-apply-close": "apply",
+        'change input#outer-margin': 'changeOuterMargin',
+        'change input#icon-horizontal-margin': 'changeIconHorizontalMargin',
+        'change input#row-margin': 'changeRowMargin',
+        'change input#column-margin': 'changeColumnMargin',
+        'change input#icon-size': 'changeIconSize'
+
     },
     apply: function() {
         "use strict";
         isomatic.views.dataView.submitData();
+    },
+    changeOuterMargin: function(e) {
+        "use strict";
+        var val = $(e.currentTarget).val();
+        this.model.set({'outerMargin': val});
+    },
+
+    changeIconHorizontalMargin: function(e) {
+        "use strict";
+        var val = $(e.currentTarget).val();
+        this.model.set({'iconHorizontalMargin': val});
+    },
+
+    changeRowMargin: function(e) {
+        "use strict";
+        var val = $(e.currentTarget).val();
+        this.model.set({'rowMargin': val});
+    },
+
+    changeColumnMargin: function(e) {
+        "use strict";
+        var val = $(e.currentTarget).val();
+        this.model.set({'columnMargin': val});
+    },
+
+    changeIconSize: function(e) {
+        "use strict";
+        var val = $(e.currentTarget).val();
+        this.model.set({'iconSize': val});
     }
 });

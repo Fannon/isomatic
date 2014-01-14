@@ -111,7 +111,7 @@ isomatic.options.preset.roundDown = 0.3;
 isomatic.options.preset.roundUp = 0.8;
 
 /** Icon Size */
-isomatic.options.preset.iconSize = 'auto';
+isomatic.options.preset.iconSize = '';
 
 /**
  * Defines if the Color is applied to Rows or Columns

@@ -14,11 +14,11 @@ isomatic.views.ExportView = Backbone.View.extend({
         this.render();
 
         // Event Registration
-//        var self = this;
-//
-//        $("#start-export" ).on("click", function() {
-//            self.exportSVG();
-//        });
+        var self = this;
+
+        $("#start-export" ).on("click", function() {
+            self.exportSVG();
+        });
     },
 
     /** Render Export View */
@@ -98,7 +98,7 @@ isomatic.views.ExportView = Backbone.View.extend({
         // Check if description tag already exists. If not create it, otherwise update it.
         var desc = $('#isomatic-metadata');
         if (desc.length === 0) {
-            isomatic.vis.svg.append("desc")
+            isomatic.views.graphView.svg.append("desc")
                 .attr("id", "isomatic-metadata")
                 .text(jsonStringExport);
         } else {

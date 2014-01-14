@@ -434,30 +434,71 @@
     <div id="overlay-adjustments">
         <h3>Adjustments</h3>
         <hr class="topic-line">
-        <form>
+        <form data-abide>
 
-            <label><span data-tooltip class="has-tip tip-right" title="Change the general offsets">Margin</span></label>
+            <h5><span data-tooltip class="has-tip tip-right" title="Change the general offsets">Margin</span></h5>
 
-            <label><img src="img/outermarign.svg">Outer Margin</label>
-            <input type="text" value="{{ options.outerMargin }}px">
+            <div class="row collapse">
+                <label><img src="img/outermarign.svg">Outer Margin</label>
+                <div class="small-10 columns">
+                    <input id="outer-margin" type="text" required pattern="integer" value="{{ options.outerMargin }}">
+                    <small class="error">Invalid entry</small>
+                </div>
+                <div class="small-2 columns">
+                    <span class="postfix radius">px</span>
+                </div>
+            </div>
 
-            <label><img src="img/horizontalmargin.svg">Icon Horizontal Margin</label>
-            <input type="text" value="{{ options.iconHorizontalMargin }}px">
+            <div class="row collapse">
+                <label><img src="img/horizontalmargin.svg">Icon Horizontal Margin</label>
+                <div class="small-10 columns">
+                    <input id="icon-horizontal-margin" type="text" required pattern="integer" value="{{ options.iconHorizontalMargin }}">
+                    <small class="error">Invalid entry</small>
+                </div>
+                <div class="small-2 columns">
+                    <span class="postfix radius">px</span>
+                </div>
+            </div>
 
-            <label><img src="img/rowmargin.svg">Row Margin</label>
-            <input type="text" value="{{ options.rowMargin }}px">
+            <div class="row collapse">
+                <label><img src="img/rowmargin.svg">Row Margin</label>
+                <div class="small-10 columns">
+                    <input id="row-margin" type="text" type="text" required pattern="integer" value="{{ options.rowMargin }}">
+                    <small class="error">Invalid entry</small>
+                </div>
+                <div class="small-2 columns">
+                    <span class="postfix radius">px</span>
+                </div>
+            </div>
 
-            <label><img src="img/columnmargin.svg">Column Margin</label>
-            <input type="text" value="{{ options.columnMargin }}px">
+            <div class="row collapse">
+                <label><img src="img/columnmargin.svg">Column Margin</label>
+                <div class="small-10 columns">
+                    <input id="column-margin" type="text" required pattern="integer" value="{{ options.columnMargin }}">
+                    <small class="error">Invalid entry</small>
+                </div>
+                <div class="small-2 columns">
+                    <span class="postfix radius">px</span>
+                </div>
+            </div>
 
             <hr class="normal-line">
 
-            <label><span data-tooltip class="has-tip tip-right" title="Change the icon proportion">Size</span></label>
-            <label><img src="img/iconsize.svg">Icon Size</label>
-            <input type="text" value="{{ options.iconSize }}">
+            <h5><span data-tooltip class="has-tip tip-right" title="Change the icon proportion">Size</span></h5>
 
-            <a href="#" class="tiny button radius">Apply</a>
-            <a href="#" class="tiny button radius">Apply & Close</a>
+            <div class="row collapse">
+                <label><img src="img/iconsize.svg">Icon Size</label>
+                <div class="small-10 columns">
+                    <input id="icon-size" type="text" pattern="integer" value="{{ options.iconSize }}">
+                    <small class="error">Invalid entry</small>
+                </div>
+                <div class="small-2 columns">
+                    <span class="postfix radius">px</span>
+                </div>
+            </div>
+
+            <a id="adjustments-apply" href="#" class="tiny button radius">Apply</a>
+            <a id="adjustments-apply-close" href="#home" class="tiny button radius">Apply & Close</a>
         </form>
     </div>
 </script>
