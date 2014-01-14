@@ -26,13 +26,13 @@
                         <a href="#new" data-reveal-id="new-modal"><img src="img/new.svg">New</a>
                     </li>
                     <li>
-                        <a id="openImport" class="trigger-ui" href="#import" data-reveal-id="import-modal"><img src="img/import.svg">Import</a>
+                        <a id="openImport" href="#import" data-reveal-id="import-modal"><img src="img/import.svg">Import</a>
                     </li>
                     <li>
-                        <a id="openExport" class="trigger-ui" href="#export" data-reveal-id="export-modal"><img src="img/export.svg">Export</a>
+                        <a id="openExport" href="#export" data-reveal-id="export-modal"><img src="img/export.svg">Export</a>
                     </li>
                     <li id="helpbox">
-                        <a id="trigger-help" class="trigger-ui" href="#help">Help</a>
+                        <a id="trigger-help" href="#help">Help</a>
                     </li>
                 </ul>
             </div>
@@ -44,19 +44,19 @@
 
         <div id="toolbar">
 
-            <a href="#data"><div class="icon trigger-ui" id="trigger-data" onclick="isomatic.uglyHack(this)"></div></a>
-            <a href="#type"><div class="icon trigger-ui" id="trigger-type" onclick="isomatic.uglyHack(this)"></div></a>
+            <a href="#data"><div class="icon trigger-ui" id="trigger-data"></div></a>
+            <a href="#type"><div class="icon trigger-ui" id="trigger-type"></div></a>
 
             <hr class="toolbar-line">
 
-            <a href="#icon"><div class="icon trigger-ui" id="trigger-icon" onclick="isomatic.uglyHack(this)"></div></a>
-            <a href="#color"><div class="icon trigger-ui" id="trigger-color" onclick="isomatic.uglyHack(this)"></div></a>
-            <a href="#adjustments"><div class="icon trigger-ui" id="trigger-adjustments" onclick="isomatic.uglyHack(this)"></div></a>
+            <a href="#icon"><div class="icon trigger-ui" id="trigger-icon"></div></a>
+            <a href="#color"><div class="icon trigger-ui" id="trigger-color"></div></a>
+            <a href="#adjustments"><div class="icon trigger-ui" id="trigger-adjustments"></div></a>
 
             <hr class="toolbar-line">
 
-            <a href="#scale"><div class="icon trigger-ui" id="trigger-scale" onclick="isomatic.uglyHack(this)"></div></a>
-            <a href="#text"><div class="icon trigger-ui" id="trigger-text" onclick="isomatic.uglyHack(this)"></div></a>
+            <a href="#scale"><div class="icon trigger-ui" id="trigger-scale"></div></a>
+            <a href="#text"><div class="icon trigger-ui" id="trigger-text"></div></a>
 
         </div>
 
@@ -155,7 +155,7 @@
 <script type="text/template" id="new-template">
     <div id="new-modal" class="tiny reveal-modal" data-reveal>
         <h3>New Graphic</h3>
-        <hr class="topic-line">
+
         <form>
             <label for="aspect-ratio">Aspect-Ratio:</label>
             <input id="aspect-ratio" type="text" placeholder="16/9">
@@ -180,7 +180,7 @@
 <script type="text/template" id="import-template">
     <div id="import-modal" class="tiny reveal-modal" data-reveal>
         <h3>Import Data</h3>
-        <hr class="topic-line">
+
         <form>
             <label for="imported-file">Upload SVG or JSON File:</label>
             <input type="file" id="imported-file">
@@ -195,14 +195,13 @@
     <div id="export-modal" class="tiny reveal-modal" data-reveal>
 
         <h3>Export Graphic / Data</h3>
-        <hr class="topic-line">
 
         <form>
-            <label >Choose Export Format:</label>
+            <h4>Choose Export Format:</h4>
             <button type=button class="tiny button radius">SVG (Graphic)</button>
             <button type=button class="tiny button radius disabled">JSON (Raw Data)</button>
 
-            <label>Include:</label>
+            <h4>Include:</h4>
             <input id="export-data" type="checkbox" checked><label for="export-data">Data</label>
             <input id="export-options" type="checkbox" checked><label for="export-options">Options</label>
 
@@ -211,6 +210,7 @@
             <div id='start-export' class="tiny button radius">Download</div>
 
         </form>
+        <a class="close-reveal-modal">&#215;</a>
     </div>
 </script>
 
@@ -229,17 +229,14 @@
     <div id="overlay-data">
         <div class="scrollbar">
             <h3>Data Import</h3>
-            <hr class="topic-line">
 
             <form class="custom">
 
-                <label>Paste Data</label>
+                <h4>Paste Data</h4>
                 <textarea value="Copy'n'Paste here" id="pasted-data">{{ preset_data }}</textarea>
 
                 <a id="import-data" href="#" class="tiny button radius">Import</a>
                 <a id="import-data-close" href="#home" class="tiny button radius">Import & Close</a>
-
-                <hr class="normal-line">
 
                 <h4>Data Preview:</h4>
                 <table id="dataTable"></table>
@@ -252,11 +249,10 @@
 <!-- Type Template -->
 <script type="text/template" id="type-template">
     <div id="overlay-type">
-
         <form>
             <h3>Diagram Type</h3>
-            <hr class="topic-line">
-            <div id="normal-isotype" class="active">
+
+            <div id="normal-isotype" class="select-type active">
                 <div class="type-title">
                     <h4>Normal</h4>
                 </div>
@@ -267,7 +263,7 @@
                 </div>
             </div>
 
-            <div id="versus-isotype">
+            <div id="versus-isotype" class="select-type">
                 <div class="type-title">
                     <h4>Versus</h4>
                 </div>
@@ -278,7 +274,7 @@
                 </div>
             </div>
 
-            <div id="compare-isotype">
+            <div id="compare-isotype" class="select-type">
                 <div class="type-title">
                     <h4>Compare</h4>
                 </div>
@@ -289,7 +285,7 @@
                 </div>
             </div>
 
-            <div id="size-isotype">
+            <div id="size-isotype" class="select-type">
                 <div class="type-title">
                     <h4>Size</h4>
                 </div>
@@ -310,7 +306,7 @@
 <script type="text/template" id="icon-template">
     <div id="overlay-icon">
         <h3>Icon Settings</h3>
-        <hr class="topic-line">
+
         <div class="overlay-left">
 
             <form>
@@ -360,29 +356,14 @@
             <h4>Icon Library</h4>
             <div class="category">
                 <label>People</label>
-                <div class="category-icon" style="background-color: #333; box-shadow: 0 0 2px 1px #AAA;">
-                    <div class="category-icon-image">
-                       <img src="img/person1_main.svg">
-                    </div>
-                    <div class="category-icon-id">
-                        <p>#001</p>
-                    </div>
+                <div class="category-icon" draggable="true">
+                   <img src="img/person1_main.svg">
                 </div>
-                <div class="category-icon">
-                    <div class="category-icon-image">
-                        <img src="img/person2_main.svg">
-                    </div>
-                    <div class="category-icon-id">
-                        <p>#002</p>
-                    </div>
+                <div class="category-icon" draggable="true">
+                    <img src="img/person2_main.svg">
                 </div>
-                <div class="category-icon">
-                    <div class="category-icon-image">
-                        <img src="img/person3_main.svg">
-                    </div>
-                    <div class="category-icon-id">
-                        <p>#003</p>
-                    </div>
+                <div class="category-icon" draggable="true">
+                    <img src="img/person3_main.svg">
                 </div>
             </div>
         </div>
@@ -394,7 +375,7 @@
     <div id="overlay-color">
         <div class="scrollbar">
             <h3>Color Settings</h3>
-            <hr class="topic-line">
+
             <div class="overlay-left">
                 <form>
 
@@ -435,10 +416,10 @@
 <script type="text/template" id="adjustments-template">
     <div id="overlay-adjustments">
         <h3>Adjustments</h3>
-        <hr class="topic-line">
+
         <form data-abide>
 
-            <h5><span data-tooltip class="has-tip tip-right" title="Change the general offsets">Margin</span></h5>
+            <h4><span data-tooltip class="has-tip tip-right" title="Change the general offsets">Margin</span></h4>
 
             <div class="row collapse">
                 <label><img src="img/outermarign.svg">Outer Margin</label>
@@ -486,7 +467,7 @@
 
             <hr class="normal-line">
 
-            <h5><span data-tooltip class="has-tip tip-right" title="Change the icon proportion">Size</span></h5>
+            <h4><span data-tooltip class="has-tip tip-right" title="Change the icon proportion">Size</span></h4>
 
             <div class="row collapse">
                 <label><img src="img/iconsize.svg">Icon Size</label>
@@ -509,7 +490,7 @@
 <script type="text/template" id="scale-template">
     <div id="overlay-scale">
         <h3>Scale Settings</h3>
-        <hr class="topic-line">
+
         <form>
 
             <label>
@@ -548,7 +529,7 @@
 <script type="text/template" id="text-template">
     <div id="overlay-text">
         <h3>Text Settings</h3>
-        <hr class="topic-line">
+
         <form>
 
             <label>
@@ -571,7 +552,5 @@
         </form>
     </div>
 </script>
-
-
 
 </html>

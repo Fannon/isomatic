@@ -19,10 +19,18 @@ isomatic.views.TypeView = Backbone.View.extend({
         var html = template({
             palettes: isomatic.options.internal.colorPalettes
         });
-        this.$el.html(html);
 
+        this.$el.html(html);
     },
     events: {
-        "click #color": "colorClick"
+        "click #color": "colorClick",
+        "click .select-type": "selectType"
+    },
+    selectType: function(e) {
+        "use strict";
+        var type = e.currentTarget.id.split('-')[0];
+        $('.select-type').removeClass('active');
+        $(e.currentTarget).addClass('active');
+        isomatic.options.ui.set('diagramType', type);
     }
 });

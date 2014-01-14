@@ -60,21 +60,11 @@ $(function() {
     // Init Scrollbar Plugin
     $('.scrollbar').slimScroll(isomatic.options.internal.slimmScrollOptions);
 
-    $('#normal-isotype').click(function() {
-        if ($('#normal-isotype').hasClass('active')) {
-        } else {
-            $('#normal-isotype').addClass('active');
-            $('#versus-isotype').removeClass('active');
-        }
+    // Register Ugly Hack
+    $('.trigger-ui').on('click', function(el) {
+        isomatic.uglyHack(el.currentTarget);
     });
 
-    $('#versus-isotype').click(function() {
-        if ($('#versus-isotype').hasClass('active')) {
-        } else {
-            $('#versus-isotype').addClass('active');
-            $('#normal-isotype').removeClass('active');
-        }
-    });
 
 });
 

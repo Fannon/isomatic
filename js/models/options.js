@@ -86,6 +86,9 @@ isomatic.options.preset = {};
 /** Aspect Ratio of the Canvas. Width is always 100% */
 isomatic.options.preset.aspectRatio = 16 / 9;
 
+/** Diagram Type */
+isomatic.options.preset.diagramType = 'normal';
+
 /** Margin to Canvas */
 isomatic.options.preset.outerMargin = 10;
 

@@ -26,23 +26,37 @@ $base-font-size: 12px;
 // Typography                           //
 //////////////////////////////////////////
 
+@font-face {
+    font-family: 'fira_sans_regular';
+    src: url('../fonts/FiraSans-Regular.eot');
+    src: url('../fonts/FiraSans-Regular.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/FiraSans-Regular.woff') format('woff'),
+         url('../fonts/FiraSans-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
 h1, h2, h3, h4, h5, h6 {
-  font-family: "Helvetica", Helvetica, Arial, sans-serif;
+  font-family: fira_sans_regular;
   color: #4D4D4D;
+  font-weight: normal;
 }
 
 h3 {
   text-transform: uppercase;
-  letter-spacing: 0.05rem;
-  //font-weight: bold;
-  font-size: 1.4em;
+//  letter-spacing: 0.05rem;
+  font-size: 1.5em;
+  margin-bottom: 7px;
+  border-bottom: 1px solid #777;
 }
 
 h4 {
   text-transform: uppercase;
-  letter-spacing: 0.05rem;
-  //font-weight: bold;
+//  letter-spacing: 0.05rem;
   font-size: 1.2em;
+  border-bottom: 1px dotted #CCC;
+  margin-bottom: 5px;
 }
 
 p {
@@ -60,6 +74,11 @@ label {
   font-weight: bold;
   vertical-align: text-top;
   margin-bottom: 7px;
+}
+
+.has-tip {
+  font-weight: normal;
+  border: none;
 }
 
 
@@ -221,7 +240,7 @@ label {
 
   // Every Overlay Container
   .overlay-container {
-    background: rgba(240, 240, 240, 0.9);
+    background: #F0F0F0;
     position: absolute;
     height: 100%;
     width: 220px;
@@ -251,7 +270,7 @@ label {
     }
 
     button.tiny, .button.tiny {
-      font-size: 0.9rem;
+      font-size: 11px;
       margin-top: 10px;
     }
   }
@@ -338,24 +357,14 @@ label {
     }
 
     .category-icon {
-      background-color: #BBB;
-      padding: 5px;
-      width: 74px;
-      float: left;
-      margin-right: 10px;
-    }
-
-    .category-icon-image {
       background-color: #FFF;
+      padding: 5px;
       width: 64px;
       height: 64px;
-    }
-
-    .category-icon-id p{
-      margin: 3px 0px 0px 0px;
-      text-align: center;
-      font-weight: bold;
-      color: #FFF;
+      float: left;
+      margin-right: 10px;
+      cursor: move;
+      border: 5px solid #bbb;
     }
 
     legend {
@@ -363,6 +372,17 @@ label {
       padding-top: 5px;
       margin-bottom: 5px;
     }
+
+    [draggable] {
+      -moz-user-select: none;
+      -khtml-user-select: none;
+      -webkit-user-select: none;
+      user-select: none;
+      /* Required to make elements draggable in old WebKit */
+      -khtml-user-drag: element;
+      -webkit-user-drag: element;
+    }
+
   }
 
 
