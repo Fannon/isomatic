@@ -1,4 +1,7 @@
-// Global Settings Override
+//////////////////////////////////////////
+// Imports                              //
+//////////////////////////////////////////
+
 @import "settings";
 @import "normalize";
 @import "foundation/components/global";
@@ -12,7 +15,16 @@
 @import "foundation/components/reveal";
 
 
-// Text Settings (all)
+//////////////////////////////////////////
+// Variables                            //
+//////////////////////////////////////////
+
+$base-font-size: 12px;
+
+
+//////////////////////////////////////////
+// Typography                           //
+//////////////////////////////////////////
 
 h1, h2, h3, h4, h5, h6 {
   font-family: "Helvetica", Helvetica, Arial, sans-serif;
@@ -50,14 +62,13 @@ label {
   margin-bottom: 7px;
 }
 
-.has-tip tip-right {
-  font-size: 0.9rem;
-  color: #4D4D4D;
-  margin-bottom: 5px;
-}
+
+//////////////////////////////////////////
+// Layout                               //
+//////////////////////////////////////////
 
 
-// Content
+// Navbar
 
 #nav-container {
   margin: 0px auto;
@@ -110,15 +121,16 @@ label {
 
 }
 
+
+// Container: Wrapper for Toolbar and Content
+
 .container {
   margin: 15px auto;
   width: 1010px;
 }
 
-#graph {
-  width: 100%;
-  height: 100%;
-}
+
+// Toolbar
 
 #toolbar {
   width: 40px;
@@ -179,6 +191,9 @@ label {
 
 }
 
+
+// Display: Wrapper for the graphics and overlays
+
 #display {
   width: 970px;
   height: 360px;
@@ -190,19 +205,21 @@ label {
   position: relative;
   box-shadow: 0 0 2px 1px #AAA;
 
+  #graph {
+    width: 100%;
+    height: 100%;
+  }
+
 }
+
+
+// Overlays
 
 #overlay {
 
   height: auto;
 
-  .picker {
-    margin: 5px 0px;
-    padding: 3px 5px;
-    border-right: 28px solid #000;
-    line-height: 20px;
-  }
-
+  // Every Overlay Container
   .overlay-container {
     background: rgba(240, 240, 240, 0.9);
     position: absolute;
@@ -239,27 +256,39 @@ label {
     }
   }
 
+
+  // Data Overlay
+
   #overlay-data {
     textarea {
       max-width: 100%;
       min-width: 100%;
     }
+
+    #dataTable {
+      width: 100%;
+      overflow: scroll;
+
+    }
   }
+
+
+  // Type Overlay
 
   #overlay-type {
     vertical-align: middle;
 
-     #normal-isotype, #versus-isotype, #compare-isotype, #size-isotype {
-       margin-bottom: 5px;
-       height: 40px;
-       background-color: #BBB;
+    #normal-isotype, #versus-isotype, #compare-isotype, #size-isotype {
+      margin-bottom: 5px;
+      height: 40px;
+      background-color: #BBB;
 
-       h4 {
-         color: #FFF;
-         font-size: 1em;
-         font-weight: normal;
-         margin-top: 4px;
-       }
+      h4 {
+        color: #FFF;
+        font-size: 1em;
+        font-weight: normal;
+        margin-top: 4px;
+      }
     }
 
     #normal-isotype:hover, #versus-isotype:hover, #compare-isotype:hover, #size-isotype:hover {
@@ -282,6 +311,9 @@ label {
     }
 
   }
+
+
+  // Icon Overlay
 
   #overlay-icon {
 
@@ -333,7 +365,17 @@ label {
     }
   }
 
+
+  // Color Overlay
+
   #overlay-color {
+
+    .picker {
+      margin: 5px 0px;
+      padding: 3px 5px;
+      border-right: 28px solid #000;
+      line-height: 20px;
+    }
 
     form legend {
       clear: both;
@@ -370,6 +412,23 @@ label {
 
   }
 
+
+  // Adjustments Overlay
+
+  #overlay-adjustments {
+
+  }
+
+
+  // Scale Overlay
+
+  #overlay-scale {
+
+  }
+
+
+  // Text Overlay
+
   #overlay-text textarea {
     min-width: 200px;
     max-width: 200px;
@@ -389,16 +448,18 @@ label {
     border-bottom: 1px solid #CCC;
     margin: 0px 0px 10px 0px;
   }
-}
 
-// Overlay Template
-#overlay-data {
-  #dataTable {
-    width: 100%;
-    overflow: scroll;
+
+  // Help Overlay
+
+  #overlay-help {
 
   }
+
 }
+
+
+// Footer
 
 #footer {
   margin: 15px 0 0 0;
@@ -408,11 +469,26 @@ label {
   border-top: 1px solid #BBB;
 }
 
-#message .alert {
-  margin-top: 7px;
-}
 
-.reveal-modal button.tiny,
-.reveal-modal .button.tiny {
-  font-size: 0.9rem;
+// Modal
+
+#modal-container {
+
+  button.tiny,
+  .button.tiny {
+    font-size: 0.9rem;
+  }
+
+  #new-modal {
+
+  }
+
+  #import-modal {
+
+  }
+
+  #export-modal {
+
+  }
+
 }
