@@ -6,7 +6,7 @@
  *
  * @type {*|void|Object}
  */
-isomatic.views.PropertiesView = Backbone.View.extend({
+isomatic.views.AdjustmentsView = Backbone.View.extend({
     initialize: function(){
         "use strict";
         this.render();
@@ -14,7 +14,7 @@ isomatic.views.PropertiesView = Backbone.View.extend({
     render: function(){
         "use strict";
 
-        var source = $('#properties-template').html();
+        var source = $('#adjustments-template').html();
         var template = Handlebars.compile(source);
         var html = template({
             options: isomatic.options.ui.attributes
@@ -23,7 +23,11 @@ isomatic.views.PropertiesView = Backbone.View.extend({
 
     },
     events: {
-        "click #color": "colorClick"
+        "click #adjustments-apply": "apply",
+        "click #adjustments-apply-close": "apply"
     },
-    model: isomatic.options.ui
+    apply: function() {
+        "use strict";
+        isomatic.views.dataView.submitData();
+    }
 });

@@ -45,7 +45,7 @@ $(function() {
     isomatic.views.typeView = new isomatic.views.TypeView({el: $("#type-container")});
     isomatic.views.iconView = new isomatic.views.IconView({el: $("#icon-container")});
     isomatic.views.colorView = new isomatic.views.ColorView({el: $("#color-container")});
-    isomatic.views.propertiesView = new isomatic.views.PropertiesView({el: $("#properties-container")});
+    isomatic.views.propertiesView = new isomatic.views.AdjustmentsView({el: $("#adjustments-container")});
     isomatic.views.scaleView = new isomatic.views.ScaleView({el: $("#scale-container")});
     isomatic.views.textView = new isomatic.views.TextView({el: $("#text-container")});
 

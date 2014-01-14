@@ -160,8 +160,8 @@ label {
     background-image: url(../img/text.svg);
   }
 
-  #trigger-properties {
-    background-image: url(../img/properties.svg);
+  #trigger-adjustments {
+    background-image: url(../img/adjustments.svg);
   }
 
   #trigger-scale {
@@ -241,8 +241,8 @@ label {
 
   #overlay-data {
     textarea {
-      max-width: 708px;
-      min-width: 708px;
+      max-width: 100%;
+      min-width: 100%;
     }
   }
 
