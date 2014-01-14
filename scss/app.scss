@@ -47,7 +47,7 @@ h3 {
   text-transform: uppercase;
 //  letter-spacing: 0.05rem;
   font-size: 1.5em;
-  margin-bottom: 7px;
+  margin-bottom: 10px;
   border-bottom: 1px solid #777;
 }
 
@@ -55,8 +55,13 @@ h4 {
   text-transform: uppercase;
 //  letter-spacing: 0.05rem;
   font-size: 1.2em;
-  border-bottom: 1px dotted #CCC;
-  margin-bottom: 5px;
+  border-bottom: 1px solid #CCC;
+  margin: 5px 0px 8px 0px;
+}
+
+.overlay-left h4,
+.overlay-right h4{
+  margin: 0px 0px 8px;
 }
 
 p {
@@ -302,11 +307,12 @@ label {
       height: 40px;
       background-color: #BBB;
 
-      h4 {
+      .type-title {
         color: #FFF;
-        font-size: 1em;
+        font-size: 1.1rem;
         font-weight: normal;
-        margin-top: 4px;
+        margin-top: 14px;
+        text-transform: uppercase;
       }
     }
 
@@ -342,8 +348,21 @@ label {
       margin: 0px 0px 5px 0px;
     }
 
+    .group-container {
+      height: 28px;
+      margin-bottom: 15px;
+    }
+
     .group-id {
+      background-color: #f0f0f0;
+      width: 166px;
+      height: 28px;
       float: left;
+      border-top: 1px solid #CCC;
+      border-bottom: 1px solid #CCC;
+      border-left: 1px solid #CCC;
+      padding: 8px 5px;
+
     }
 
     .group-icon {
@@ -351,9 +370,7 @@ label {
       width: 28px;
       height: 28px;
       float: left;
-      border-top: 1px solid #CCC;
-      border-right: 1px solid #CCC;
-      border-bottom: 1px solid #CCC;
+      border: 1px solid #CCC;
     }
 
     .category-icon {
@@ -381,6 +398,14 @@ label {
       /* Required to make elements draggable in old WebKit */
       -khtml-user-drag: element;
       -webkit-user-drag: element;
+    }
+
+    .dragging {
+      opacity: 0.4;
+    }
+
+    .active {
+      border-color: #333;
     }
 
   }

@@ -35,6 +35,8 @@ isomatic.views.IconView = Backbone.View.extend({
     },
     handleDragEnd: function(e) {
         "use strict";
+        //todo mapping with image-lib
+        $('.category-icon').removeClass('active');
         $(e.currentTarget).removeClass('dragging');
         $(e.currentTarget).addClass('active');
     },

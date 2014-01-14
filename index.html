@@ -254,7 +254,7 @@
 
             <div id="normal-isotype" class="select-type active">
                 <div class="type-title">
-                    <h4>Normal</h4>
+                    Normal
                 </div>
                 <div class="type-image">
                     <a>
@@ -265,7 +265,7 @@
 
             <div id="versus-isotype" class="select-type">
                 <div class="type-title">
-                    <h4>Versus</h4>
+                    Versus
                 </div>
                 <div class="type-image">
                     <a>
@@ -276,7 +276,7 @@
 
             <div id="compare-isotype" class="select-type">
                 <div class="type-title">
-                    <h4>Compare</h4>
+                    Compare
                 </div>
                 <div class="type-image">
                     <a>
@@ -287,7 +287,7 @@
 
             <div id="size-isotype" class="select-type">
                 <div class="type-title">
-                    <h4>Size</h4>
+                    Size
                 </div>
                 <div class="type-image">
                     <a>
@@ -310,40 +310,28 @@
         <div class="overlay-left">
 
             <form>
-                <label>
-                    <span data-tooltip class="has-tip tip-right" title="Choose if Icons are mapped to Columns or Rows">Map to</span>
-                </label>
+                <h4><span data-tooltip class="has-tip tip-right" title="Choose if Icons are mapped to Columns or Rows">Map to</span></h4>
                 <input type="radio" name="radio2" value="row" id="icon-row" checked><label for="icon-row"><img src="img/row.svg"> Row</label>
                 <input type="radio" name="radio2" value="column" id="icon-column"><label for="icon-column"><img src="img/column.svg"> Column</label>
 
-                <div class="group-mapping clearfix">
-                    <legend>Row 1</legend>
-                    <div class="group-preview">
-                        <div class="group-id">
-                            <input type="text" placeholder="#001">
-                        </div>
-                        <div class="group-icon">
-                            <img src="img/person1_small.svg">
-                        </div>
+                <h4>Drag and Drop</h4>
+
+                <div class="icon-mapping clearfix">
+                    <div class="group-container">
+                        <div class="group-id">Row 1</div>
+                        <img class="group-icon" src="img/person1_small.svg">
                     </div>
-                    <legend>Row 2</legend>
-                    <div class="group-preview">
-                        <div class="group-id">
-                            <input type="text" placeholder="#002">
-                        </div>
-                        <div class="group-icon">
-                            <!--<img src="img/person2_small.svg">-->
-                        </div>
+
+                    <div class="group-container">
+                        <div class="group-id">Row 1</div>
+                        <img class="group-icon" src="img/person1_small.svg">
                     </div>
-                    <legend>Row 3</legend>
-                    <div class="group-preview">
-                        <div class="group-id">
-                            <input type="text" placeholder="#003">
-                        </div>
-                        <div class="group-icon">
-                            <!--<img src="img/person3_small.svg">-->
-                        </div>
+
+                    <div class="group-container">
+                        <div class="group-id">Row 1</div>
+                        <img class="group-icon" src="img/person1_small.svg">
                     </div>
+
                 </div>
 
                 <a href="#" class="tiny button radius">Apply</a>
@@ -379,11 +367,11 @@
             <div class="overlay-left">
                 <form>
 
-                    <label>
-                        <span data-tooltip class="has-tip tip-right" title="Choose if Colors are mapped to Columns or Rows">Map to</span>
-                    </label>
+                    <h4><span data-tooltip class="has-tip tip-right" title="Choose if Colors are mapped to Columns or Rows">Map to</span></h4>
                     <input id="colorize-column" type="radio" name="radio3" value="column"><label for="colorize-column"><img src="img/column.svg"> Column</label>
                     <input id="colorize-row" type="radio" name="radio3" value="row"><label for="colorize-row"><img src="img/row.svg"> Row</label>
+
+                    <h4>Assign colors</h4>
 
                     {{#each colorMap}}
                     <legend>{{@key}}</legend>
