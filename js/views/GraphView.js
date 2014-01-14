@@ -197,9 +197,9 @@ isomatic.views.GraphView = Backbone.View.extend({
                 })
                 .attr("fill", function(d) {
                     if (isomatic.options.ui.get("colorize") === 'row') {
-                        return isomatic.options.ui.get("colorMap")[d.row];
+                        return '#' + isomatic.options.ui.get("colorMap")[d.row];
                     } else {
-                        return isomatic.options.ui.get("colorMap")[d.col - 1];
+                        return '#' + isomatic.options.ui.get("colorMap")[d.col - 1];
                     }
                 })
             ;

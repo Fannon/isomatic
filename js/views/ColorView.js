@@ -81,6 +81,16 @@ isomatic.views.ColorView = Backbone.View.extend({
     },
     applyColor: function() {
         "use strict";
+
+        // Read current values from ColorPicker and apply them to the ColorMap
+        var colors = [];
+        $('.picker').each(function (index, element) {
+            colors.push(element.value);
+        });
+
+        isomatic.options.ui.set('colorMap', colors);
+        console.dir(colors);
+
         isomatic.views.dataView.submitData();
     },
     /**
