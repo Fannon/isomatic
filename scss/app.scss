@@ -406,6 +406,7 @@ label {
 
     .active {
       border-color: #333;
+      box-shadow: 0 0 2px 1px #AAA;
     }
 
   }
@@ -451,8 +452,9 @@ label {
     }
 
     .active {
-      background: #000;
-      border-color: #000;
+      background: #333;
+      border-color: #333;
+      box-shadow: 0 0 2px 1px #AAA;
     }
 
   }
@@ -519,9 +521,8 @@ label {
 
 #modal-container {
 
-  button.tiny,
-  .button.tiny {
-    font-size: 0.9rem;
+  button.timy, .button.tiny {
+    font-size: 11pt;
   }
 
   #new-modal {
