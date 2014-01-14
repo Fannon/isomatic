@@ -148,6 +148,17 @@ isomatic.pad = function(n) {
     return n < 10 ? '0' + n : n;
 };
 
+isomatic.uglyHack = function(el) {
+    "use strict";
+    var id = el.id.split('-')[1];
+    console.log(id);
+    if (window.location.hash === '#' + id) {
+        setTimeout(function() {
+            window.location = '#home';
+        }, 50);
+
+    }
+};
 
 ///////////////////////////////////////
 // 3rd Party Scripts                 //
@@ -213,5 +224,7 @@ isomatic.pad = function(n) {
             form.submit();
         }, 50);
     };
+
+
 
 })(jQuery);
