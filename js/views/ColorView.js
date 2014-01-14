@@ -81,7 +81,7 @@ isomatic.views.ColorView = Backbone.View.extend({
     },
     applyColor: function() {
         "use strict";
-        // TODO!
+        isomatic.views.dataView.submitData();
     },
     /**
      * Selects the Colorpalette and applies it to the Colorpickers and the Graphic

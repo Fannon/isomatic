@@ -65,6 +65,7 @@ isomatic.views.GraphView = Backbone.View.extend({
         // Sets height of the Drawing Area according to aspect ratio
         this.$display.height(isomatic.data.meta.attributes.height);
         this.$sidebar.height(isomatic.data.meta.attributes.height);
+
     },
 
     /**
@@ -229,25 +230,6 @@ isomatic.views.GraphView = Backbone.View.extend({
             .text(legendText)
             .attr("fill", "#999999")
         ;
-    },
-
-    /**
-     * Loads Icon from /icons/ directory into the icons Object
-     * @param filename
-     * @param url
-     *
-     * @deprecated
-     */
-   loadIcon: function(filename, url) {
-        "use strict";
-
-        console.log('GraphView.loadIcon(' + filename + ', ' + url + ');');
-
-        $.get(url, function(response) {
-           this.icons[filename] = response.getElementsByTagName('svg')[0];
-            // TODO: Icon Processing
-        });
-
     },
 
     /**

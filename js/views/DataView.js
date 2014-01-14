@@ -74,7 +74,7 @@ isomatic.views.DataView = Backbone.View.extend({
         var data = d3.tsv.parse($('#pasted-data').val());
 
         // Generate Preview Table from data
-        this.tabulate(data);
+        this.tablePreview(data);
 
         // TODO: Validation
 
@@ -88,7 +88,7 @@ isomatic.views.DataView = Backbone.View.extend({
      *
      * @param data  Data Array
      */
-    tabulate: function(data) {
+    tablePreview: function(data) {
         "use strict";
 
         var table = d3.select("#dataTable");
