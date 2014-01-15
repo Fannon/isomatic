@@ -22,7 +22,7 @@
             $('#colorpalette-Dracula').addClass('active');
 
             // Init Scrollbar Plugin
-            $('.scrollbar').slimScroll(isomatic.options.internal.slimmScrollOptions);
+//            $('.scrollbar').slimScroll(isomatic.options.internal.slimmScrollOptions);
         },
 
         /**
@@ -70,7 +70,11 @@
             });
 
             // Init Scrollbar
-            $('.scrollbar').slimScroll(isomatic.options.internal.slimmScrollOptions);
+            $('.scrollbar').slimScroll({
+                'height': isomatic.data.meta.attributes.height
+            });
+
+
 
         },
 

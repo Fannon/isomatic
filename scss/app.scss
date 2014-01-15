@@ -45,15 +45,13 @@ h1, h2, h3, h4, h5, h6 {
 
 h3 {
   text-transform: uppercase;
-//  letter-spacing: 0.05rem;
   font-size: 1.5em;
   margin-bottom: 10px;
-  border-bottom: 1px solid #777;
+  border-bottom: 1px solid #AAA;
 }
 
 h4 {
   text-transform: uppercase;
-//  letter-spacing: 0.05rem;
   font-size: 1.2em;
   border-bottom: 1px solid #CCC;
   margin: 5px 0px 8px 0px;
@@ -162,13 +160,26 @@ label {
   margin-top: 10px;
 
   .icon {
+    display: block;
     margin-bottom: 10px;
-    padding: 5px 0;
+    // padding: 5px 0;
     width: 44px;
     height: 44px;
     vertical-align: middle;
     background-color: #999;
-    box-shadow: 0 0 4px 1px #555;
+    background-reapeat: no-repeat;
+    background-position: center center;
+    // box-shadow: 0 0 4px 1px #555;
+    border: 1px solid #888;
+  }
+
+  :hover {
+    background-color: #777;
+  }
+
+  .active {
+    background-color: $primary-color;
+    // box-shadow: 0 0 2px 2px #555;
   }
 
   .toolbar-line {
@@ -204,24 +215,15 @@ label {
     background-image: url(../img/scale.svg);
   }
 
-  :hover {
-    background-color: #777;
-  }
-
-  .active {
-    background-color: $primary-color;
-    box-shadow: 0 0 2px 2px #555;
-  }
-
 }
 
 
 // Display: Wrapper for the graphics and overlays
 
 #display {
-  width: 970px;
+  width: 966px;
   height: 360px;
-  margin-left: 40px;
+  margin-left: 44px;
   padding: 10px 10px 0 0;
   background: #FFF;
   background-image: url(../img/ruler.svg);
@@ -254,7 +256,8 @@ label {
     border-right: 1px solid #CCC;
     padding: 5px 10px 5px 10px;
     overflow: hidden;
-    box-shadow: 1px 2px 4px #AAA;
+    // box-shadow: 1px 2px 4px #AAA;
+
 
     .slimScrollDiv {
       margin-right: -5px;
@@ -483,7 +486,6 @@ label {
 
   #data-container, #icon-container, #color-container, #help-container {
     width: 70%;
-    border-right: none;
   }
 
   .topic-line {

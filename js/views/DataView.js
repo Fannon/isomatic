@@ -34,6 +34,11 @@
             });
             this.$el.html(html);
 
+            // Init Scrollbar
+            $('.scrollbar').slimScroll({
+                'height': isomatic.data.meta.attributes.height
+            });
+
         },
 
         /**

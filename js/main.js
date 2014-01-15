@@ -56,7 +56,7 @@ var isomatic = {};
         // Init Foundation JavaScript
         $(document).foundation();
 
-        // Register Ugly Hack
+        // Register ugly Hack
         $('.trigger-ui').on('click', function(el) {
             isomatic.uglyHack(el.currentTarget);
         });
