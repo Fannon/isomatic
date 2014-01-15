@@ -33,57 +33,42 @@
         },
 
         newGraphic: function() {
-            "use strict";
-            console.log('#new');
         },
 
         importGraphic: function() {
-            "use strict";
-            console.log('#import');
         },
 
         exportGraphic: function() {
-            "use strict";
-            console.log('#export');
         },
 
         help: function() {
-            "use strict";
-            this.triggerUi('help');
         },
 
         data: function() {
-            "use strict";
             this.triggerUi('data');
         },
 
         type: function() {
-            "use strict";
             this.triggerUi('type');
         },
 
         color: function() {
-            "use strict";
             this.triggerUi('color');
         },
 
         icon: function() {
-            "use strict";
             this.triggerUi('icon');
         },
 
         adjustments: function() {
-            "use strict";
             this.triggerUi('adjustments');
         },
 
         scale: function() {
-            "use strict";
             this.triggerUi('scale');
         },
 
         text: function() {
-            "use strict";
             this.triggerUi('text');
         },
 
