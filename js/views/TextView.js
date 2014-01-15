@@ -1,28 +1,32 @@
 /* jshint jquery:true, devel: true */
 /* global isomatic, d3, Backbone, _, Handlebars */
 
-/**
- * Text View
- *
- * @type {*|void|Object}
- */
-isomatic.views.TextView = Backbone.View.extend({
-    initialize: function(){
-        "use strict";
-        this.render();
-    },
-    render: function(){
-        "use strict";
+(function(isomatic) {
+    "use strict";
 
-        var source = $('#text-template').html();
-        var template = Handlebars.compile(source);
-        var html = template({
-            palettes: isomatic.options.internal.colorPalettes
-        });
-        this.$el.html(html);
+    /**
+     * Text View
+     *
+     * @type {*|void|Object}
+     */
+    isomatic.views.TextView = Backbone.View.extend({
+        initialize: function(){
+            this.render();
+        },
+        render: function(){
 
-    },
-    events: {
-        "click #color": "colorClick"
-    }
-});
+            var source = $('#text-template').html();
+            var template = Handlebars.compile(source);
+            var html = template({
+                palettes: isomatic.options.internal.colorPalettes
+            });
+            this.$el.html(html);
+
+        },
+        events: {
+            "click #color": "colorClick"
+        }
+    });
+
+}(isomatic));
+

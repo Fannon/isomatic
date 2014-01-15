@@ -1,110 +1,112 @@
 /* jshint jquery:true, devel: true */
 /* global isomatic, d3, Backbone, _, Handlebars */
 
-/**
- * Data View
- *
- * @type {*|void|Object}
- */
-isomatic.views.ExportView = Backbone.View.extend({
-
-    /** Init Export View */
-    initialize: function(){
-        "use strict";
-        this.render();
-
-        // Event Registration
-        var self = this;
-
-        $("#start-export" ).on("click", function() {
-            self.exportSVG();
-        });
-    },
-
-    /** Render Export View */
-    render: function(){
-        "use strict";
-
-        var source = $('#export-template').html();
-        var template = Handlebars.compile(source);
-        var html = template();
-        this.$el.html(html);
-
-    },
-    events: {
-        // TODO: Not working, no idea why
-        "click #start-export": "exportSVG"
-    },
+(function(isomatic) {
+    "use strict";
 
     /**
-     * Exports current Graphic as SVG
-     * Embeds current Options and Data, too.
+     * Data View
+     *
+     * @type {*|void|Object}
      */
-    exportSVG: function() {
-        "use strict";
+    isomatic.views.ExportView = Backbone.View.extend({
 
-        console.log('ExportView.exportSVG();');
+        /** Init Export View */
+        initialize: function(){
+            this.render();
 
-        this.embedData();
+            // Event Registration
+            var self = this;
 
-        var content = '<?xml version="1.0" encoding="utf-8"?>\n';
-        content += '<!-- Generator: isomatic (http://www.isomatic.de) -->\n';
-        content += $('#graph').html();
+            $("#start-export" ).on("click", function() {
+                self.exportSVG();
+            });
+        },
 
-        var filename = isomatic.getFormattedTime() + ".svg";
+        /** Render Export View */
+        render: function(){
 
-        $.generateFile({
-            filename: filename,
-            content: content,
-            script: 'http://svg-generator.de/download.php'
-        });
+            var source = $('#export-template').html();
+            var template = Handlebars.compile(source);
+            var html = template();
+            this.$el.html(html);
 
-    },
+        },
+        events: {
+            // TODO: Not working, no idea why
+            "click #start-export": "exportSVG"
+        },
 
-    /**
-     * Exports Options and Data as JSON Object
-     */
-    exportJSON: function() {
-        "use strict";
+        /**
+         * Exports current Graphic as SVG
+         * Embeds current Options and Data, too.
+         */
+        exportSVG: function() {
 
-        console.log('ExportView.exportJSON();');
+            console.log('ExportView.exportSVG();');
 
-        var content = this.embedData();
-        var filename = isomatic.getFormattedTime() + ".json";
+            this.embedData();
 
-        $.generateFile({
-            filename: filename,
-            content: content,
-            script: 'http://svg-generator.de/download.php'
-        });
-    },
+            var content = '<?xml version="1.0" encoding="utf-8"?>\n';
+            content += '<!-- Generator: isomatic (http://www.isomatic.de) -->\n';
+            content += $('#graph').html();
 
-    /**
-     * Embeds current Options and Data into the SVG
-     * Helper Function
-     */
-    embedData: function() {
-        "use strict";
+            var filename = isomatic.getFormattedTime() + ".svg";
 
-        console.log('ExportView.embedData();');
+            $.generateFile({
+                filename: filename,
+                content: content,
+                script: 'http://svg-generator.de/download.php'
+            });
 
-        var jsonExport = {
-            data: isomatic.data.raw,
-            options: isomatic.options.ui.toJSON()
-        };
+        },
 
-        var jsonStringExport = JSON.stringify(jsonExport, null, 2);
+        /**
+         * Exports Options and Data as JSON Object
+         */
+        exportJSON: function() {
 
-        // Check if description tag already exists. If not create it, otherwise update it.
-        var desc = $('#isomatic-metadata');
-        if (desc.length === 0) {
-            isomatic.views.graphView.svg.append("desc")
-                .attr("id", "isomatic-metadata")
-                .text(jsonStringExport);
-        } else {
-            desc.text(jsonStringExport);
+            console.log('ExportView.exportJSON();');
+
+            var content = this.embedData();
+            var filename = isomatic.getFormattedTime() + ".json";
+
+            $.generateFile({
+                filename: filename,
+                content: content,
+                script: 'http://svg-generator.de/download.php'
+            });
+        },
+
+        /**
+         * Embeds current Options and Data into the SVG
+         * Helper Function
+         */
+        embedData: function() {
+
+            console.log('ExportView.embedData();');
+
+            var jsonExport = {
+                data: isomatic.data.raw,
+                options: isomatic.options.ui.toJSON()
+            };
+
+            var jsonStringExport = JSON.stringify(jsonExport, null, 2);
+
+            // Check if description tag already exists. If not create it, otherwise update it.
+            var desc = $('#isomatic-metadata');
+            if (desc.length === 0) {
+                isomatic.views.graphView.svg.append("desc")
+                    .attr("id", "isomatic-metadata")
+                    .text(jsonStringExport);
+            } else {
+                desc.text(jsonStringExport);
+            }
+
+            return jsonStringExport;
         }
+    });
 
-        return jsonStringExport;
-    }
-});
+
+}(isomatic));
+
