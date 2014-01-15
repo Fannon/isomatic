@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: main.js</title>
+    
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+    
+    <h1 class="page-title">Source: main.js</h1>
+    
+    
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source"><code>/* jshint jquery:true, devel: true */
+
+///////////////////////////////////////////////////////
+// isomatic                                          //
+///////////////////////////////////////////////////////
+// An Interactive Isotype Graphics Generator         //
+// https://github.com/Fannon/isomatic                //
+///////////////////////////////////////////////////////
+
+///////////////////////////////////////
+// Global Variables                  //
+///////////////////////////////////////
+
+/** Global namespace */
+var isomatic = {};
+
+(function(isomatic) {
+    "use strict";
+
+    /** Views namespace */
+    isomatic.views = {};
+
+
+
+    ///////////////////////////////////////
+    // On DOM Ready                      //
+    ///////////////////////////////////////
+
+    $(function() {
+
+
+        ///////////////////////////////////////
+        // Init Application                  //
+        ///////////////////////////////////////
+
+        // Go to Home View, ignore current URL on App-Load
+        window.location = '#home';
+
+        // Init Views
+        var views = isomatic.views;
+
+        views.graphView = new views.GraphView({el: $("#graph-container")});
+        isomatic.views.newView = new isomatic.views.NewView({el: $("#new-container")});
+        isomatic.views.importView = new isomatic.views.ImportView({el: $("#import-container")});
+        isomatic.views.exportView = new isomatic.views.ExportView({el: $("#export-container")});
+        isomatic.views.helpView = new isomatic.views.HelpView({el: $("#help-container")});
+        isomatic.views.dataView = new isomatic.views.DataView({el: $("#data-container")});
+        isomatic.views.typeView = new isomatic.views.TypeView({el: $("#type-container")});
+        isomatic.views.iconView = new isomatic.views.IconView({el: $("#icon-container")});
+        isomatic.views.colorView = new isomatic.views.ColorView({el: $("#color-container")});
+        isomatic.views.propertiesView = new isomatic.views.AdjustmentsView({el: $("#adjustments-container")});
+        isomatic.views.scaleView = new isomatic.views.ScaleView({el: $("#scale-container")});
+        isomatic.views.textView = new isomatic.views.TextView({el: $("#text-container")});
+
+
+        ///////////////////////////////////////
+        // Init 3rd Party Plugins            //
+        ///////////////////////////////////////
+
+        // Init Foundation JavaScript
+        $(document).foundation();
+
+        // Init Scrollbar Plugin
+        $('.scrollbar').slimScroll(isomatic.options.internal.slimmScrollOptions);
+
+        // Register Ugly Hack
+        $('.trigger-ui').on('click', function(el) {
+            isomatic.uglyHack(el.currentTarget);
+        });
+
+
+    });
+
+
+    ///////////////////////////////////////
+    // General Helper Functions          //
+    ///////////////////////////////////////
+
+    isomatic.registerColorpicker = function(el) {
+
+        el.colpick({
+            color: el[0].value,
+            layout:'rgbhex',
+            submit:0,
+            colorScheme:'dark',
+            onChange:function(hsb,hex,rgb,fromSetColor) {
+                if(!fromSetColor) {
+                    el.val(hex).css('border-color','#'+hex);
+                }
+            }
+        });
+
+
+        el[0].style.borderColor = '#' + el[0].value;
+
+
+    };
+
+    /**
+     * Displays Message to User
+     * TODO: Integrate this into the UI
+     *
+     * @param {String}  type  Type of Message
+     * @param {String}  msg   HTML Text of message
+     */
+    isomatic.message = function(type, msg) {
+        $('#message').append('&lt;div class="alert alert-' + type + '">' + msg + '&lt;/div>');
+        console.log('Message [' + type + ']: ' + msg);
+    };
+
+    /**
+     * Returns a YYYY-MM-DD_-_HH-MM-SS formatted DateString
+     * @return {String} formatted Date String
+     */
+    isomatic.getFormattedTime = function() {
+
+        console.log('isomatic.getFormattedTime();');
+
+        var a = new Date();
+
+        var year = a.getFullYear();
+        var month = isomatic.pad(a.getMonth() + 1);
+        var date = isomatic.pad(a.getDate());
+        var hour = isomatic.pad(a.getHours());
+        var min = isomatic.pad(a.getMinutes());
+        var sec = isomatic.pad(a.getSeconds());
+
+        return year + '-' + month + '-' + date + '_-_' + hour + ':' + min + ':' + sec;
+    };
+
+    /**
+     * Pads a Number
+     * @param n             Number to Pad
+     * @returns {string}    Padded Number
+     */
+    isomatic.pad = function(n) {
+        return n &lt; 10 ? '0' + n : n;
+    };
+
+    isomatic.uglyHack = function(el) {
+        var id = el.id.split('-')[1];
+        console.log(id);
+        if (window.location.hash === '#' + id) {
+            setTimeout(function() {
+                window.location = '#home';
+            }, 50);
+
+        }
+    };
+
+    ///////////////////////////////////////
+    // 3rd Party Scripts                 //
+    ///////////////////////////////////////
+
+    /**
+     * jQuery Plugin to allow File Downloads from JavaScript Variables
+     * http://tutorialzine.com/2011/05/generating-files-javascript-php/
+     */
+    (function($) {
+
+        // Creating a jQuery plugin:
+        $.generateFile = function(options) {
+
+            options = options || {};
+
+            if (!options.script || !options.filename || !options.content) {
+                throw new Error("Please enter all the required config options!");
+            }
+
+            // Creating a 1 by 1 px invisible iframe:
+
+            var iframe = $('&lt;iframe>', {
+                width: 1,
+                height: 1,
+                frameborder: 0,
+                css: {
+                    display: 'none'
+                }
+            }).appendTo('body');
+
+            var formHTML = '&lt;form action="" method="post">' +
+                '&lt;input type="hidden" name="filename" />' +
+                '&lt;input type="hidden" name="content" />' +
+                '&lt;/form>';
+
+            // Giving IE a chance to build the DOM in
+            // the iframe with a short timeout:
+
+            setTimeout(function() {
+
+                // The body element of the iframe document:
+
+                var body = (iframe.prop('contentDocument') !== undefined) ?
+                    iframe.prop('contentDocument').body :
+                    iframe.prop('document').body;	// IE
+
+                body = $(body);
+
+                // Adding the form to the body:
+                body.html(formHTML);
+
+                var form = body.find('form');
+
+                form.attr('action', options.script);
+                form.find('input[name=filename]').val(options.filename);
+                form.find('input[name=content]').val(options.content);
+
+                // Submitting the form to download.php. This will
+                // cause the file download dialog box to appear.
+
+                form.submit();
+            }, 50);
+        };
+
+    })(jQuery);
+
+}(isomatic));
+
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Index</a></h2><h3>Global</h3><ul><li><a href="global.html#analyze">analyze</a></li><li><a href="global.html#columns">columns</a></li><li><a href="global.html#drawIsotype">drawIsotype</a></li><li><a href="global.html#drawLegend">drawLegend</a></li><li><a href="global.html#embedData">embedData</a></li><li><a href="global.html#events">events</a></li><li><a href="global.html#exportJSON">exportJSON</a></li><li><a href="global.html#exportSVG">exportSVG</a></li><li><a href="global.html#focusTextarea">focusTextarea</a></li><li><a href="global.html#graphClick">graphClick</a></li><li><a href="global.html#home">home</a></li><li><a href="global.html#initialize">initialize</a></li><li><a href="global.html#isomatic">isomatic</a></li><li><a href="global.html#max">max</a></li><li><a href="global.html#min">min</a></li><li><a href="global.html#newVisualisation">newVisualisation</a></li><li><a href="global.html#precalculate">precalculate</a></li><li><a href="global.html#prepareDrawing">prepareDrawing</a></li><li><a href="global.html#printScale">printScale</a></li><li><a href="global.html#process">process</a></li><li><a href="global.html#render">render</a></li><li><a href="global.html#rows">rows</a></li><li><a href="global.html#selectColorpalette">selectColorpalette</a></li><li><a href="global.html#submitData">submitData</a></li><li><a href="global.html#sum">sum</a></li><li><a href="global.html#tablePreview">tablePreview</a></li><li><a href="global.html#triggerUi">triggerUi</a></li></ul>
+</nav>
+
+<br clear="both">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.2</a> on Wed Jan 15 2014 12:09:50 GMT+0100 (MEZ)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

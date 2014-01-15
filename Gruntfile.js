@@ -1,4 +1,6 @@
 module.exports = function(grunt) {
+    "use strict";
+
 
     grunt.initConfig({
 
@@ -46,6 +48,15 @@ module.exports = function(grunt) {
             }
         },
 
+        jsdoc : {
+            dist : {
+                src: ['js/*.js', 'js/models/*.js', 'js/views/*.js'],
+                options: {
+                    destination: 'docs'
+                }
+            }
+        },
+
         watch: {
             grunt: { files: ['Gruntfile.js'] },
 
@@ -63,8 +74,8 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-connect');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-watch');
-    grunt.loadNpmTasks('grunt-contrib-requirejs');
+    grunt.loadNpmTasks('grunt-jsdoc');
 
-    grunt.registerTask('build', ['connect', 'sass', 'uglify']);
+    grunt.registerTask('build', ['connect', 'sass']);
     grunt.registerTask('default', ['build', 'watch']);
 };
