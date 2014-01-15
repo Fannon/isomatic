@@ -165,7 +165,7 @@ button.tiny, .button.tiny {
 .ui-container {
   border: 1px solid #CCC;
   border-radius: 3px;
-  background: #F7F7F7;
+  background: #ddd;
   margin-bottom: $container-margin;
   padding: 5px 7px;
 
@@ -202,8 +202,8 @@ button.tiny, .button.tiny {
   }
 
   .active {
-    background-color: #999;
-    border: 1px solid #777;
+    background-color: #bbb;
+    border: 1px solid #999;
   }
 
   .toolbar-line {
@@ -326,7 +326,8 @@ button.tiny, .button.tiny {
     .select-type {
       margin-bottom: 5px;
       height: 40px;
-      background-color: #999;
+      background-color: #ccc;
+      border: 1px solid #aaa;
 
       .type-title {
         color: #FFF;
@@ -338,7 +339,7 @@ button.tiny, .button.tiny {
     }
 
     .select-type:hover {
-      background-color: #888;
+      background-color: #999;
     }
 
     .select-type.active {
@@ -374,13 +375,13 @@ button.tiny, .button.tiny {
     }
 
     .group-id {
-      background-color: #f0f0f0;
+      background-color: #ccc;
       width: 150px;
       height: 28px;
       float: left;
-      border-top: 1px solid #CCC;
-      border-bottom: 1px solid #CCC;
-      border-left: 1px solid #CCC;
+      border-top: 1px solid #bbb;
+      border-bottom: 1px solid #bbb;
+      border-left: 1px solid #bbb;
       padding: 8px 5px;
 
     }

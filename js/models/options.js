@@ -140,7 +140,7 @@
      * This stores which row ID maps to which color
      * Defines the default Palette
      */
-    isomatic.options.preset.colorMap = isomatic.options.internal.colorPalettes.Rainbow;
+    isomatic.options.preset.colorMap = isomatic.options.internal.colorPalettes.Complementary1;
 
     /** This stores which column ID maps to which icon */
     isomatic.options.preset.iconMap = [
