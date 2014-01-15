@@ -156,16 +156,21 @@
         <h3>New Graphic</h3>
 
         <form>
-            <label for="aspect-ratio">Aspect-Ratio:</label>
-            <input id="aspect-ratio" type="text" placeholder="16/9">
+            <div class="ui-container">
+                <h4>Enter Aspect Ratio</h4>
+                <label for="aspect-ratio">Aspect-Ratio:</label>
+                <input id="aspect-ratio" type="text" placeholder="16/9">
+            </div>
 
-            <h4>Alternative: Enter Width/Height</h4>
+            <div class="ui-container">
+                <h4>Alternative: Enter Width/Height</h4>
 
-            <label for="aspect-ratio-width">Width</label>
-            <input id="aspect-ratio-width" type="text" placeholder="640">
+                <label for="aspect-ratio-width">Width</label>
+                <input id="aspect-ratio-width" type="text" placeholder="640">
 
-            <label for="aspect-ratio-height">Height</label>
-            <input id="aspect-ratio-height" type="text" placeholder="360">
+                <label for="aspect-ratio-height">Height</label>
+                <input id="aspect-ratio-height" type="text" placeholder="360">
+            </div>
 
             <input id="generate-new-graphic" type="submit" name="submit" value="Generate New Graphic" class="tiny button radius">
         </form>
@@ -178,12 +183,15 @@
     <div id="import-modal" class="tiny reveal-modal" data-reveal>
         <h3>Import Data</h3>
 
-        <form>
-            <label for="imported-file">Upload SVG or JSON File:</label>
-            <input type="file" id="imported-file">
-            <input type="submit" name="submit" value="Upload" class="tiny button radius">
-        </form>
-        <a class="close-reveal-modal">&#215;</a>
+        <div class="ui-container">
+            <form>
+                <label for="imported-file">Upload SVG or JSON File:</label>
+                <input type="file" id="imported-file">
+
+            </form>
+        </div>
+        <input type="submit" name="submit" value="Upload" class="tiny button radius">
+            <a class="close-reveal-modal">&#215;</a>
     </div>
 </script>
 
@@ -194,15 +202,17 @@
         <h3>Export Graphic / Data</h3>
 
         <form>
-            <h4>Choose Export Format:</h4>
-            <button type=button class="tiny button radius">SVG (Graphic)</button>
-            <button type=button class="tiny button radius disabled">JSON (Raw Data)</button>
+            <div class="ui-container">
+                <h4>Choose Export Format:</h4>
+                <button type=button class="tiny button radius">SVG (Graphic)</button>
+                <button type=button class="tiny button radius disabled">JSON (Raw Data)</button>
+            </div>
 
-            <h4>Include:</h4>
-            <input id="export-data" type="checkbox" checked><label for="export-data">Data</label>
-            <input id="export-options" type="checkbox" checked><label for="export-options">Options</label>
-
-            <br>
+            <div class="ui-container">
+                <h4>Include:</h4>
+                <input id="export-data" type="checkbox" checked><label for="export-data">Data</label>
+                <input id="export-options" type="checkbox" checked><label for="export-options">Options</label>
+            </div>
 
             <div id='start-export' class="tiny button radius">Download</div>
         </form>
