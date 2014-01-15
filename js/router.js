@@ -27,7 +27,6 @@
 
         /** Home Screen. No Overlays shown */
         home: function() {
-            "use strict";
             $(".overlay-container").hide();
             $(".trigger-ui").removeClass('active');
         },
@@ -81,7 +80,6 @@
          * @param id
          */
         triggerUi: function(id) {
-            "use strict";
             $(".trigger-ui").removeClass('active');
             $(".overlay-container").hide();
             $("#trigger-" + id).addClass('active');

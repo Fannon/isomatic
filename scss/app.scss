@@ -163,6 +163,10 @@ label {
   background: #F7F7F7;
   margin-bottom: $container-margin;
   padding: 5px 7px;
+
+  h4, h4:hover {
+    border-bottom: 1px solid #CCC;
+  }
 }
 
 
