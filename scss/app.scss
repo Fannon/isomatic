@@ -90,6 +90,11 @@ label {
   font-size: 0.9em;
 }
 
+button.tiny, .button.tiny {
+  font-size: 11px;
+  margin: 5px 0;
+}
+
 
 //////////////////////////////////////////
 // Layout                               //
@@ -291,11 +296,6 @@ label {
       // padding: 0px 10px 0px 20px;
       width: 457px;
       float: left;
-    }
-
-    button.tiny, .button.tiny {
-      font-size: 11px;
-      margin: 10px 0;
     }
   }
 
