@@ -48,7 +48,6 @@ var isomatic = {};
     isomatic.views = {};
 
 
-
     ///////////////////////////////////////
     // On DOM Ready                      //
     ///////////////////////////////////////
@@ -60,24 +59,21 @@ var isomatic = {};
         // Init Application                  //
         ///////////////////////////////////////
 
-        // Go to Home View, ignore current URL on App-Load
-        window.location = '#home';
-
         // Init Views
         var views = isomatic.views;
 
-        views.graphView = new views.GraphView({el: $("#graph-container")});
-        isomatic.views.newView = new isomatic.views.NewView({el: $("#new-container")});
-        isomatic.views.importView = new isomatic.views.ImportView({el: $("#import-container")});
-        isomatic.views.exportView = new isomatic.views.ExportView({el: $("#export-container")});
-        isomatic.views.helpView = new isomatic.views.HelpView({el: $("#help-container")});
-        isomatic.views.dataView = new isomatic.views.DataView({el: $("#data-container")});
-        isomatic.views.typeView = new isomatic.views.TypeView({el: $("#type-container")});
-        isomatic.views.iconView = new isomatic.views.IconView({el: $("#icon-container")});
-        isomatic.views.colorView = new isomatic.views.ColorView({el: $("#color-container")});
-        isomatic.views.propertiesView = new isomatic.views.AdjustmentsView({el: $("#adjustments-container")});
-        isomatic.views.scaleView = new isomatic.views.ScaleView({el: $("#scale-container")});
-        isomatic.views.textView = new isomatic.views.TextView({el: $("#text-container")});
+        views.graphView      = new views.GraphView({el: $("#graph-container")});
+        views.newView        = new views.NewView({el: $("#new-container")});
+        views.importView     = new views.ImportView({el: $("#import-container")});
+        views.exportView     = new views.ExportView({el: $("#export-container")});
+        views.helpView       = new views.HelpView({el: $("#help-container")});
+        views.dataView       = new views.DataView({el: $("#data-container")});
+        views.typeView       = new views.TypeView({el: $("#type-container")});
+        views.iconView       = new views.IconView({el: $("#icon-container")});
+        views.colorView      = new views.ColorView({el: $("#color-container")});
+        views.propertiesView = new views.AdjustmentsView({el: $("#adjustments-container")});
+        views.scaleView      = new views.ScaleView({el: $("#scale-container")});
+        views.textView       = new views.TextView({el: $("#text-container")});
 
 
         ///////////////////////////////////////
@@ -86,9 +82,6 @@ var isomatic = {};
 
         // Init Foundation JavaScript
         $(document).foundation();
-
-        // Init Scrollbar Plugin
-        $('.scrollbar').slimScroll(isomatic.options.internal.slimmScrollOptions);
 
         // Register Ugly Hack
         $('.trigger-ui').on('click', function(el) {
@@ -102,6 +95,31 @@ var isomatic = {};
     ///////////////////////////////////////
     // General Helper Functions          //
     ///////////////////////////////////////
+
+    /**
+     * Refreshes the Data
+     * Use this if the Data changes.
+     * Triggers a new Layout and new Design, too.
+     */
+    isomatic.refreshData = function() {
+
+        // TODO: Read Data
+
+
+        isomatic.refreshLayout();
+        isomatic.refreshDesign();
+
+    };
+
+    isomatic.refreshLayout = function() {
+
+        isomatic.refreshDesign();
+
+    };
+
+    isomatic.refreshDesign = function() {
+
+    };
 
     isomatic.registerColorpicker = function(el) {
 
@@ -124,18 +142,6 @@ var isomatic = {};
     };
 
     /**
-     * Displays Message to User
-     * TODO: Integrate this into the UI
-     *
-     * @param {String}  type  Type of Message
-     * @param {String}  msg   HTML Text of message
-     */
-    isomatic.message = function(type, msg) {
-        $('#message').append('&lt;div class="alert alert-' + type + '">' + msg + '&lt;/div>');
-        console.log('Message [' + type + ']: ' + msg);
-    };
-
-    /**
      * Returns a YYYY-MM-DD_-_HH-MM-SS formatted DateString
      * @return {String} formatted Date String
      */
@@ -143,14 +149,14 @@ var isomatic = {};
 
         console.log('isomatic.getFormattedTime();');
 
-        var a = new Date();
+        var a     = new Date();
 
-        var year = a.getFullYear();
+        var year  = a.getFullYear();
         var month = isomatic.pad(a.getMonth() + 1);
-        var date = isomatic.pad(a.getDate());
-        var hour = isomatic.pad(a.getHours());
-        var min = isomatic.pad(a.getMinutes());
-        var sec = isomatic.pad(a.getSeconds());
+        var date  = isomatic.pad(a.getDate());
+        var hour  = isomatic.pad(a.getHours());
+        var min   = isomatic.pad(a.getMinutes());
+        var sec   = isomatic.pad(a.getSeconds());
 
         return year + '-' + month + '-' + date + '_-_' + hour + ':' + min + ':' + sec;
     };
@@ -253,13 +259,13 @@ var isomatic = {};
 </div>
 
 <nav>
-    <h2><a href="index.html">Index</a></h2><h3>Global</h3><ul><li><a href="global.html#analyze">analyze</a></li><li><a href="global.html#columns">columns</a></li><li><a href="global.html#drawIsotype">drawIsotype</a></li><li><a href="global.html#drawLegend">drawLegend</a></li><li><a href="global.html#embedData">embedData</a></li><li><a href="global.html#events">events</a></li><li><a href="global.html#exportJSON">exportJSON</a></li><li><a href="global.html#exportSVG">exportSVG</a></li><li><a href="global.html#focusTextarea">focusTextarea</a></li><li><a href="global.html#graphClick">graphClick</a></li><li><a href="global.html#home">home</a></li><li><a href="global.html#initialize">initialize</a></li><li><a href="global.html#isomatic">isomatic</a></li><li><a href="global.html#max">max</a></li><li><a href="global.html#min">min</a></li><li><a href="global.html#newVisualisation">newVisualisation</a></li><li><a href="global.html#precalculate">precalculate</a></li><li><a href="global.html#prepareDrawing">prepareDrawing</a></li><li><a href="global.html#printScale">printScale</a></li><li><a href="global.html#process">process</a></li><li><a href="global.html#render">render</a></li><li><a href="global.html#rows">rows</a></li><li><a href="global.html#selectColorpalette">selectColorpalette</a></li><li><a href="global.html#submitData">submitData</a></li><li><a href="global.html#sum">sum</a></li><li><a href="global.html#tablePreview">tablePreview</a></li><li><a href="global.html#triggerUi">triggerUi</a></li></ul>
+    <h2><a href="index.html">Index</a></h2><h3>Global</h3><ul><li><a href="global.html#analyze">analyze</a></li><li><a href="global.html#applyColor">applyColor</a></li><li><a href="global.html#colorizeColumn">colorizeColumn</a></li><li><a href="global.html#colorizeRow">colorizeRow</a></li><li><a href="global.html#columns">columns</a></li><li><a href="global.html#drawIsotype">drawIsotype</a></li><li><a href="global.html#drawLegend">drawLegend</a></li><li><a href="global.html#embedData">embedData</a></li><li><a href="global.html#events">events</a></li><li><a href="global.html#exportJSON">exportJSON</a></li><li><a href="global.html#exportSVG">exportSVG</a></li><li><a href="global.html#focusTextarea">focusTextarea</a></li><li><a href="global.html#graphClick">graphClick</a></li><li><a href="global.html#home">home</a></li><li><a href="global.html#initialize">initialize</a></li><li><a href="global.html#isomatic">isomatic</a></li><li><a href="global.html#max">max</a></li><li><a href="global.html#min">min</a></li><li><a href="global.html#newVisualisation">newVisualisation</a></li><li><a href="global.html#precalculate">precalculate</a></li><li><a href="global.html#prepareDrawing">prepareDrawing</a></li><li><a href="global.html#printScale">printScale</a></li><li><a href="global.html#process">process</a></li><li><a href="global.html#render">render</a></li><li><a href="global.html#rows">rows</a></li><li><a href="global.html#selectColorpalette">selectColorpalette</a></li><li><a href="global.html#submitData">submitData</a></li><li><a href="global.html#sum">sum</a></li><li><a href="global.html#tablePreview">tablePreview</a></li><li><a href="global.html#triggerUi">triggerUi</a></li></ul>
 </nav>
 
 <br clear="both">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.2</a> on Wed Jan 15 2014 12:09:50 GMT+0100 (MEZ)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.2</a> on Wed Jan 15 2014 13:58:16 GMT+0100 (MEZ)
 </footer>
 
 <script> prettyPrint(); </script>

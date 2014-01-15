@@ -21,7 +21,6 @@ var isomatic = {};
     isomatic.views = {};
 
 
-
     ///////////////////////////////////////
     // On DOM Ready                      //
     ///////////////////////////////////////
@@ -33,24 +32,21 @@ var isomatic = {};
         // Init Application                  //
         ///////////////////////////////////////
 
-        // Go to Home View, ignore current URL on App-Load
-        window.location = '#home';
-
         // Init Views
         var views = isomatic.views;
 
-        views.graphView = new views.GraphView({el: $("#graph-container")});
-        isomatic.views.newView = new isomatic.views.NewView({el: $("#new-container")});
-        isomatic.views.importView = new isomatic.views.ImportView({el: $("#import-container")});
-        isomatic.views.exportView = new isomatic.views.ExportView({el: $("#export-container")});
-        isomatic.views.helpView = new isomatic.views.HelpView({el: $("#help-container")});
-        isomatic.views.dataView = new isomatic.views.DataView({el: $("#data-container")});
-        isomatic.views.typeView = new isomatic.views.TypeView({el: $("#type-container")});
-        isomatic.views.iconView = new isomatic.views.IconView({el: $("#icon-container")});
-        isomatic.views.colorView = new isomatic.views.ColorView({el: $("#color-container")});
-        isomatic.views.propertiesView = new isomatic.views.AdjustmentsView({el: $("#adjustments-container")});
-        isomatic.views.scaleView = new isomatic.views.ScaleView({el: $("#scale-container")});
-        isomatic.views.textView = new isomatic.views.TextView({el: $("#text-container")});
+        views.graphView      = new views.GraphView({el: $("#graph-container")});
+        views.newView        = new views.NewView({el: $("#new-container")});
+        views.importView     = new views.ImportView({el: $("#import-container")});
+        views.exportView     = new views.ExportView({el: $("#export-container")});
+        views.helpView       = new views.HelpView({el: $("#help-container")});
+        views.dataView       = new views.DataView({el: $("#data-container")});
+        views.typeView       = new views.TypeView({el: $("#type-container")});
+        views.iconView       = new views.IconView({el: $("#icon-container")});
+        views.colorView      = new views.ColorView({el: $("#color-container")});
+        views.propertiesView = new views.AdjustmentsView({el: $("#adjustments-container")});
+        views.scaleView      = new views.ScaleView({el: $("#scale-container")});
+        views.textView       = new views.TextView({el: $("#text-container")});
 
 
         ///////////////////////////////////////
@@ -59,9 +55,6 @@ var isomatic = {};
 
         // Init Foundation JavaScript
         $(document).foundation();
-
-        // Init Scrollbar Plugin
-        $('.scrollbar').slimScroll(isomatic.options.internal.slimmScrollOptions);
 
         // Register Ugly Hack
         $('.trigger-ui').on('click', function(el) {
@@ -75,6 +68,31 @@ var isomatic = {};
     ///////////////////////////////////////
     // General Helper Functions          //
     ///////////////////////////////////////
+
+    /**
+     * Refreshes the Data
+     * Use this if the Data changes.
+     * Triggers a new Layout and new Design, too.
+     */
+    isomatic.refreshData = function() {
+
+        // TODO: Read Data
+
+
+        isomatic.refreshLayout();
+        isomatic.refreshDesign();
+
+    };
+
+    isomatic.refreshLayout = function() {
+
+        isomatic.refreshDesign();
+
+    };
+
+    isomatic.refreshDesign = function() {
+
+    };
 
     isomatic.registerColorpicker = function(el) {
 
@@ -97,18 +115,6 @@ var isomatic = {};
     };
 
     /**
-     * Displays Message to User
-     * TODO: Integrate this into the UI
-     *
-     * @param {String}  type  Type of Message
-     * @param {String}  msg   HTML Text of message
-     */
-    isomatic.message = function(type, msg) {
-        $('#message').append('<div class="alert alert-' + type + '">' + msg + '</div>');
-        console.log('Message [' + type + ']: ' + msg);
-    };
-
-    /**
      * Returns a YYYY-MM-DD_-_HH-MM-SS formatted DateString
      * @return {String} formatted Date String
      */
@@ -116,14 +122,14 @@ var isomatic = {};
 
         console.log('isomatic.getFormattedTime();');
 
-        var a = new Date();
+        var a     = new Date();
 
-        var year = a.getFullYear();
+        var year  = a.getFullYear();
         var month = isomatic.pad(a.getMonth() + 1);
-        var date = isomatic.pad(a.getDate());
-        var hour = isomatic.pad(a.getHours());
-        var min = isomatic.pad(a.getMinutes());
-        var sec = isomatic.pad(a.getSeconds());
+        var date  = isomatic.pad(a.getDate());
+        var hour  = isomatic.pad(a.getHours());
+        var min   = isomatic.pad(a.getMinutes());
+        var sec   = isomatic.pad(a.getSeconds());
 
         return year + '-' + month + '-' + date + '_-_' + hour + ':' + min + ':' + sec;
     };

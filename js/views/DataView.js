@@ -37,12 +37,12 @@
         },
 
         /**
-         * Data view Events
+         * DataView Events
          */
         events: {
+            "focus #pasted-data": "focusTextarea",
             "click #import-data": "submitData",
-            "click #import-data-close": "submitData",
-            "focus #pasted-data": "focusTextarea"
+            "click #import-data-close": "submitData"
         },
 
         /**
@@ -72,10 +72,11 @@
 
             var data = d3.tsv.parse($('#pasted-data').val());
 
+            // TODO: Validation
+
             // Generate Preview Table from data
             this.tablePreview(data);
 
-            // TODO: Validation
 
             // Process and draw Data
             this.process(data);
@@ -268,7 +269,6 @@
         }
 
     });
-
 
 }(isomatic));
 

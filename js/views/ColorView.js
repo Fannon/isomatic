@@ -11,14 +11,24 @@
      */
     isomatic.views.ColorView = Backbone.View.extend({
 
+        /**
+         * Init Color View
+         */
         initialize: function(){
+
             this.render();
 
+            // Sets default Colorpalette TODO: Refactor this
             $('#colorpalette-Dracula').addClass('active');
 
             // Init Scrollbar Plugin
+            $('.scrollbar').slimScroll(isomatic.options.internal.slimmScrollOptions);
         },
 
+        /**
+         * Render Color View
+         * Calculates Data Structures for View
+         */
         render: function(){
 
             var source = $('#color-template').html();
@@ -63,6 +73,10 @@
             $('.scrollbar').slimScroll(isomatic.options.internal.slimmScrollOptions);
 
         },
+
+        /**
+         * Color View Events
+         */
         events: {
             "click #colorize-column": "colorizeColumn",
             "click #colorize-row": "colorizeRow",
@@ -70,16 +84,28 @@
             "click #color-apply": "applyColor",
             "click #color-apply-close": "applyColor"
         },
+
+        /**
+         * Set Colorize Mode to Column
+         */
         colorizeColumn: function() {
 
             isomatic.options.ui.set('colorize', 'column');
             this.render();
         },
+
+        /**
+         * Set Colorize Mode to Row
+         */
         colorizeRow: function() {
 
             isomatic.options.ui.set('colorize', 'row');
             this.render();
         },
+
+        /**
+         * Applies current Colors from Colorpicker to Model and updates the Graphic View
+         */
         applyColor: function() {
 
             // Read current values from ColorPicker and apply them to the ColorMap
@@ -93,6 +119,7 @@
 
             isomatic.views.dataView.submitData();
         },
+
         /**
          * Selects the Colorpalette and applies it to the Colorpickers and the Graphic
          * @param event

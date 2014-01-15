@@ -16,7 +16,9 @@
      */
     isomatic.data.Model = Backbone.Model.extend({
 
-        // On Init
+        /**
+         * Data Model Init
+         */
         initialize: function() {
             console.log('isomatic.data.Model initialized.');
         }
@@ -24,12 +26,16 @@
 
     /**
      * Raw Data Model
+     * The unprocessed Data coming from the Data Import
+     *
      * @type {isomatic.data.Model}
      */
     isomatic.data.raw = new isomatic.data.Model();
 
     /**
      * Meta Data Model
+     * (Calculated) Metainformations about the Raw Data
+     *
      * @type {isomatic.data.Model}
      */
     isomatic.data.meta = new isomatic.data.Model({
