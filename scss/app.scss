@@ -45,8 +45,14 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h3 {
-  font-size: 1.5em;
-  margin: 0 0 5px 1px;
+  background-color: #333;
+  border-bottom: 1px solid #FFF;
+  border-right: 1px solid #CCC;
+  border-left: 1px solid #CCC;
+  padding: 3px 0px 1px 8px;
+  color: #FFF;
+  font-size: 1.2em;
+  margin: -5px 0 9px 1px;
   text-transform: uppercase;
 }
 
@@ -194,6 +200,7 @@ button.tiny, .button.tiny {
     background-position: center center;
     // box-shadow: 0 0 4px 1px #555;
     border: 1px solid #000;
+    border-radius: 3px;
   }
 
   .icon:hover {
@@ -328,6 +335,7 @@ button.tiny, .button.tiny {
       height: 40px;
       background-color: #ccc;
       border: 1px solid #aaa;
+      border-radius: 3px;
 
       .type-title {
         color: #FFF;
