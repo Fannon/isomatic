@@ -18,13 +18,8 @@
 
             // Cache jQuery Selectors
             this.$display = $('#display');
-            this.$sidebar = $('#sidebar');
 
             this.render();
-
-            // TODO: Refresh Graphic Method & Refresh Data Method
-
-            this.newVisualisation(isomatic.options.ui.get("aspectRatio"));
 
         },
 
@@ -33,6 +28,8 @@
          */
         render: function(){
             this.$el.html('<div id="graph"></div>');
+
+            this.newVisualisation();
         },
 
         /**
@@ -51,28 +48,33 @@
 
         /**
          * Creates a new Visualisation
+         * Calculats Graph Canvas Size and sets UI Options and Appearance accordingly
          */
-        newVisualisation: function(aspectRatio) {
+        newVisualisation: function() {
 
-            console.log('GraphView.newVisualisation(' + aspectRatio + ');');
+            console.log('GraphView.newVisualisation();');
+
+            var aspectRatio = isomatic.options.ui.get('aspectRatio');
+            var width = this.$display.width();
+            var height = Math.round(width / aspectRatio);
 
             // Calculate Width and Height from Aspect Ratio
-            isomatic.options.ui.set("aspectRatio", aspectRatio);
-            isomatic.data.meta.attributes.width = this.$display.width();
-            isomatic.data.meta.attributes.height = Math.round(isomatic.data.meta.attributes.width / aspectRatio);
+            isomatic.options.ui.set({
+                aspectRatio: aspectRatio,
+                graphWidth: width,
+                graphHeight: height
+            });
 
             // Sets height of the Drawing Area according to aspect ratio
-            this.$display.height(isomatic.data.meta.attributes.height);
-            this.$sidebar.height(isomatic.data.meta.attributes.height);
+            this.$display.height(height);
 
         },
 
         /**
          * Precalculates the visual Layout. Recommends some options like Icon-Size.
-         * Stores the data into the isomatic.data.meta.attributes Object
+         * Stores the data into the isomatic.data.meta Model
          */
         precalculate: function() {
-            "use strict";
 
             console.log('GraphView.precalculate();');
 
@@ -87,17 +89,41 @@
                 } else {
                     iconsPerRow[obj.row] += 1;
                 }
-
             }
 
-            isomatic.data.meta.attributes.iconsPerRow = iconsPerRow;
-            isomatic.data.meta.attributes.maxIconsPerRow = d3.max(iconsPerRow);
+            var maxIconsPerRow = d3.max(iconsPerRow);
 
             // Calculate Base Scale for Icons depending on biggest Row. (Fit to width)
-            var widthLeft = isomatic.data.meta.attributes.width -
-                (isomatic.data.meta.attributes.maxIconsPerRow * isomatic.options.ui.get("iconHorizontalMargin")) -
+            var widthLeft = isomatic.options.ui.get('graphWidth') -
+                (maxIconsPerRow * isomatic.options.ui.get("iconHorizontalMargin")) -
                 2 * isomatic.options.ui.get("outerMargin");
-            isomatic.data.meta.attributes.baseScale = widthLeft / (isomatic.data.meta.attributes.maxIconsPerRow * 32);
+
+            var baseScale = widthLeft / (maxIconsPerRow * 32);
+
+            isomatic.data.meta.set({
+                iconsPerRow: iconsPerRow,
+                maxIconsPerRow: maxIconsPerRow,
+                baseScale: baseScale
+            });
+        },
+
+        /**
+         * Calculates the Layout and stores it into isomatic.data.processed
+         *
+         * Constructs a new isotypeLayout, applies current Options and calculates the Layout
+         */
+        layout: function() {
+
+            // Set Layouting Options
+
+            this.isotypeLayout = new d3.layout.isotype();
+
+            this.isotypeLayout.roundDown(isomatic.options.ui.get("roundDown"))
+                .roundUp(isomatic.options.ui.get("roundUp"))
+                .scale(isomatic.options.ui.get("scale"))
+            ;
+
+            isomatic.data.processed = this.isotypeLayout(isomatic.data.raw);
 
         },
 
@@ -110,29 +136,17 @@
 
             console.log('GraphView.prepareDrawing();');
 
+            // Empty Canvas before Drawing
             $('#graph').html('');
 
-            ///////////////////////////////////////
-            // Visualisation Options             //
-            ///////////////////////////////////////
-
-            // Set Visualisation Options
-            this.isotypeLayout = d3.layout.isotype()
-                .roundDown(isomatic.options.ui.get("roundDown"))
-                .roundUp(isomatic.options.ui.get("roundUp"))
-                .scale(isomatic.options.ui.get("scale"))
-            ;
-
-            ///////////////////////////////////////
-            // Create SVG Container              //
-            ///////////////////////////////////////
-
+            // Create new SVG Container for D3.js
             this.svg = d3.select("#graph").append("svg")
-                .attr("width",isomatic.data.meta.attributes.width)
-                .attr("height", isomatic.data.meta.attributes.height)
+                .attr("width", isomatic.options.ui.attributes.graphWidth)
+                .attr("height", isomatic.options.ui.attributes.graphHeight)
                 .append("g")
                 .attr("id", "isotype")
             ;
+
         },
 
         /**
@@ -144,66 +158,57 @@
 
             console.log('GraphView.drawIsotype();');
 
-            ///////////////////////////////////////
-            // Draw Data                         //
-            ///////////////////////////////////////
+            var finalSize = isomatic.data.meta.attributes.baseScale * isomatic.options.internal.defaultIconSize;
 
-            if (isomatic.data.raw) {
+            var g = this.svg.selectAll(".icon")
 
-                var finalSize = isomatic.data.meta.attributes.baseScale * isomatic.options.internal.defaultIconSize;
+                .data(isomatic.data.processed)
+                .enter()
+                .append("g")
+                .attr("class", "icon")
+                .attr("transform", function(d) {
 
-                var g =this.svg.selectAll(".icon")
-                        .data(isomatic.data.processed)
-                        .enter()
-                        .append("g")
-                        .attr("class", "icon")
-                        .attr("transform", function(d) {
+                    var x = d.pos * (finalSize + isomatic.options.ui.get("iconHorizontalMargin")) + isomatic.options.ui.get("outerMargin");
+                    var y = d.row * (finalSize + isomatic.options.ui.get("rowMargin")) + isomatic.options.ui.get("outerMargin");
 
-                            var x = d.pos * (finalSize + isomatic.options.ui.get("iconHorizontalMargin")) + isomatic.options.ui.get("outerMargin");
-                            var y = d.row * (finalSize + isomatic.options.ui.get("rowMargin")) + isomatic.options.ui.get("outerMargin");
+                    var scale = isomatic.data.meta.attributes.baseScale * d.size;
 
-                            var scale = isomatic.data.meta.attributes.baseScale * d.size;
+                    // If Icon is drawn smaller than full-size, center it
+                    if (d.size < 1) {
+                        x += (finalSize / 2) * (1 - d.size);
+                        y += (finalSize / 2) * (1 - d.size);
+                    }
 
-                            // If Icon is drawn smaller than full-size, center it
-                            if (d.size < 1) {
-                                x += (finalSize / 2) * (1 - d.size);
-                                y += (finalSize / 2) * (1 - d.size);
-                            }
+                    // If Icon is drawn outside of Canvas give a warning
+                    if (y > isomatic.options.ui.attributes.graphHeight || x > isomatic.options.ui.attributes.graphWidth) {
+                        // isomatic.message('warning', '<strong>Warning: </strong>The generated Graphic is bigger than its Canvas!');
+                    }
 
-                            // If Icon is drawn outside of Canvas give a warning
-                            if (y > isomatic.data.meta.attributes.height || x >isomatic.data.meta.attributes.width) {
-                                isomatic.message('warning', '<strong>Warning: </strong>The generated Graphic is bigger than its Canvas!');
-                            }
+                    return 'translate(' + x + ', ' + y + ') scale(' + scale + ')';
 
-                            return 'translate(' + x + ', ' + y + ') scale(' + scale + ')';
+                })
+                .html(function(d) {
 
-                        })
-                        .html(function(d) {
+                    var category, name;
 
-                            var category, name;
+                    if (isomatic.options.ui.get("iconize") === 'row') {
+                        category = isomatic.options.ui.get("iconMap")[d.row].category;
+                        name = isomatic.options.ui.get("iconMap")[d.row].name;
+                    } else {
+                        category = isomatic.options.ui.get("iconMap")[d.col - 1].category;
+                        name = isomatic.options.ui.get("iconMap")[d.col - 1].name;
+                    }
 
-                            if (isomatic.options.ui.get("iconize") === 'row') {
-                                category = isomatic.options.ui.get("iconMap")[d.row].category;
-                                name = isomatic.options.ui.get("iconMap")[d.row].name;
-                            } else {
-                                category = isomatic.options.ui.get("iconMap")[d.col - 1].category;
-                                name = isomatic.options.ui.get("iconMap")[d.col - 1].name;
-                            }
-
-                            return isomatic.icons[category].icons[name].svg;
-                        })
-                        .attr("fill", function(d) {
-                            if (isomatic.options.ui.get("colorize") === 'row') {
-                                return '#' + isomatic.options.ui.get("colorMap")[d.row];
-                            } else {
-                                return '#' + isomatic.options.ui.get("colorMap")[d.col - 1];
-                            }
-                        })
-                    ;
-
-            } else {
-                isomatic.message('error', 'No Data loaded!');
-            }
+                    return isomatic.icons[category].icons[name].svg;
+                })
+                .attr("fill", function(d) {
+                    if (isomatic.options.ui.get("colorize") === 'row') {
+                        return '#' + isomatic.options.ui.get("colorMap")[d.row];
+                    } else {
+                        return '#' + isomatic.options.ui.get("colorMap")[d.col - 1];
+                    }
+                })
+            ;
 
         },
 
@@ -215,11 +220,11 @@
 
             console.log('GraphView.drawLegend();');
 
-            var legendText = '1 : ' +this.printScale(isomatic.options.ui.get("scale"));
+            var legendText = '1 : ' + this.printScale(isomatic.options.ui.get("scale"));
 
-            var legend =this.svg.append("g")
+            var legend = this.svg.append("g")
                 .style("text-anchor", "start")
-                .attr("transform", "translate(" + isomatic.options.ui.get("outerMargin") + ", " + (isomatic.data.meta.attributes.height - 2 * isomatic.options.ui.get("outerMargin")) + ")");
+                .attr("transform", "translate(" + isomatic.options.ui.get("outerMargin") + ", " + (isomatic.options.ui.attributes.graphHeight - 2 * isomatic.options.ui.get("outerMargin")) + ")");
 
             legend.append("text")
                 .attr("class", "legend")

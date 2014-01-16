@@ -11,6 +11,7 @@
     isomatic.views.AdjustmentsView = Backbone.View.extend({
         initialize: function(){
             this.render();
+            this.model.on("change", this.render, this);
         },
         render: function(){
 
@@ -34,7 +35,7 @@
 
         },
         apply: function() {
-            isomatic.views.dataView.submitData();
+            isomatic.refreshLayout();
         },
         changeOuterMargin: function(e) {
             var val = $(e.currentTarget).val();

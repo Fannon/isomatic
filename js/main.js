@@ -48,6 +48,8 @@ var isomatic = {};
         views.scaleView      = new views.ScaleView({el: $("#scale-container")});
         views.textView       = new views.TextView({el: $("#text-container")});
 
+        // Draw Example Data Set
+        isomatic.refreshData();
 
         ///////////////////////////////////////
         // Init 3rd Party Plugins            //
@@ -78,7 +80,9 @@ var isomatic = {};
 
         // TODO: Read Data
 
+        isomatic.views.dataView.analyze();
 
+        // Refresh Layout and Design, too
         isomatic.refreshLayout();
         isomatic.refreshDesign();
 
@@ -86,11 +90,31 @@ var isomatic = {};
 
     isomatic.refreshLayout = function() {
 
+        // Creates a new Visualsation
+        isomatic.views.graphView.newVisualisation();
+
+        // Calculates the layouted Data
+        isomatic.views.graphView.layout();
+
+        // Precalculate Layout and save it into the Metadata Object.
+        isomatic.views.graphView.precalculate();
+
+
+        // Refresh Design, too
         isomatic.refreshDesign();
 
     };
 
     isomatic.refreshDesign = function() {
+
+        // Prepare Drawing
+        isomatic.views.graphView.prepareDrawing();
+
+        // Draw Isotype Graphic
+        isomatic.views.graphView.drawIsotype();
+
+        // Draw Legend Overlay
+        isomatic.views.graphView.drawLegend();
 
     };
 

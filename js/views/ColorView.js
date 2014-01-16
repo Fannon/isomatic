@@ -18,11 +18,11 @@
 
             this.render();
 
+            this.model.on("change", this.render, this);
+
             // Sets default Colorpalette TODO: Refactor this
             $('#colorpalette-Dracula').addClass('active');
 
-            // Init Scrollbar Plugin
-//            $('.scrollbar').slimScroll(isomatic.options.internal.slimmScrollOptions);
         },
 
         /**
@@ -71,12 +71,14 @@
 
             // Init Scrollbar
             $('.scrollbar').slimScroll({
-                'height': isomatic.data.meta.attributes.height
+                'height': isomatic.options.ui.attributes.graphHeight
             });
 
 
 
         },
+
+        model: isomatic.options.ui,
 
         /**
          * Color View Events
@@ -87,6 +89,23 @@
             "click .colorpalette": "selectColorpalette",
             "click #color-apply": "applyColor",
             "click #color-apply-close": "applyColor"
+        },
+
+        /**
+         * Applies current Colors from Colorpicker to Model and updates the Graphic View
+         */
+        apply: function() {
+
+            // Read current values from ColorPicker and apply them to the ColorMap
+            var colors = [];
+            $('.picker').each(function (index, element) {
+                colors.push(element.value);
+            });
+
+            isomatic.options.ui.set('colorMap', colors);
+            console.dir(colors);
+
+            isomatic.refreshDesign();
         },
 
         /**
@@ -107,22 +126,7 @@
             this.render();
         },
 
-        /**
-         * Applies current Colors from Colorpicker to Model and updates the Graphic View
-         */
-        applyColor: function() {
 
-            // Read current values from ColorPicker and apply them to the ColorMap
-            var colors = [];
-            $('.picker').each(function (index, element) {
-                colors.push(element.value);
-            });
-
-            isomatic.options.ui.set('colorMap', colors);
-            console.dir(colors);
-
-            isomatic.views.dataView.submitData();
-        },
 
         /**
          * Selects the Colorpalette and applies it to the Colorpickers and the Graphic

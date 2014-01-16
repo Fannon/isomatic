@@ -18,8 +18,8 @@
 
             this.render();
 
-            // TODO: Geht sicher eleganter
-            this.submitData();
+            // Store Example Data
+            isomatic.data.raw = d3.tsv.parse($('#pasted-data').val());
         },
 
         /**
@@ -36,7 +36,7 @@
 
             // Init Scrollbar
             $('.scrollbar').slimScroll({
-                'height': isomatic.data.meta.attributes.height
+                'height': isomatic.options.ui.attributes.graphHeight
             });
 
         },
@@ -75,21 +75,22 @@
 
             console.log('DataView::submitData();');
 
-            var data = d3.tsv.parse($('#pasted-data').val());
+            isomatic.data.raw = d3.tsv.parse($('#pasted-data').val());
 
             // TODO: Validation
 
-            // Generate Preview Table from data
-            this.tablePreview(data);
 
+            // Generate Preview Table from data
+            this.tablePreview(isomatic.data.raw);
 
             // Process and draw Data
-            this.process(data);
+            isomatic.refreshData();
 
         },
 
         /**
          * Generate Preview Table via D3.js
+         * Adapted from: http://stackoverflow.com/a/18072266
          *
          * @param data  Data Array
          */
@@ -143,54 +144,21 @@
         },
 
         /**
-         * Process the Data
-         *
-         * @param data
-         */
-        process: function(data) {
-
-            console.log('DataView.process(data);');
-            console.dir(data);
-
-            isomatic.data.raw = data;
-
-            // Analyze Data
-            this.analyze(data);
-
-            // Prepare Drawing
-            isomatic.views.graphView.prepareDrawing();
-
-            // Generate Layout
-            isomatic.data.processed = isomatic.views.graphView.isotypeLayout(data);
-
-            // Precalculate Layout and save it into the Metadata Object.
-            isomatic.views.graphView.precalculate();
-
-            // Draw Isotype Graphic
-            isomatic.views.graphView.drawIsotype();
-
-            // Draw Legend Overlay
-            isomatic.views.graphView.drawLegend();
-        },
-
-        /**
          * Calculates the Scale from the Raw Data
          * Returns nice Scales like 1:10000
-         *
-         * @param {Array} data Raw Data Array
          */
-        analyze: function(data) {
+        analyze: function() {
 
             console.log('DataView.analyze(data);');
 
             var values = [];
             var rowValues = [];
             var availableScales = [];
+            var rows = [];
+            var columns = [];
+            var title = '';
 
-
-            // Reset previous Calculations:
-            isomatic.data.meta.attributes.rows = [];
-            isomatic.data.meta.attributes.columns = [];
+            var data = isomatic.data.raw;
 
 
             ///////////////////////////////////////
@@ -209,13 +177,18 @@
                     if(currentRow.hasOwnProperty(obj)){
 
                         // Put all available Columns into an array
-                        if (rowCounter === 0  && columnCounter >= 1) {
-                            isomatic.data.meta.attributes.rows.push(obj);
+                        if (rowCounter === 0) {
+                            if (columnCounter === 0) {
+                                // Set Title
+                                title = obj;
+                            } else {
+                                rows.push(obj);
+                            }
                         }
 
                         if (columnCounter === 0) {
                             // Put first Column (Description) into a Column Array
-                            isomatic.data.meta.attributes.columns.push(currentRow[obj]);
+                            columns.push(currentRow[obj]);
                         } else {
                             values.push(parseInt(currentRow[obj], 10));
                             rowValue += parseInt(currentRow[obj], 10);
@@ -228,13 +201,16 @@
                 rowValues[rowCounter] = rowValue;
             }
 
-            isomatic.data.meta.set('min', d3.min(values));
-            isomatic.data.meta.set('max', d3.max(values));
-            isomatic.data.meta.set('sum', d3.sum(values));
-
-            isomatic.data.meta.set('rowValues', rowValues);
-            isomatic.data.meta.set('maxRowValues', d3.max(rowValues));
-
+            isomatic.data.meta.set({
+                min: d3.min(values),
+                max: d3.max(values),
+                sum: d3.sum(values),
+                title: title,
+                rows: rows,
+                columns: columns,
+                rowValues: rowValues,
+                maxRowValues: d3.max(rowValues)
+            });
 
             ///////////////////////////////////////
             // Calculate a recommended Scale     //
@@ -268,8 +244,10 @@
 
             console.log('-> Calculated Scale: ' + availableScales[1] + ' from ' + scaleTemp);
 
-            isomatic.options.ui.set("scale", availableScales[1]);
-            isomatic.options.ui.set("availableScales", availableScales);
+            isomatic.options.ui.set({
+                scale: availableScales[1],
+                availableScales: availableScales
+            });
 
         }
 
