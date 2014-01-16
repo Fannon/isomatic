@@ -181,7 +181,7 @@
 
                     // If Icon is drawn outside of Canvas give a warning
                     if (y > isomatic.options.ui.attributes.graphHeight || x > isomatic.options.ui.attributes.graphWidth) {
-                        // isomatic.message('warning', '<strong>Warning: </strong>The generated Graphic is bigger than its Canvas!');
+                        console.warn('<strong>Warning: </strong>The generated Graphic is bigger than its Canvas!');
                     }
 
                     return 'translate(' + x + ', ' + y + ') scale(' + scale + ')';

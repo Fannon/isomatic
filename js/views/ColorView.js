@@ -87,8 +87,8 @@
             "click #colorize-column": "colorizeColumn",
             "click #colorize-row": "colorizeRow",
             "click .colorpalette": "selectColorpalette",
-            "click #color-apply": "applyColor",
-            "click #color-apply-close": "applyColor"
+            "click #color-apply": "apply",
+            "click #color-apply-close": "apply"
         },
 
         /**
@@ -102,9 +102,10 @@
                 colors.push(element.value);
             });
 
-            isomatic.options.ui.set('colorMap', colors);
-            console.dir(colors);
-
+            isomatic.options.ui.set({
+                colorMap: colors
+            });
+            
             isomatic.refreshDesign();
         },
 

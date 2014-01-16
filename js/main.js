@@ -78,9 +78,8 @@ var isomatic = {};
      */
     isomatic.refreshData = function() {
 
-        // TODO: Read Data
-
         isomatic.views.dataView.analyze();
+
 
         // Refresh Layout and Design, too
         isomatic.refreshLayout();
