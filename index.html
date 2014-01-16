@@ -113,6 +113,7 @@
 <script src="bower_components/foundation/js/foundation.min.js"></script>
 <script src="bower_components/underscore/underscore.js"></script>
 <script src="bower_components/backbone/backbone.js"></script>
+<script src="bower_components/backbone.validation/dist/backbone-validation.js"></script>
 <script src="bower_components/handlebars/handlebars.min.js"></script>
 <script src="bower_components/d3js/build/d3.v3.min.js"></script>
 <script src="js/lib/innersvg.js"></script>
@@ -246,7 +247,7 @@
 
                 <div class="ui-container">
                     <h4>Paste Data</h4>
-                    <textarea value="Copy'n'Paste here" id="pasted-data">{{ preset_data }}</textarea>
+                    <textarea placeholder="Copy'n'Paste Data here" id="pasted-data"></textarea>
 
                     <a id="import-data" href="#" class="tiny button radius">Import</a>
                     <a id="import-data-close" href="#home" class="tiny button radius">Import & Close</a>
@@ -452,7 +453,7 @@
                 <div class="row collapse">
                     <label><img src="img/outermarign.svg">Outer Margin</label>
                     <div class="small-10 columns">
-                        <input id="outer-margin" type="text" required pattern="integer" value="{{ options.outerMargin }}">
+                        <input id="outer-margin" name="outerMargin" type="text" required pattern="integer" value="{{ options.outerMargin }}">
                         <small class="error">Invalid entry</small>
                     </div>
                     <div class="small-2 columns">

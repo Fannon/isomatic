@@ -6,13 +6,14 @@
 
     /**
      * Color View
-     *
-     * @type {*|void|Object}
      */
-    isomatic.views.ColorView = Backbone.View.extend({
+    isomatic.views.ColorView = Backbone.View.extend( /** @lends ColorView.prototype */ {
 
         /**
-         * Init Color View
+         * @class ColorView
+         *
+         * @augments Backbone.View
+         * @contructs
          */
         initialize: function(){
 
@@ -32,7 +33,7 @@
          */
         render: function(){
 
-            console.info('ColorView Rendering');
+            console.info('ColorView.render();');
 
             var source = $('#color-template').html();
             var template = Handlebars.compile(source);
@@ -51,7 +52,7 @@
             }
 
             var html = template({
-                options: isomatic.options.ui.attributes,
+                options: this.model.attributes,
                 colorMap: colorMap,
                 palettes: isomatic.options.internal.colorPalettes
             });

@@ -75,6 +75,8 @@ var isomatic = {};
         views.scaleView      = new views.ScaleView({el: $("#scale-container")});
         views.textView       = new views.TextView({el: $("#text-container")});
 
+        // Draw Example Data Set
+        isomatic.refreshData();
 
         ///////////////////////////////////////
         // Init 3rd Party Plugins            //
@@ -83,7 +85,7 @@ var isomatic = {};
         // Init Foundation JavaScript
         $(document).foundation();
 
-        // Register Ugly Hack
+        // Register ugly Hack
         $('.trigger-ui').on('click', function(el) {
             isomatic.uglyHack(el.currentTarget);
         });
@@ -103,21 +105,41 @@ var isomatic = {};
      */
     isomatic.refreshData = function() {
 
-        // TODO: Read Data
+        isomatic.views.dataView.analyze();
 
 
+        // Refresh Layout
         isomatic.refreshLayout();
-        isomatic.refreshDesign();
 
     };
 
     isomatic.refreshLayout = function() {
 
+        // Creates a new Visualsation
+        isomatic.views.graphView.newVisualisation();
+
+        // Calculates the layouted Data
+        isomatic.views.graphView.layout();
+
+        // Precalculate Layout and save it into the Metadata Object.
+        isomatic.views.graphView.precalculate();
+
+
+        // Refresh Design, too
         isomatic.refreshDesign();
 
     };
 
     isomatic.refreshDesign = function() {
+
+        // Prepare Drawing
+        isomatic.views.graphView.prepareDrawing();
+
+        // Draw Isotype Graphic
+        isomatic.views.graphView.drawIsotype();
+
+        // Draw Legend Overlay
+        isomatic.views.graphView.drawLegend();
 
     };
 
@@ -170,9 +192,13 @@ var isomatic = {};
         return n &lt; 10 ? '0' + n : n;
     };
 
+    /**
+     * If Toolbar Button is clicked when the target Overlay is alredy open: Close the Overlay instead
+     *
+     * @param el
+     */
     isomatic.uglyHack = function(el) {
         var id = el.id.split('-')[1];
-        console.log(id);
         if (window.location.hash === '#' + id) {
             setTimeout(function() {
                 window.location = '#home';
@@ -259,13 +285,13 @@ var isomatic = {};
 </div>
 
 <nav>
-    <h2><a href="index.html">Index</a></h2><h3>Global</h3><ul><li><a href="global.html#analyze">analyze</a></li><li><a href="global.html#applyColor">applyColor</a></li><li><a href="global.html#colorizeColumn">colorizeColumn</a></li><li><a href="global.html#colorizeRow">colorizeRow</a></li><li><a href="global.html#columns">columns</a></li><li><a href="global.html#drawIsotype">drawIsotype</a></li><li><a href="global.html#drawLegend">drawLegend</a></li><li><a href="global.html#embedData">embedData</a></li><li><a href="global.html#events">events</a></li><li><a href="global.html#exportJSON">exportJSON</a></li><li><a href="global.html#exportSVG">exportSVG</a></li><li><a href="global.html#focusTextarea">focusTextarea</a></li><li><a href="global.html#graphClick">graphClick</a></li><li><a href="global.html#home">home</a></li><li><a href="global.html#initialize">initialize</a></li><li><a href="global.html#isomatic">isomatic</a></li><li><a href="global.html#max">max</a></li><li><a href="global.html#min">min</a></li><li><a href="global.html#newVisualisation">newVisualisation</a></li><li><a href="global.html#precalculate">precalculate</a></li><li><a href="global.html#prepareDrawing">prepareDrawing</a></li><li><a href="global.html#printScale">printScale</a></li><li><a href="global.html#process">process</a></li><li><a href="global.html#render">render</a></li><li><a href="global.html#rows">rows</a></li><li><a href="global.html#selectColorpalette">selectColorpalette</a></li><li><a href="global.html#submitData">submitData</a></li><li><a href="global.html#sum">sum</a></li><li><a href="global.html#tablePreview">tablePreview</a></li><li><a href="global.html#triggerUi">triggerUi</a></li></ul>
+    <h2><a href="index.html">Index</a></h2><h3>Classes</h3><ul><li><a href="ColorView.html">ColorView</a></li><li><a href="DataView.html">DataView</a></li></ul><h3>Global</h3><ul><li><a href="global.html#apply">apply</a></li><li><a href="global.html#columns">columns</a></li><li><a href="global.html#drawIsotype">drawIsotype</a></li><li><a href="global.html#drawLegend">drawLegend</a></li><li><a href="global.html#embedData">embedData</a></li><li><a href="global.html#events">events</a></li><li><a href="global.html#exportJSON">exportJSON</a></li><li><a href="global.html#exportSVG">exportSVG</a></li><li><a href="global.html#graphClick">graphClick</a></li><li><a href="global.html#home">home</a></li><li><a href="global.html#initialize">initialize</a></li><li><a href="global.html#isomatic">isomatic</a></li><li><a href="global.html#layout">layout</a></li><li><a href="global.html#max">max</a></li><li><a href="global.html#min">min</a></li><li><a href="global.html#model">model</a></li><li><a href="global.html#newVisualisation">newVisualisation</a></li><li><a href="global.html#precalculate">precalculate</a></li><li><a href="global.html#prepareDrawing">prepareDrawing</a></li><li><a href="global.html#printScale">printScale</a></li><li><a href="global.html#render">render</a></li><li><a href="global.html#rows">rows</a></li><li><a href="global.html#sum">sum</a></li><li><a href="global.html#triggerUi">triggerUi</a></li><li><a href="global.html#validation">validation</a></li></ul>
 </nav>
 
 <br clear="both">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.2</a> on Wed Jan 15 2014 13:58:16 GMT+0100 (MEZ)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.2</a> on Thu Jan 16 2014 16:13:40 GMT+0100 (MEZ)
 </footer>
 
 <script> prettyPrint(); </script>

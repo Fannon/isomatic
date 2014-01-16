@@ -87,7 +87,7 @@
             console.log('ExportView.embedData();');
 
             var jsonExport = {
-                data: isomatic.data.raw,
+                data: isomatic.data.raw.get('data'),
                 options: isomatic.options.ui.toJSON()
             };
 

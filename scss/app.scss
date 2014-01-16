@@ -165,7 +165,7 @@ button.tiny, .button.tiny {
 .ui-container {
   border: 1px solid #CCC;
   border-radius: 3px;
-  background: #FAFAFA;
+  background: #ddd;
   margin-bottom: $container-margin;
   padding: 5px 7px;
 
@@ -202,7 +202,7 @@ button.tiny, .button.tiny {
   }
 
   .active {
-    background-color: #ccc;
+    background-color: #bbb;
     border: 1px solid #999;
   }
 
@@ -274,7 +274,7 @@ button.tiny, .button.tiny {
 
   // Every Overlay Container
   .overlay-container {
-    background: #eaeaea;
+    background: #E8E8E8;
     position: absolute;
     height: 100%;
     width: 220px;
@@ -326,7 +326,7 @@ button.tiny, .button.tiny {
     .select-type {
       margin-bottom: 5px;
       height: 40px;
-      background-color: #d6d6d6;
+      background-color: #ccc;
       border: 1px solid #aaa;
 
       .type-title {
@@ -375,7 +375,7 @@ button.tiny, .button.tiny {
     }
 
     .group-id {
-      background-color: #eaeaea;
+      background-color: #ccc;
       width: 150px;
       height: 28px;
       float: left;

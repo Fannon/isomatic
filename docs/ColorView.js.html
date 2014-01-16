@@ -33,23 +33,25 @@
 
     /**
      * Color View
-     *
-     * @type {*|void|Object}
      */
-    isomatic.views.ColorView = Backbone.View.extend({
+    isomatic.views.ColorView = Backbone.View.extend( /** @lends ColorView.prototype */ {
 
         /**
-         * Init Color View
+         * @class ColorView
+         *
+         * @augments Backbone.View
+         * @contructs
          */
         initialize: function(){
 
             this.render();
 
-            // Sets default Colorpalette TODO: Refactor this
-            $('#colorpalette-Dracula').addClass('active');
+            // Register Model Event Listeners
+            this.model.on("change:colorMap", this.render, this);
+            this.model.on("change:colorize", this.render, this);
+            isomatic.data.meta.on("change:rows", this.render, this);
+            isomatic.data.meta.on("change:columns", this.render, this);
 
-            // Init Scrollbar Plugin
-            $('.scrollbar').slimScroll(isomatic.options.internal.slimmScrollOptions);
         },
 
         /**
@@ -57,6 +59,8 @@
          * Calculates Data Structures for View
          */
         render: function(){
+
+            console.info('ColorView.render();');
 
             var source = $('#color-template').html();
             var template = Handlebars.compile(source);
@@ -75,7 +79,7 @@
             }
 
             var html = template({
-                options: isomatic.options.ui.attributes,
+                options: this.model.attributes,
                 colorMap: colorMap,
                 palettes: isomatic.options.internal.colorPalettes
             });
@@ -97,43 +101,29 @@
             });
 
             // Init Scrollbar
-            $('.scrollbar').slimScroll(isomatic.options.internal.slimmScrollOptions);
+            $('.scrollbar').slimScroll({
+                'height': isomatic.options.ui.attributes.graphHeight
+            });
 
         },
+
+        model: isomatic.options.ui,
 
         /**
          * Color View Events
          */
         events: {
-            "click #colorize-column": "colorizeColumn",
-            "click #colorize-row": "colorizeRow",
-            "click .colorpalette": "selectColorpalette",
-            "click #color-apply": "applyColor",
-            "click #color-apply-close": "applyColor"
-        },
-
-        /**
-         * Set Colorize Mode to Column
-         */
-        colorizeColumn: function() {
-
-            isomatic.options.ui.set('colorize', 'column');
-            this.render();
-        },
-
-        /**
-         * Set Colorize Mode to Row
-         */
-        colorizeRow: function() {
-
-            isomatic.options.ui.set('colorize', 'row');
-            this.render();
+            "click #colorize-column":   "colorizeColumn",
+            "click #colorize-row":      "colorizeRow",
+            "click .colorpalette":      "selectColorpalette",
+            "click #color-apply":       "apply",
+            "click #color-apply-close": "apply"
         },
 
         /**
          * Applies current Colors from Colorpicker to Model and updates the Graphic View
          */
-        applyColor: function() {
+        apply: function() {
 
             // Read current values from ColorPicker and apply them to the ColorMap
             var colors = [];
@@ -141,10 +131,31 @@
                 colors.push(element.value);
             });
 
-            isomatic.options.ui.set('colorMap', colors);
-            console.dir(colors);
+            this.model.set({
+                colorMap: colors
+            });
 
-            isomatic.views.dataView.submitData();
+            isomatic.refreshDesign();
+        },
+
+        /**
+         * Set Colorize Mode to Column
+         */
+        colorizeColumn: function() {
+
+            this.model.set({
+                colorize: 'column'
+            });
+        },
+
+        /**
+         * Set Colorize Mode to Row
+         */
+        colorizeRow: function() {
+
+            this.model.set({
+                colorize: 'row'
+            });
         },
 
         /**
@@ -154,12 +165,14 @@
         selectColorpalette: function(event) {
 
             var selectedColorPalette = event.currentTarget.id.split('-')[1];
-            isomatic.options.ui.set('colorMap', isomatic.options.internal.colorPalettes[selectedColorPalette]);
+            this.model.set({
+                colorMap: isomatic.options.internal.colorPalettes[selectedColorPalette]
+            });
 
-            this.render();
             $('#' + event.currentTarget.id).addClass('active');
             $('#overlay-color').show();
         }
+
     });
 }(isomatic));
 </code></pre>
@@ -172,13 +185,13 @@
 </div>
 
 <nav>
-    <h2><a href="index.html">Index</a></h2><h3>Global</h3><ul><li><a href="global.html#analyze">analyze</a></li><li><a href="global.html#applyColor">applyColor</a></li><li><a href="global.html#colorizeColumn">colorizeColumn</a></li><li><a href="global.html#colorizeRow">colorizeRow</a></li><li><a href="global.html#columns">columns</a></li><li><a href="global.html#drawIsotype">drawIsotype</a></li><li><a href="global.html#drawLegend">drawLegend</a></li><li><a href="global.html#embedData">embedData</a></li><li><a href="global.html#events">events</a></li><li><a href="global.html#exportJSON">exportJSON</a></li><li><a href="global.html#exportSVG">exportSVG</a></li><li><a href="global.html#focusTextarea">focusTextarea</a></li><li><a href="global.html#graphClick">graphClick</a></li><li><a href="global.html#home">home</a></li><li><a href="global.html#initialize">initialize</a></li><li><a href="global.html#isomatic">isomatic</a></li><li><a href="global.html#max">max</a></li><li><a href="global.html#min">min</a></li><li><a href="global.html#newVisualisation">newVisualisation</a></li><li><a href="global.html#precalculate">precalculate</a></li><li><a href="global.html#prepareDrawing">prepareDrawing</a></li><li><a href="global.html#printScale">printScale</a></li><li><a href="global.html#process">process</a></li><li><a href="global.html#render">render</a></li><li><a href="global.html#rows">rows</a></li><li><a href="global.html#selectColorpalette">selectColorpalette</a></li><li><a href="global.html#submitData">submitData</a></li><li><a href="global.html#sum">sum</a></li><li><a href="global.html#tablePreview">tablePreview</a></li><li><a href="global.html#triggerUi">triggerUi</a></li></ul>
+    <h2><a href="index.html">Index</a></h2><h3>Classes</h3><ul><li><a href="ColorView.html">ColorView</a></li><li><a href="DataView.html">DataView</a></li></ul><h3>Global</h3><ul><li><a href="global.html#apply">apply</a></li><li><a href="global.html#columns">columns</a></li><li><a href="global.html#drawIsotype">drawIsotype</a></li><li><a href="global.html#drawLegend">drawLegend</a></li><li><a href="global.html#embedData">embedData</a></li><li><a href="global.html#events">events</a></li><li><a href="global.html#exportJSON">exportJSON</a></li><li><a href="global.html#exportSVG">exportSVG</a></li><li><a href="global.html#graphClick">graphClick</a></li><li><a href="global.html#home">home</a></li><li><a href="global.html#initialize">initialize</a></li><li><a href="global.html#isomatic">isomatic</a></li><li><a href="global.html#layout">layout</a></li><li><a href="global.html#max">max</a></li><li><a href="global.html#min">min</a></li><li><a href="global.html#model">model</a></li><li><a href="global.html#newVisualisation">newVisualisation</a></li><li><a href="global.html#precalculate">precalculate</a></li><li><a href="global.html#prepareDrawing">prepareDrawing</a></li><li><a href="global.html#printScale">printScale</a></li><li><a href="global.html#render">render</a></li><li><a href="global.html#rows">rows</a></li><li><a href="global.html#sum">sum</a></li><li><a href="global.html#triggerUi">triggerUi</a></li><li><a href="global.html#validation">validation</a></li></ul>
 </nav>
 
 <br clear="both">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.2</a> on Wed Jan 15 2014 13:58:16 GMT+0100 (MEZ)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.2</a> on Thu Jan 16 2014 16:13:40 GMT+0100 (MEZ)
 </footer>
 
 <script> prettyPrint(); </script>

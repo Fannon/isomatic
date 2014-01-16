@@ -36,23 +36,32 @@
      *
      * @type {*|void|Object}
      */
-    isomatic.views.DataView = Backbone.View.extend({
+    isomatic.views.DataView = Backbone.View.extend( /** @lends DataView.prototype */ {
 
         /**
-         * Init Data View
+         * @class DataView
+         *
+         * @augments Backbone.View
+         * @contructs
          */
         initialize: function() {
 
             this.render();
 
-            // TODO: Geht sicher eleganter
-            this.submitData();
+            // Register Model Event Listeners
+            this.model.on("change", this.tablePreview, this);
+
+            // Preview Table for Example Data
+            this.tablePreview();
+
         },
 
         /**
          * Render Data View
          */
         render: function() {
+
+            console.info('DataView.render();');
 
             var source = $('#data-template').html();
             var template = Handlebars.compile(source);
@@ -61,7 +70,14 @@
             });
             this.$el.html(html);
 
+            // Init Scrollbar
+            $('.scrollbar').slimScroll({
+                'height': isomatic.options.ui.attributes.graphHeight
+            });
+
         },
+
+        model: isomatic.data.raw,
 
         /**
          * DataView Events
@@ -97,26 +113,34 @@
 
             console.log('DataView::submitData();');
 
-            var data = d3.tsv.parse($('#pasted-data').val());
+            var pastedData = $('#pasted-data').val();
 
-            // TODO: Validation
+            // TODO: Validation:
+            if (!pastedData || pastedData === '') {
+                console.warn('Validation not passed');
+            } else {
 
-            // Generate Preview Table from data
-            this.tablePreview(data);
+                var parsedData = d3.tsv.parse(pastedData);
+                this.model.set({
+                    data: parsedData
+                });
 
+                // Generate Preview Table from data
+                this.tablePreview(this.model.get('data'));
 
-            // Process and draw Data
-            this.process(data);
+                // Process and draw Data
+                isomatic.refreshData();
+            }
 
         },
 
         /**
          * Generate Preview Table via D3.js
-         *
-         * @param data  Data Array
+         * Adapted from: http://stackoverflow.com/a/18072266
          */
-        tablePreview: function(data) {
+        tablePreview: function() {
 
+            var data = this.model.get('data');
             var table = d3.select("#dataTable");
 
             $("#dataTable").html("");
@@ -165,54 +189,21 @@
         },
 
         /**
-         * Process the Data
-         *
-         * @param data
-         */
-        process: function(data) {
-
-            console.log('DataView.process(data);');
-            console.dir(data);
-
-            isomatic.data.raw = data;
-
-            // Analyze Data
-            this.analyze(data);
-
-            // Prepare Drawing
-            isomatic.views.graphView.prepareDrawing();
-
-            // Generate Layout
-            isomatic.data.processed = isomatic.views.graphView.isotypeLayout(data);
-
-            // Precalculate Layout and save it into the Metadata Object.
-            isomatic.views.graphView.precalculate();
-
-            // Draw Isotype Graphic
-            isomatic.views.graphView.drawIsotype();
-
-            // Draw Legend Overlay
-            isomatic.views.graphView.drawLegend();
-        },
-
-        /**
          * Calculates the Scale from the Raw Data
          * Returns nice Scales like 1:10000
-         *
-         * @param {Array} data Raw Data Array
          */
-        analyze: function(data) {
+        analyze: function() {
 
             console.log('DataView.analyze(data);');
 
             var values = [];
             var rowValues = [];
             var availableScales = [];
+            var rows = [];
+            var columns = [];
+            var title = '';
 
-
-            // Reset previous Calculations:
-            isomatic.data.meta.attributes.rows = [];
-            isomatic.data.meta.attributes.columns = [];
+            var data = this.model.get('data');
 
 
             ///////////////////////////////////////
@@ -231,13 +222,18 @@
                     if(currentRow.hasOwnProperty(obj)){
 
                         // Put all available Columns into an array
-                        if (rowCounter === 0  && columnCounter >= 1) {
-                            isomatic.data.meta.attributes.rows.push(obj);
+                        if (rowCounter === 0) {
+                            if (columnCounter === 0) {
+                                // Set Title
+                                title = obj;
+                            } else {
+                                rows.push(obj);
+                            }
                         }
 
                         if (columnCounter === 0) {
                             // Put first Column (Description) into a Column Array
-                            isomatic.data.meta.attributes.columns.push(currentRow[obj]);
+                            columns.push(currentRow[obj]);
                         } else {
                             values.push(parseInt(currentRow[obj], 10));
                             rowValue += parseInt(currentRow[obj], 10);
@@ -250,13 +246,16 @@
                 rowValues[rowCounter] = rowValue;
             }
 
-            isomatic.data.meta.set('min', d3.min(values));
-            isomatic.data.meta.set('max', d3.max(values));
-            isomatic.data.meta.set('sum', d3.sum(values));
-
-            isomatic.data.meta.set('rowValues', rowValues);
-            isomatic.data.meta.set('maxRowValues', d3.max(rowValues));
-
+            isomatic.data.meta.set({
+                min: d3.min(values),
+                max: d3.max(values),
+                sum: d3.sum(values),
+                title: title,
+                rows: rows,
+                columns: columns,
+                rowValues: rowValues,
+                maxRowValues: d3.max(rowValues)
+            });
 
             ///////////////////////////////////////
             // Calculate a recommended Scale     //
@@ -290,8 +289,10 @@
 
             console.log('-> Calculated Scale: ' + availableScales[1] + ' from ' + scaleTemp);
 
-            isomatic.options.ui.set("scale", availableScales[1]);
-            isomatic.options.ui.set("availableScales", availableScales);
+            isomatic.options.ui.set({
+                scale: availableScales[1],
+                availableScales: availableScales
+            });
 
         }
 
@@ -309,13 +310,13 @@
 </div>
 
 <nav>
-    <h2><a href="index.html">Index</a></h2><h3>Global</h3><ul><li><a href="global.html#analyze">analyze</a></li><li><a href="global.html#applyColor">applyColor</a></li><li><a href="global.html#colorizeColumn">colorizeColumn</a></li><li><a href="global.html#colorizeRow">colorizeRow</a></li><li><a href="global.html#columns">columns</a></li><li><a href="global.html#drawIsotype">drawIsotype</a></li><li><a href="global.html#drawLegend">drawLegend</a></li><li><a href="global.html#embedData">embedData</a></li><li><a href="global.html#events">events</a></li><li><a href="global.html#exportJSON">exportJSON</a></li><li><a href="global.html#exportSVG">exportSVG</a></li><li><a href="global.html#focusTextarea">focusTextarea</a></li><li><a href="global.html#graphClick">graphClick</a></li><li><a href="global.html#home">home</a></li><li><a href="global.html#initialize">initialize</a></li><li><a href="global.html#isomatic">isomatic</a></li><li><a href="global.html#max">max</a></li><li><a href="global.html#min">min</a></li><li><a href="global.html#newVisualisation">newVisualisation</a></li><li><a href="global.html#precalculate">precalculate</a></li><li><a href="global.html#prepareDrawing">prepareDrawing</a></li><li><a href="global.html#printScale">printScale</a></li><li><a href="global.html#process">process</a></li><li><a href="global.html#render">render</a></li><li><a href="global.html#rows">rows</a></li><li><a href="global.html#selectColorpalette">selectColorpalette</a></li><li><a href="global.html#submitData">submitData</a></li><li><a href="global.html#sum">sum</a></li><li><a href="global.html#tablePreview">tablePreview</a></li><li><a href="global.html#triggerUi">triggerUi</a></li></ul>
+    <h2><a href="index.html">Index</a></h2><h3>Classes</h3><ul><li><a href="ColorView.html">ColorView</a></li><li><a href="DataView.html">DataView</a></li></ul><h3>Global</h3><ul><li><a href="global.html#apply">apply</a></li><li><a href="global.html#columns">columns</a></li><li><a href="global.html#drawIsotype">drawIsotype</a></li><li><a href="global.html#drawLegend">drawLegend</a></li><li><a href="global.html#embedData">embedData</a></li><li><a href="global.html#events">events</a></li><li><a href="global.html#exportJSON">exportJSON</a></li><li><a href="global.html#exportSVG">exportSVG</a></li><li><a href="global.html#graphClick">graphClick</a></li><li><a href="global.html#home">home</a></li><li><a href="global.html#initialize">initialize</a></li><li><a href="global.html#isomatic">isomatic</a></li><li><a href="global.html#layout">layout</a></li><li><a href="global.html#max">max</a></li><li><a href="global.html#min">min</a></li><li><a href="global.html#model">model</a></li><li><a href="global.html#newVisualisation">newVisualisation</a></li><li><a href="global.html#precalculate">precalculate</a></li><li><a href="global.html#prepareDrawing">prepareDrawing</a></li><li><a href="global.html#printScale">printScale</a></li><li><a href="global.html#render">render</a></li><li><a href="global.html#rows">rows</a></li><li><a href="global.html#sum">sum</a></li><li><a href="global.html#triggerUi">triggerUi</a></li><li><a href="global.html#validation">validation</a></li></ul>
 </nav>
 
 <br clear="both">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.2</a> on Wed Jan 15 2014 13:58:16 GMT+0100 (MEZ)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.2</a> on Thu Jan 16 2014 16:13:40 GMT+0100 (MEZ)
 </footer>
 
 <script> prettyPrint(); </script>
