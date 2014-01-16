@@ -19,12 +19,10 @@
             this.render();
 
             // Register Model Event Listeners
-            this.model.on("change::colorMap", this.render, this);
-            this.model.on("change::colorize", this.render, this);
-            isomatic.data.meta.on("change", this.render, this);
-
-            // Sets default Colorpalette TODO: Refactor this
-            $('#colorpalette-Dracula').addClass('active');
+            this.model.on("change:colorMap", this.render, this);
+            this.model.on("change:colorize", this.render, this);
+            isomatic.data.meta.on("change:rows", this.render, this);
+            isomatic.data.meta.on("change:columns", this.render, this);
 
         },
 
@@ -87,10 +85,10 @@
          * Color View Events
          */
         events: {
-            "click #colorize-column": "colorizeColumn",
-            "click #colorize-row": "colorizeRow",
-            "click .colorpalette": "selectColorpalette",
-            "click #color-apply": "apply",
+            "click #colorize-column":   "colorizeColumn",
+            "click #colorize-row":      "colorizeRow",
+            "click .colorpalette":      "selectColorpalette",
+            "click #color-apply":       "apply",
             "click #color-apply-close": "apply"
         },
 
@@ -139,9 +137,10 @@
         selectColorpalette: function(event) {
 
             var selectedColorPalette = event.currentTarget.id.split('-')[1];
-            isomatic.options.ui.set('colorMap', isomatic.options.internal.colorPalettes[selectedColorPalette]);
+            this.model.set({
+                colorMap: isomatic.options.internal.colorPalettes[selectedColorPalette]
+            });
 
-            this.render();
             $('#' + event.currentTarget.id).addClass('active');
             $('#overlay-color').show();
         }
