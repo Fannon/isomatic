@@ -27,8 +27,6 @@ $darkColor: #333;
 $container-margin: 8px;
 
 
-
-
 //////////////////////////////////////////
 // Typography                           //
 //////////////////////////////////////////
@@ -200,6 +198,7 @@ button.tiny, .button.tiny {
     background-position: center center;
     // box-shadow: 0 0 4px 1px #555;
     border: 1px solid #000;
+    border-radius: 3px;
   }
 
   .icon:hover {
@@ -291,7 +290,6 @@ button.tiny, .button.tiny {
     overflow: hidden;
 
     .overlay-left {
-      // border-right: 1px solid #BBB;
       height: 400px;
       padding-right: $container-margin;
       width: 205px;
@@ -299,8 +297,7 @@ button.tiny, .button.tiny {
     }
 
     .overlay-right {
-      // padding: 0px 10px 0px 20px;
-      width: 457px;
+      width: 455px;
       float: left;
     }
   }

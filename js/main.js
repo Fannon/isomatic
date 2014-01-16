@@ -81,9 +81,8 @@ var isomatic = {};
         isomatic.views.dataView.analyze();
 
 
-        // Refresh Layout and Design, too
+        // Refresh Layout
         isomatic.refreshLayout();
-        isomatic.refreshDesign();
 
     };
 
@@ -166,9 +165,13 @@ var isomatic = {};
         return n < 10 ? '0' + n : n;
     };
 
+    /**
+     * If Toolbar Button is clicked when the target Overlay is alredy open: Close the Overlay instead
+     *
+     * @param el
+     */
     isomatic.uglyHack = function(el) {
         var id = el.id.split('-')[1];
-        console.log(id);
         if (window.location.hash === '#' + id) {
             setTimeout(function() {
                 window.location = '#home';

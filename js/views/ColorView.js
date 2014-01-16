@@ -51,7 +51,7 @@
             }
 
             var html = template({
-                options: isomatic.options.ui.attributes,
+                options: this.model.attributes,
                 colorMap: colorMap,
                 palettes: isomatic.options.internal.colorPalettes
             });

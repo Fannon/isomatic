@@ -9,21 +9,32 @@
      * @type {*|void|Object}
      */
     isomatic.views.AdjustmentsView = Backbone.View.extend({
+
         initialize: function(){
+
             this.render();
-            this.model.on("change", this.render, this);
+
+            // Register Model Event Listeners
+            this.model.on("change:outerMargin", this.render, this);
+            this.model.on("change:iconHorizontalMargin", this.render, this);
+            this.model.on("change:rowMargin", this.render, this);
+            this.model.on("change:columnMargin", this.render, this);
+            this.model.on("change:iconSize", this.render, this);
+
         },
         render: function(){
 
             var source = $('#adjustments-template').html();
             var template = Handlebars.compile(source);
             var html = template({
-                options: isomatic.options.ui.attributes
+                options: this.model.attributes
             });
             this.$el.html(html);
 
         },
+
         model: isomatic.options.ui,
+
         events: {
             "click #adjustments-apply": "apply",
             "click #adjustments-apply-close": "apply",

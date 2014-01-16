@@ -21,6 +21,7 @@
             // Register Model Event Listeners
             this.model.on("change", this.tablePreview, this);
 
+            // Preview Table for Example Data
             this.tablePreview();
 
         },
