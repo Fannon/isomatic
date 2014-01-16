@@ -142,7 +142,7 @@
     isomatic.options.preset.iconVerticalMargin = 3;
 
     /** Break a Row into several Rows visually if number icons exceed this */
-    isomatic.options.preset.breakRow = 0;
+    isomatic.options.preset.breakRow = false;
 
     /** Floor value if Remainder is below */
     isomatic.options.preset.roundDown = 0.3;
@@ -151,7 +151,7 @@
     isomatic.options.preset.roundUp = 0.8;
 
     /** Icon Size */
-    isomatic.options.preset.iconSize = '';
+    isomatic.options.preset.iconSize = 0;
 
     /**
      * Defines if the Color is applied to Rows or Columns
@@ -187,26 +187,118 @@
     ///////////////////////////////////////
 
     /**
-     * Backbone Model
+     * UI Options Backbone Model
      * @type {*|void|Object}
      */
-    isomatic.options.Model = Backbone.Model.extend({
+    isomatic.options.UiModel = Backbone.Model.extend({
 
         // On Init
         initialize: function () {
             console.log('isomatic.options.Model initialized.');
         },
 
-        // Model Validation
-        // TODO: Validation of Options.
-        // TODO: UI should validate Settings before writing them
-        // TODO: Display Validation Errors on UI
-        validate: function(attrs, options){
+        /**
+         * UI Model Validation
+         *
+         * @type {Object}
+         */
+        validation: {
 
-            if (attrs.outerMargin < 0){
-                return "Margin Value has to be positive!";
+            aspectRatio: {
+                required: true,
+                range: [0, 2]
+            },
+
+
+            graphWidth: {
+                required: true,
+                pattern: 'number'
+            },
+
+            /** Calculated Height of the Graph */
+            graphHeight: {
+                required: true,
+                pattern: 'number'
+            },
+
+            /** Diagram Type */
+            diagramType: {
+                required: true,
+
+            },
+            outerMargin: {
+                required: true,
+                pattern: 'number',
+                range: [0, 100]
+            },
+
+            rowMargin: {
+                required: true,
+                pattern: 'number'
+
+            },
+
+            columnMargin: {
+                required: true,
+                pattern: 'number'
+
+            },
+
+            iconHorizontalMargin: {
+                required: true,
+                pattern: 'number'
+
+            },
+
+            iconVerticalMargin: {
+                required: true,
+                pattern: 'number'
+
+            },
+
+            breakRow: {
+                required: true,
+                oneOf: [true, false]
+            },
+
+            roundDown: {
+                required: true,
+                pattern: 'number',
+                range: [0, 1]
+
+            },
+
+            roundUp: {
+                required: true,
+                pattern: 'number',
+                range: [0, 1]
+
+            },
+
+
+            iconSize: {
+                required: true,
+                pattern: 'number'
+            },
+
+            iconize: {
+                required: true,
+                oneOf: ['row', 'column']
+
+            },
+            colorize: {
+                required: true,
+                oneOf: ['row', 'column']
+
+            },
+            colorMap: {
+                required: true,
+
+            },
+            iconMap: {
+                required: true,
+
             }
-            return true;
         }
     });
 
@@ -214,7 +306,7 @@
      * UI Options
      * @type {Model}
      */
-    isomatic.options.ui = new isomatic.options.Model();
+    isomatic.options.ui = new isomatic.options.UiModel();
 
     // Set Default Options
     isomatic.options.ui.set(isomatic.options.preset);

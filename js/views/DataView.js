@@ -9,10 +9,13 @@
      *
      * @type {*|void|Object}
      */
-    isomatic.views.DataView = Backbone.View.extend({
+    isomatic.views.DataView = Backbone.View.extend( /** @lends DataView.prototype */ {
 
         /**
-         * Init Data View
+         * @class DataView
+         *
+         * @augments Backbone.View
+         * @contructs
          */
         initialize: function() {
 

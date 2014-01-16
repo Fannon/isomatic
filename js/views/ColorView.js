@@ -6,13 +6,14 @@
 
     /**
      * Color View
-     *
-     * @type {*|void|Object}
      */
-    isomatic.views.ColorView = Backbone.View.extend({
+    isomatic.views.ColorView = Backbone.View.extend( /** @lends ColorView.prototype */ {
 
         /**
-         * Init Color View
+         * @class ColorView
+         *
+         * @augments Backbone.View
+         * @contructs
          */
         initialize: function(){
 

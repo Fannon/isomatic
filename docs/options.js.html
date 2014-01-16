@@ -79,7 +79,32 @@
     ];
 
     /** This example Dataset is loaded when the Application loads */
-    isomatic.options.internal.exampleData = "\t&lt;30.000/year\t30.000-50.000\t>50.000\nFacebook\t165050000\t395000777\t135000000\nTwitter\t278050000\t198007700\t88000555\nGoogle+\t459370000\t159200000\t129000000\nLinkedIn\t102500000\t80500770\t30006000";
+    isomatic.options.internal.exampleData = [
+        {
+            "Example Dataset":"Facebook",
+            "&lt;30.000/year":"165050000",
+            "30.000-50.000":"395000777",
+            ">50.000":"135000000"
+        },
+        {
+            "Example Dataset":"Twitter",
+            "&lt;30.000/year":"278050000",
+            "30.000-50.000":"198007700",
+            ">50.000":"88000555"
+        },
+        {
+            "Example Dataset":"Google+",
+            "&lt;30.000/year":"459370000",
+            "30.000-50.000":"159200000",
+            ">50.000":"129000000"
+        },
+        {
+            "Example Dataset":"LinkedIn",
+            "&lt;30.000/year":"102500000",
+            "30.000-50.000":"80500770",
+            ">50.000":"30006000"
+        }
+    ];
 
     /**
      * Color Preset Palettes
@@ -118,6 +143,12 @@
     // GENERAL LAYOUTING
     /** Aspect Ratio of the Canvas. Width is always 100% */
     isomatic.options.preset.aspectRatio = 16 / 9;
+
+    /** Calculated Width of the Graph */
+    isomatic.options.preset.graphWidth = 0;
+
+    /** Calculated Height of the Graph */
+    isomatic.options.preset.graphHeight = 0;
 
     /** Diagram Type */
     isomatic.options.preset.diagramType = 'normal';
@@ -167,7 +198,7 @@
      * This stores which row ID maps to which color
      * Defines the default Palette
      */
-    isomatic.options.preset.colorMap = isomatic.options.internal.colorPalettes.Rainbow;
+    isomatic.options.preset.colorMap = isomatic.options.internal.colorPalettes.Complementary1;
 
     /** This stores which column ID maps to which icon */
     isomatic.options.preset.iconMap = [
@@ -183,26 +214,33 @@
     ///////////////////////////////////////
 
     /**
-     * Backbone Model
+     * UI Options Backbone Model
      * @type {*|void|Object}
      */
-    isomatic.options.Model = Backbone.Model.extend({
+    isomatic.options.UiModel = Backbone.Model.extend({
 
         // On Init
         initialize: function () {
             console.log('isomatic.options.Model initialized.');
         },
 
-        // Model Validation
-        // TODO: Validation of Options.
-        // TODO: UI should validate Settings before writing them
-        // TODO: Display Validation Errors on UI
-        validate: function(attrs, options){
+        /**
+         * UI Model Validation
+         *
+         * @type {Object}
+         */
+        validation: {
 
-            if (attrs.outerMargin &lt; 0){
-                return "Margin Value has to be positive!";
+            aspectRatio: {
+                required: true,
+                range: [0, 2]
+            },
+
+            outerMargin: {
+                required: true,
+                pattern: 'number',
+                range: [0, 400]
             }
-            return true;
         }
     });
 
@@ -210,7 +248,7 @@
      * UI Options
      * @type {Model}
      */
-    isomatic.options.ui = new isomatic.options.Model();
+    isomatic.options.ui = new isomatic.options.UiModel();
 
     // Set Default Options
     isomatic.options.ui.set(isomatic.options.preset);
@@ -228,13 +266,13 @@
 </div>
 
 <nav>
-    <h2><a href="index.html">Index</a></h2><h3>Global</h3><ul><li><a href="global.html#analyze">analyze</a></li><li><a href="global.html#applyColor">applyColor</a></li><li><a href="global.html#colorizeColumn">colorizeColumn</a></li><li><a href="global.html#colorizeRow">colorizeRow</a></li><li><a href="global.html#columns">columns</a></li><li><a href="global.html#drawIsotype">drawIsotype</a></li><li><a href="global.html#drawLegend">drawLegend</a></li><li><a href="global.html#embedData">embedData</a></li><li><a href="global.html#events">events</a></li><li><a href="global.html#exportJSON">exportJSON</a></li><li><a href="global.html#exportSVG">exportSVG</a></li><li><a href="global.html#focusTextarea">focusTextarea</a></li><li><a href="global.html#graphClick">graphClick</a></li><li><a href="global.html#home">home</a></li><li><a href="global.html#initialize">initialize</a></li><li><a href="global.html#isomatic">isomatic</a></li><li><a href="global.html#max">max</a></li><li><a href="global.html#min">min</a></li><li><a href="global.html#newVisualisation">newVisualisation</a></li><li><a href="global.html#precalculate">precalculate</a></li><li><a href="global.html#prepareDrawing">prepareDrawing</a></li><li><a href="global.html#printScale">printScale</a></li><li><a href="global.html#process">process</a></li><li><a href="global.html#render">render</a></li><li><a href="global.html#rows">rows</a></li><li><a href="global.html#selectColorpalette">selectColorpalette</a></li><li><a href="global.html#submitData">submitData</a></li><li><a href="global.html#sum">sum</a></li><li><a href="global.html#tablePreview">tablePreview</a></li><li><a href="global.html#triggerUi">triggerUi</a></li></ul>
+    <h2><a href="index.html">Index</a></h2><h3>Classes</h3><ul><li><a href="ColorView.html">ColorView</a></li><li><a href="DataView.html">DataView</a></li></ul><h3>Global</h3><ul><li><a href="global.html#apply">apply</a></li><li><a href="global.html#columns">columns</a></li><li><a href="global.html#drawIsotype">drawIsotype</a></li><li><a href="global.html#drawLegend">drawLegend</a></li><li><a href="global.html#embedData">embedData</a></li><li><a href="global.html#events">events</a></li><li><a href="global.html#exportJSON">exportJSON</a></li><li><a href="global.html#exportSVG">exportSVG</a></li><li><a href="global.html#graphClick">graphClick</a></li><li><a href="global.html#home">home</a></li><li><a href="global.html#initialize">initialize</a></li><li><a href="global.html#isomatic">isomatic</a></li><li><a href="global.html#layout">layout</a></li><li><a href="global.html#max">max</a></li><li><a href="global.html#min">min</a></li><li><a href="global.html#model">model</a></li><li><a href="global.html#newVisualisation">newVisualisation</a></li><li><a href="global.html#precalculate">precalculate</a></li><li><a href="global.html#prepareDrawing">prepareDrawing</a></li><li><a href="global.html#printScale">printScale</a></li><li><a href="global.html#render">render</a></li><li><a href="global.html#rows">rows</a></li><li><a href="global.html#sum">sum</a></li><li><a href="global.html#triggerUi">triggerUi</a></li><li><a href="global.html#validation">validation</a></li></ul>
 </nav>
 
 <br clear="both">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.2</a> on Wed Jan 15 2014 13:58:16 GMT+0100 (MEZ)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.2</a> on Thu Jan 16 2014 16:13:40 GMT+0100 (MEZ)
 </footer>
 
 <script> prettyPrint(); </script>
