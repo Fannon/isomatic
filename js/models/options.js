@@ -1,20 +1,21 @@
 /* jshint jquery:true, devel: true */
 /* global isomatic, d3, Backbone */
 
-
-
-
-///////////////////////////////////////
-// Internal Options                  //
-///////////////////////////////////////
-
 (function(isomatic) {
     "use strict";
 
     /**
      * isomatic Options Namespace
+     * Contains UI Options (Backbone Model)
+     * Contains Preset Options (options.preset)
+     * Contains Internal Options (options.internal)
      */
     isomatic.options = {};
+
+
+    ///////////////////////////////////////
+    // Internal Options                  //
+    ///////////////////////////////////////
 
     /**
      * Internal Options
@@ -92,8 +93,6 @@
         "Military": ["494726", "968651","D6BE45","A52421","D34F4F"],
         "Blue": ["293054", "225ea8", "1d91c0", "41b6c4","7fcdbb"],
         "Red": ["74104B", "A7264D", "BE3550", "F36244","FAA143"]
-
-
     };
 
     isomatic.options.internal.slimmScrollOptions = {
@@ -209,51 +208,46 @@
                 range: [0, 2]
             },
 
-
             graphWidth: {
                 required: true,
-                pattern: 'number'
+                range: [0, 1920]
             },
 
             /** Calculated Height of the Graph */
             graphHeight: {
                 required: true,
-                pattern: 'number'
+                range: [0, 1920]
             },
 
             /** Diagram Type */
             diagramType: {
                 required: true,
-
+                oneOf: ['normal', 'versus', 'compare', 'size']
             },
+
             outerMargin: {
                 required: true,
-                pattern: 'number',
                 range: [0, 100]
             },
 
             rowMargin: {
                 required: true,
                 pattern: 'number'
-
             },
 
             columnMargin: {
                 required: true,
                 pattern: 'number'
-
             },
 
             iconHorizontalMargin: {
                 required: true,
                 pattern: 'number'
-
             },
 
             iconVerticalMargin: {
                 required: true,
                 pattern: 'number'
-
             },
 
             breakRow: {
@@ -265,16 +259,13 @@
                 required: true,
                 pattern: 'number',
                 range: [0, 1]
-
             },
 
             roundUp: {
                 required: true,
                 pattern: 'number',
                 range: [0, 1]
-
             },
-
 
             iconSize: {
                 required: true,
@@ -286,18 +277,19 @@
                 oneOf: ['row', 'column']
 
             },
+
             colorize: {
                 required: true,
                 oneOf: ['row', 'column']
 
             },
+
             colorMap: {
-                required: true,
-
+                required: true
             },
-            iconMap: {
-                required: true,
 
+            iconMap: {
+                required: true
             }
         }
     });
