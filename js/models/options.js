@@ -52,7 +52,32 @@
     ];
 
     /** This example Dataset is loaded when the Application loads */
-    isomatic.options.internal.exampleData = "TITEL\t<30.000/year\t30.000-50.000\t>50.000\nFacebook\t165050000\t395000777\t135000000\nTwitter\t278050000\t198007700\t88000555\nGoogle+\t459370000\t159200000\t129000000\nLinkedIn\t102500000\t80500770\t30006000";
+    isomatic.options.internal.exampleData = [
+        {
+            "Example Dataset":"Facebook",
+            "<30.000/year":"165050000",
+            "30.000-50.000":"395000777",
+            ">50.000":"135000000"
+        },
+        {
+            "Example Dataset":"Twitter",
+            "<30.000/year":"278050000",
+            "30.000-50.000":"198007700",
+            ">50.000":"88000555"
+        },
+        {
+            "Example Dataset":"Google+",
+            "<30.000/year":"459370000",
+            "30.000-50.000":"159200000",
+            ">50.000":"129000000"
+        },
+        {
+            "Example Dataset":"LinkedIn",
+            "<30.000/year":"102500000",
+            "30.000-50.000":"80500770",
+            ">50.000":"30006000"
+        }
+    ];
 
     /**
      * Color Preset Palettes

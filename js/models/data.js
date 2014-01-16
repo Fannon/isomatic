@@ -30,7 +30,14 @@
      *
      * @type {isomatic.data.Model}
      */
-    isomatic.data.raw = new isomatic.data.Model();
+    isomatic.data.raw = new isomatic.data.Model({
+
+        // Contains the Raw Data
+        data: isomatic.options.internal.exampleData,
+
+        // Pasted Data (from Textarea)
+        pastedData: ''
+    });
 
     /**
      * Meta Data Model
@@ -54,10 +61,10 @@
     });
 
     /**
-     * Processed Data Model
-     * @type {isomatic.data.Model}
+     * Processed Data Array
+     * @type {Array}
      */
-    isomatic.data.processed = new isomatic.data.Model();
+    isomatic.data.processed = [];
 
 
 }(isomatic));

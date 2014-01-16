@@ -21,6 +21,8 @@
 
             this.render();
 
+            this.newVisualisation();
+
         },
 
         /**
@@ -28,8 +30,6 @@
          */
         render: function(){
             this.$el.html('<div id="graph"></div>');
-
-            this.newVisualisation();
         },
 
         /**
@@ -123,7 +123,7 @@
                 .scale(isomatic.options.ui.get("scale"))
             ;
 
-            isomatic.data.processed = this.isotypeLayout(isomatic.data.raw);
+            isomatic.data.processed = this.isotypeLayout(isomatic.data.raw.get('data'));
 
         },
 
@@ -232,6 +232,10 @@
                 .attr("fill", "#999999")
             ;
         },
+
+        ///////////////////////////////////
+        // Helper Functions              //
+        ///////////////////////////////////
 
         /**
          * Pretty prints the Scale (for use with the Legend and the UI)

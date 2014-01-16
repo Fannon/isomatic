@@ -19,8 +19,14 @@
 // Variables                            //
 //////////////////////////////////////////
 
-$base-font-size: 12px;
+// Colors
+$darkColor: #333;
+
+
+// Layouting
 $container-margin: 8px;
+
+
 
 
 //////////////////////////////////////////
@@ -326,8 +332,8 @@ button.tiny, .button.tiny {
     .select-type {
       margin-bottom: 5px;
       height: 40px;
-      background-color: #ccc;
-      border: 1px solid #aaa;
+      background-color: #BABABA;
+      border: 1px solid #AAA;
 
       .type-title {
         color: #FFF;

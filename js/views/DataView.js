@@ -18,14 +18,19 @@
 
             this.render();
 
-            // Store Example Data
-            isomatic.data.raw = d3.tsv.parse($('#pasted-data').val());
+            // Register Model Event Listeners
+            this.model.on("change", this.tablePreview, this);
+
+            this.tablePreview();
+
         },
 
         /**
          * Render Data View
          */
         render: function() {
+
+            console.info('DataView.render();');
 
             var source = $('#data-template').html();
             var template = Handlebars.compile(source);
@@ -40,6 +45,8 @@
             });
 
         },
+
+        model: isomatic.data.raw,
 
         /**
          * DataView Events
@@ -75,27 +82,34 @@
 
             console.log('DataView::submitData();');
 
-            isomatic.data.raw = d3.tsv.parse($('#pasted-data').val());
+            var pastedData = $('#pasted-data').val();
 
-            // TODO: Validation
+            // TODO: Validation:
+            if (!pastedData || pastedData === '') {
+                console.warn('Validation not passed');
+            } else {
 
+                var parsedData = d3.tsv.parse(pastedData);
+                this.model.set({
+                    data: parsedData
+                });
 
-            // Generate Preview Table from data
-            this.tablePreview(isomatic.data.raw);
+                // Generate Preview Table from data
+                this.tablePreview(this.model.get('data'));
 
-            // Process and draw Data
-            isomatic.refreshData();
+                // Process and draw Data
+                isomatic.refreshData();
+            }
 
         },
 
         /**
          * Generate Preview Table via D3.js
          * Adapted from: http://stackoverflow.com/a/18072266
-         *
-         * @param data  Data Array
          */
-        tablePreview: function(data) {
+        tablePreview: function() {
 
+            var data = this.model.get('data');
             var table = d3.select("#dataTable");
 
             $("#dataTable").html("");
@@ -158,7 +172,7 @@
             var columns = [];
             var title = '';
 
-            var data = isomatic.data.raw;
+            var data = this.model.get('data');
 
 
             ///////////////////////////////////////

@@ -32,7 +32,7 @@
          */
         render: function(){
 
-            console.info('ColorView Rendering');
+            console.info('ColorView.render();');
 
             var source = $('#color-template').html();
             var template = Handlebars.compile(source);
