@@ -18,7 +18,10 @@
 
             this.render();
 
-            this.model.on("change", this.render, this);
+            // Register Model Event Listeners
+            this.model.on("change::colorMap", this.render, this);
+            this.model.on("change::colorize", this.render, this);
+            isomatic.data.meta.on("change", this.render, this);
 
             // Sets default Colorpalette TODO: Refactor this
             $('#colorpalette-Dracula').addClass('active');
@@ -30,6 +33,8 @@
          * Calculates Data Structures for View
          */
         render: function(){
+
+            console.info('ColorView Rendering');
 
             var source = $('#color-template').html();
             var template = Handlebars.compile(source);
@@ -74,8 +79,6 @@
                 'height': isomatic.options.ui.attributes.graphHeight
             });
 
-
-
         },
 
         model: isomatic.options.ui,
@@ -102,10 +105,10 @@
                 colors.push(element.value);
             });
 
-            isomatic.options.ui.set({
+            this.model.set({
                 colorMap: colors
             });
-            
+
             isomatic.refreshDesign();
         },
 
@@ -114,8 +117,9 @@
          */
         colorizeColumn: function() {
 
-            isomatic.options.ui.set('colorize', 'column');
-            this.render();
+            this.model.set({
+                colorize: 'column'
+            });
         },
 
         /**
@@ -123,11 +127,10 @@
          */
         colorizeRow: function() {
 
-            isomatic.options.ui.set('colorize', 'row');
-            this.render();
+            this.model.set({
+                colorize: 'row'
+            });
         },
-
-
 
         /**
          * Selects the Colorpalette and applies it to the Colorpickers and the Graphic
@@ -142,5 +145,6 @@
             $('#' + event.currentTarget.id).addClass('active');
             $('#overlay-color').show();
         }
+
     });
 }(isomatic));
