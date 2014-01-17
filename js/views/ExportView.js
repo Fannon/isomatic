@@ -52,7 +52,7 @@
         },
 
         startExport: function() {
-            if (this.selectedFormat === 'format-svg') {
+            if (this.selectedFormat === 'svg') {
                 this.exportSVG();
             } else {
                 this.exportJSON();

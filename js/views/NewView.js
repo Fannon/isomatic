@@ -39,6 +39,7 @@
 
         events: {
             "click #new-apply": "apply",
+            "click #new-apply-close": "apply",
             "change #aspect-ratio": "changeAspectRatio",
             "change #aspect-ratio-width": "changeAspectRatioSizing",
             "change #aspect-ratio-height": "changeAspectRatioSizing"

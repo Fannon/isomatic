@@ -168,6 +168,7 @@
         </div>
 
         <a id="new-apply" href="#" class="tiny button radius">New Graphic</a>
+        <a id="new-apply-close" href="#home" class="tiny button radius">Close</a>
     </form>
     <a class="close-reveal-modal">&#215;</a>
 </script>
@@ -182,8 +183,17 @@
             <label for="imported-file">Upload SVG or JSON File:</label>
             <input type="file" id="imported-file">
         </form>
+
+        <div id="import-errors" data-alert class="alert-box warning" style="display: none">
+            <div></div>
+            <a href="#" class="close">&times;</a>
+        </div>
+
+        <div id="import-success" data-alert class="alert-box info" style="display: none">
+            <div>Sucessfully imported File.</div>
+            <a href="#" class="close">&times;</a>
+        </div>
     </div>
-    <input type="submit" name="submit" value="Upload" class="tiny button radius">
     <a class="close-reveal-modal">&#215;</a>
 </script>
 
