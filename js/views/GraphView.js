@@ -150,6 +150,40 @@
                 .attr("id", "isotype")
             ;
 
+
+            //////////////////////////////////////
+            // Adjust ColorMap and IconMap Size //
+            //////////////////////////////////////
+
+            // Check if ColorMap and IconMap are big enough for current Dataset.
+            // If not, fill them up with default Values
+
+            // Adjust ColorMap
+            var colorMap = isomatic.options.ui.attributes.colorMap;
+            var maxSize = Math.max(isomatic.data.meta.attributes.columns.length, isomatic.data.meta.attributes.rows.length);
+
+            var diff = maxSize - colorMap.length;
+            if (diff > 0) {
+                console.log('ColorMap misses ' + diff + 'Colors');
+                for (var i = 0; i < diff; i++) {
+                    colorMap.push('6F6F6F');
+                }
+            }
+            isomatic.options.ui.set({colorMap: colorMap});
+
+
+            // Adjust IconMap
+            var iconMap = isomatic.options.ui.attributes.iconMap;
+
+            diff = maxSize - iconMap.length;
+            if (diff > 0) {
+                console.log('IconMap misses ' + diff + 'Icons');
+                for (var j = 0; j < diff; j++) {
+                    iconMap.push({category: 'socialNetworks', name: 'facebook'});
+                }
+            }
+            isomatic.options.ui.set({iconMap: iconMap});
+
         },
 
         /**

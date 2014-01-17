@@ -21,6 +21,7 @@
             this.$el.html(html);
 
         },
+
         events: {
             "change #imported-file": "importData"
         },
@@ -156,4 +157,3 @@
     });
 
 }(isomatic));
-

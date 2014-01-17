@@ -18,12 +18,10 @@
 
         /** Render Export View */
         render: function(){
-
             var source = $('#export-template').html();
             var template = Handlebars.compile(source);
             var html = template();
             this.$el.html(html);
-
         },
 
         events: {
@@ -31,6 +29,7 @@
             "click .select-format": "selectFormat"
         },
 
+        /** Currently selected Export-Format. Defaults to SVG Export */
         selectedFormat: 'svg',
 
         selectFormat: function(e) {
@@ -38,8 +37,6 @@
             var type = e.currentTarget.id;
             $('.select-format').addClass('disabled');
             $(e.currentTarget).removeClass('disabled');
-
-            console.log(type);
 
             if (type === 'format-svg') {
                 this.selectedFormat = 'svg';
