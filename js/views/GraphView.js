@@ -100,11 +100,15 @@
 
             var baseScale = widthLeft / (maxIconsPerRow * 32);
 
+            var iconSize = baseScale * isomatic.options.internal.defaultIconSize;
+
             isomatic.data.meta.set({
                 iconsPerRow: iconsPerRow,
                 maxIconsPerRow: maxIconsPerRow,
                 baseScale: baseScale
             });
+
+            isomatic.options.ui.set({iconSize: iconSize});
         },
 
         /**
@@ -158,7 +162,7 @@
 
             console.log('GraphView.drawIsotype();');
 
-            var finalSize = isomatic.data.meta.attributes.baseScale * isomatic.options.internal.defaultIconSize;
+            var finalSize = parseFloat(isomatic.data.meta.attributes.baseScale) * isomatic.options.internal.defaultIconSize;
 
             var g = this.svg.selectAll(".icon")
 

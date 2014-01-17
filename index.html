@@ -91,8 +91,6 @@
 
         </div>
 
-        <div id="message"></div>
-
         <div id="footer" class="">2013 | Open Source @ <a href="https://github.com/Fannon/isomatic"
                                                           target="_blank">Github</a></div>
 
@@ -463,7 +461,7 @@
                 <div class="row collapse">
                     <label><img src="img/horizontalmargin.svg">Icon Horizontal Margin</label>
                     <div class="small-10 columns">
-                        <input id="icon-horizontal-margin" type="text" value="{{ options.iconHorizontalMargin }}">
+                        <input id="icon-horizontal-margin" name="iconHorizontalMargin" type="text" value="{{ options.iconHorizontalMargin }}">
                     </div>
                     <div class="small-2 columns">
                         <span class="postfix radius">px</span>
@@ -473,22 +471,22 @@
                 <div class="row collapse">
                     <label><img src="img/rowmargin.svg">Row Margin</label>
                     <div class="small-10 columns">
-                        <input id="row-margin" type="text" type="text" value="{{ options.rowMargin }}">
+                        <input id="row-margin" name="rowMargin" type="text" type="text" value="{{ options.rowMargin }}">
                     </div>
                     <div class="small-2 columns">
                         <span class="postfix radius">px</span>
                     </div>
                 </div>
 
-                <div class="row collapse">
-                    <label><img src="img/columnmargin.svg">Column Margin</label>
-                    <div class="small-10 columns">
-                        <input id="column-margin" type="text" value="{{ options.columnMargin }}">
-                    </div>
-                    <div class="small-2 columns">
-                        <span class="postfix radius">px</span>
-                    </div>
-                </div>
+                <!--<div class="row collapse">-->
+                    <!--<label><img src="img/columnmargin.svg">Column Margin</label>-->
+                    <!--<div class="small-10 columns">-->
+                        <!--<input id="column-margin" name="columnMargin" type="text" value="{{ options.columnMargin }}">-->
+                    <!--</div>-->
+                    <!--<div class="small-2 columns">-->
+                        <!--<span class="postfix radius">px</span>-->
+                    <!--</div>-->
+                <!--</div>-->
             </div>
 
             <div class="ui-container">
@@ -497,7 +495,7 @@
                 <div class="row collapse">
                     <label><img src="img/iconsize.svg">Icon Size</label>
                     <div class="small-10 columns">
-                        <input id="icon-size" type="text" value="{{ options.iconSize }}">
+                        <input id="icon-size" name="iconSize" type="text" value="{{ options.iconSize }}" disabled>
                     </div>
                     <div class="small-2 columns">
                         <span class="postfix radius">px</span>

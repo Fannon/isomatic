@@ -52,6 +52,7 @@ var isomatic = {};
         // Draw Example Data Set
         isomatic.refreshData();
 
+
         ///////////////////////////////////////
         // Init 3rd Party Plugins            //
         ///////////////////////////////////////
@@ -64,19 +65,22 @@ var isomatic = {};
             isomatic.uglyHack(el.currentTarget);
         });
 
-
     });
+
 
     ///////////////////////////////////////
     // Backbone.Validation Config        //
     ///////////////////////////////////////
 
+    // Register Backbone Model Validation
     _.extend(Backbone.Model.prototype, Backbone.Validation.mixin);
 
+    // Register Callback Function on Validation Error
+    // This manipulates the View DOM Items to indicate Validation Errors
     _.extend(Backbone.Validation.callbacks, {
         invalid: function(view, attr, error, selector) {
             console.info('Validated:Invalid: ' + attr);
-            $('input[name=' + attr + ']').addClass('invalid').append('<div>TEST</div>');
+            $('input[name=' + attr + ']').addClass('invalid has-tip tip-right').attr('title', error).attr('data-tooltip', true);
         }
     });
 
@@ -86,9 +90,7 @@ var isomatic = {};
     ///////////////////////////////////////
 
     /**
-     * Refreshes the Data
-     * Use this if the Data changes.
-     * Triggers a new Layout and new Design, too.
+     * Refreshes the Data and completely redraws the Graphic
      */
     isomatic.refreshData = function() {
 
@@ -100,6 +102,9 @@ var isomatic = {};
 
     };
 
+    /**
+     * Refreshes the Layout and the Design
+     */
     isomatic.refreshLayout = function() {
 
         // Creates a new Visualsation
@@ -117,6 +122,9 @@ var isomatic = {};
 
     };
 
+    /**
+     * Redraws just the Design
+     */
     isomatic.refreshDesign = function() {
 
         // Prepare Drawing
@@ -130,6 +138,10 @@ var isomatic = {};
 
     };
 
+    /**
+     * Helper Function to register the Colorpicker with global default options
+     * @param el
+     */
     isomatic.registerColorpicker = function(el) {
 
         el.colpick({
@@ -144,9 +156,7 @@ var isomatic = {};
             }
         });
 
-
         el[0].style.borderColor = '#' + el[0].value;
-
 
     };
 
