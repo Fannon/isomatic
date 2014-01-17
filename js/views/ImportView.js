@@ -66,12 +66,13 @@
 
             try {
                 var importHtml = $(result).find('#isomatic-metadata').html();
+
                 var importObject = JSON.parse(importHtml);
 
                 this.updateApplicationState(importObject);
 
             } catch(error) {
-                this.printErrorMessage('Imported Data is corrupt');
+                this.printErrorMessage('Imported Data is corrupt or in the wrong format!');
             }
         },
 
@@ -85,7 +86,7 @@
                 this.updateApplicationState(importObject);
 
             } catch(error) {
-                this.printErrorMessage('Imported Data is corrupt!');
+                this.printErrorMessage('Imported Data is corrupt or in the wrong format!');
             }
 
         },
@@ -97,46 +98,55 @@
             console.log('ImportView.updateApplicationState()');
             console.dir(importObject);
 
-            isomatic.test = importObject;
+            // Check for Data, validate and import it
+            if (importObject.data && importObject.data !== '') {
 
-            var data = importObject.data;
-            var options = importObject.options;
+                var data = importObject.data;
 
-            if (data && data !== '') {
-
-                var dataErrors = isomatic.data.raw.preValidate(options);
+                var dataErrors = isomatic.data.raw.validate(data);
 
                 if (!dataErrors) {
                     isomatic.data.raw.set(data);
                 } else {
-                    this.printErrorMessage('Imported Data not valid!');
+                    this.printErrorMessage('Imported Options not valid! <br>(Detailed Error Report is in the Dev Console)');
+                    console.dir(dataErrors);
                     success = false;
                 }
 
+            } else {
+
+                this.printErrorMessage('No Data provided!');
+                success = false;
             }
 
-            if (options && options !== '') {
+            if (importObject.options && importObject.options !== '') {
 
-                var optionsErrors = isomatic.options.ui.preValidate(options);
+                var options = importObject.options;
+
+                var optionsErrors = isomatic.options.ui.validate(options);
 
                 if (!optionsErrors) {
                     isomatic.options.ui.set(options);
                 } else {
-                    this.printErrorMessage('Imported Options not valid!');
+                    this.printErrorMessage('Imported Options not valid! <br>(Detailed Error Report is in the Dev Console)');
+                    console.dir(optionsErrors);
                     success = false;
                 }
 
+            } else {
+                this.printErrorMessage('No Options provided!');
+                success = false;
             }
 
-            if(success) {
+            if (success) {
                 isomatic.refreshData();
                 this.success();
             }
         },
 
         printErrorMessage: function(msg) {
-            $('#import-errors').show().delay(3000).fadeOut(400);
-            $('#import-errors div').text(msg);
+            $('#import-errors').show().delay(4000).fadeOut(400);
+            $('#import-errors div').html(msg);
         },
 
         success: function() {

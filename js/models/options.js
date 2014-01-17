@@ -205,6 +205,7 @@
 
             aspectRatio: {
                 required: true,
+                pattern: 'number',
                 range: [0.5, 5]
             },
 
