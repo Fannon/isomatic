@@ -154,17 +154,17 @@
         <div class="ui-container">
             <h4>Enter Aspect Ratio</h4>
             <label for="aspect-ratio">Aspect-Ratio:</label>
-            <input id="aspect-ratio" type="text" placeholder="16/9">
+            <input id="aspect-ratio" name="aspectRatio" type="text" value="{{ options.aspectRatio }}">
         </div>
 
         <div class="ui-container">
             <h4>Alternative: Enter Width/Height</h4>
 
             <label for="aspect-ratio-width">Width</label>
-            <input id="aspect-ratio-width" type="text" placeholder="640">
+            <input id="aspect-ratio-width" type="text" value="{{ options.graphWidth }}">
 
             <label for="aspect-ratio-height">Height</label>
-            <input id="aspect-ratio-height" type="text" placeholder="360">
+            <input id="aspect-ratio-height" type="text" value="{{ options.graphHeight }}">
         </div>
 
         <a id="new-apply" href="#" class="tiny button radius">New Graphic</a>
@@ -195,8 +195,8 @@
         <div class="ui-container">
             <h4>Choose Export Format:</h4>
             <p>
-                <button type=button class="tiny button radius">SVG (Graphic)</button>
-                <button type=button class="tiny button radius disabled">JSON (Raw Data)</button>
+                <button id="format-svg" type=button class="tiny button radius select-format">SVG (Graphic)</button>
+                <button id="format-json" type=button class="tiny button radius select-format disabled">JSON (Raw Data)</button>
             </p>
 
         </div>

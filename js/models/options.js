@@ -205,7 +205,7 @@
 
             aspectRatio: {
                 required: true,
-                range: [0, 2]
+                range: [0.5, 5]
             },
 
             graphWidth: {

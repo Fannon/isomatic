@@ -25,8 +25,38 @@
             this.$el.html(html);
 
         },
+
         events: {
-            "click #start-export": "exportSVG"
+            "click #start-export": "startExport",
+            "click .select-format": "selectFormat"
+        },
+
+        selectedFormat: 'svg',
+
+        selectFormat: function(e) {
+
+            var type = e.currentTarget.id;
+            $('.select-format').addClass('disabled');
+            $(e.currentTarget).removeClass('disabled');
+
+            console.log(type);
+
+            if (type === 'format-svg') {
+                this.selectedFormat = 'svg';
+                $('#export-modal input').removeAttr('disabled');
+            } else {
+                this.selectedFormat = 'json';
+                $('#export-modal input').attr('disabled', true);
+            }
+
+        },
+
+        startExport: function() {
+            if (this.selectedFormat === 'format-svg') {
+                this.exportSVG();
+            } else {
+                this.exportJSON();
+            }
         },
 
         /**
@@ -78,9 +108,20 @@
 
             console.log('ExportView.embedData();');
 
+            var data = '';
+            var options = '';
+
+            if ($('#export-data').is(':checked')) {
+                data = isomatic.data.raw.get('data');
+            }
+
+            if ($('#export-options').is(':checked')) {
+                options = isomatic.options.ui.toJSON();
+            }
+
             var jsonExport = {
-                data: isomatic.data.raw.get('data'),
-                options: isomatic.options.ui.toJSON()
+                data: data,
+                options: options
             };
 
             var jsonStringExport = JSON.stringify(jsonExport, null, 2);

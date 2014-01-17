@@ -60,7 +60,6 @@
 
             // Calculate Width and Height from Aspect Ratio
             isomatic.options.ui.set({
-                aspectRatio: aspectRatio,
                 graphWidth: width,
                 graphHeight: height
             });
