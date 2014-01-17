@@ -96,6 +96,11 @@ label {
   font-size: 0.9em;
 }
 
+input.invalid {
+  background: #FFE4E4;
+  border-color: #B60808;
+}
+
 button.tiny, .button.tiny {
   font-size: 11px;
   margin: 5px 0;

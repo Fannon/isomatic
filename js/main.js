@@ -1,4 +1,5 @@
 /* jshint jquery:true, devel: true */
+/* global d3, Backbone, _, Handlebars */
 
 ///////////////////////////////////////////////////////
 // isomatic                                          //
@@ -64,6 +65,19 @@ var isomatic = {};
         });
 
 
+    });
+
+    ///////////////////////////////////////
+    // Backbone.Validation Config        //
+    ///////////////////////////////////////
+
+    _.extend(Backbone.Model.prototype, Backbone.Validation.mixin);
+
+    _.extend(Backbone.Validation.callbacks, {
+        invalid: function(view, attr, error, selector) {
+            console.info('Validated:Invalid: ' + attr);
+            $('input[name=' + attr + ']').addClass('invalid').append('<div>TEST</div>');
+        }
     });
 
 

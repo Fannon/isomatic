@@ -54,7 +54,7 @@
 
             console.log('GraphView.newVisualisation();');
 
-            var aspectRatio = isomatic.options.ui.get('aspectRatio');
+            var aspectRatio = parseFloat(isomatic.options.ui.get('aspectRatio'));
             var width = this.$display.width();
             var height = Math.round(width / aspectRatio);
 
@@ -94,9 +94,9 @@
             var maxIconsPerRow = d3.max(iconsPerRow);
 
             // Calculate Base Scale for Icons depending on biggest Row. (Fit to width)
-            var widthLeft = isomatic.options.ui.get('graphWidth') -
-                (maxIconsPerRow * isomatic.options.ui.get("iconHorizontalMargin")) -
-                2 * isomatic.options.ui.get("outerMargin");
+            var widthLeft = parseFloat(isomatic.options.ui.get('graphWidth')) -
+                (maxIconsPerRow * parseFloat(isomatic.options.ui.get("iconHorizontalMargin"))) -
+                2 * parseFloat(isomatic.options.ui.get("outerMargin"));
 
             var baseScale = widthLeft / (maxIconsPerRow * 32);
 
@@ -118,9 +118,9 @@
 
             this.isotypeLayout = new d3.layout.isotype();
 
-            this.isotypeLayout.roundDown(isomatic.options.ui.get("roundDown"))
-                .roundUp(isomatic.options.ui.get("roundUp"))
-                .scale(isomatic.options.ui.get("scale"))
+            this.isotypeLayout.roundDown(parseFloat(isomatic.options.ui.get("roundDown")))
+                .roundUp(parseFloat(isomatic.options.ui.get("roundUp")))
+                .scale(parseFloat(isomatic.options.ui.get("scale")))
             ;
 
             isomatic.data.processed = this.isotypeLayout(isomatic.data.raw.get('data'));
@@ -141,8 +141,8 @@
 
             // Create new SVG Container for D3.js
             this.svg = d3.select("#graph").append("svg")
-                .attr("width", isomatic.options.ui.attributes.graphWidth)
-                .attr("height", isomatic.options.ui.attributes.graphHeight)
+                .attr("width", parseInt(isomatic.options.ui.attributes.graphWidth, 10))
+                .attr("height", parseInt(isomatic.options.ui.attributes.graphHeight, 10))
                 .append("g")
                 .attr("id", "isotype")
             ;
@@ -168,8 +168,8 @@
                 .attr("class", "icon")
                 .attr("transform", function(d) {
 
-                    var x = d.pos * (finalSize + isomatic.options.ui.get("iconHorizontalMargin")) + isomatic.options.ui.get("outerMargin");
-                    var y = d.row * (finalSize + isomatic.options.ui.get("rowMargin")) + isomatic.options.ui.get("outerMargin");
+                    var x = d.pos * (finalSize + parseFloat(isomatic.options.ui.get("iconHorizontalMargin"))) + parseFloat(isomatic.options.ui.get("outerMargin"));
+                    var y = d.row * (finalSize + parseFloat(isomatic.options.ui.get("rowMargin"))) + parseFloat(isomatic.options.ui.get("outerMargin"));
 
                     var scale = isomatic.data.meta.attributes.baseScale * d.size;
 
@@ -180,7 +180,7 @@
                     }
 
                     // If Icon is drawn outside of Canvas give a warning
-                    if (y > isomatic.options.ui.attributes.graphHeight || x > isomatic.options.ui.attributes.graphWidth) {
+                    if (y > parseFloat(isomatic.options.ui.attributes.graphHeight) || x > parseFloat(isomatic.options.ui.attributes.graphWidth)) {
                         console.warn('<strong>Warning: </strong>The generated Graphic is bigger than its Canvas!');
                     }
 
@@ -224,7 +224,7 @@
 
             var legend = this.svg.append("g")
                 .style("text-anchor", "start")
-                .attr("transform", "translate(" + isomatic.options.ui.get("outerMargin") + ", " + (isomatic.options.ui.attributes.graphHeight - 2 * isomatic.options.ui.get("outerMargin")) + ")");
+                .attr("transform", "translate(" + parseFloat(isomatic.options.ui.get("outerMargin")) + ", " + (parseFloat(isomatic.options.ui.attributes.graphHeight) - 2 * parseFloat(isomatic.options.ui.get("outerMargin"))) + ")");
 
             legend.append("text")
                 .attr("class", "legend")

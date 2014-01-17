@@ -257,13 +257,11 @@
 
             roundDown: {
                 required: true,
-                pattern: 'number',
                 range: [0, 1]
             },
 
             roundUp: {
                 required: true,
-                pattern: 'number',
                 range: [0, 1]
             },
 
@@ -281,7 +279,6 @@
             colorize: {
                 required: true,
                 oneOf: ['row', 'column']
-
             },
 
             colorMap: {

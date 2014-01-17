@@ -1,5 +1,6 @@
 /* jshint jquery:true, devel: true */
 /* global isomatic, d3, Backbone, _, Handlebars */
+
 (function(isomatic) {
     "use strict";
 
@@ -69,22 +70,31 @@
          */
         apply: function() {
 
-            var isValid = this.model.set({
-                'outerMargin': parseInt($('#outer-margin').val(), 10),
-                'iconHorizontalMargin': parseInt($('#icon-horizontal-margin').val(), 10),
-                'rowMargin': parseInt($('#row-margin').val(), 10),
-                'columnMargin': parseInt($('#column-margin').val(), 10),
-                'iconSize': parseInt($('#icon-size').val(), 10)
-            }, { validate : true });
+            var state = {
+                'outerMargin': $('#outer-margin').val(),
+                'iconHorizontalMargin': $('#icon-horizontal-margin').val(),
+                'rowMargin': $('#row-margin').val(),
+                'columnMargin': $('#column-margin').val(),
+                'iconSize': $('#icon-size').val()
+            };
+
+//            var isValid = this.model.set({
+//                'outerMargin': Math.round($('#outer-margin').val()),
+//                'iconHorizontalMargin': parseInt($('#icon-horizontal-margin').val(), 10),
+//                'rowMargin': parseInt($('#row-margin').val(), 10),
+//                'columnMargin': parseInt($('#column-margin').val(), 10),
+//                'iconSize': parseInt($('#icon-size').val(), 10)
+//            }, {
+//                validate : true
+//            });
+
+            var isValid = this.model.set(state, {validate: true});
 
             if (isValid) {
                 isomatic.refreshLayout();
-            } else {
-                console.warn('Validation Error!');
-                this.model.validate();
             }
 
-        },
+        }
 
         /**
          * Change Outer Margin
