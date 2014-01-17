@@ -119,7 +119,7 @@ button.tiny, .button.tiny {
   margin: 0px auto;
   width: 1010px;
 
-  #navigation {
+  #navigation-create {
     color: #FFF;
 
     li {
@@ -152,16 +152,21 @@ button.tiny, .button.tiny {
     }
   }
 
-  a#trigger-help {
-    font: h4;
-    padding: 12px;
-    background: #666;
-    color: #FFF;
-  }
+  #openHelp {
 
-  #trigger-help:hover {
-    background: #888;
-    cursor: pointer;
+    a {
+      float: left;
+      font: h4;
+      padding: 12px;
+      background: #666;
+      color: #FFF;
+    }
+
+    #openHelp:hover {
+      background: #888;
+      cursor: pointer;
+    }
+
   }
 
 }
@@ -183,6 +188,10 @@ button.tiny, .button.tiny {
 
   h4, h4:hover {
     border-bottom: 1px solid #CCC;
+  }
+
+  #icon-size {
+    background-color: #EDEDED;
   }
 }
 
@@ -339,6 +348,7 @@ button.tiny, .button.tiny {
       height: 40px;
       background-color: #BBB;
       border-radius: 3px;
+      border: 1px solid #999;
 
       .type-title {
         color: #FFF;
@@ -351,10 +361,12 @@ button.tiny, .button.tiny {
 
     .select-type:hover {
       background-color: #999;
+      border: 1px solid #777;
     }
 
     .select-type.active {
       background-color: #333;
+      border: 1px solid #000;
     }
 
     .type-title {
@@ -386,7 +398,7 @@ button.tiny, .button.tiny {
     }
 
     .group-id {
-      background-color: #eaeaea;
+      background-color: #EDEDED;
       width: 150px;
       height: 28px;
       float: left;
