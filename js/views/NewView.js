@@ -19,13 +19,42 @@
             var html = template();
             this.$el.html(html);
 
-        },
-        events: {
-            "click #generate-new-graphic": "generateNewGraphic"
+            Backbone.Validation.bind(this);
         },
 
-        generateNewGraphic: function() {
-            // TODO
+        /**
+         * Options.ui Model
+         */
+        model: isomatic.options.ui,
+
+        events: {
+            "click #new-apply": "apply"
+        },
+
+        apply: function() {
+
+            console.log('generateNewGraphic');
+
+            var aspectRatio = $('#aspect-ratio').val();
+            if (aspectRatio.contains('/')) {
+                var temp = aspectRatio.split('/');
+                aspectRatio = temp[0] / temp[1];
+            }
+
+            console.log('AspectRatio: ' + aspectRatio);
+
+            var state = {
+                'aspectRatio': aspectRatio
+            };
+
+            console.dir(state);
+
+            var isValid = this.model.set(state, {validate: true});
+
+            if (isValid) {
+                isomatic.refreshLayout();
+            }
+
         }
     });
 

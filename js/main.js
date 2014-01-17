@@ -37,10 +37,12 @@ var isomatic = {};
         var views = isomatic.views;
 
         views.graphView      = new views.GraphView({el: $("#graph-container")});
-        views.newView        = new views.NewView({el: $("#new-container")});
-        views.importView     = new views.ImportView({el: $("#import-container")});
-        views.exportView     = new views.ExportView({el: $("#export-container")});
-        views.helpView       = new views.HelpView({el: $("#help-container")});
+
+        views.newView        = new views.NewView({el: $("#new-modal")});
+        views.importView     = new views.ImportView({el: $("#import-modal")});
+        views.exportView     = new views.ExportView({el: $("#export-modal")});
+        views.helpView       = new views.HelpView({el: $("#help-modal")});
+
         views.dataView       = new views.DataView({el: $("#data-container")});
         views.typeView       = new views.TypeView({el: $("#type-container")});
         views.iconView       = new views.IconView({el: $("#icon-container")});
@@ -200,9 +202,9 @@ var isomatic = {};
             setTimeout(function() {
                 window.location = '#home';
             }, 50);
-
         }
     };
+
 
     ///////////////////////////////////////
     // 3rd Party Scripts                 //

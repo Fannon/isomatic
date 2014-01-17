@@ -14,13 +14,6 @@
         /** Init Export View */
         initialize: function(){
             this.render();
-
-            // Event Registration
-            var self = this;
-
-            $("#start-export" ).on("click", function() {
-                self.exportSVG();
-            });
         },
 
         /** Render Export View */
@@ -33,7 +26,6 @@
 
         },
         events: {
-            // TODO: Not working, no idea why
             "click #start-export": "exportSVG"
         },
 

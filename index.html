@@ -98,10 +98,10 @@
 
     <!-- Modals -->
     <div id="modal-container">
-        <div id="new-container"></div>
-        <div id="import-container"></div>
-        <div id="export-container"></div>
-        <div id="help-container"></div>
+        <div id="new-modal" class="tiny reveal-modal" data-reveal></div>
+        <div id="import-modal" class="tiny reveal-modal" data-reveal></div>
+        <div id="export-modal" class="tiny reveal-modal" data-reveal></div>
+        <div id="help-modal" class="reveal-modal" data-reveal></div>
     </div>
 
 </body>
@@ -149,89 +149,79 @@
 
 <!-- New Graphic Template -->
 <script type="text/template" id="new-template">
-    <div id="new-modal" class="tiny reveal-modal" data-reveal>
-        <h3>New Graphic</h3>
+    <h3>New Graphic</h3>
+    <form>
+        <div class="ui-container">
+            <h4>Enter Aspect Ratio</h4>
+            <label for="aspect-ratio">Aspect-Ratio:</label>
+            <input id="aspect-ratio" type="text" placeholder="16/9">
+        </div>
 
-        <form>
-            <div class="ui-container">
-                <h4>Enter Aspect Ratio</h4>
-                <label for="aspect-ratio">Aspect-Ratio:</label>
-                <input id="aspect-ratio" type="text" placeholder="16/9">
-            </div>
+        <div class="ui-container">
+            <h4>Alternative: Enter Width/Height</h4>
 
-            <div class="ui-container">
-                <h4>Alternative: Enter Width/Height</h4>
+            <label for="aspect-ratio-width">Width</label>
+            <input id="aspect-ratio-width" type="text" placeholder="640">
 
-                <label for="aspect-ratio-width">Width</label>
-                <input id="aspect-ratio-width" type="text" placeholder="640">
+            <label for="aspect-ratio-height">Height</label>
+            <input id="aspect-ratio-height" type="text" placeholder="360">
+        </div>
 
-                <label for="aspect-ratio-height">Height</label>
-                <input id="aspect-ratio-height" type="text" placeholder="360">
-            </div>
-
-            <input id="generate-new-graphic" type="submit" name="submit" value="Generate New Graphic" class="tiny button radius">
-        </form>
-        <a class="close-reveal-modal">&#215;</a>
-    </div>
+        <a id="new-apply" href="#" class="tiny button radius">New Graphic</a>
+    </form>
+    <a class="close-reveal-modal">&#215;</a>
 </script>
 
 <!-- Import Template -->
 <script type="text/template" id="import-template">
-    <div id="import-modal" class="tiny reveal-modal" data-reveal>
-        <h3>Import Data</h3>
+    <h3>Import Data</h3>
 
-        <div class="ui-container">
-            <br>
-            <form>
-                <label for="imported-file">Upload SVG or JSON File:</label>
-                <input type="file" id="imported-file">
-            </form>
-        </div>
-        <input type="submit" name="submit" value="Upload" class="tiny button radius">
-        <a class="close-reveal-modal">&#215;</a>
+    <div class="ui-container">
+        <br>
+        <form>
+            <label for="imported-file">Upload SVG or JSON File:</label>
+            <input type="file" id="imported-file">
+        </form>
     </div>
+    <input type="submit" name="submit" value="Upload" class="tiny button radius">
+    <a class="close-reveal-modal">&#215;</a>
 </script>
 
 <!-- Export Template -->
 <script type="text/template" id="export-template">
-    <div id="export-modal" class="tiny reveal-modal" data-reveal>
+    <h3>Export Graphic / Data</h3>
 
-        <h3>Export Graphic / Data</h3>
+    <form>
+        <div class="ui-container">
+            <h4>Choose Export Format:</h4>
+            <p>
+                <button type=button class="tiny button radius">SVG (Graphic)</button>
+                <button type=button class="tiny button radius disabled">JSON (Raw Data)</button>
+            </p>
 
-        <form>
-            <div class="ui-container">
-                <h4>Choose Export Format:</h4>
-                <p>
-                    <button type=button class="tiny button radius">SVG (Graphic)</button>
-                    <button type=button class="tiny button radius disabled">JSON (Raw Data)</button>
-                </p>
+        </div>
 
-            </div>
+        <div class="ui-container">
+            <h4>Include:</h4>
+            <input id="export-data" type="checkbox" checked><label for="export-data">Data</label>
+            <input id="export-options" type="checkbox" checked><label for="export-options">Options</label>
+        </div>
 
-            <div class="ui-container">
-                <h4>Include:</h4>
-                <input id="export-data" type="checkbox" checked><label for="export-data">Data</label>
-                <input id="export-options" type="checkbox" checked><label for="export-options">Options</label>
-            </div>
-
-            <div id='start-export' class="tiny button radius">Download</div>
-        </form>
-        <a class="close-reveal-modal">&#215;</a>
-    </div>
+        <div id='start-export' class="tiny button radius">Download</div>
+    </form>
+    <a class="close-reveal-modal">&#215;</a>
 </script>
 
 <!-- Help Template -->
 <script type="text/template" id="help-template">
-    <div id="help-modal" class="reveal-modal" data-reveal>
-        <h3>Help</h3>
-        <div class="ui-container">
-            <h4>Lorum Ipsom</h4>
-            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
-        </div>
-        <div class="ui-container">
-            <h4>Help 2</h4>
-            <p>Drei Chinesen mit dem Kontrabass saßen auf der Straße und erzählten sich was. Da kam die Polizei, ei was ist denn das? Drei Chinesen mit dem Kontrabass.</p>
-        </div>
+    <h3>Help</h3>
+    <div class="ui-container">
+        <h4>Lorum Ipsom</h4>
+        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+    </div>
+    <div class="ui-container">
+        <h4>Help 2</h4>
+        <p>Drei Chinesen mit dem Kontrabass saßen auf der Straße und erzählten sich was. Da kam die Polizei, ei was ist denn das? Drei Chinesen mit dem Kontrabass.</p>
     </div>
 </script>
 
