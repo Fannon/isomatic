@@ -35,6 +35,7 @@
             var source = $('#text-template').html();
             var template = Handlebars.compile(source);
             var html = template({
+                availableFonts: isomatic.options.internal.availableFonts,
                 options: isomatic.options.ui.attributes
             });
             this.$el.html(html);
@@ -62,6 +63,7 @@
             var state = {
                 'legendWidth': $('#legend-width').val(),
                 'legendTitleHeight': $('#legend-title-height').val(),
+                'legendFont': $('#legend-font').val(),
                 'drawColumnLegend': $('#draw-column-legend').prop('checked')
             };
 

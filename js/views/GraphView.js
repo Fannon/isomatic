@@ -348,6 +348,8 @@
             var iconMap            = isomatic.options.ui.attributes.iconMap;
             var colorMap           = isomatic.options.ui.attributes.colorMap;
 
+            var legendFont         = isomatic.options.ui.attributes.legendFont;
+
 
             var columnLegendHeight = isomatic.options.internal.columnLegendHeight;
 
@@ -375,6 +377,7 @@
                     .attr("class", "legend")
                     .text(isomatic.data.meta.attributes.title)
                     .attr("fill", "#000")
+                    .attr("font-family", legendFont)
                     .attr("font-size", legendTitleHeight + "px")
                 ;
             }
@@ -395,6 +398,7 @@
                 .attr("y", -3) // TODO: Hard coded Layout Fix
                 .attr("class", "legend")
                 .text(scaleText)
+                .attr("font-family", legendFont)
                 .attr("fill", "#999999")
             ;
 
@@ -428,6 +432,7 @@
                 .attr("y", iconSize / 2)
                 .attr("dy", ".35em")
                 .attr("font-size", "14px")
+                .attr("font-family", legendFont)
                 .text(function(d) { return d; })
             ;
 
@@ -458,6 +463,7 @@
                     .attr("y", -3) // TODO: Hard coded Layout Fix
                     .attr("class", "legend")
                     .text("Warning: No Mapping for the Columns!")
+                    .attr("font-family", legendFont)
                     .attr("fill", "#999999")
                 ;
 
@@ -518,6 +524,7 @@
                     .attr("y", columnLegendHeight / 2)
                     .attr("dy", ".35em")
                     .attr("font-size", "12px")
+                    .attr("font-family", legendFont)
                     .attr("fill", "#999999")
                     .text(function(d) { return d; })
                 ;

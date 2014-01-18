@@ -52,12 +52,16 @@
             1000000000000, 2000000000000, 5000000000000
         ],
 
-        fontsArray: [
-            'Arial',
-            'Times New Roman',
-            'Georgia',
-            'Calibri'
-        ],
+        /**
+         * Available Fonts
+         * They have to be Font Stacks (TODO!)
+         */
+        availableFonts: {
+            'Arial': 'Arial',
+            'Times New Roman': 'Times New Roman',
+            'Georgia': 'Georgia',
+            'Calibri': 'Calibri'
+        },
 
         columnLegendHeight: 18,
 
@@ -207,6 +211,8 @@
         // LEGEND                  //
         /////////////////////////////
 
+        legendFont: 'Arial',
+
         /**
          * Default Font Size for the Legend
          */
@@ -217,7 +223,7 @@
          *
          * @type {Number}
          */
-        legendWidth: 120,
+        legendWidth: 100,
 
         /**
          * Height / Size of Graphic Title

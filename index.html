@@ -552,20 +552,6 @@
         <form>
 
             <div class="ui-container">
-                <h4>Font Settings</h4>
-                <label>
-                    <span data-tooltip class="has-tip tip-right" title="Choose Font-Family">Font-Family</span>
-                </label>
-                <select value="Arial">
-                    <option value="Arial">Arial</option>
-                    <option value="Times New Roman">Times New Roman</option>
-                </select>
-            </div>
-
-
-
-
-            <div class="ui-container">
                 <h4>Legend Settings</h4>
 
                 <div class="row collapse">
@@ -590,9 +576,20 @@
 
                 <input id="draw-column-legend" name="drawColumnLegend" type="checkbox" checked><label for="draw-column-legend">Draw Column Legend</label>
 
-
                 <!--<label>Add Topic Description</label>-->
                 <!--<textarea placeholder="Enter Description here.."></textarea>-->
+            </div>
+
+            <div class="ui-container">
+                <h4>Font Settings</h4>
+                <label>
+                    <span data-tooltip class="has-tip tip-right" title="Choose Font-Family">Font-Family</span>
+                </label>
+                <select id="legend-font" name="legendFont" value="{{options.legendFont}}">
+                    {{#each availableFonts }}
+                    <option value="{{@key}}">{{this}}</option>
+                    {{/each}}
+                </select>
             </div>
 
             <a id="text-apply" href="#" class="tiny button radius">Apply</a>
