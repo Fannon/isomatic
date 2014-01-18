@@ -9,10 +9,19 @@
      *
      * @type {*|void|Object}
      */
-    isomatic.views.ImportView = Backbone.View.extend({
+    isomatic.views.ImportView = Backbone.View.extend( /** @lends ImportView.prototype */ {
+
+        /**
+         * @class ImportView
+         *
+         * @augments Backbone.View
+         * @contructs
+         */
         initialize: function(){
             this.render();
         },
+
+        /** Render Import View */
         render: function(){
 
             var source = $('#import-template').html();
@@ -22,10 +31,17 @@
 
         },
 
+        /** Import View Events */
         events: {
             "change #imported-file": "importData"
         },
 
+        /**
+         * Imports Data via HTML5 FileReadyer API from the File Upload Input
+         * Checks if imported File is SVG or JSON and redirects acordingly
+         *
+         * @param  {Object} event Browser Event Object
+         */
         importData: function(event) {
 
             var self = this;
@@ -47,9 +63,9 @@
 
                     // Check if SVG or JSON
                     if (file.type === 'image/svg+xml') {
-                        self.importSvg(file, e.target.result);
+                        self.parseSvgFile(file, e.target.result);
                     } else {
-                        self.importJson(file, e.target.result);
+                        self.parseJsonFile(file, e.target.result);
                     }
 
                 };
@@ -61,7 +77,13 @@
 
         },
 
-        importSvg: function(file, result) {
+        /**
+         * Parses the uploaded SVG Files MetaData Informations
+         *
+         * @param  {Object} file   FileReader Object
+         * @param  {String} result Result String
+         */
+        parseSvgFile: function(file, result) {
 
             console.log('ImportView.importSvg()');
 
@@ -77,7 +99,13 @@
             }
         },
 
-        importJson: function(file, result) {
+        /**
+         * Parses the uploaded JSON Files MetaData Informations
+         *
+         * @param  {Object} file   FileReader Object
+         * @param  {String} result Result String
+         */
+        parseJsonFile: function(file, result) {
 
             console.log('ImportView.importJson()');
 
@@ -92,6 +120,12 @@
 
         },
 
+        /**
+         * Reads, validates and applies the imported MetaInformation
+         * Updates the Application State and refreshes the Graphic
+         *
+         * @param  {Object} importObject Imported MetaData Object
+         */
         updateApplicationState: function(importObject) {
 
             var success = true;
@@ -145,11 +179,19 @@
             }
         },
 
+        /**
+         * Prints Error Message
+         *
+         * @param  {String} msg HTML String of the error message
+         */
         printErrorMessage: function(msg) {
             $('#import-errors').show().delay(4000).fadeOut(400);
             $('#import-errors div').html(msg);
         },
 
+        /**
+         * Triggers Success Message
+         */
         success: function() {
             $('#import-success').show().show().delay(1500).fadeOut(400);
         }

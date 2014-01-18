@@ -9,7 +9,14 @@
      *
      * @type {*|void|Object}
      */
-    isomatic.views.TypeView = Backbone.View.extend({
+    isomatic.views.TypeView = Backbone.View.extend( /** @lends TypeView.prototype */ {
+
+        /**
+         * @class TypeView
+         *
+         * @augments Backbone.View
+         * @contructs
+         */
         initialize: function(){
             this.render();
         },
@@ -27,6 +34,12 @@
             "click #color": "colorClick",
             "click .select-type": "selectType"
         },
+
+        /**
+         * Selects the clicked on Type, deselects others
+         *
+         * @param  {Object} e Event Object
+         */
         selectType: function(e) {
             var type = e.currentTarget.id.split('-')[0];
             $('.select-type').removeClass('active');

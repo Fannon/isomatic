@@ -26,6 +26,7 @@
     <section>
         <article>
             <pre class="prettyprint source"><code>/* jshint jquery:true, devel: true */
+/* global d3, Backbone, _, Handlebars */
 
 ///////////////////////////////////////////////////////
 // isomatic                                          //
@@ -63,10 +64,12 @@ var isomatic = {};
         var views = isomatic.views;
 
         views.graphView      = new views.GraphView({el: $("#graph-container")});
-        views.newView        = new views.NewView({el: $("#new-container")});
-        views.importView     = new views.ImportView({el: $("#import-container")});
-        views.exportView     = new views.ExportView({el: $("#export-container")});
-        views.helpView       = new views.HelpView({el: $("#help-container")});
+
+        views.newView        = new views.NewView({el: $("#new-modal")});
+        views.importView     = new views.ImportView({el: $("#import-modal")});
+        views.exportView     = new views.ExportView({el: $("#export-modal")});
+        views.helpView       = new views.HelpView({el: $("#help-modal")});
+
         views.dataView       = new views.DataView({el: $("#data-container")});
         views.typeView       = new views.TypeView({el: $("#type-container")});
         views.iconView       = new views.IconView({el: $("#icon-container")});
@@ -77,6 +80,7 @@ var isomatic = {};
 
         // Draw Example Data Set
         isomatic.refreshData();
+
 
         ///////////////////////////////////////
         // Init 3rd Party Plugins            //
@@ -90,7 +94,23 @@ var isomatic = {};
             isomatic.uglyHack(el.currentTarget);
         });
 
+    });
 
+
+    ///////////////////////////////////////
+    // Backbone.Validation Config        //
+    ///////////////////////////////////////
+
+    // Register Backbone Model Validation
+    _.extend(Backbone.Model.prototype, Backbone.Validation.mixin);
+
+    // Register Callback Function on Validation Error
+    // This manipulates the View DOM Items to indicate Validation Errors
+    _.extend(Backbone.Validation.callbacks, {
+        invalid: function(view, attr, error, selector) {
+            console.info('Validated:Invalid: ' + attr);
+            $('input[name=' + attr + ']').addClass('invalid has-tip tip-right').attr('title', error).attr('data-tooltip', true);
+        }
     });
 
 
@@ -99,9 +119,7 @@ var isomatic = {};
     ///////////////////////////////////////
 
     /**
-     * Refreshes the Data
-     * Use this if the Data changes.
-     * Triggers a new Layout and new Design, too.
+     * Refreshes the Data and completely redraws the Graphic
      */
     isomatic.refreshData = function() {
 
@@ -113,6 +131,9 @@ var isomatic = {};
 
     };
 
+    /**
+     * Refreshes the Layout and the Design
+     */
     isomatic.refreshLayout = function() {
 
         // Creates a new Visualsation
@@ -130,6 +151,9 @@ var isomatic = {};
 
     };
 
+    /**
+     * Redraws just the Design
+     */
     isomatic.refreshDesign = function() {
 
         // Prepare Drawing
@@ -143,6 +167,10 @@ var isomatic = {};
 
     };
 
+    /**
+     * Helper Function to register the Colorpicker with global default options
+     * @param el
+     */
     isomatic.registerColorpicker = function(el) {
 
         el.colpick({
@@ -157,9 +185,7 @@ var isomatic = {};
             }
         });
 
-
         el[0].style.borderColor = '#' + el[0].value;
-
 
     };
 
@@ -203,9 +229,9 @@ var isomatic = {};
             setTimeout(function() {
                 window.location = '#home';
             }, 50);
-
         }
     };
+
 
     ///////////////////////////////////////
     // 3rd Party Scripts                 //
@@ -285,13 +311,13 @@ var isomatic = {};
 </div>
 
 <nav>
-    <h2><a href="index.html">Index</a></h2><h3>Classes</h3><ul><li><a href="ColorView.html">ColorView</a></li><li><a href="DataView.html">DataView</a></li></ul><h3>Global</h3><ul><li><a href="global.html#apply">apply</a></li><li><a href="global.html#columns">columns</a></li><li><a href="global.html#drawIsotype">drawIsotype</a></li><li><a href="global.html#drawLegend">drawLegend</a></li><li><a href="global.html#embedData">embedData</a></li><li><a href="global.html#events">events</a></li><li><a href="global.html#exportJSON">exportJSON</a></li><li><a href="global.html#exportSVG">exportSVG</a></li><li><a href="global.html#graphClick">graphClick</a></li><li><a href="global.html#home">home</a></li><li><a href="global.html#initialize">initialize</a></li><li><a href="global.html#isomatic">isomatic</a></li><li><a href="global.html#layout">layout</a></li><li><a href="global.html#max">max</a></li><li><a href="global.html#min">min</a></li><li><a href="global.html#model">model</a></li><li><a href="global.html#newVisualisation">newVisualisation</a></li><li><a href="global.html#precalculate">precalculate</a></li><li><a href="global.html#prepareDrawing">prepareDrawing</a></li><li><a href="global.html#printScale">printScale</a></li><li><a href="global.html#render">render</a></li><li><a href="global.html#rows">rows</a></li><li><a href="global.html#sum">sum</a></li><li><a href="global.html#triggerUi">triggerUi</a></li><li><a href="global.html#validation">validation</a></li></ul>
+    <h2><a href="index.html">Index</a></h2><h3>Classes</h3><ul><li><a href="AdjustmentsView.html">AdjustmentsView</a></li><li><a href="ColorView.html">ColorView</a></li><li><a href="DataView.html">DataView</a></li><li><a href="ExportView.html">ExportView</a></li><li><a href="GraphView.html">GraphView</a></li><li><a href="HelpView.html">HelpView</a></li><li><a href="IconView.html">IconView</a></li><li><a href="ImportView.html">ImportView</a></li><li><a href="Model.html">Model</a></li><li><a href="NewView.html">NewView</a></li><li><a href="ScaleView.html">ScaleView</a></li><li><a href="TextView.html">TextView</a></li><li><a href="TypeView.html">TypeView</a></li><li><a href="UiModel.html">UiModel</a></li></ul><h3>Global</h3><ul><li><a href="global.html#columns">columns</a></li><li><a href="global.html#home">home</a></li><li><a href="global.html#isomatic">isomatic</a></li><li><a href="global.html#max">max</a></li><li><a href="global.html#min">min</a></li><li><a href="global.html#rows">rows</a></li><li><a href="global.html#sum">sum</a></li><li><a href="global.html#triggerUi">triggerUi</a></li></ul>
 </nav>
 
 <br clear="both">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.2</a> on Thu Jan 16 2014 16:13:40 GMT+0100 (MEZ)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.2</a> on Sat Jan 18 2014 10:48:23 GMT+0100 (MEZ)
 </footer>
 
 <script> prettyPrint(); </script>

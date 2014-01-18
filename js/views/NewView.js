@@ -5,14 +5,23 @@
     "use strict";
 
     /**
-     * Import View
+     * New Graphic View
      *
      * @type {*|void|Object}
      */
-    isomatic.views.NewView = Backbone.View.extend({
+    isomatic.views.NewView = Backbone.View.extend( /** @lends NewView.prototype */ {
+
+        /**
+         * @class NewView
+         *
+         * @augments Backbone.View
+         * @contructs
+         */
         initialize: function(){
             this.render();
         },
+
+        /** Render New Graphic View */
         render: function(){
 
             console.info('NewView.render();');
@@ -45,6 +54,9 @@
             "change #aspect-ratio-height": "changeAspectRatioSizing"
         },
 
+        /**
+         * Applies the currently calculated Aspect Ratio to the Graphic Canvas
+         */
         apply: function() {
 
             console.log('generateNewGraphic');
@@ -63,6 +75,9 @@
 
         },
 
+        /**
+         * Triggered if Aspect Ratio is changed. Adjusts Height
+         */
         changeAspectRatio: function() {
             var aspectRatio = this.getAspectRatio();
             var width = $('#aspect-ratio-width').val();
@@ -70,6 +85,9 @@
             $('#aspect-ratio-height').val(height);
         },
 
+        /**
+         * Triggered if Width or Height is changed. Adjusts Aspect Ratio
+         */
         changeAspectRatioSizing: function() {
             var width = $('#aspect-ratio-width').val();
             var height = $('#aspect-ratio-height').val();
@@ -77,6 +95,12 @@
             $('#aspect-ratio').val(width / height);
         },
 
+        /**
+         * Gets and calculates current Aspect Ratio
+         * If an Fraction is entered (16/9), the Ratio will be calculated
+         *
+         * @return {Float} Aspect Ratio Float
+         */
         getAspectRatio: function() {
             var aspectRatio = $('#aspect-ratio').val();
             if (aspectRatio.contains('/')) {

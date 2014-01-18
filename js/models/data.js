@@ -14,14 +14,18 @@
      * Backbone Model
      * @type {*|void|Object}
      */
-    isomatic.data.Model = Backbone.Model.extend({
+    isomatic.data.DataModel = Backbone.Model.extend( /** @lends Model.prototype */ {
 
         /**
-         * Data Model Init
+         * @class Model
+         *
+         * @augments Backbone.Model
+         * @contructs
          */
-        initialize: function() {
-            console.log('isomatic.data.Model initialized.');
+        initialize: function () {
+            console.log('isomatic.options.Model initialized.');
         }
+
     });
 
     /**
@@ -30,7 +34,7 @@
      *
      * @type {isomatic.data.Model}
      */
-    isomatic.data.raw = new isomatic.data.Model({
+    isomatic.data.raw = new isomatic.data.DataModel({
 
         // Contains the Raw Data
         data: isomatic.options.internal.exampleData,
@@ -45,7 +49,7 @@
      *
      * @type {isomatic.data.Model}
      */
-    isomatic.data.meta = new isomatic.data.Model({
+    isomatic.data.meta = new isomatic.data.DataModel({
 
         /** Minimum Value in Data */
         min: 0,

@@ -27,18 +27,22 @@
         <article>
             <pre class="prettyprint source"><code>/* jshint jquery:true, devel: true */
 /* global isomatic, d3, Backbone, _, Handlebars */
+
 (function(isomatic) {
     "use strict";
 
     /**
-     * Properties View
+     * Adjustments View
      *
      * @type {*|void|Object}
      */
-    isomatic.views.AdjustmentsView = Backbone.View.extend({
+    isomatic.views.AdjustmentsView = Backbone.View.extend( /** @lends AdjustmentsView.prototype */ {
 
         /**
-         * Init Adjustment View
+         * @class AdjustmentsView
+         *
+         * @augments Backbone.View
+         * @contructs
          */
         initialize: function(){
 
@@ -83,12 +87,6 @@
         events: {
             "click #adjustments-apply": "apply",
             "click #adjustments-apply-close": "apply"
-            // 'change input#outer-margin': 'changeOuterMargin',
-            // 'change input#icon-horizontal-margin': 'changeIconHorizontalMargin',
-            // 'change input#row-margin': 'changeRowMargin',
-            // 'change input#column-margin': 'changeColumnMargin',
-            // 'change input#icon-size': 'changeIconSize'
-
         },
 
         /**
@@ -96,51 +94,21 @@
          */
         apply: function() {
 
-            var isValid = this.model.set({
-                'outerMargin': parseInt($('#outer-margin').val(), 10),
-                'iconHorozontalMargin': parseInt($('#icon-horizontal-margin').val(), 10),
-                'rowMargin': parseInt($('#row-margin').val(), 10),
-                'columnMargin': parseInt($('#column-margin').val(), 10),
-                'iconSize': parseInt($('#icon-size').val(), 10)
-            }, { validate : true });
+            var state = {
+                'outerMargin': $('#outer-margin').val(),
+                'iconHorizontalMargin': $('#icon-horizontal-margin').val(),
+                'rowMargin': $('#row-margin').val(),
+//                'columnMargin': $('#column-margin').val(),
+                'iconSize': $('#icon-size').val()
+            };
+
+            var isValid = this.model.set(state, {validate: true});
 
             if (isValid) {
                 isomatic.refreshLayout();
-            } else {
-                console.warn('Validation Error!');
-                this.model.validate();
             }
 
-        },
-
-        /**
-         * Change Outer Margin
-         * @param e
-         */
-        // changeOuterMargin: function(e) {
-        //     var val = $(e.currentTarget).val();
-        //     this.model.set({'outerMargin': val});
-        // },
-
-        // changeIconHorizontalMargin: function(e) {
-        //     var val = $(e.currentTarget).val();
-        //     this.model.set({'iconHorizontalMargin': val});
-        // },
-
-        // changeRowMargin: function(e) {
-        //     var val = $(e.currentTarget).val();
-        //     this.model.set({'rowMargin': val});
-        // },
-
-        // changeColumnMargin: function(e) {
-        //     var val = $(e.currentTarget).val();
-        //     this.model.set({'columnMargin': val});
-        // },
-
-        // changeIconSize: function(e) {
-        //     var val = $(e.currentTarget).val();
-        //     this.model.set({'iconSize': val});
-        // }
+        }
 
     });
 
@@ -156,13 +124,13 @@
 </div>
 
 <nav>
-    <h2><a href="index.html">Index</a></h2><h3>Classes</h3><ul><li><a href="ColorView.html">ColorView</a></li><li><a href="DataView.html">DataView</a></li></ul><h3>Global</h3><ul><li><a href="global.html#apply">apply</a></li><li><a href="global.html#columns">columns</a></li><li><a href="global.html#drawIsotype">drawIsotype</a></li><li><a href="global.html#drawLegend">drawLegend</a></li><li><a href="global.html#embedData">embedData</a></li><li><a href="global.html#events">events</a></li><li><a href="global.html#exportJSON">exportJSON</a></li><li><a href="global.html#exportSVG">exportSVG</a></li><li><a href="global.html#graphClick">graphClick</a></li><li><a href="global.html#home">home</a></li><li><a href="global.html#initialize">initialize</a></li><li><a href="global.html#isomatic">isomatic</a></li><li><a href="global.html#layout">layout</a></li><li><a href="global.html#max">max</a></li><li><a href="global.html#min">min</a></li><li><a href="global.html#model">model</a></li><li><a href="global.html#newVisualisation">newVisualisation</a></li><li><a href="global.html#precalculate">precalculate</a></li><li><a href="global.html#prepareDrawing">prepareDrawing</a></li><li><a href="global.html#printScale">printScale</a></li><li><a href="global.html#render">render</a></li><li><a href="global.html#rows">rows</a></li><li><a href="global.html#sum">sum</a></li><li><a href="global.html#triggerUi">triggerUi</a></li><li><a href="global.html#validation">validation</a></li></ul>
+    <h2><a href="index.html">Index</a></h2><h3>Classes</h3><ul><li><a href="AdjustmentsView.html">AdjustmentsView</a></li><li><a href="ColorView.html">ColorView</a></li><li><a href="DataView.html">DataView</a></li><li><a href="ExportView.html">ExportView</a></li><li><a href="GraphView.html">GraphView</a></li><li><a href="HelpView.html">HelpView</a></li><li><a href="IconView.html">IconView</a></li><li><a href="ImportView.html">ImportView</a></li><li><a href="Model.html">Model</a></li><li><a href="NewView.html">NewView</a></li><li><a href="ScaleView.html">ScaleView</a></li><li><a href="TextView.html">TextView</a></li><li><a href="TypeView.html">TypeView</a></li><li><a href="UiModel.html">UiModel</a></li></ul><h3>Global</h3><ul><li><a href="global.html#columns">columns</a></li><li><a href="global.html#home">home</a></li><li><a href="global.html#isomatic">isomatic</a></li><li><a href="global.html#max">max</a></li><li><a href="global.html#min">min</a></li><li><a href="global.html#rows">rows</a></li><li><a href="global.html#sum">sum</a></li><li><a href="global.html#triggerUi">triggerUi</a></li></ul>
 </nav>
 
 <br clear="both">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.2</a> on Thu Jan 16 2014 16:13:40 GMT+0100 (MEZ)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.2</a> on Sat Jan 18 2014 10:48:23 GMT+0100 (MEZ)
 </footer>
 
 <script> prettyPrint(); </script>

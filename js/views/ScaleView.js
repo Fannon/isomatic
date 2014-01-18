@@ -9,7 +9,14 @@
      *
      * @type {*|void|Object}
      */
-    isomatic.views.ScaleView = Backbone.View.extend({
+    isomatic.views.ScaleView = Backbone.View.extend( /** @lends ScaleView.prototype */ {
+
+        /**
+         * @class ScaleView
+         *
+         * @augments Backbone.View
+         * @contructs
+         */
         initialize: function(){
             this.render();
 
@@ -31,7 +38,7 @@
         },
         model: isomatic.options.ui,
         events: {
-            "click #color": "colorClick"
+
         }
     });
 

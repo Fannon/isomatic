@@ -9,10 +9,21 @@
      *
      * @type {*|void|Object}
      */
-    isomatic.views.HelpView = Backbone.View.extend({
+    isomatic.views.HelpView = Backbone.View.extend( /** @lends HelpView.prototype */ {
+
+        /**
+         * @class HelpView
+         *
+         * @augments Backbone.View
+         * @contructs
+         */
         initialize: function(){
             this.render();
         },
+
+        /**
+         * Render Help View
+         */
         render: function(){
 
             var source = $('#help-template').html();
@@ -24,7 +35,7 @@
 
         },
         events: {
-            "click #color": "colorClick"
+
         }
     });
 

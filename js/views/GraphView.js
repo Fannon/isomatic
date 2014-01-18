@@ -9,10 +9,13 @@
      *
      * @type {*|void|Object}
      */
-    isomatic.views.GraphView = Backbone.View.extend({
+    isomatic.views.GraphView = Backbone.View.extend( /** @lends GraphView.prototype */ {
 
         /**
-         * Init Graph
+         * @class GraphView
+         *
+         * @augments Backbone.View
+         * @contructs
          */
         initialize: function(){
 
@@ -27,6 +30,7 @@
 
         /**
          * Render Graph Element
+         * Fill in just an empty graph div
          */
         render: function(){
             this.$el.html('<div id="graph"></div>');
@@ -77,7 +81,24 @@
 
             console.log('GraphView.precalculate();');
 
-            var iconsPerRow = [];
+
+            ////////////////////////////////////
+            // Get & Parse Variables          //
+            ////////////////////////////////////
+
+            var iconHorizontalMargin = parseFloat(isomatic.options.ui.attributes.iconHorizontalMargin);
+            var outerMargin          = parseFloat(isomatic.options.ui.attributes.outerMargin);
+            var graphHeight          = parseInt(isomatic.options.ui.attributes.graphHeight);
+            var graphWidth           = parseInt(isomatic.options.ui.attributes.graphWidth);
+            var defaultIconSize      = isomatic.options.internal.defaultIconSize;
+
+            var iconsPerRow          = [];
+
+
+            ////////////////////////////////////
+            // Calculations                   //
+            ////////////////////////////////////
+
 
             for (var i = 0; i < isomatic.data.processed.length; i++) {
 
@@ -93,13 +114,9 @@
             var maxIconsPerRow = d3.max(iconsPerRow);
 
             // Calculate Base Scale for Icons depending on biggest Row. (Fit to width)
-            var widthLeft = parseFloat(isomatic.options.ui.get('graphWidth')) -
-                (maxIconsPerRow * parseFloat(isomatic.options.ui.get("iconHorizontalMargin"))) -
-                2 * parseFloat(isomatic.options.ui.get("outerMargin"));
-
+            var widthLeft = graphWidth - (maxIconsPerRow * iconHorizontalMargin) - 2 * outerMargin;
             var baseScale = widthLeft / (maxIconsPerRow * 32);
-
-            var iconSize = baseScale * isomatic.options.internal.defaultIconSize;
+            var iconSize  = baseScale * defaultIconSize;
 
             isomatic.data.meta.set({
                 iconsPerRow: iconsPerRow,
@@ -139,6 +156,26 @@
 
             console.log('GraphView.prepareDrawing();');
 
+
+            ////////////////////////////////////
+            // Get & Parse Variables          //
+            ////////////////////////////////////
+
+            var graphHeight = parseInt(isomatic.options.ui.attributes.graphHeight);
+            var graphWidth  = parseInt(isomatic.options.ui.attributes.graphWidth);
+            var iconMap     = isomatic.options.ui.attributes.iconMap;
+            var colorMap    = isomatic.options.ui.attributes.colorMap;
+
+            // Used for Calculations
+            var diff        = 0;
+            var maxSize     = Math.max(isomatic.data.meta.attributes.columns.length, isomatic.data.meta.attributes.rows.length);
+
+
+            ////////////////////////////////////
+            // Prepare Graph Container        //
+            ////////////////////////////////////
+
+
             // Empty Canvas before Drawing
             $('#graph').html('');
 
@@ -158,11 +195,9 @@
             // Check if ColorMap and IconMap are big enough for current Dataset.
             // If not, fill them up with default Values
 
-            // Adjust ColorMap
-            var colorMap = isomatic.options.ui.attributes.colorMap;
-            var maxSize = Math.max(isomatic.data.meta.attributes.columns.length, isomatic.data.meta.attributes.rows.length);
 
-            var diff = maxSize - colorMap.length;
+            // Adjust ColorMap
+            diff = maxSize - colorMap.length;
             if (diff > 0) {
                 console.log('ColorMap misses ' + diff + 'Colors');
                 for (var i = 0; i < diff; i++) {
@@ -173,8 +208,6 @@
 
 
             // Adjust IconMap
-            var iconMap = isomatic.options.ui.attributes.iconMap;
-
             diff = maxSize - iconMap.length;
             if (diff > 0) {
                 console.log('IconMap misses ' + diff + 'Icons');
@@ -195,7 +228,35 @@
 
             console.log('GraphView.drawIsotype();');
 
-            var finalSize = parseFloat(isomatic.data.meta.attributes.baseScale) * isomatic.options.internal.defaultIconSize;
+
+            ////////////////////////////////////
+            // Get & Parse Variables          //
+            ////////////////////////////////////
+
+            var iconHorizontalMargin = parseFloat(isomatic.options.ui.attributes.iconHorizontalMargin);
+            var outerMargin          = parseFloat(isomatic.options.ui.attributes.outerMargin);
+            var rowMargin            = parseFloat(isomatic.options.ui.attributes.rowMargin);
+            var graphHeight          = parseInt(isomatic.options.ui.attributes.graphHeight);
+            var graphWidth           = parseInt(isomatic.options.ui.attributes.graphWidth);
+            var baseScale            = parseFloat(isomatic.data.meta.attributes.baseScale);
+            var defaultIconSize      = isomatic.options.internal.defaultIconSize;
+
+            var iconize              = isomatic.options.ui.attributes.iconize;
+            var colorize             = isomatic.options.ui.attributes.colorize;
+            var iconMap              = isomatic.options.ui.attributes.iconMap;
+            var colorMap             = isomatic.options.ui.attributes.colorMap;
+
+
+            ////////////////////////////////////
+            // Calculations                   //
+            ////////////////////////////////////
+
+            var finalSize = baseScale * defaultIconSize;
+
+
+            ////////////////////////////////////
+            // Draw Graphic via D3.js         //
+            ////////////////////////////////////
 
             var g = this.svg.selectAll(".icon")
 
@@ -205,10 +266,10 @@
                 .attr("class", "icon")
                 .attr("transform", function(d) {
 
-                    var x = d.pos * (finalSize + parseFloat(isomatic.options.ui.get("iconHorizontalMargin"))) + parseFloat(isomatic.options.ui.get("outerMargin"));
-                    var y = d.row * (finalSize + parseFloat(isomatic.options.ui.get("rowMargin"))) + parseFloat(isomatic.options.ui.get("outerMargin"));
+                    var x = d.pos * (finalSize + iconHorizontalMargin) + outerMargin;
+                    var y = d.row * (finalSize + rowMargin) + outerMargin;
 
-                    var scale = isomatic.data.meta.attributes.baseScale * d.size;
+                    var scale = baseScale * d.size;
 
                     // If Icon is drawn smaller than full-size, center it
                     if (d.size < 1) {
@@ -217,7 +278,7 @@
                     }
 
                     // If Icon is drawn outside of Canvas give a warning
-                    if (y > parseFloat(isomatic.options.ui.attributes.graphHeight) || x > parseFloat(isomatic.options.ui.attributes.graphWidth)) {
+                    if (y > graphHeight || x > graphWidth) {
                         console.warn('<strong>Warning: </strong>The generated Graphic is bigger than its Canvas!');
                     }
 
@@ -228,21 +289,21 @@
 
                     var category, name;
 
-                    if (isomatic.options.ui.get("iconize") === 'row') {
-                        category = isomatic.options.ui.get("iconMap")[d.row].category;
-                        name = isomatic.options.ui.get("iconMap")[d.row].name;
+                    if (iconize === 'row') {
+                        category = iconMap[d.row].category;
+                        name     = iconMap[d.row].name;
                     } else {
-                        category = isomatic.options.ui.get("iconMap")[d.col - 1].category;
-                        name = isomatic.options.ui.get("iconMap")[d.col - 1].name;
+                        category = iconMap[d.col - 1].category;
+                        name     = iconMap[d.col - 1].name;
                     }
 
                     return isomatic.icons[category].icons[name].svg;
                 })
                 .attr("fill", function(d) {
-                    if (isomatic.options.ui.get("colorize") === 'row') {
-                        return '#' + isomatic.options.ui.get("colorMap")[d.row];
+                    if (colorize === 'row') {
+                        return '#' + colorMap[d.row];
                     } else {
-                        return '#' + isomatic.options.ui.get("colorMap")[d.col - 1];
+                        return '#' + colorMap[d.col - 1];
                     }
                 })
             ;
@@ -257,15 +318,38 @@
 
             console.log('GraphView.drawLegend();');
 
-            var legendText = '1 : ' + this.printScale(isomatic.options.ui.get("scale"));
 
-            var legend = this.svg.append("g")
+            ////////////////////////////////////
+            // Get & Parse Variables          //
+            ////////////////////////////////////
+
+            var scale       = parseInt(isomatic.options.ui.attributes.scale);
+            var legendWidth = parseInt(isomatic.options.ui.attributes.legendWidth);
+
+            var outerMargin = parseFloat(isomatic.options.ui.attributes.outerMargin);
+            var graphHeight = parseInt(isomatic.options.ui.attributes.graphHeight);
+            var graphWidth  = parseInt(isomatic.options.ui.attributes.graphWidth);
+
+
+            ////////////////////////////////////
+            // Calculations                   //
+            ////////////////////////////////////
+
+            var scaleText = '1 : ' + this.printScale(scale);
+
+
+            ////////////////////////////////////
+            // Draw Legend via D3.js          //
+            ////////////////////////////////////
+
+
+            var scaleLegend = this.svg.append("g")
                 .style("text-anchor", "start")
-                .attr("transform", "translate(" + parseFloat(isomatic.options.ui.get("outerMargin")) + ", " + (parseFloat(isomatic.options.ui.attributes.graphHeight) - 2 * parseFloat(isomatic.options.ui.get("outerMargin"))) + ")");
+                .attr("transform", "translate(" + outerMargin + ", " + (graphHeight - outerMargin) + ")");
 
-            legend.append("text")
+            scaleLegend.append("text")
                 .attr("class", "legend")
-                .text(legendText)
+                .text(scaleText)
                 .attr("fill", "#999999")
             ;
         },
@@ -279,7 +363,7 @@
          *
          * http://stackoverflow.com/a/2901298/776425
          *
-         * @param scale
+         * @param   {integer}   scale     Scale to "prettify"
          * @returns {string}
          */
         printScale: function(scale) {

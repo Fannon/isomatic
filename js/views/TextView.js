@@ -9,7 +9,14 @@
      *
      * @type {*|void|Object}
      */
-    isomatic.views.TextView = Backbone.View.extend({
+    isomatic.views.TextView = Backbone.View.extend( /** @lends TextView.prototype */ {
+
+        /**
+         * @class TextView
+         *
+         * @augments Backbone.View
+         * @contructs
+         */
         initialize: function(){
             this.render();
         },
@@ -24,7 +31,7 @@
 
         },
         events: {
-            "click #color": "colorClick"
+
         }
     });
 

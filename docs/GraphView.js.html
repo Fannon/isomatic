@@ -36,10 +36,13 @@
      *
      * @type {*|void|Object}
      */
-    isomatic.views.GraphView = Backbone.View.extend({
+    isomatic.views.GraphView = Backbone.View.extend( /** @lends GraphView.prototype */ {
 
         /**
-         * Init Graph
+         * @class GraphView
+         *
+         * @augments Backbone.View
+         * @contructs
          */
         initialize: function(){
 
@@ -54,6 +57,7 @@
 
         /**
          * Render Graph Element
+         * Fill in just an empty graph div
          */
         render: function(){
             this.$el.html('&lt;div id="graph">&lt;/div>');
@@ -81,13 +85,12 @@
 
             console.log('GraphView.newVisualisation();');
 
-            var aspectRatio = isomatic.options.ui.get('aspectRatio');
+            var aspectRatio = parseFloat(isomatic.options.ui.get('aspectRatio'));
             var width = this.$display.width();
             var height = Math.round(width / aspectRatio);
 
             // Calculate Width and Height from Aspect Ratio
             isomatic.options.ui.set({
-                aspectRatio: aspectRatio,
                 graphWidth: width,
                 graphHeight: height
             });
@@ -105,7 +108,24 @@
 
             console.log('GraphView.precalculate();');
 
-            var iconsPerRow = [];
+
+            ////////////////////////////////////
+            // Get & Parse Variables          //
+            ////////////////////////////////////
+
+            var iconHorizontalMargin = parseFloat(isomatic.options.ui.attributes.iconHorizontalMargin);
+            var outerMargin          = parseFloat(isomatic.options.ui.attributes.outerMargin);
+            var graphHeight          = parseInt(isomatic.options.ui.attributes.graphHeight);
+            var graphWidth           = parseInt(isomatic.options.ui.attributes.graphWidth);
+            var defaultIconSize      = isomatic.options.internal.defaultIconSize;
+
+            var iconsPerRow          = [];
+
+
+            ////////////////////////////////////
+            // Calculations                   //
+            ////////////////////////////////////
+
 
             for (var i = 0; i &lt; isomatic.data.processed.length; i++) {
 
@@ -121,17 +141,17 @@
             var maxIconsPerRow = d3.max(iconsPerRow);
 
             // Calculate Base Scale for Icons depending on biggest Row. (Fit to width)
-            var widthLeft = isomatic.options.ui.get('graphWidth') -
-                (maxIconsPerRow * isomatic.options.ui.get("iconHorizontalMargin")) -
-                2 * isomatic.options.ui.get("outerMargin");
-
+            var widthLeft = graphWidth - (maxIconsPerRow * iconHorizontalMargin) - 2 * outerMargin;
             var baseScale = widthLeft / (maxIconsPerRow * 32);
+            var iconSize  = baseScale * defaultIconSize;
 
             isomatic.data.meta.set({
                 iconsPerRow: iconsPerRow,
                 maxIconsPerRow: maxIconsPerRow,
                 baseScale: baseScale
             });
+
+            isomatic.options.ui.set({iconSize: iconSize});
         },
 
         /**
@@ -145,9 +165,9 @@
 
             this.isotypeLayout = new d3.layout.isotype();
 
-            this.isotypeLayout.roundDown(isomatic.options.ui.get("roundDown"))
-                .roundUp(isomatic.options.ui.get("roundUp"))
-                .scale(isomatic.options.ui.get("scale"))
+            this.isotypeLayout.roundDown(parseFloat(isomatic.options.ui.get("roundDown")))
+                .roundUp(parseFloat(isomatic.options.ui.get("roundUp")))
+                .scale(parseFloat(isomatic.options.ui.get("scale")))
             ;
 
             isomatic.data.processed = this.isotypeLayout(isomatic.data.raw.get('data'));
@@ -163,16 +183,66 @@
 
             console.log('GraphView.prepareDrawing();');
 
+
+            ////////////////////////////////////
+            // Get & Parse Variables          //
+            ////////////////////////////////////
+
+            var graphHeight = parseInt(isomatic.options.ui.attributes.graphHeight);
+            var graphWidth  = parseInt(isomatic.options.ui.attributes.graphWidth);
+            var iconMap     = isomatic.options.ui.attributes.iconMap;
+            var colorMap    = isomatic.options.ui.attributes.colorMap;
+
+            // Used for Calculations
+            var diff        = 0;
+            var maxSize     = Math.max(isomatic.data.meta.attributes.columns.length, isomatic.data.meta.attributes.rows.length);
+
+
+            ////////////////////////////////////
+            // Prepare Graph Container        //
+            ////////////////////////////////////
+
+
             // Empty Canvas before Drawing
             $('#graph').html('');
 
             // Create new SVG Container for D3.js
             this.svg = d3.select("#graph").append("svg")
-                .attr("width", isomatic.options.ui.attributes.graphWidth)
-                .attr("height", isomatic.options.ui.attributes.graphHeight)
+                .attr("width", parseInt(isomatic.options.ui.attributes.graphWidth, 10))
+                .attr("height", parseInt(isomatic.options.ui.attributes.graphHeight, 10))
                 .append("g")
                 .attr("id", "isotype")
             ;
+
+
+            //////////////////////////////////////
+            // Adjust ColorMap and IconMap Size //
+            //////////////////////////////////////
+
+            // Check if ColorMap and IconMap are big enough for current Dataset.
+            // If not, fill them up with default Values
+
+
+            // Adjust ColorMap
+            diff = maxSize - colorMap.length;
+            if (diff > 0) {
+                console.log('ColorMap misses ' + diff + 'Colors');
+                for (var i = 0; i &lt; diff; i++) {
+                    colorMap.push('6F6F6F');
+                }
+            }
+            isomatic.options.ui.set({colorMap: colorMap});
+
+
+            // Adjust IconMap
+            diff = maxSize - iconMap.length;
+            if (diff > 0) {
+                console.log('IconMap misses ' + diff + 'Icons');
+                for (var j = 0; j &lt; diff; j++) {
+                    iconMap.push({category: 'socialNetworks', name: 'facebook'});
+                }
+            }
+            isomatic.options.ui.set({iconMap: iconMap});
 
         },
 
@@ -185,7 +255,35 @@
 
             console.log('GraphView.drawIsotype();');
 
-            var finalSize = isomatic.data.meta.attributes.baseScale * isomatic.options.internal.defaultIconSize;
+
+            ////////////////////////////////////
+            // Get & Parse Variables          //
+            ////////////////////////////////////
+
+            var iconHorizontalMargin = parseFloat(isomatic.options.ui.attributes.iconHorizontalMargin);
+            var outerMargin          = parseFloat(isomatic.options.ui.attributes.outerMargin);
+            var rowMargin            = parseFloat(isomatic.options.ui.attributes.rowMargin);
+            var graphHeight          = parseInt(isomatic.options.ui.attributes.graphHeight);
+            var graphWidth           = parseInt(isomatic.options.ui.attributes.graphWidth);
+            var baseScale            = parseFloat(isomatic.data.meta.attributes.baseScale);
+            var defaultIconSize      = isomatic.options.internal.defaultIconSize;
+
+            var iconize              = isomatic.options.ui.attributes.iconize;
+            var colorize             = isomatic.options.ui.attributes.colorize;
+            var iconMap              = isomatic.options.ui.attributes.iconMap;
+            var colorMap             = isomatic.options.ui.attributes.colorMap;
+
+
+            ////////////////////////////////////
+            // Calculations                   //
+            ////////////////////////////////////
+
+            var finalSize = baseScale * defaultIconSize;
+
+
+            ////////////////////////////////////
+            // Draw Graphic via D3.js         //
+            ////////////////////////////////////
 
             var g = this.svg.selectAll(".icon")
 
@@ -195,10 +293,10 @@
                 .attr("class", "icon")
                 .attr("transform", function(d) {
 
-                    var x = d.pos * (finalSize + isomatic.options.ui.get("iconHorizontalMargin")) + isomatic.options.ui.get("outerMargin");
-                    var y = d.row * (finalSize + isomatic.options.ui.get("rowMargin")) + isomatic.options.ui.get("outerMargin");
+                    var x = d.pos * (finalSize + iconHorizontalMargin) + outerMargin;
+                    var y = d.row * (finalSize + rowMargin) + outerMargin;
 
-                    var scale = isomatic.data.meta.attributes.baseScale * d.size;
+                    var scale = baseScale * d.size;
 
                     // If Icon is drawn smaller than full-size, center it
                     if (d.size &lt; 1) {
@@ -207,7 +305,7 @@
                     }
 
                     // If Icon is drawn outside of Canvas give a warning
-                    if (y > isomatic.options.ui.attributes.graphHeight || x > isomatic.options.ui.attributes.graphWidth) {
+                    if (y > graphHeight || x > graphWidth) {
                         console.warn('&lt;strong>Warning: &lt;/strong>The generated Graphic is bigger than its Canvas!');
                     }
 
@@ -218,21 +316,21 @@
 
                     var category, name;
 
-                    if (isomatic.options.ui.get("iconize") === 'row') {
-                        category = isomatic.options.ui.get("iconMap")[d.row].category;
-                        name = isomatic.options.ui.get("iconMap")[d.row].name;
+                    if (iconize === 'row') {
+                        category = iconMap[d.row].category;
+                        name     = iconMap[d.row].name;
                     } else {
-                        category = isomatic.options.ui.get("iconMap")[d.col - 1].category;
-                        name = isomatic.options.ui.get("iconMap")[d.col - 1].name;
+                        category = iconMap[d.col - 1].category;
+                        name     = iconMap[d.col - 1].name;
                     }
 
                     return isomatic.icons[category].icons[name].svg;
                 })
                 .attr("fill", function(d) {
-                    if (isomatic.options.ui.get("colorize") === 'row') {
-                        return '#' + isomatic.options.ui.get("colorMap")[d.row];
+                    if (colorize === 'row') {
+                        return '#' + colorMap[d.row];
                     } else {
-                        return '#' + isomatic.options.ui.get("colorMap")[d.col - 1];
+                        return '#' + colorMap[d.col - 1];
                     }
                 })
             ;
@@ -247,15 +345,38 @@
 
             console.log('GraphView.drawLegend();');
 
-            var legendText = '1 : ' + this.printScale(isomatic.options.ui.get("scale"));
 
-            var legend = this.svg.append("g")
+            ////////////////////////////////////
+            // Get & Parse Variables          //
+            ////////////////////////////////////
+
+            var scale       = parseInt(isomatic.options.ui.attributes.scale);
+            var legendWidth = parseInt(isomatic.options.ui.attributes.legendWidth);
+
+            var outerMargin = parseFloat(isomatic.options.ui.attributes.outerMargin);
+            var graphHeight = parseInt(isomatic.options.ui.attributes.graphHeight);
+            var graphWidth  = parseInt(isomatic.options.ui.attributes.graphWidth);
+
+
+            ////////////////////////////////////
+            // Calculations                   //
+            ////////////////////////////////////
+
+            var scaleText = '1 : ' + this.printScale(scale);
+
+
+            ////////////////////////////////////
+            // Draw Legend via D3.js          //
+            ////////////////////////////////////
+
+
+            var scaleLegend = this.svg.append("g")
                 .style("text-anchor", "start")
-                .attr("transform", "translate(" + isomatic.options.ui.get("outerMargin") + ", " + (isomatic.options.ui.attributes.graphHeight - 2 * isomatic.options.ui.get("outerMargin")) + ")");
+                .attr("transform", "translate(" + outerMargin + ", " + (graphHeight - outerMargin) + ")");
 
-            legend.append("text")
+            scaleLegend.append("text")
                 .attr("class", "legend")
-                .text(legendText)
+                .text(scaleText)
                 .attr("fill", "#999999")
             ;
         },
@@ -269,7 +390,7 @@
          *
          * http://stackoverflow.com/a/2901298/776425
          *
-         * @param scale
+         * @param   {integer}   scale     Scale to "prettify"
          * @returns {string}
          */
         printScale: function(scale) {
@@ -290,13 +411,13 @@
 </div>
 
 <nav>
-    <h2><a href="index.html">Index</a></h2><h3>Classes</h3><ul><li><a href="ColorView.html">ColorView</a></li><li><a href="DataView.html">DataView</a></li></ul><h3>Global</h3><ul><li><a href="global.html#apply">apply</a></li><li><a href="global.html#columns">columns</a></li><li><a href="global.html#drawIsotype">drawIsotype</a></li><li><a href="global.html#drawLegend">drawLegend</a></li><li><a href="global.html#embedData">embedData</a></li><li><a href="global.html#events">events</a></li><li><a href="global.html#exportJSON">exportJSON</a></li><li><a href="global.html#exportSVG">exportSVG</a></li><li><a href="global.html#graphClick">graphClick</a></li><li><a href="global.html#home">home</a></li><li><a href="global.html#initialize">initialize</a></li><li><a href="global.html#isomatic">isomatic</a></li><li><a href="global.html#layout">layout</a></li><li><a href="global.html#max">max</a></li><li><a href="global.html#min">min</a></li><li><a href="global.html#model">model</a></li><li><a href="global.html#newVisualisation">newVisualisation</a></li><li><a href="global.html#precalculate">precalculate</a></li><li><a href="global.html#prepareDrawing">prepareDrawing</a></li><li><a href="global.html#printScale">printScale</a></li><li><a href="global.html#render">render</a></li><li><a href="global.html#rows">rows</a></li><li><a href="global.html#sum">sum</a></li><li><a href="global.html#triggerUi">triggerUi</a></li><li><a href="global.html#validation">validation</a></li></ul>
+    <h2><a href="index.html">Index</a></h2><h3>Classes</h3><ul><li><a href="AdjustmentsView.html">AdjustmentsView</a></li><li><a href="ColorView.html">ColorView</a></li><li><a href="DataView.html">DataView</a></li><li><a href="ExportView.html">ExportView</a></li><li><a href="GraphView.html">GraphView</a></li><li><a href="HelpView.html">HelpView</a></li><li><a href="IconView.html">IconView</a></li><li><a href="ImportView.html">ImportView</a></li><li><a href="Model.html">Model</a></li><li><a href="NewView.html">NewView</a></li><li><a href="ScaleView.html">ScaleView</a></li><li><a href="TextView.html">TextView</a></li><li><a href="TypeView.html">TypeView</a></li><li><a href="UiModel.html">UiModel</a></li></ul><h3>Global</h3><ul><li><a href="global.html#columns">columns</a></li><li><a href="global.html#home">home</a></li><li><a href="global.html#isomatic">isomatic</a></li><li><a href="global.html#max">max</a></li><li><a href="global.html#min">min</a></li><li><a href="global.html#rows">rows</a></li><li><a href="global.html#sum">sum</a></li><li><a href="global.html#triggerUi">triggerUi</a></li></ul>
 </nav>
 
 <br clear="both">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.2</a> on Thu Jan 16 2014 16:13:40 GMT+0100 (MEZ)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.2</a> on Sat Jan 18 2014 10:48:23 GMT+0100 (MEZ)
 </footer>
 
 <script> prettyPrint(); </script>

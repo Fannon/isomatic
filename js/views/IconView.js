@@ -9,10 +9,19 @@
      *
      * @type {*|void|Object}
      */
-    isomatic.views.IconView = Backbone.View.extend({
+    isomatic.views.IconView = Backbone.View.extend( /** @lends IconView.prototype */ {
+
+        /**
+         * @class IconView
+         *
+         * @augments Backbone.View
+         * @contructs
+         */
         initialize: function(){
             this.render();
         },
+
+        /** Render Icon View */
         render: function(){
 
             var source = $('#icon-template').html();

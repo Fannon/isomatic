@@ -5,13 +5,18 @@
     "use strict";
 
     /**
-     * Data View
+     * Export View
      *
      * @type {*|void|Object}
      */
-    isomatic.views.ExportView = Backbone.View.extend({
+    isomatic.views.ExportView = Backbone.View.extend( /** @lends ExportView.prototype */ {
 
-        /** Init Export View */
+        /**
+         * @class ExportView
+         *
+         * @augments Backbone.View
+         * @contructs
+         */
         initialize: function(){
             this.render();
         },

@@ -32,27 +32,112 @@
     "use strict";
 
     /**
-     * Import View
+     * New Graphic View
      *
      * @type {*|void|Object}
      */
-    isomatic.views.NewView = Backbone.View.extend({
+    isomatic.views.NewView = Backbone.View.extend( /** @lends NewView.prototype */ {
+
+        /**
+         * @class NewView
+         *
+         * @augments Backbone.View
+         * @contructs
+         */
         initialize: function(){
             this.render();
         },
+
+        /** Render New Graphic View */
         render: function(){
+
+            console.info('NewView.render();');
+
             var source = $('#new-template').html();
             var template = Handlebars.compile(source);
-            var html = template();
+            var html = template({
+                options: isomatic.options.ui.attributes
+            });
             this.$el.html(html);
 
-        },
-        events: {
-            "click #generate-new-graphic": "generateNewGraphic"
+            Backbone.Validation.bind(this);
+
+            // Register Model Event Listeners
+            this.model.on("change:aspectRatio", this.render, this);
+
+
         },
 
-        generateNewGraphic: function() {
-            // TODO
+        /**
+         * Options.ui Model
+         */
+        model: isomatic.options.ui,
+
+        events: {
+            "click #new-apply": "apply",
+            "click #new-apply-close": "apply",
+            "change #aspect-ratio": "changeAspectRatio",
+            "change #aspect-ratio-width": "changeAspectRatioSizing",
+            "change #aspect-ratio-height": "changeAspectRatioSizing"
+        },
+
+        /**
+         * Applies the currently calculated Aspect Ratio to the Graphic Canvas
+         */
+        apply: function() {
+
+            console.log('generateNewGraphic');
+
+            var aspectRatio = this.getAspectRatio();
+
+            var state = {
+                'aspectRatio': aspectRatio
+            };
+
+            var isValid = this.model.set(state, {validate: true});
+
+            if (isValid) {
+                isomatic.refreshLayout();
+            }
+
+        },
+
+        /**
+         * Triggered if Aspect Ratio is changed. Adjusts Height
+         */
+        changeAspectRatio: function() {
+            var aspectRatio = this.getAspectRatio();
+            var width = $('#aspect-ratio-width').val();
+            var height = width / aspectRatio;
+            $('#aspect-ratio-height').val(height);
+        },
+
+        /**
+         * Triggered if Width or Height is changed. Adjusts Aspect Ratio
+         */
+        changeAspectRatioSizing: function() {
+            var width = $('#aspect-ratio-width').val();
+            var height = $('#aspect-ratio-height').val();
+
+            $('#aspect-ratio').val(width / height);
+        },
+
+        /**
+         * Gets and calculates current Aspect Ratio
+         * If an Fraction is entered (16/9), the Ratio will be calculated
+         *
+         * @return {Float} Aspect Ratio Float
+         */
+        getAspectRatio: function() {
+            var aspectRatio = $('#aspect-ratio').val();
+            if (aspectRatio.contains('/')) {
+                var temp = aspectRatio.split('/');
+                aspectRatio = temp[0] / temp[1];
+            }
+
+            console.log('AspectRatio: ' + aspectRatio);
+
+            return aspectRatio;
         }
     });
 
@@ -68,13 +153,13 @@
 </div>
 
 <nav>
-    <h2><a href="index.html">Index</a></h2><h3>Classes</h3><ul><li><a href="ColorView.html">ColorView</a></li><li><a href="DataView.html">DataView</a></li></ul><h3>Global</h3><ul><li><a href="global.html#apply">apply</a></li><li><a href="global.html#columns">columns</a></li><li><a href="global.html#drawIsotype">drawIsotype</a></li><li><a href="global.html#drawLegend">drawLegend</a></li><li><a href="global.html#embedData">embedData</a></li><li><a href="global.html#events">events</a></li><li><a href="global.html#exportJSON">exportJSON</a></li><li><a href="global.html#exportSVG">exportSVG</a></li><li><a href="global.html#graphClick">graphClick</a></li><li><a href="global.html#home">home</a></li><li><a href="global.html#initialize">initialize</a></li><li><a href="global.html#isomatic">isomatic</a></li><li><a href="global.html#layout">layout</a></li><li><a href="global.html#max">max</a></li><li><a href="global.html#min">min</a></li><li><a href="global.html#model">model</a></li><li><a href="global.html#newVisualisation">newVisualisation</a></li><li><a href="global.html#precalculate">precalculate</a></li><li><a href="global.html#prepareDrawing">prepareDrawing</a></li><li><a href="global.html#printScale">printScale</a></li><li><a href="global.html#render">render</a></li><li><a href="global.html#rows">rows</a></li><li><a href="global.html#sum">sum</a></li><li><a href="global.html#triggerUi">triggerUi</a></li><li><a href="global.html#validation">validation</a></li></ul>
+    <h2><a href="index.html">Index</a></h2><h3>Classes</h3><ul><li><a href="AdjustmentsView.html">AdjustmentsView</a></li><li><a href="ColorView.html">ColorView</a></li><li><a href="DataView.html">DataView</a></li><li><a href="ExportView.html">ExportView</a></li><li><a href="GraphView.html">GraphView</a></li><li><a href="HelpView.html">HelpView</a></li><li><a href="IconView.html">IconView</a></li><li><a href="ImportView.html">ImportView</a></li><li><a href="Model.html">Model</a></li><li><a href="NewView.html">NewView</a></li><li><a href="ScaleView.html">ScaleView</a></li><li><a href="TextView.html">TextView</a></li><li><a href="TypeView.html">TypeView</a></li><li><a href="UiModel.html">UiModel</a></li></ul><h3>Global</h3><ul><li><a href="global.html#columns">columns</a></li><li><a href="global.html#home">home</a></li><li><a href="global.html#isomatic">isomatic</a></li><li><a href="global.html#max">max</a></li><li><a href="global.html#min">min</a></li><li><a href="global.html#rows">rows</a></li><li><a href="global.html#sum">sum</a></li><li><a href="global.html#triggerUi">triggerUi</a></li></ul>
 </nav>
 
 <br clear="both">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.2</a> on Thu Jan 16 2014 16:13:40 GMT+0100 (MEZ)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.2</a> on Sat Jan 18 2014 10:48:24 GMT+0100 (MEZ)
 </footer>
 
 <script> prettyPrint(); </script>

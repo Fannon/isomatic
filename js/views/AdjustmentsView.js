@@ -5,14 +5,17 @@
     "use strict";
 
     /**
-     * Properties View
+     * Adjustments View
      *
      * @type {*|void|Object}
      */
-    isomatic.views.AdjustmentsView = Backbone.View.extend({
+    isomatic.views.AdjustmentsView = Backbone.View.extend( /** @lends AdjustmentsView.prototype */ {
 
         /**
-         * Init Adjustment View
+         * @class AdjustmentsView
+         *
+         * @augments Backbone.View
+         * @contructs
          */
         initialize: function(){
 

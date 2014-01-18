@@ -4,8 +4,8 @@
         "foundation": "zurb/bower-foundation",
         "backbone": null,
         "backbone.validation": null,
-        "handlebars": null,
         "underscore": null,
+        "handlebars": null,
         "d3js": null,
         "colpick": "josedvq/colpick-jQuery-Color-Picker",
         "slimScroll": "rochal/jQuery-slimScroll"
@@ -26,6 +26,7 @@
         "node_modules",
         "bower_components",
         "test",
-        "tests"
+        "tests",
+        "docs"
     ]
 }

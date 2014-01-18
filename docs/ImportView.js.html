@@ -36,63 +36,19 @@
      *
      * @type {*|void|Object}
      */
-    isomatic.views.ImportView = Backbone.View.extend({
+    isomatic.views.ImportView = Backbone.View.extend( /** @lends ImportView.prototype */ {
+
+        /**
+         * @class ImportView
+         *
+         * @augments Backbone.View
+         * @contructs
+         */
         initialize: function(){
             this.render();
-
-            // Set Up FileUpload Listener
-            $('#imported-file')[0].addEventListener("change", function(event) {
-
-                var file = event.target.files[0];
-                console.dir(file);
-
-                //////////////////////////////////////
-                // Identify File Type               //
-                //////////////////////////////////////
-
-                console.log('Filetype: ' + file.type);
-                // Only process image files.
-                if (file.type === 'image/svg+xml') {
-                    // TODO: Handle SVG File
-                } else {
-                    // TODO: Handle JSON File (no type)
-                }
-
-
-                //////////////////////////////////////
-                // Read File                        //
-                //////////////////////////////////////
-
-                var reader = new FileReader();
-
-                // File Read Event
-                reader.onload = (function(theFile) {
-                    return function(e) {
-                        console.log('File sucessfully read:');
-                        console.log(e.target.result);
-                    };
-                })(file);
-
-                // Read in the image file as a data URL.
-                reader.readAsText(file);
-
-                //////////////////////////////////////
-                // Validation                       //
-                //////////////////////////////////////
-
-                // TODO: Validation
-
-
-
-                //////////////////////////////////////
-                // Update Application State         //
-                //////////////////////////////////////
-
-                // TODO: Update Application State: Import Settings and Data
-
-            }, false);
-
         },
+
+        /** Render Import View */
         render: function(){
 
             var source = $('#import-template').html();
@@ -101,13 +57,175 @@
             this.$el.html(html);
 
         },
+
+        /** Import View Events */
         events: {
-            "click #pasteDataSubmit": "submitData"
+            "change #imported-file": "importData"
+        },
+
+        /**
+         * Imports Data via HTML5 FileReadyer API from the File Upload Input
+         * Checks if imported File is SVG or JSON and redirects acordingly
+         *
+         * @param  {Object} event Browser Event Object
+         */
+        importData: function(event) {
+
+            var self = this;
+            var file = event.target.files[0];
+
+
+            //////////////////////////////////////
+            // Read File                        //
+            //////////////////////////////////////
+
+            var reader = new FileReader();
+
+            // File Read Event
+            reader.onload = (function(theFile) {
+                return function(e) {
+
+                    console.log('File sucessfully read:');
+                    console.log('Filetype: ' + file.type);
+
+                    // Check if SVG or JSON
+                    if (file.type === 'image/svg+xml') {
+                        self.parseSvgFile(file, e.target.result);
+                    } else {
+                        self.parseJsonFile(file, e.target.result);
+                    }
+
+                };
+            })(file);
+
+            // Read the File as Text Format
+            // This triggers the reader.onload Event when done reading
+            reader.readAsText(file);
+
+        },
+
+        /**
+         * Parses the uploaded SVG Files MetaData Informations
+         *
+         * @param  {Object} file   FileReader Object
+         * @param  {String} result Result String
+         */
+        parseSvgFile: function(file, result) {
+
+            console.log('ImportView.importSvg()');
+
+            try {
+                var importHtml = $(result).find('#isomatic-metadata').html();
+
+                var importObject = JSON.parse(importHtml);
+
+                this.updateApplicationState(importObject);
+
+            } catch(error) {
+                this.printErrorMessage('Imported Data is corrupt or in the wrong format!');
+            }
+        },
+
+        /**
+         * Parses the uploaded JSON Files MetaData Informations
+         *
+         * @param  {Object} file   FileReader Object
+         * @param  {String} result Result String
+         */
+        parseJsonFile: function(file, result) {
+
+            console.log('ImportView.importJson()');
+
+            try {
+                var importObject = JSON.parse(result);
+                console.dir(importObject);
+                this.updateApplicationState(importObject);
+
+            } catch(error) {
+                this.printErrorMessage('Imported Data is corrupt or in the wrong format!');
+            }
+
+        },
+
+        /**
+         * Reads, validates and applies the imported MetaInformation
+         * Updates the Application State and refreshes the Graphic
+         *
+         * @param  {Object} importObject Imported MetaData Object
+         */
+        updateApplicationState: function(importObject) {
+
+            var success = true;
+
+            console.log('ImportView.updateApplicationState()');
+            console.dir(importObject);
+
+            // Check for Data, validate and import it
+            if (importObject.data && importObject.data !== '') {
+
+                var data = importObject.data;
+
+                var dataErrors = isomatic.data.raw.validate(data);
+
+                if (!dataErrors) {
+                    isomatic.data.raw.set(data);
+                } else {
+                    this.printErrorMessage('Imported Options not valid! &lt;br>(Detailed Error Report is in the Dev Console)');
+                    console.dir(dataErrors);
+                    success = false;
+                }
+
+            } else {
+
+                this.printErrorMessage('No Data provided!');
+                success = false;
+            }
+
+            if (importObject.options && importObject.options !== '') {
+
+                var options = importObject.options;
+
+                var optionsErrors = isomatic.options.ui.validate(options);
+
+                if (!optionsErrors) {
+                    isomatic.options.ui.set(options);
+                } else {
+                    this.printErrorMessage('Imported Options not valid! &lt;br>(Detailed Error Report is in the Dev Console)');
+                    console.dir(optionsErrors);
+                    success = false;
+                }
+
+            } else {
+                this.printErrorMessage('No Options provided!');
+                success = false;
+            }
+
+            if (success) {
+                isomatic.refreshData();
+                this.success();
+            }
+        },
+
+        /**
+         * Prints Error Message
+         *
+         * @param  {String} msg HTML String of the error message
+         */
+        printErrorMessage: function(msg) {
+            $('#import-errors').show().delay(4000).fadeOut(400);
+            $('#import-errors div').html(msg);
+        },
+
+        /**
+         * Triggers Success Message
+         */
+        success: function() {
+            $('#import-success').show().show().delay(1500).fadeOut(400);
         }
+
     });
 
 }(isomatic));
-
 </code></pre>
         </article>
     </section>
@@ -118,13 +236,13 @@
 </div>
 
 <nav>
-    <h2><a href="index.html">Index</a></h2><h3>Classes</h3><ul><li><a href="ColorView.html">ColorView</a></li><li><a href="DataView.html">DataView</a></li></ul><h3>Global</h3><ul><li><a href="global.html#apply">apply</a></li><li><a href="global.html#columns">columns</a></li><li><a href="global.html#drawIsotype">drawIsotype</a></li><li><a href="global.html#drawLegend">drawLegend</a></li><li><a href="global.html#embedData">embedData</a></li><li><a href="global.html#events">events</a></li><li><a href="global.html#exportJSON">exportJSON</a></li><li><a href="global.html#exportSVG">exportSVG</a></li><li><a href="global.html#graphClick">graphClick</a></li><li><a href="global.html#home">home</a></li><li><a href="global.html#initialize">initialize</a></li><li><a href="global.html#isomatic">isomatic</a></li><li><a href="global.html#layout">layout</a></li><li><a href="global.html#max">max</a></li><li><a href="global.html#min">min</a></li><li><a href="global.html#model">model</a></li><li><a href="global.html#newVisualisation">newVisualisation</a></li><li><a href="global.html#precalculate">precalculate</a></li><li><a href="global.html#prepareDrawing">prepareDrawing</a></li><li><a href="global.html#printScale">printScale</a></li><li><a href="global.html#render">render</a></li><li><a href="global.html#rows">rows</a></li><li><a href="global.html#sum">sum</a></li><li><a href="global.html#triggerUi">triggerUi</a></li><li><a href="global.html#validation">validation</a></li></ul>
+    <h2><a href="index.html">Index</a></h2><h3>Classes</h3><ul><li><a href="AdjustmentsView.html">AdjustmentsView</a></li><li><a href="ColorView.html">ColorView</a></li><li><a href="DataView.html">DataView</a></li><li><a href="ExportView.html">ExportView</a></li><li><a href="GraphView.html">GraphView</a></li><li><a href="HelpView.html">HelpView</a></li><li><a href="IconView.html">IconView</a></li><li><a href="ImportView.html">ImportView</a></li><li><a href="Model.html">Model</a></li><li><a href="NewView.html">NewView</a></li><li><a href="ScaleView.html">ScaleView</a></li><li><a href="TextView.html">TextView</a></li><li><a href="TypeView.html">TypeView</a></li><li><a href="UiModel.html">UiModel</a></li></ul><h3>Global</h3><ul><li><a href="global.html#columns">columns</a></li><li><a href="global.html#home">home</a></li><li><a href="global.html#isomatic">isomatic</a></li><li><a href="global.html#max">max</a></li><li><a href="global.html#min">min</a></li><li><a href="global.html#rows">rows</a></li><li><a href="global.html#sum">sum</a></li><li><a href="global.html#triggerUi">triggerUi</a></li></ul>
 </nav>
 
 <br clear="both">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.2</a> on Thu Jan 16 2014 16:13:40 GMT+0100 (MEZ)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.2</a> on Sat Jan 18 2014 10:48:23 GMT+0100 (MEZ)
 </footer>
 
 <script> prettyPrint(); </script>
