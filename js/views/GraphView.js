@@ -88,8 +88,8 @@
 
             var iconHorizontalMargin = parseFloat(isomatic.options.ui.attributes.iconHorizontalMargin);
             var outerMargin          = parseFloat(isomatic.options.ui.attributes.outerMargin);
-            var graphHeight          = parseInt(isomatic.options.ui.attributes.graphHeight);
-            var graphWidth           = parseInt(isomatic.options.ui.attributes.graphWidth);
+            var graphHeight          = parseInt(isomatic.options.ui.attributes.graphHeight, 10);
+            var graphWidth           = parseInt(isomatic.options.ui.attributes.graphWidth, 10);
             var defaultIconSize      = isomatic.options.internal.defaultIconSize;
 
             var iconsPerRow          = [];
@@ -161,8 +161,8 @@
             // Get & Parse Variables          //
             ////////////////////////////////////
 
-            var graphHeight = parseInt(isomatic.options.ui.attributes.graphHeight);
-            var graphWidth  = parseInt(isomatic.options.ui.attributes.graphWidth);
+            var graphHeight = parseInt(isomatic.options.ui.attributes.graphHeight, 10);
+            var graphWidth  = parseInt(isomatic.options.ui.attributes.graphWidth, 10);
             var iconMap     = isomatic.options.ui.attributes.iconMap;
             var colorMap    = isomatic.options.ui.attributes.colorMap;
 
@@ -236,8 +236,8 @@
             var iconHorizontalMargin = parseFloat(isomatic.options.ui.attributes.iconHorizontalMargin);
             var outerMargin          = parseFloat(isomatic.options.ui.attributes.outerMargin);
             var rowMargin            = parseFloat(isomatic.options.ui.attributes.rowMargin);
-            var graphHeight          = parseInt(isomatic.options.ui.attributes.graphHeight);
-            var graphWidth           = parseInt(isomatic.options.ui.attributes.graphWidth);
+            var graphHeight          = parseInt(isomatic.options.ui.attributes.graphHeight, 10);
+            var graphWidth           = parseInt(isomatic.options.ui.attributes.graphWidth, 10);
             var baseScale            = parseFloat(isomatic.data.meta.attributes.baseScale);
             var defaultIconSize      = isomatic.options.internal.defaultIconSize;
 
@@ -323,12 +323,12 @@
             // Get & Parse Variables          //
             ////////////////////////////////////
 
-            var scale       = parseInt(isomatic.options.ui.attributes.scale);
-            var legendWidth = parseInt(isomatic.options.ui.attributes.legendWidth);
+            var scale       = parseInt(isomatic.options.ui.attributes.scale, 10);
+            var legendWidth = parseInt(isomatic.options.ui.attributes.legendWidth, 10);
 
             var outerMargin = parseFloat(isomatic.options.ui.attributes.outerMargin);
-            var graphHeight = parseInt(isomatic.options.ui.attributes.graphHeight);
-            var graphWidth  = parseInt(isomatic.options.ui.attributes.graphWidth);
+            var graphHeight = parseInt(isomatic.options.ui.attributes.graphHeight, 10);
+            var graphWidth  = parseInt(isomatic.options.ui.attributes.graphWidth, 10);
 
 
             ////////////////////////////////////

@@ -23,7 +23,7 @@
          * @contructs
          */
         initialize: function () {
-            console.log('isomatic.options.Model initialized.');
+            console.log('isomatic.data.DataModel initialized.');
         }
 
     });
