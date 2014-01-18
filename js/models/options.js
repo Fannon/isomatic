@@ -52,6 +52,15 @@
             1000000000000, 2000000000000, 5000000000000
         ],
 
+        fontsArray: [
+            'Arial',
+            'Times New Roman',
+            'Georgia',
+            'Calibri'
+        ],
+
+        columnLegendHeight: 18,
+
         /** This example Dataset is loaded when the Application loads */
         exampleData: [
             {
@@ -177,7 +186,7 @@
          * Accepts 'row' and 'columns'
          * @type {string}
          */
-        colorize: 'row',
+        colorize: 'column',
 
         /**
          * This stores which row ID maps to which color
@@ -199,15 +208,31 @@
         /////////////////////////////
 
         /**
+         * Default Font Size for the Legend
+         */
+        legendFontSize: 12,
+
+        /**
          * Width of Graph Legend (in px)
          *
          * @type {Number}
          */
         legendWidth: 120,
 
-        headingHeight: 24,
+        /**
+         * Height / Size of Graphic Title
+         */
+        legendTitleHeight: 24,
 
-        rowsLegendFontSize: 14
+        /**
+         * Font Size of the Row Legend
+         */
+        rowsLegendFontSize: 14,
+
+        /**
+         * Decides if Column Legend is drawn or not
+         */
+        drawColumnLegend: true
 
 
     };
@@ -332,6 +357,30 @@
             legendWidth: {
                 required: true,
                 range: [0, 500]
+            },
+
+            /**
+             * Height / Size of Graphic Title
+             */
+            legendTitleHeight: {
+                required: true,
+                range: [0, 50]
+            },
+
+            /**
+             * Font Size of the Row Legend
+             */
+            rowsLegendFontSize: {
+                required: true,
+                range: [4, 50]
+            },
+
+            /**
+             * Decides if Column Legend is drawn or not
+             */
+            drawColumnLegend: {
+                required: true,
+                oneOf: [true, false]
             }
         }
     });

@@ -241,7 +241,7 @@
             var legendWidth          = parseInt(isomatic.options.ui.attributes.legendWidth, 10);
             var baseScale            = parseFloat(isomatic.data.meta.attributes.baseScale);
             var defaultIconSize      = isomatic.options.internal.defaultIconSize;
-            var headingHeight        = parseInt(isomatic.options.ui.attributes.headingHeight, 10);
+            var legendTitleHeight        = parseInt(isomatic.options.ui.attributes.legendTitleHeight, 10);
 
             var iconize              = isomatic.options.ui.attributes.iconize;
             var colorize             = isomatic.options.ui.attributes.colorize;
@@ -272,9 +272,9 @@
                         var x = d.pos * (iconSize + iconHorizontalMargin) + outerMargin + legendWidth;
                         var y = d.row * (iconSize + rowMargin) + outerMargin;
 
-                        // If HeadingHeight > 0, draw Header Title
-                        if (headingHeight > 0) {
-                            y += headingHeight + outerMargin;
+                        // If legendTitleHeight > 0, draw Header Title
+                        if (legendTitleHeight > 0) {
+                            y += legendTitleHeight + outerMargin;
                         }
 
                         var scale = baseScale * d.size;
@@ -340,7 +340,7 @@
             var iconSize           = parseFloat(isomatic.options.ui.attributes.iconSize);
             var defaultIconSize      = isomatic.options.internal.defaultIconSize;
 
-            var headingHeight      = parseInt(isomatic.options.ui.attributes.headingHeight, 10);
+            var legendTitleHeight      = parseInt(isomatic.options.ui.attributes.legendTitleHeight, 10);
             var rowsLegendFontSize = parseInt(isomatic.options.ui.attributes.rowsLegendFontSize, 10);
 
             var iconize            = isomatic.options.ui.attributes.iconize;
@@ -349,7 +349,7 @@
             var colorMap           = isomatic.options.ui.attributes.colorMap;
 
 
-            var columnLegendHeight = 18;
+            var columnLegendHeight = isomatic.options.internal.columnLegendHeight;
 
 
             ////////////////////////////////////
@@ -360,25 +360,22 @@
 
 
             ////////////////////////////////////
-            // Legend: Heading / Title        //
+            // Legend: Title                  //
             ////////////////////////////////////
 
-            // Heading (Title)
-            // TODO: Change 24px to Variable
+            if (legendTitleHeight > 0) {
 
-            if (headingHeight > 0) {
-
-                var heading = this.svg.append("g")
+                var title = this.svg.append("g")
                     .attr("class", "legend-heading")
                     .style("text-anchor", "start")
-                    .attr("transform", "translate(" + outerMargin + ", " + (outerMargin + headingHeight/2) + ")")
+                    .attr("transform", "translate(" + outerMargin + ", " + (outerMargin + legendTitleHeight/2) + ")")
                 ;
 
-                heading.append("text")
+                title.append("text")
                     .attr("class", "legend")
                     .text(isomatic.data.meta.attributes.title)
                     .attr("fill", "#000")
-                    .attr("font-size", headingHeight + "px")
+                    .attr("font-size", legendTitleHeight + "px")
                 ;
             }
 
@@ -418,8 +415,8 @@
 
                     var y = i * (iconSize + rowMargin) + outerMargin;
 
-                    if (headingHeight > 0) {
-                        y += headingHeight + outerMargin;
+                    if (legendTitleHeight > 0) {
+                        y += legendTitleHeight + outerMargin;
                     }
 
                     return "translate(0," + y + ")";
@@ -439,7 +436,12 @@
             // Legend: Columns                //
             ////////////////////////////////////
 
-            if (colorize !== 'column' && iconize !== 'column') {
+            if (!isomatic.options.ui.attributes.drawColumnLegend) {
+
+                // Dont draw any Column Legend
+
+
+            } else if (colorize !== 'column' && iconize !== 'column') {
 
                 // No Column Mapping!
                 // User did not assign the Column to either Color or Icon
@@ -472,7 +474,7 @@
                         .enter()
                         .append("g")
                         .attr("transform", function(d, i) {
-                            var x = i * legendWidth + outerMargin;
+                            var x = i * (legendWidth + columnLegendHeight) + outerMargin ;
                             var y = (graphHeight - outerMargin - columnLegendHeight);
                             return "translate(" + x + "," + y + ")";
                         })
@@ -512,7 +514,7 @@
                 }
 
                 columnsLegend.append("text")
-                    .attr("x", columnLegendHeight + 4)
+                    .attr("x", columnLegendHeight + 5)
                     .attr("y", columnLegendHeight / 2)
                     .attr("dy", ".35em")
                     .attr("font-size", "12px")

@@ -18,20 +18,25 @@
          * @contructs
          */
         initialize: function(){
+
             this.render();
+
+            // Set current Type active
+            var currentType = isomatic.options.ui.get('diagramType');
+            $('.select-type').removeClass('active');
+            $('#' + currentType + '-isotype').addClass('active');
         },
         render: function(){
 
             var source = $('#type-template').html();
             var template = Handlebars.compile(source);
             var html = template({
-                palettes: isomatic.options.internal.colorPalettes
+                type: isomatic.options.ui.attributes.type
             });
 
             this.$el.html(html);
         },
         events: {
-            "click #color": "colorClick",
             "click .select-type": "selectType"
         },
 

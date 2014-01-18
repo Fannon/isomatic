@@ -267,7 +267,7 @@
 
             <div class="ui-container">
                 <h4>Select Type</h4>
-                <div id="normal-isotype" class="select-type active">
+                <div id="normal-isotype" class="select-type">
                     <div class="type-title">
                         Normal
                     </div>
@@ -500,9 +500,6 @@
         <h3>Scale Settings</h3>
 
         <form>
-
-
-
             <div class="ui-container">
 
                 <h4>Set Scale</h4>
@@ -563,19 +560,43 @@
                     <option value="Arial">Arial</option>
                     <option value="Times New Roman">Times New Roman</option>
                 </select>
-
-                <input id="draw-column-legend" type="checkbox" checked><label for="draw-column-legend">Draw Column Legend</label>
             </div>
+
+
 
 
             <div class="ui-container">
                 <h4>Legend Settings</h4>
-                <label>Add Topic Description</label>
-                <textarea placeholder="Enter Description here.."></textarea>
+
+                <div class="row collapse">
+                    <label><img src="img/horizontalmargin.svg">Title Height / Size</label>
+                    <div class="small-10 columns">
+                        <input id="legend-title-height" name="legendTitleHeight" type="text" value="{{ options.legendTitleHeight }}">
+                    </div>
+                    <div class="small-2 columns">
+                        <span class="postfix radius">px</span>
+                    </div>
+                </div>
+
+                <div class="row collapse">
+                    <label><img src="img/horizontalmargin.svg">Row Legend Width (left)</label>
+                    <div class="small-10 columns">
+                        <input id="legend-width" name="legendWidth" type="text" value="{{ options.legendWidth }}">
+                    </div>
+                    <div class="small-2 columns">
+                        <span class="postfix radius">px</span>
+                    </div>
+                </div>
+
+                <input id="draw-column-legend" name="drawColumnLegend" type="checkbox" checked><label for="draw-column-legend">Draw Column Legend</label>
+
+
+                <!--<label>Add Topic Description</label>-->
+                <!--<textarea placeholder="Enter Description here.."></textarea>-->
             </div>
 
-            <a href="#" class="tiny button radius">Apply</a>
-            <a href="#" class="tiny button radius">Apply & Close</a>
+            <a id="text-apply" href="#" class="tiny button radius">Apply</a>
+            <a id="text-apply-close" href="#home" class="tiny button radius">Apply & Close</a>
         </form>
     </div>
 </script>
