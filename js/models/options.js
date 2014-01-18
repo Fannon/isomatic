@@ -134,7 +134,7 @@
         diagramType: 'normal',
 
         /** Margin to Canvas */
-        outerMargin: 10,
+        outerMargin: 20,
 
         /** Margin between Rows */
         rowMargin: 30,
@@ -203,7 +203,11 @@
          *
          * @type {Number}
          */
-        legendWidth: 250
+        legendWidth: 120,
+
+        headingHeight: 24,
+
+        rowsLegendFontSize: 14
 
 
     };

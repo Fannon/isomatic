@@ -200,13 +200,13 @@
                                 // Set Title
                                 title = obj;
                             } else {
-                                rows.push(obj);
+                                columns.push(obj);
                             }
                         }
 
                         if (columnCounter === 0) {
                             // Put first Column (Description) into a Column Array
-                            columns.push(currentRow[obj]);
+                            rows.push(currentRow[obj]);
                         } else {
                             values.push(parseInt(currentRow[obj], 10));
                             rowValue += parseInt(currentRow[obj], 10);
