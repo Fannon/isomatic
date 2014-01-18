@@ -331,19 +331,22 @@
             // Get & Parse Variables          //
             ////////////////////////////////////
 
-            var scale       = parseInt(isomatic.options.ui.attributes.scale, 10);
-            var legendWidth = parseInt(isomatic.options.ui.attributes.legendWidth, 10);
-            var rowMargin            = parseFloat(isomatic.options.ui.attributes.rowMargin);
-            var outerMargin = parseFloat(isomatic.options.ui.attributes.outerMargin);
-            var graphHeight = parseInt(isomatic.options.ui.attributes.graphHeight, 10);
-            var graphWidth  = parseInt(isomatic.options.ui.attributes.graphWidth, 10);
-            var iconSize    = parseFloat(isomatic.options.ui.attributes.iconSize);
+            var scale              = parseInt(isomatic.options.ui.attributes.scale, 10);
+            var legendWidth        = parseInt(isomatic.options.ui.attributes.legendWidth, 10);
+            var rowMargin          = parseFloat(isomatic.options.ui.attributes.rowMargin);
+            var outerMargin        = parseFloat(isomatic.options.ui.attributes.outerMargin);
+            var graphHeight        = parseInt(isomatic.options.ui.attributes.graphHeight, 10);
+            var graphWidth         = parseInt(isomatic.options.ui.attributes.graphWidth, 10);
+            var iconSize           = parseFloat(isomatic.options.ui.attributes.iconSize);
+            var defaultIconSize      = isomatic.options.internal.defaultIconSize;
 
-            var headingHeight    = parseInt(isomatic.options.ui.attributes.headingHeight, 10);
-            var rowsLegendFontSize    = parseInt(isomatic.options.ui.attributes.rowsLegendFontSize, 10);
+            var headingHeight      = parseInt(isomatic.options.ui.attributes.headingHeight, 10);
+            var rowsLegendFontSize = parseInt(isomatic.options.ui.attributes.rowsLegendFontSize, 10);
 
-            var iconMap     = isomatic.options.ui.attributes.iconMap;
-            var colorMap    = isomatic.options.ui.attributes.colorMap;
+            var iconize            = isomatic.options.ui.attributes.iconize;
+            var colorize           = isomatic.options.ui.attributes.colorize;
+            var iconMap            = isomatic.options.ui.attributes.iconMap;
+            var colorMap           = isomatic.options.ui.attributes.colorMap;
 
 
             var columnLegendHeight = 18;
@@ -357,7 +360,7 @@
 
 
             ////////////////////////////////////
-            // Draw Legend via D3.js          //
+            // Legend: Heading / Title        //
             ////////////////////////////////////
 
             // Heading (Title)
@@ -379,7 +382,11 @@
                 ;
             }
 
-            // Scale
+
+            ////////////////////////////////////
+            // Legend: Scale                  //
+            ////////////////////////////////////
+
             var scaleLegend = this.svg.append("g")
                 .attr("class", "legend-scale")
                 .style("text-anchor", "end")
@@ -394,9 +401,13 @@
                 .attr("fill", "#999999")
             ;
 
-            // Rows Legend
+
+            ////////////////////////////////////
+            // Legend: Rows                   //
+            ////////////////////////////////////
+
             var rowsLegend = this.svg.append("g")
-                .attr("class", "legend")
+                .attr("class", "row-legend")
                 .attr("width", legendWidth)
                 .attr("height", 25)
                 .selectAll("g")
@@ -424,41 +435,91 @@
             ;
 
 
-            // Columns Legend
-            var columnsLegend = this.svg.append("g")
+            ////////////////////////////////////
+            // Legend: Columns                //
+            ////////////////////////////////////
+
+            if (colorize !== 'column' && iconize !== 'column') {
+
+                // No Column Mapping!
+                // User did not assign the Column to either Color or Icon
+                // => Can't generate a Column Legend without Mapping
+
+                var noColumnLegend = this.svg.append("g")
+                        .attr("class", "no-column-legend")
+                        .style("text-anchor", "start")
+                        .attr("transform", "translate(" + outerMargin + ", " + (graphHeight - outerMargin) + ")")
+                    ;
+
+                noColumnLegend.append("text")
+                    .attr("x", 0)
+                    .attr("y", -3) // TODO: Hard coded Layout Fix
                     .attr("class", "legend")
-                    .attr("width", legendWidth)
-                    .attr("height", columnLegendHeight)
-                    .selectAll("g")
-                    .data(isomatic.data.meta.attributes.columns)
-                    .enter()
-                    .append("g")
-                    .attr("transform", function(d, i) {
-
-                        var x = i * legendWidth + outerMargin;
-
-                        var y = (graphHeight - outerMargin - columnLegendHeight);
-
-                        return "translate(" + x + "," + y + ")";
-                    })
+                    .text("Warning: No Mapping for the Columns!")
+                    .attr("fill", "#999999")
                 ;
 
-            columnsLegend.append("rect")
-                .attr("width", columnLegendHeight)
-                .attr("height", columnLegendHeight)
-                .style("fill", function(d, i) { return '#' + colorMap[i]; });
+            } else {
 
-            columnsLegend.append("text")
-                .attr("x", columnLegendHeight + 4)
-                .attr("y", columnLegendHeight / 2)
-                .attr("dy", ".35em")
-                .attr("font-size", "12px")
-                .attr("fill", "#999999")
-                .text(function(d) { return d; })
-            ;
+                // Column Mapping available
 
+                var columnsLegend = this.svg.append("g")
+                        .attr("class", "column-legend")
+                        .attr("width", legendWidth)
+                        .attr("height", columnLegendHeight)
+                        .selectAll("g")
+                        .data(isomatic.data.meta.attributes.columns)
+                        .enter()
+                        .append("g")
+                        .attr("transform", function(d, i) {
+                            var x = i * legendWidth + outerMargin;
+                            var y = (graphHeight - outerMargin - columnLegendHeight);
+                            return "translate(" + x + "," + y + ")";
+                        })
+                    ;
 
+                if (colorize === 'column') {
+                    columnsLegend.append("rect")
+                        .attr("class", "column-legend-color")
+                        .attr("width", columnLegendHeight)
+                        .attr("height", columnLegendHeight)
+                        .style("fill", function(d, i) { return '#' + colorMap[i]; })
+                    ;
+                }
 
+                if (iconize === 'column') {
+
+                    columnsLegend.append("g")
+                        .attr("class", "column-legend-icon")
+                        .attr("width", columnLegendHeight)
+                        .attr("height", columnLegendHeight)
+                        .attr("transform", function(d) {
+
+                            var scale = columnLegendHeight / defaultIconSize;
+
+                            return 'scale(' + scale + ')';
+
+                        })
+                        .html(function(d, i) {
+
+                            var category = iconMap[i].category;
+                            var name     = iconMap[i].name;
+
+                            return isomatic.icons[category].icons[name].svg;
+                        })
+                        .style("fill", function(d, i) { return '#000000'; })
+                    ;
+                }
+
+                columnsLegend.append("text")
+                    .attr("x", columnLegendHeight + 4)
+                    .attr("y", columnLegendHeight / 2)
+                    .attr("dy", ".35em")
+                    .attr("font-size", "12px")
+                    .attr("fill", "#999999")
+                    .text(function(d) { return d; })
+                ;
+            }
 
         },
 

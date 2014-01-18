@@ -177,7 +177,7 @@
          * Accepts 'row' and 'columns'
          * @type {string}
          */
-        colorize: 'column',
+        colorize: 'row',
 
         /**
          * This stores which row ID maps to which color
