@@ -342,6 +342,12 @@
             var headingHeight    = parseInt(isomatic.options.ui.attributes.headingHeight, 10);
             var rowsLegendFontSize    = parseInt(isomatic.options.ui.attributes.rowsLegendFontSize, 10);
 
+            var iconMap     = isomatic.options.ui.attributes.iconMap;
+            var colorMap    = isomatic.options.ui.attributes.colorMap;
+
+
+            var columnLegendHeight = 18;
+
 
             ////////////////////////////////////
             // Calculations                   //
@@ -362,7 +368,8 @@
                 var heading = this.svg.append("g")
                     .attr("class", "legend-heading")
                     .style("text-anchor", "start")
-                    .attr("transform", "translate(" + outerMargin + ", " + (outerMargin + headingHeight/2) + ")");
+                    .attr("transform", "translate(" + outerMargin + ", " + (outerMargin + headingHeight/2) + ")")
+                ;
 
                 heading.append("text")
                     .attr("class", "legend")
@@ -375,10 +382,13 @@
             // Scale
             var scaleLegend = this.svg.append("g")
                 .attr("class", "legend-scale")
-                .style("text-anchor", "start")
-                .attr("transform", "translate(" + outerMargin + ", " + (graphHeight - outerMargin) + ")");
+                .style("text-anchor", "end")
+                .attr("transform", "translate(" + (graphWidth - outerMargin) + ", " + (graphHeight - outerMargin) + ")")
+            ;
 
             scaleLegend.append("text")
+                .attr("x", 0)
+                .attr("y", -3) // TODO: Hard coded Layout Fix
                 .attr("class", "legend")
                 .text(scaleText)
                 .attr("fill", "#999999")
@@ -392,24 +402,62 @@
                 .selectAll("g")
                 .data(isomatic.data.meta.attributes.rows)
                 .enter()
-                    .append("g")
-                    .attr("transform", function(d, i) {
+                .append("g")
+                .attr("transform", function(d, i) {
 
-                        var y = i * (iconSize + rowMargin) + outerMargin;
+                    var y = i * (iconSize + rowMargin) + outerMargin;
 
-                        if (headingHeight > 0) {
-                            y += headingHeight + outerMargin;
-                        }
+                    if (headingHeight > 0) {
+                        y += headingHeight + outerMargin;
+                    }
 
-                        return "translate(0," + y + ")";
-                    });
+                    return "translate(0," + y + ")";
+                })
+            ;
 
             rowsLegend.append("text")
                 .attr("x", outerMargin)
                 .attr("y", iconSize / 2)
                 .attr("dy", ".35em")
                 .attr("font-size", "14px")
-                .text(function(d) { return d; });
+                .text(function(d) { return d; })
+            ;
+
+
+            // Columns Legend
+            var columnsLegend = this.svg.append("g")
+                    .attr("class", "legend")
+                    .attr("width", legendWidth)
+                    .attr("height", columnLegendHeight)
+                    .selectAll("g")
+                    .data(isomatic.data.meta.attributes.columns)
+                    .enter()
+                    .append("g")
+                    .attr("transform", function(d, i) {
+
+                        var x = i * legendWidth + outerMargin;
+
+                        var y = (graphHeight - outerMargin - columnLegendHeight);
+
+                        return "translate(" + x + "," + y + ")";
+                    })
+                ;
+
+            columnsLegend.append("rect")
+                .attr("width", columnLegendHeight)
+                .attr("height", columnLegendHeight)
+                .style("fill", function(d, i) { return '#' + colorMap[i]; });
+
+            columnsLegend.append("text")
+                .attr("x", columnLegendHeight + 4)
+                .attr("y", columnLegendHeight / 2)
+                .attr("dy", ".35em")
+                .attr("font-size", "12px")
+                .attr("fill", "#999999")
+                .text(function(d) { return d; })
+            ;
+
+
 
 
         },
