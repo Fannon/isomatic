@@ -444,13 +444,18 @@ button.tiny, .button.tiny {
       -webkit-user-drag: element;
     }
 
-    .dragging {
-      opacity: 0.4;
-    }
-
     .active {
       border-color: #333;
       box-shadow: 0 0 2px 1px #AAA;
+    }
+
+    .dragIcon {
+      width: 64px;
+    }
+
+    .smallIcon {
+      width: 32px;
+      height: 32px;
     }
 
   }

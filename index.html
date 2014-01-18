@@ -329,32 +329,20 @@
 
                 <div class="ui-container">
                     <h4 data-tooltip class="has-tip tip-right" title="Choose if Icons are mapped to Columns or Rows">Map to</h4>
-                    <input type="radio" name="radio2" value="row" id="icon-row" checked><label for="icon-row"><img src="img/row.svg"> Row</label>
-                    <input type="radio" name="radio2" value="column" id="icon-column"><label for="icon-column"><img src="img/column.svg"> Column</label>
+                    <input id="iconize-column" type="radio" name="radio2" value="column"><label for="iconize-column"><img src="img/column.svg"> Column</label>
+                    <input id="iconize-row" type="radio" name="radio2" value="row"><label for="iconize-row"><img src="img/row.svg"> Row</label>
                 </div>
 
 
                 <div class="ui-container">
                     <h4>Drag and Drop</h4>
 
-                    <div class="icon-mapping clearfix">
-                        <div class="group-container">
-                            <div class="group-id">Row 1</div>
-                            <img class="group-icon" src="img/person1_small.svg">
-                        </div>
-
-                        <div class="group-container">
-                            <div class="group-id">Row 1</div>
-                            <img class="group-icon" src="img/person1_small.svg">
-                        </div>
-
-                        <div class="group-container">
-                            <div class="group-id">Row 1</div>
-                            <img class="group-icon" src="img/person1_small.svg">
-                        </div>
-
+                    {{#each iconMap}}
+                    <div class="group-container">
+                        <div class="group-id">{{@key}}</div>
+                        <div id="icon-{{@index}}" class="group-icon"></div>
                     </div>
-
+                    {{/each}}
 
                 </div>
 
@@ -365,21 +353,20 @@
         </div>
 
         <div class="overlay-right">
-            <div class="ui-container">
+            <div class="ui-container clearfix">
                 <h4>Icon Library</h4>
+
+                {{#each iconLibrary}}
                 <div class="category">
-                    <label>People</label>
-                    <div class="category-icon" draggable="true">
-                       <img src="img/person1_main.svg">
+                    <legend>{{this.name}}</legend>
+                    {{#each this.icons}}
+
+                    <div id="{{this.id}}" class="category-icon" content="{{this.svg}}">
+
                     </div>
-                    <div class="category-icon" draggable="true">
-                        <img src="img/person2_main.svg">
-                    </div>
-                    <div class="category-icon" draggable="true">
-                        <img src="img/person3_main.svg">
-                    </div>
+                    {{/each}}
                 </div>
-                <div class="clearfix"></div>
+                {{/each}}
             </div>
         </div>
     </div>
