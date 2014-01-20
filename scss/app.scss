@@ -417,15 +417,19 @@ button.tiny, .button.tiny {
       border: 1px solid #CCC;
     }
 
-    .category-icon {
+    .category-border {
       background-color: #FFF;
-      padding: 5px;
-      width: 64px;
-      height: 64px;
+      width: 40px;
+      height: 40px;
       float: left;
       margin-right: 10px;
       cursor: move;
-      border: 5px solid #bbb;
+      border: 1px solid #bbb;
+    }
+
+    .category-icon {
+      height: 32px;
+      padding: 3px;
     }
 
     legend {
@@ -447,10 +451,6 @@ button.tiny, .button.tiny {
     .active {
       border-color: #333;
       box-shadow: 0 0 2px 1px #AAA;
-    }
-
-    .dragIcon {
-      width: 64px;
     }
 
     .smallIcon {

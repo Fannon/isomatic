@@ -361,8 +361,8 @@
                     <legend>{{this.name}}</legend>
                     {{#each this.icons}}
 
-                    <div id="{{this.id}}" class="category-icon" content="{{this.svg}}">
-
+                    <div class="category-border">
+                        <div id="{{this.id}}" class="category-icon" draggable="true" content="{{this.svg}}"></div>
                     </div>
                     {{/each}}
                 </div>

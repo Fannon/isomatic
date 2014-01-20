@@ -94,7 +94,7 @@
             "click #iconize-row": "iconizeRow",
             "drop .group-icon": "handleDrop",
             "dragover .group-icon": "allowDrop",
-            "dragstart .dragIcon": "handleDrag",
+            "dragstart .category-icon": "handleDrag",
             "click #iconize-apply": "apply",
             "click #iconize-apply-close": "apply"
 
@@ -141,17 +141,28 @@
          * @param e
          */
         handleDrop: function(e) {
+
+            console.log(e.target);
+
+            var targetContainer = e.currentTarget.id.split('-')[1];
+
             e.preventDefault();
             var data = e.originalEvent.dataTransfer.getData("Text");
-
-
 
             if ($(e.target).children.length > 0) {
                 $(document.getElementById("choice")).remove();
             }
 
-            $(document.getElementById(data)).clone().attr('id', 'choice').appendTo(e.target);
-            $('#choice').addClass("smallIcon");
+            $(document.getElementById(data)).clone().attr('id', 'choice-' + targetContainer).appendTo(e.target);
+            $('#choice-' + targetContainer).addClass("smallIcon");
+
+//            var mySvg = document.querySelector("#choise-" + targetContainer);
+//            console.log(mySvg);
+
+
+//            myPath.setAttribute('class', 'container-' + targetContainer);
+//            mySvg.setAttribute('class', 'container-' + targetContainer);
+
         }
     });
 
