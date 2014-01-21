@@ -45,7 +45,8 @@ var isomatic = {};
 
         views.dataView       = new views.DataView({el: $("#data-container")});
         views.typeView       = new views.TypeView({el: $("#type-container")});
-        views.iconView       = new views.IconView({el: $("#icon-container")});
+        views.iconMapView       = new views.IconMapView({el: $("#icon-left-container")});
+        views.iconLibraryView       = new views.IconLibraryView({el: $("#icon-right-container")});
         views.colorView      = new views.ColorView({el: $("#color-container")});
         views.propertiesView = new views.AdjustmentsView({el: $("#adjustments-container")});
         views.scaleView      = new views.ScaleView({el: $("#scale-container")});

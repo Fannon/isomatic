@@ -5,14 +5,14 @@
     "use strict";
 
     /**
-     * Icon View
+     * Icon Map View
      *
      * @type {*|void|Object}
      */
-    isomatic.views.IconView = Backbone.View.extend( /** @lends IconView.prototype */ {
+    isomatic.views.IconMapView = Backbone.View.extend( /** @lends IconMapView.prototype */ {
 
         /**
-         * @class IconView
+         * @class IconMapView
          *
          * @augments Backbone.View
          * @contructs
@@ -32,13 +32,13 @@
         /** Render Icon View */
         render: function(){
 
-            console.info('IconView.render();');
+            console.info('IconMapView.render();');
 
             var iconId, svg;
             var i = 0;
             var iconMapping = {};
 
-            var source = $('#icon-template').html();
+            var source = $('#icon-left-template').html();
             var template = Handlebars.compile(source);
             var iconMap = isomatic.options.ui.attributes.iconMap;
 
@@ -63,8 +63,7 @@
 
             var html = template({
                 options: this.model.attributes,
-                iconMapping: iconMapping,
-                iconLibrary: isomatic.icons
+                iconMapping: iconMapping
             });
 
             this.$el.html(html);
@@ -81,7 +80,7 @@
             // Display SVG Icons:
             // Take SVG Paths out from helper attribute "svg-content" and parse it into the div
             // SVG can't be parsed with the template engine!
-            $('.category-icon, .group-icon').each(
+            $('.group-icon').each(
                 function(){
                     var el = $(this);
                     var content = el.attr('svg-content');
@@ -90,11 +89,6 @@
                     el.removeAttr('svg-content');
                 }
             );
-
-            // Init Scrollbar
-            $('.scrollbar').slimScroll({
-                'height': isomatic.options.ui.attributes.graphHeight
-            });
 
         },
 
@@ -107,10 +101,8 @@
             "click #iconize-row": "iconizeRow",
             "drop .group-container": "handleDrop",
             "dragover .group-container": "allowDrop",
-            "dragstart .category-icon": "handleDrag",
             "click #icon-apply": "apply",
             "click #icon-apply-close": "apply"
-
         },
 
         /**
@@ -158,14 +150,6 @@
          */
         allowDrop: function(e) {
             e.preventDefault();
-        },
-
-        /**
-         * Drag and Drop dragging
-         * @param e
-         */
-        handleDrag: function(e) {
-            e.originalEvent.dataTransfer.setData("Text", e.target.id);
         },
 
         /**

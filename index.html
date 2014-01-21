@@ -71,10 +71,19 @@
                 <div id="type-container" class="overlay-container" style="display: none"></div>
 
                 <!-- Icon Settings -->
-                <div id="icon-container" class="overlay-container" style="display: none"></div>
+                <div id="icon-container" class="overlay-container" style="display: none">
+                    <div id="overlay-icon">
+                        <h3>Icon Settings</h3>
+                        <div id="icon-left-container" class="overlay-left"></div>
+
+                        <div id="icon-right-container" class="overlay-right"></div>
+                    </div>
+                </div>
 
                 <!-- Color Settings -->
-                <div id="color-container" class="overlay-container" style="display: none"></div>
+                <div id="color-container" class="overlay-container" style="display: none">
+
+                </div>
 
                 <!-- Adjustments -->
                 <div id="adjustments-container" class="overlay-container" style="display: none"></div>
@@ -133,7 +142,8 @@
 <script src="js/views/HelpView.js"></script>
 <script src="js/views/DataView.js"></script>
 <script src="js/views/TypeView.js"></script>
-<script src="js/views/IconView.js"></script>
+<script src="js/views/IconMapView.js"></script>
+<script src="js/views/IconLibraryView.js"></script>
 <script src="js/views/ColorView.js"></script>
 <script src="js/views/AdjustmentsView.js"></script>
 <script src="js/views/ScaleView.js"></script>
@@ -318,60 +328,52 @@
     </div>
 </script>
 
-<!-- Icon Template -->
-<script type="text/template" id="icon-template">
-    <div id="overlay-icon">
-        <h3>Icon Settings</h3>
+<!-- Icon Chooser Template -->
+<script type="text/template" id="icon-left-template">
+    <form>
 
-        <div class="overlay-left">
-
-            <form>
-
-                <div class="ui-container">
-                    <h4><span data-tooltip class="has-tip tip-right" title="Choose if Icons are mapped to Columns or Rows">Map to</span></h4>
-                    <input id="iconize-column" type="radio" name="radio2" value="column"><label for="iconize-column"><img src="img/column.svg"> Column</label>
-                    <input id="iconize-row" type="radio" name="radio2" value="row"><label for="iconize-row"><img src="img/row.svg"> Row</label>
-                </div>
-
-
-                <div class="ui-container">
-                    <h4>Drag and Drop</h4>
-
-                    {{#each iconMapping}}
-                    <div id="group-{{@index}}" class="group-container">
-                        <div class="group-id">{{@key}}</div>
-                        <div id="mapping-{{this.id}}" class="group-icon" svg-content="{{this.svg}}"></div>
-                    </div>
-                    {{/each}}
-
-                </div>
-
-                <a id="icon-apply" href="#" class="tiny button radius">Apply</a>
-                <a id="icon-apply-close" href="#home" class="tiny button radius">Apply & Close</a>
-
-            </form>
+        <div class="ui-container">
+            <h4><span data-tooltip class="has-tip tip-right" title="Choose if Icons are mapped to Columns or Rows">Map to</span></h4>
+            <input id="iconize-column" type="radio" name="radio2" value="column"><label for="iconize-column"><img src="img/column.svg"> Column</label>
+            <input id="iconize-row" type="radio" name="radio2" value="row"><label for="iconize-row"><img src="img/row.svg"> Row</label>
         </div>
 
-        <div class="overlay-right">
-            <div class="ui-container clearfix">
-                <h4>Icon Library</h4>
+        <div class="ui-container">
+            <h4>Drag and Drop</h4>
 
-                {{#each iconLibrary}}
-                <div class="category">
-                    <legend>{{this.name}}</legend>
-                    {{#each this.icons}}
-
-                    <div class="category-border">
-                        <div id="library-{{this.id}}" class="category-icon" draggable="true" svg-content="{{this.svg}}"></div>
-                    </div>
-                    {{/each}}
-                </div>
-                {{/each}}
+            {{#each iconMapping}}
+            <div id="group-{{@index}}" class="group-container">
+                <div class="group-id">{{@key}}</div>
+                <div id="mapping-{{this.id}}" class="group-icon" svg-content="{{this.svg}}"></div>
             </div>
+            {{/each}}
+
         </div>
-    </div>
+
+        <a id="icon-apply" href="#" class="tiny button radius">Apply</a>
+        <a id="icon-apply-close" href="#home" class="tiny button radius">Apply & Close</a>
+
+    </form>
 </script>
 
+<!-- Icon Library  Template -->
+<script type="text/template" id="icon-right-template">
+    <div class="ui-container clearfix">
+        <h4>Icon Library</h4>
+
+        {{#each iconLibrary}}
+        <div class="category">
+            <legend>{{this.name}}</legend>
+            {{#each this.icons}}
+
+            <div class="category-border">
+                <div id="library-{{this.id}}" class="category-icon" draggable="true" svg-content="{{this.svg}}"></div>
+            </div>
+            {{/each}}
+        </div>
+        {{/each}}
+    </div>
+</script>
 
 <!-- Color Template -->
 <script type="text/template" id="color-template">
