@@ -35,6 +35,8 @@
         /** Icon Size of the SVG Paths in defaultIcons.js */
         defaultIconSize: 32,
 
+        maxIconSize: 64,
+
         /** Default Color if none is chosen yet */
         defaultColor: 'CCCCCC',
 

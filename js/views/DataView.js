@@ -178,6 +178,9 @@
 
             var data = this.model.get('data');
 
+            var iconMap     = isomatic.options.ui.attributes.iconMap;
+            var colorMap    = isomatic.options.ui.attributes.colorMap;
+
 
             ///////////////////////////////////////
             // Analyse Values, Rows and Columns  //
@@ -219,6 +222,32 @@
                 rowValues[rowCounter] = rowValue;
             }
 
+            // Check if ColorMap and IconMap are big enough for current Dataset.
+            // If not, fill them up with default Values
+
+            // Used for Calculations
+            var diff, i, j;
+            var maxSize     = Math.max(columns.length, rows.length);
+
+            // Adjust ColorMap
+            diff = maxSize - colorMap.length;
+            if (diff > 0) {
+                console.log('ColorMap misses ' + diff + 'Colors');
+                for (i = 0; i <= diff; i++) {
+                    colorMap.push(isomatic.options.internal.defaultColor);
+                }
+            }
+
+            // Adjust IconMap
+            diff = maxSize - iconMap.length;
+            if (diff > 0) {
+                console.log('IconMap misses ' + diff + 'Icons');
+                for (j = 0; j <= diff; j++) {
+                    iconMap.push(isomatic.options.internal.defaultIcon);
+                }
+            }
+
+
             isomatic.data.meta.set({
                 min: d3.min(values),
                 max: d3.max(values),
@@ -227,8 +256,12 @@
                 rows: rows,
                 columns: columns,
                 rowValues: rowValues,
-                maxRowValues: d3.max(rowValues)
+                maxRowValues: d3.max(rowValues),
+                iconMap: iconMap,
+                colorMap: colorMap
+
             });
+
 
             ///////////////////////////////////////
             // Calculate a recommended Scale     //

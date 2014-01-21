@@ -94,7 +94,6 @@
             var defaultIconSize      = isomatic.options.internal.defaultIconSize;
 
             var iconsPerRow          = [];
-            var iconSize;
 
 
             ////////////////////////////////////
@@ -113,12 +112,17 @@
                 }
             }
 
-            var maxIconsPerRow = d3.max(iconsPerRow);
 
             // Calculate Base Scale for Icons depending on biggest Row. (Fit to width)
-            var widthLeft = graphWidth - (maxIconsPerRow * iconHorizontalMargin) - 2 * outerMargin - legendWidth;
-            var baseScale = widthLeft / (maxIconsPerRow * 32);
+            var maxIconsPerRow     = d3.max(iconsPerRow);
+            var widthLeft          = graphWidth - (maxIconsPerRow * iconHorizontalMargin) - 2 * outerMargin - legendWidth;
+            var baseScale          = widthLeft / (maxIconsPerRow * defaultIconSize);
             var calculatedIconSize = Math.round(baseScale * defaultIconSize * 1000) / 1000;
+
+            // Set maximum Icon Size
+            if (calculatedIconSize > isomatic.options.internal.maxIconSize) {
+                calculatedIconSize = isomatic.options.internal.maxIconSize;
+            }
 
             isomatic.data.meta.set({
                 iconsPerRow: iconsPerRow,
@@ -149,7 +153,7 @@
             this.isotypeLayout = new d3.layout.isotype();
 
             var roundDown = parseFloat(isomatic.options.ui.get("roundDown"));
-            var roundUp = parseFloat(isomatic.options.ui.get("roundUp"));
+            var roundUp   = parseFloat(isomatic.options.ui.get("roundUp"));
 
             // If Round Size is disabled, set both to 0.5 to deactivate this feature
             if (!isomatic.options.ui.attributes.roundSize) {
@@ -183,14 +187,6 @@
 
             var graphHeight = parseInt(isomatic.options.ui.attributes.graphHeight, 10);
             var graphWidth  = parseInt(isomatic.options.ui.attributes.graphWidth, 10);
-            var baseScale            = parseFloat(isomatic.data.meta.attributes.baseScale);
-            var defaultIconSize      = isomatic.options.internal.defaultIconSize;
-            var iconMap     = isomatic.options.ui.attributes.iconMap;
-            var colorMap    = isomatic.options.ui.attributes.colorMap;
-
-            // Used for Calculations
-            var diff;
-            var maxSize     = Math.max(isomatic.data.meta.attributes.columns.length, isomatic.data.meta.attributes.rows.length);
 
 
             ////////////////////////////////////
@@ -202,43 +198,12 @@
 
             // Create new SVG Container for D3.js
             this.svg = d3.select("#graph").append("svg")
-                .attr("width", parseInt(isomatic.options.ui.attributes.graphWidth, 10))
-                .attr("height", parseInt(isomatic.options.ui.attributes.graphHeight, 10))
+                .attr("width", graphWidth)
+                .attr("height", graphHeight)
                 .append("g")
                 .attr("id", "isotype")
             ;
 
-
-            //////////////////////////////////////
-            // Adjust ColorMap and IconMap Size //
-            //////////////////////////////////////
-
-            // Check if ColorMap and IconMap are big enough for current Dataset.
-            // If not, fill them up with default Values
-
-
-            // Adjust ColorMap
-            diff = maxSize - colorMap.length;
-            if (diff > 0) {
-                console.log('ColorMap misses ' + diff + 'Colors');
-                for (var i = 0; i < diff; i++) {
-                    colorMap.push(isomatic.options.internal.defaultColor);
-                }
-            }
-            isomatic.options.ui.set({colorMap: colorMap});
-
-            // Adjust IconMap
-            diff = maxSize - iconMap.length;
-            if (diff > 0) {
-                console.log('IconMap misses ' + diff + 'Icons');
-                for (var j = 0; j < diff; j++) {
-                    iconMap.push(isomatic.options.internal.defaultIcon);
-                }
-            }
-
-            isomatic.options.ui.set({
-                iconMap: iconMap
-            });
 
         },
 
@@ -263,10 +228,10 @@
             var graphWidth           = parseInt(isomatic.options.ui.attributes.graphWidth, 10);
             var legendWidth          = parseInt(isomatic.options.ui.attributes.legendWidth, 10);
             var baseScale            = parseFloat(isomatic.data.meta.attributes.baseScale);
-//            var defaultIconSize      = isomatic.options.internal.defaultIconSize;
             var legendTitleHeight    = parseInt(isomatic.options.ui.attributes.legendTitleHeight, 10);
             var iconSize             = parseFloat(isomatic.options.ui.attributes.iconSize);
-            var calculatedIconSize   = parseFloat(isomatic.options.ui.attributes.calculatedIconSize);
+            var defaultIconSize      = isomatic.options.internal.defaultIconSize;
+
 
             var iconize              = isomatic.options.ui.attributes.iconize;
             var colorize             = isomatic.options.ui.attributes.colorize;
@@ -298,6 +263,8 @@
                         if (legendTitleHeight > 0) {
                             y += legendTitleHeight + outerMargin;
                         }
+
+                        var baseScale = iconSize / defaultIconSize;
 
                         var scale = baseScale * d.size;
 
@@ -360,9 +327,9 @@
             var graphHeight        = parseInt(isomatic.options.ui.attributes.graphHeight, 10);
             var graphWidth         = parseInt(isomatic.options.ui.attributes.graphWidth, 10);
             var iconSize           = parseFloat(isomatic.options.ui.attributes.iconSize);
-            var defaultIconSize      = isomatic.options.internal.defaultIconSize;
+            var defaultIconSize    = isomatic.options.internal.defaultIconSize;
 
-            var legendTitleHeight      = parseInt(isomatic.options.ui.attributes.legendTitleHeight, 10);
+            var legendTitleHeight  = parseInt(isomatic.options.ui.attributes.legendTitleHeight, 10);
             var rowsLegendFontSize = parseInt(isomatic.options.ui.attributes.rowsLegendFontSize, 10);
 
             var iconize            = isomatic.options.ui.attributes.iconize;

@@ -99,7 +99,6 @@ var isomatic = {};
 
         isomatic.views.dataView.analyze();
 
-
         // Refresh Layout
         isomatic.refreshLayout();
 
