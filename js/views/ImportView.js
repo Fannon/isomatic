@@ -141,7 +141,7 @@
                 var dataErrors = isomatic.data.raw.validate(data);
 
                 if (!dataErrors) {
-                    isomatic.data.raw.set(data);
+                    isomatic.data.raw.attributes.data = importObject.data;
                 } else {
                     this.printErrorMessage('Imported Options not valid! <br>(Detailed Error Report is in the Dev Console)');
                     console.dir(dataErrors);

@@ -66,6 +66,9 @@
             }
         },
 
+        /**
+         * Activates and deactivates Rounding Input Boxes depending on if they are used or not
+         */
         activateRoundSize: function() {
             if ($('#round-size').prop('checked')) {
                 $('#round-up').prop("disabled", false);
