@@ -63,10 +63,10 @@
          * They have to be Font Stacks (TODO!)
          */
         availableFonts: {
-            'Arial': 'Arial',
-            'Times New Roman': 'Times New Roman',
-            'Georgia': 'Georgia',
-            'Calibri': 'Calibri'
+            'Arial': 'Frutiger, "Frutiger Linotype", Univers, Calibri, "Gill Sans", "Gill Sans MT", "Myriad Pro", Myriad, "DejaVu Sans Condensed", "Liberation Sans", "Nimbus Sans L", Tahoma, Geneva, "Helvetica Neue", Helvetica, Arial, sans-serif',
+            'Times New Roman': 'Cambria, "Hoefler Text", Utopia, "Liberation Serif", "Nimbus Roman No9 L Regular", Times, "Times New Roman", serif',
+            'Georgia': 'Constantia, "Lucida Bright", Lucidabright, "Lucida Serif", Lucida, "DejaVu Serif", "Bitstream Vera Serif", "Liberation Serif", Georgia, serif',
+            'Verdana': 'Corbel, "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "DejaVu Sans", "Bitstream Vera Sans", "Liberation Sans", Verdana, "Verdana Ref", sans-serif'
         },
 
         columnLegendHeight: 18,
