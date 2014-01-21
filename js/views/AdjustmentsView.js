@@ -47,6 +47,8 @@
 
             Backbone.Validation.bind(this);
 
+            this.activateIconSize();
+
         },
 
         /**
@@ -59,7 +61,8 @@
          */
         events: {
             "click #adjustments-apply": "apply",
-            "click #adjustments-apply-close": "apply"
+            "click #adjustments-apply-close": "apply",
+            "click #auto-icon-size": "activateIconSize"
         },
 
         /**
@@ -72,7 +75,8 @@
                 'iconHorizontalMargin': $('#icon-horizontal-margin').val(),
                 'rowMargin': $('#row-margin').val(),
 //                'columnMargin': $('#column-margin').val(),
-                'iconSize': $('#icon-size').val()
+                'iconSize': $('#icon-size').val(),
+                'autoIconSize': $('#auto-icon-size').prop('checked')
             };
 
             var isValid = this.model.set(state, {validate: true});
@@ -81,6 +85,14 @@
                 isomatic.refreshLayout();
             }
 
+        },
+
+        activateIconSize: function() {
+            if ($('#auto-icon-size').prop('checked')) {
+                $('#icon-size').prop("disabled", true);
+            } else {
+                $('#icon-size').prop("disabled", false);
+            }
         }
 
     });

@@ -189,10 +189,6 @@ button.tiny, .button.tiny {
   h4, h4:hover {
     border-bottom: 1px solid #CCC;
   }
-
-  #icon-size {
-    background-color: #EDEDED;
-  }
 }
 
 
@@ -438,19 +434,6 @@ button.tiny, .button.tiny {
       -khtml-user-select: none;
       -webkit-user-select: none;
       user-select: none;
-      /* Required to make elements draggable in old WebKit */
-      -khtml-user-drag: element;
-      -webkit-user-drag: element;
-    }
-
-    .active {
-      border-color: #333;
-      box-shadow: 0 0 2px 1px #AAA;
-    }
-
-    .smallIcon {
-      width: 32px;
-      height: 32px;
     }
 
   }

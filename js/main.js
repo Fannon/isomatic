@@ -117,8 +117,7 @@ var isomatic = {};
         isomatic.views.graphView.layout();
 
         // Precalculate Layout and save it into the Metadata Object.
-        isomatic.views.graphView.precalculate();
-
+        isomatic.views.graphView.preCalculate();
 
         // Refresh Design, too
         isomatic.refreshDesign();

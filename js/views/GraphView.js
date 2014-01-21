@@ -77,9 +77,9 @@
          * Precalculates the visual Layout. Recommends some options like Icon-Size.
          * Stores the data into the isomatic.data.meta Model
          */
-        precalculate: function() {
+        preCalculate: function() {
 
-            console.log('GraphView.precalculate();');
+            console.log('GraphView.preCalculate();');
 
 
             ////////////////////////////////////
@@ -94,6 +94,7 @@
             var defaultIconSize      = isomatic.options.internal.defaultIconSize;
 
             var iconsPerRow          = [];
+            var iconSize;
 
 
             ////////////////////////////////////
@@ -117,7 +118,7 @@
             // Calculate Base Scale for Icons depending on biggest Row. (Fit to width)
             var widthLeft = graphWidth - (maxIconsPerRow * iconHorizontalMargin) - 2 * outerMargin - legendWidth;
             var baseScale = widthLeft / (maxIconsPerRow * 32);
-            var iconSize  = baseScale * defaultIconSize;
+            var calculatedIconSize = Math.round(baseScale * defaultIconSize * 1000) / 1000;
 
             isomatic.data.meta.set({
                 iconsPerRow: iconsPerRow,
@@ -125,7 +126,15 @@
                 baseScale: baseScale
             });
 
-            isomatic.options.ui.set({iconSize: iconSize});
+            isomatic.options.ui.set({
+                calculatedIconSize: calculatedIconSize
+            });
+
+            if (isomatic.options.ui.attributes.autoIconSize) {
+                isomatic.options.ui.set({
+                    iconSize: calculatedIconSize
+                });
+            }
         },
 
         /**
@@ -174,18 +183,19 @@
 
             var graphHeight = parseInt(isomatic.options.ui.attributes.graphHeight, 10);
             var graphWidth  = parseInt(isomatic.options.ui.attributes.graphWidth, 10);
+            var baseScale            = parseFloat(isomatic.data.meta.attributes.baseScale);
+            var defaultIconSize      = isomatic.options.internal.defaultIconSize;
             var iconMap     = isomatic.options.ui.attributes.iconMap;
             var colorMap    = isomatic.options.ui.attributes.colorMap;
 
             // Used for Calculations
-            var diff        = 0;
+            var diff;
             var maxSize     = Math.max(isomatic.data.meta.attributes.columns.length, isomatic.data.meta.attributes.rows.length);
 
 
             ////////////////////////////////////
             // Prepare Graph Container        //
             ////////////////////////////////////
-
 
             // Empty Canvas before Drawing
             $('#graph').html('');
@@ -225,7 +235,10 @@
                     iconMap.push(isomatic.options.internal.defaultIcon);
                 }
             }
-            isomatic.options.ui.set({iconMap: iconMap});
+
+            isomatic.options.ui.set({
+                iconMap: iconMap
+            });
 
         },
 
@@ -250,8 +263,10 @@
             var graphWidth           = parseInt(isomatic.options.ui.attributes.graphWidth, 10);
             var legendWidth          = parseInt(isomatic.options.ui.attributes.legendWidth, 10);
             var baseScale            = parseFloat(isomatic.data.meta.attributes.baseScale);
-            var defaultIconSize      = isomatic.options.internal.defaultIconSize;
+//            var defaultIconSize      = isomatic.options.internal.defaultIconSize;
             var legendTitleHeight    = parseInt(isomatic.options.ui.attributes.legendTitleHeight, 10);
+            var iconSize             = parseFloat(isomatic.options.ui.attributes.iconSize);
+            var calculatedIconSize   = parseFloat(isomatic.options.ui.attributes.calculatedIconSize);
 
             var iconize              = isomatic.options.ui.attributes.iconize;
             var colorize             = isomatic.options.ui.attributes.colorize;
@@ -259,12 +274,9 @@
             var colorMap             = isomatic.options.ui.attributes.colorMap;
 
 
-
             ////////////////////////////////////
             // Calculations                   //
             ////////////////////////////////////
-
-            var iconSize = baseScale * defaultIconSize;
 
 
             ////////////////////////////////////
@@ -497,7 +509,7 @@
                         })
                     ;
 
-                if (colorize === 'column') {
+                if (colorize === 'column' && iconize === 'row') {
                     columnsLegend.append("rect")
                         .attr("class", "column-legend-color")
                         .attr("width", columnLegendHeight)
@@ -526,7 +538,14 @@
 
                             return svg;
                         })
-                        .style("fill", function(d, i) { return '#000000'; })
+                        .style("fill", function(d, i) {
+
+                            if (colorize === 'column') {
+                                return '#' + colorMap[i];
+                            } else {
+                                return '#000000';
+                            }
+                        })
                     ;
                 }
 

@@ -179,8 +179,14 @@
         /** Ceil value if Remainder is above */
         roundUp: 0.8,
 
+        /** If true, Size of Icons is automatically set to fit width of canvas */
+        autoIconSize: true,
+
         /** Icon Size */
         iconSize: 0,
+
+        /** Auto calculated Icon Size -> This fits the canvas width */
+        calculatedIconSize: 0,
 
         scale: 0,
 
@@ -351,6 +357,11 @@
             roundUp: {
                 required: true,
                 range: [0, 1]
+            },
+
+            autoIconSize: {
+                required: true,
+                oneOf: [true, false]
             },
 
             iconSize: {
