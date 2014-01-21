@@ -68,11 +68,11 @@
 
         activateRoundSize: function() {
             if ($('#round-size').prop('checked')) {
-                $('#round-up').prop("disabled", true);
-                $('#round-down').prop("disabled", true);
-            } else {
                 $('#round-up').prop("disabled", false);
                 $('#round-down').prop("disabled", false);
+            } else {
+                $('#round-up').prop("disabled", true);
+                $('#round-down').prop("disabled", true);
             }
         }
     });
