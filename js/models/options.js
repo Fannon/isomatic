@@ -170,6 +170,9 @@
         /** Break a Row into several Rows visually if number icons exceed this */
         breakRow: false,
 
+        /** Allow RoundUp and RoundDown of the IconSize */
+        roundSize: true,
+
         /** Floor value if Remainder is below */
         roundDown: 0.3,
 

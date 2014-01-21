@@ -37,11 +37,21 @@
             });
             this.$el.html(html);
 
+            if (!isomatic.options.ui.attributes.roundSize) {
+                $('#round-size').removeAttr('checked');
+            }
+
+            this.activateRoundSize();
+
+
+
         },
         model: isomatic.options.ui,
+
         events: {
             "click #scale-apply": "apply",
-            "click #scale-apply-close": "apply"
+            "click #scale-apply-close": "apply",
+            "click #round-size": "activateRoundSize"
         },
 
         /**
@@ -52,7 +62,8 @@
             var state = {
                 'scale': $('#scale').val(),
                 'roundUp': $('#round-up').val(),
-                'roundDown': $('#round-down').val()
+                'roundDown': $('#round-down').val(),
+                'roundSize': $('#round-size').prop('checked')
             };
 
             var isValid = this.model.set(state, {validate: true});
@@ -60,7 +71,16 @@
             if (isValid) {
                 isomatic.refreshLayout();
             }
+        },
 
+        activateRoundSize: function() {
+            if ($('#round-size').prop('checked')) {
+                $('#round-up').prop("disabled", false);
+                $('#round-down').prop("disabled", false);
+            } else {
+                $('#round-up').prop("disabled", true);
+                $('#round-down').prop("disabled", true);
+            }
         }
     });
 

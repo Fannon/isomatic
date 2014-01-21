@@ -139,8 +139,18 @@
 
             this.isotypeLayout = new d3.layout.isotype();
 
-            this.isotypeLayout.roundDown(parseFloat(isomatic.options.ui.get("roundDown")))
-                .roundUp(parseFloat(isomatic.options.ui.get("roundUp")))
+            var roundDown = parseFloat(isomatic.options.ui.get("roundDown"));
+            var roundUp = parseFloat(isomatic.options.ui.get("roundUp"));
+
+            // If Round Size is disabled, set both to 0.5 to deactivate this feature
+            if (!isomatic.options.ui.attributes.roundSize) {
+                roundDown = 0.5;
+                roundUp = 0.5;
+            }
+
+            this.isotypeLayout
+                .roundDown(roundDown)
+                .roundUp(roundUp)
                 .scale(parseFloat(isomatic.options.ui.get("scale")))
             ;
 
