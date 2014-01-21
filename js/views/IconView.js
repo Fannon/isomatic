@@ -34,27 +34,36 @@
 
             console.info('IconView.render();');
 
+            var iconId, svg;
+            var i = 0;
+            var iconMapping = {};
+
             var source = $('#icon-template').html();
             var template = Handlebars.compile(source);
+            var iconMap = isomatic.options.ui.attributes.iconMap;
 
-            // Calculate current Colormap
-            var iconMap = {};
-            var i = 0;
-            if (isomatic.options.ui.attributes.iconize === 'row') {
+            // Calculate current IconMap
+            if (isomatic.options.ui.attributes.iconize === 'column') {
                 for (i = 0; i < isomatic.data.meta.attributes.columns.length; i++) {
-                    var svg = isomatic.icons[isomatic.options.ui.attributes.iconMap[i].category].icons[isomatic.options.ui.attributes.iconMap[i].name].svg;
-
-                    iconMap[isomatic.data.meta.attributes.columns[i]] = svg;
+                    iconId = iconMap[i].split('-');
+                    svg = isomatic.icons[iconId[0]].icons[iconId[1]].svg;
+                    iconMapping[isomatic.data.meta.attributes.columns[i]] = {};
+                    iconMapping[isomatic.data.meta.attributes.columns[i]].svg = svg;
+                    iconMapping[isomatic.data.meta.attributes.columns[i]].id = iconMap[i];
                 }
             } else {
                 for (i = 0; i < isomatic.data.meta.attributes.rows.length; i++) {
-                    iconMap[isomatic.data.meta.attributes.rows[i]] = isomatic.options.ui.attributes.iconMap[i];
+                    iconId = iconMap[i].split('-');
+                    svg = isomatic.icons[iconId[0]].icons[iconId[1]].svg;
+                    iconMapping[isomatic.data.meta.attributes.rows[i]] = {};
+                    iconMapping[isomatic.data.meta.attributes.rows[i]].svg = svg;
+                    iconMapping[isomatic.data.meta.attributes.rows[i]].id = iconMap[i];
                 }
             }
 
             var html = template({
                 options: this.model.attributes,
-                iconMap: iconMap,
+                iconMapping: iconMapping,
                 iconLibrary: isomatic.icons
             });
 
@@ -69,15 +78,18 @@
                 $('#iconize-row').removeAttr("checked");
             }
 
-            $('.category-icon').each(
+            // Display SVG Icons:
+            // Take SVG Paths out from helper attribute "svg-content" and parse it into the div
+            // SVG can't be parsed with the template engine!
+            $('.category-icon, .group-icon').each(
                 function(){
                     var el = $(this);
-                    var content = el.attr('content');
-                    el.html('<svg><g>' + content + '</g></svg>');
-                    el.removeAttr('content');
+                    var content = el.attr('svg-content');
+                    var id = el.attr('id').split('-');
+                    el.html('<svg class="' + id[1] + '-' + id[2] + '"><g>' + content + '</g></svg>');
+                    el.removeAttr('svg-content');
                 }
             );
-
 
             // Init Scrollbar
             $('.scrollbar').slimScroll({
@@ -87,16 +99,38 @@
         },
 
         model: isomatic.options.ui,
+
         currentTarget: null,
 
         events: {
             "click #iconize-column": "iconizeColumn",
             "click #iconize-row": "iconizeRow",
-            "drop .group-icon": "handleDrop",
-            "dragover .group-icon": "allowDrop",
+            "drop .group-container": "handleDrop",
+            "dragover .group-container": "allowDrop",
             "dragstart .category-icon": "handleDrag",
-            "click #iconize-apply": "apply",
-            "click #iconize-apply-close": "apply"
+            "click #icon-apply": "apply",
+            "click #icon-apply-close": "apply"
+
+        },
+
+        /**
+         * Applies currently dropped Icons to IconMap
+         * Redraws the Graph
+         */
+        apply: function() {
+
+            var iconMap = [];
+
+            $('.group-container').each(function() {
+                var id = $(this).find('svg').attr('class');
+                iconMap.push(id);
+            });
+
+            isomatic.options.ui.set({
+               iconMap: iconMap
+            });
+
+            isomatic.refreshDesign();
 
         },
 
@@ -104,7 +138,6 @@
          * Set Iconize Mode to Column
          */
         iconizeColumn: function() {
-
             this.model.set({
                 iconize: 'column'
             });
@@ -114,7 +147,6 @@
          * Set Iconize Mode to Row
          */
         iconizeRow: function() {
-
             this.model.set({
                 iconize: 'row'
             });
@@ -142,26 +174,13 @@
          */
         handleDrop: function(e) {
 
-            console.log(e.target);
+            var targetContainerId = e.currentTarget.id.split('-')[1];
+            var iconId = e.originalEvent.dataTransfer.getData("Text");
+            var svgDiv = $(document.getElementById(iconId)).clone().attr('id', 'choice-' + targetContainerId);
 
-            var targetContainer = e.currentTarget.id.split('-')[1];
+            $('#group-' + targetContainerId + ' .group-icon').html(svgDiv);
 
             e.preventDefault();
-            var data = e.originalEvent.dataTransfer.getData("Text");
-
-            if ($(e.target).children.length > 0) {
-                $(document.getElementById("choice")).remove();
-            }
-
-            $(document.getElementById(data)).clone().attr('id', 'choice-' + targetContainer).appendTo(e.target);
-            $('#choice-' + targetContainer).addClass("smallIcon");
-
-//            var mySvg = document.querySelector("#choise-" + targetContainer);
-//            console.log(mySvg);
-
-
-//            myPath.setAttribute('class', 'container-' + targetContainer);
-//            mySvg.setAttribute('class', 'container-' + targetContainer);
 
         }
     });

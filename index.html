@@ -337,17 +337,17 @@
                 <div class="ui-container">
                     <h4>Drag and Drop</h4>
 
-                    {{#each iconMap}}
-                    <div class="group-container">
+                    {{#each iconMapping}}
+                    <div id="group-{{@index}}" class="group-container">
                         <div class="group-id">{{@key}}</div>
-                        <div id="icon-{{@index}}" class="group-icon"></div>
+                        <div id="mapping-{{this.id}}" class="group-icon" svg-content="{{this.svg}}"></div>
                     </div>
                     {{/each}}
 
                 </div>
 
-                <a href="#" class="tiny button radius">Apply</a>
-                <a href="#" class="tiny button radius">Apply & Close</a>
+                <a id="icon-apply" href="#" class="tiny button radius">Apply</a>
+                <a id="icon-apply-close" href="#home" class="tiny button radius">Apply & Close</a>
 
             </form>
         </div>
@@ -362,7 +362,7 @@
                     {{#each this.icons}}
 
                     <div class="category-border">
-                        <div id="{{this.id}}" class="category-icon" draggable="true" content="{{this.svg}}"></div>
+                        <div id="library-{{this.id}}" class="category-icon" draggable="true" svg-content="{{this.svg}}"></div>
                     </div>
                     {{/each}}
                 </div>

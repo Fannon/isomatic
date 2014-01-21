@@ -202,7 +202,7 @@
             if (diff > 0) {
                 console.log('ColorMap misses ' + diff + 'Colors');
                 for (var i = 0; i < diff; i++) {
-                    colorMap.push('6F6F6F');
+                    colorMap.push(isomatic.options.internal.defaultColor);
                 }
             }
             isomatic.options.ui.set({colorMap: colorMap});
@@ -212,7 +212,7 @@
             if (diff > 0) {
                 console.log('IconMap misses ' + diff + 'Icons');
                 for (var j = 0; j < diff; j++) {
-                    iconMap.push({category: 'socialNetworks', name: 'facebook'});
+                    iconMap.push(isomatic.options.internal.defaultIcon);
                 }
             }
             isomatic.options.ui.set({iconMap: iconMap});
@@ -241,7 +241,7 @@
             var legendWidth          = parseInt(isomatic.options.ui.attributes.legendWidth, 10);
             var baseScale            = parseFloat(isomatic.data.meta.attributes.baseScale);
             var defaultIconSize      = isomatic.options.internal.defaultIconSize;
-            var legendTitleHeight        = parseInt(isomatic.options.ui.attributes.legendTitleHeight, 10);
+            var legendTitleHeight    = parseInt(isomatic.options.ui.attributes.legendTitleHeight, 10);
 
             var iconize              = isomatic.options.ui.attributes.iconize;
             var colorize             = isomatic.options.ui.attributes.colorize;
@@ -295,17 +295,17 @@
                     })
                     .html(function(d) {
 
-                        var category, name;
+                        var iconId, svg;
 
                         if (iconize === 'row') {
-                            category = iconMap[d.row].category;
-                            name     = iconMap[d.row].name;
+                            iconId = iconMap[d.row].split('-');
+                            svg = isomatic.icons[iconId[0]].icons[iconId[1]].svg;
                         } else {
-                            category = iconMap[d.col - 1].category;
-                            name     = iconMap[d.col - 1].name;
+                            iconId = iconMap[d.col - 1].split('-');
+                            svg = isomatic.icons[iconId[0]].icons[iconId[1]].svg;
                         }
 
-                        return isomatic.icons[category].icons[name].svg;
+                        return svg;
                     })
                     .attr("fill", function(d) {
                         if (colorize === 'row') {
@@ -444,6 +444,7 @@
             if (!isomatic.options.ui.attributes.drawColumnLegend) {
 
                 // Dont draw any Column Legend
+                console.log('Not drawing Column Legend');
 
 
             } else if (colorize !== 'column' && iconize !== 'column') {
@@ -510,10 +511,10 @@
                         })
                         .html(function(d, i) {
 
-                            var category = iconMap[i].category;
-                            var name     = iconMap[i].name;
+                            var iconId = iconMap[i].split('-');
+                            var svg = isomatic.icons[iconId[0]].icons[iconId[1]].svg;
 
-                            return isomatic.icons[category].icons[name].svg;
+                            return svg;
                         })
                         .style("fill", function(d, i) { return '#000000'; })
                     ;

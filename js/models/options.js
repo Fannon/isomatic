@@ -35,6 +35,12 @@
         /** Icon Size of the SVG Paths in defaultIcons.js */
         defaultIconSize: 32,
 
+        /** Default Color if none is chosen yet */
+        defaultColor: 'CCCCCC',
+
+        /** Default Icon if none is chosen yet */
+        defaultIcon: 'social_networks-twitter',
+
         /** Array List of available Scales */
         scaleArray: [
             1, 2, 5,
@@ -200,10 +206,10 @@
 
         /** This stores which column ID maps to which icon */
         iconMap: [
-            {category: 'socialNetworks', name: 'facebook'},
-            {category: 'socialNetworks', name: 'twitter'},
-            {category: 'socialNetworks', name: 'googleplus'},
-            {category: 'socialNetworks', name: 'linkedin'}
+            'social_networks-facebook',
+            'social_networks-twitter',
+            'social_networks-googleplus',
+            'social_networks-linkedin'
         ],
 
 
