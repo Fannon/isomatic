@@ -179,6 +179,8 @@
         /** Icon Size */
         iconSize: 0,
 
+        scale: 0,
+
 
         /////////////////////////////
         // MAPPING                 //
@@ -330,6 +332,12 @@
             breakRow: {
                 required: true,
                 oneOf: [true, false]
+            },
+
+            scale: {
+                required: true,
+                pattern: 'number',
+                min: 0
             },
 
             roundDown: {

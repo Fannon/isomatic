@@ -160,7 +160,10 @@
 
             var targetContainerId = e.currentTarget.id.split('-')[1];
             var iconId = e.originalEvent.dataTransfer.getData("Text");
-            var svgDiv = $(document.getElementById(iconId)).clone().attr('id', 'choice-' + targetContainerId);
+            var svgDiv = $(document.getElementById(iconId)).clone().attr({
+                id: "choice-" + targetContainerId,
+                class: "smallIcon"
+            });
 
             $('#group-' + targetContainerId + ' .group-icon').html(svgDiv);
 

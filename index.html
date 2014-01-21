@@ -505,20 +505,10 @@
             <div class="ui-container">
 
                 <h4>Set Scale</h4>
-
                 <label>
-                    <span data-tooltip class="has-tip tip-right" title="Floor value if Remainder is below">How much one Icon represents</span>
+                    <span data-tooltip class="has-tip tip-right" title="Enter Scale manually">Scale</span>
                 </label>
-                <select value="{{options.scale}}">
-                    {{#each options.availableScales}}
-                    <option value="{{this}}">1:{{this}}</option>
-                    {{/each}}
-                </select>
-
-                <label>
-                    <span data-tooltip class="has-tip tip-right" title="Enter Scale manually">Manual Scale</span>
-                </label>
-                <input type="text" placeholder="Enter Scale manually">
+                <input type="text" value="{{options.scale}}">
 
             </div>
 

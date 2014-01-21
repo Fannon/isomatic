@@ -386,35 +386,30 @@ button.tiny, .button.tiny {
 
   #overlay-icon {
 
-    input[type='text'] {
-      width: 160px;
-      height: 28px;
-      margin: 0px 0px 5px 0px;
-    }
-
     .group-container {
-      height: 28px;
-      margin-bottom: 15px;
+      height: 40px;
+      margin-bottom: 7px;
     }
 
     .group-id {
       background-color: #EDEDED;
-      width: 150px;
-      height: 28px;
+      width: 146px;
+      height: 40px;
       float: left;
       border-top: 1px solid #bbb;
       border-bottom: 1px solid #bbb;
       border-left: 1px solid #bbb;
-      padding: 8px 5px;
+      padding: 13px 8px;
 
     }
 
     .group-icon {
       background-color: #FFF;
-      width: 28px;
-      height: 28px;
+      width: 40px;
+      height: 40px;
       float: left;
       border: 1px solid #CCC;
+      padding: 3px;
     }
 
     .category-border {

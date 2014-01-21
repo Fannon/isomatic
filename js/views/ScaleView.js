@@ -22,6 +22,7 @@
 
             // Register Model Event Listeners
             this.model.on("change:availableScales", this.render, this);
+            this.model.on("change:scale", this.render, this);
 
         },
         render: function(){
