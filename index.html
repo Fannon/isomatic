@@ -508,7 +508,7 @@
                 <label>
                     <span data-tooltip class="has-tip tip-right" title="Enter Scale manually">Scale</span>
                 </label>
-                <input type="text" value="{{options.scale}}">
+                <input id="scale" name="scale" type="text" value="{{options.scale}}">
 
             </div>
 
@@ -521,17 +521,17 @@
             <label>
                     <span data-tooltip class="has-tip tip-right" title="Ceil value if Remainder is above">Round Up</span>
                 </label>
-                <input type="text" value="{{options.roundUp}}">
+                <input id="round-up" name="roundUp" type="text" value="{{options.roundUp}}">
 
                 <label>
                     <span data-tooltip class="has-tip tip-right" title="Floor value if Remainder is below">Round Down</span>
                 </label>
-                <input type="text" value="{{options.roundDown}}">
+                <input id="round-down" name="roundDown" type="text" value="{{options.roundDown}}">
             </div>
 
 
-            <a href="#" class="tiny button radius">Apply</a>
-            <a href="#" class="tiny button radius">Apply & Close</a>
+            <a id="scale-apply" href="#" class="tiny button radius">Apply</a>
+            <a id="scale-apply-close" href="#home" class="tiny button radius">Apply & Close</a>
         </form>
     </div>
 </script>
