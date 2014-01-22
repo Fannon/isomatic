@@ -104,9 +104,9 @@
          * Precalculates the visual Layout. Recommends some options like Icon-Size.
          * Stores the data into the isomatic.data.meta Model
          */
-        precalculate: function() {
+        preCalculate: function() {
 
-            console.log('GraphView.precalculate();');
+            console.log('GraphView.preCalculate();');
 
 
             ////////////////////////////////////
@@ -115,8 +115,9 @@
 
             var iconHorizontalMargin = parseFloat(isomatic.options.ui.attributes.iconHorizontalMargin);
             var outerMargin          = parseFloat(isomatic.options.ui.attributes.outerMargin);
-            var graphHeight          = parseInt(isomatic.options.ui.attributes.graphHeight);
-            var graphWidth           = parseInt(isomatic.options.ui.attributes.graphWidth);
+            var graphHeight          = parseInt(isomatic.options.ui.attributes.graphHeight, 10);
+            var graphWidth           = parseInt(isomatic.options.ui.attributes.graphWidth, 10);
+            var legendWidth          = parseInt(isomatic.options.ui.attributes.legendWidth, 10);
             var defaultIconSize      = isomatic.options.internal.defaultIconSize;
 
             var iconsPerRow          = [];
@@ -138,12 +139,17 @@
                 }
             }
 
-            var maxIconsPerRow = d3.max(iconsPerRow);
 
             // Calculate Base Scale for Icons depending on biggest Row. (Fit to width)
-            var widthLeft = graphWidth - (maxIconsPerRow * iconHorizontalMargin) - 2 * outerMargin;
-            var baseScale = widthLeft / (maxIconsPerRow * 32);
-            var iconSize  = baseScale * defaultIconSize;
+            var maxIconsPerRow     = d3.max(iconsPerRow);
+            var widthLeft          = graphWidth - (maxIconsPerRow * iconHorizontalMargin) - 2 * outerMargin - legendWidth;
+            var baseScale          = widthLeft / (maxIconsPerRow * defaultIconSize);
+            var calculatedIconSize = Math.round(baseScale * defaultIconSize * 1000) / 1000;
+
+            // Set maximum Icon Size
+            if (calculatedIconSize > isomatic.options.internal.maxIconSize) {
+                calculatedIconSize = isomatic.options.internal.maxIconSize;
+            }
 
             isomatic.data.meta.set({
                 iconsPerRow: iconsPerRow,
@@ -151,7 +157,15 @@
                 baseScale: baseScale
             });
 
-            isomatic.options.ui.set({iconSize: iconSize});
+            isomatic.options.ui.set({
+                calculatedIconSize: calculatedIconSize
+            });
+
+            if (isomatic.options.ui.attributes.autoIconSize) {
+                isomatic.options.ui.set({
+                    iconSize: calculatedIconSize
+                });
+            }
         },
 
         /**
@@ -165,8 +179,18 @@
 
             this.isotypeLayout = new d3.layout.isotype();
 
-            this.isotypeLayout.roundDown(parseFloat(isomatic.options.ui.get("roundDown")))
-                .roundUp(parseFloat(isomatic.options.ui.get("roundUp")))
+            var roundDown = parseFloat(isomatic.options.ui.get("roundDown"));
+            var roundUp   = parseFloat(isomatic.options.ui.get("roundUp"));
+
+            // If Round Size is disabled, set both to 0.5 to deactivate this feature
+            if (!isomatic.options.ui.attributes.roundSize) {
+                roundDown = 0.5;
+                roundUp = 0.5;
+            }
+
+            this.isotypeLayout
+                .roundDown(roundDown)
+                .roundUp(roundUp)
                 .scale(parseFloat(isomatic.options.ui.get("scale")))
             ;
 
@@ -188,61 +212,25 @@
             // Get & Parse Variables          //
             ////////////////////////////////////
 
-            var graphHeight = parseInt(isomatic.options.ui.attributes.graphHeight);
-            var graphWidth  = parseInt(isomatic.options.ui.attributes.graphWidth);
-            var iconMap     = isomatic.options.ui.attributes.iconMap;
-            var colorMap    = isomatic.options.ui.attributes.colorMap;
-
-            // Used for Calculations
-            var diff        = 0;
-            var maxSize     = Math.max(isomatic.data.meta.attributes.columns.length, isomatic.data.meta.attributes.rows.length);
+            var graphHeight = parseInt(isomatic.options.ui.attributes.graphHeight, 10);
+            var graphWidth  = parseInt(isomatic.options.ui.attributes.graphWidth, 10);
 
 
             ////////////////////////////////////
             // Prepare Graph Container        //
             ////////////////////////////////////
 
-
             // Empty Canvas before Drawing
             $('#graph').html('');
 
             // Create new SVG Container for D3.js
             this.svg = d3.select("#graph").append("svg")
-                .attr("width", parseInt(isomatic.options.ui.attributes.graphWidth, 10))
-                .attr("height", parseInt(isomatic.options.ui.attributes.graphHeight, 10))
+                .attr("width", graphWidth)
+                .attr("height", graphHeight)
                 .append("g")
                 .attr("id", "isotype")
             ;
 
-
-            //////////////////////////////////////
-            // Adjust ColorMap and IconMap Size //
-            //////////////////////////////////////
-
-            // Check if ColorMap and IconMap are big enough for current Dataset.
-            // If not, fill them up with default Values
-
-
-            // Adjust ColorMap
-            diff = maxSize - colorMap.length;
-            if (diff > 0) {
-                console.log('ColorMap misses ' + diff + 'Colors');
-                for (var i = 0; i &lt; diff; i++) {
-                    colorMap.push('6F6F6F');
-                }
-            }
-            isomatic.options.ui.set({colorMap: colorMap});
-
-
-            // Adjust IconMap
-            diff = maxSize - iconMap.length;
-            if (diff > 0) {
-                console.log('IconMap misses ' + diff + 'Icons');
-                for (var j = 0; j &lt; diff; j++) {
-                    iconMap.push({category: 'socialNetworks', name: 'facebook'});
-                }
-            }
-            isomatic.options.ui.set({iconMap: iconMap});
 
         },
 
@@ -263,10 +251,14 @@
             var iconHorizontalMargin = parseFloat(isomatic.options.ui.attributes.iconHorizontalMargin);
             var outerMargin          = parseFloat(isomatic.options.ui.attributes.outerMargin);
             var rowMargin            = parseFloat(isomatic.options.ui.attributes.rowMargin);
-            var graphHeight          = parseInt(isomatic.options.ui.attributes.graphHeight);
-            var graphWidth           = parseInt(isomatic.options.ui.attributes.graphWidth);
+            var graphHeight          = parseInt(isomatic.options.ui.attributes.graphHeight, 10);
+            var graphWidth           = parseInt(isomatic.options.ui.attributes.graphWidth, 10);
+            var legendWidth          = parseInt(isomatic.options.ui.attributes.legendWidth, 10);
             var baseScale            = parseFloat(isomatic.data.meta.attributes.baseScale);
+            var legendTitleHeight    = parseInt(isomatic.options.ui.attributes.legendTitleHeight, 10);
+            var iconSize             = parseFloat(isomatic.options.ui.attributes.iconSize);
             var defaultIconSize      = isomatic.options.internal.defaultIconSize;
+
 
             var iconize              = isomatic.options.ui.attributes.iconize;
             var colorize             = isomatic.options.ui.attributes.colorize;
@@ -278,8 +270,6 @@
             // Calculations                   //
             ////////////////////////////////////
 
-            var finalSize = baseScale * defaultIconSize;
-
 
             ////////////////////////////////////
             // Draw Graphic via D3.js         //
@@ -289,50 +279,57 @@
 
                 .data(isomatic.data.processed)
                 .enter()
-                .append("g")
-                .attr("class", "icon")
-                .attr("transform", function(d) {
+                    .append("g")
+                    .attr("class", "icon")
+                    .attr("transform", function(d) {
 
-                    var x = d.pos * (finalSize + iconHorizontalMargin) + outerMargin;
-                    var y = d.row * (finalSize + rowMargin) + outerMargin;
+                        var x = d.pos * (iconSize + iconHorizontalMargin) + outerMargin + legendWidth;
+                        var y = d.row * (iconSize + rowMargin) + outerMargin;
 
-                    var scale = baseScale * d.size;
+                        // If legendTitleHeight > 0, draw Header Title
+                        if (legendTitleHeight > 0) {
+                            y += legendTitleHeight + outerMargin;
+                        }
 
-                    // If Icon is drawn smaller than full-size, center it
-                    if (d.size &lt; 1) {
-                        x += (finalSize / 2) * (1 - d.size);
-                        y += (finalSize / 2) * (1 - d.size);
-                    }
+                        var baseScale = iconSize / defaultIconSize;
 
-                    // If Icon is drawn outside of Canvas give a warning
-                    if (y > graphHeight || x > graphWidth) {
-                        console.warn('&lt;strong>Warning: &lt;/strong>The generated Graphic is bigger than its Canvas!');
-                    }
+                        var scale = baseScale * d.size;
 
-                    return 'translate(' + x + ', ' + y + ') scale(' + scale + ')';
+                        // If Icon is drawn smaller than full-size, center it
+                        if (d.size &lt; 1) {
+                            x += (iconSize / 2) * (1 - d.size);
+                            y += (iconSize / 2) * (1 - d.size);
+                        }
 
-                })
-                .html(function(d) {
+                        // If Icon is drawn outside of Canvas give a warning
+                        if (y > graphHeight || x > graphWidth) {
+                            console.warn('&lt;strong>Warning: &lt;/strong>The generated Graphic is bigger than its Canvas!');
+                        }
 
-                    var category, name;
+                        return 'translate(' + x + ', ' + y + ') scale(' + scale + ')';
 
-                    if (iconize === 'row') {
-                        category = iconMap[d.row].category;
-                        name     = iconMap[d.row].name;
-                    } else {
-                        category = iconMap[d.col - 1].category;
-                        name     = iconMap[d.col - 1].name;
-                    }
+                    })
+                    .html(function(d) {
 
-                    return isomatic.icons[category].icons[name].svg;
-                })
-                .attr("fill", function(d) {
-                    if (colorize === 'row') {
-                        return '#' + colorMap[d.row];
-                    } else {
-                        return '#' + colorMap[d.col - 1];
-                    }
-                })
+                        var iconId, svg;
+
+                        if (iconize === 'row') {
+                            iconId = iconMap[d.row].split('-');
+                            svg = isomatic.icons[iconId[0]].icons[iconId[1]].svg;
+                        } else {
+                            iconId = iconMap[d.col - 1].split('-');
+                            svg = isomatic.icons[iconId[0]].icons[iconId[1]].svg;
+                        }
+
+                        return svg;
+                    })
+                    .attr("fill", function(d) {
+                        if (colorize === 'row') {
+                            return '#' + colorMap[d.row];
+                        } else {
+                            return '#' + colorMap[d.col - 1];
+                        }
+                    })
             ;
 
         },
@@ -350,12 +347,27 @@
             // Get & Parse Variables          //
             ////////////////////////////////////
 
-            var scale       = parseInt(isomatic.options.ui.attributes.scale);
-            var legendWidth = parseInt(isomatic.options.ui.attributes.legendWidth);
+            var scale              = parseInt(isomatic.options.ui.attributes.scale, 10);
+            var legendWidth        = parseInt(isomatic.options.ui.attributes.legendWidth, 10);
+            var rowMargin          = parseFloat(isomatic.options.ui.attributes.rowMargin);
+            var outerMargin        = parseFloat(isomatic.options.ui.attributes.outerMargin);
+            var graphHeight        = parseInt(isomatic.options.ui.attributes.graphHeight, 10);
+            var graphWidth         = parseInt(isomatic.options.ui.attributes.graphWidth, 10);
+            var iconSize           = parseFloat(isomatic.options.ui.attributes.iconSize);
+            var defaultIconSize    = isomatic.options.internal.defaultIconSize;
 
-            var outerMargin = parseFloat(isomatic.options.ui.attributes.outerMargin);
-            var graphHeight = parseInt(isomatic.options.ui.attributes.graphHeight);
-            var graphWidth  = parseInt(isomatic.options.ui.attributes.graphWidth);
+            var legendTitleHeight  = parseInt(isomatic.options.ui.attributes.legendTitleHeight, 10);
+            var rowsLegendFontSize = parseInt(isomatic.options.ui.attributes.rowsLegendFontSize, 10);
+
+            var iconize            = isomatic.options.ui.attributes.iconize;
+            var colorize           = isomatic.options.ui.attributes.colorize;
+            var iconMap            = isomatic.options.ui.attributes.iconMap;
+            var colorMap           = isomatic.options.ui.attributes.colorMap;
+
+            var legendFont         = isomatic.options.ui.attributes.legendFont;
+
+
+            var columnLegendHeight = isomatic.options.internal.columnLegendHeight;
 
 
             ////////////////////////////////////
@@ -366,19 +378,182 @@
 
 
             ////////////////////////////////////
-            // Draw Legend via D3.js          //
+            // Legend: Title                  //
             ////////////////////////////////////
 
+            if (legendTitleHeight > 0) {
+
+                var title = this.svg.append("g")
+                    .attr("class", "legend-heading")
+                    .style("text-anchor", "start")
+                    .attr("transform", "translate(" + outerMargin + ", " + (outerMargin + legendTitleHeight/2) + ")")
+                ;
+
+                title.append("text")
+                    .attr("class", "legend")
+                    .text(isomatic.data.meta.attributes.title)
+                    .attr("fill", "#000")
+                    .attr("font-family", legendFont)
+                    .attr("font-size", legendTitleHeight + "px")
+                ;
+            }
+
+
+            ////////////////////////////////////
+            // Legend: Scale                  //
+            ////////////////////////////////////
 
             var scaleLegend = this.svg.append("g")
-                .style("text-anchor", "start")
-                .attr("transform", "translate(" + outerMargin + ", " + (graphHeight - outerMargin) + ")");
+                .attr("class", "legend-scale")
+                .style("text-anchor", "end")
+                .attr("transform", "translate(" + (graphWidth - outerMargin) + ", " + (graphHeight - outerMargin) + ")")
+            ;
 
             scaleLegend.append("text")
+                .attr("x", 0)
+                .attr("y", -3) // TODO: Hard coded Layout Fix
                 .attr("class", "legend")
                 .text(scaleText)
+                .attr("font-family", legendFont)
                 .attr("fill", "#999999")
             ;
+
+
+            ////////////////////////////////////
+            // Legend: Rows                   //
+            ////////////////////////////////////
+
+            var rowsLegend = this.svg.append("g")
+                .attr("class", "row-legend")
+                .attr("width", legendWidth)
+                .attr("height", 25)
+                .selectAll("g")
+                .data(isomatic.data.meta.attributes.rows)
+                .enter()
+                .append("g")
+                .attr("transform", function(d, i) {
+
+                    var y = i * (iconSize + rowMargin) + outerMargin;
+
+                    if (legendTitleHeight > 0) {
+                        y += legendTitleHeight + outerMargin;
+                    }
+
+                    return "translate(0," + y + ")";
+                })
+            ;
+
+            rowsLegend.append("text")
+                .attr("x", outerMargin)
+                .attr("y", iconSize / 2)
+                .attr("dy", ".35em")
+                .attr("font-size", "14px")
+                .attr("font-family", legendFont)
+                .text(function(d) { return d; })
+            ;
+
+
+            ////////////////////////////////////
+            // Legend: Columns                //
+            ////////////////////////////////////
+
+            if (!isomatic.options.ui.attributes.drawColumnLegend) {
+
+                // Dont draw any Column Legend
+                console.log('Not drawing Column Legend');
+
+
+            } else if (colorize !== 'column' && iconize !== 'column') {
+
+                // No Column Mapping!
+                // User did not assign the Column to either Color or Icon
+                // => Can't generate a Column Legend without Mapping
+
+                var noColumnLegend = this.svg.append("g")
+                        .attr("class", "no-column-legend")
+                        .style("text-anchor", "start")
+                        .attr("transform", "translate(" + outerMargin + ", " + (graphHeight - outerMargin) + ")")
+                    ;
+
+                noColumnLegend.append("text")
+                    .attr("x", 0)
+                    .attr("y", -3) // TODO: Hard coded Layout Fix
+                    .attr("class", "legend")
+                    .text("Warning: No Mapping for the Columns!")
+                    .attr("font-family", legendFont)
+                    .attr("fill", "#999999")
+                ;
+
+            } else {
+
+                // Column Mapping available
+
+                var columnsLegend = this.svg.append("g")
+                        .attr("class", "column-legend")
+                        .attr("width", legendWidth)
+                        .attr("height", columnLegendHeight)
+                        .selectAll("g")
+                        .data(isomatic.data.meta.attributes.columns)
+                        .enter()
+                        .append("g")
+                        .attr("transform", function(d, i) {
+                            var x = i * (legendWidth + columnLegendHeight) + outerMargin ;
+                            var y = (graphHeight - outerMargin - columnLegendHeight);
+                            return "translate(" + x + "," + y + ")";
+                        })
+                    ;
+
+                if (colorize === 'column' && iconize === 'row') {
+                    columnsLegend.append("rect")
+                        .attr("class", "column-legend-color")
+                        .attr("width", columnLegendHeight)
+                        .attr("height", columnLegendHeight)
+                        .style("fill", function(d, i) { return '#' + colorMap[i]; })
+                    ;
+                }
+
+                if (iconize === 'column') {
+
+                    columnsLegend.append("g")
+                        .attr("class", "column-legend-icon")
+                        .attr("width", columnLegendHeight)
+                        .attr("height", columnLegendHeight)
+                        .attr("transform", function(d) {
+
+                            var scale = columnLegendHeight / defaultIconSize;
+
+                            return 'scale(' + scale + ')';
+
+                        })
+                        .html(function(d, i) {
+
+                            var iconId = iconMap[i].split('-');
+                            var svg = isomatic.icons[iconId[0]].icons[iconId[1]].svg;
+
+                            return svg;
+                        })
+                        .style("fill", function(d, i) {
+
+                            if (colorize === 'column') {
+                                return '#' + colorMap[i];
+                            } else {
+                                return '#000000';
+                            }
+                        })
+                    ;
+                }
+
+                columnsLegend.append("text")
+                    .attr("x", columnLegendHeight + 5)
+                    .attr("y", columnLegendHeight / 2)
+                    .attr("dy", ".35em")
+                    .attr("font-size", "12px")
+                    .attr("font-family", legendFont)
+                    .attr("fill", "#999999")
+                    .text(function(d) { return d; })
+                ;
+            }
+
         },
 
         ///////////////////////////////////
@@ -390,8 +565,8 @@
          *
          * http://stackoverflow.com/a/2901298/776425
          *
-         * @param   {integer}   scale     Scale to "prettify"
-         * @returns {string}
+         * @param   {Number}   scale     Scale to "prettify"
+         * @returns {String}
          */
         printScale: function(scale) {
             return scale.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -411,13 +586,13 @@
 </div>
 
 <nav>
-    <h2><a href="index.html">Index</a></h2><h3>Classes</h3><ul><li><a href="AdjustmentsView.html">AdjustmentsView</a></li><li><a href="ColorView.html">ColorView</a></li><li><a href="DataView.html">DataView</a></li><li><a href="ExportView.html">ExportView</a></li><li><a href="GraphView.html">GraphView</a></li><li><a href="HelpView.html">HelpView</a></li><li><a href="IconView.html">IconView</a></li><li><a href="ImportView.html">ImportView</a></li><li><a href="Model.html">Model</a></li><li><a href="NewView.html">NewView</a></li><li><a href="ScaleView.html">ScaleView</a></li><li><a href="TextView.html">TextView</a></li><li><a href="TypeView.html">TypeView</a></li><li><a href="UiModel.html">UiModel</a></li></ul><h3>Global</h3><ul><li><a href="global.html#columns">columns</a></li><li><a href="global.html#home">home</a></li><li><a href="global.html#isomatic">isomatic</a></li><li><a href="global.html#max">max</a></li><li><a href="global.html#min">min</a></li><li><a href="global.html#rows">rows</a></li><li><a href="global.html#sum">sum</a></li><li><a href="global.html#triggerUi">triggerUi</a></li></ul>
+    <h2><a href="index.html">Index</a></h2><h3>Classes</h3><ul><li><a href="AdjustmentsView.html">AdjustmentsView</a></li><li><a href="ColorView.html">ColorView</a></li><li><a href="DataView.html">DataView</a></li><li><a href="ExportView.html">ExportView</a></li><li><a href="GraphView.html">GraphView</a></li><li><a href="HelpView.html">HelpView</a></li><li><a href="IconLibraryView.html">IconLibraryView</a></li><li><a href="IconMapView.html">IconMapView</a></li><li><a href="ImportView.html">ImportView</a></li><li><a href="Model.html">Model</a></li><li><a href="NewView.html">NewView</a></li><li><a href="ScaleView.html">ScaleView</a></li><li><a href="TextView.html">TextView</a></li><li><a href="TypeView.html">TypeView</a></li><li><a href="UiModel.html">UiModel</a></li></ul><h3>Global</h3><ul><li><a href="global.html#columns">columns</a></li><li><a href="global.html#home">home</a></li><li><a href="global.html#isomatic">isomatic</a></li><li><a href="global.html#max">max</a></li><li><a href="global.html#min">min</a></li><li><a href="global.html#rows">rows</a></li><li><a href="global.html#sum">sum</a></li><li><a href="global.html#triggerUi">triggerUi</a></li></ul>
 </nav>
 
 <br clear="both">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.2</a> on Sat Jan 18 2014 10:48:23 GMT+0100 (MEZ)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.2</a> on Wed Jan 22 2014 10:41:45 GMT+0100 (MEZ)
 </footer>
 
 <script> prettyPrint(); </script>

@@ -273,7 +273,7 @@
 
             // Get fitting Scales from the Array
             // TODO: Check for Array Boundaries!
-            for (var j = 0; j < scaleArray.length; j++) {
+            for (j = 0; j < scaleArray.length; j++) {
                 if (scaleTemp <= scaleArray[j]) {
                     if (scaleArray[j] - scaleTemp < scaleTemp - scaleArray[j - 1]) {
                         availableScales = [

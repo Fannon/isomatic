@@ -205,6 +205,9 @@
 
             var data = this.model.get('data');
 
+            var iconMap     = isomatic.options.ui.attributes.iconMap;
+            var colorMap    = isomatic.options.ui.attributes.colorMap;
+
 
             ///////////////////////////////////////
             // Analyse Values, Rows and Columns  //
@@ -227,13 +230,13 @@
                                 // Set Title
                                 title = obj;
                             } else {
-                                rows.push(obj);
+                                columns.push(obj);
                             }
                         }
 
                         if (columnCounter === 0) {
                             // Put first Column (Description) into a Column Array
-                            columns.push(currentRow[obj]);
+                            rows.push(currentRow[obj]);
                         } else {
                             values.push(parseInt(currentRow[obj], 10));
                             rowValue += parseInt(currentRow[obj], 10);
@@ -246,6 +249,32 @@
                 rowValues[rowCounter] = rowValue;
             }
 
+            // Check if ColorMap and IconMap are big enough for current Dataset.
+            // If not, fill them up with default Values
+
+            // Used for Calculations
+            var diff, i, j;
+            var maxSize     = Math.max(columns.length, rows.length);
+
+            // Adjust ColorMap
+            diff = maxSize - colorMap.length;
+            if (diff > 0) {
+                console.log('ColorMap misses ' + diff + 'Colors');
+                for (i = 0; i &lt;= diff; i++) {
+                    colorMap.push(isomatic.options.internal.defaultColor);
+                }
+            }
+
+            // Adjust IconMap
+            diff = maxSize - iconMap.length;
+            if (diff > 0) {
+                console.log('IconMap misses ' + diff + 'Icons');
+                for (j = 0; j &lt;= diff; j++) {
+                    iconMap.push(isomatic.options.internal.defaultIcon);
+                }
+            }
+
+            // Write calculated data to metadata object
             isomatic.data.meta.set({
                 min: d3.min(values),
                 max: d3.max(values),
@@ -254,8 +283,11 @@
                 rows: rows,
                 columns: columns,
                 rowValues: rowValues,
-                maxRowValues: d3.max(rowValues)
+                maxRowValues: d3.max(rowValues),
+                iconMap: iconMap,
+                colorMap: colorMap
             });
+
 
             ///////////////////////////////////////
             // Calculate a recommended Scale     //
@@ -310,13 +342,13 @@
 </div>
 
 <nav>
-    <h2><a href="index.html">Index</a></h2><h3>Classes</h3><ul><li><a href="AdjustmentsView.html">AdjustmentsView</a></li><li><a href="ColorView.html">ColorView</a></li><li><a href="DataView.html">DataView</a></li><li><a href="ExportView.html">ExportView</a></li><li><a href="GraphView.html">GraphView</a></li><li><a href="HelpView.html">HelpView</a></li><li><a href="IconView.html">IconView</a></li><li><a href="ImportView.html">ImportView</a></li><li><a href="Model.html">Model</a></li><li><a href="NewView.html">NewView</a></li><li><a href="ScaleView.html">ScaleView</a></li><li><a href="TextView.html">TextView</a></li><li><a href="TypeView.html">TypeView</a></li><li><a href="UiModel.html">UiModel</a></li></ul><h3>Global</h3><ul><li><a href="global.html#columns">columns</a></li><li><a href="global.html#home">home</a></li><li><a href="global.html#isomatic">isomatic</a></li><li><a href="global.html#max">max</a></li><li><a href="global.html#min">min</a></li><li><a href="global.html#rows">rows</a></li><li><a href="global.html#sum">sum</a></li><li><a href="global.html#triggerUi">triggerUi</a></li></ul>
+    <h2><a href="index.html">Index</a></h2><h3>Classes</h3><ul><li><a href="AdjustmentsView.html">AdjustmentsView</a></li><li><a href="ColorView.html">ColorView</a></li><li><a href="DataView.html">DataView</a></li><li><a href="ExportView.html">ExportView</a></li><li><a href="GraphView.html">GraphView</a></li><li><a href="HelpView.html">HelpView</a></li><li><a href="IconLibraryView.html">IconLibraryView</a></li><li><a href="IconMapView.html">IconMapView</a></li><li><a href="ImportView.html">ImportView</a></li><li><a href="Model.html">Model</a></li><li><a href="NewView.html">NewView</a></li><li><a href="ScaleView.html">ScaleView</a></li><li><a href="TextView.html">TextView</a></li><li><a href="TypeView.html">TypeView</a></li><li><a href="UiModel.html">UiModel</a></li></ul><h3>Global</h3><ul><li><a href="global.html#columns">columns</a></li><li><a href="global.html#home">home</a></li><li><a href="global.html#isomatic">isomatic</a></li><li><a href="global.html#max">max</a></li><li><a href="global.html#min">min</a></li><li><a href="global.html#rows">rows</a></li><li><a href="global.html#sum">sum</a></li><li><a href="global.html#triggerUi">triggerUi</a></li></ul>
 </nav>
 
 <br clear="both">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.2</a> on Sat Jan 18 2014 10:48:23 GMT+0100 (MEZ)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.2</a> on Wed Jan 22 2014 10:41:45 GMT+0100 (MEZ)
 </footer>
 
 <script> prettyPrint(); </script>

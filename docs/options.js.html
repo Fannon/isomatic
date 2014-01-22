@@ -62,6 +62,14 @@
         /** Icon Size of the SVG Paths in defaultIcons.js */
         defaultIconSize: 32,
 
+        maxIconSize: 64,
+
+        /** Default Color if none is chosen yet */
+        defaultColor: 'CCCCCC',
+
+        /** Default Icon if none is chosen yet */
+        defaultIcon: 'persons-man',
+
         /** Array List of available Scales */
         scaleArray: [
             1, 2, 5,
@@ -78,6 +86,19 @@
             100000000000, 200000000000, 500000000000,
             1000000000000, 2000000000000, 5000000000000
         ],
+
+        /**
+         * Available Fonts
+         * They have to be Font Stacks (TODO!)
+         */
+        availableFonts: {
+            'Arial': 'Frutiger, "Frutiger Linotype", Univers, Calibri, "Gill Sans", "Gill Sans MT", "Myriad Pro", Myriad, "DejaVu Sans Condensed", "Liberation Sans", "Nimbus Sans L", Tahoma, Geneva, "Helvetica Neue", Helvetica, Arial, sans-serif',
+            'Times New Roman': 'Cambria, "Hoefler Text", Utopia, "Liberation Serif", "Nimbus Roman No9 L Regular", Times, "Times New Roman", serif',
+            'Georgia': 'Constantia, "Lucida Bright", Lucidabright, "Lucida Serif", Lucida, "DejaVu Serif", "Bitstream Vera Serif", "Liberation Serif", Georgia, serif',
+            'Verdana': 'Corbel, "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "DejaVu Sans", "Bitstream Vera Sans", "Liberation Sans", Verdana, "Verdana Ref", sans-serif'
+        },
+
+        columnLegendHeight: 18,
 
         /** This example Dataset is loaded when the Application loads */
         exampleData: [
@@ -161,7 +182,7 @@
         diagramType: 'normal',
 
         /** Margin to Canvas */
-        outerMargin: 10,
+        outerMargin: 20,
 
         /** Margin between Rows */
         rowMargin: 30,
@@ -178,14 +199,25 @@
         /** Break a Row into several Rows visually if number icons exceed this */
         breakRow: false,
 
+        /** Allow RoundUp and RoundDown of the IconSize */
+        roundSize: true,
+
         /** Floor value if Remainder is below */
         roundDown: 0.3,
 
         /** Ceil value if Remainder is above */
         roundUp: 0.8,
 
+        /** If true, Size of Icons is automatically set to fit width of canvas */
+        autoIconSize: true,
+
         /** Icon Size */
         iconSize: 0,
+
+        /** Auto calculated Icon Size -> This fits the canvas width */
+        calculatedIconSize: 0,
+
+        scale: 0,
 
 
         /////////////////////////////
@@ -214,10 +246,10 @@
 
         /** This stores which column ID maps to which icon */
         iconMap: [
-            {category: 'socialNetworks', name: 'facebook'},
-            {category: 'socialNetworks', name: 'twitter'},
-            {category: 'socialNetworks', name: 'googleplus'},
-            {category: 'socialNetworks', name: 'linkedin'}
+            'social_networks-facebook',
+            'social_networks-twitter',
+            'social_networks-googleplus',
+            'social_networks-linkedin'
         ],
 
 
@@ -225,12 +257,34 @@
         // LEGEND                  //
         /////////////////////////////
 
+        legendFont: 'Arial',
+
+        /**
+         * Default Font Size for the Legend
+         */
+        legendFontSize: 12,
+
         /**
          * Width of Graph Legend (in px)
          *
          * @type {Number}
          */
-        legendWidth: 250
+        legendWidth: 100,
+
+        /**
+         * Height / Size of Graphic Title
+         */
+        legendTitleHeight: 24,
+
+        /**
+         * Font Size of the Row Legend
+         */
+        rowsLegendFontSize: 14,
+
+        /**
+         * Decides if Column Legend is drawn or not
+         */
+        drawColumnLegend: true
 
 
     };
@@ -318,6 +372,12 @@
                 oneOf: [true, false]
             },
 
+            scale: {
+                required: true,
+                pattern: 'number',
+                min: 0
+            },
+
             roundDown: {
                 required: true,
                 range: [0, 1]
@@ -326,6 +386,11 @@
             roundUp: {
                 required: true,
                 range: [0, 1]
+            },
+
+            autoIconSize: {
+                required: true,
+                oneOf: [true, false]
             },
 
             iconSize: {
@@ -355,6 +420,30 @@
             legendWidth: {
                 required: true,
                 range: [0, 500]
+            },
+
+            /**
+             * Height / Size of Graphic Title
+             */
+            legendTitleHeight: {
+                required: true,
+                range: [0, 50]
+            },
+
+            /**
+             * Font Size of the Row Legend
+             */
+            rowsLegendFontSize: {
+                required: true,
+                range: [4, 50]
+            },
+
+            /**
+             * Decides if Column Legend is drawn or not
+             */
+            drawColumnLegend: {
+                required: true,
+                oneOf: [true, false]
             }
         }
     });
@@ -381,13 +470,13 @@
 </div>
 
 <nav>
-    <h2><a href="index.html">Index</a></h2><h3>Classes</h3><ul><li><a href="AdjustmentsView.html">AdjustmentsView</a></li><li><a href="ColorView.html">ColorView</a></li><li><a href="DataView.html">DataView</a></li><li><a href="ExportView.html">ExportView</a></li><li><a href="GraphView.html">GraphView</a></li><li><a href="HelpView.html">HelpView</a></li><li><a href="IconView.html">IconView</a></li><li><a href="ImportView.html">ImportView</a></li><li><a href="Model.html">Model</a></li><li><a href="NewView.html">NewView</a></li><li><a href="ScaleView.html">ScaleView</a></li><li><a href="TextView.html">TextView</a></li><li><a href="TypeView.html">TypeView</a></li><li><a href="UiModel.html">UiModel</a></li></ul><h3>Global</h3><ul><li><a href="global.html#columns">columns</a></li><li><a href="global.html#home">home</a></li><li><a href="global.html#isomatic">isomatic</a></li><li><a href="global.html#max">max</a></li><li><a href="global.html#min">min</a></li><li><a href="global.html#rows">rows</a></li><li><a href="global.html#sum">sum</a></li><li><a href="global.html#triggerUi">triggerUi</a></li></ul>
+    <h2><a href="index.html">Index</a></h2><h3>Classes</h3><ul><li><a href="AdjustmentsView.html">AdjustmentsView</a></li><li><a href="ColorView.html">ColorView</a></li><li><a href="DataView.html">DataView</a></li><li><a href="ExportView.html">ExportView</a></li><li><a href="GraphView.html">GraphView</a></li><li><a href="HelpView.html">HelpView</a></li><li><a href="IconLibraryView.html">IconLibraryView</a></li><li><a href="IconMapView.html">IconMapView</a></li><li><a href="ImportView.html">ImportView</a></li><li><a href="Model.html">Model</a></li><li><a href="NewView.html">NewView</a></li><li><a href="ScaleView.html">ScaleView</a></li><li><a href="TextView.html">TextView</a></li><li><a href="TypeView.html">TypeView</a></li><li><a href="UiModel.html">UiModel</a></li></ul><h3>Global</h3><ul><li><a href="global.html#columns">columns</a></li><li><a href="global.html#home">home</a></li><li><a href="global.html#isomatic">isomatic</a></li><li><a href="global.html#max">max</a></li><li><a href="global.html#min">min</a></li><li><a href="global.html#rows">rows</a></li><li><a href="global.html#sum">sum</a></li><li><a href="global.html#triggerUi">triggerUi</a></li></ul>
 </nav>
 
 <br clear="both">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.2</a> on Sat Jan 18 2014 10:48:23 GMT+0100 (MEZ)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.2</a> on Wed Jan 22 2014 10:41:45 GMT+0100 (MEZ)
 </footer>
 
 <script> prettyPrint(); </script>

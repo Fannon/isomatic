@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: views/IconMapView.js</title>
+    
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+    
+    <h1 class="page-title">Source: views/IconMapView.js</h1>
+    
+    
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source"><code>/* jshint jquery:true, devel: true */
+/* global isomatic, d3, Backbone, _, Handlebars */
+
+(function(isomatic) {
+    "use strict";
+
+    /**
+     * Icon Map View
+     *
+     * @type {*|void|Object}
+     */
+    isomatic.views.IconMapView = Backbone.View.extend( /** @lends IconMapView.prototype */ {
+
+        /**
+         * @class IconMapView
+         *
+         * @augments Backbone.View
+         * @contructs
+         */
+        initialize: function(){
+
+            this.render();
+
+            // Register Model Event Listeners
+            this.model.on("change:iconMap", this.render, this);
+            this.model.on("change:iconize", this.render, this);
+            isomatic.data.meta.on("change:rows", this.render, this);
+            isomatic.data.meta.on("change:columns", this.render, this);
+
+        },
+
+        /** Render Icon View */
+        render: function(){
+
+            console.info('IconMapView.render();');
+
+            var iconId, svg;
+            var i = 0;
+            var iconMapping = {};
+
+            var source = $('#icon-left-template').html();
+            var template = Handlebars.compile(source);
+            var iconMap = isomatic.options.ui.attributes.iconMap;
+
+            // Calculate current IconMap
+            if (isomatic.options.ui.attributes.iconize === 'column') {
+                for (i = 0; i &lt; isomatic.data.meta.attributes.columns.length; i++) {
+
+                    if (iconMap[i] === undefined) {
+                        iconMap[i] = isomatic.options.internal.defaultIcon;
+                    }
+                    iconId = iconMap[i].split('-');
+
+                    svg = isomatic.icons[iconId[0]].icons[iconId[1]].svg;
+                    iconMapping[isomatic.data.meta.attributes.columns[i]] = {};
+                    iconMapping[isomatic.data.meta.attributes.columns[i]].svg = svg;
+                    iconMapping[isomatic.data.meta.attributes.columns[i]].id = iconMap[i];
+                }
+            } else {
+                for (i = 0; i &lt; isomatic.data.meta.attributes.rows.length; i++) {
+
+                    if (iconMap[i] === undefined) {
+                        iconMap[i] = isomatic.options.internal.defaultIcon;
+                    }
+
+                    iconId = iconMap[i].split('-');
+
+                    svg = isomatic.icons[iconId[0]].icons[iconId[1]].svg;
+                    iconMapping[isomatic.data.meta.attributes.rows[i]] = {};
+                    iconMapping[isomatic.data.meta.attributes.rows[i]].svg = svg;
+                    iconMapping[isomatic.data.meta.attributes.rows[i]].id = iconMap[i];
+                }
+            }
+
+            var html = template({
+                options: this.model.attributes,
+                iconMapping: iconMapping
+            });
+
+            this.$el.html(html);
+
+            // Check Column / Row
+            if (isomatic.options.ui.attributes.iconize === 'row') {
+                $('#iconize-row').attr("checked","checked");
+                $('#iconize-column').removeAttr("checked");
+            } else {
+                $('#iconize-column').attr("checked","checked");
+                $('#iconize-row').removeAttr("checked");
+            }
+
+            // Display SVG Icons:
+            // Take SVG Paths out from helper attribute "svg-content" and parse it into the div
+            // SVG can't be parsed with the template engine!
+            $('.group-icon').each(
+                function(){
+                    var el = $(this);
+                    var content = el.attr('svg-content');
+                    var id = el.attr('id').split('-');
+                    el.html('&lt;svg class="' + id[1] + '-' + id[2] + '">&lt;g>' + content + '&lt;/g>&lt;/svg>');
+                    el.removeAttr('svg-content');
+                }
+            );
+
+        },
+
+        model: isomatic.options.ui,
+
+        currentTarget: null,
+
+        events: {
+            "click #iconize-column": "iconizeColumn",
+            "click #iconize-row": "iconizeRow",
+            "drop .group-container": "handleDrop",
+            "dragover .group-container": "allowDrop",
+            "click #icon-apply": "apply",
+            "click #icon-apply-close": "apply"
+        },
+
+        /**
+         * Applies currently dropped Icons to IconMap
+         * Redraws the Graph
+         */
+        apply: function() {
+
+            var iconMap = [];
+
+            $('.group-container').each(function() {
+                var id = $(this).find('svg').attr('class');
+                iconMap.push(id);
+            });
+
+            isomatic.options.ui.set({
+               iconMap: iconMap
+            });
+
+            isomatic.refreshDesign();
+
+        },
+
+        /**
+         * Set Iconize Mode to Column
+         */
+        iconizeColumn: function() {
+            this.model.set({
+                iconize: 'column'
+            });
+        },
+
+        /**
+         * Set Iconize Mode to Row
+         */
+        iconizeRow: function() {
+            this.model.set({
+                iconize: 'row'
+            });
+        },
+
+        /**
+         * Drag and Drop allowed
+         * @param e
+         */
+        allowDrop: function(e) {
+            e.preventDefault();
+        },
+
+        /**
+         * Drag and Drop dropping
+         * @param e
+         */
+        handleDrop: function(e) {
+
+            var targetContainerId = e.currentTarget.id.split('-')[1];
+            var iconId = e.originalEvent.dataTransfer.getData("Text");
+            var svgDiv = $(document.getElementById(iconId)).clone().attr({
+                id: "choice-" + targetContainerId,
+                class: "smallIcon"
+            });
+
+            $('#group-' + targetContainerId + ' .group-icon').html(svgDiv);
+
+            e.preventDefault();
+
+        }
+    });
+
+}(isomatic));
+
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Index</a></h2><h3>Classes</h3><ul><li><a href="AdjustmentsView.html">AdjustmentsView</a></li><li><a href="ColorView.html">ColorView</a></li><li><a href="DataView.html">DataView</a></li><li><a href="ExportView.html">ExportView</a></li><li><a href="GraphView.html">GraphView</a></li><li><a href="HelpView.html">HelpView</a></li><li><a href="IconLibraryView.html">IconLibraryView</a></li><li><a href="IconMapView.html">IconMapView</a></li><li><a href="ImportView.html">ImportView</a></li><li><a href="Model.html">Model</a></li><li><a href="NewView.html">NewView</a></li><li><a href="ScaleView.html">ScaleView</a></li><li><a href="TextView.html">TextView</a></li><li><a href="TypeView.html">TypeView</a></li><li><a href="UiModel.html">UiModel</a></li></ul><h3>Global</h3><ul><li><a href="global.html#columns">columns</a></li><li><a href="global.html#home">home</a></li><li><a href="global.html#isomatic">isomatic</a></li><li><a href="global.html#max">max</a></li><li><a href="global.html#min">min</a></li><li><a href="global.html#rows">rows</a></li><li><a href="global.html#sum">sum</a></li><li><a href="global.html#triggerUi">triggerUi</a></li></ul>
+</nav>
+
+<br clear="both">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.2</a> on Wed Jan 22 2014 10:41:45 GMT+0100 (MEZ)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

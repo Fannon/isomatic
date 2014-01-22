@@ -9,6 +9,7 @@
     "grunt-jsdoc": "*",
     "grunt-contrib-uglify": "*",
     "grunt-contrib-watch": "*",
-    "grunt-contrib-connect": "*"
+    "grunt-contrib-connect": "*",
+    "grunt-contrib-jshint": "~0.8.0"
   }
 }
