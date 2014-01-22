@@ -247,7 +247,7 @@
                 }
             }
 
-
+            // Write calculated data to metadata object
             isomatic.data.meta.set({
                 min: d3.min(values),
                 max: d3.max(values),
@@ -259,7 +259,6 @@
                 maxRowValues: d3.max(rowValues),
                 iconMap: iconMap,
                 colorMap: colorMap
-
             });
 
 

@@ -41,7 +41,7 @@
         defaultColor: 'CCCCCC',
 
         /** Default Icon if none is chosen yet */
-        defaultIcon: 'social_networks-twitter',
+        defaultIcon: 'persons-man',
 
         /** Array List of available Scales */
         scaleArray: [
