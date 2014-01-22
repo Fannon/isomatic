@@ -45,7 +45,12 @@
             // Calculate current IconMap
             if (isomatic.options.ui.attributes.iconize === 'column') {
                 for (i = 0; i < isomatic.data.meta.attributes.columns.length; i++) {
+
+                    if (iconMap[i] === undefined) {
+                        iconMap[i] = isomatic.options.internal.defaultIcon;
+                    }
                     iconId = iconMap[i].split('-');
+
                     svg = isomatic.icons[iconId[0]].icons[iconId[1]].svg;
                     iconMapping[isomatic.data.meta.attributes.columns[i]] = {};
                     iconMapping[isomatic.data.meta.attributes.columns[i]].svg = svg;
@@ -53,7 +58,13 @@
                 }
             } else {
                 for (i = 0; i < isomatic.data.meta.attributes.rows.length; i++) {
+
+                    if (iconMap[i] === undefined) {
+                        iconMap[i] = isomatic.options.internal.defaultIcon;
+                    }
+
                     iconId = iconMap[i].split('-');
+
                     svg = isomatic.icons[iconId[0]].icons[iconId[1]].svg;
                     iconMapping[isomatic.data.meta.attributes.rows[i]] = {};
                     iconMapping[isomatic.data.meta.attributes.rows[i]].svg = svg;
