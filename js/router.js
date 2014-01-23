@@ -29,46 +29,51 @@
         home: function() {
             $(".overlay-container").hide();
             $(".trigger-ui").removeClass('active');
+            $('#graph').removeClass('move-right');
         },
 
         newGraphic: function() {
+            // Modal
         },
 
         importGraphic: function() {
+            // Modal
         },
 
         exportGraphic: function() {
+            // Modal
         },
 
         help: function() {
+            // Modal
         },
 
         data: function() {
-            this.triggerUi('data');
+            this.triggerUi('data', true);
         },
 
         type: function() {
-            this.triggerUi('type');
+            this.triggerUi('type', false);
         },
 
         color: function() {
-            this.triggerUi('color');
+            this.triggerUi('color', true);
         },
 
         icon: function() {
-            this.triggerUi('icon');
+            this.triggerUi('icon', true);
         },
 
         adjustments: function() {
-            this.triggerUi('adjustments');
+            this.triggerUi('adjustments', false);
         },
 
         scale: function() {
-            this.triggerUi('scale');
+            this.triggerUi('scale', false);
         },
 
         text: function() {
-            this.triggerUi('text');
+            this.triggerUi('text', false);
         },
 
         ////////////////////////////////////
@@ -79,11 +84,16 @@
          * Handles UI Elements
          * @param id
          */
-        triggerUi: function(id) {
+        triggerUi: function(id, isBig) {
             $(".trigger-ui").removeClass('active');
             $(".overlay-container").hide();
             $("#trigger-" + id).addClass('active');
             $('#' + id + '-container').show();
+
+            if (!isBig) {
+                $('#graph').addClass('move-right');
+            } 
+
         }
     });
 

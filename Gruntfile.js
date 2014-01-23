@@ -34,6 +34,9 @@ module.exports = function(grunt) {
                         "js/isotypeLayout.js",
                         "js/models/*",
                         "js/views/*"
+                    ],
+                    'js/header.min.js': [
+                        "bower_components/modernizr/modernizr.js"
                     ]
                 }
             }
