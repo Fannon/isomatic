@@ -26,24 +26,48 @@
      */
     isomatic.options.internal = {
 
-        /** Automatically adjusts scale according to this value */
-        desiredTotalIcons: 64,
-
-        /** Automatically adjusts scale according to this value */
+        /**
+         * Automatically adjusts scale according to this value
+         * Used when recommending a scale
+         *
+         * @type {Number}
+         */
         desiredmaxIconsPerRow: 32,
 
-        /** Icon Size of the SVG Paths in defaultIcons.js */
+        /**
+         * Icon Size of the SVG Paths in the iconLibrary.js
+         *
+         * @type {Number}
+         */
         defaultIconSize: 32,
 
+        /**
+         * Maximum Icon Size
+         * Prevents unsane layouts
+         *
+         * @type {Number}
+         */
         maxIconSize: 64,
 
-        /** Default Color if none is chosen yet */
+        /**
+         * Default Color if none is chosen yet
+         *
+         * @type {String} HEX Color Code without #
+         */
         defaultColor: 'CCCCCC',
 
-        /** Default Icon if none is chosen yet */
+        /**
+         * Default Icon if none is chosen yet
+         *
+         * @type {String} IconID
+         */
         defaultIcon: 'persons-man',
 
-        /** Array List of available Scales */
+        /**
+         * Array List of available Scales
+         *
+         * @type {Array}
+         */
         scaleArray: [
             1, 2, 5,
             10, 20, 50,
@@ -61,8 +85,7 @@
         ],
 
         /**
-         * Available Fonts
-         * They have to be Font Stacks (TODO!)
+         * Available Fontstacks
          */
         availableFonts: {
             'Arial': 'Frutiger, "Frutiger Linotype", Univers, Calibri, "Gill Sans", "Gill Sans MT", "Myriad Pro", Myriad, "DejaVu Sans Condensed", "Liberation Sans", "Nimbus Sans L", Tahoma, Geneva, "Helvetica Neue", Helvetica, Arial, sans-serif',
@@ -71,9 +94,18 @@
             'Verdana': 'Corbel, "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "DejaVu Sans", "Bitstream Vera Sans", "Liberation Sans", Verdana, "Verdana Ref", sans-serif'
         },
 
+        /**
+         * Height of the Column Legend (Icon and Color Rect)
+         *
+         * @type {Number}
+         */
         columnLegendHeight: 18,
 
-        /** This example Dataset is loaded when the Application loads */
+        /**
+         * This example Dataset is loaded when the Application loads
+         *
+         * @type {Array}
+         */
         exampleData: [
             {
                 "Example Dataset":"Facebook",
@@ -103,7 +135,8 @@
 
         /**
          * Color Preset Palettes
-         * http://bl.ocks.org/mbostock/5577023
+         *
+         * @type {Object}
          */
         colorPalettes: {
             "Signal1": ["333333","009DE0", "E80073", "FFB103", "BCAA99"],
@@ -116,6 +149,11 @@
             "Red": ["74104B", "A7264D", "BE3550", "F36244","FAA143"]
         },
 
+        /**
+         * Default options for the slimScroll jQuery Plugin
+         *
+         * @type {Object}
+         */
         slimmScrollOptions: {
             height: '100%',
             alwaysVisible: true,

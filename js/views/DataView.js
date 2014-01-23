@@ -289,15 +289,13 @@
         /**
          * Calculates a recommended Scale
          * Currently based on an desired Icon per Row Setting
-         *
+         * Chooses the nearest scale from the isomatic.options.internal.scalesArray
          */
         calculateRecommendedScale: function() {
 
             var scale      = 0;
             var scaleArray = isomatic.options.internal.scaleArray;
             var scaleTemp  = isomatic.data.meta.attributes.maxRowValues / isomatic.options.internal.desiredmaxIconsPerRow;
-
-            console.warn('scaleTemp: ' + scaleTemp);
 
             // Get nearest fitting Scale from the ScalesArray
             for (var j = 0; j < scaleArray.length; j++) {

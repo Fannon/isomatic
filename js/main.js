@@ -33,24 +33,30 @@ var isomatic = {};
         // Init Application                  //
         ///////////////////////////////////////
 
-        // Init Views
+        /**
+         * Isomatic Views Container
+         *
+         * Initializes all Views
+         *
+         * @type {Object}
+         */
         var views = isomatic.views;
 
-        views.graphView      = new views.GraphView({el: $("#graph-container")});
+        views.graphView       = new views.GraphView({el: $("#graph-container")});
 
-        views.newView        = new views.NewView({el: $("#new-modal")});
-        views.importView     = new views.ImportView({el: $("#import-modal")});
-        views.exportView     = new views.ExportView({el: $("#export-modal")});
-        views.helpView       = new views.HelpView({el: $("#help-modal")});
+        views.newView         = new views.NewView({el: $("#new-modal")});
+        views.importView      = new views.ImportView({el: $("#import-modal")});
+        views.exportView      = new views.ExportView({el: $("#export-modal")});
+        views.helpView        = new views.HelpView({el: $("#help-modal")});
 
-        views.dataView       = new views.DataView({el: $("#data-container")});
-        views.typeView       = new views.TypeView({el: $("#type-container")});
-        views.iconMapView       = new views.IconMapView({el: $("#icon-left-container")});
-        views.iconLibraryView       = new views.IconLibraryView({el: $("#icon-right-container")});
-        views.colorView      = new views.ColorView({el: $("#color-container")});
-        views.propertiesView = new views.AdjustmentsView({el: $("#adjustments-container")});
-        views.scaleView      = new views.ScaleView({el: $("#scale-container")});
-        views.textView       = new views.TextView({el: $("#text-container")});
+        views.dataView        = new views.DataView({el: $("#data-container")});
+        views.typeView        = new views.TypeView({el: $("#type-container")});
+        views.iconMapView     = new views.IconMapView({el: $("#icon-left-container")});
+        views.iconLibraryView = new views.IconLibraryView({el: $("#icon-right-container")});
+        views.colorView       = new views.ColorView({el: $("#color-container")});
+        views.propertiesView  = new views.AdjustmentsView({el: $("#adjustments-container")});
+        views.scaleView       = new views.ScaleView({el: $("#scale-container")});
+        views.textView        = new views.TextView({el: $("#text-container")});
 
         // Draw Example Data Set
         isomatic.refreshData();
