@@ -227,11 +227,9 @@
             var graphHeight          = parseInt(isomatic.options.ui.attributes.graphHeight, 10);
             var graphWidth           = parseInt(isomatic.options.ui.attributes.graphWidth, 10);
             var legendWidth          = parseInt(isomatic.options.ui.attributes.legendWidth, 10);
-            var baseScale            = parseFloat(isomatic.data.meta.attributes.baseScale);
             var legendTitleHeight    = parseInt(isomatic.options.ui.attributes.legendTitleHeight, 10);
             var iconSize             = parseFloat(isomatic.options.ui.attributes.iconSize);
             var defaultIconSize      = isomatic.options.internal.defaultIconSize;
-
 
             var iconize              = isomatic.options.ui.attributes.iconize;
             var colorize             = isomatic.options.ui.attributes.colorize;
@@ -501,9 +499,7 @@
                         .html(function(d, i) {
 
                             var iconId = iconMap[i].split('-');
-                            var svg = isomatic.icons[iconId[0]].icons[iconId[1]].svg;
-
-                            return svg;
+                            return isomatic.icons[iconId[0]].icons[iconId[1]].svg;
                         })
                         .style("fill", function(d, i) {
 

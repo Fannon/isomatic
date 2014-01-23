@@ -35,25 +35,39 @@
 
             console.info('ColorView.render();');
 
+            var colorMap = isomatic.options.ui.attributes.colorMap;
+
             var source = $('#color-template').html();
             var template = Handlebars.compile(source);
 
             // Calculate current Colormap
-            var colorMap = {};
+            var colorMapping = {};
             var i = 0;
             if (isomatic.options.ui.attributes.colorize === 'row') {
                 for (i = 0; i < isomatic.data.meta.attributes.rows.length; i++) {
-                    colorMap[isomatic.data.meta.attributes.rows[i]] = isomatic.options.ui.attributes.colorMap[i];
+
+                    // If no Color is currently mapped, use default Color
+                    if (colorMap[i] === undefined) {
+                        colorMapping[i] = isomatic.options.internal.defaultColor;
+                    }
+
+                    colorMapping[isomatic.data.meta.attributes.rows[i]] = colorMap[i];
                 }
             } else {
                 for (i = 0; i < isomatic.data.meta.attributes.columns.length; i++) {
-                    colorMap[isomatic.data.meta.attributes.columns[i]] = isomatic.options.ui.attributes.colorMap[i];
+
+                    // If no Color is currently mapped, use default Color
+                    if (colorMap[i] === undefined) {
+                        colorMapping[i] = isomatic.options.internal.defaultColor;
+                    }
+
+                    colorMapping[isomatic.data.meta.attributes.columns[i]] = colorMap[i];
                 }
             }
 
             var html = template({
                 options: this.model.attributes,
-                colorMap: colorMap,
+                colorMapping: colorMapping,
                 palettes: isomatic.options.internal.colorPalettes
             });
 

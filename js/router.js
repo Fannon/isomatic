@@ -92,7 +92,7 @@
 
             if (!isBig) {
                 $('#graph').addClass('move-right');
-            } 
+            }
 
         }
     });
