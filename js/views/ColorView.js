@@ -82,15 +82,27 @@
                 $('#colorize-row').removeAttr("checked");
             }
 
+
             // Init ColorPicker
-            $('.picker').each(function() {
-                isomatic.registerColorpicker($(this));
-            });
+            try {
+                $('.picker').each(function() {
+                    isomatic.registerColorpicker($(this));
+                });
+
+            } catch (e) {
+                console.error('Error loading Colorpicker Plugin!');
+            }
 
             // Init Scrollbar
-            $('.scrollbar').slimScroll({
-                'height': isomatic.options.ui.attributes.graphHeight
-            });
+            try {
+                $('.scrollbar').slimScroll({
+                    'height': isomatic.options.ui.attributes.graphHeight
+                });
+
+            } catch (e) {
+                console.error('Error loading Scrollbar Plugin!');
+            }
+
 
         },
 

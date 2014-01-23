@@ -43,7 +43,7 @@ module.exports = function(grunt) {
 
                         "js/views/*",
 
-                        "bower_components/colpick/colpick.js",
+                        "bower_components/colpick/js/colpick.js",
                         "bower_components/slimScroll/jquery.slimscroll.min.js",
                     ],
 
