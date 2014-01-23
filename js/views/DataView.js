@@ -101,6 +101,9 @@
                 // Generate Preview Table from data
                 this.tablePreview(this.model.get('data'));
 
+                // Set Scale to 0 to re-trigger the calculation of it
+                isomatic.options.ui.attributes.scale = 0;
+
                 // Process and draw Data
                 isomatic.refreshData();
             }
@@ -169,17 +172,18 @@
 
             console.log('DataView.analyze(data);');
 
-            var values = [];
-            var rowValues = [];
-            var availableScales = [];
-            var rows = [];
-            var columns = [];
-            var title = '';
+            var values          = [];
+            var rowValues       = [];
+            var rows            = [];
+            var columns         = [];
+            var title           = '';
 
-            var data = this.model.get('data');
+            var data            = this.model.get('data');
 
-            var iconMap     = isomatic.options.ui.attributes.iconMap;
-            var colorMap    = isomatic.options.ui.attributes.colorMap;
+            var scale           = parseInt(isomatic.options.ui.attributes.scale, 10);
+
+            var iconMap         = isomatic.options.ui.attributes.iconMap;
+            var colorMap        = isomatic.options.ui.attributes.colorMap;
 
 
             ///////////////////////////////////////
@@ -222,6 +226,11 @@
                 rowValues[rowCounter] = rowValue;
             }
 
+
+            ///////////////////////////////////////
+            // Fill up Icon and Color Mapping    //
+            ///////////////////////////////////////
+
             // Check if ColorMap and IconMap are big enough for current Dataset.
             // If not, fill them up with default Values
 
@@ -247,7 +256,11 @@
                 }
             }
 
-            // Write calculated data to metadata object
+
+            ///////////////////////////////////////
+            // Update Metadata Model             //
+            ///////////////////////////////////////
+
             isomatic.data.meta.set({
                 min: d3.min(values),
                 max: d3.max(values),
@@ -266,40 +279,49 @@
             // Calculate a recommended Scale     //
             ///////////////////////////////////////
 
-            var scaleTemp = isomatic.data.meta.attributes.sum / isomatic.options.internal.desiredTotalIcons;
-            //    var scaleTemp = isomatic.data.meta.attributes.maxRowValues / isomatic.options.internal.desiredmaxIconsPerRow;
+            // Calculate the Scale only if its not already set or imported
+            if (scale === 0) {
+                this.calculateRecommendedScale();
+            }
 
+        },
+
+        /**
+         * Calculates a recommended Scale
+         * Currently based on an desired Icon per Row Setting
+         *
+         */
+        calculateRecommendedScale: function() {
+
+            var scale      = 0;
             var scaleArray = isomatic.options.internal.scaleArray;
+            var scaleTemp  = isomatic.data.meta.attributes.maxRowValues / isomatic.options.internal.desiredmaxIconsPerRow;
 
-            // Get fitting Scales from the Array
-            // TODO: Check for Array Boundaries!
-            for (j = 0; j < scaleArray.length; j++) {
+            console.warn('scaleTemp: ' + scaleTemp);
+
+            // Get nearest fitting Scale from the ScalesArray
+            for (var j = 0; j < scaleArray.length; j++) {
                 if (scaleTemp <= scaleArray[j]) {
                     if (scaleArray[j] - scaleTemp < scaleTemp - scaleArray[j - 1]) {
-                        availableScales = [
-                            scaleArray[j - 1],
-                            scaleArray[j],
-                            scaleArray[j + 1]
-                        ];
+                        scale = scaleArray[j];
                     } else {
-                        availableScales = [
-                            scaleArray[j - 2],
-                            scaleArray[j - 1],
-                            scaleArray[j]
-                        ];
+                        scale = scaleArray[j - 1];
                     }
                     break;
                 }
             }
 
-            console.log('-> Calculated Scale: ' + availableScales[1] + ' from ' + scaleTemp);
+            console.log('-> Calculated Scale: ' + scale + ' from ' + scaleTemp);
+
+            ///////////////////////////////////////
+            // Update Option Model               //
+            ///////////////////////////////////////
 
             isomatic.options.ui.set({
-                scale: availableScales[1],
-                availableScales: availableScales
+                scale: scale
             });
-
         }
+
 
     });
 

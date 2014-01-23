@@ -88,7 +88,6 @@
 
             var iconHorizontalMargin = parseFloat(isomatic.options.ui.attributes.iconHorizontalMargin);
             var outerMargin          = parseFloat(isomatic.options.ui.attributes.outerMargin);
-            var graphHeight          = parseInt(isomatic.options.ui.attributes.graphHeight, 10);
             var graphWidth           = parseInt(isomatic.options.ui.attributes.graphWidth, 10);
             var legendWidth          = parseInt(isomatic.options.ui.attributes.legendWidth, 10);
             var defaultIconSize      = isomatic.options.internal.defaultIconSize;

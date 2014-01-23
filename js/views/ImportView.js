@@ -88,10 +88,9 @@
             console.log('ImportView.importSvg()');
 
             try {
+
                 var importHtml = $(result).find('#isomatic-metadata').html();
-
                 var importObject = JSON.parse(importHtml);
-
                 this.updateApplicationState(importObject);
 
             } catch(error) {
@@ -111,7 +110,6 @@
 
             try {
                 var importObject = JSON.parse(result);
-                console.dir(importObject);
                 this.updateApplicationState(importObject);
 
             } catch(error) {
@@ -132,6 +130,11 @@
 
             console.log('ImportView.updateApplicationState()');
             console.dir(importObject);
+
+
+            /////////////////////////////////////////
+            // Data Import                         //
+            /////////////////////////////////////////
 
             // Check for Data, validate and import it
             if (importObject.data && importObject.data !== '') {
@@ -154,6 +157,11 @@
                 success = false;
             }
 
+
+            /////////////////////////////////////////
+            // Options Import                      //
+            /////////////////////////////////////////
+
             if (importObject.options && importObject.options !== '') {
 
                 var options = importObject.options;
@@ -161,7 +169,10 @@
                 var optionsErrors = isomatic.options.ui.validate(options);
 
                 if (!optionsErrors) {
+                    console.error('SCALE: ' + importObject.options.scale);
+//                    isomatic.options.ui.attributes = importObject.options;
                     isomatic.options.ui.set(options);
+
                 } else {
                     this.printErrorMessage('Imported Options not valid! <br>(Detailed Error Report is in the Dev Console)');
                     console.dir(optionsErrors);
@@ -174,7 +185,14 @@
             }
 
             if (success) {
+                // Refresh Graphic
                 isomatic.refreshData();
+
+                // Update DataView (Preview)
+                isomatic.views.dataView.render();
+                isomatic.views.dataView.tablePreview();
+
+                // Show Success Message
                 this.success();
             }
         },

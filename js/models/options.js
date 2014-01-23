@@ -30,7 +30,7 @@
         desiredTotalIcons: 64,
 
         /** Automatically adjusts scale according to this value */
-        desiredmaxIconsPerRow: 16,
+        desiredmaxIconsPerRow: 32,
 
         /** Icon Size of the SVG Paths in defaultIcons.js */
         defaultIconSize: 32,
