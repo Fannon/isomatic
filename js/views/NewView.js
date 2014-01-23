@@ -47,8 +47,8 @@
         model: isomatic.options.ui,
 
         events: {
-            "click #new-apply": "apply",
-            "click #new-apply-close": "apply",
+            "click #new-canvas-apply": "applyAspectRatio",
+            "click #new-graphic-apply": "applyNewGraphic",
             "change #aspect-ratio": "changeAspectRatio",
             "change #aspect-ratio-width": "changeAspectRatioSizing",
             "change #aspect-ratio-height": "changeAspectRatioSizing"
@@ -57,9 +57,9 @@
         /**
          * Applies the currently calculated Aspect Ratio to the Graphic Canvas
          */
-        apply: function() {
+        applyAspectRatio: function() {
 
-            console.log('generateNewGraphic');
+            console.log('NewView.applyAspectRatio');
 
             var aspectRatio = this.getAspectRatio();
 
@@ -71,6 +71,30 @@
 
             if (isValid) {
                 isomatic.refreshLayout();
+            }
+
+        },
+
+        /**
+         * Applies the currently calculated Aspect Ratio to the Graphic Canvas
+         */
+        applyNewGraphic: function() {
+
+            console.log('NewView.applyNewGraphic');
+
+            var aspectRatio = this.getAspectRatio();
+
+            var state = {
+                'aspectRatio': aspectRatio
+            };
+
+            var isValid = this.model.set(state, {validate: true});
+
+            if (isValid) {
+                isomatic.data.raw.set({
+                    data: {}
+                });
+                isomatic.refreshData();
             }
 
         },
