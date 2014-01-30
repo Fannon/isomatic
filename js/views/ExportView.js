@@ -4,16 +4,14 @@
 (function(isomatic) {
     "use strict";
 
-    /**
-     * Export View
-     *
-     * @type {*|void|Object}
-     */
     isomatic.views.ExportView = Backbone.View.extend( /** @lends ExportView.prototype */ {
 
         /**
-         * @class ExportView
+         * This View is for Exporting the current Graphic to SVG or JSON Files
+         * They can optionally be filled with the current Data and Options
+         * If they are they can be imported again by the ImportView
          *
+         * @class ExportView
          * @augments Backbone.View
          * @contructs
          */

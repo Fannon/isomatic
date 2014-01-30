@@ -4,11 +4,6 @@
 (function(isomatic) {
     "use strict";
 
-    /**
-     * New Graphic View
-     *
-     * @type {*|void|Object}
-     */
     isomatic.views.NewView = Backbone.View.extend( /** @lends NewView.prototype */ {
 
         /**

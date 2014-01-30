@@ -4,16 +4,16 @@
 (function(isomatic) {
     "use strict";
 
-    /**
-     * Graph View
-     *
-     * @type {*|void|Object}
-     */
     isomatic.views.GraphView = Backbone.View.extend( /** @lends GraphView.prototype */ {
 
         /**
-         * @class GraphView
+         * Initializes the Graph View.
          *
+         * The Graph View creates the Canvas for the Graphic
+         * It has all the functions to layout and render the visualisation
+         * based on the Data coming from the DataView.
+         *
+         * @class GraphView
          * @augments Backbone.View
          * @contructs
          */
@@ -30,6 +30,7 @@
 
         /**
          * Render Graph Element
+         *
          * Fill in just an empty graph div
          */
         render: function(){
@@ -52,7 +53,8 @@
 
         /**
          * Creates a new Visualisation
-         * Calculats Graph Canvas Size and sets UI Options and Appearance accordingly
+         *
+         * Calculates Graph Canvas Size and sets UI Options and Appearance accordingly
          */
         newVisualisation: function() {
 
@@ -172,6 +174,7 @@
 
         /**
          * Prepares the Drawing
+         *
          * Creates and prepares SVG Canvas
          * Creates and prepares the Isotype Layout
          */
@@ -209,7 +212,10 @@
         /**
          * Draws Isotype Graphic
          *
-         * TODO: Line Return if overflowing on the right side
+         * Here the actual drawing of the Graphic is happening
+         * The Visualisation Library D3js is used to create the SVG Elements
+         *
+         * @TODO Line Return if overflowing on the right side
          */
         drawIsotype: function() {
 
@@ -306,7 +312,9 @@
 
         /**
          * Draws Legend Overlay
-         * TODO: Not completely implemented yet
+         *
+         * Draws the Legend, depending on the actual Settings
+         * The Visualisation Library D3js is used to create the SVG Text Elements
          */
         drawLegend: function() {
 

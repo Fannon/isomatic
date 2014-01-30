@@ -51,15 +51,11 @@
 
         /**
          * Default Color if none is chosen yet
-         *
-         * @type {String} HEX Color Code without #
          */
         defaultColor: 'CCCCCC',
 
         /**
          * Default Icon if none is chosen yet
-         *
-         * @type {String} IconID
          */
         defaultIcon: 'persons-man',
 
@@ -109,27 +105,27 @@
         exampleData: [
             {
                 "Example Dataset":"Facebook",
-                "<30.000/year":"165050000",
-                "30.000-50.000":"395000777",
-                ">50.000":"135000000"
+                "Low Income":"165050000",
+                "Medium Income":"395000777",
+                "High Income":"135000000"
             },
             {
                 "Example Dataset":"Twitter",
-                "<30.000/year":"278050000",
-                "30.000-50.000":"198007700",
-                ">50.000":"88000555"
+                "Low Income":"278050000",
+                "Medium Income":"198007700",
+                "High Income":"88000555"
             },
             {
                 "Example Dataset":"Google+",
-                "<30.000/year":"459370000",
-                "30.000-50.000":"159200000",
-                ">50.000":"129000000"
+                "Low Income":"459370000",
+                "Medium Income":"159200000",
+                "High Income":"129000000"
             },
             {
                 "Example Dataset":"LinkedIn",
-                "<30.000/year":"102500000",
-                "30.000-50.000":"80500770",
-                ">50.000":"30006000"
+                "Low Income":"102500000",
+                "Medium Income":"80500770",
+                "High Income":"30006000"
             }
         ],
 

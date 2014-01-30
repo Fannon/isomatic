@@ -4,14 +4,14 @@
 (function(isomatic) {
     "use strict";
 
-    /**
-     * Data View
-     *
-     * @type {*|void|Object}
-     */
+
     isomatic.views.DataView = Backbone.View.extend( /** @lends DataView.prototype */ {
 
         /**
+         * The Data View handles the Import of Data via Copy'n'Paste
+         * It also analyzes the data to generate useful metadata informations from it
+         * Generates a simple Table Preview of the current Data via D3.js
+         *
          * @class DataView
          *
          * @augments Backbone.View
@@ -112,6 +112,7 @@
 
         /**
          * Generate Preview Table via D3.js
+         *
          * Adapted from: http://stackoverflow.com/a/18072266
          */
         tablePreview: function() {
@@ -165,8 +166,11 @@
         },
 
         /**
-         * Calculates the Scale from the Raw Data
-         * Returns nice Scales like 1:10000
+         * Analyzes the Data and saves the calculations to the metadata object
+         *
+         * Calculates a recommended Scale from the Raw Data
+         * Calculates MetaData about the RawData
+         * Fills up the ColorMap and IconMap Array if they are not sufficient
          */
         analyze: function() {
 
@@ -288,6 +292,8 @@
 
         /**
          * Calculates a recommended Scale
+         *
+         * Helper Function, used by the analyze function
          * Currently based on an desired Icon per Row Setting
          * Chooses the nearest scale from the isomatic.options.internal.scalesArray
          */

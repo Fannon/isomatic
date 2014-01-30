@@ -31,14 +31,14 @@
 (function(isomatic) {
     "use strict";
 
-    /**
-     * Data View
-     *
-     * @type {*|void|Object}
-     */
+
     isomatic.views.DataView = Backbone.View.extend( /** @lends DataView.prototype */ {
 
         /**
+         * The Data View handles the Import of Data via Copy'n'Paste
+         * It also analyzes the data to generate useful metadata informations from it
+         * Generates a simple Table Preview of the current Data via D3.js
+         *
          * @class DataView
          *
          * @augments Backbone.View
@@ -128,6 +128,9 @@
                 // Generate Preview Table from data
                 this.tablePreview(this.model.get('data'));
 
+                // Set Scale to 0 to re-trigger the calculation of it
+                isomatic.options.ui.attributes.scale = 0;
+
                 // Process and draw Data
                 isomatic.refreshData();
             }
@@ -136,6 +139,7 @@
 
         /**
          * Generate Preview Table via D3.js
+         *
          * Adapted from: http://stackoverflow.com/a/18072266
          */
         tablePreview: function() {
@@ -189,24 +193,28 @@
         },
 
         /**
-         * Calculates the Scale from the Raw Data
-         * Returns nice Scales like 1:10000
+         * Analyzes the Data and saves the calculations to the metadata object
+         *
+         * Calculates a recommended Scale from the Raw Data
+         * Calculates MetaData about the RawData
+         * Fills up the ColorMap and IconMap Array if they are not sufficient
          */
         analyze: function() {
 
             console.log('DataView.analyze(data);');
 
-            var values = [];
-            var rowValues = [];
-            var availableScales = [];
-            var rows = [];
-            var columns = [];
-            var title = '';
+            var values          = [];
+            var rowValues       = [];
+            var rows            = [];
+            var columns         = [];
+            var title           = '';
 
-            var data = this.model.get('data');
+            var data            = this.model.get('data');
 
-            var iconMap     = isomatic.options.ui.attributes.iconMap;
-            var colorMap    = isomatic.options.ui.attributes.colorMap;
+            var scale           = parseInt(isomatic.options.ui.attributes.scale, 10);
+
+            var iconMap         = isomatic.options.ui.attributes.iconMap;
+            var colorMap        = isomatic.options.ui.attributes.colorMap;
 
 
             ///////////////////////////////////////
@@ -249,6 +257,11 @@
                 rowValues[rowCounter] = rowValue;
             }
 
+
+            ///////////////////////////////////////
+            // Fill up Icon and Color Mapping    //
+            ///////////////////////////////////////
+
             // Check if ColorMap and IconMap are big enough for current Dataset.
             // If not, fill them up with default Values
 
@@ -274,7 +287,11 @@
                 }
             }
 
-            // Write calculated data to metadata object
+
+            ///////////////////////////////////////
+            // Update Metadata Model             //
+            ///////////////////////////////////////
+
             isomatic.data.meta.set({
                 min: d3.min(values),
                 max: d3.max(values),
@@ -293,40 +310,49 @@
             // Calculate a recommended Scale     //
             ///////////////////////////////////////
 
-            var scaleTemp = isomatic.data.meta.attributes.sum / isomatic.options.internal.desiredTotalIcons;
-            //    var scaleTemp = isomatic.data.meta.attributes.maxRowValues / isomatic.options.internal.desiredmaxIconsPerRow;
+            // Calculate the Scale only if its not already set or imported
+            if (scale === 0) {
+                this.calculateRecommendedScale();
+            }
 
+        },
+
+        /**
+         * Calculates a recommended Scale
+         *
+         * Helper Function, used by the analyze function
+         * Currently based on an desired Icon per Row Setting
+         * Chooses the nearest scale from the isomatic.options.internal.scalesArray
+         */
+        calculateRecommendedScale: function() {
+
+            var scale      = 0;
             var scaleArray = isomatic.options.internal.scaleArray;
+            var scaleTemp  = isomatic.data.meta.attributes.maxRowValues / isomatic.options.internal.desiredmaxIconsPerRow;
 
-            // Get fitting Scales from the Array
-            // TODO: Check for Array Boundaries!
+            // Get nearest fitting Scale from the ScalesArray
             for (var j = 0; j &lt; scaleArray.length; j++) {
                 if (scaleTemp &lt;= scaleArray[j]) {
                     if (scaleArray[j] - scaleTemp &lt; scaleTemp - scaleArray[j - 1]) {
-                        availableScales = [
-                            scaleArray[j - 1],
-                            scaleArray[j],
-                            scaleArray[j + 1]
-                        ];
+                        scale = scaleArray[j];
                     } else {
-                        availableScales = [
-                            scaleArray[j - 2],
-                            scaleArray[j - 1],
-                            scaleArray[j]
-                        ];
+                        scale = scaleArray[j - 1];
                     }
                     break;
                 }
             }
 
-            console.log('-> Calculated Scale: ' + availableScales[1] + ' from ' + scaleTemp);
+            console.log('-> Calculated Scale: ' + scale + ' from ' + scaleTemp);
+
+            ///////////////////////////////////////
+            // Update Option Model               //
+            ///////////////////////////////////////
 
             isomatic.options.ui.set({
-                scale: availableScales[1],
-                availableScales: availableScales
+                scale: scale
             });
-
         }
+
 
     });
 
@@ -348,7 +374,7 @@
 <br clear="both">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.2</a> on Wed Jan 22 2014 10:41:45 GMT+0100 (MEZ)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.2</a> on Thu Jan 30 2014 09:21:50 GMT+0100 (MEZ)
 </footer>
 
 <script> prettyPrint(); </script>
