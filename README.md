@@ -19,5 +19,6 @@ To get this project running follow these steps:
 
 ## Updating
 * Update dependencies via: `bower update` in the project directory
+* Update grunt plugins via `npm update`
 * Update JSDoc Documentation via `bower jsdoc`
 * Update Minified JavaScript via `bower build`
