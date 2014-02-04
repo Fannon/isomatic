@@ -104,25 +104,25 @@
          */
         exampleData: [
             {
-                "Example Dataset":"Facebook",
+                "Who uses social networks?":"Facebook",
                 "Low Income":"165050000",
                 "Medium Income":"395000777",
                 "High Income":"135000000"
             },
             {
-                "Example Dataset":"Twitter",
+                "Who uses social networks?":"Twitter",
                 "Low Income":"278050000",
                 "Medium Income":"198007700",
                 "High Income":"88000555"
             },
             {
-                "Example Dataset":"Google+",
+                "Who uses social networks?":"Google+",
                 "Low Income":"459370000",
                 "Medium Income":"159200000",
                 "High Income":"129000000"
             },
             {
-                "Example Dataset":"LinkedIn",
+                "Who uses social networks?":"LinkedIn",
                 "Low Income":"102500000",
                 "Medium Income":"80500770",
                 "High Income":"30006000"
@@ -150,7 +150,7 @@
          *
          * @type {Object}
          */
-        slimmScrollOptions: {
+        slimScrollOptions: {
             height: '100%',
             alwaysVisible: true,
             railOpacity: 0.3
@@ -192,13 +192,13 @@
         outerMargin: 20,
 
         /** Margin between Rows */
-        rowMargin: 30,
+        rowMargin: 15,
 
         /** Margin between Columns TODO: Not implemented */
         columnMargin: 30,
 
         /** Horizontal Margin between Icons */
-        iconHorizontalMargin: 3,
+        iconHorizontalMargin: -20,
 
         /** Vertical Margin between Icons */
         iconVerticalMargin: 3,
@@ -236,7 +236,7 @@
          * Accepts 'row' and 'column'
          * @type {string}
          */
-        iconize: 'row',
+        iconize: 'column',
 
         /**
          * Defines if the Color is applied to Rows or Columns
@@ -249,14 +249,14 @@
          * This stores which row ID maps to which color
          * Defines the default Palette
          */
-        colorMap: isomatic.options.internal.colorPalettes.Complementary1,
+        colorMap: isomatic.options.internal.colorPalettes.Complementary2,
 
         /** This stores which column ID maps to which icon */
         iconMap: [
-            'social_networks-facebook',
-            'social_networks-twitter',
-            'social_networks-googleplus',
-            'social_networks-linkedin'
+            'persons-man',
+            'persons-man',
+            'persons-man',
+            'persons-man'
         ],
 
 
@@ -281,12 +281,12 @@
         /**
          * Height / Size of Graphic Title
          */
-        legendTitleHeight: 24,
+        legendTitleHeight: 26,
 
         /**
          * Font Size of the Row Legend
          */
-        rowsLegendFontSize: 14,
+        rowsLegendFontSize: 12,
 
         /**
          * Decides if Column Legend is drawn or not

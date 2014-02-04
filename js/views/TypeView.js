@@ -35,10 +35,28 @@
             });
 
             this.$el.html(html);
+
+
+
+            // Init Scrollbar
+            try {
+                $('.scrollbar').slimScroll({
+                    'height': isomatic.options.ui.attributes.graphHeight
+                });
+
+            } catch (e) {
+                console.error('Error loading Scrollbar Plugin!');
+            }
+
+
         },
         events: {
             "click .select-type": "selectType"
         },
+
+
+
+
 
         /**
          * Selects the clicked on Type, deselects others
