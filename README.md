@@ -3,7 +3,7 @@ isomatic is an interactive Isotype Graphics Generator.
 It can be used online at http://www.isomatic.de
 
 ## Installation
-This project uses 3rd party programs for pependency & build management. 
+This project uses 3rd party programs for pependency & build management.
 To get this project running follow these steps:
 Dont forget to prepend sudo if using linux or mac.
 
@@ -18,10 +18,13 @@ Switch to project directory.
 
 * Install missing Grunt Plugins via `npm install` in the project directory
 * Install JavaScript dependencies via Bower: `bower install` in the project directory
-* Run the project watch tasks (live sass compilation) via `grunt` in the project directory 
+* Run the project watch tasks (live sass compilation) via `grunt` in the project directory
 
 ## Updating
 * Update dependencies via: `bower update` in the project directory
 * Update grunt plugins via `npm update`
 * Update JSDoc Documentation via `bower jsdoc`
 * Update Minified JavaScript via `bower build`
+
+Some 3rd Party Libraries may change in a way that the app can be broken.
+If that happens, insert a specific version number into the bower.json file to revert to an older state

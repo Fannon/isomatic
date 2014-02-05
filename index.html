@@ -338,48 +338,52 @@
 
 <!-- Icon Chooser Template -->
 <script type="text/template" id="icon-left-template">
-    <form>
+    <div class="scrollbar">
+        <form>
 
-        <div class="ui-container">
-            <h4><span data-tooltip class="has-tip tip-right" title="Choose if Icons are mapped to Columns or Rows">Map to</span></h4>
-            <input id="iconize-column" type="radio" name="radio2" value="column"><label for="iconize-column"><img src="img/column.svg"> Column</label>
-            <input id="iconize-row" type="radio" name="radio2" value="row"><label for="iconize-row"><img src="img/row.svg"> Row</label>
-        </div>
-
-        <div class="ui-container">
-            <h4>Drag and Drop</h4>
-
-            {{#each iconMapping}}
-            <div id="group-{{@index}}" class="group-container">
-                <div class="group-id">{{@key}}</div>
-                <div id="mapping-{{this.id}}" class="group-icon" svg-content="{{this.svg}}"></div>
+            <div class="ui-container">
+                <h4><span data-tooltip class="has-tip tip-right" title="Choose if Icons are mapped to Columns or Rows">Map to</span></h4>
+                <input id="iconize-column" type="radio" name="radio2" value="column"><label for="iconize-column"><img src="img/column.svg"> Column</label>
+                <input id="iconize-row" type="radio" name="radio2" value="row"><label for="iconize-row"><img src="img/row.svg"> Row</label>
             </div>
-            {{/each}}
 
-        </div>
+            <div class="ui-container">
+                <h4>Drag and Drop</h4>
 
-        <a id="icon-apply" href="#" class="tiny button radius">Apply</a>
-        <a id="icon-apply-close" href="#home" class="tiny button radius">Apply & Close</a>
+                {{#each iconMapping}}
+                <div id="group-{{@index}}" class="group-container">
+                    <div class="group-id">{{@key}}</div>
+                    <div id="mapping-{{this.id}}" class="group-icon" svg-content="{{this.svg}}"></div>
+                </div>
+                {{/each}}
 
-    </form>
+            </div>
+
+            <a id="icon-apply" href="#" class="tiny button radius">Apply</a>
+            <a id="icon-apply-close" href="#home" class="tiny button radius">Apply & Close</a>
+
+        </form>
+    </div>
 </script>
 
 <!-- Icon Library  Template -->
 <script type="text/template" id="icon-right-template">
-    <div class="ui-container clearfix">
-        <h4>Icon Library</h4>
+    <div class="scrollbar">
+        <div class="ui-container clearfix">
+            <h4>Icon Library</h4>
 
-        {{#each iconLibrary}}
-        <div class="category">
-            <legend>{{this.name}}</legend>
-            {{#each this.icons}}
+            {{#each iconLibrary}}
+            <div class="category">
+                <legend>{{this.name}}</legend>
+                {{#each this.icons}}
 
-            <div class="category-border">
-                <div id="library-{{this.id}}" class="category-icon" draggable="true" svg-content="{{this.svg}}"></div>
+                <div class="category-border">
+                    <div id="library-{{this.id}}" class="category-icon" draggable="true" svg-content="{{this.svg}}"></div>
+                </div>
+                {{/each}}
             </div>
             {{/each}}
         </div>
-        {{/each}}
     </div>
 </script>
 

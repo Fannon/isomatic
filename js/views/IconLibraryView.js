@@ -50,10 +50,16 @@
                 }
             );
 
+
             // Init Scrollbar
-            $('.scrollbar').slimScroll({
-                'height': isomatic.options.ui.attributes.graphHeight
-            });
+            try {
+                $('#icon-container .scrollbar').slimScroll({
+                    'height': isomatic.options.ui.attributes.graphHeight - 34
+                });
+
+            } catch (e) {
+                console.error('Error loading Scrollbar Plugin!');
+            }
 
         },
 
