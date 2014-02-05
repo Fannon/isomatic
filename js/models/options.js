@@ -104,29 +104,30 @@
          */
         exampleData: [
             {
-                "Who uses social networks?":"Facebook",
+                "The usage of social networks (in relation to a persons income)":"Facebook",
                 "Low Income":"165050000",
                 "Medium Income":"395000777",
                 "High Income":"135000000"
             },
             {
-                "Who uses social networks?":"Twitter",
+                "The usage of social networks (in relation to a persons income)":"Twitter",
                 "Low Income":"278050000",
                 "Medium Income":"198007700",
                 "High Income":"88000555"
             },
             {
-                "Who uses social networks?":"Google+",
+                "The usage of social networks (in relation to a persons income)":"Google+",
                 "Low Income":"459370000",
                 "Medium Income":"159200000",
                 "High Income":"129000000"
             },
             {
-                "Who uses social networks?":"LinkedIn",
+                "The usage of social networks (in relation to a persons income)":"LinkedIn",
                 "Low Income":"102500000",
                 "Medium Income":"80500770",
                 "High Income":"30006000"
             }
+
         ],
 
         /**
@@ -135,10 +136,10 @@
          * @type {Object}
          */
         colorPalettes: {
+            "Complementary1": [ "333333", "12c4a6", "FF0055", "8c1f43", "237567"],
+            "Complementary2": ["333333", "00BDD1", "FF7E00", "D98866", "754552"],
             "Signal1": ["333333","009DE0", "E80073", "FFB103", "BCAA99"],
             "Signal2": ["333333","00AAB5", "C9E000", "ED4200", "AAAAAA"],
-            "Complementary1": ["333333", "00BDD1", "FF7E00", "D98866", "754552"],
-            "Complementary2": [ "333333", "12c4a6", "FF0055", "8c1f43", "237567"],
             "Rainbow": ["0A7B83","2AA876","FFD265","F19C65","CE4D45"],
             "VioletBlue": ["d437d4", "8c3a8c", "293054", "225ea8", "1d91c0", "41b6c4","7fcdbb"]
 
@@ -197,7 +198,7 @@
         columnMargin: 30,
 
         /** Horizontal Margin between Icons */
-        iconHorizontalMargin: 0,
+        iconHorizontalMargin: -15,
 
         /** Vertical Margin between Icons */
         iconVerticalMargin: 3,
@@ -248,7 +249,7 @@
          * This stores which row ID maps to which color
          * Defines the default Palette
          */
-        colorMap: isomatic.options.internal.colorPalettes.Complementary2,
+        colorMap: isomatic.options.internal.colorPalettes.Complementary1,
 
         /** This stores which column ID maps to which icon */
         iconMap: [
@@ -285,7 +286,7 @@
         /**
          * Font Size of the Row Legend
          */
-        rowsLegendFontSize: 12,
+        rowsLegendFontSize: 10,
 
         /**
          * Decides if Column Legend is drawn or not
