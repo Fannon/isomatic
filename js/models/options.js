@@ -137,12 +137,11 @@
         colorPalettes: {
             "Signal1": ["333333","009DE0", "E80073", "FFB103", "BCAA99"],
             "Signal2": ["333333","00AAB5", "C9E000", "ED4200", "AAAAAA"],
-            "Complementary1": ["034f57", "00BDD1", "FF7E00", "D98866", "754552"],
+            "Complementary1": ["333333", "00BDD1", "FF7E00", "D98866", "754552"],
             "Complementary2": [ "333333", "12c4a6", "FF0055", "8c1f43", "237567"],
             "Rainbow": ["0A7B83","2AA876","FFD265","F19C65","CE4D45"],
-            "Military": ["494726", "968651","D6BE45","A52421","D34F4F"],
-            "VioletBlue": ["d437d4", "8c3a8c", "293054", "225ea8", "1d91c0", "41b6c4","7fcdbb"],
-            "Red": ["74104B", "A7264D", "BE3550", "F36244","FAA143"]
+            "VioletBlue": ["d437d4", "8c3a8c", "293054", "225ea8", "1d91c0", "41b6c4","7fcdbb"]
+
         },
 
         /**
@@ -198,7 +197,7 @@
         columnMargin: 30,
 
         /** Horizontal Margin between Icons */
-        iconHorizontalMargin: -20,
+        iconHorizontalMargin: 0,
 
         /** Vertical Margin between Icons */
         iconVerticalMargin: 3,
