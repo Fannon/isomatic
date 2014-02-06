@@ -429,7 +429,7 @@ button.tiny, .button.tiny {
       float: left;
       margin-right: 10px;
       margin-bottom: 10px;
-      cursor: move;
+
       border: 1px solid #bbb;
     }
 
@@ -437,6 +437,7 @@ button.tiny, .button.tiny {
       height: 40px;
       width: 40px;
       padding: 3px;
+      cursor: move;
     }
 
     legend {
