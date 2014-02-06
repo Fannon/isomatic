@@ -329,7 +329,7 @@
             aspectRatio: {
                 required: true,
                 pattern: 'number',
-                range: [0.5, 5]
+                range: [0.5, 2.5]
             },
 
             graphWidth: {
