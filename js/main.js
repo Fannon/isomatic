@@ -121,7 +121,7 @@ var isomatic = {};
         // Calculates the layouted Data
         isomatic.views.graphView.layout();
 
-        // Precalculate Layout and save it into the Metadata Object.
+        // Analyze the calculated Layout and save the informations into the Metadata Object.
         isomatic.views.graphView.preCalculate();
 
         // Refresh Design, too
