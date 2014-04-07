@@ -25,13 +25,13 @@ d3.layout.isotype = function() {
      * This helps avoiding too small icons.
      * @type {number}
      */
-    var roundDown = 0.2;
+    var roundDown = 0.5;
 
     /**
      * If the remainder of a value is higher than this, the value is completely ceiled.
      * @type {number}
      */
-    var roundUp = 0.8;
+    var roundUp = 0.5;
 
     /**
      * Isotype Layout
