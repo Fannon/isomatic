@@ -1,4 +1,6 @@
+/* global module */
 module.exports = function(grunt) {
+
     "use strict";
 
 
@@ -6,87 +8,117 @@ module.exports = function(grunt) {
 
         pkg: grunt.file.readJSON('package.json'),
 
-        connect: {
-            server: {
-                options: {
-                    port: 8888,
-                    base: ''
-                }
-            }
-        },
-        uglify: {
-            main_app: {
-                options: {
-                    mangle: {
-                        except: ['jQuery', 'Backbone']
-                    }
-                },
-                files: {
-                    'js/app.min.js': [
-
-                        'bower_components/jquery/jquery.js',
-                        'bower_components/foundation/js/foundation.min.js',
-                        'bower_components/underscore/underscore-min.js',
-                        'bower_components/backbone/backbone-min.js',
-                        'bower_components/backbone.validation/dist/backbone-validation.js',
-                        'bower_components/handlebars/handlebars.min.js',
-                        'bower_components/d3js/build/d3.v3.min.js',
-                        "js/lib/innersvg.js",
-
-                        "js/main.js",
-                        "js/router.js",
-                        "js/iconLibrary.js",
-                        "js/isotypeLayout.js",
-
-                        "js/models/options.js",
-                        "js/models/data.js",
-
-                        "js/views/*",
-
-                        "bower_components/colpick/js/colpick.js",
-                        "bower_components/slimScroll/jquery.slimscroll.min.js",
-                    ],
-
-                    'js/header.min.js': [
-                        "bower_components/modernizr/modernizr.js"
-                    ]
-                }
-            }
-        },
-
         sass: {
             options: {
-                includePaths: ['bower_components/foundation/scss']
+                includePaths: ['src/bower_components/foundation/scss']
             },
             dist: {
                 options: {
-                    outputStyle: 'compressed'
+                    outputStyle: 'extended'
                 },
                 files: {
-                    'css/app.css': 'scss/app.scss'
+                    'src/css/app.css': 'src/scss/app.scss'
                 }
-            }
-        },
-
-        concat: {
-            options: {
-                separator: ' '
-            },
-            dist: {
-                src: ['css/app.css', 'bower_components/colpick/css/colpick.css'],
-                dest: 'css/app.combined.css'
             }
         },
 
         jshint: {
             all: [
-            'Gruntfile.js',
-            'js/main.js',
-            'js/iconLibrary.js',
-            'js/isotypeLayout.js',
-            'js/router.js',
-            'js/models/*.js',
-            'js/views/*.js']
+                'Gruntfile.js',
+                'src/js/**/*.js'
+            ]
+        },
+
+//        jasmine: {
+//            pivotal: {
+//                src: 'src/js/**/*.js',
+//                options: {
+//                    specs: 'spec/*Spec.js',
+//                    helpers: 'spec/*Helper.js',
+//                    vendor: [
+//                        'src/bower_components/underscore/underscore.js',
+//                        'src/bower_components/backbone/backbone.js',
+//                        'src/bower_components/d3js/build/d3.v3.js',
+//                        'src/bower_components/jquery/dist/jquery.js'
+//
+//                    ]
+//                }
+//            }
+//        },
+
+        clean: {
+            dist: {
+                src: ['dist/*']
+            }
+        },
+
+        copy: {
+            dist: {
+                files: [{
+                    expand: true,
+                    cwd:'src/',
+                    src: ['favicon.ico', 'img/**', 'fonts/**', '**/*.html', '!**/*.scss', '!bower_components/**'],
+                    dest: 'dist/'
+                }]
+            },
+            qunit: {
+                files: [{
+                    expand: true,
+                    cwd:'src/bower_components/qunit/qunit/',
+                    src: ['qunit.css', 'qunit.js'],
+                    dest: 'test/lib/'
+                }]
+            }
+        },
+
+        uncss: {
+            dist: {
+                files: {
+                    '.tmp/concat/css/app.min.css': ['src/**/*.html', '!src/bower_components/**']
+                }
+            }
+        },
+
+        uglify: {
+            options: {
+                preserveComments: 'some',
+                mangle: {
+                    except: ['jQuery', 'Backbone']
+                }
+            }
+        },
+
+        useminPrepare: {
+            html: ['src/**/*.html', '!src/bower_components/**'],
+            options: {
+                dest: 'dist'
+            }
+        },
+
+        usemin: {
+            html: ['dist/**/*.html', '!src/bower_components/**'],
+            css: ['dist/css/**/*.css'],
+            options: {
+                dirs: ['dist']
+            }
+        },
+
+        connect: {
+            src: {
+                options: {
+                    port: 9000,
+                    base: 'src/',
+                    livereload: true
+                }
+            },
+            dist: {
+                options: {
+                    port: 9001,
+                    base: 'dist/',
+                    keepalive: true,
+                    livereload: false
+                }
+            }
         },
 
         jsdoc : {
@@ -106,19 +138,32 @@ module.exports = function(grunt) {
             sass: {
                 files: 'scss/**/*.scss',
                 tasks: ['sass', 'concat']
+            },
+            livereload: {
+                files: ['src/**/*.html', '!src/bower_components/**', 'src/js/**/*.js', 'src/css/**/*.css', 'src/images/**/*.{jpg,gif,svg,jpeg,png}'],
+                options: {
+                    livereload: true
+                }
             }
         }
     });
 
 
     grunt.loadNpmTasks('grunt-sass');
+    grunt.loadNpmTasks('grunt-jsdoc');
+    grunt.loadNpmTasks('grunt-usemin');
+    grunt.loadNpmTasks('grunt-uncss');
+
     grunt.loadNpmTasks('grunt-contrib-connect');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-concat');
-    grunt.loadNpmTasks('grunt-jsdoc');
+    grunt.loadNpmTasks('grunt-contrib-clean');
+    grunt.loadNpmTasks('grunt-contrib-copy');
+    grunt.loadNpmTasks('grunt-contrib-cssmin');
 
-    grunt.registerTask('build', ['jshint', 'uglify', 'sass', 'concat']);
-    grunt.registerTask('default', ['connect', 'sass', 'concat', 'watch']);
+    grunt.registerTask('default', ['connect:src', 'sass', 'watch']);
+    grunt.registerTask('build', ['jshint', 'sass', 'clean:dist', 'useminPrepare', 'copy:dist', 'concat', 'cssmin', 'uglify']);
+
 };

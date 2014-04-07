@@ -5,12 +5,18 @@
     "node-sass": "*",
     "bower": "*",
     "grunt": "*",
+    "grunt-jasmine-runner": "*",
     "grunt-sass": "*",
     "grunt-jsdoc": "*",
     "grunt-contrib-uglify": "*",
     "grunt-contrib-watch": "*",
     "grunt-contrib-connect": "*",
     "grunt-contrib-jshint": "~0.8.0",
-    "grunt-contrib-concat": "~0.3.0"
+    "grunt-contrib-concat": "~0.3.0",
+    "grunt-contrib-clean": "~0.5.0",
+    "grunt-contrib-copy": "~0.5.0",
+    "grunt-contrib-cssmin": "~0.7.0",
+    "grunt-usemin": "~2.1.0",
+    "grunt-uncss": "~0.3.0"
   }
 }

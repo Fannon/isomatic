@@ -1,0 +1,17 @@
+{
+	"curly": true,
+	"eqnull": true,
+	"eqeqeq": true,
+	"undef": true,
+	"unused": true,
+	"indent": 4,
+	"trailing": true,
+	"browser": true,
+	"devel": true,
+	"strict": true,
+	"quotmark": "single",
+	"globals": {
+		"jQuery": true,
+		"$": true
+	}
+}

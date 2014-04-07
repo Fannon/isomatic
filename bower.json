@@ -8,7 +8,9 @@
         "handlebars": null,
         "d3js": null,
         "colpick": "josedvq/colpick-jQuery-Color-Picker",
-        "slimScroll": "rochal/jQuery-slimScroll"
+        "slimScroll": "rochal/jQuery-slimScroll",
+        "qunit": "~1.14.0"
+
     },
     "version": "0.0.1",
     "homepage": "https://github.com/Fannon/isomatic",
