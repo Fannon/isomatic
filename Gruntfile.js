@@ -29,23 +29,6 @@ module.exports = function(grunt) {
             ]
         },
 
-//        jasmine: {
-//            pivotal: {
-//                src: 'src/js/**/*.js',
-//                options: {
-//                    specs: 'spec/*Spec.js',
-//                    helpers: 'spec/*Helper.js',
-//                    vendor: [
-//                        'src/bower_components/underscore/underscore.js',
-//                        'src/bower_components/backbone/backbone.js',
-//                        'src/bower_components/d3js/build/d3.v3.js',
-//                        'src/bower_components/jquery/dist/jquery.js'
-//
-//                    ]
-//                }
-//            }
-//        },
-
         clean: {
             dist: {
                 src: ['dist/*']
@@ -136,7 +119,7 @@ module.exports = function(grunt) {
             },
 
             sass: {
-                files: 'scss/**/*.scss',
+                files: 'src/scss/**/*.scss',
                 tasks: ['sass', 'concat']
             },
             livereload: {
@@ -164,6 +147,5 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-cssmin');
 
     grunt.registerTask('default', ['connect:src', 'sass', 'watch']);
-    grunt.registerTask('build', ['jshint', 'sass', 'clean:dist', 'useminPrepare', 'copy:dist', 'concat', 'cssmin', 'uglify']);
-
+    grunt.registerTask('build', ['sass', 'clean:dist', 'jshint', 'useminPrepare', 'copy:dist', 'concat', 'cssmin', 'uglify', 'usemin', 'uncss']);
 };

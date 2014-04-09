@@ -5,7 +5,6 @@
     "node-sass": "*",
     "bower": "*",
     "grunt": "*",
-    "grunt-jasmine-runner": "*",
     "grunt-sass": "*",
     "grunt-jsdoc": "*",
     "grunt-contrib-uglify": "*",
