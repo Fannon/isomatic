@@ -151,19 +151,25 @@ var isomatic = {};
      */
     isomatic.registerColorpicker = function(el) {
 
+        // Init: Set Border Color to current Input Valuef
+        $(el).css('border-color','#'+ el[0].value);
+
         el.colpick({
             color: el[0].value,
             layout:'rgbhex',
             submit:0,
             colorScheme:'dark',
-            onChange:function(hsb,hex,rgb,fromSetColor) {
-                if(!fromSetColor) {
-                    el.val(hex).css('border-color','#'+hex);
+
+            onChange:function(hsb,hex,rgb,el,bySetColor) {
+                $(el).css('border-color','#'+hex);
+                // Fill the text box just if the color was set using the picker, and not the colpickSetColor function.
+                if(!bySetColor) {
+                    $(el).val(hex.toUpperCase());
                 }
             }
+        }).keyup(function(){
+            $(this).colpickSetColor(this.value);
         });
-
-        el[0].style.borderColor = '#' + el[0].value;
 
     };
 

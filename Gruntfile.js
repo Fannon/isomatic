@@ -3,7 +3,6 @@ module.exports = function(grunt) {
 
     "use strict";
 
-
     grunt.initConfig({
 
         pkg: grunt.file.readJSON('package.json'),
@@ -32,6 +31,9 @@ module.exports = function(grunt) {
         clean: {
             dist: {
                 src: ['dist/*']
+            },
+            temp: {
+                src: ['.tmp/*']
             }
         },
 
@@ -43,22 +45,6 @@ module.exports = function(grunt) {
                     src: ['favicon.ico', 'img/**', 'fonts/**', '**/*.html', '!**/*.scss', '!bower_components/**'],
                     dest: 'dist/'
                 }]
-            },
-            qunit: {
-                files: [{
-                    expand: true,
-                    cwd:'src/bower_components/qunit/qunit/',
-                    src: ['qunit.css', 'qunit.js'],
-                    dest: 'test/lib/'
-                }]
-            }
-        },
-
-        uncss: {
-            dist: {
-                files: {
-                    '.tmp/concat/css/app.min.css': ['src/**/*.html', '!src/bower_components/**']
-                }
             }
         },
 
@@ -120,7 +106,7 @@ module.exports = function(grunt) {
 
             sass: {
                 files: 'src/scss/**/*.scss',
-                tasks: ['sass', 'concat']
+                tasks: ['sass']
             },
             livereload: {
                 files: ['src/**/*.html', '!src/bower_components/**', 'src/js/**/*.js', 'src/css/**/*.css', 'src/images/**/*.{jpg,gif,svg,jpeg,png}'],
@@ -135,7 +121,6 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-sass');
     grunt.loadNpmTasks('grunt-jsdoc');
     grunt.loadNpmTasks('grunt-usemin');
-    grunt.loadNpmTasks('grunt-uncss');
 
     grunt.loadNpmTasks('grunt-contrib-connect');
     grunt.loadNpmTasks('grunt-contrib-uglify');
@@ -147,5 +132,5 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-cssmin');
 
     grunt.registerTask('default', ['connect:src', 'sass', 'watch']);
-    grunt.registerTask('build', ['sass', 'clean:dist', 'jshint', 'useminPrepare', 'copy:dist', 'concat', 'cssmin', 'uglify', 'usemin', 'uncss']);
+    grunt.registerTask('build', ['clean', 'jshint', 'sass', 'useminPrepare', 'copy:dist', 'concat', 'cssmin', 'uglify', 'usemin']);
 };

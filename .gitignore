@@ -1,8 +1,7 @@
 *.DS_Store
-src/bower_components/*
-src/css/app.css
-/node_modules/*
 .idea/
 .tmp/
-/js/app.min.js
+/node_modules/*
+/src/bower_components/*
+/src/css/app.css
 /dist/*
