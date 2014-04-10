@@ -122,7 +122,7 @@
          */
         getAspectRatio: function() {
             var aspectRatio = $('#aspect-ratio').val();
-            if (aspectRatio.indexOf("/") != -1) { // If Value contains a "/"
+            if (aspectRatio.indexOf("/") !== -1) { // If Value contains a "/"
                 var temp = aspectRatio.split('/');
                 aspectRatio = temp[0] / temp[1];
             }

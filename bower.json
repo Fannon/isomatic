@@ -1,6 +1,6 @@
 {
     "name": "isomatic",
-    "dependencies": {
+    "devDependencies": {
         "foundation": "zurb/bower-foundation",
         "backbone": null,
         "backbone.validation": null,
@@ -10,7 +10,6 @@
         "colpick": "josedvq/colpick-jQuery-Color-Picker",
         "slimScroll": "rochal/jQuery-slimScroll",
         "qunit": "~1.14.0"
-
     },
     "version": "0.0.1",
     "homepage": "https://github.com/Fannon/isomatic",
@@ -21,7 +20,7 @@
     ],
     "description": "An interactive online isotype graphics generator",
     "main": "index.html",
-    "license": "MIT",
+    "license": "GPL v2",
     "private": true,
     "ignore": [
         "**/.*",

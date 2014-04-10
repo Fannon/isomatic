@@ -1,11 +1,23 @@
-/* global module */
+/* global module, require */
 module.exports = function(grunt) {
 
     "use strict";
 
+    // Load all grunt tasks
+    require('load-grunt-tasks')(grunt);
+    // Show elapsed time at the end
+    require('time-grunt')(grunt);
+
     grunt.initConfig({
 
         pkg: grunt.file.readJSON('package.json'),
+
+        /** Production JavaScript Header Comment */
+        banner: '/*! <%= pkg.name %> - v<%= pkg.version %> - ' +
+            '<%= grunt.template.today("yyyy-mm-dd") %>\n' +
+            '<%= pkg.homepage ? "* " + pkg.homepage + "\\n" : "" %>' +
+            '* Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author.name %>;' +
+            ' Licensed MIT */\n',
 
         sass: {
             options: {
@@ -21,11 +33,39 @@ module.exports = function(grunt) {
             }
         },
 
+        /** QUnit Unit Testing */
+        qunit: {
+            all: {
+                options: {
+                    timeout: 5000,
+                    urls: ['http://localhost:9000/test/index.html']
+                }
+            }
+        },
+
+        /** JavaScript Linting */
         jshint: {
-            all: [
-                'Gruntfile.js',
-                'src/js/**/*.js'
-            ]
+            options: {
+                reporter: require('jshint-stylish')
+            },
+            gruntfile: {
+                options: {
+                    jshintrc: '.jshintrc'
+                },
+                src: ['Gruntfile.js']
+            },
+            src: {
+                options: {
+                    jshintrc: 'src/.jshintrc'
+                },
+                src: ['src/js/**/*.js']
+            },
+            test: {
+                options: {
+                    jshintrc: 'test/.jshintrc'
+                },
+                src: ['test/**/*.js']
+            }
         },
 
         clean: {
@@ -100,10 +140,18 @@ module.exports = function(grunt) {
         },
 
         watch: {
-            grunt: {
-                files: ['Gruntfile.js']
+            gruntfile: {
+                files: 'Gruntfile.js',
+                tasks: ['jshint:gruntfile']
             },
-
+            src: {
+                files: 'src/js/**/*.*',
+                tasks: ['jshint:src']
+            },
+            test: {
+                files: 'test/**/*.*',
+                tasks: ['jshint:test']
+            },
             sass: {
                 files: 'src/scss/**/*.scss',
                 tasks: ['sass']
@@ -114,23 +162,77 @@ module.exports = function(grunt) {
                     livereload: true
                 }
             }
+        },
+
+        /** Puts some more Infos to the console */
+        content: {
+            options: {
+                newLineAfter: false,
+                gruntLogHeader: false
+            },
+            useminPrepare: {
+                text: "\n###################################################\n### PREPARING HTML REFACTORING\n###################################################"
+            },
+            usemin: {
+                text: "\n###################################################\n### HTML REFACTORING\n###################################################"
+            },
+            jshint: {
+                text: "\n###################################################\n### LINTING JAVASCRIPT\n###################################################"
+            },
+            concat: {
+                text: "\n###################################################\n### CONCATNATING JAVASCRIPT\n###################################################"
+            },
+            clean: {
+                text: "\n###################################################\n### CLEANING OLD FILES\n###################################################"
+            },
+            uglify: {
+                text: "\n###################################################\n### MINIFY JAVASCRIPT\n###################################################"
+            },
+            cssmin: {
+                text: "\n###################################################\n### MINIFY CSS\n###################################################"
+            },
+            sizediff: {
+                text: "\n###################################################\n### COMPARING NEW SIZE\n###################################################"
+            },
+            connect: {
+                text: "\n###################################################\n### STARTING LOCALHOST WEBSERVER\n###################################################"
+            },
+            copy: {
+                text: "\n###################################################\n### COPYING FILES\n###################################################"
+            },
+            sass: {
+                text: "\n###################################################\n### COMPILING SASS \n###################################################"
+            },
+            done: {
+                text: "\n###################################################\n### GRUNT COMPLETED \n###################################################"
+            }
         }
+
     });
 
 
-    grunt.loadNpmTasks('grunt-sass');
-    grunt.loadNpmTasks('grunt-jsdoc');
-    grunt.loadNpmTasks('grunt-usemin');
+    grunt.registerTask('default', [
+        'connect:src',
+        'sass',
+        'watch'
+    ]);
 
-    grunt.loadNpmTasks('grunt-contrib-connect');
-    grunt.loadNpmTasks('grunt-contrib-uglify');
-    grunt.loadNpmTasks('grunt-contrib-watch');
-    grunt.loadNpmTasks('grunt-contrib-jshint');
-    grunt.loadNpmTasks('grunt-contrib-concat');
-    grunt.loadNpmTasks('grunt-contrib-clean');
-    grunt.loadNpmTasks('grunt-contrib-copy');
-    grunt.loadNpmTasks('grunt-contrib-cssmin');
+    grunt.registerTask('test', [
+        'content:connect', 'connect',
+        'content:jshint', 'jshint',
+        'content:test', 'qunit'
+    ]);
 
-    grunt.registerTask('default', ['connect:src', 'sass', 'watch']);
-    grunt.registerTask('build', ['clean', 'jshint', 'sass', 'useminPrepare', 'copy:dist', 'concat', 'cssmin', 'uglify', 'usemin']);
+    grunt.registerTask('build', [
+        'content:clean', 'clean',
+        'content:jshint', 'jshint',
+        'content:sass', 'sass',
+        'content:useminPrepare', 'useminPrepare',
+        'content:copy', 'copy:dist',
+        'content:concat', 'concat',
+        'content:cssmin', 'cssmin',
+        'content:uglify', 'uglify',
+        'content:usemin', 'usemin',
+        'content:done'
+    ]);
 };

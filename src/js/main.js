@@ -18,6 +18,9 @@ var isomatic = {};
 (function(isomatic) {
     "use strict";
 
+    /** Isomatic Version (semver) */
+    isomatic.version = '0.2.0';
+
     /** Views namespace */
     isomatic.views = {};
 
