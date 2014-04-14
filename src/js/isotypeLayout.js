@@ -5,8 +5,7 @@
  * Isotype Layout
  * 2013 Simon Heimler
  *
- * TODO: Do not use anything from isomatic namespace (like options) -> No external dependencies!
- * TODO: Check if every needed value is set before its used.
+ *
  *
  * @returns {Function}
  */
@@ -35,19 +34,11 @@ d3.layout.isotype = function() {
 
     /**
      * Isotype Layout
-     * 2013 Simon Heimler
+     * 2013-2014 Simon Heimler
      * @param data Incoming (raw) Data
      * @returns {Array} Processed Data
      */
     function isotype(data) {
-
-        console.log('d3.layout.isotype();');
-
-        /**
-         * Processed Data
-         * @type {Array}
-         */
-        var preProcessedData = [];
 
         /**
          * Processed Data with an Item per rendered Icon
@@ -100,18 +91,19 @@ d3.layout.isotype = function() {
                         ///////////////////////////////////////////
 
                         // Iterate over Icons
-                        for (var j = 0; j < Math.ceil(value); j++) {
+                        for (var relativePos = 0; relativePos < Math.ceil(value); relativePos++) {
 
                             // Calculate Size
                             var size = 1;
-                            if (j === Math.ceil(value) - 1 && value % 1 !== 0) {
+                            if (relativePos === Math.ceil(value) - 1 && value % 1 !== 0) {
                                 size = value % 1;
                             }
 
                             processedData.push({
                                 row: rowCounter,
-                                col: columnCounter,
+                                col: columnCounter - 1,
                                 pos: iconPosition,
+                                relativePos: relativePos,
                                 size: size
                             });
 
@@ -124,7 +116,6 @@ d3.layout.isotype = function() {
             }
 
         }
-
         return processedData;
     }
 

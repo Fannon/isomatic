@@ -215,7 +215,6 @@
          * Here the actual drawing of the Graphic is happening
          * The Visualisation Library D3js is used to create the SVG Elements
          *
-         * @TODO Line Return if overflowing on the right side
          */
         drawIsotype: function() {
 
@@ -259,8 +258,15 @@
                     .attr("class", "icon")
                     .attr("transform", function(d) {
 
-                        var x = d.pos * (iconSize + iconHorizontalMargin) + outerMargin + legendWidth;
+                        var x = (d.pos * (iconSize + iconHorizontalMargin)) + outerMargin + legendWidth;
+
                         var y = d.row * (iconSize + rowMargin) + outerMargin;
+
+                        // DEBUG First row
+                        if (d.row === 0) {
+                            console.log('row: ' + d.row + ' | col: ' + d.col + ' | pos: ' + d.pos + ' | relativePos: ' + d.relativePos + ' :: ' + x);
+                        }
+
 
                         // If legendTitleHeight > 0, draw Header Title
                         if (legendTitleHeight > 0) {
@@ -293,7 +299,7 @@
                             iconId = iconMap[d.row].split('-');
                             svg = isomatic.icons[iconId[0]].icons[iconId[1]].svg;
                         } else {
-                            iconId = iconMap[d.col - 1].split('-');
+                            iconId = iconMap[d.col].split('-');
                             svg = isomatic.icons[iconId[0]].icons[iconId[1]].svg;
                         }
 
@@ -303,7 +309,7 @@
                         if (colorize === 'row') {
                             return '#' + colorMap[d.row];
                         } else {
-                            return '#' + colorMap[d.col - 1];
+                            return '#' + colorMap[d.col];
                         }
                     })
             ;
@@ -531,6 +537,7 @@
             }
 
         },
+
 
         ///////////////////////////////////
         // Helper Functions              //
