@@ -141,7 +141,7 @@ var isomatic = {};
         isomatic.views.graphView.prepareDrawing();
 
         // Draw Isotype Graphic
-        isomatic.views.graphView.drawIsotype();
+        isomatic.views.graphView.drawAdvancedIsotype();
 
         // Draw Legend Overlay
         isomatic.views.graphView.drawLegend();

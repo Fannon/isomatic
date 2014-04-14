@@ -89,12 +89,23 @@
             ////////////////////////////////////
 
             var iconHorizontalMargin = parseFloat(isomatic.options.ui.attributes.iconHorizontalMargin);
+            var iconVerticalMargin = parseFloat(isomatic.options.ui.attributes.iconVerticalMargin);
             var outerMargin          = parseFloat(isomatic.options.ui.attributes.outerMargin);
             var graphWidth           = parseInt(isomatic.options.ui.attributes.graphWidth, 10);
             var legendWidth          = parseInt(isomatic.options.ui.attributes.legendWidth, 10);
             var defaultIconSize      = isomatic.options.internal.defaultIconSize;
+            var iconSize             = parseFloat(isomatic.options.ui.attributes.iconSize);
+            var rowMargin            = parseFloat(isomatic.options.ui.attributes.rowMargin);
+
+            var columns              = isomatic.data.meta.attributes.columns;
+            var rows                 = isomatic.data.meta.attributes.rows;
+
+            var columnPositions      = [];
+            var rowPositions         = [];
 
             var iconsPerRow          = [];
+            var iconsPerColumn       = [];
+            var iconsPerRowField     = [];
 
 
             ////////////////////////////////////
@@ -106,11 +117,31 @@
 
                 var obj = isomatic.data.processed[i];
 
+                // Calculate Icons per Row
                 if (!iconsPerRow[obj.row]) {
                     iconsPerRow[obj.row] = 1;
                 } else {
                     iconsPerRow[obj.row] += 1;
                 }
+
+                // Calculate Icons per Column
+                if (!iconsPerColumn[obj.col]) {
+                    iconsPerColumn[obj.col] = 1;
+                } else {
+                    iconsPerColumn[obj.col] += 1;
+                }
+
+                // Calculate Icons per Row Field
+                if (!iconsPerRowField[obj.row]) {
+                    iconsPerRowField[obj.row] = [];
+                }
+
+                if (!iconsPerRowField[obj.row][obj.col]) {
+                    iconsPerRowField[obj.row][obj.col] = 1;
+                }
+
+                iconsPerRowField[obj.row][obj.col] =  Math.max(iconsPerRowField[obj.row][obj.col], obj.relativePos + 1);
+
             }
 
 
@@ -125,10 +156,92 @@
                 calculatedIconSize = isomatic.options.internal.maxIconSize;
             }
 
+
+            //////////////////////////////////////////
+            // Calculate Column Positions           //
+            //////////////////////////////////////////
+
+            var leftMargin = outerMargin + legendWidth;
+            var visualisationWidth = (graphWidth - leftMargin);
+
+            columnPositions[0] = 0;
+
+            var currentColumnPosition = 0;
+
+            for (var col = 0; col < columns.length; col++) {
+
+                columnPositions[col] = currentColumnPosition;
+
+                if (isomatic.options.internal.equallyDistributesColumns) {
+                    currentColumnPosition += visualisationWidth /columns.length;
+                } else {
+                    currentColumnPosition += visualisationWidth * (iconsPerColumn[col] / isomatic.data.processed.length);
+                }
+
+            }
+
+            // The last position is the end of the Visualisation Canvas
+            columnPositions[columns.length] = graphWidth;
+
+
+            //////////////////////////////////////////
+            // Calculate Row Positions              //
+            //////////////////////////////////////////
+
+            var iconWidth = calculatedIconSize + iconHorizontalMargin;
+            var iconHeight = calculatedIconSize + iconVerticalMargin;
+
+            var currentRowPosition = 0;
+
+
+            for (var row = 0; row < iconsPerRowField.length; row++) {
+
+                var maxRows = 1;
+
+                for (var rowColumn = 0; rowColumn < iconsPerRowField[row].length; rowColumn++) {
+
+                    rowPositions[row] = currentRowPosition;
+
+                    var columnTotalWidth = columnPositions[rowColumn + 1] - columnPositions[rowColumn];
+
+                    var rowfield = iconsPerRowField[row][rowColumn];
+
+                    var fieldWidth = rowfield * iconWidth;
+
+                    console.log('rowfield: ' + rowfield + ' fieldwidth: ' + fieldWidth + ' :: ' + columnTotalWidth);
+
+                    if (fieldWidth > columnTotalWidth) {
+
+                        var numberOfRows = Math.ceil(fieldWidth / columnTotalWidth);
+
+                        if (numberOfRows > maxRows) {
+                            maxRows = numberOfRows;
+                        }
+                        console.log('UMBRUCH! ' + numberOfRows);
+
+                    }
+
+                }
+
+                console.log('ROW BREAKS: ' + maxRows);
+                currentRowPosition += (iconHeight * maxRows) + rowMargin;
+
+
+            }
+
+
+            //////////////////////////////////////////
+            // Write calculated Data to Models      //
+            //////////////////////////////////////////
+
             isomatic.data.meta.set({
                 iconsPerRow: iconsPerRow,
+                iconsPerRowField: iconsPerRowField,
+                iconsPerColumn: iconsPerColumn,
                 maxIconsPerRow: maxIconsPerRow,
-                baseScale: baseScale
+                baseScale: baseScale,
+                columnPositions: columnPositions,
+                rowPositions: rowPositions
             });
 
             isomatic.options.ui.set({
@@ -140,6 +253,7 @@
                     iconSize: calculatedIconSize
                 });
             }
+
         },
 
         /**
@@ -317,6 +431,121 @@
         },
 
         /**
+         * Draws Advanced Isotype Graphic
+         *
+         * Allows to draw advanced Isotype Layouts with Icons in multiple rows
+         *
+         * TODO: Work in Progress!
+         *
+         */
+        drawAdvancedIsotype: function() {
+
+            console.log('GraphView.drawIsotype();');
+
+
+            ////////////////////////////////////
+            // Get & Parse Variables          //
+            ////////////////////////////////////
+
+            var iconHorizontalMargin = parseFloat(isomatic.options.ui.attributes.iconHorizontalMargin);
+            var outerMargin          = parseFloat(isomatic.options.ui.attributes.outerMargin);
+            var rowMargin            = parseFloat(isomatic.options.ui.attributes.rowMargin);
+            var graphHeight          = parseInt(isomatic.options.ui.attributes.graphHeight, 10);
+            var graphWidth           = parseInt(isomatic.options.ui.attributes.graphWidth, 10);
+            var legendWidth          = parseInt(isomatic.options.ui.attributes.legendWidth, 10);
+            var legendTitleHeight    = parseInt(isomatic.options.ui.attributes.legendTitleHeight, 10);
+            var iconSize             = parseFloat(isomatic.options.ui.attributes.iconSize);
+            var defaultIconSize      = isomatic.options.internal.defaultIconSize;
+
+            var iconize              = isomatic.options.ui.attributes.iconize;
+            var colorize             = isomatic.options.ui.attributes.colorize;
+            var iconMap              = isomatic.options.ui.attributes.iconMap;
+            var colorMap             = isomatic.options.ui.attributes.colorMap;
+
+            var columnPositions             = isomatic.data.meta.attributes.columnPositions;
+            var rowPositions                = isomatic.data.meta.attributes.rowPositions;
+
+
+            ////////////////////////////////////
+            // Calculations                   //
+            ////////////////////////////////////
+
+
+            ////////////////////////////////////
+            // Draw Graphic via D3.js         //
+            ////////////////////////////////////
+
+            var g = this.svg.selectAll(".icon")
+
+                    .data(isomatic.data.processed)
+                    .enter()
+                    .append("g")
+                    .attr("class", "icon")
+                    .attr("transform", function(d) {
+
+                        var leftMargin = outerMargin + legendWidth;
+                        var iconWidth = iconSize + iconHorizontalMargin;
+                        var columnPosition = columnPositions[d.col];
+                        var rowPosition = rowPositions[d.row];
+
+
+                        var x = (d.relativePos * iconWidth) + columnPosition + leftMargin;
+//                        var y = (iconSize + rowMargin) + rowPosition + outerMargin;
+                        var y = rowPosition + outerMargin;
+
+
+                        console.log('row: ' + d.row + ' | col: ' + d.col + ' | pos: ' + d.pos + ' | relativePos: ' + d.relativePos + ' :: ' + Math.round(x) + ':' + Math.round(y));
+
+
+                        // If legendTitleHeight > 0, draw Header Title
+                        if (legendTitleHeight > 0) {
+                            y += legendTitleHeight + outerMargin;
+                        }
+
+                        var baseScale = iconSize / defaultIconSize;
+
+                        var scale = baseScale * d.size;
+
+                        // If Icon is drawn smaller than full-size, center it
+                        if (d.size < 1) {
+                            x += (iconSize / 2) * (1 - d.size);
+                            y += (iconSize / 2) * (1 - d.size);
+                        }
+
+                        // If Icon is drawn outside of Canvas give a warning
+                        if (y > graphHeight || x > graphWidth) {
+                            console.warn('<strong>Warning: </strong>The generated Graphic is bigger than its Canvas!');
+                        }
+
+                        return 'translate(' + x + ', ' + y + ') scale(' + scale + ')';
+
+                    })
+                    .html(function(d) {
+
+                        var iconId, svg;
+
+                        if (iconize === 'row') {
+                            iconId = iconMap[d.row].split('-');
+                            svg = isomatic.icons[iconId[0]].icons[iconId[1]].svg;
+                        } else {
+                            iconId = iconMap[d.col].split('-');
+                            svg = isomatic.icons[iconId[0]].icons[iconId[1]].svg;
+                        }
+
+                        return svg;
+                    })
+                    .attr("fill", function(d) {
+                        if (colorize === 'row') {
+                            return '#' + colorMap[d.row];
+                        } else {
+                            return '#' + colorMap[d.col];
+                        }
+                    })
+                ;
+
+        },
+
+        /**
          * Draws Legend Overlay
          *
          * Draws the Legend, depending on the actual Settings
@@ -352,6 +581,8 @@
 
 
             var columnLegendHeight = isomatic.options.internal.columnLegendHeight;
+
+            var rowPositions                = isomatic.data.meta.attributes.rowPositions;
 
 
             ////////////////////////////////////
@@ -417,7 +648,10 @@
                 .append("g")
                 .attr("transform", function(d, i) {
 
-                    var y = i * (iconSize + rowMargin) + outerMargin;
+
+//                    var y = i * (iconSize + rowMargin) + outerMargin;
+
+                    var y = rowPositions[i] + outerMargin;
 
                     if (legendTitleHeight > 0) {
                         y += legendTitleHeight + outerMargin;

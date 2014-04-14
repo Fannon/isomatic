@@ -5,7 +5,7 @@
  * Isotype Layout
  * 2013 Simon Heimler
  *
- *
+ * TODO: Write Description
  *
  * @returns {Function}
  */
@@ -15,6 +15,7 @@ d3.layout.isotype = function() {
     /**
      * This is the scale how much one icon represents.
      * Warning: This must be adjusted to the incoming data, otherwise it can lead to massive overload.
+     *
      * @type {number}
      */
     var scale = 1;
@@ -22,12 +23,14 @@ d3.layout.isotype = function() {
     /**
      * If the remainder of a value is lower than this, the value is completely floored.
      * This helps avoiding too small icons.
+     *
      * @type {number}
      */
     var roundDown = 0.5;
 
     /**
      * If the remainder of a value is higher than this, the value is completely ceiled.
+     *
      * @type {number}
      */
     var roundUp = 0.5;
@@ -35,6 +38,7 @@ d3.layout.isotype = function() {
     /**
      * Isotype Layout
      * 2013-2014 Simon Heimler
+     *
      * @param data Incoming (raw) Data
      * @returns {Array} Processed Data
      */
@@ -56,18 +60,17 @@ d3.layout.isotype = function() {
 
             var columnCounter = 0;
             var iconPosition = 0;
-            var columnName = '';
             var currentRow = data[rowCounter];
 
             // Iterate over Columns
             for (var obj in currentRow) {
+
                 if(currentRow.hasOwnProperty(obj)){
 
                     var v = currentRow[obj];
 
-                    if (columnCounter === 0) {
-                        columnName = v;
-                    } else {
+                    if (columnCounter > 0) {
+
 
                         ///////////////////////////////////////////
                         // Round the Value according to Options  //
@@ -85,6 +88,7 @@ d3.layout.isotype = function() {
                         } else {
                             value = roundedValue;
                         }
+
 
                         ///////////////////////////////////////////
                         // Calculate  Processed Data             //

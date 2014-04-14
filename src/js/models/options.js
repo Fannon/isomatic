@@ -130,6 +130,16 @@
 
         ],
 
+//        exampleData: [
+//            {
+//                "The usage of social networks (in relation to a persons income)":"Facebook",
+//                "Low Income":"165050000",
+//                "Medium Income":"395000777",
+//                "High Income":"135000000"
+//            }
+//
+//        ],
+
         /**
          * Color Preset Palettes
          *
@@ -154,7 +164,9 @@
             height: '100%',
             alwaysVisible: true,
             railOpacity: 0.3
-        }
+        },
+
+        equallyDistributesColumns: false
 
     };
 
