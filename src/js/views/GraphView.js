@@ -101,6 +101,7 @@
             var rows                 = isomatic.data.meta.attributes.rows;
 
             var columnPositions      = [];
+            var columnWidths         = [];
             var rowPositions         = [];
 
             var iconsPerRow          = [];
@@ -178,6 +179,8 @@
                     currentColumnPosition += visualisationWidth * (iconsPerColumn[col] / isomatic.data.processed.length);
                 }
 
+                columnWidths[col] = currentColumnPosition - columnPositions[col];
+
             }
 
             // The last position is the end of the Visualisation Canvas
@@ -202,7 +205,7 @@
 
                     rowPositions[row] = currentRowPosition;
 
-                    var columnTotalWidth = columnPositions[rowColumn + 1] - columnPositions[rowColumn];
+                    var columnTotalWidth = columnWidths[rowColumn];
 
                     var rowfield = iconsPerRowField[row][rowColumn];
 
@@ -241,6 +244,7 @@
                 maxIconsPerRow: maxIconsPerRow,
                 baseScale: baseScale,
                 columnPositions: columnPositions,
+                columnWidths: columnWidths,
                 rowPositions: rowPositions
             });
 
@@ -448,6 +452,7 @@
             ////////////////////////////////////
 
             var iconHorizontalMargin = parseFloat(isomatic.options.ui.attributes.iconHorizontalMargin);
+            var iconVerticalMargin = parseFloat(isomatic.options.ui.attributes.iconVerticalMargin);
             var outerMargin          = parseFloat(isomatic.options.ui.attributes.outerMargin);
             var rowMargin            = parseFloat(isomatic.options.ui.attributes.rowMargin);
             var graphHeight          = parseInt(isomatic.options.ui.attributes.graphHeight, 10);
@@ -463,7 +468,9 @@
             var colorMap             = isomatic.options.ui.attributes.colorMap;
 
             var columnPositions             = isomatic.data.meta.attributes.columnPositions;
+            var columnWidths             = isomatic.data.meta.attributes.columnWidths;
             var rowPositions                = isomatic.data.meta.attributes.rowPositions;
+            var iconsPerRowField            = isomatic.data.meta.attributes.iconsPerRowField;
 
 
             ////////////////////////////////////
@@ -475,6 +482,9 @@
             // Draw Graphic via D3.js         //
             ////////////////////////////////////
 
+
+            // TODO: Add Row and Column Margin into visual Calculation
+
             var g = this.svg.selectAll(".icon")
 
                     .data(isomatic.data.processed)
@@ -485,13 +495,46 @@
 
                         var leftMargin = outerMargin + legendWidth;
                         var iconWidth = iconSize + iconHorizontalMargin;
+                        var iconHeight = iconSize + iconVerticalMargin;
                         var columnPosition = columnPositions[d.col];
                         var rowPosition = rowPositions[d.row];
 
+                        // Calculate how many Icons fit into the current Column Width
+                        var maxIconsInThisColumn = Math.floor(columnWidths[d.col] / iconWidth) + 1;
 
-                        var x = (d.relativePos * iconWidth) + columnPosition + leftMargin;
-//                        var y = (iconSize + rowMargin) + rowPosition + outerMargin;
+
+//                        var x = (d.relativePos * iconWidth) + columnPosition + leftMargin;
+                        var x = ((d.relativePos % maxIconsInThisColumn) * iconWidth) + columnPosition + leftMargin;
+
+                        console.log('d.relativePos: ' + d.relativePos + ' maxIconsInThisColumn: ' + maxIconsInThisColumn);
+
                         var y = rowPosition + outerMargin;
+
+
+                        var xPos = (d.relativePos * iconWidth);
+
+
+                        // If Icon is drawn outside of current column width
+                        // Break into new line
+                        if (d.relativePos >= maxIconsInThisColumn) {
+
+//                            var currentIconsPerRowField = iconsPerRowField[d.row][d.col];
+
+                            console.log('DRAW BREAK');
+                            console.info('maxIconsInThisRow: ' + maxIconsInThisColumn);
+
+                            var numberOfRows = Math.floor(xPos / columnWidths[d.col]);
+
+                            // Move Icon a row deeper
+                            y += (iconHeight + iconVerticalMargin) * numberOfRows;
+
+                            // "Carriage Return"
+
+                            console.log(d.relativePos % maxIconsInThisColumn);
+                            x = ((d.relativePos % maxIconsInThisColumn) * iconWidth) + columnPosition + leftMargin;
+
+                        }
+
 
 
                         console.log('row: ' + d.row + ' | col: ' + d.col + ' | pos: ' + d.pos + ' | relativePos: ' + d.relativePos + ' :: ' + Math.round(x) + ':' + Math.round(y));

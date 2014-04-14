@@ -166,7 +166,7 @@
             railOpacity: 0.3
         },
 
-        equallyDistributesColumns: false
+        equallyDistributesColumns: true
 
     };
 
