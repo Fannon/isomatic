@@ -25,6 +25,8 @@ $container-margin: 8px;
 $overlay-small-width: 220px;
 $overlay-big-width: 680px;
 
+$leftIconSize: 40px;
+
 
 //////////////////////////////////////////
 // Typography                           //
@@ -136,7 +138,7 @@ button.tiny, .button.tiny {
     }
 
     .social.first {
-      margin-left: 40px;
+      margin-left: $leftIconSize;
     }
 
     .social {
@@ -197,7 +199,7 @@ button.tiny, .button.tiny {
 // Toolbar
 
 #toolbar {
-  width: 40px;
+  width: $leftIconSize;
   float: left;
   margin-top: 20px;
 
@@ -268,7 +270,7 @@ button.tiny, .button.tiny {
 #display {
   width: 970px;
   height: 460px;
-  margin-left: 40px;
+  margin-left: $leftIconSize;
   padding: 10px 10px 0 0;
   background: #FFF;
   background-image: url(../img/ruler.svg);
@@ -355,7 +357,7 @@ button.tiny, .button.tiny {
 
     .select-type {
       margin-bottom: 5px;
-      height: 40px;
+      height: $leftIconSize;
       background-color: #BBB;
       border-radius: 3px;
       border: 1px solid #999;
@@ -397,14 +399,14 @@ button.tiny, .button.tiny {
   #overlay-icon {
 
     .group-container {
-      height: 40px;
+      height: $leftIconSize;
       margin-bottom: 7px;
     }
 
     .group-id {
       background-color: #EDEDED;
       width: 146px;
-      height: 40px;
+      height: $leftIconSize;
       float: left;
       border-top: 1px solid #bbb;
       border-bottom: 1px solid #bbb;
@@ -415,8 +417,8 @@ button.tiny, .button.tiny {
 
     .group-icon {
       background-color: #FFF;
-      width: 40px;
-      height: 40px;
+      width: $leftIconSize;
+      height: $leftIconSize;
       float: left;
       border: 1px solid #CCC;
       padding: 3px;
@@ -424,8 +426,8 @@ button.tiny, .button.tiny {
 
     .category-border {
       background-color: #FFF;
-      width: 40px;
-      height: 40px;
+      width: $leftIconSize;
+      height: $leftIconSize;
       float: left;
       margin-right: 10px;
       margin-bottom: 10px;
@@ -434,8 +436,8 @@ button.tiny, .button.tiny {
     }
 
     .category-icon {
-      height: 40px;
-      width: 40px;
+      height: $leftIconSize;
+      width: $leftIconSize;
       padding: 3px;
       cursor: move;
     }
@@ -545,6 +547,23 @@ button.tiny, .button.tiny {
 
   }
 
+}
+
+#message-box {
+  margin-left: $leftIconSize;
+  margin-top: $container-margin;
+  margin-bottom: $container-margin;
+
+  div {
+    padding: 7px 10px;
+    margin-bottom: 1px;
+    border-radius: 3px;
+  }
+
+  #overflow-warning {
+    background: #B32F01;
+    color: #FFF;
+  }
 }
 
 // Footer

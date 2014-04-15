@@ -94,11 +94,9 @@
             var graphWidth           = parseInt(isomatic.options.ui.attributes.graphWidth, 10);
             var legendWidth          = parseInt(isomatic.options.ui.attributes.legendWidth, 10);
             var defaultIconSize      = isomatic.options.internal.defaultIconSize;
-            var iconSize             = parseFloat(isomatic.options.ui.attributes.iconSize);
             var rowMargin            = parseFloat(isomatic.options.ui.attributes.rowMargin);
 
             var columns              = isomatic.data.meta.attributes.columns;
-            var rows                 = isomatic.data.meta.attributes.rows;
 
             var columnPositions      = [];
             var columnWidths         = [];
@@ -112,7 +110,6 @@
             ////////////////////////////////////
             // Calculations                   //
             ////////////////////////////////////
-
 
             for (var i = 0; i < isomatic.data.processed.length; i++) {
 
@@ -141,10 +138,9 @@
                     iconsPerRowField[obj.row][obj.col] = 1;
                 }
 
-                iconsPerRowField[obj.row][obj.col] =  Math.max(iconsPerRowField[obj.row][obj.col], obj.relativePos + 1);
+                iconsPerRowField[obj.row][obj.col] = Math.max(iconsPerRowField[obj.row][obj.col], obj.relativePos + 1);
 
             }
-
 
             // Calculate Base Scale for Icons depending on biggest Row. (Fit to width)
             var maxIconsPerRow     = d3.max(iconsPerRow);
@@ -196,7 +192,6 @@
 
             var currentRowPosition = 0;
 
-
             for (var row = 0; row < iconsPerRowField.length; row++) {
 
                 var maxRows = 1;
@@ -206,9 +201,7 @@
                     rowPositions[row] = currentRowPosition;
 
                     var columnTotalWidth = columnWidths[rowColumn];
-
                     var rowfield = iconsPerRowField[row][rowColumn];
-
                     var fieldWidth = rowfield * iconWidth;
 
                     console.log('rowfield: ' + rowfield + ' fieldwidth: ' + fieldWidth + ' :: ' + columnTotalWidth);
@@ -220,6 +213,7 @@
                         if (numberOfRows > maxRows) {
                             maxRows = numberOfRows;
                         }
+
                         console.log('UMBRUCH! ' + numberOfRows);
 
                     }
@@ -228,7 +222,6 @@
 
                 console.log('ROW BREAKS: ' + maxRows);
                 currentRowPosition += (iconHeight * maxRows) + rowMargin;
-
 
             }
 
@@ -269,7 +262,7 @@
 
             // Set Layouting Options
 
-            this.isotypeLayout = new d3.layout.isotype();
+            this.isotypeLayout = new d3.layout.isotype(); // Sic
 
             var roundDown = parseFloat(isomatic.options.ui.get("roundDown"));
             var roundUp   = parseFloat(isomatic.options.ui.get("roundUp"));
@@ -377,7 +370,6 @@
                     .attr("transform", function(d) {
 
                         var x = (d.pos * (iconSize + iconHorizontalMargin)) + outerMargin + legendWidth;
-
                         var y = d.row * (iconSize + rowMargin) + outerMargin;
 
                         // DEBUG First row
@@ -440,12 +432,13 @@
          * Allows to draw advanced Isotype Layouts with Icons in multiple rows
          *
          * TODO: Work in Progress!
-         *
+         * TODO: Merge this with the default drawIsotype() to keep DRY
          */
         drawAdvancedIsotype: function() {
 
             console.log('GraphView.drawIsotype();');
 
+            var self = this;
 
             ////////////////////////////////////
             // Get & Parse Variables          //
@@ -474,14 +467,8 @@
 
 
             ////////////////////////////////////
-            // Calculations                   //
-            ////////////////////////////////////
-
-
-            ////////////////////////////////////
             // Draw Graphic via D3.js         //
             ////////////////////////////////////
-
 
             // TODO: Add Row and Column Margin into visual Calculation
 
@@ -502,22 +489,15 @@
                         // Calculate how many Icons fit into the current Column Width
                         var maxIconsInThisColumn = Math.floor(columnWidths[d.col] / iconWidth) + 1;
 
-
-//                        var x = (d.relativePos * iconWidth) + columnPosition + leftMargin;
+                        // Calculate X and Y Coordinates
                         var x = ((d.relativePos % maxIconsInThisColumn) * iconWidth) + columnPosition + leftMargin;
-
-                        console.log('d.relativePos: ' + d.relativePos + ' maxIconsInThisColumn: ' + maxIconsInThisColumn);
-
                         var y = rowPosition + outerMargin;
 
 
-                        var xPos = (d.relativePos * iconWidth);
-
-
-                        // If Icon is drawn outside of current column width
-                        // Break into new line
+                        // If Icon is drawn outside of current column width: Break into new line
                         if (d.relativePos >= maxIconsInThisColumn) {
 
+                            var xPos = (d.relativePos * iconWidth);
 //                            var currentIconsPerRowField = iconsPerRowField[d.row][d.col];
 
                             console.log('DRAW BREAK');
@@ -529,13 +509,10 @@
                             y += (iconHeight + iconVerticalMargin) * numberOfRows;
 
                             // "Carriage Return"
-
                             console.log(d.relativePos % maxIconsInThisColumn);
                             x = ((d.relativePos % maxIconsInThisColumn) * iconWidth) + columnPosition + leftMargin;
 
                         }
-
-
 
                         console.log('row: ' + d.row + ' | col: ' + d.col + ' | pos: ' + d.pos + ' | relativePos: ' + d.relativePos + ' :: ' + Math.round(x) + ':' + Math.round(y));
 
@@ -546,7 +523,6 @@
                         }
 
                         var baseScale = iconSize / defaultIconSize;
-
                         var scale = baseScale * d.size;
 
                         // If Icon is drawn smaller than full-size, center it
@@ -557,7 +533,7 @@
 
                         // If Icon is drawn outside of Canvas give a warning
                         if (y > graphHeight || x > graphWidth) {
-                            console.warn('<strong>Warning: </strong>The generated Graphic is bigger than its Canvas!');
+                            self.drawCanvasOverflowWarning();
                         }
 
                         return 'translate(' + x + ', ' + y + ') scale(' + scale + ')';
@@ -819,6 +795,20 @@
         ///////////////////////////////////
         // Helper Functions              //
         ///////////////////////////////////
+
+        drawCanvasOverflowWarning: function() {
+
+            if ($('#overflow-warning').length === 0) {
+
+                $('#message-box')
+                    .append('<div id="overflow-warning"><strong>Warning</strong>: The graphic is bigger than the canvas!</div>')
+                ;
+
+                $('#overflow-warning').delay(4000).slideUp(500, 'swing', function() {
+                    this.remove();
+                });
+            }
+        },
 
         /**
          * Pretty prints the Scale (for use with the Legend and the UI)
