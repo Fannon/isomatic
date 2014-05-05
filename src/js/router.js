@@ -17,6 +17,7 @@
             "export": "exportGraphic",
             "help": "help",
             "data": "data",
+            "datahelp": "datahelp",
             "type": "type",
             "color": "color",
             "icon": "icon",
@@ -50,6 +51,10 @@
 
         data: function() {
             this.triggerUi('data', true);
+        },
+
+        datahelp: function() {
+            this.triggerUi('datahelp',false);
         },
 
         type: function() {

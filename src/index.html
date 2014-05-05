@@ -78,6 +78,9 @@
                 <!-- Data Settings Container -->
                 <div id="data-container" class="overlay-container" style="display: none"></div>
 
+                <!-- Data Settings Help -->
+                <div id="datahelp-container" class="overlay-container" style="display: none"></div>
+
                 <!-- Type Settings -->
                 <div id="type-container" class="overlay-container" style="display: none"></div>
 
@@ -165,6 +168,7 @@
 <script src="js/views/ExportView.js"></script>
 <script src="js/views/HelpView.js"></script>
 <script src="js/views/DataView.js"></script>
+<script src="js/views/DataHelpView.js"></script>
 <script src="js/views/TypeView.js"></script>
 <script src="js/views/IconMapView.js"></script>
 <script src="js/views/IconLibraryView.js"></script>
@@ -283,6 +287,7 @@
 
                     <a id="import-data" href="#" class="tiny button radius">Import</a>
                     <a id="import-data-close" href="#home" class="tiny button radius">Import & Close</a>
+                    <a href="#datahelp" class="icon trigger-ui tiny button radius" id="trigger-datahelp">Help</a>
                 </div>
 
                 <div class="ui-container">
@@ -292,6 +297,15 @@
 
             </form>
         </div>
+    </div>
+</script>
+
+<!-- Data Help Template -->
+<script type="text/template" id="datahelp-template">
+    <div id="overlay-datahelp">
+            <h3>Data Import HELP</h3>
+
+            <p>blablabla</p>
     </div>
 </script>
 

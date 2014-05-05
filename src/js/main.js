@@ -53,6 +53,7 @@ var isomatic = {};
         views.helpView        = new views.HelpView({el: $("#help-modal")});
 
         views.dataView        = new views.DataView({el: $("#data-container")});
+        views.datahelpView        = new views.DataHelpView({el: $("#datahelp-container")});
         views.typeView        = new views.TypeView({el: $("#type-container")});
         views.iconMapView     = new views.IconMapView({el: $("#icon-left-container")});
         views.iconLibraryView = new views.IconLibraryView({el: $("#icon-right-container")});
