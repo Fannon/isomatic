@@ -166,7 +166,14 @@
             railOpacity: 0.3
         },
 
-        equallyDistributesColumns: true
+        equallyDistributesColumns: true,
+
+        /**
+         * Decides if Help is active
+         */
+        HelpStatus: {
+            active: false
+        }
 
     };
 

@@ -58,7 +58,8 @@
         events: {
             "focus #pasted-data": "focusTextarea",
             "click #import-data": "submitData",
-            "click #import-data-close": "submitData"
+            "click #import-data-close": "submitData",
+            "click #datahelp": "showHelp"
         },
 
         /**
@@ -324,10 +325,15 @@
             isomatic.options.ui.set({
                 scale: scale
             });
+        },
+        
+        showHelp: function() {
+            isomatic.options.internal.HelpStatus.active = true;
+            console.log("helpactive " + isomatic.options.internal.HelpStatus.active);
         }
 
 
-    });
+        });
 
 }(isomatic));
 
