@@ -331,6 +331,18 @@ button.tiny, .button.tiny {
     }
   }
 
+  .overlay-container.help{
+    background: #CCCCCC;
+    position: absolute;
+    height: 100%;
+    width: 330px;
+    left: 640px;
+    top: 0px;
+    border-right: 1px solid #CCC;
+    padding: 5px $container-margin;
+    overflow: hidden;
+  }
+
 
   // Data Overlay
 
@@ -526,26 +538,30 @@ button.tiny, .button.tiny {
 
   }
 
-  #data-container, #icon-container, #color-container, #help-container {
-    width: $overlay-big-width;
-  }
-
-  .topic-line {
-    border-bottom: 1px solid #BBB;
-    margin: 0px 0px 15px 0px;
-  }
-
-  .normal-line {
-    border-bottom: 1px solid #CCC;
-    margin: 0px 0px 10px 0px;
-  }
-
 
   // Help Overlay
 
   #overlay-help {
 
   }
+
+
+  #data-container, #icon-container, #color-container {
+    width: $overlay-big-width;
+  }
+
+
+  .topic-line {
+    border-bottom: 1px solid #BBB;
+    margin: 0px 0px 15px 0px;
+  }
+
+
+  .normal-line {
+    border-bottom: 1px solid #CCC;
+    margin: 0px 0px 10px 0px;
+  }
+
 
 }
 

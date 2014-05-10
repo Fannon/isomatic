@@ -17,7 +17,6 @@
             "export": "exportGraphic",
             "help": "help",
             "data": "data",
-            "datahelp": "datahelp",
             "type": "type",
             "color": "color",
             "icon": "icon",
@@ -31,6 +30,7 @@
             $(".overlay-container").hide();
             $(".trigger-ui").removeClass('active');
             $('#graph').removeClass('move-right');
+            this.checkHelp();
         },
 
         newGraphic: function() {
@@ -45,40 +45,43 @@
             // Modal
         },
 
-        help: function() {
-            // Modal
-        },
-
         data: function() {
             this.triggerUi('data', true);
-        },
-
-        datahelp: function() {
-            this.triggerUi('datahelp',false);
+            this.checkHelp();
         },
 
         type: function() {
             this.triggerUi('type', false);
+            this.checkHelp();
         },
 
         color: function() {
             this.triggerUi('color', true);
+            this.checkHelp();
         },
 
         icon: function() {
             this.triggerUi('icon', true);
+            this.checkHelp();
         },
 
         adjustments: function() {
             this.triggerUi('adjustments', false);
+            this.checkHelp();
         },
 
         scale: function() {
             this.triggerUi('scale', false);
+            this.checkHelp();
         },
 
         text: function() {
             this.triggerUi('text', false);
+            this.checkHelp();
+        },
+
+        help: function() {
+            this.checkHelp();
         },
 
         ////////////////////////////////////
@@ -92,6 +95,7 @@
         triggerUi: function(id, isBig) {
             $(".trigger-ui").removeClass('active');
             $(".overlay-container").hide();
+            $('#graph').removeClass('move-right');
             $("#trigger-" + id).addClass('active');
             $('#' + id + '-container').show();
 
@@ -99,6 +103,14 @@
                 $('#graph').addClass('move-right');
             }
 
+        },
+
+        checkHelp: function() {
+            if (isomatic.options.internal.HelpStatus.active === true) {
+                $('#help-container').show();
+            } else {
+                $('#help-container').hide();
+            }
         }
     });
 
