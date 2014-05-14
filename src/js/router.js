@@ -81,6 +81,7 @@
         },
 
         help: function() {
+            this.showHelp();
             this.checkHelp();
         },
 
@@ -93,6 +94,7 @@
          * @param id
          */
         triggerUi: function(id, isBig) {
+            this.checkHelp();
             $(".trigger-ui").removeClass('active');
             $(".overlay-container").hide();
             $('#graph').removeClass('move-right');
@@ -111,7 +113,18 @@
             } else {
                 $('#help-container').hide();
             }
+        },
+
+        showHelp: function() {
+            if (isomatic.options.internal.HelpStatus.active) {
+                isomatic.options.internal.HelpStatus.active = false;
+            } else {
+                isomatic.options.internal.HelpStatus.active = true;
+            }
+
+            console.log("helpactive: " + isomatic.options.internal.HelpStatus.active);
         }
+
     });
 
     /**
