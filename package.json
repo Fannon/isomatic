@@ -9,6 +9,7 @@
         "time-grunt": "~0.2.3",
         "grunt": "*",
         "grunt-sass": "*",
+        "grunt-html-build": "*",
         "grunt-jsdoc": "*",
         "grunt-usemin": "~2.1.0",
         "grunt-uncss": "~0.3.0",
