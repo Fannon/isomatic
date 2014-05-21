@@ -1,0 +1,52 @@
+<script type="text/template" id="text-template">
+    <div id="overlay-text">
+        <h3>Text Settings</h3>
+
+        <form>
+
+            <div class="ui-container">
+                <h4>Legend Settings</h4>
+
+                <div class="row collapse">
+                    <label><img src="img/titleheight.svg">Title Height / Size</label>
+                    <div class="small-10 columns">
+                        <input id="legend-title-height" name="legendTitleHeight" type="text" value="{{ options.legendTitleHeight }}">
+                    </div>
+                    <div class="small-2 columns">
+                        <span class="postfix radius">px</span>
+                    </div>
+                </div>
+
+                <div class="row collapse">
+                    <label><img src="img/rowlegend.svg">Row Legend Width (left)</label>
+                    <div class="small-10 columns">
+                        <input id="legend-width" name="legendWidth" type="text" value="{{ options.legendWidth }}">
+                    </div>
+                    <div class="small-2 columns">
+                        <span class="postfix radius">px</span>
+                    </div>
+                </div>
+
+                <input id="draw-column-legend" name="drawColumnLegend" type="checkbox" {{#if options.drawColumnLegend}}checked{{/if}}><label for="draw-column-legend">Draw Column Legend</label>
+
+                <!--<label>Add Topic Description</label>-->
+                <!--<textarea placeholder="Enter Description here.."></textarea>-->
+            </div>
+
+            <div class="ui-container">
+                <h4>Font Settings</h4>
+                <label>
+                    <span data-tooltip class="has-tip tip-right" title="Choose Font-Family">Font-Family</span>
+                </label>
+                <select id="legend-font" name="legendFont" value="{{options.legendFont}}">
+                    {{#each availableFonts }}
+                    <option value="{{this}}">{{@key}}</option>
+                    {{/each}}
+                </select>
+            </div>
+
+            <a id="text-apply" href="#" class="tiny button radius">Apply</a>
+            <a id="text-apply-close" href="#home" class="tiny button radius">Apply & Close</a>
+        </form>
+    </div>
+</script>

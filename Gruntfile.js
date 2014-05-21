@@ -13,11 +13,11 @@ module.exports = function(grunt) {
         pkg: grunt.file.readJSON('package.json'),
 
         /** Production JavaScript Header Comment */
-        banner: '/*! <%= pkg.name %> - v<%= pkg.version %> - ' +
+/*        banner: '*//*! <%= pkg.name %> - v<%= pkg.version %> - ' +
             '<%= grunt.template.today("yyyy-mm-dd") %>\n' +
             '<%= pkg.homepage ? "* " + pkg.homepage + "\\n" : "" %>' +
             '* Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author.name %>;' +
-            ' Licensed MIT */\n',
+            ' Licensed MIT *//*\n',*/
 
         sass: {
             options: {
@@ -98,14 +98,14 @@ module.exports = function(grunt) {
         },
 
         useminPrepare: {
-            html: ['src/**/*.html', '!src/bower_components/**'],
+            html: ['src/index.html'],
             options: {
                 dest: 'dist'
             }
         },
 
         usemin: {
-            html: ['dist/**/*.html', '!src/bower_components/**'],
+            html: ['dist/index.html'],
             css: ['dist/css/**/*.css'],
             options: {
                 dirs: ['dist']
@@ -113,7 +113,7 @@ module.exports = function(grunt) {
         },
 
         htmlbuild: {
-            src: 'src/index.html',
+            src: 'dist/index.html',
             dest: 'dist/',
             options: {
                 sections: {
@@ -206,6 +206,9 @@ module.exports = function(grunt) {
             },
             connect: {
                 text: "\n###################################################\n### STARTING LOCALHOST WEBSERVER\n###################################################"
+            },
+            htmlbuild: {
+                text: "\n###################################################\n### IMPORT TEMPLATES\n###################################################"
             },
             copy: {
                 text: "\n###################################################\n### COPYING FILES\n###################################################"

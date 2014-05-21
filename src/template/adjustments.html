@@ -1,0 +1,72 @@
+<script type="text/template" id="adjustments-template">
+    <div id="overlay-adjustments">
+        <h3>Adjustments</h3>
+
+        <form>
+
+            <div class="ui-container">
+                <h4><span data-tooltip class="has-tip tip-right" title="Change the general offsets">Margin</span></h4>
+
+                <div class="row collapse">
+                    <label><img src="img/outermarign.svg">Outer Margin</label>
+                    <div class="small-10 columns">
+                        <input id="outer-margin" name="outerMargin" type="text" value="{{ options.outerMargin }}">
+                    </div>
+                    <div class="small-2 columns">
+                        <span class="postfix radius">px</span>
+                    </div>
+                </div>
+
+                <div class="row collapse">
+                    <label><img src="img/horizontalmargin.svg">Icon Horizontal Margin</label>
+                    <div class="small-10 columns">
+                        <input id="icon-horizontal-margin" name="iconHorizontalMargin" type="text" value="{{ options.iconHorizontalMargin }}">
+                    </div>
+                    <div class="small-2 columns">
+                        <span class="postfix radius">px</span>
+                    </div>
+                </div>
+
+                <div class="row collapse">
+                    <label><img src="img/rowmargin.svg">Row Margin</label>
+                    <div class="small-10 columns">
+                        <input id="row-margin" name="rowMargin" type="text" type="text" value="{{ options.rowMargin }}">
+                    </div>
+                    <div class="small-2 columns">
+                        <span class="postfix radius">px</span>
+                    </div>
+                </div>
+
+                <!--<div class="row collapse">-->
+                <!--<label><img src="img/columnmargin.svg">Column Margin</label>-->
+                <!--<div class="small-10 columns">-->
+                <!--<input id="column-margin" name="columnMargin" type="text" value="{{ options.columnMargin }}">-->
+                <!--</div>-->
+                <!--<div class="small-2 columns">-->
+                <!--<span class="postfix radius">px</span>-->
+                <!--</div>-->
+                <!--</div>-->
+            </div>
+
+            <div class="ui-container">
+                <h4><span data-tooltip class="has-tip tip-right" title="See the icon proportion">Size</span></h4>
+
+                <input id="auto-icon-size" name="autoIconSize" type="checkbox" {{#if options.autoIconSize}}checked{{/if}}><label for="auto-icon-size">Auto Icon Size</label>
+
+
+                <div class="row collapse">
+                    <label><img src="img/iconsize.svg">Icon Size</label>
+                    <div class="small-10 columns">
+                        <input id="icon-size" name="iconSize" type="text" value="{{ options.iconSize }}" {{#if options.autoIconSize}}disabled{{/if}}>
+                    </div>
+                    <div class="small-2 columns">
+                        <span class="postfix radius">px</span>
+                    </div>
+                </div>
+            </div>
+
+            <a id="adjustments-apply" href="#" class="tiny button radius">Apply</a>
+            <a id="adjustments-apply-close" href="#home" class="tiny button radius">Apply & Close</a>
+        </form>
+    </div>
+</script>
