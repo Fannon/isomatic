@@ -156,22 +156,18 @@ button.tiny, .button.tiny {
     }
   }
 
-  #openHelp {
+  li.help {
+    background: #0099cc;
+    color: #FFF;
 
-    a {
-      float: left;
-      font: h4;
-      padding: 12px;
-      background: #666;
-      color: #FFF;
+    a#openHelp {
+      padding-left: 17px;
+      padding-right: 17px;
+      background: #0099cc;
+
     }
-
-    #openHelp:hover {
-      background: #888;
-      cursor: pointer;
-    }
-
   }
+
 
 }
 
@@ -332,7 +328,7 @@ button.tiny, .button.tiny {
   }
 
   .overlay-container.help{
-    background: #5ed5e1;
+    background: #0099cc;
     width: 290px;
     left: 680px;
   }

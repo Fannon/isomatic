@@ -98,14 +98,14 @@ module.exports = function(grunt) {
         },
 
         useminPrepare: {
-            html: ['src/index.html'],
+            html: ['src/index.html', '!src/bower_components/**'],
             options: {
                 dest: 'dist'
             }
         },
 
         usemin: {
-            html: ['dist/index.html'],
+            html: ['dist/index.html', '!src/bower_components/**'],
             css: ['dist/css/**/*.css'],
             options: {
                 dirs: ['dist']
@@ -114,7 +114,7 @@ module.exports = function(grunt) {
 
         htmlbuild: {
             src: 'dist/index.html',
-            dest: 'dist/',
+            dest: 'dist/**',
             options: {
                 sections: {
                     help: 'src/html/help.html'
@@ -246,7 +246,7 @@ module.exports = function(grunt) {
         'content:cssmin', 'cssmin',
         'content:uglify', 'uglify',
         'content:usemin', 'usemin',
-        'content:htmlbuild', 'htmlbuild',
+        //'content:htmlbuild', 'htmlbuild',
         'content:done'
     ]);
 };
