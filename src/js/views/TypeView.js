@@ -54,10 +54,6 @@
             "click .select-type": "selectType"
         },
 
-
-
-
-
         /**
          * Selects the clicked on Type, deselects others
          *
@@ -68,6 +64,7 @@
             $('.select-type').removeClass('active');
             $(e.currentTarget).addClass('active');
             isomatic.options.ui.set('diagramType', type);
+            isomatic.refreshLayout();
         }
     });
 
