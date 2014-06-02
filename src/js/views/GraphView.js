@@ -455,7 +455,7 @@
                             maxRows = numberOfRows;
                         }
 
-                        console.log('UMBRUCH! ' + numberOfRows);
+//                        console.log('UMBRUCH! ' + numberOfRows);
 
                     }
 
@@ -470,7 +470,7 @@
 
             }
 
-            console.warn(rowPositions);
+//            console.warn(rowPositions);
 //            console.warn(columnPositions);
 
 
