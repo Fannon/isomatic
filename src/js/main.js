@@ -218,7 +218,7 @@ var isomatic = {};
     };
 
     /**
-     * If Toolbar Button is clicked when the target Overlay is alredy open: Close the Overlay instead
+     * If Toolbar Button is clicked when the target Overlay is already open: Close the Overlay instead
      *
      * @param el
      */

@@ -31,6 +31,7 @@
             $(".trigger-ui").removeClass('active');
             $('#graph').removeClass('move-right');
             isomatic.options.internal.HelpStatus.active = false;
+            isomatic.options.internal.HelpStatus.location = 'home';
             this.checkHelp();
         },
 
@@ -99,24 +100,8 @@
             if (!isBig) {
                 $('#graph').addClass('move-right');
             }
-
             this.checkHelp();
 
-        },
-
-        checkHelp: function() {
-            if (isomatic.options.internal.HelpStatus.active === true) {
-                $('#help-container').show();
-            } else {
-                $('#help-container').hide();
-
-            }
-
-            var currentRoute = Backbone.history.fragment;
-            console.log(currentRoute);
-
-            $('.help-section').hide();
-            $('#' + currentRoute + '-help').show();
         },
 
         showHelp: function() {
@@ -124,6 +109,15 @@
                 isomatic.options.internal.HelpStatus.active = false;
             } else {
                 isomatic.options.internal.HelpStatus.active = true;
+            }
+        },
+
+        checkHelp: function() {
+            $('.help-section').hide();
+            $('#help-container').hide();
+            if (isomatic.options.internal.HelpStatus.active === true) {
+                $('#help-container').show();
+                $('#' + isomatic.options.internal.HelpStatus.location + '-help').show();
             }
         }
 
