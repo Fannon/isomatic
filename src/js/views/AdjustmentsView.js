@@ -57,6 +57,11 @@
 
             this.activateIconSize();
 
+            // Init Scrollbar
+            $('.scrollbar').slimScroll({
+                'height': isomatic.options.ui.attributes.graphHeight
+            });
+
         },
 
         /**
@@ -81,8 +86,9 @@
             var state = {
                 'outerMargin': $('#outer-margin').val(),
                 'iconHorizontalMargin': $('#icon-horizontal-margin').val(),
+                'iconVerticalMargin': $('#icon-vertical-margin').val(),
                 'rowMargin': $('#row-margin').val(),
-//                'columnMargin': $('#column-margin').val(),
+                'columnMargin': $('#column-margin').val(),
                 'iconSize': $('#icon-size').val(),
                 'autoIconSize': $('#auto-icon-size').prop('checked')
             };
@@ -90,7 +96,7 @@
             var isValid = this.model.set(state, {validate: true});
 
             if (isValid) {
-                isomatic.refreshLayout();
+                isomatic.refreshData();
             }
 
         },

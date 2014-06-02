@@ -88,13 +88,16 @@
             // Get & Parse Variables          //
             ////////////////////////////////////
 
-            var iconHorizontalMargin = parseFloat(isomatic.options.ui.attributes.iconHorizontalMargin);
-            var iconVerticalMargin = parseFloat(isomatic.options.ui.attributes.iconVerticalMargin);
             var outerMargin          = parseFloat(isomatic.options.ui.attributes.outerMargin);
+            var iconHorizontalMargin = parseFloat(isomatic.options.ui.attributes.iconHorizontalMargin);
+            var iconVerticalMargin   = parseFloat(isomatic.options.ui.attributes.iconVerticalMargin);
+            var rowMargin            = parseFloat(isomatic.options.ui.attributes.rowMargin);
+            var columnMargin         = parseFloat(isomatic.options.ui.attributes.columnMargin);
+
             var graphWidth           = parseInt(isomatic.options.ui.attributes.graphWidth, 10);
             var legendWidth          = parseInt(isomatic.options.ui.attributes.legendWidth, 10);
+            var legendTitleHeight    = parseInt(isomatic.options.ui.attributes.legendTitleHeight, 10);
             var defaultIconSize      = isomatic.options.internal.defaultIconSize;
-            var rowMargin            = parseFloat(isomatic.options.ui.attributes.rowMargin);
 
             var columns              = isomatic.data.meta.attributes.columns;
 
@@ -153,34 +156,46 @@
                 calculatedIconSize = isomatic.options.internal.maxIconSize;
             }
 
+            var leftMargin = outerMargin + legendWidth;
+            var topMargin = outerMargin;
+
+            if (legendTitleHeight > 0) {
+                topMargin += legendTitleHeight + outerMargin;
+            }
+
 
             //////////////////////////////////////////
             // Calculate Column Positions           //
             //////////////////////////////////////////
 
-            var leftMargin = outerMargin + legendWidth;
             var visualisationWidth = (graphWidth - leftMargin);
+            var visualisationWidthSpace = visualisationWidth - leftMargin - (columns.length * columnMargin);
 
-            columnPositions[0] = 0;
-
-            var currentColumnPosition = 0;
+            var currentColumnPosition = leftMargin;
 
             for (var col = 0; col < columns.length; col++) {
+
+                /** Width of Column Icon Area (excludes margin */
+                var columnWidth;
 
                 columnPositions[col] = currentColumnPosition;
 
                 if (isomatic.options.ui.attributes.equallyDistributedColumns) {
-                    currentColumnPosition += visualisationWidth /columns.length;
+                    columnWidth = visualisationWidthSpace / columns.length;
                 } else {
-                    currentColumnPosition += visualisationWidth * (iconsPerColumn[col] / isomatic.data.processed.length);
+                    columnWidth = visualisationWidthSpace * (iconsPerColumn[col] / isomatic.data.processed.length) ;
                 }
 
-                columnWidths[col] = currentColumnPosition - columnPositions[col];
+                columnWidths[col] = columnWidth;
+                currentColumnPosition += columnWidth + columnMargin;
 
             }
 
             // The last position is the end of the Visualisation Canvas
             columnPositions[columns.length] = graphWidth;
+
+            console.warn(columnPositions);
+            console.warn(columnWidths);
 
 
             //////////////////////////////////////////
@@ -190,7 +205,7 @@
             var iconWidth = calculatedIconSize + iconHorizontalMargin;
             var iconHeight = calculatedIconSize + iconVerticalMargin;
 
-            var currentRowPosition = 0;
+            var currentRowPosition = topMargin;
 
             for (var row = 0; row < iconsPerRowField.length; row++) {
 
@@ -339,6 +354,7 @@
             var iconHorizontalMargin = parseFloat(isomatic.options.ui.attributes.iconHorizontalMargin);
             var outerMargin          = parseFloat(isomatic.options.ui.attributes.outerMargin);
             var rowMargin            = parseFloat(isomatic.options.ui.attributes.rowMargin);
+
             var graphHeight          = parseInt(isomatic.options.ui.attributes.graphHeight, 10);
             var graphWidth           = parseInt(isomatic.options.ui.attributes.graphWidth, 10);
             var legendWidth          = parseInt(isomatic.options.ui.attributes.legendWidth, 10);
@@ -369,19 +385,15 @@
                     .attr("class", "icon")
                     .attr("transform", function(d) {
 
-                        var x = (d.pos * (iconSize + iconHorizontalMargin)) + outerMargin + legendWidth;
-                        var y = d.row * (iconSize + rowMargin) + outerMargin;
+                        var leftMargin = outerMargin + legendWidth;
+                        var topMargin = outerMargin;
 
-                        // DEBUG First row
-//                        if (d.row === 0) {
-//                            console.log('row: ' + d.row + ' | col: ' + d.col + ' | pos: ' + d.pos + ' | relativePos: ' + d.relativePos + ' :: ' + x);
-//                        }
-
-
-                        // If legendTitleHeight > 0, draw Header Title
                         if (legendTitleHeight > 0) {
-                            y += legendTitleHeight + outerMargin;
+                            topMargin += legendTitleHeight + outerMargin;
                         }
+
+                        var x = (d.pos * (iconSize + iconHorizontalMargin)) + leftMargin;
+                        var y = d.row * (iconSize + rowMargin) + topMargin;
 
                         var baseScale = iconSize / defaultIconSize;
 
@@ -448,6 +460,8 @@
             var iconVerticalMargin   = parseFloat(isomatic.options.ui.attributes.iconVerticalMargin);
             var outerMargin          = parseFloat(isomatic.options.ui.attributes.outerMargin);
             var rowMargin            = parseFloat(isomatic.options.ui.attributes.rowMargin);
+            var columnMargin         = parseFloat(isomatic.options.ui.attributes.columnMargin);
+
             var graphHeight          = parseInt(isomatic.options.ui.attributes.graphHeight, 10);
             var graphWidth           = parseInt(isomatic.options.ui.attributes.graphWidth, 10);
             var legendWidth          = parseInt(isomatic.options.ui.attributes.legendWidth, 10);
@@ -461,8 +475,8 @@
             var colorMap             = isomatic.options.ui.attributes.colorMap;
 
             var columnPositions             = isomatic.data.meta.attributes.columnPositions;
-            var columnWidths             = isomatic.data.meta.attributes.columnWidths;
             var rowPositions                = isomatic.data.meta.attributes.rowPositions;
+            var columnWidths             = isomatic.data.meta.attributes.columnWidths;
             var iconsPerRowField            = isomatic.data.meta.attributes.iconsPerRowField;
 
 
@@ -480,9 +494,9 @@
                     .attr("class", "icon")
                     .attr("transform", function(d) {
 
-                        var leftMargin = outerMargin + legendWidth;
                         var iconWidth = iconSize + iconHorizontalMargin;
                         var iconHeight = iconSize + iconVerticalMargin;
+
                         var columnPosition = columnPositions[d.col];
                         var rowPosition = rowPositions[d.row];
 
@@ -490,8 +504,8 @@
                         var maxIconsInThisColumn = Math.floor(columnWidths[d.col] / iconWidth) + 1;
 
                         // Calculate X and Y Coordinates
-                        var x = ((d.relativePos % maxIconsInThisColumn) * iconWidth) + columnPosition + leftMargin;
-                        var y = rowPosition + outerMargin;
+                        var x = ((d.relativePos % maxIconsInThisColumn) * iconWidth) + columnPosition;
+                        var y = rowPosition;
 
 
                         // If Icon is drawn outside of current column width: Break into new line
@@ -510,17 +524,11 @@
 
                             // "Carriage Return"
 //                            console.log(d.relativePos % maxIconsInThisColumn);
-                            x = ((d.relativePos % maxIconsInThisColumn) * iconWidth) + columnPosition + leftMargin;
+                            x = ((d.relativePos % maxIconsInThisColumn) * iconWidth) + columnPosition;
 
                         }
 
 //                        console.log('row: ' + d.row + ' | col: ' + d.col + ' | pos: ' + d.pos + ' | relativePos: ' + d.relativePos + ' :: ' + Math.round(x) + ':' + Math.round(y));
-
-
-                        // If legendTitleHeight > 0, draw Header Title
-                        if (legendTitleHeight > 0) {
-                            y += legendTitleHeight + outerMargin;
-                        }
 
                         var baseScale = iconSize / defaultIconSize;
                         var scale = baseScale * d.size;
@@ -610,6 +618,12 @@
 
             var scaleText = '1 : ' + this.printScale(scale);
 
+            var leftMargin = outerMargin + legendWidth;
+            var topMargin = outerMargin;
+
+            if (legendTitleHeight > 0) {
+                topMargin += legendTitleHeight + outerMargin;
+            }
 
             ////////////////////////////////////
             // Legend: Title                  //
@@ -671,12 +685,11 @@
 
                     if (isomatic.options.ui.attributes.diagramType === 'normal') {
                         y = i * (iconSize + rowMargin) + outerMargin;
+                        if (legendTitleHeight > 0) {
+                            y += legendTitleHeight + outerMargin;
+                        }
                     } else if (isomatic.options.ui.attributes.diagramType === 'compare') {
-                        y = rowPositions[i] + outerMargin;
-                    }
-
-                    if (legendTitleHeight > 0) {
-                        y += legendTitleHeight + outerMargin;
+                        y = rowPositions[i];
                     }
 
                     return "translate(0," + y + ")";
