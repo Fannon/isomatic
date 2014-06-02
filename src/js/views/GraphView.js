@@ -169,7 +169,7 @@
 
                 columnPositions[col] = currentColumnPosition;
 
-                if (isomatic.options.internal.equallyDistributesColumns) {
+                if (isomatic.options.ui.attributes.equallyDistributedColumns) {
                     currentColumnPosition += visualisationWidth /columns.length;
                 } else {
                     currentColumnPosition += visualisationWidth * (iconsPerColumn[col] / isomatic.data.processed.length);

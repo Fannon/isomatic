@@ -28,30 +28,21 @@
         },
         render: function(){
 
+            console.warn(isomatic.options.ui.attributes.equallyDistributedColumns);
+
             var source = $('#type-template').html();
             var template = Handlebars.compile(source);
             var html = template({
-                type: isomatic.options.ui.attributes.type
+                type: isomatic.options.ui.attributes.type,
+                equallyDistributedColumns: isomatic.options.ui.attributes.equallyDistributedColumns
             });
 
             this.$el.html(html);
 
-
-
-            // Init Scrollbar
-            try {
-                $('.scrollbar').slimScroll({
-                    'height': isomatic.options.ui.attributes.graphHeight
-                });
-
-            } catch (e) {
-                console.error('Error loading Scrollbar Plugin!');
-            }
-
-
         },
         events: {
-            "click .select-type": "selectType"
+            "click .select-type": "selectType",
+            "click #equally-distributed-columns": "selectColumnDistribution"
         },
 
         /**
@@ -64,6 +55,13 @@
             $('.select-type').removeClass('active');
             $(e.currentTarget).addClass('active');
             isomatic.options.ui.set('diagramType', type);
+            isomatic.refreshLayout();
+        },
+
+        selectColumnDistribution: function(e) {
+            var checked = $('#equally-distributed-columns').prop('checked');
+
+            isomatic.options.ui.set('equallyDistributedColumns', checked);
             isomatic.refreshLayout();
         }
     });

@@ -166,8 +166,6 @@
             railOpacity: 0.3
         },
 
-        equallyDistributesColumns: true,
-
         /**
          * Decides if Help is active
          */
@@ -206,7 +204,7 @@
         graphHeight: 0,
 
         /** Diagram Type */
-        diagramType: 'normal',
+        diagramType: 'compare',
 
         /** Margin to Canvas */
         outerMargin: 20,
@@ -222,6 +220,9 @@
 
         /** Vertical Margin between Icons */
         iconVerticalMargin: 3,
+
+        /** Equally distribute the width of the Columns */
+        equallyDistributedColumns: true,
 
         /** Break a Row into several Rows visually if number icons exceed this */
         breakRow: false,

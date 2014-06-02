@@ -368,6 +368,11 @@
 
             <!--<input id="break-rows" type="checkbox"><label for="break-rows">Break row into multiple Lines</label>-->
 
+            <div class="ui-container">
+                <h4>Additional Options</h4>
+                <input id="equally-distributed-columns" name="equallyDistributedColumns" type="checkbox" {{#if equallyDistributedColumns}}checked{{/if}}><label for="equally-distributed-columns">Equally distributed Columns</label>
+            </div>
+
         </form>
     </div>
 </script>
@@ -532,12 +537,6 @@
                         <span class="postfix radius">px</span>
                     </div>
                 </div>
-
-                <div class="row collapse">
-                    <input id="equally-distributes-columns" name="autoIconSize" type="checkbox" {{#if options.equallyDistributesColumns}}checked{{/if}}><label for="equally-distributes-columns">Equally distribute collums</label>
-
-                </div>
-
 
             </div>
 
