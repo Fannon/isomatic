@@ -210,10 +210,10 @@
         outerMargin: 20,
 
         /** Margin between Rows */
-        rowMargin: 15,
+        rowMargin: 30,
 
         /** Margin between Columns TODO: Not implemented */
-        columnMargin: 30,
+        columnMargin: 15,
 
         /** Horizontal Margin between Icons */
         iconHorizontalMargin: -15,
@@ -222,7 +222,7 @@
         iconVerticalMargin: 3,
 
         /** Equally distribute the width of the Columns */
-        equallyDistributedColumns: true,
+        equallyDistributedColumns: false,
 
         /** Break a Row into several Rows visually if number icons exceed this */
         breakRow: false,
