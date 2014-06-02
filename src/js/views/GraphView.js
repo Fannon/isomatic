@@ -667,10 +667,13 @@
                 .append("g")
                 .attr("transform", function(d, i) {
 
+                    var y;
 
-//                    var y = i * (iconSize + rowMargin) + outerMargin;
-
-                    var y = rowPositions[i] + outerMargin;
+                    if (isomatic.options.ui.attributes.diagramType === 'normal') {
+                        y = i * (iconSize + rowMargin) + outerMargin;
+                    } else if (isomatic.options.ui.attributes.diagramType === 'compare') {
+                        y = rowPositions[i] + outerMargin;
+                    }
 
                     if (legendTitleHeight > 0) {
                         y += legendTitleHeight + outerMargin;
