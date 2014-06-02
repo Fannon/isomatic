@@ -172,7 +172,8 @@
          * Decides if Help is active
          */
         HelpStatus: {
-            active: false
+            active: false,
+            location: 'home'
         }
 
     };

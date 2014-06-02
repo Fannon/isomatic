@@ -43,7 +43,7 @@
                         <a id="openExport" href="#export" data-reveal-id="export-modal"><img src="img/export.svg">Export</a>
                     </li>
                     <li class="help">
-                        <a id="openHelp" href="#help"><img src="img/help.svg" width="16px" height="16px">Help</a>
+                        <a id="trigger-help" href="#help"><img src="img/help.svg" width="16px" height="16px">Help</a>
                     </li>
                 </ul>
             </div>
@@ -173,7 +173,7 @@
 <script src="js/views/NewView.js"></script>
 <script src="js/views/ImportView.js"></script>
 <script src="js/views/ExportView.js"></script>
-<script src="js/views/HelpView.js"></script>
+
 <script src="js/views/DataView.js"></script>
 <script src="js/views/TypeView.js"></script>
 <script src="js/views/IconMapView.js"></script>
@@ -182,6 +182,8 @@
 <script src="js/views/AdjustmentsView.js"></script>
 <script src="js/views/ScaleView.js"></script>
 <script src="js/views/TextView.js"></script>
+
+<script src="js/views/HelpView.js"></script>
 
 <!-- endbuild -->
 
@@ -267,9 +269,22 @@
 </script>
 
 <!-- Help Template -->
-<script type="text/html" src="template/help.html" id="help-template">
-    <h3>Test</h3>
+<script type="text/html" id="help-template">
+
+    <div id="help-help" class="help-section">
+        <h3>Test</h3>
+    </div>
+
+    <div id="data-help"  class="help-section" style="display: none">
+        <h3>Data Help</h3>
+    </div>
+
+    <div id="type-help"  class="help-section" style="display: none">
+        <h3>Type Help</h3>
+    </div>
+
 </script>
+
 
 <!-- Data Template -->
 <script type="text/template" id="data-template">

@@ -59,6 +59,7 @@ var isomatic = {};
         views.propertiesView  = new views.AdjustmentsView({el: $("#adjustments-container")});
         views.scaleView       = new views.ScaleView({el: $("#scale-container")});
         views.textView        = new views.TextView({el: $("#text-container")});
+
         views.helpView       = new views.HelpView({el: $("#help-container")});
 
         // Draw Example Data Set
@@ -75,6 +76,11 @@ var isomatic = {};
         // Register ugly Hack
         $('.trigger-ui').on('click', function(el) {
             isomatic.uglyHack(el.currentTarget);
+        });
+
+        // Register ugly Help Hack
+        $('#trigger-help').on('click', function(el) {
+            isomatic.uglyHack(el.currentTarget, isomatic.options.internal.HelpStatus.location);
         });
 
     });
@@ -216,11 +222,14 @@ var isomatic = {};
      *
      * @param el
      */
-    isomatic.uglyHack = function(el) {
+    isomatic.uglyHack = function(el, destination) {
         var id = el.id.split('-')[1];
+        if (!destination) {
+            destination = 'home';
+        }
         if (window.location.hash === '#' + id) {
             setTimeout(function() {
-                window.location = '#home';
+                window.location = '#' + destination;
             }, 50);
         }
     };

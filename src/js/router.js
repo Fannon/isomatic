@@ -30,6 +30,7 @@
             $(".overlay-container").hide();
             $(".trigger-ui").removeClass('active');
             $('#graph').removeClass('move-right');
+            isomatic.options.internal.HelpStatus.active = false;
             this.checkHelp();
         },
 
@@ -47,37 +48,30 @@
 
         data: function() {
             this.triggerUi('data', true);
-            this.checkHelp();
         },
 
         type: function() {
             this.triggerUi('type', false);
-            this.checkHelp();
         },
 
         color: function() {
             this.triggerUi('color', true);
-            this.checkHelp();
         },
 
         icon: function() {
             this.triggerUi('icon', true);
-            this.checkHelp();
         },
 
         adjustments: function() {
             this.triggerUi('adjustments', false);
-            this.checkHelp();
         },
 
         scale: function() {
             this.triggerUi('scale', false);
-            this.checkHelp();
         },
 
         text: function() {
             this.triggerUi('text', false);
-            this.checkHelp();
         },
 
         help: function() {
@@ -94,16 +88,19 @@
          * @param id
          */
         triggerUi: function(id, isBig) {
-            this.checkHelp();
+
             $(".trigger-ui").removeClass('active');
             $(".overlay-container").hide();
             $('#graph').removeClass('move-right');
             $("#trigger-" + id).addClass('active');
             $('#' + id + '-container').show();
+            isomatic.options.internal.HelpStatus.location = id;
 
             if (!isBig) {
                 $('#graph').addClass('move-right');
             }
+
+            this.checkHelp();
 
         },
 
@@ -112,7 +109,14 @@
                 $('#help-container').show();
             } else {
                 $('#help-container').hide();
+
             }
+
+            var currentRoute = Backbone.history.fragment;
+            console.log(currentRoute);
+
+            $('.help-section').hide();
+            $('#' + currentRoute + '-help').show();
         },
 
         showHelp: function() {
@@ -121,8 +125,6 @@
             } else {
                 isomatic.options.internal.HelpStatus.active = true;
             }
-
-            console.log("helpactive: " + isomatic.options.internal.HelpStatus.active);
         }
 
     });

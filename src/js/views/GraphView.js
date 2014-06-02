@@ -204,7 +204,7 @@
                     var rowfield = iconsPerRowField[row][rowColumn];
                     var fieldWidth = rowfield * iconWidth;
 
-                    console.log('rowfield: ' + rowfield + ' fieldwidth: ' + fieldWidth + ' :: ' + columnTotalWidth);
+//                    console.log('rowfield: ' + rowfield + ' fieldwidth: ' + fieldWidth + ' :: ' + columnTotalWidth);
 
                     if (fieldWidth > columnTotalWidth) {
 
@@ -214,13 +214,13 @@
                             maxRows = numberOfRows;
                         }
 
-                        console.log('UMBRUCH! ' + numberOfRows);
+//                        console.log('UMBRUCH! ' + numberOfRows);
 
                     }
 
                 }
 
-                console.log('ROW BREAKS: ' + maxRows);
+//                console.log('ROW BREAKS: ' + maxRows);
                 currentRowPosition += (iconHeight * maxRows) + rowMargin;
 
             }
@@ -373,9 +373,9 @@
                         var y = d.row * (iconSize + rowMargin) + outerMargin;
 
                         // DEBUG First row
-                        if (d.row === 0) {
-                            console.log('row: ' + d.row + ' | col: ' + d.col + ' | pos: ' + d.pos + ' | relativePos: ' + d.relativePos + ' :: ' + x);
-                        }
+//                        if (d.row === 0) {
+//                            console.log('row: ' + d.row + ' | col: ' + d.col + ' | pos: ' + d.pos + ' | relativePos: ' + d.relativePos + ' :: ' + x);
+//                        }
 
 
                         // If legendTitleHeight > 0, draw Header Title
@@ -445,7 +445,7 @@
             ////////////////////////////////////
 
             var iconHorizontalMargin = parseFloat(isomatic.options.ui.attributes.iconHorizontalMargin);
-            var iconVerticalMargin = parseFloat(isomatic.options.ui.attributes.iconVerticalMargin);
+            var iconVerticalMargin   = parseFloat(isomatic.options.ui.attributes.iconVerticalMargin);
             var outerMargin          = parseFloat(isomatic.options.ui.attributes.outerMargin);
             var rowMargin            = parseFloat(isomatic.options.ui.attributes.rowMargin);
             var graphHeight          = parseInt(isomatic.options.ui.attributes.graphHeight, 10);
