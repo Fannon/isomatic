@@ -89,7 +89,6 @@
          * @param id
          */
         triggerUi: function(id, isBig) {
-
             $(".trigger-ui").removeClass('active');
             $(".overlay-container").hide();
             $('#graph').removeClass('move-right');
