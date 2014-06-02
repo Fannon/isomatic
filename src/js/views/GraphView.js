@@ -98,6 +98,7 @@
             var legendWidth          = parseInt(isomatic.options.ui.attributes.legendWidth, 10);
             var legendTitleHeight    = parseInt(isomatic.options.ui.attributes.legendTitleHeight, 10);
             var defaultIconSize      = isomatic.options.internal.defaultIconSize;
+            var iconSize         = parseFloat(isomatic.options.ui.attributes.iconSize);
 
             var columns              = isomatic.data.meta.attributes.columns;
 
@@ -194,10 +195,6 @@
             // The last position is the end of the Visualisation Canvas
             columnPositions[columns.length] = graphWidth;
 
-            console.warn(columnPositions);
-            console.warn(columnWidths);
-
-
             //////////////////////////////////////////
             // Calculate Row Positions              //
             //////////////////////////////////////////
@@ -208,6 +205,8 @@
             var currentRowPosition = topMargin;
 
             for (var row = 0; row < iconsPerRowField.length; row++) {
+
+                var rowHeight;
 
                 var maxRows = 1;
 
@@ -237,6 +236,8 @@
 
 //                console.log('ROW BREAKS: ' + maxRows);
                 currentRowPosition += (iconHeight * maxRows) + rowMargin;
+
+
 
             }
 

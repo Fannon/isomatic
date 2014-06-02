@@ -23,7 +23,7 @@
 $base-font-size: 12px;
 $container-margin: 8px;
 $overlay-small-width: 220px;
-$overlay-big-width: 680px;
+$overlay-big-width: 648px;
 
 $leftIconSize: 40px;
 
@@ -322,15 +322,25 @@ button.tiny, .button.tiny {
 
     .overlay-right {
       // padding: 0px 10px 0px 20px;
-      width: 451px;
+      width: 420px;
       float: left;
     }
   }
 
   .overlay-container.help{
-    background: #0099cc;
-    width: 290px;
-    left: 680px;
+    background: #333;
+    width: 324px;
+    left: 648px;
+
+    h3 {
+      background: #0099CC;
+      color: #FFF;
+      border-color: #0099CC;
+    }
+
+    .ui-container {
+      border: none;
+    }
   }
 
 
