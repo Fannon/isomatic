@@ -169,25 +169,33 @@
             //////////////////////////////////////////
 
             var visualisationWidth = (graphWidth - leftMargin);
+            var visualisationWidthSpace = visualisationWidth - leftMargin - (columns.length * columnMargin);
 
             var currentColumnPosition = leftMargin;
 
             for (var col = 0; col < columns.length; col++) {
 
+                /** Width of Column Icon Area (excludes margin */
+                var columnWidth;
+
                 columnPositions[col] = currentColumnPosition;
 
                 if (isomatic.options.ui.attributes.equallyDistributedColumns) {
-                    currentColumnPosition += visualisationWidth /columns.length;
+                    columnWidth = visualisationWidthSpace / columns.length;
                 } else {
-                    currentColumnPosition += visualisationWidth * (iconsPerColumn[col] / isomatic.data.processed.length);
+                    columnWidth = visualisationWidthSpace * (iconsPerColumn[col] / isomatic.data.processed.length) ;
                 }
 
-                columnWidths[col] = currentColumnPosition - columnPositions[col];
+                columnWidths[col] = columnWidth;
+                currentColumnPosition += columnWidth + columnMargin;
 
             }
 
             // The last position is the end of the Visualisation Canvas
             columnPositions[columns.length] = graphWidth;
+
+            console.warn(columnPositions);
+            console.warn(columnWidths);
 
 
             //////////////////////////////////////////
@@ -383,8 +391,6 @@
                         if (legendTitleHeight > 0) {
                             topMargin += legendTitleHeight + outerMargin;
                         }
-
-
 
                         var x = (d.pos * (iconSize + iconHorizontalMargin)) + leftMargin;
                         var y = d.row * (iconSize + rowMargin) + topMargin;
@@ -612,6 +618,12 @@
 
             var scaleText = '1 : ' + this.printScale(scale);
 
+            var leftMargin = outerMargin + legendWidth;
+            var topMargin = outerMargin;
+
+            if (legendTitleHeight > 0) {
+                topMargin += legendTitleHeight + outerMargin;
+            }
 
             ////////////////////////////////////
             // Legend: Title                  //
@@ -673,12 +685,11 @@
 
                     if (isomatic.options.ui.attributes.diagramType === 'normal') {
                         y = i * (iconSize + rowMargin) + outerMargin;
+                        if (legendTitleHeight > 0) {
+                            y += legendTitleHeight + outerMargin;
+                        }
                     } else if (isomatic.options.ui.attributes.diagramType === 'compare') {
-                        y = rowPositions[i] + outerMargin;
-                    }
-
-                    if (legendTitleHeight > 0) {
-                        y += legendTitleHeight + outerMargin;
+                        y = rowPositions[i];
                     }
 
                     return "translate(0," + y + ")";

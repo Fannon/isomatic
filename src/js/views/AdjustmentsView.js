@@ -57,6 +57,11 @@
 
             this.activateIconSize();
 
+            // Init Scrollbar
+            $('.scrollbar').slimScroll({
+                'height': isomatic.options.ui.attributes.graphHeight
+            });
+
         },
 
         /**
@@ -91,7 +96,7 @@
             var isValid = this.model.set(state, {validate: true});
 
             if (isValid) {
-                isomatic.refreshLayout();
+                isomatic.refreshData();
             }
 
         },
