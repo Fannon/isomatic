@@ -27,6 +27,7 @@
             this.model.on("change:rowMargin", this.render, this);
             this.model.on("change:columnMargin", this.render, this);
             this.model.on("change:iconSize", this.render, this);
+            this.model.on("change:diagramType", this.render, this);
 
         },
 
@@ -39,8 +40,15 @@
 
             var source = $('#adjustments-template').html();
             var template = Handlebars.compile(source);
+
+            var advancedOptions = false;
+            if (isomatic.options.ui.attributes.diagramType !== 'normal') {
+                advancedOptions = true;
+            }
+
             var html = template({
-                options: this.model.attributes
+                options: this.model.attributes,
+                advancedOptions: advancedOptions
             });
 
             this.$el.html(html);

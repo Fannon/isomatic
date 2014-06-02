@@ -509,15 +509,17 @@
                     </div>
                 </div>
 
+                {{#if advancedOptions}}
                 <div class="row collapse">
-                    <label><img src="img/horizontalmargin.svg">Icon Vertical Margin</label>
+                    <label><img src="img/verticalmargin.svg">Icon Vertical Margin</label>
                     <div class="small-10 columns">
-                        <input id="icon-vertical-margin" name="iconVertocaöMargin" type="text" value="{{ options.iconVerticalMargin }}">
+                        <input id="icon-vertical-margin" name="iconVerticalMargin" type="text" value="{{ options.iconVerticalMargin }}">
                     </div>
                     <div class="small-2 columns">
                         <span class="postfix radius">px</span>
                     </div>
                 </div>
+                {{/if}}
 
                 <div class="row collapse">
                     <label><img src="img/rowmargin.svg">Row Margin</label>
@@ -529,6 +531,7 @@
                     </div>
                 </div>
 
+                {{#if advancedOptions}}
                 <div class="row collapse">
                     <label><img src="img/columnmargin.svg">Column Margin</label>
                     <div class="small-10 columns">
@@ -538,6 +541,7 @@
                         <span class="postfix radius">px</span>
                     </div>
                 </div>
+                {{/if}}
 
             </div>
 

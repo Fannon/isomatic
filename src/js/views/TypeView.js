@@ -33,7 +33,7 @@
             if (isomatic.options.ui.attributes.diagramType !== 'normal') {
                 advancedOptions = true;
             }
-            
+
             var source = $('#type-template').html();
             var template = Handlebars.compile(source);
             var html = template({
