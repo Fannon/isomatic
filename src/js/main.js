@@ -50,10 +50,8 @@ var isomatic = {};
         views.newView         = new views.NewView({el: $("#new-modal")});
         views.importView      = new views.ImportView({el: $("#import-modal")});
         views.exportView      = new views.ExportView({el: $("#export-modal")});
-        views.helpView        = new views.HelpView({el: $("#help-modal")});
 
         views.dataView        = new views.DataView({el: $("#data-container")});
-//        views.datahelpView       = new views.DataHelpView({el: $("#datahelp-container")});
         views.typeView        = new views.TypeView({el: $("#type-container")});
         views.iconMapView     = new views.IconMapView({el: $("#icon-left-container")});
         views.iconLibraryView = new views.IconLibraryView({el: $("#icon-right-container")});
@@ -61,6 +59,7 @@ var isomatic = {};
         views.propertiesView  = new views.AdjustmentsView({el: $("#adjustments-container")});
         views.scaleView       = new views.ScaleView({el: $("#scale-container")});
         views.textView        = new views.TextView({el: $("#text-container")});
+        views.helpView       = new views.HelpView({el: $("#help-container")});
 
         // Draw Example Data Set
         isomatic.refreshData();
