@@ -26,7 +26,7 @@
         /** Render Icon View */
         render: function(){
 
-            console.info('IconLibraryView.render();');
+//            console.info('IconLibraryView.render();');
 
             var source = $('#icon-right-template').html();
             var template = Handlebars.compile(source);

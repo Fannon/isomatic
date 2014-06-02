@@ -34,7 +34,7 @@
          */
         render: function() {
 
-            console.info('DataView.render();');
+//            console.info('DataView.render();');
 
             var source = $('#data-template').html();
             var template = Handlebars.compile(source);
@@ -84,7 +84,7 @@
          */
         submitData: function() {
 
-            console.log('DataView::submitData();');
+//            console.log('DataView::submitData();');
 
             var pastedData = $('#pasted-data').val();
 
@@ -174,7 +174,7 @@
          */
         analyze: function() {
 
-            console.log('DataView.analyze(data);');
+//            console.log('DataView.analyze(data);');
 
             var values          = [];
             var rowValues       = [];
@@ -245,7 +245,7 @@
             // Adjust ColorMap
             diff = maxSize - colorMap.length;
             if (diff > 0) {
-                console.log('ColorMap misses ' + diff + 'Colors');
+                console.info('ColorMap misses ' + diff + 'Colors. They will be filled up with defaults.');
                 for (i = 0; i <= diff; i++) {
                     colorMap.push(isomatic.options.internal.defaultColor);
                 }
@@ -254,7 +254,7 @@
             // Adjust IconMap
             diff = maxSize - iconMap.length;
             if (diff > 0) {
-                console.log('IconMap misses ' + diff + 'Icons');
+                console.info('IconMap misses ' + diff + 'Icons. They will be filled up with defaults.');
                 for (j = 0; j <= diff; j++) {
                     iconMap.push(isomatic.options.internal.defaultIcon);
                 }
@@ -315,7 +315,7 @@
                 }
             }
 
-            console.log('-> Calculated Scale: ' + scale + ' from ' + scaleTemp);
+//            console.log('-> Calculated Scale: ' + scale + ' from ' + scaleTemp);
 
             ///////////////////////////////////////
             // Update Option Model               //
@@ -325,7 +325,7 @@
                 scale: scale
             });
         }
-        
+
 
 
 

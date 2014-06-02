@@ -337,7 +337,7 @@
          * @contructs
          */
         initialize: function () {
-            console.log('isomatic.options.Model initialized.');
+//            console.log('isomatic.options.Model initialized.');
         },
 
         /**

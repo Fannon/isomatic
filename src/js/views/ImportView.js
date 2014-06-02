@@ -85,7 +85,7 @@
          */
         parseSvgFile: function(file, result) {
 
-            console.log('ImportView.importSvg()');
+//            console.log('ImportView.importSvg()');
 
             try {
 
@@ -106,7 +106,7 @@
          */
         parseJsonFile: function(file, result) {
 
-            console.log('ImportView.importJson()');
+//            console.log('ImportView.importJson()');
 
             try {
                 var importObject = JSON.parse(result);
@@ -128,8 +128,8 @@
 
             var success = true;
 
-            console.log('ImportView.updateApplicationState()');
-            console.dir(importObject);
+//            console.log('ImportView.updateApplicationState()');
+//            console.dir(importObject);
 
 
             /////////////////////////////////////////

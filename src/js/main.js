@@ -98,7 +98,7 @@ var isomatic = {};
     // This manipulates the View DOM Items to indicate Validation Errors
     _.extend(Backbone.Validation.callbacks, {
         invalid: function(view, attr, error, selector) {
-            console.info('Validated:Invalid: ' + attr);
+            console.warn('Validated:Invalid: ' + attr);
             $('input[name=' + attr + ']').addClass('invalid has-tip tip-right').attr('title', error).attr('data-tooltip', true);
         }
     });
@@ -195,7 +195,7 @@ var isomatic = {};
      */
     isomatic.getFormattedTime = function() {
 
-        console.log('isomatic.getFormattedTime();');
+//        console.log('isomatic.getFormattedTime();');
 
         var a     = new Date();
 

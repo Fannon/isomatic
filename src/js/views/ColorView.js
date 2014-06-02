@@ -33,7 +33,7 @@
          */
         render: function(){
 
-            console.info('ColorView.render();');
+//            console.info('ColorView.render();');
 
             var colorMap = isomatic.options.ui.attributes.colorMap;
 

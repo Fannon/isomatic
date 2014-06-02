@@ -58,7 +58,7 @@
          */
         newVisualisation: function() {
 
-            console.log('GraphView.newVisualisation();');
+//            console.log('GraphView.newVisualisation();');
 
             var aspectRatio = parseFloat(isomatic.options.ui.get('aspectRatio'));
             var width = this.$display.width();
@@ -81,7 +81,7 @@
          */
         preCalculate: function() {
 
-            console.log('GraphView.preCalculate();');
+//            console.log('GraphView.preCalculate();');
 
 
             ////////////////////////////////////
@@ -90,21 +90,10 @@
 
             var outerMargin          = parseFloat(isomatic.options.ui.attributes.outerMargin);
             var iconHorizontalMargin = parseFloat(isomatic.options.ui.attributes.iconHorizontalMargin);
-            var iconVerticalMargin   = parseFloat(isomatic.options.ui.attributes.iconVerticalMargin);
-            var rowMargin            = parseFloat(isomatic.options.ui.attributes.rowMargin);
-            var columnMargin         = parseFloat(isomatic.options.ui.attributes.columnMargin);
 
             var graphWidth           = parseInt(isomatic.options.ui.attributes.graphWidth, 10);
             var legendWidth          = parseInt(isomatic.options.ui.attributes.legendWidth, 10);
-            var legendTitleHeight    = parseInt(isomatic.options.ui.attributes.legendTitleHeight, 10);
             var defaultIconSize      = isomatic.options.internal.defaultIconSize;
-            var iconSize             = parseFloat(isomatic.options.ui.attributes.iconSize);
-
-
-
-            var columnPositions      = [];
-            var columnWidths         = [];
-            var rowPositions         = [];
 
             var iconsPerRow          = [];
             var iconsPerColumn       = [];
@@ -166,10 +155,7 @@
                 iconsPerRowField: iconsPerRowField,
                 iconsPerColumn: iconsPerColumn,
                 maxIconsPerRow: maxIconsPerRow,
-                baseScale: baseScale,
-                columnPositions: columnPositions,
-                columnWidths: columnWidths,
-                rowPositions: rowPositions
+                baseScale: baseScale
             });
 
             isomatic.options.ui.set({
@@ -222,7 +208,7 @@
          */
         prepareDrawing: function() {
 
-            console.log('GraphView.prepareDrawing();');
+//            console.log('GraphView.prepareDrawing();');
 
 
             ////////////////////////////////////
@@ -260,7 +246,7 @@
          */
         drawIsotype: function() {
 
-            console.log('GraphView.drawIsotype();');
+//            console.log('GraphView.drawIsotype();');
 
 
             ////////////////////////////////////
@@ -282,11 +268,6 @@
             var colorize             = isomatic.options.ui.attributes.colorize;
             var iconMap              = isomatic.options.ui.attributes.iconMap;
             var colorMap             = isomatic.options.ui.attributes.colorMap;
-
-
-            ////////////////////////////////////
-            // Calculations                   //
-            ////////////////////////////////////
 
 
             ////////////////////////////////////
@@ -360,11 +341,10 @@
          * Allows to draw advanced Isotype Layouts with Icons in multiple rows
          *
          * TODO: Work in Progress!
-         * TODO: Merge this with the default drawIsotype() to keep DRY
          */
         drawAdvancedIsotype: function() {
 
-            console.log('GraphView.drawIsotype();');
+//            console.log('GraphView.drawIsotype();');
 
             var self = this;
 
@@ -391,17 +371,17 @@
             var colorMap             = isomatic.options.ui.attributes.colorMap;
 
             var columns              = isomatic.data.meta.attributes.columns;
-            var columnPositions             = isomatic.data.meta.attributes.columnPositions;
-            var rowPositions                = [];
-            var columnWidths             = isomatic.data.meta.attributes.columnWidths;
-            var iconsPerRowField            = isomatic.data.meta.attributes.iconsPerRowField;
-            var iconsPerRow            = isomatic.data.meta.attributes.iconsPerRow;
-            var iconsPerColumn            = isomatic.data.meta.attributes.iconsPerColumn;
+            var iconsPerRowField     = isomatic.data.meta.attributes.iconsPerRowField;
+            var iconsPerColumn       = isomatic.data.meta.attributes.iconsPerColumn;
 
 
             //////////////////////////////////////////
             // PreCalculations                      //
             //////////////////////////////////////////
+
+            var columnPositions      = [];
+            var rowPositions         = [];
+            var columnWidths         = [];
 
             var leftMargin = outerMargin + legendWidth;
             var topMargin = outerMargin;
@@ -448,8 +428,6 @@
 
             var iconWidth = iconSize + iconHorizontalMargin;
             var iconHeight = iconSize + iconVerticalMargin;
-
-            console.warn(iconSize);
 
             var currentRowPosition = topMargin;
 
@@ -599,7 +577,7 @@
          */
         drawLegend: function() {
 
-            console.log('GraphView.drawLegend();');
+//            console.log('GraphView.drawLegend();');
 
 
             ////////////////////////////////////
@@ -732,7 +710,7 @@
             if (!isomatic.options.ui.attributes.drawColumnLegend) {
 
                 // Dont draw any Column Legend
-                console.log('Not drawing Column Legend');
+//                console.log('Not drawing Column Legend');
 
 
             } else if (colorize !== 'column' && iconize !== 'column') {

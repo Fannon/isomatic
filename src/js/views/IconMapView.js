@@ -32,7 +32,7 @@
         /** Render Icon View */
         render: function(){
 
-            console.info('IconMapView.render();');
+//            console.info('IconMapView.render();');
 
             var iconId, svg;
             var i = 0;

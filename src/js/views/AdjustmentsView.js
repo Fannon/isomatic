@@ -36,7 +36,7 @@
          */
         render: function(){
 
-            console.info('AdjustmentsView.render();');
+//            console.info('AdjustmentsView.render();');
 
             var source = $('#adjustments-template').html();
             var template = Handlebars.compile(source);

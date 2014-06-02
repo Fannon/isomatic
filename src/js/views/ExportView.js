@@ -65,7 +65,7 @@
          */
         exportSVG: function() {
 
-            console.log('ExportView.exportSVG();');
+//            console.log('ExportView.exportSVG();');
 
             this.embedData();
 
@@ -88,7 +88,7 @@
          */
         exportJSON: function() {
 
-            console.log('ExportView.exportJSON();');
+//            console.log('ExportView.exportJSON();');
 
             var content = this.embedData();
             var filename = isomatic.getFormattedTime() + ".json";
@@ -106,7 +106,7 @@
          */
         embedData: function() {
 
-            console.log('ExportView.embedData();');
+//            console.log('ExportView.embedData();');
 
             var data = '';
             var options = '';

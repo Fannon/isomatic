@@ -28,7 +28,7 @@
         },
         render: function(){
 
-            console.info('ScaleView.render();');
+//            console.info('ScaleView.render();');
 
             var source = $('#scale-template').html();
             var template = Handlebars.compile(source);
