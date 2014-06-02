@@ -28,13 +28,18 @@
         },
         render: function(){
 
-            console.warn(isomatic.options.ui.attributes.equallyDistributedColumns);
+            var advancedOptions = false;
 
+            if (isomatic.options.ui.attributes.diagramType !== 'normal') {
+                advancedOptions = true;
+            }
+            
             var source = $('#type-template').html();
             var template = Handlebars.compile(source);
             var html = template({
-                type: isomatic.options.ui.attributes.type,
-                equallyDistributedColumns: isomatic.options.ui.attributes.equallyDistributedColumns
+                type: isomatic.options.ui.attributes.diagramType,
+                equallyDistributedColumns: isomatic.options.ui.attributes.equallyDistributedColumns,
+                advancedOptions: advancedOptions
             });
 
             this.$el.html(html);
@@ -56,6 +61,7 @@
             $(e.currentTarget).addClass('active');
             isomatic.options.ui.set('diagramType', type);
             isomatic.refreshLayout();
+            this.initialize();
         },
 
         selectColumnDistribution: function(e) {

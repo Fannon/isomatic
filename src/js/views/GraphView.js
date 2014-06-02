@@ -500,8 +500,8 @@
                             var xPos = (d.relativePos * iconWidth);
 //                            var currentIconsPerRowField = iconsPerRowField[d.row][d.col];
 
-                            console.log('DRAW BREAK');
-                            console.info('maxIconsInThisRow: ' + maxIconsInThisColumn);
+//                            console.log('DRAW BREAK');
+//                            console.info('maxIconsInThisRow: ' + maxIconsInThisColumn);
 
                             var numberOfRows = Math.floor(xPos / columnWidths[d.col]);
 
@@ -509,12 +509,12 @@
                             y += (iconHeight + iconVerticalMargin) * numberOfRows;
 
                             // "Carriage Return"
-                            console.log(d.relativePos % maxIconsInThisColumn);
+//                            console.log(d.relativePos % maxIconsInThisColumn);
                             x = ((d.relativePos % maxIconsInThisColumn) * iconWidth) + columnPosition + leftMargin;
 
                         }
 
-                        console.log('row: ' + d.row + ' | col: ' + d.col + ' | pos: ' + d.pos + ' | relativePos: ' + d.relativePos + ' :: ' + Math.round(x) + ':' + Math.round(y));
+//                        console.log('row: ' + d.row + ' | col: ' + d.col + ' | pos: ' + d.pos + ' | relativePos: ' + d.relativePos + ' :: ' + Math.round(x) + ':' + Math.round(y));
 
 
                         // If legendTitleHeight > 0, draw Header Title
