@@ -332,14 +332,86 @@ button.tiny, .button.tiny {
     width: 324px;
     left: 648px;
 
+    .help-left {
+      width: 110px;
+      float:left;
+      border-right: 1px solid #bbb;
+    }
+
+    .help-right {
+
+    }
+
     h3 {
       background: #0099CC;
       color: #FFF;
       border-color: #0099CC;
     }
 
+    .button {
+      background: #BBBBBB;
+      color: #333;
+      float: left;
+      width: 100px;
+      border-color: #BBBBBB;
+      border-width: 1px;
+    }
+
+    .active, .button:hover {
+      background: #333333;
+      color: #ffffff;
+      border-color: #0099CC;
+      border-width: 1px;
+    }
+
+    .tiny {
+      padding: 0.625rem 0rem 0.6875rem;
+    }
+
+
     .ui-container {
       border: none;
+    }
+
+    .help-nav {
+      background: #bbbbbb;
+      color: #333333;
+      width: 95%;
+      height: 40px;
+      font-weight: bold;
+      position: absolute;
+      bottom: 7px;
+      right: 8px;
+
+      .button {
+        width: auto;
+        margin: 7px 10px 5px;
+        background: #333333;
+        color: #ffffff;
+        border-color: #bbbbbb;
+        border-width: 1px;
+        padding: 5px 12px;
+      }
+
+      .button:hover {
+        background: #BBBBBB;
+        color: #333;
+        border-color: #333333;
+        border-width: 1px;
+      }
+
+      .help-nav-left {
+        float: left;
+      }
+
+      .help-nav-center {
+        float: left;
+        margin: 15px 0 0 69px;
+      }
+
+      .help-nav-right {
+        float: right;
+      }
     }
   }
 
@@ -535,13 +607,6 @@ button.tiny, .button.tiny {
   // Text Overlay
 
   #overlay-text {
-
-  }
-
-
-  // Help Overlay
-
-  #overlay-help {
 
   }
 

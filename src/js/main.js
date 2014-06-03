@@ -80,7 +80,12 @@ var isomatic = {};
 
         // Register ugly Help Hack
         $('#trigger-help').on('click', function(el) {
-            isomatic.options.internal.HelpStatus.active = false;
+            var id = el.currentTarget.id.split('-')[1];
+            if (window.location.hash !== '#help' && id === "help" && isomatic.options.internal.HelpStatus.active === true) {
+                isomatic.options.internal.HelpStatus.active = true;
+            } else {
+                isomatic.options.internal.HelpStatus.active = false;
+            }
             isomatic.uglyHack(el.currentTarget, isomatic.options.internal.HelpStatus.location);
         });
 
