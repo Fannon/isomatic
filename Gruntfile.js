@@ -112,16 +112,6 @@ module.exports = function(grunt) {
             }
         },
 
-        htmlbuild: {
-            src: 'dist/index.html',
-            dest: 'dist/**',
-            options: {
-                sections: {
-                    help: 'src/html/help.html'
-                }
-            }
-        },
-
         connect: {
             src: {
                 options: {
@@ -246,7 +236,6 @@ module.exports = function(grunt) {
         'content:cssmin', 'cssmin',
         'content:uglify', 'uglify',
         'content:usemin', 'usemin',
-        //'content:htmlbuild', 'htmlbuild',
         'content:done'
     ]);
 };
