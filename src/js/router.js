@@ -15,6 +15,7 @@
             "new": "newGraphic",
             "import": "importGraphic",
             "export": "exportGraphic",
+            "tour": "tour",
             "help": "help",
             "data": "data",
             "type": "type",
@@ -36,15 +37,19 @@
         },
 
         newGraphic: function() {
-            // Modal
+            $('#new-modal').foundation('reveal', 'open');
         },
 
         importGraphic: function() {
-            // Modal
+            $('#import-modal').foundation('reveal', 'open');
         },
 
         exportGraphic: function() {
-            // Modal
+            $('#export-modal').foundation('reveal', 'open');
+        },
+
+        tour: function() {
+            $('#tour-modal').foundation('reveal', 'open');
         },
 
         data: function() {

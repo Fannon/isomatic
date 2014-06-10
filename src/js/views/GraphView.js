@@ -58,8 +58,6 @@
          */
         newVisualisation: function() {
 
-//            console.log('GraphView.newVisualisation();');
-
             var aspectRatio = parseFloat(isomatic.options.ui.get('aspectRatio'));
             var width = this.$display.width();
             var height = Math.round(width / aspectRatio);
@@ -80,9 +78,6 @@
          * Stores the data into the isomatic.data.meta Model
          */
         preCalculate: function() {
-
-//            console.log('GraphView.preCalculate();');
-
 
             ////////////////////////////////////
             // Get & Parse Variables          //
@@ -208,9 +203,6 @@
          */
         prepareDrawing: function() {
 
-//            console.log('GraphView.prepareDrawing();');
-
-
             ////////////////////////////////////
             // Get & Parse Variables          //
             ////////////////////////////////////
@@ -245,9 +237,6 @@
          *
          */
         drawIsotype: function() {
-
-//            console.log('GraphView.drawIsotype();');
-
 
             ////////////////////////////////////
             // Get & Parse Variables          //
@@ -343,8 +332,6 @@
          * TODO: Work in Progress!
          */
         drawAdvancedIsotype: function() {
-
-//            console.log('GraphView.drawIsotype();');
 
             var self = this;
 
@@ -455,30 +442,20 @@
                             maxRows = numberOfRows;
                         }
 
-//                        console.log('UMBRUCH! ' + numberOfRows);
-
                     }
 
                 }
 
                 rowHeight = (iconHeight * maxRows) + rowMargin;
-
-//                console.log('ROW BREAKS: ' + maxRows);
                 currentRowPosition += rowHeight;
 
 
 
             }
 
-//            console.warn(rowPositions);
-//            console.warn(columnPositions);
-
-
             ////////////////////////////////////
             // Draw Graphic via D3.js         //
             ////////////////////////////////////
-
-            // TODO: Add Row and Column Margin into visual Calculation
 
             var g = this.svg.selectAll(".icon")
 
@@ -506,9 +483,6 @@
                         if (d.relativePos >= maxIconsInThisColumn) {
 
                             var xPos = (d.relativePos * iconWidth);
-//                            var currentIconsPerRowField = iconsPerRowField[d.row][d.col];
-//                            console.log('DRAW BREAK');
-//                            console.info('maxIconsInThisRow: ' + maxIconsInThisColumn);
 
                             var numberOfRows = Math.floor(xPos / columnWidths[d.col]);
 

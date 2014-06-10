@@ -50,6 +50,7 @@ var isomatic = {};
         views.newView         = new views.NewView({el: $("#new-modal")});
         views.importView      = new views.ImportView({el: $("#import-modal")});
         views.exportView      = new views.ExportView({el: $("#export-modal")});
+        views.tourView        = new views.TourView({el: $("#tour-modal")});
 
         views.dataView        = new views.DataView({el: $("#data-container")});
         views.typeView        = new views.TypeView({el: $("#type-container")});
@@ -88,6 +89,14 @@ var isomatic = {};
             }
             isomatic.uglyHack(el.currentTarget, isomatic.options.internal.HelpStatus.location);
         });
+
+        // Start interactive Tour if not already seen
+
+        if (!$.getCookie('tour-viewed')) {
+            window.location.hash = '#tour';
+            $.createCookie('tour-viewed', true, 365);
+        }
+
 
     });
 
@@ -200,8 +209,6 @@ var isomatic = {};
      */
     isomatic.getFormattedTime = function() {
 
-//        console.log('isomatic.getFormattedTime();');
-
         var a     = new Date();
 
         var year  = a.getFullYear();
@@ -227,6 +234,7 @@ var isomatic = {};
      * If Toolbar Button is clicked when the target Overlay is already open: Close the Overlay instead
      *
      * @param el
+     * @param destination
      */
     isomatic.uglyHack = function(el, destination) {
         var id = el.id.split('-')[1];
@@ -244,6 +252,43 @@ var isomatic = {};
     ///////////////////////////////////////
     // 3rd Party Scripts                 //
     ///////////////////////////////////////
+
+    /**
+     * http://stackoverflow.com/a/4825695/776425
+     *
+     * @param name
+     * @param value
+     * @param days
+     */
+    $.createCookie = function(name, value, days) {
+        var expires;
+        if (days) {
+            var date = new Date();
+            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+            expires = "; expires=" + date.toGMTString();
+        }
+        else {
+            expires = "";
+        }
+        document.cookie = name + "=" + value + expires + "; path=/";
+    };
+
+    $.getCookie = function(name) {
+        name = name + "=";
+        var ca = document.cookie.split(';');
+        for(var i=0; i<ca.length; i++) {
+            var c = ca[i].trim();
+            if (c.indexOf(name) === 0) {
+                var value =  c.substring(name.length, c.length);
+                if (value === "false") {
+                    return false;
+                } else {
+                    return value;
+                }
+            }
+        }
+        return false;
+    };
 
     /**
      * jQuery Plugin to allow File Downloads from JavaScript Variables
