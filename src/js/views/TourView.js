@@ -30,7 +30,8 @@
 
         events: {
             "click input.skip-tour": "skipTour",
-            "click #start-tour": "startTour"
+            "click #start-tour": "startTour",
+            "click #close-tour": "closeTour"
         },
 
         /**
@@ -47,7 +48,12 @@
 
         startTour: function() {
             $('#tour-modal').foundation('reveal', 'close');
+        },
+
+        closeTour: function() {
+            $('#tour-modal').foundation('reveal', 'close');
         }
+
 
     });
 
