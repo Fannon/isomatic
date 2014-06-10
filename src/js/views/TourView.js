@@ -14,8 +14,6 @@
          */
         initialize: function(){
             this.render();
-
-            console.log('test');
         },
 
         /** Render Tour Modal View */

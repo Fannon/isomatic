@@ -91,9 +91,9 @@
             var state = {
                 'outerMargin': $('#outer-margin').val(),
                 'iconHorizontalMargin': $('#icon-horizontal-margin').val(),
-                'iconVerticalMargin': $('#icon-vertical-margin').val(),
+                'iconVerticalMargin': $('#icon-vertical-margin').val() || 0,
                 'rowMargin': $('#row-margin').val(),
-                'columnMargin': $('#column-margin').val(),
+                'columnMargin': $('#column-margin').val() || 0,
                 'iconSize': $('#icon-size').val(),
                 'autoIconSize': $('#auto-icon-size').prop('checked')
             };

@@ -324,6 +324,11 @@
 
         },
 
+        drawSizeIsotype: function() {
+            console.log('drawSizeIsotype');
+            this.drawIsotype();
+        },
+
         /**
          * Draws Advanced Isotype Graphic
          *

@@ -60,7 +60,7 @@
             $('.select-type').removeClass('active');
             $(e.currentTarget).addClass('active');
             isomatic.options.ui.set('diagramType', type);
-            isomatic.refreshLayout();
+            isomatic.refreshData();
             this.initialize();
         },
 
