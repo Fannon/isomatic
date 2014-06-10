@@ -95,10 +95,9 @@
 
             // Init Scrollbar
             try {
-                $('.scrollbar').slimScroll({
-                    'height': isomatic.options.ui.attributes.graphHeight
-                });
-
+                var slimScrollOptions = isomatic.options.internal.slimScrollOptions;
+                slimScrollOptions.height = isomatic.options.ui.attributes.graphHeight - 34;
+                $('#color-container .scrollbar').slimScroll(slimScrollOptions);
             } catch (e) {
                 console.error('Error loading Scrollbar Plugin!');
             }

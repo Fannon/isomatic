@@ -23,7 +23,7 @@
 $base-font-size: 12px;
 $container-margin: 8px;
 $overlay-small-width: 220px;
-$overlay-big-width: 545px;
+$overlay-big-width: 560px;
 
 $leftIconSize: 40px;
 
@@ -313,24 +313,42 @@ button.tiny, .button.tiny {
     overflow: hidden;
 
     .overlay-left {
-      // border-right: 1px solid #BBB;
       height: 400px;
       margin-right: $container-margin;
       width: 203px;
-      float: left;
+      position: absolute;
+      left: $container-margin;
+      top: $container-margin + 32px;
     }
 
     .overlay-right {
-      // padding: 0px 10px 0px 20px;
-      width: 317px;
-      float: left;
+      margin-left: 210px;
+      width: 340px;
+      position: absolute;
+      right: 0;
+      top: $container-margin + 32px;
     }
+
+  }
+
+  .scrollbar-container {
+    padding-right: 0;
+
+    h3 {
+      margin-right: $container-margin;
+    }
+
+    .slimScrollDiv {
+      margin-right: $container-margin;
+      padding-right: 12px;
+    }
+
   }
 
   .overlay-container.help{
     background: #333;
-    width: 425px;
-    left: 545px;
+    width: 412px;
+    left: $overlay-big-width;
 
     h1 {
       color: #fff;
@@ -648,7 +666,6 @@ button.tiny, .button.tiny {
   #data-container, #icon-container, #color-container {
     width: $overlay-big-width;
   }
-
 
   .topic-line {
     border-bottom: 1px solid #BBB;

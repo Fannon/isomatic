@@ -86,22 +86,19 @@
                 <div id="type-container" class="overlay-container" style="display: none"></div>
 
                 <!-- Icon Settings -->
-                <div id="icon-container" class="overlay-container" style="display: none">
+                <div id="icon-container" class="overlay-container scrollbar-container" style="display: none">
                     <div id="overlay-icon">
                         <h3>Icon Settings</h3>
-                        <div id="icon-left-container" class="overlay-left"></div>
-
-                        <div id="icon-right-container" class="overlay-right"></div>
+                        <div id="icon-left-container" class="overlay-left scrollbar-container"></div>
+                        <div id="icon-right-container" class="overlay-right scrollbar-container"></div>
                     </div>
                 </div>
 
                 <!-- Color Settings -->
-                <div id="color-container" class="overlay-container" style="display: none">
-
-                </div>
+                <div id="color-container" class="overlay-container scrollbar-container" style="display: none"></div>
 
                 <!-- Adjustments -->
-                <div id="adjustments-container" class="overlay-container" style="display: none"></div>
+                <div id="adjustments-container" class="overlay-container scrollbar-container" style="display: none"></div>
 
                 <!-- Scale Settings -->
                 <div id="scale-container" class="overlay-container" style="display: none"></div>
@@ -810,32 +807,32 @@
 <!-- Color Template -->
 <script type="text/template" id="color-template">
     <div id="overlay-color">
-        <div class="scrollbar">
-            <h3>Color Settings</h3>
 
-            <div class="overlay-left">
-                <form>
+        <h3>Color Settings</h3>
 
-                    <div class="ui-container">
-                        <h4><span data-tooltip class="has-tip tip-right" title="Choose if Colors are mapped to Columns or Rows">Map to</span></h4>
-                        <input id="colorize-column" type="radio" name="radio3" value="column"><label for="colorize-column"><img src="img/column.svg"> Column</label>
-                        <input id="colorize-row" type="radio" name="radio3" value="row"><label for="colorize-row"><img src="img/row.svg"> Row</label>
-                    </div>
+        <div class="overlay-left">
+            <form>
+                <div class="ui-container">
+                    <h4><span data-tooltip class="has-tip tip-right" title="Choose if Colors are mapped to Columns or Rows">Map to</span></h4>
+                    <input id="colorize-column" type="radio" name="radio3" value="column"><label for="colorize-column"><img src="img/column.svg"> Column</label>
+                    <input id="colorize-row" type="radio" name="radio3" value="row"><label for="colorize-row"><img src="img/row.svg"> Row</label>
+                </div>
 
-                    <div class="ui-container">
-                        <h4>Assign colors</h4>
+                <div class="ui-container">
+                    <h4>Assign colors</h4>
 
-                        {{#each colorMapping}}
-                        <legend>{{@key}}</legend>
-                        <input type="text" id="picker-{{@index}}" class="picker" value="{{this}}" style="border-color: {{this}};">
-                        {{/each}}
-                    </div>
+                    {{#each colorMapping}}
+                    <legend>{{@key}}</legend>
+                    <input type="text" id="picker-{{@index}}" class="picker" value="{{this}}" style="border-color: {{this}};">
+                    {{/each}}
+                </div>
 
-                    <a id="color-apply" href="#" class="tiny button radius">Apply</a>
-                    <a id="color-apply-close" href="#home" class="tiny button radius">Apply & Close</a>
-                </form>
-            </div>
-            <div class="overlay-right">
+                <a id="color-apply" href="#" class="tiny button radius">Apply</a>
+                <a id="color-apply-close" href="#home" class="tiny button radius">Apply & Close</a>
+            </form>
+        </div>
+        <div class="overlay-right">
+            <div class="scrollbar">
                 <form>
                     <div class="ui-container">
                     <h4>Color Palettes</h4>
@@ -860,9 +857,9 @@
 <!-- Adjustments Template -->
 <script type="text/template" id="adjustments-template">
     <div id="overlay-adjustments">
-        <div class="scrollbar">
-        <h3>Adjustments</h3>
 
+        <h3>Adjustments</h3>
+        <div class="scrollbar">
         <form>
 
             <div class="ui-container">

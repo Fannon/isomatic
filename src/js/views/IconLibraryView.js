@@ -18,15 +18,11 @@
          * @contructs
          */
         initialize: function(){
-
             this.render();
-
         },
 
         /** Render Icon View */
         render: function(){
-
-//            console.info('IconLibraryView.render();');
 
             var source = $('#icon-right-template').html();
             var template = Handlebars.compile(source);
@@ -50,13 +46,11 @@
                 }
             );
 
-
             // Init Scrollbar
             try {
-                $('#icon-container .scrollbar').slimScroll({
-                    'height': isomatic.options.ui.attributes.graphHeight - 34
-                });
-
+                var slimScrollOptions = isomatic.options.internal.slimScrollOptions;
+                slimScrollOptions.height = isomatic.options.ui.attributes.graphHeight - 34;
+                $('#icon-right-container .scrollbar').slimScroll(slimScrollOptions);
             } catch (e) {
                 console.error('Error loading Scrollbar Plugin!');
             }

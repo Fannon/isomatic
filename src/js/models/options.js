@@ -163,7 +163,8 @@
         slimScrollOptions: {
             height: '100%',
             alwaysVisible: true,
-            railOpacity: 0.3
+            railVisible: true,
+            railOpacity: 0.4
         },
 
         /**
