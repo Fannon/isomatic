@@ -51,13 +51,45 @@ h1, h2, h3, h4, h5, h6 {
 
 h3 {
   background-color: #333;
-  border: 1px solid #000;
-  border-radius: 3px;
-  padding: 4px 7px 1px 7px;
+  border-radius: 3px 0 0 3px;
+  padding: 5px 7px 2px 7px;
   color: #EEE;
   margin-bottom: $container-margin;
   font-size: 1.2em;
   text-transform: uppercase;
+}
+
+h3.smallTopMenu {
+  background-color: #333;
+  border-radius: 3px 0 0 3px;
+  padding: 5px 7px 2px 7px;
+  color: #EEE;
+  margin-bottom: $container-margin;
+  font-size: 1.2em;
+  text-transform: uppercase;
+  float: left;
+}
+
+h3.smallTopMenu {
+  width: 157px;
+}
+
+.top-apply {
+  background-color: #F16515;
+  border-radius: 0 3px 3px 0;
+  padding: 7px 7px 7px 7px;
+  margin-top: 2px;
+  margin-bottom: $container-margin;
+  color: #EEE;
+  font-size: 1em;
+  text-transform: none;
+  float: right;
+}
+
+.top-apply:hover {
+  -webkit-transition: background-color 0.2s;
+  background-color: #86D10F;
+  color: #FFF;
 }
 
 h4 {
@@ -360,7 +392,7 @@ button.tiny, .button.tiny {
 
     .slimScrollDiv {
       margin-right: $container-margin;
-      padding-right: 12px;
+      padding-right: 16px;
     }
 
   }
@@ -494,8 +526,8 @@ button.tiny, .button.tiny {
     textarea {
       max-width: 100%;
       min-width: 100%;
-      min-height: 70px;
-      margin-bottom: 10px;
+      min-height: 80px;
+      margin-bottom: 0;
     }
 
     #dataTable {
