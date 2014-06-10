@@ -397,6 +397,8 @@ button.tiny, .button.tiny {
 
   }
 
+
+
   .overlay-container.help{
     background: #333;
     width: 412px;
@@ -787,7 +789,7 @@ button.tiny, .button.tiny {
 
 #modal-container {
 
-  button.timy, .button.tiny {
+  button.tiny, .button.tiny {
     font-size: 11pt;
   }
 
@@ -802,5 +804,51 @@ button.tiny, .button.tiny {
   #export-modal {
 
   }
+
+
+
+}
+
+#tour-modal {
+  background: #333;
+
+
+   .button {
+    background: #BBB;
+    border-color: #BBB;
+    border-width: 1px;
+    color: #333;
+    float: right;
+    margin-left: 5px;
+  }
+
+  .button:hover{
+    background: #333;
+    border-color: #0099CC;
+    border-width: 1px;
+    color: #fff;
+  }
+
+  .ui-container {
+    background: #333;
+    border: 1px solid #333;
+
+    h4 {
+      color: #fff;
+    }
+
+  }
+
+  label {
+    color: #fff;
+  }
+
+
+  h3 {
+    background-color: #0099CC;
+    border-color: #0082e5;
+  }
+
+
 
 }

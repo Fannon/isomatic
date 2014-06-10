@@ -94,7 +94,7 @@ var isomatic = {};
 
         if (!$.getCookie('tour-viewed')) {
             window.location.hash = '#tour';
-            $.createCookie('tour-viewed', true, 365);
+            //$.createCookie('tour-viewed', true, 365);
         }
 
 

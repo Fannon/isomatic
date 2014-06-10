@@ -29,20 +29,26 @@
 
 
         events: {
-            "click #start-tour": "startTour",
-            "click #skip-tour": "skipTour"
+            "click input.skip-tour": "skipTour",
+            "click #start-tour": "startTour"
         },
 
         /**
          * Applies the currently calculated Aspect Ratio to the Graphic Canvas
          */
-        startTour: function() {
-            $('#tour-modal').foundation('reveal', 'close');
-        },
 
         skipTour: function() {
+            if (!$.getCookie('tour-viewed')) {
+                $.createCookie('tour-viewed', true, 365);
+            } else {
+                $.createCookie('tour-viewed', false, 365);
+            }
+        },
+
+        startTour: function() {
             $('#tour-modal').foundation('reveal', 'close');
         }
+
     });
 
 }(isomatic));
