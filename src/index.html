@@ -80,7 +80,7 @@
             <div id="overlay">
 
                 <!-- Data Settings Container -->
-                <div id="data-container" class="overlay-container" style="display: none"></div>
+                <div id="data-container" class="overlay-container scrollbar-container" style="display: none"></div>
 
                 <!-- Type Settings -->
                 <div id="type-container" class="overlay-container" style="display: none"></div>
@@ -664,18 +664,19 @@
 <!-- Data Template -->
 <script type="text/template" id="data-template">
     <div id="overlay-data">
+
+        <h3>Data Import</h3>
+
         <div class="scrollbar">
-            <h3>Data Import</h3>
 
             <form class="custom">
 
                 <div class="ui-container">
                     <h4>Paste Data</h4>
                     <textarea placeholder="Copy'n'Paste Data here" id="pasted-data"></textarea>
-
-                    <a id="import-data" href="#" class="tiny button radius">Import</a>
-                    <a id="import-data-close" href="#home" class="tiny button radius">Import & Close</a>
-                    <a class="icon tiny button radius" id="help-test">Help</a>
+                    <div class="button-group">
+                        <a id="import-data" href="#" class="apply tiny button expand radius">Apply</a>
+                    </div>
                 </div>
 
                 <div class="ui-container">
@@ -686,6 +687,7 @@
             </form>
         </div>
     </div>
+
 </script>
 
 <!-- Type Template -->
@@ -776,8 +778,9 @@
 
             </div>
 
-            <a id="icon-apply" href="#" class="tiny button radius">Apply</a>
-            <a id="icon-apply-close" href="#home" class="tiny button radius">Apply & Close</a>
+            <div class="button-group">
+                <a id="icon-apply" href="#" class="apply tiny button expand radius">Apply</a>
+            </div>
 
         </form>
     </div>
@@ -827,8 +830,9 @@
                     {{/each}}
                 </div>
 
-                <a id="color-apply" href="#" class="tiny button radius">Apply</a>
-                <a id="color-apply-close" href="#home" class="tiny button radius">Apply & Close</a>
+                <div class="button-group">
+                    <a id="color-apply" href="#" class="apply tiny button expand radius">Apply</a>
+                </div>
             </form>
         </div>
         <div class="overlay-right">
@@ -859,8 +863,10 @@
     <div id="overlay-adjustments">
 
         <h3>Adjustments</h3>
-        <div class="scrollbar">
+
         <form>
+
+            <div class="scrollbar">
 
             <div class="ui-container">
                 <h4><span data-tooltip class="has-tip tip-right" title="Change the general offsets">Margin</span></h4>
@@ -938,10 +944,14 @@
                 </div>
             </div>
 
-            <a id="adjustments-apply" href="#" class="tiny button radius">Apply</a>
-            <a id="adjustments-apply-close" href="#home" class="tiny button radius">Apply & Close</a>
-        </form>
             </div>
+
+            <div class="button-group">
+                <a id="adjustments-apply" href="#" class="apply-right-margin tiny button expand radius">Apply</a>
+            </div>
+
+        </form>
+
     </div>
 </script>
 
@@ -977,11 +987,12 @@
                 </label>
                 <input id="round-down" name="roundDown" type="text" value="{{options.roundDown}}">
             </div>
-
-
-            <a id="scale-apply" href="#" class="tiny button radius">Apply</a>
-            <a id="scale-apply-close" href="#home" class="tiny button radius">Apply & Close</a>
         </form>
+
+        <div class="button-group">
+            <a id="scale-apply" href="#" class="tiny button expand radius apply">Apply</a>
+        </div>
+
     </div>
 </script>
 
@@ -1033,8 +1044,9 @@
                 </select>
             </div>
 
-            <a id="text-apply" href="#" class="tiny button radius">Apply</a>
-            <a id="text-apply-close" href="#home" class="tiny button radius">Apply & Close</a>
+            <div class="button-group">
+                <a id="text-apply" href="#" class="apply tiny button expand radius">Apply</a>
+            </div>
         </form>
     </div>
 </script>

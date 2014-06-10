@@ -50,7 +50,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h3 {
-
   background-color: #333;
   border: 1px solid #000;
   border-radius: 3px;
@@ -331,11 +330,32 @@ button.tiny, .button.tiny {
 
   }
 
+  .button-group {
+
+    a.apply {
+      background-color: #73C021;
+      margin: $container-margin 0;
+    }
+
+    a.apply-right-margin {
+      background-color: #73C021;
+      display: block;
+      width: auto;
+      margin-right: $container-margin;
+    }
+  }
+
   .scrollbar-container {
     padding-right: 0;
 
     h3 {
       margin-right: $container-margin;
+      display: block;
+      width: auto;
+    }
+
+    .button {
+      margin-top: $container-margin;
     }
 
     .slimScrollDiv {
