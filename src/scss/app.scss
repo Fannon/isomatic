@@ -23,7 +23,7 @@
 $base-font-size: 12px;
 $container-margin: 8px;
 $overlay-small-width: 220px;
-$overlay-big-width: 648px;
+$overlay-big-width: 545px;
 
 $leftIconSize: 40px;
 
@@ -322,15 +322,15 @@ button.tiny, .button.tiny {
 
     .overlay-right {
       // padding: 0px 10px 0px 20px;
-      width: 420px;
+      width: 317px;
       float: left;
     }
   }
 
   .overlay-container.help{
     background: #333;
-    width: 324px;
-    left: 648px;
+    width: 425px;
+    left: 545px;
 
     h1 {
       color: #fff;
@@ -368,7 +368,7 @@ button.tiny, .button.tiny {
     }
 
     .help-right {
-      width: 195px;
+      width: 298px;
       float: right;
       border-left: 1px solid #bbb;
       padding: 0px 0px 0px 10px;
