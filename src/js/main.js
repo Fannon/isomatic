@@ -94,7 +94,6 @@ var isomatic = {};
 
         if (!$.getCookie('tour-viewed')) {
             window.location.hash = '#tour';
-            //$.createCookie('tour-viewed', true, 365);
         }
 
 
@@ -284,8 +283,9 @@ var isomatic = {};
             if (c.indexOf(name) === 0) {
                 var value =  c.substring(name.length, c.length);
                 if (value === "false") {
-                    return false;
+                    return "false";
                 } else {
+                    console.log('Value: ' + value);
                     return value;
                 }
             }

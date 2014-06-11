@@ -440,8 +440,10 @@ button.tiny, .button.tiny {
     }
 
     .help-right {
-      width: 298px;
-      float: right;
+      width: 285px;
+      position: absolute;
+      left: 0;
+      margin-left: 118px;
       border-left: 1px solid #bbb;
       padding: 0px 0px 0px 10px;
 
@@ -461,7 +463,7 @@ button.tiny, .button.tiny {
           .help-right-number {
             background: #0099CC;
             color: #fff;
-            width: 35px;
+            width: 30px;
             float: left;
             padding: 10px;
             font-size: 18px;
@@ -469,11 +471,11 @@ button.tiny, .button.tiny {
           }
 
           .help-right-text {
-            width: 147px;
+            width: 242px;
             color: #fff;
             border-top: 1px solid #0099CC;
             float: left;
-            padding: 10px;
+            padding: 5px;
           }
         }
       }
@@ -512,7 +514,7 @@ button.tiny, .button.tiny {
 
       .help-nav-center {
         float: left;
-        margin: 15px 0 0 69px;
+        margin: 15px 0 0 103px;
       }
 
       .help-nav-right {
@@ -831,10 +833,6 @@ button.tiny, .button.tiny {
 
    .button {
     background: #BBB;
-    margin-left: auto;
-    margin-right: auto;
-    border-color: #BBB;
-    border-width: 1px;
     color: #333;
     float: right;
     margin-left: 5px;
@@ -860,6 +858,9 @@ button.tiny, .button.tiny {
 
   label {
     color: #fff;
+    padding-left: 15px;
+    text-indent: -15px;
+    vertical-align: text-bottom;
   }
 
   input {
