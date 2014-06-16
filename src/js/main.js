@@ -285,7 +285,6 @@ var isomatic = {};
                 if (value === "false") {
                     return "false";
                 } else {
-                    console.log('Value: ' + value);
                     return value;
                 }
             }

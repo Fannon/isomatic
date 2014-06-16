@@ -173,7 +173,9 @@
         HelpStatus: {
             active: false,
             location: 'home'
-        }
+        },
+
+        debugGrid: true
 
     };
 

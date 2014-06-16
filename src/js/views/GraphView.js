@@ -414,7 +414,9 @@
             }
 
             // The last position is the end of the Visualisation Canvas
-            columnPositions[columns.length] = graphWidth;
+//            columnPositions[columns.length] = graphWidth;
+
+            columnPositions.push(currentColumnPosition);
 
 
             //////////////////////////////////////////
@@ -457,13 +459,70 @@
                 rowHeight = (iconHeight * maxRows) + rowMargin;
                 currentRowPosition += rowHeight;
 
-
+                rowPositions.push(currentRowPosition);
 
             }
 
             ////////////////////////////////////
             // Draw Graphic via D3.js         //
             ////////////////////////////////////
+
+
+            if (isomatic.options.internal.debugGrid) {
+                var rowLayout = [];
+
+                for (var columnPos = 0; columnPos < columnPositions.length - 0; columnPos++) {
+                    for (var rowPos = 0; rowPos < rowPositions.length - 0; rowPos++) {
+                        rowLayout.push({
+                            x1: columnPositions[columnPos],
+                            y1: rowPositions[rowPos],
+                            x2: columnPositions[columnPos + 1],
+                            y2: rowPositions[rowPos + 1]
+                        });
+                    }
+                }
+
+                var verticalLines = this.svg.selectAll(".verticalLines")
+
+                        .data(rowLayout)
+                        .enter()
+                        .append("svg:line")
+                        .attr("x1", function(o) {
+                            return o.x1;
+                        })
+                        .attr("y1", function(o) {
+                            return o.y1;
+                        })
+                        .attr("x2", function(o) {
+                            return o.x1;
+                        })
+                        .attr("y2", function(o) {
+                            return o.y2;
+                        })
+                        .style("stroke", "rgb(255,120,155)")
+                    ;
+
+                var horizontalLines = this.svg.selectAll(".horizontalLines")
+
+                        .data(rowLayout)
+                        .enter()
+                        .append("svg:line")
+                        .attr("x1", function(o) {
+                            return o.x1;
+                        })
+                        .attr("y1", function(o) {
+                            return o.y1;
+                        })
+                        .attr("x2", function(o) {
+                            return o.x2;
+                        })
+                        .attr("y2", function(o) {
+                            return o.y1;
+                        })
+                        .style("stroke", "rgb(5,255,155)")
+                    ;
+            }
+
 
             var g = this.svg.selectAll(".icon")
 
