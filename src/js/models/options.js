@@ -213,16 +213,16 @@
         outerMargin: 20,
 
         /** Margin between Rows */
-        rowMargin: 30,
+        rowMargin: 20,
 
-        /** Margin between Columns TODO: Not implemented */
-        columnMargin: 15,
+        /** Margin between Columns */
+        columnMargin: 0,
 
         /** Horizontal Margin between Icons */
-        iconHorizontalMargin: -15,
+        iconHorizontalMargin: 5,
 
         /** Vertical Margin between Icons */
-        iconVerticalMargin: 3,
+        iconVerticalMargin: 5,
 
         /** Equally distribute the width of the Columns */
         equallyDistributedColumns: false,
@@ -248,7 +248,7 @@
         /** Auto calculated Icon Size -> This fits the canvas width */
         calculatedIconSize: 0,
 
-        scale: 0,
+        scale: 30000000,
 
 
         /////////////////////////////
@@ -260,7 +260,7 @@
          * Accepts 'row' and 'column'
          * @type {string}
          */
-        iconize: 'column',
+        iconize: 'row',
 
         /**
          * Defines if the Color is applied to Rows or Columns
@@ -277,10 +277,10 @@
 
         /** This stores which column ID maps to which icon */
         iconMap: [
-            'persons-man',
-            'persons-man',
-            'persons-man',
-            'persons-man'
+            'social_networks-facebook',
+            'social_networks-twitter',
+            'social_networks-googleplus',
+            'social_networks-linkedin'
         ],
 
 

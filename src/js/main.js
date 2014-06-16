@@ -164,6 +164,9 @@ var isomatic = {};
             // Draw Isotype Graphic
             isomatic.views.graphView.drawIsotype();
 
+        } else if (isomatic.options.ui.attributes.diagramType === 'versus') {
+            isomatic.views.graphView.drawAdvancedIsotype();
+
         } else if (isomatic.options.ui.attributes.diagramType === 'size') {
             isomatic.views.graphView.drawSizeIsotype();
 

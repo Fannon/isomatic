@@ -60,7 +60,6 @@
             // Init Scrollbar
             try {
                 var slimScrollOptions = isomatic.options.internal.slimScrollOptions;
-
                 slimScrollOptions.height = isomatic.options.ui.attributes.graphHeight - 80;
                 $('#adjustments-container .scrollbar').slimScroll(slimScrollOptions);
             } catch (e) {

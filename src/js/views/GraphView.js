@@ -336,8 +336,6 @@
          * Draws Advanced Isotype Graphic
          *
          * Allows to draw advanced Isotype Layouts with Icons in multiple rows
-         *
-         * TODO: Work in Progress!
          */
         drawAdvancedIsotype: function() {
 
@@ -378,6 +376,9 @@
             var rowPositions         = [];
             var columnWidths         = [];
 
+            rowMargin = Math.max(rowMargin, iconVerticalMargin) - iconVerticalMargin;
+            columnMargin = Math.max(columnMargin, iconHorizontalMargin);
+
             var leftMargin = outerMargin + legendWidth;
             var topMargin = outerMargin;
 
@@ -391,40 +392,37 @@
             //////////////////////////////////////////
 
             var visualisationWidth = (graphWidth - leftMargin);
-            var visualisationWidthSpace = visualisationWidth - leftMargin - (columns.length * columnMargin);
+            var visualisationWidthSpace = visualisationWidth - (columns.length * columnMargin);
 
             var currentColumnPosition = leftMargin;
 
             for (var col = 0; col < columns.length; col++) {
 
                 /** Width of Column Icon Area (excludes margin */
-                var columnWidth;
+                var currentColumnWidth = 0;
 
                 columnPositions[col] = currentColumnPosition;
 
                 if (isomatic.options.ui.attributes.equallyDistributedColumns) {
-                    columnWidth = visualisationWidthSpace / columns.length;
+                    currentColumnWidth = visualisationWidthSpace / columns.length;
                 } else {
-                    columnWidth = visualisationWidthSpace * (iconsPerColumn[col] / isomatic.data.processed.length) ;
+                    currentColumnWidth = visualisationWidthSpace * (iconsPerColumn[col] / isomatic.data.processed.length) ;
                 }
 
-                columnWidths[col] = columnWidth;
-                currentColumnPosition += columnWidth + columnMargin;
+                columnWidths[col] = Math.floor(currentColumnWidth);
+                currentColumnPosition += Math.floor(currentColumnWidth + columnMargin);
 
             }
-
-            // The last position is the end of the Visualisation Canvas
-//            columnPositions[columns.length] = graphWidth;
 
             columnPositions.push(currentColumnPosition);
 
 
             //////////////////////////////////////////
-            // Calculate Row Positions             //
+            // Calculate Row Positions              //
             //////////////////////////////////////////
 
-            var iconWidth = iconSize + iconHorizontalMargin;
-            var iconHeight = iconSize + iconVerticalMargin;
+            var iconWidth = Math.floor(iconSize + iconHorizontalMargin);
+            var iconHeight = Math.floor(iconSize + iconVerticalMargin);
 
             var currentRowPosition = topMargin;
 
@@ -442,8 +440,6 @@
                     var rowfield = iconsPerRowField[row][rowColumn];
                     var fieldWidth = rowfield * iconWidth;
 
-//                    console.log('rowfield: ' + rowfield + ' fieldwidth: ' + fieldWidth + ' :: ' + columnTotalWidth);
-
                     if (fieldWidth > columnTotalWidth) {
 
                         var numberOfRows = Math.ceil(fieldWidth / columnTotalWidth);
@@ -457,7 +453,7 @@
                 }
 
                 rowHeight = (iconHeight * maxRows) + rowMargin;
-                currentRowPosition += rowHeight;
+                currentRowPosition += Math.floor(rowHeight);
 
                 rowPositions.push(currentRowPosition);
 
@@ -487,7 +483,7 @@
                         .data(rowLayout)
                         .enter()
                         .append("svg:line")
-                        .attr("x1", function(o) {
+                        .attr("x1", function(o, i) {
                             return o.x1;
                         })
                         .attr("y1", function(o) {
@@ -532,41 +528,40 @@
                     .attr("class", "icon")
                     .attr("transform", function(d) {
 
-                        var iconWidth = iconSize + iconHorizontalMargin;
-                        var iconHeight = iconSize + iconVerticalMargin;
+                        var x, y;
+
+                        var iconWidth = Math.floor(iconSize + iconHorizontalMargin);
+                        var iconHeight = Math.floor(iconSize + iconVerticalMargin);
 
                         var columnPosition = columnPositions[d.col];
                         var rowPosition = rowPositions[d.row];
+                        var columnWidth = columnWidths[d.col];
 
                         // Calculate how many Icons fit into the current Column Width
-                        var maxIconsInThisColumn = Math.floor(columnWidths[d.col] / iconWidth) + 1;
+                        var maxIconsInThisColumn = Math.ceil(columnWidth / iconWidth) - 1;
 
-                        // Calculate X and Y Coordinates
-                        var x = ((d.relativePos % maxIconsInThisColumn) * iconWidth) + columnPosition;
-                        var y = rowPosition;
+                        if (d.relativePos < maxIconsInThisColumn) {
 
+                            // Calculate X and Y Coordinates
+                            x = Math.floor((d.relativePos * iconWidth) + columnPosition);
+                            y = rowPosition;
 
-                        // If Icon is drawn outside of current column width: Break into new line
-                        if (d.relativePos >= maxIconsInThisColumn) {
+                        } else {
 
-                            var xPos = (d.relativePos * iconWidth);
-
-                            var numberOfRows = Math.floor(xPos / columnWidths[d.col]);
-
+                            // If Icon is drawn outside of current column width: Break into new line
+                            var numberOfRows = Math.floor(d.relativePos / maxIconsInThisColumn);
                             x = ((d.relativePos % maxIconsInThisColumn) * iconWidth) + columnPosition;
-                            y += (iconHeight + iconVerticalMargin) * numberOfRows;
-
+                            y = rowPosition + iconHeight * numberOfRows;
                         }
 
-//                        console.log('row: ' + d.row + ' | col: ' + d.col + ' | pos: ' + d.pos + ' | relativePos: ' + d.relativePos + ' :: ' + Math.round(x) + ':' + Math.round(y));
 
                         var baseScale = iconSize / defaultIconSize;
                         var scale = baseScale * d.size;
 
                         // If Icon is drawn smaller than full-size, center it
                         if (d.size < 1) {
-                            x += (iconSize / 2) * (1 - d.size);
-                            y += (iconSize / 2) * (1 - d.size);
+                            x += Math.floor((iconSize / 2) * (1 - d.size));
+                            y += Math.floor((iconSize / 2) * (1 - d.size));
                         }
 
                         // If Icon is drawn outside of Canvas give a warning
@@ -574,7 +569,11 @@
                             self.drawCanvasOverflowWarning();
                         }
 
-//                        console.log('translate(' + x + ', ' + y + ') scale(' + scale + ')');
+                        if (isomatic.options.ui.attributes.diagramType === 'versus' && d.col === 0) {
+                            var center = columnPosition + (columnWidth / 2);
+                            var xDiff = center - x;
+                            x += 2 * xDiff - iconSize + iconHorizontalMargin - columnMargin;
+                        }
 
                         return 'translate(' + x + ', ' + y + ') scale(' + scale + ')';
 
@@ -718,12 +717,14 @@
 
                     var y;
 
-                    if (isomatic.options.ui.attributes.diagramType === 'normal') {
+                    if (isomatic.options.ui.attributes.diagramType === 'normal' ||
+                        isomatic.options.ui.attributes.diagramType === 'size') {
                         y = i * (iconSize + rowMargin) + outerMargin;
                         if (legendTitleHeight > 0) {
                             y += legendTitleHeight + outerMargin;
                         }
-                    } else if (isomatic.options.ui.attributes.diagramType === 'compare') {
+                    } else if (isomatic.options.ui.attributes.diagramType === 'compare' ||
+                        isomatic.options.ui.attributes.diagramType === 'versus') {
                         y = rowPositions[i];
                     }
 
