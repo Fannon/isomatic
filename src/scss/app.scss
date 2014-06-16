@@ -540,15 +540,16 @@ button.tiny, .button.tiny {
 
       img {
         float: left;
-        margin: 5px 15px 8px 10px;
-        height: 22px;
+        margin: 7px 15px 8px 12px;
+        height: 21px;
       }
 
       .home-help-content {
 
+
         .button {
           width: 370px;
-          background: #BBBBBB;
+          background: #BBB;
           color: #333;
           border-color: #BBBBBB;
           padding: 0px;
@@ -576,20 +577,18 @@ button.tiny, .button.tiny {
 
           h4 {
             margin: 5px 0px 0px 0px;
-
-          }
-
-        }
-
-        .scrollbar {
-
-          .slimScrollRail {
-            background: none repeat scroll 0 0 #fff;
-          }
-          .slimScrollRail {
-
           }
         }
+
+        .home-help-choose {
+          width: 12px;
+          height: 12px;
+          background-image: url(../img/choose.svg);
+          float: right;
+          margin: 12px 10px 3px 5px;
+        }
+
+
 
       }
   }
