@@ -329,6 +329,14 @@
         drawSizeIsotype: function() {
             console.log('drawSizeIsotype');
 
+            isomatic.options.ui.attributes.roundUp = 1;
+            isomatic.options.ui.attributes.roundDown = 0;
+
+            isomatic.options.ui.attributes.scale = 500000000;
+
+            this.layout();
+            this.preCalculate();
+
             this.drawIsotype();
         },
 
