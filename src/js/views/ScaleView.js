@@ -44,7 +44,15 @@
         events: {
             "click #scale-apply": "apply",
             "click #scale-apply-close": "apply",
-            "click #round-size": "activateRoundSize"
+            "click #round-size": "activateRoundSize",
+            "keydown input": "keyDown"
+        },
+
+        keyDown: function(e) {
+            if (e.which === 13) {
+                e.preventDefault();
+                this.apply();
+            }
         },
 
         /**

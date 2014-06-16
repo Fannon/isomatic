@@ -51,7 +51,15 @@
 
         events: {
             "click #text-apply": "apply",
-            "click #text-apply-close": "apply"
+            "click #text-apply-close": "apply",
+            "keydown input": "keyDown"
+        },
+
+        keyDown: function(e) {
+            if (e.which === 13) {
+                e.preventDefault();
+                this.apply();
+            }
         },
 
 

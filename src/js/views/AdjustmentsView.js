@@ -80,7 +80,15 @@
         events: {
             "click #adjustments-apply": "apply",
             "click #adjustments-apply-close": "apply",
-            "click #auto-icon-size": "activateIconSize"
+            "click #auto-icon-size": "activateIconSize",
+            "keydown input": "keyDown"
+        },
+
+        keyDown: function(e) {
+            if (e.which === 13) {
+                e.preventDefault();
+                this.apply();
+            }
         },
 
         /**

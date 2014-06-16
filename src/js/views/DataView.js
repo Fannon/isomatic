@@ -62,7 +62,15 @@
         events: {
             "focus #pasted-data": "focusTextarea",
             "click #import-data": "submitData",
-            "click #import-data-close": "submitData"
+            "click #import-data-close": "submitData",
+            "keydown input": "keyDown"
+        },
+
+        keyDown: function(e) {
+            if (e.which === 13) {
+                e.preventDefault();
+                this.apply();
+            }
         },
 
         /**
