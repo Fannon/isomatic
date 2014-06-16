@@ -33,6 +33,16 @@
             });
             this.$el.html(html);
 
+            // Init Scrollbar
+            try {
+                var slimScrollOptions = isomatic.options.internal.slimScrollOptions;
+
+                slimScrollOptions.height = isomatic.options.ui.attributes.graphHeight - 80;
+                $('#help-container .scrollbar').slimScroll(slimScrollOptions);
+            } catch (e) {
+                console.error('Error loading Scrollbar Plugin!');
+            }
+
         },
         events: {
 

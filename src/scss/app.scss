@@ -74,6 +74,7 @@ h3.smallTopMenu {
   width: 157px;
 }
 
+
 .top-apply {
   background-color: #F16515;
   border-radius: 0 3px 3px 0;
@@ -522,6 +523,77 @@ button.tiny, .button.tiny {
       }
     }
   }
+
+  .help-section {
+      background: #333;
+      color: #fff;
+      padding: 0px;
+      width: 400px;
+
+      h4 {
+        color: #fff;
+        float: left;
+        border: none;
+        padding: 8px 5px;
+        margin: 0px;
+      }
+
+      img {
+        float: left;
+        margin: 5px 15px 8px 10px;
+        height: 22px;
+      }
+
+      .home-help-content {
+
+        .button {
+          width: 370px;
+          background: #BBBBBB;
+          color: #333;
+          border-color: #BBBBBB;
+          padding: 0px;
+          margin: 0 0 5px 0;
+        }
+
+        .smaller {
+          height: 42px;
+
+          img {
+            margin: 0px 10px 3px 5px;
+            height: 39px;
+          }
+        }
+
+        .active, .button:hover {
+          background: #333333;
+          color: #ffffff;
+          border-color: #0099CC;
+          border-width: 1px;
+        }
+
+        .home-help-topic{
+
+
+          h4 {
+            margin: 5px 0px 0px 0px;
+
+          }
+
+        }
+
+        .scrollbar {
+
+          .slimScrollRail {
+            background: none repeat scroll 0 0 #fff;
+          }
+          .slimScrollRail {
+
+          }
+        }
+
+      }
+  }
+
 
 
   // Data Overlay
