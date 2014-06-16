@@ -271,7 +271,7 @@
          * This stores which row ID maps to which color
          * Defines the default Palette
          */
-        colorMap: isomatic.options.internal.colorPalettes.Complementary1,
+        colorMap: isomatic.options.internal.colorPalettes.Signal2,
 
         /** This stores which column ID maps to which icon */
         iconMap: [
@@ -308,7 +308,12 @@
         /**
          * Font Size of the Row Legend
          */
-        rowsLegendFontSize: 10,
+        leftLegendFontSize: 14,
+
+        /**
+         * Font Size of the Column Legend
+         */
+        bottomLegendFontSize: 12,
 
         /**
          * Decides if Column Legend is drawn or not

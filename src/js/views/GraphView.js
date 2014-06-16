@@ -172,6 +172,8 @@
          */
         layout: function() {
 
+            $('#message-box').html('');
+
             // Set Layouting Options
 
             this.isotypeLayout = new d3.layout.isotype(); // Sic
@@ -326,6 +328,7 @@
 
         drawSizeIsotype: function() {
             console.log('drawSizeIsotype');
+
             this.drawIsotype();
         },
 
@@ -556,9 +559,6 @@
          */
         drawLegend: function() {
 
-//            console.log('GraphView.drawLegend();');
-
-
             ////////////////////////////////////
             // Get & Parse Variables          //
             ////////////////////////////////////
@@ -573,7 +573,8 @@
             var defaultIconSize    = isomatic.options.internal.defaultIconSize;
 
             var legendTitleHeight  = parseInt(isomatic.options.ui.attributes.legendTitleHeight, 10);
-            var rowsLegendFontSize = parseInt(isomatic.options.ui.attributes.rowsLegendFontSize, 10);
+            var leftLegendFontSize = parseInt(isomatic.options.ui.attributes.leftLegendFontSize, 10);
+            var bottomLegendFontSize = parseInt(isomatic.options.ui.attributes.bottomLegendFontSize, 10);
 
             var iconize            = isomatic.options.ui.attributes.iconize;
             var colorize           = isomatic.options.ui.attributes.colorize;
@@ -582,15 +583,14 @@
 
             var legendFont         = isomatic.options.ui.attributes.legendFont;
 
-
-            var columnLegendHeight = isomatic.options.internal.columnLegendHeight;
-
             var rowPositions                = isomatic.data.meta.attributes.rowPositions;
 
 
             ////////////////////////////////////
             // Calculations                   //
             ////////////////////////////////////
+
+            var columnLegendHeight = bottomLegendFontSize * 1.4;
 
             var scaleText = '1 : ' + this.printScale(scale);
 
@@ -676,7 +676,7 @@
                 .attr("x", outerMargin)
                 .attr("y", iconSize / 2)
                 .attr("dy", ".35em")
-                .attr("font-size", "14px")
+                .attr("font-size", leftLegendFontSize)
                 .attr("font-family", legendFont)
                 .text(function(d) { return d; })
             ;
@@ -774,7 +774,7 @@
                     .attr("x", columnLegendHeight + 5)
                     .attr("y", columnLegendHeight / 2)
                     .attr("dy", ".35em")
-                    .attr("font-size", "12px")
+                    .attr("font-size", bottomLegendFontSize)
                     .attr("font-family", legendFont)
                     .attr("fill", "#999999")
                     .text(function(d) { return d; })
@@ -796,9 +796,9 @@
                     .append('<div id="overflow-warning"><strong>Warning</strong>: The graphic is bigger than the canvas!</div>')
                 ;
 
-                $('#overflow-warning').delay(4000).slideUp(500, 'swing', function() {
-                    this.remove();
-                });
+//                $('#overflow-warning').delay(12000).slideUp(500, 'swing', function() {
+//                    this.remove();
+//                });
             }
         },
 

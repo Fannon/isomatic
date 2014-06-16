@@ -71,6 +71,8 @@
             var state = {
                 'legendWidth': $('#legend-width').val(),
                 'legendTitleHeight': $('#legend-title-height').val(),
+                'leftLegendFontSize': $('#left-legend-fontsize').val(),
+                'bottomLegendFontSize': $('#bottom-legend-fontsize').val(),
                 'legendFont': $('#legend-font').val(),
                 'drawColumnLegend': $('#draw-column-legend').prop('checked')
             };
