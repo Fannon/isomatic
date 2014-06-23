@@ -525,6 +525,7 @@
                             var center = columnPosition + (columnWidth / 2);
                             var xDiff = center - x;
                             x += 2 * xDiff - iconSize + iconHorizontalMargin - columnMargin;
+                            x -= columnMargin;
                         }
 
                         return 'translate(' + x + ', ' + y + ') scale(' + scale + ')';
@@ -596,7 +597,7 @@
                             return Math.round(o.y2);
                         })
                         .style("stroke", "rgb(200, 200, 200)")
-                        .style("stroke-width", "0.8")
+                        .style("stroke-width", "1")
                     ;
                 }
 
@@ -631,7 +632,7 @@
                             return Math.round(o.y1 - (rowMargin + iconVerticalMargin) / 2);
                         })
                         .style("stroke", "rgb(200, 200, 200)")
-                        .style("stroke-width", "0.8")
+                        .style("stroke-width", "1")
                     ;
                 }
 

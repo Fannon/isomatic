@@ -777,24 +777,20 @@
                     </div>
                 </div>
 
-                <div id="size-isotype" class="select-type">
-                    <div class="type-title">
-                        Size
-                    </div>
-                    <div class="type-image">
-                        <a>
-                            <img src="img/size_isotype.svg">
-                        </a>
-                    </div>
-                </div>
-
             </div>
 
-            <!--<input id="break-rows" type="checkbox"><label for="break-rows">Break row into multiple Lines</label>-->
             {{#if advancedOptions}}
             <div class="ui-container">
                 <h4>Additional Options</h4>
-                <input id="equally-distributed-columns" name="equallyDistributedColumns" type="checkbox" {{#if equallyDistributedColumns}}checked{{/if}} ><label for="equally-distributed-columns">Equally distributed Columns</label>
+                <input id="equally-distributed-columns" name="equallyDistributedColumns" type="checkbox" {{#if equallyDistributedColumns}}checked{{/if}} >
+                <label for="equally-distributed-columns">Equally distributed Columns</label><br>
+
+                <input id="draw-horizontal-lines" name="drawHorizontalLines" type="checkbox" {{#if drawHorizontalLines}}checked{{/if}} >
+                <label for="equally-distributed-columns">Draw horizontal lines</label><br>
+
+                <input id="draw-vertical-lines" name="drawVerticalLines" type="checkbox" {{#if drawVerticalLines}}checked{{/if}} >
+                <label for="draw-vertical-lines">Draw vertical lines</label>
+
             </div>
             {{/if}}
 

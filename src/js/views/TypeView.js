@@ -39,6 +39,8 @@
             var html = template({
                 type: isomatic.options.ui.attributes.diagramType,
                 equallyDistributedColumns: isomatic.options.ui.attributes.equallyDistributedColumns,
+                drawHorizontalLines: isomatic.options.ui.attributes.drawHorizontalLines,
+                drawVerticalLines: isomatic.options.ui.attributes.drawVerticalLines,
                 advancedOptions: advancedOptions
             });
 
@@ -47,7 +49,10 @@
         },
         events: {
             "click .select-type": "selectType",
-            "click #equally-distributed-columns": "selectColumnDistribution"
+            "click #equally-distributed-columns": "selectColumnDistribution",
+            "click #draw-horizontal-lines": "selectDrawHorizontalLines",
+            "click #draw-vertical-lines": "selectDrawVerticalLines"
+
         },
 
         /**
@@ -64,12 +69,25 @@
             this.initialize();
         },
 
-        selectColumnDistribution: function(e) {
+        selectColumnDistribution: function() {
             var checked = $('#equally-distributed-columns').prop('checked');
-
             isomatic.options.ui.set('equallyDistributedColumns', checked);
             isomatic.refreshLayout();
+        },
+
+        selectDrawHorizontalLines: function() {
+            var checked = $('#draw-horizontal-lines').prop('checked');
+            isomatic.options.ui.set('drawHorizontalLines', checked);
+            isomatic.refreshLayout();
+        },
+
+        selectDrawVerticalLines: function() {
+            var checked = $('#draw-vertical-lines').prop('checked');
+            isomatic.options.ui.set('drawVerticalLines', checked);
+            isomatic.refreshLayout();
         }
+
+
     });
 
 }(isomatic));
