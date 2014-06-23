@@ -869,8 +869,14 @@
 
                     {{#each colorMapping}}
                     <legend>{{@key}}</legend>
-                    <input type="text" id="picker-{{@index}}" class="picker" value="{{this}}" style="border-color: {{this}};">
+                    <input type="text" id="picker-{{@index}}" class="picker pick-icon-color" value="{{this}}" style="border-color: {{this}};">
                     {{/each}}
+                </div>
+
+                <div class="ui-container">
+                    <h4>Legend Colors</h4>
+                    <legend>Lines Color</legend>
+                    <input type="text" id="picker-lines" class="picker" value="{{lineColor}}" style="border-color: {{lineColor}};">
                 </div>
 
                 <div class="button-group">
@@ -911,81 +917,81 @@
 
             <div class="scrollbar">
 
-            <div class="ui-container">
-                <h4><span data-tooltip class="has-tip tip-right" title="Change the general offsets">Margin</span></h4>
+                <div class="ui-container">
+                    <h4><span data-tooltip class="has-tip tip-right" title="Change the general offsets">Margin</span></h4>
 
-                <div class="row collapse">
-                    <label><img src="img/outermarign.svg">Outer Margin</label>
-                    <div class="small-10 columns">
-                        <input id="outer-margin" name="outerMargin" type="text" value="{{ options.outerMargin }}">
+                    <div class="row collapse">
+                        <label><img src="img/outermarign.svg">Outer Margin</label>
+                        <div class="small-10 columns">
+                            <input id="outer-margin" name="outerMargin" type="text" value="{{ options.outerMargin }}">
+                        </div>
+                        <div class="small-2 columns">
+                            <span class="postfix radius">px</span>
+                        </div>
                     </div>
-                    <div class="small-2 columns">
-                        <span class="postfix radius">px</span>
+
+                    <div class="row collapse">
+                        <label><img src="img/horizontalmargin.svg">Icon Horizontal Margin</label>
+                        <div class="small-10 columns">
+                            <input id="icon-horizontal-margin" name="iconHorizontalMargin" type="text" value="{{ options.iconHorizontalMargin }}">
+                        </div>
+                        <div class="small-2 columns">
+                            <span class="postfix radius">px</span>
+                        </div>
                     </div>
+
+                    {{#if advancedOptions}}
+                    <div class="row collapse">
+                        <label><img src="img/verticalmargin.svg">Icon Vertical Margin</label>
+                        <div class="small-10 columns">
+                            <input id="icon-vertical-margin" name="iconVerticalMargin" type="text" value="{{ options.iconVerticalMargin }}">
+                        </div>
+                        <div class="small-2 columns">
+                            <span class="postfix radius">px</span>
+                        </div>
+                    </div>
+                    {{/if}}
+
+                    <div class="row collapse">
+                        <label><img src="img/rowmargin.svg">Row Margin</label>
+                        <div class="small-10 columns">
+                            <input id="row-margin" name="rowMargin" type="text" type="text" value="{{ options.rowMargin }}">
+                        </div>
+                        <div class="small-2 columns">
+                            <span class="postfix radius">px</span>
+                        </div>
+                    </div>
+
+                    {{#if advancedOptions}}
+                    <div class="row collapse">
+                        <label><img src="img/columnmargin.svg">Column Margin</label>
+                        <div class="small-10 columns">
+                            <input id="column-margin" name="columnMargin" type="text" value="{{ options.columnMargin }}">
+                        </div>
+                        <div class="small-2 columns">
+                            <span class="postfix radius">px</span>
+                        </div>
+                    </div>
+                    {{/if}}
+
                 </div>
 
-                <div class="row collapse">
-                    <label><img src="img/horizontalmargin.svg">Icon Horizontal Margin</label>
-                    <div class="small-10 columns">
-                        <input id="icon-horizontal-margin" name="iconHorizontalMargin" type="text" value="{{ options.iconHorizontalMargin }}">
-                    </div>
-                    <div class="small-2 columns">
-                        <span class="postfix radius">px</span>
+                <div class="ui-container">
+                    <h4><span data-tooltip class="has-tip tip-right" title="See the icon proportion">Size</span></h4>
+
+                    <input id="auto-icon-size" name="autoIconSize" type="checkbox" {{#if options.autoIconSize}}checked{{/if}}><label for="auto-icon-size">Auto Icon Size</label>
+
+
+                    <div class="row collapse">
+                        <label><img src="img/iconsize.svg">Icon Size</label>
+                        <div class="small-10 columns">
+                            <input id="icon-size" name="iconSize" type="text" value="{{ options.iconSize }}" {{#if options.autoIconSize}}disabled{{/if}}>
+                        </div>
+                        <div class="small-2 columns">
+                            <span class="postfix radius">px</span>
+                        </div>
                     </div>
                 </div>
-
-                {{#if advancedOptions}}
-                <div class="row collapse">
-                    <label><img src="img/verticalmargin.svg">Icon Vertical Margin</label>
-                    <div class="small-10 columns">
-                        <input id="icon-vertical-margin" name="iconVerticalMargin" type="text" value="{{ options.iconVerticalMargin }}">
-                    </div>
-                    <div class="small-2 columns">
-                        <span class="postfix radius">px</span>
-                    </div>
-                </div>
-                {{/if}}
-
-                <div class="row collapse">
-                    <label><img src="img/rowmargin.svg">Row Margin</label>
-                    <div class="small-10 columns">
-                        <input id="row-margin" name="rowMargin" type="text" type="text" value="{{ options.rowMargin }}">
-                    </div>
-                    <div class="small-2 columns">
-                        <span class="postfix radius">px</span>
-                    </div>
-                </div>
-
-                {{#if advancedOptions}}
-                <div class="row collapse">
-                    <label><img src="img/columnmargin.svg">Column Margin</label>
-                    <div class="small-10 columns">
-                        <input id="column-margin" name="columnMargin" type="text" value="{{ options.columnMargin }}">
-                    </div>
-                    <div class="small-2 columns">
-                        <span class="postfix radius">px</span>
-                    </div>
-                </div>
-                {{/if}}
-
-            </div>
-
-            <div class="ui-container">
-                <h4><span data-tooltip class="has-tip tip-right" title="See the icon proportion">Size</span></h4>
-
-                <input id="auto-icon-size" name="autoIconSize" type="checkbox" {{#if options.autoIconSize}}checked{{/if}}><label for="auto-icon-size">Auto Icon Size</label>
-
-
-                <div class="row collapse">
-                    <label><img src="img/iconsize.svg">Icon Size</label>
-                    <div class="small-10 columns">
-                        <input id="icon-size" name="iconSize" type="text" value="{{ options.iconSize }}" {{#if options.autoIconSize}}disabled{{/if}}>
-                    </div>
-                    <div class="small-2 columns">
-                        <span class="postfix radius">px</span>
-                    </div>
-                </div>
-            </div>
 
             </div>
 

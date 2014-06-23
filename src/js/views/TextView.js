@@ -41,7 +41,6 @@
             this.$el.html(html);
 
             Backbone.Validation.bind(this);
-
         },
 
         /**

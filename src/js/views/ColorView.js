@@ -68,7 +68,8 @@
             var html = template({
                 options: this.model.attributes,
                 colorMapping: colorMapping,
-                palettes: isomatic.options.internal.colorPalettes
+                palettes: isomatic.options.internal.colorPalettes,
+                lineColor: isomatic.options.ui.attributes.lineColor
             });
 
             this.$el.html(html);
@@ -125,12 +126,15 @@
 
             // Read current values from ColorPicker and apply them to the ColorMap
             var colors = [];
-            $('.picker').each(function (index, element) {
+            $('.pick-icon-color').each(function (index, element) {
                 colors.push(element.value);
             });
 
+            var lineColor = $('#picker-lines').val();
+
             this.model.set({
-                colorMap: colors
+                colorMap: colors,
+                lineColor: lineColor
             });
 
             isomatic.refreshDesign();

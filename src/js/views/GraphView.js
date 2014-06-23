@@ -596,7 +596,7 @@
                         .attr("y2", function(o) {
                             return Math.round(o.y2);
                         })
-                        .style("stroke", "rgb(200, 200, 200)")
+                        .style("stroke", '#' + isomatic.options.ui.attributes.lineColor)
                         .style("stroke-width", "1")
                     ;
                 }
@@ -631,7 +631,7 @@
                         .attr("y2", function(o) {
                             return Math.round(o.y1 - (rowMargin + iconVerticalMargin) / 2);
                         })
-                        .style("stroke", "rgb(200, 200, 200)")
+                        .style("stroke", '#' + isomatic.options.ui.attributes.lineColor)
                         .style("stroke-width", "1")
                     ;
                 }

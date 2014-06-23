@@ -325,7 +325,9 @@
 
         drawVerticalLines: true,
 
-        drawHorizontalLines: true
+        drawHorizontalLines: true,
+
+        lineColor: 'CCCCCC'
 
 
     };
