@@ -584,18 +584,19 @@
                         .enter()
                         .append("svg:line")
                         .attr("x1", function(o) {
-                            return o.x1 - columnMargin / 2;
+                            return Math.round(o.x1 - (columnMargin + iconHorizontalMargin) / 2);
                         })
                         .attr("y1", function(o) {
-                            return o.y1;
+                            return Math.round(o.y1);
                         })
                         .attr("x2", function(o) {
-                            return o.x1 - columnMargin / 2;
+                            return Math.round(o.x1 - (columnMargin + iconHorizontalMargin) / 2);
                         })
                         .attr("y2", function(o) {
-                            return o.y2;
+                            return Math.round(o.y2);
                         })
                         .style("stroke", "rgb(200, 200, 200)")
+                        .style("stroke-width", "0.8")
                     ;
                 }
 
@@ -618,19 +619,19 @@
                         .enter()
                         .append("svg:line")
                         .attr("x1", function(o) {
-                            return o.x1;
+                            return Math.round(o.x1);
                         })
                         .attr("y1", function(o) {
-                            return o.y1 - rowMargin / 2;
+                            return Math.round(o.y1 - (rowMargin + iconVerticalMargin) / 2);
                         })
                         .attr("x2", function(o) {
-                            return o.x2;
+                            return Math.round(o.x2);
                         })
                         .attr("y2", function(o) {
-                            return o.y1 - rowMargin / 2;
+                            return Math.round(o.y1 - (rowMargin + iconVerticalMargin) / 2);
                         })
                         .style("stroke", "rgb(200, 200, 200)")
-                        .style("stroke-width", "0.5")
+                        .style("stroke-width", "0.8")
                     ;
                 }
 
