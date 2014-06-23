@@ -130,16 +130,6 @@
 
         ],
 
-//        exampleData: [
-//            {
-//                "The usage of social networks (in relation to a persons income)":"Facebook",
-//                "Low Income":"165050000",
-//                "Medium Income":"395000777",
-//                "High Income":"135000000"
-//            }
-//
-//        ],
-
         /**
          * Color Preset Palettes
          *
@@ -175,7 +165,7 @@
             location: 'home'
         },
 
-        debugGrid: true
+        debugGrid: false
 
     };
 
@@ -248,6 +238,9 @@
         /** Auto calculated Icon Size -> This fits the canvas width */
         calculatedIconSize: 0,
 
+        /**
+         * Icon Scale Factor
+         */
         scale: 30000000,
 
 
@@ -288,6 +281,9 @@
         // LEGEND                  //
         /////////////////////////////
 
+        /**
+         * Legend Font Family
+         */
         legendFont: 'Arial',
 
         /**
@@ -320,7 +316,16 @@
         /**
          * Decides if Column Legend is drawn or not
          */
-        drawColumnLegend: true
+        drawColumnLegend: true,
+
+        /**
+         * Draws Lines between the Icon-Group Blocks
+         */
+        drawLines: true,
+
+        drawVerticalLines: true,
+
+        drawHorizontalLines: true
 
 
     };

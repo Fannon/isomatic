@@ -467,66 +467,10 @@
 
             }
 
+
             ////////////////////////////////////
             // Draw Graphic via D3.js         //
             ////////////////////////////////////
-
-
-            if (isomatic.options.internal.debugGrid) {
-                var rowLayout = [];
-
-                for (var columnPos = 0; columnPos < columnPositions.length - 0; columnPos++) {
-                    for (var rowPos = 0; rowPos < rowPositions.length - 0; rowPos++) {
-                        rowLayout.push({
-                            x1: columnPositions[columnPos],
-                            y1: rowPositions[rowPos],
-                            x2: columnPositions[columnPos + 1],
-                            y2: rowPositions[rowPos + 1]
-                        });
-                    }
-                }
-
-                var verticalLines = this.svg.selectAll(".verticalLines")
-
-                        .data(rowLayout)
-                        .enter()
-                        .append("svg:line")
-                        .attr("x1", function(o, i) {
-                            return o.x1;
-                        })
-                        .attr("y1", function(o) {
-                            return o.y1;
-                        })
-                        .attr("x2", function(o) {
-                            return o.x1;
-                        })
-                        .attr("y2", function(o) {
-                            return o.y2;
-                        })
-                        .style("stroke", "rgb(255,120,155)")
-                    ;
-
-                var horizontalLines = this.svg.selectAll(".horizontalLines")
-
-                        .data(rowLayout)
-                        .enter()
-                        .append("svg:line")
-                        .attr("x1", function(o) {
-                            return o.x1;
-                        })
-                        .attr("y1", function(o) {
-                            return o.y1;
-                        })
-                        .attr("x2", function(o) {
-                            return o.x2;
-                        })
-                        .attr("y2", function(o) {
-                            return o.y1;
-                        })
-                        .style("stroke", "rgb(5,255,155)")
-                    ;
-            }
-
 
             var g = this.svg.selectAll(".icon")
 
@@ -608,6 +552,146 @@
                         }
                     })
                 ;
+
+
+            /////////////////////////////////////////
+            // Draw Legend Lines                    //
+            //////////////////////////////////////////
+
+            var columnPos, rowPos;
+
+            if (isomatic.options.ui.attributes.drawLines) {
+
+                var verticalLinesArray = [];
+                var horizontalLinesArray = [];
+
+                if (isomatic.options.ui.attributes.drawVerticalLines) {
+
+                    // Calculate Vertical Lines
+                    for (columnPos = 1; columnPos < columnPositions.length - 1; columnPos++) {
+                        for (rowPos = 0; rowPos < rowPositions.length - 1; rowPos++) {
+                            verticalLinesArray.push({
+                                x1: columnPositions[columnPos],
+                                y1: rowPositions[rowPos],
+                                x2: columnPositions[columnPos + 1],
+                                y2: rowPositions[rowPos + 1]
+                            });
+                        }
+                    }
+
+                    var verticalLines = this.svg.selectAll(".verticalLines")
+                        .data(verticalLinesArray)
+                        .enter()
+                        .append("svg:line")
+                        .attr("x1", function(o) {
+                            return o.x1 - columnMargin / 2;
+                        })
+                        .attr("y1", function(o) {
+                            return o.y1;
+                        })
+                        .attr("x2", function(o) {
+                            return o.x1 - columnMargin / 2;
+                        })
+                        .attr("y2", function(o) {
+                            return o.y2;
+                        })
+                        .style("stroke", "rgb(200, 200, 200)")
+                    ;
+                }
+
+                if (isomatic.options.ui.attributes.drawHorizontalLines) {
+
+                    // Calculate Horizontal Lines
+                    for (columnPos = 0; columnPos < columnPositions.length - 1; columnPos++) {
+                        for (rowPos = 1; rowPos < rowPositions.length - 1; rowPos++) {
+                            horizontalLinesArray.push({
+                                x1: columnPositions[columnPos],
+                                y1: rowPositions[rowPos],
+                                x2: columnPositions[columnPos + 1],
+                                y2: rowPositions[rowPos + 1]
+                            });
+                        }
+                    }
+
+                    var horizontalLines = this.svg.selectAll(".horizontalLines")
+                        .data(horizontalLinesArray)
+                        .enter()
+                        .append("svg:line")
+                        .attr("x1", function(o) {
+                            return o.x1;
+                        })
+                        .attr("y1", function(o) {
+                            return o.y1 - rowMargin / 2;
+                        })
+                        .attr("x2", function(o) {
+                            return o.x2;
+                        })
+                        .attr("y2", function(o) {
+                            return o.y1 - rowMargin / 2;
+                        })
+                        .style("stroke", "rgb(200, 200, 200)")
+                        .style("stroke-width", "0.5")
+                    ;
+                }
+
+
+
+            }
+
+
+            if (isomatic.options.internal.debugGrid) {
+
+                var rowLayout = [];
+
+                for (columnPos = 0; columnPos < columnPositions.length - 0; columnPos++) {
+                    for (rowPos = 0; rowPos < rowPositions.length - 0; rowPos++) {
+                        rowLayout.push({
+                            x1: columnPositions[columnPos],
+                            y1: rowPositions[rowPos],
+                            x2: columnPositions[columnPos + 1],
+                            y2: rowPositions[rowPos + 1]
+                        });
+                    }
+                }
+
+                this.svg.selectAll(".verticalLines")
+                    .data(rowLayout)
+                    .enter()
+                    .append("svg:line")
+                    .attr("x1", function(o) {
+                        return o.x1;
+                    })
+                    .attr("y1", function(o) {
+                        return o.y1;
+                    })
+                    .attr("x2", function(o) {
+                        return o.x1;
+                    })
+                    .attr("y2", function(o) {
+                        return o.y2;
+                    })
+                    .style("stroke", "rgb(255,120,155)")
+                ;
+
+                this.svg.selectAll(".horizontalLines")
+                    .data(rowLayout)
+                    .enter()
+                    .append("svg:line")
+                    .attr("x1", function(o) {
+                        return o.x1;
+                    })
+                    .attr("y1", function(o) {
+                        return o.y1;
+                    })
+                    .attr("x2", function(o) {
+                        return o.x2;
+                    })
+                    .attr("y2", function(o) {
+                        return o.y1;
+                    })
+                    .style("stroke", "rgb(5,255,155)")
+                ;
+            }
 
             isomatic.data.meta.set({
                 columnPositions: columnPositions,
@@ -856,6 +940,9 @@
         // Helper Functions              //
         ///////////////////////////////////
 
+        /**
+         * Draws an Canvas Overflow Warning if the GraphView draws something outside of the current Canvas
+         */
         drawCanvasOverflowWarning: function() {
 
             if ($('#overflow-warning').length === 0) {
@@ -863,10 +950,6 @@
                 $('#message-box')
                     .append('<div id="overflow-warning"><strong>Warning</strong>: The graphic is bigger than the canvas!</div>')
                 ;
-
-//                $('#overflow-warning').delay(12000).slideUp(500, 'swing', function() {
-//                    this.remove();
-//                });
             }
         },
 
