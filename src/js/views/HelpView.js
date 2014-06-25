@@ -45,8 +45,18 @@
 
         },
         events: {
+            "click .help-option-nav": "setNavigation"
+        },
 
+        setNavigation: function(e) {
+            console.log("setNavigation");
+            var id = e.currentTarget.id;
+            $('.help-option-nav').removeClass("active");
+            $('#' + id).addClass("active");
+            $('.help-right-option-container').hide();
+            $('#' + id + '-container').show();
         }
+
     });
 
 }(isomatic));

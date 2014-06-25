@@ -446,11 +446,10 @@ button.tiny, .button.tiny {
       left: 0;
       margin-left: 118px;
       border-left: 1px solid #bbb;
-      padding: 0px 0px 0px 10px;
 
       .help-step {
         border: 1px solid #0099CC;
-        margin-bottom: 10px;
+        margin: 0px 0px 10px 10px;
 
         .help-right-picture {
           width: 182px;
@@ -475,7 +474,8 @@ button.tiny, .button.tiny {
             width: 242px;
             color: #fff;
             border-top: 1px solid #0099CC;
-            float: left;
+            position: absolute;
+            margin-left: 30px;
             padding: 5px;
           }
         }
