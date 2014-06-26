@@ -582,14 +582,14 @@ button.tiny, .button.tiny {
 
       img {
         float: left;
-        margin: 7px 5px 3px 12px;
+        margin: 7px 14px 3px 12px;
         height: 21px;
       }
 
-    img.ui-element {
-      margin: 0px 9px 0px 9px;
-      height: 36px;
-    }
+      img.ui-element {
+        margin: 0px 9px 0px 9px;
+        height: 36px;
+      }
 
       .home-help-content {
 
@@ -600,6 +600,7 @@ button.tiny, .button.tiny {
           border: none;
           padding: 0px;
           margin: 0 0 5px 0;
+          height: 36px;
         }
 
         .smaller {
