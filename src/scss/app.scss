@@ -43,6 +43,10 @@ $leftIconSize: 40px;
 
 }
 
+body {
+  font-family: fira_sans_regular;
+}
+
 h1, h2, h3, h4, h5, h6 {
   font-family: fira_sans_regular;
   color: #4D4D4D;
@@ -542,14 +546,14 @@ button.tiny, .button.tiny {
       padding: 0px;
       width: 400px;
 
-
       .help-title {
         text-align: left;
         float: left;
         color: #FFF;
         text-transform: uppercase;
+        font-family: fira_sans_regular;
         font-size: 1.2em;
-        padding: 10px 0 0 0;
+        padding: 11px 0 0 0;
       }
 
       h4 {
@@ -657,6 +661,7 @@ button.tiny, .button.tiny {
       .type-title {
         color: #FFF;
         font-size: 1.1rem;
+        font-family: fira_sans_regular;
         font-weight: normal;
         margin-top: 14px;
         text-transform: uppercase;
