@@ -154,6 +154,8 @@
             height: '100%',
             alwaysVisible: true,
             railVisible: true,
+            color: '#777',
+            railColor: '#BBB',
             railOpacity: 0.4
         },
 
