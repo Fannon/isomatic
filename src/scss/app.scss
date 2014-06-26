@@ -143,6 +143,7 @@ input.invalid {
 }
 
 button.tiny, .button.tiny {
+  font-family: fira_sans_regular;
   font-size: 11px;
   margin: 5px 0;
 }
@@ -197,14 +198,14 @@ button.tiny, .button.tiny {
   }
 
   li.help {
-    background: #0099cc;
+    background: #00b1d7;
     color: #FFF;
     height: 40px;
 
     a#trigger-help {
       padding-left: 17px;
       padding-right: 17px;
-      background: #0099cc;
+      background: #00b1d7;
 
     }
   }
@@ -233,8 +234,9 @@ button.tiny, .button.tiny {
 }
 
 .highlight {
-  border-color: #0099CC !important;
-  background: #E0F1F6 !important;
+  border-color: #00b1d7 !important;
+  border: 3px solid;
+//  background: #E0F1F6 !important;
   transition: background-color 0.3s;
 }
 
@@ -385,12 +387,12 @@ button.tiny, .button.tiny {
   .button-group {
 
     a.apply {
-      background-color: #73C021;
+      background-color: #9DD61F;
       margin: $container-margin 0;
     }
 
     a.apply-right-margin {
-      background-color: #73C021;
+      background-color: #9DD61F;
       display: block;
       width: auto;
       margin-right: $container-margin;
@@ -414,6 +416,7 @@ button.tiny, .button.tiny {
 
 
   .overlay-container.help{
+//    background: #006b85;
     background: #333;
     width: 412px;
     left: $overlay-big-width;
@@ -423,9 +426,9 @@ button.tiny, .button.tiny {
     }
 
     h3 {
-      background: #0099CC;
+      background: #00b1d7;
       color: #FFF;
-      border-color: #0099CC;
+      border-color: #00b1d7;
     }
 
     .button {
@@ -437,7 +440,7 @@ button.tiny, .button.tiny {
     }
 
     .active, .button:hover {
-      background: #0099CC;
+      background: #00b1d7;
       color: #ffffff;
       border: none;
     }
@@ -463,8 +466,10 @@ button.tiny, .button.tiny {
       }
 
       .help-step {
-        border: 1px solid #0099CC;
+        border: 2px solid #00b1d7;
         margin: 0px 0px 10px 10px;
+        border-radius: 3px;
+
 
         .help-right-picture {
           width: 182px;
@@ -473,10 +478,10 @@ button.tiny, .button.tiny {
         }
 
         .help-right-description {
-          background: #005675;
+          background: #0082a5;
 
           .help-right-number {
-            background: #0099CC;
+            background: #00b1d7;
             color: #fff;
             width: 30px;
             height: 45px;
@@ -487,7 +492,7 @@ button.tiny, .button.tiny {
           }
 
           .help-right-text {
-            width: 242px;
+            width: 230px;
             color: #fff;
             position: absolute;
             margin-left: 30px;
@@ -501,13 +506,14 @@ button.tiny, .button.tiny {
 
     .help-nav {
       background: #777;
+      border-radius: 3px;
       color: #333333;
-      width: 95%;
+      width: 92%;
       height: 40px;
       font-weight: bold;
       position: absolute;
       bottom: 7px;
-      right: 8px;
+      right: 25px;
 
       .button {
         width: auto;
@@ -520,19 +526,22 @@ button.tiny, .button.tiny {
       }
 
       .button:hover {
-        background: #BBBBBB;
-        color: #333;
+        background: #00b1d7;
+        color: #FFF;
         border-color: #333333;
         border-width: 1px;
       }
 
+
       .help-nav-left {
         float: left;
 
-        img {
-          width: 12px;
+        .help-nav-left-icon {
+          background-image: url(../img/previous.svg);
+          background-repeat: no-repeat;
           height: 12px;
-          margin: 3px;
+          width: 12px;
+          margin: 3px 0px;
         }
 
       }
@@ -540,23 +549,32 @@ button.tiny, .button.tiny {
       .help-nav-center {
         position: absolute;
         margin-left: 132px;
+
+        .button {
+          padding: 8px 12px;
+        }
+
       }
 
       .help-nav-right {
         float: right;
 
-        img {
-          width: 12px;
+
+        .help-nav-right-icon {
+          background-image: url(../img/next.svg);
+          background-repeat: no-repeat;
           height: 12px;
-          margin: 3px;
+          width: 12px;
+          margin: 3px -1px;
         }
+
       }
 
     }
   }
 
   .help-section {
-      background: #333;
+//      background: #007E95;
       color: #fff;
       padding: 0px;
 
@@ -619,7 +637,7 @@ button.tiny, .button.tiny {
         }
 
         .active, .button:hover {
-          background: #AAA;
+          background: #00b1d7;
           color: #ffffff;
           border: none;
         }
