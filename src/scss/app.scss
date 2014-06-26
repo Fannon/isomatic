@@ -357,6 +357,10 @@ button.tiny, .button.tiny {
       position: absolute;
       left: $container-margin;
       top: $container-margin + 32px;
+
+      .slimScrollDiv {
+        margin-right: 0;
+      }
     }
 
     .overlay-right {
@@ -365,6 +369,10 @@ button.tiny, .button.tiny {
       position: absolute;
       right: 0;
       top: $container-margin + 32px;
+    }
+
+    .slimScrollDiv {
+      margin-right: 0;
     }
 
   }
@@ -668,6 +676,11 @@ button.tiny, .button.tiny {
 
   #overlay-icon {
 
+    svg {
+      width: 32px;
+      height: 32px;
+    }
+
     .group-container {
       height: $leftIconSize;
       margin-bottom: 7px;
@@ -675,7 +688,7 @@ button.tiny, .button.tiny {
 
     .group-id {
       background-color: #EDEDED;
-      width: 146px;
+      width: 130px;
       height: $leftIconSize;
       float: left;
       border-top: 1px solid #bbb;

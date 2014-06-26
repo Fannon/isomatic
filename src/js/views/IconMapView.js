@@ -99,6 +99,15 @@
                 }
             );
 
+            // Init Scrollbar
+            try {
+                var slimScrollOptions = isomatic.options.internal.slimScrollOptions;
+                slimScrollOptions.height = isomatic.options.ui.attributes.graphHeight - 34;
+                $('#icon-left-container .scrollbar').slimScroll(slimScrollOptions);
+            } catch (e) {
+                console.error('Error loading Scrollbar Plugin!');
+            }
+
         },
 
         model: isomatic.options.ui,

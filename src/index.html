@@ -1123,32 +1123,34 @@
         <h3>Color Settings</h3>
 
         <div class="overlay-left">
-            <form>
-                <div class="ui-container">
-                    <h4><span data-tooltip class="has-tip tip-right" title="Choose if Colors are mapped to Columns or Rows">Map to</span></h4>
-                    <input id="colorize-column" type="radio" name="radio3" value="column"><label for="colorize-column"><img src="img/column.svg"> Column</label>
-                    <input id="colorize-row" type="radio" name="radio3" value="row"><label for="colorize-row"><img src="img/row.svg"> Row</label>
-                </div>
+            <div class="scrollbar">
+                <form>
+                    <div class="ui-container">
+                        <h4><span data-tooltip class="has-tip tip-right" title="Choose if Colors are mapped to Columns or Rows">Map to</span></h4>
+                        <input id="colorize-column" type="radio" name="radio3" value="column"><label for="colorize-column"><img src="img/column.svg"> Column</label>
+                        <input id="colorize-row" type="radio" name="radio3" value="row"><label for="colorize-row"><img src="img/row.svg"> Row</label>
+                    </div>
 
-                <div class="ui-container">
-                    <h4>Assign colors</h4>
+                    <div class="ui-container">
+                        <h4>Assign colors</h4>
 
-                    {{#each colorMapping}}
-                    <legend>{{@key}}</legend>
-                    <input type="text" id="picker-{{@index}}" class="picker pick-icon-color" value="{{this}}" style="border-color: {{this}};">
-                    {{/each}}
-                </div>
+                        {{#each colorMapping}}
+                        <legend>{{@key}}</legend>
+                        <input type="text" id="picker-{{@index}}" class="picker pick-icon-color" value="{{this}}" style="border-color: {{this}};">
+                        {{/each}}
+                    </div>
 
-                <div class="ui-container">
-                    <h4>Legend Colors</h4>
-                    <legend>Lines Color</legend>
-                    <input type="text" id="picker-lines" class="picker" value="{{lineColor}}" style="border-color: {{lineColor}};">
-                </div>
+                    <div class="ui-container">
+                        <h4>Legend Colors</h4>
+                        <legend>Lines Color</legend>
+                        <input type="text" id="picker-lines" class="picker" value="{{lineColor}}" style="border-color: {{lineColor}};">
+                    </div>
 
-                <div class="button-group">
-                    <a id="color-apply" href="#" class="apply tiny button expand radius">Apply</a>
-                </div>
-            </form>
+                    <div class="button-group">
+                        <a id="color-apply" href="#" class="apply tiny button expand radius">Apply</a>
+                    </div>
+                </form>
+            </div>
         </div>
         <div class="overlay-right">
             <div class="scrollbar">
