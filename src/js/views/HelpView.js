@@ -58,7 +58,6 @@
             // Highlight according UI Element on the left side
             $('.highlightable').removeClass('highlight');
             $('.' + id + '-highlight').addClass('highlight');
-            console.log(id);
         }
 
     });

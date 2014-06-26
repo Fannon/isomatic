@@ -119,9 +119,15 @@
         checkHelp: function() {
             $('.help-section').hide();
             $('#help-container').hide();
+            $('.highlightable').removeClass('highlight');
             if (isomatic.options.internal.HelpStatus.active === true) {
                 $('#help-container').show();
                 $('#' + isomatic.options.internal.HelpStatus.location + '-help').show();
+                $('#' + isomatic.options.internal.HelpStatus.location + '-container .highlightable').first().addClass('highlight');
+            } else {
+                $('#' + isomatic.options.internal.HelpStatus.location + '-help .help-option-nav').removeClass('active').first().addClass('active');
+                $('#' + isomatic.options.internal.HelpStatus.location + '-help .help-right-option-container').hide().first().show();
+
             }
         }
 
