@@ -36,6 +36,8 @@
             // Init Scrollbar
             try {
                 var slimScrollOptions = isomatic.options.internal.slimScrollOptions;
+                slimScrollOptions.railColor = '#999';
+                slimScrollOptions.color = '#DDD';
                 slimScrollOptions.height = isomatic.options.ui.attributes.graphHeight - 80;
                 $('#help-container .scrollbar').slimScroll(slimScrollOptions);
             } catch (e) {
