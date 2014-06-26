@@ -542,11 +542,21 @@ button.tiny, .button.tiny {
       padding: 0px;
       width: 400px;
 
+
+      .help-title {
+        text-align: left;
+        float: left;
+        color: #FFF;
+        text-transform: uppercase;
+        font-size: 1.2em;
+        padding: 10px 0 0 0;
+      }
+
       h4 {
         color: #fff;
         float: left;
         border: none;
-        padding: 8px 5px;
+        padding: 4px 0;
         margin: 0px;
       }
 
@@ -556,8 +566,12 @@ button.tiny, .button.tiny {
         height: 21px;
       }
 
-      .home-help-content {
+    img.ui-element {
+      margin: 0px 9px 0px 9px;
+      height: 36px;
+    }
 
+      .home-help-content {
 
         .button {
           width: 370px;

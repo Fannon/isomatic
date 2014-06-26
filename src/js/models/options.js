@@ -154,9 +154,9 @@
             height: '100%',
             alwaysVisible: true,
             railVisible: true,
-            color: '#777',
-            railColor: '#BBB',
-            railOpacity: 0.4
+            color: '#555',
+            railColor: '#CCC',
+            railOpacity: 1
         },
 
         /**
@@ -172,8 +172,6 @@
     };
 
 
-
-
     ///////////////////////////////////////
     // Default Options                   //
     ///////////////////////////////////////
@@ -186,7 +184,7 @@
 
 
         /////////////////////////////
-        // GRAPH LAYOUTING        //
+        // LAYOUTING               //
         /////////////////////////////
 
         /** Aspect Ratio of the Canvas. Width is always 100% */

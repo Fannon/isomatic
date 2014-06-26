@@ -35,11 +35,21 @@
 
             // Init Scrollbar
             try {
-                var slimScrollOptions = isomatic.options.internal.slimScrollOptions;
-                slimScrollOptions.railColor = '#999';
-                slimScrollOptions.color = '#DDD';
-                slimScrollOptions.height = isomatic.options.ui.attributes.graphHeight - 80;
+                var slimScrollOptions = {
+                    height: isomatic.options.ui.attributes.graphHeight - 40,
+                    alwaysVisible: true,
+                    railVisible: true,
+                    color: '#EEE',
+                    railColor: '#222',
+                    railOpacity: 1
+                };
+
                 $('#help-container .scrollbar').slimScroll(slimScrollOptions);
+
+                slimScrollOptions.height = isomatic.options.ui.attributes.graphHeight - 80;
+
+                $('#help-container .scrollbar-tour').slimScroll(slimScrollOptions);
+
             } catch (e) {
                 console.error('Error loading Scrollbar Plugin!');
             }
