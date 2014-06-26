@@ -430,7 +430,7 @@ button.tiny, .button.tiny {
     }
 
     .button {
-      background: #BBBBBB;
+      background: #777;
       color: #333;
       float: left;
       width: 100px;
@@ -476,10 +476,11 @@ button.tiny, .button.tiny {
             background: #0099CC;
             color: #fff;
             width: 30px;
+            height: 45px;
             float: left;
             padding: 10px;
-            font-size: 18px;
-            height: 45px;
+            font-size: 20px;
+
           }
 
           .help-right-text {
@@ -488,14 +489,16 @@ button.tiny, .button.tiny {
             border-top: 1px solid #0099CC;
             position: absolute;
             margin-left: 30px;
-            padding: 5px;
+            padding: 5px 8px;
+            line-height: 17px;
+            vertical-align: middle;
           }
         }
       }
     }
 
     .help-nav {
-      background: #bbbbbb;
+      background: #777;
       color: #333333;
       width: 95%;
       height: 40px;
@@ -552,8 +555,8 @@ button.tiny, .button.tiny {
 
       img {
         float: left;
-        margin: 7px 15px 8px 12px;
-        height: 21px;
+        margin: 3px 5px 3px 5px;
+        height: 12px;
       }
 
       .home-help-content {
