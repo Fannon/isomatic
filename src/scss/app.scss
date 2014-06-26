@@ -159,6 +159,10 @@ button.tiny, .button.tiny {
   margin: 0px auto;
   width: 1010px;
 
+  #title img {
+    margin-top: -3px;
+  }
+
   #navigation-create {
     color: #FFF;
 
@@ -195,6 +199,7 @@ button.tiny, .button.tiny {
   li.help {
     background: #0099cc;
     color: #FFF;
+    height: 40px;
 
     a#trigger-help {
       padding-left: 17px;
