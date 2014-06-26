@@ -36,7 +36,6 @@
             // Init Scrollbar
             try {
                 var slimScrollOptions = isomatic.options.internal.slimScrollOptions;
-
                 slimScrollOptions.height = isomatic.options.ui.attributes.graphHeight - 80;
                 $('#help-container .scrollbar').slimScroll(slimScrollOptions);
             } catch (e) {
@@ -55,6 +54,11 @@
             $('#' + id).addClass("active");
             $('.help-right-option-container').hide();
             $('#' + id + '-container').show();
+
+            // Highlight according UI Element on the left side
+            $('.highlightable').removeClass('highlight');
+            $('.' + id + '-highlight').addClass('highlight');
+            console.log(id);
         }
 
     });

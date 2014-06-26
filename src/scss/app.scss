@@ -223,6 +223,12 @@ button.tiny, .button.tiny {
   }
 }
 
+.highlight {
+  border-color: #0099CC !important;
+  background: #E0F1F6 !important;
+  transition: background-color 0.3s;
+}
+
 
 // Toolbar
 
@@ -420,15 +426,13 @@ button.tiny, .button.tiny {
       color: #333;
       float: left;
       width: 100px;
-      border-color: #BBBBBB;
-      border-width: 1px;
+      border: none;
     }
 
     .active, .button:hover {
-      background: #333333;
+      background: #0099CC;
       color: #ffffff;
-      border-color: #0099CC;
-      border-width: 1px;
+      border: none;
     }
 
     .tiny {
@@ -549,9 +553,9 @@ button.tiny, .button.tiny {
 
         .button {
           width: 370px;
-          background: #BBB;
+          background: #777;
           color: #333;
-          border-color: #BBBBBB;
+          border: none;
           padding: 0px;
           margin: 0 0 5px 0;
         }
@@ -566,10 +570,9 @@ button.tiny, .button.tiny {
         }
 
         .active, .button:hover {
-          background: #333333;
+          background: #AAA;
           color: #ffffff;
-          border-color: #0099CC;
-          border-width: 1px;
+          border: none;
         }
 
         .home-help-topic{
