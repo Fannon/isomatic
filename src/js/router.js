@@ -17,6 +17,7 @@
             "export": "exportGraphic",
             "tour": "tour",
             "help": "help",
+            "mainhelp": "mainhelp",
             "data": "data",
             "type": "type",
             "color": "color",
@@ -85,6 +86,10 @@
             this.checkHelp();
         },
 
+        mainhelp: function() {
+            this.mainHelp();
+        },
+
         ////////////////////////////////////
         // Helper Functions               //
         ////////////////////////////////////
@@ -124,11 +129,18 @@
                 $('#help-container').show();
                 $('#' + isomatic.options.internal.HelpStatus.location + '-help').show();
                 $('#' + isomatic.options.internal.HelpStatus.location + '-container .highlightable').first().addClass('highlight');
-            } else {
-                $('#' + isomatic.options.internal.HelpStatus.location + '-help .help-option-nav').removeClass('active').first().addClass('active');
-                $('#' + isomatic.options.internal.HelpStatus.location + '-help .help-right-option-container').hide().first().show();
-
             }
+            $('#' + isomatic.options.internal.HelpStatus.location + '-help .help-option-nav').removeClass('active').first().addClass('active');
+            $('#' + isomatic.options.internal.HelpStatus.location + '-help .help-right-option-container').hide().first().show();
+        },
+
+        mainHelp: function() {
+            $(".trigger-ui").removeClass('active');
+            $(".overlay-container").hide();
+            isomatic.options.internal.HelpStatus.location = 'home';
+            $("#help-container").show();
+            $('.help-section').hide();
+            $('#home-help').show();
         }
 
     });

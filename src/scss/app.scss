@@ -380,10 +380,6 @@ button.tiny, .button.tiny {
       top: $container-margin + 32px;
     }
 
-    .slimScrollDiv {
-      margin-right: 0;
-    }
-
   }
 
   .button-group {
@@ -403,12 +399,6 @@ button.tiny, .button.tiny {
 
   .scrollbar-container {
     padding-right: 0;
-
-    h3 {
-      margin-right: $container-margin;
-      display: block;
-      width: auto;
-    }
 
     .button {
       margin-top: $container-margin;
@@ -467,6 +457,10 @@ button.tiny, .button.tiny {
       left: 0;
       margin-left: 118px;
       border-left: 1px solid #bbb;
+
+      .slimScrollDiv {
+        margin-right: 0px;
+      }
 
       .help-step {
         border: 1px solid #0099CC;
@@ -545,7 +539,7 @@ button.tiny, .button.tiny {
 
       .help-nav-center {
         position: absolute;
-        margin: 15px 0 0 171px;
+        margin-left: 132px;
       }
 
       .help-nav-right {
@@ -565,7 +559,6 @@ button.tiny, .button.tiny {
       background: #333;
       color: #fff;
       padding: 0px;
-      width: 400px;
 
       .help-title {
         text-align: left;
@@ -606,6 +599,14 @@ button.tiny, .button.tiny {
           padding: 0px;
           margin: 0 0 5px 0;
           height: 36px;
+        }
+
+        .slimScrollDiv {
+          margin-right: 0;
+        }
+
+        h3 {
+
         }
 
         .smaller {
