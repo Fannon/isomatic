@@ -628,9 +628,9 @@ button.tiny, .button.tiny {
     .select-type {
       margin-bottom: 5px;
       height: $leftIconSize;
-      background-color: #BBB;
+      background-color: #999;
       border-radius: 3px;
-      border: 1px solid #999;
+      border: none;
 
       .type-title {
         color: #FFF;
@@ -642,13 +642,13 @@ button.tiny, .button.tiny {
     }
 
     .select-type:hover {
-      background-color: #999;
-      border: 1px solid #777;
+      background-color: #BBB;
+      border: none;
     }
 
     .select-type.active {
       background-color: #333;
-      border: 1px solid #000;
+      border: none;
     }
 
     .type-title {
