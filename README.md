@@ -1,6 +1,16 @@
-# isomatic
-isomatic is an interactive Isotype Graphics Generator.
-It can be used online at http://www.isomatic.de
+## About isomatic
+### Functionality
+Isomatic is a web application that runs in your browser that lets you easily create isotype graphics. The resulting graphics can be downloaded as SVG files which can be imported to several other applications. There are many customization options - but see for yourself at [www.isomatic.de](http://www.isomatic.de)!
+Isomatic is free to use and OpenSource at GitHub!
+
+### Background
+Isotype graphics are a special subtype of infographics ... [TODO: Lisa]
+
+### History
+Isomatic was first created 2013 as part of a seminar at the Univsity of Applied Sciences Augsburg. A first Version was released late 2013 which contained all the basic funtionality. In 2014 we've added some more advanced layouting capabilities, an interactive tour and a few minor improvements here and there.
+
+### The Team
+Isomatic is an university project by Lisa Borgenheimer, Simon Heimler and Sebastian Huber. 
 
 ## Installation
 This project uses 3rd party programs for pependency & build management.
