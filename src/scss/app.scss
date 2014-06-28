@@ -143,7 +143,6 @@ input.invalid {
 }
 
 button.tiny, .button.tiny {
-  font-family: fira_sans_regular;
   font-size: 11px;
   margin: 5px 0;
 }
@@ -198,14 +197,14 @@ button.tiny, .button.tiny {
   }
 
   li.help {
-    background: #00b1d7;
+    background: #0099cc;
     color: #FFF;
     height: 40px;
 
     a#trigger-help {
       padding-left: 17px;
       padding-right: 17px;
-      background: #00b1d7;
+      background: #0099cc;
 
     }
   }
@@ -234,9 +233,8 @@ button.tiny, .button.tiny {
 }
 
 .highlight {
-  border-color: #00b1d7 !important;
-  border: 3px solid;
-//  background: #E0F1F6 !important;
+  border-color: #0099CC !important;
+  background: #E0F1F6 !important;
   transition: background-color 0.3s;
 }
 
@@ -382,17 +380,21 @@ button.tiny, .button.tiny {
       top: $container-margin + 32px;
     }
 
+    .slimScrollDiv {
+      margin-right: 0;
+    }
+
   }
 
   .button-group {
 
     a.apply {
-      background-color: #9DD61F;
+      background-color: #73C021;
       margin: $container-margin 0;
     }
 
     a.apply-right-margin {
-      background-color: #9DD61F;
+      background-color: #73C021;
       display: block;
       width: auto;
       margin-right: $container-margin;
@@ -401,6 +403,12 @@ button.tiny, .button.tiny {
 
   .scrollbar-container {
     padding-right: 0;
+
+    h3 {
+      margin-right: $container-margin;
+      display: block;
+      width: auto;
+    }
 
     .button {
       margin-top: $container-margin;
@@ -416,7 +424,6 @@ button.tiny, .button.tiny {
 
 
   .overlay-container.help{
-//    background: #006b85;
     background: #333;
     width: 412px;
     left: $overlay-big-width;
@@ -426,9 +433,9 @@ button.tiny, .button.tiny {
     }
 
     h3 {
-      background: #00b1d7;
+      background: #0099CC;
       color: #FFF;
-      border-color: #00b1d7;
+      border-color: #0099CC;
     }
 
     .button {
@@ -440,7 +447,7 @@ button.tiny, .button.tiny {
     }
 
     .active, .button:hover {
-      background: #00b1d7;
+      background: #0099CC;
       color: #ffffff;
       border: none;
     }
@@ -459,17 +466,11 @@ button.tiny, .button.tiny {
       position: absolute;
       left: 0;
       margin-left: 118px;
-      border-left: 1px solid #bbb;
-
-      .slimScrollDiv {
-        margin-right: 0px;
-      }
+      border-left: 1px solid #555;
 
       .help-step {
-        border: 2px solid #00b1d7;
+        border: 1px solid #0099CC;
         margin: 0px 0px 10px 10px;
-        border-radius: 3px;
-
 
         .help-right-picture {
           width: 182px;
@@ -478,10 +479,10 @@ button.tiny, .button.tiny {
         }
 
         .help-right-description {
-          background: #0082a5;
+          background: #005675;
 
           .help-right-number {
-            background: #00b1d7;
+            background: #0099CC;
             color: #fff;
             width: 30px;
             height: 45px;
@@ -492,7 +493,7 @@ button.tiny, .button.tiny {
           }
 
           .help-right-text {
-            width: 230px;
+            width: 242px;
             color: #fff;
             position: absolute;
             margin-left: 30px;
@@ -506,14 +507,13 @@ button.tiny, .button.tiny {
 
     .help-nav {
       background: #777;
-      border-radius: 3px;
       color: #333333;
-      width: 92%;
+      width: 95%;
       height: 40px;
       font-weight: bold;
       position: absolute;
       bottom: 7px;
-      right: 25px;
+      right: 8px;
 
       .button {
         width: auto;
@@ -526,57 +526,46 @@ button.tiny, .button.tiny {
       }
 
       .button:hover {
-        background: #00b1d7;
-        color: #FFF;
+        background: #BBBBBB;
+        color: #333;
         border-color: #333333;
         border-width: 1px;
       }
 
-
       .help-nav-left {
         float: left;
 
-        .help-nav-left-icon {
-          background-image: url(../img/previous.svg);
-          background-repeat: no-repeat;
-          height: 12px;
+        img {
           width: 12px;
-          margin: 3px 0px;
+          height: 12px;
+          margin: 3px;
         }
 
       }
 
       .help-nav-center {
         position: absolute;
-        margin-left: 132px;
-
-        .button {
-          padding: 8px 12px;
-        }
-
+        margin: 15px 0 0 171px;
       }
 
       .help-nav-right {
         float: right;
 
-
-        .help-nav-right-icon {
-          background-image: url(../img/next.svg);
-          background-repeat: no-repeat;
-          height: 12px;
+        img {
           width: 12px;
-          margin: 3px -1px;
+          height: 12px;
+          margin: 3px;
         }
-
       }
 
     }
   }
 
   .help-section {
-//      background: #007E95;
+      background: #333;
       color: #fff;
       padding: 0px;
+      width: 400px;
 
       .help-title {
         text-align: left;
@@ -584,7 +573,7 @@ button.tiny, .button.tiny {
         color: #FFF;
         text-transform: uppercase;
         font-family: fira_sans_regular;
-        font-size: 1.1em;
+        font-size: 1.2em;
         padding: 11px 0 0 0;
       }
 
@@ -603,7 +592,7 @@ button.tiny, .button.tiny {
       }
 
       img.ui-element {
-        margin: 0px 11px 0px 7px;
+        margin: 0px 9px 0px 9px;
         height: 36px;
       }
 
@@ -619,14 +608,6 @@ button.tiny, .button.tiny {
           height: 36px;
         }
 
-        .slimScrollDiv {
-          margin-right: 0;
-        }
-
-        h3 {
-
-        }
-
         .smaller {
           height: 42px;
 
@@ -637,7 +618,7 @@ button.tiny, .button.tiny {
         }
 
         .active, .button:hover {
-          background: #00b1d7;
+          background: #AAA;
           color: #ffffff;
           border: none;
         }
@@ -884,8 +865,10 @@ button.tiny, .button.tiny {
     border-bottom: 1px solid #CCC;
     margin: 0px 0px 10px 0px;
   }
+}
 
-
+.colpick {
+  z-index: 9999;
 }
 
 #message-box {
@@ -936,8 +919,6 @@ button.tiny, .button.tiny {
       font-weight: bold;
       cursor: pointer;
     }
-
-
 }
 
 #modal-container {
@@ -957,8 +938,6 @@ button.tiny, .button.tiny {
   #export-modal {
 
   }
-
-
 
 }
 
