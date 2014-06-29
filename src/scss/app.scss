@@ -416,8 +416,8 @@ button.tiny, .button.tiny {
 
 
   .overlay-container.help{
-//    background: #006b85;
-    background: #333;
+//    background: #333;
+    background: #aee3f2;
     width: 412px;
     left: $overlay-big-width;
 
@@ -432,7 +432,8 @@ button.tiny, .button.tiny {
     }
 
     .button {
-      background: #777;
+      background: #fff;
+//      background: #777;
       color: #333;
       float: left;
       width: 100px;
@@ -478,7 +479,8 @@ button.tiny, .button.tiny {
         }
 
         .help-right-description {
-          background: #0082a5;
+          background: #009cbf;
+//          background: #0082a5;
 
           .help-right-number {
             background: #00b1d7;
@@ -505,7 +507,8 @@ button.tiny, .button.tiny {
     }
 
     .help-nav {
-      background: #777;
+      background: #fff;
+//      background: #777;
       border-radius: 3px;
       color: #333333;
       width: 92%;
@@ -611,7 +614,8 @@ button.tiny, .button.tiny {
 
         .button {
           width: 370px;
-          background: #777;
+//          background: #777;
+          background: #333;
           color: #333;
           border: none;
           padding: 0px;
