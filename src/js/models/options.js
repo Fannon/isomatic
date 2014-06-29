@@ -103,29 +103,59 @@
          * @type {Array}
          */
         exampleData: [
+//            {
+//                "The usage of social networks (in relation to a persons income)":"Facebook",
+//                "Low Income":"165050000",
+//                "Medium Income":"395000777",
+//                "High Income":"135000000"
+//            },
+//            {
+//                "The usage of social networks (in relation to a persons income)":"Twitter",
+//                "Low Income":"278050000",
+//                "Medium Income":"198007700",
+//                "High Income":"88000555"
+//            },
+//            {
+//                "The usage of social networks (in relation to a persons income)":"Google+",
+//                "Low Income":"459370000",
+//                "Medium Income":"159200000",
+//                "High Income":"129000000"
+//            },
+//            {
+//                "The usage of social networks (in relation to a persons income)":"LinkedIn",
+//                "Low Income":"102500000",
+//                "Medium Income":"80500770",
+//                "High Income":"30006000"
+//            }
             {
-                "The usage of social networks (in relation to a persons income)":"Facebook",
-                "Low Income":"165050000",
-                "Medium Income":"395000777",
-                "High Income":"135000000"
+                "Usage of free reshipment (percentage of 1.000 respondents)":"Nearly Always",
+                "Female":"3",
+                "Male":"2"
             },
             {
-                "The usage of social networks (in relation to a persons income)":"Twitter",
-                "Low Income":"278050000",
-                "Medium Income":"198007700",
-                "High Income":"88000555"
+                "Usage of free reshipment (percentage of 1.000 respondents)":"In Most Cases",
+                "Female":"11",
+                "Male":"8"
             },
             {
-                "The usage of social networks (in relation to a persons income)":"Google+",
-                "Low Income":"459370000",
-                "Medium Income":"159200000",
-                "High Income":"129000000"
+                "Usage of free reshipment (percentage of 1.000 respondents)":"Frequently",
+                "Female":"31",
+                "Male":"22"
             },
             {
-                "The usage of social networks (in relation to a persons income)":"LinkedIn",
-                "Low Income":"102500000",
-                "Medium Income":"80500770",
-                "High Income":"30006000"
+                "Usage of free reshipment (percentage of 1.000 respondents)":"Rarely",
+                "Female":"51",
+                "Male":"58"
+            },
+            {
+                "Usage of free reshipment (percentage of 1.000 respondents)":"Never Before",
+                "Female":"2",
+                "Male":"6"
+            },
+            {
+                "Usage of free reshipment (percentage of 1.000 respondents)":"No Online Purchases",
+                "Female":"2",
+                "Male":"5"
             }
 
         ],
@@ -197,7 +227,7 @@
         graphHeight: 0,
 
         /** Diagram Type */
-        diagramType: 'compare',
+        diagramType: 'versus',
 
         /** Margin to Canvas */
         outerMargin: 20,
@@ -215,13 +245,13 @@
         iconVerticalMargin: 5,
 
         /** Equally distribute the width of the Columns */
-        equallyDistributedColumns: false,
+        equallyDistributedColumns: true,
 
         /** Break a Row into several Rows visually if number icons exceed this */
         breakRow: false,
 
         /** Allow RoundUp and RoundDown of the IconSize */
-        roundSize: true,
+        roundSize: false,
 
         /** Floor value if Remainder is below */
         roundDown: 0.3,
@@ -230,10 +260,10 @@
         roundUp: 0.8,
 
         /** If true, Size of Icons is automatically set to fit width of canvas */
-        autoIconSize: true,
+        autoIconSize: false,
 
         /** Icon Size */
-        iconSize: 0,
+        iconSize: 30,
 
         /** Auto calculated Icon Size -> This fits the canvas width */
         calculatedIconSize: 0,
@@ -241,7 +271,7 @@
         /**
          * Icon Scale Factor
          */
-        scale: 30000000,
+        scale: 2,
 
 
         /////////////////////////////
@@ -253,14 +283,14 @@
          * Accepts 'row' and 'column'
          * @type {string}
          */
-        iconize: 'row',
+        iconize: 'column',
 
         /**
          * Defines if the Color is applied to Rows or Columns
          * Accepts 'row' and 'columns'
          * @type {string}
          */
-        colorize: 'column',
+        colorize: 'row',
 
         /**
          * This stores which row ID maps to which color
@@ -270,10 +300,8 @@
 
         /** This stores which column ID maps to which icon */
         iconMap: [
-            'social_networks-facebook',
-            'social_networks-twitter',
-            'social_networks-googleplus',
-            'social_networks-linkedin'
+            'persons-woman',
+            'persons-man'
         ],
 
 
@@ -325,7 +353,7 @@
 
         drawVerticalLines: true,
 
-        drawHorizontalLines: true,
+        drawHorizontalLines: false,
 
         lineColor: 'CCCCCC'
 
