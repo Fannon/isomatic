@@ -263,7 +263,7 @@
         autoIconSize: false,
 
         /** Icon Size */
-        iconSize: 30,
+        iconSize: 35,
 
         /** Auto calculated Icon Size -> This fits the canvas width */
         calculatedIconSize: 0,
@@ -271,7 +271,7 @@
         /**
          * Icon Scale Factor
          */
-        scale: 2,
+        scale: 3,
 
 
         /////////////////////////////
@@ -296,12 +296,12 @@
          * This stores which row ID maps to which color
          * Defines the default Palette
          */
-        colorMap: isomatic.options.internal.colorPalettes.Signal2,
+        colorMap: ["333333","00AAB5", "C9E000", "ED4200", "FFB812", "AAAAAA"],
 
         /** This stores which column ID maps to which icon */
         iconMap: [
-            'persons-woman',
-            'persons-man'
+            'persons-girl',
+            'persons-boy'
         ],
 
 
@@ -312,7 +312,7 @@
         /**
          * Legend Font Family
          */
-        legendFont: 'Arial',
+        legendFont: 'Georgia',
 
         /**
          * Default Font Size for the Legend
