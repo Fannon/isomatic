@@ -1,6 +1,12 @@
 ## About isomatic
 ### Functionality
-Isomatic is a web application that runs in your browser that lets you easily create isotype graphics. The resulting graphics can be downloaded as SVG files which can be imported to several other applications. There are many customization options - but see for yourself at [www.isomatic.de](http://www.isomatic.de)!
+Tired of creating isotype graphics manually? We've created a web application ([www.isomatic.de](http://www.isomatic.de)) that does all the heavy lifting for you and still leaves you with the opportunity to customize it in your favorite vector graphics editor like Adobe Illustrator.
+
+You start by importing your data via copy'n'paste from a spreadsheet application, like Excel or Numbers. The application gives you the choice between several isotype layouts. A broad library contains many custom designed icons and many options to layout and design the graphic. If you seek help, the interactive tour will guide you throughout the whole process.
+
+We started this project in 2013 as students of the University of Applied Sciences in Augsburg and released it as OpenSource.
+
+Isomatic is a web application that runs in your browser that lets you easily create isotype graphics. The resulting graphics can be downloaded as SVG files which can be imported to several other applications. There are many customization options - but see for yourself at !
 Isomatic is free to use and OpenSource at GitHub!
 
 ### Background
@@ -10,7 +16,12 @@ Isotype graphics are a special subtype of infographics ... [TODO: Lisa]
 Isomatic was first created 2013 as part of a seminar at the Univsity of Applied Sciences Augsburg. A first Version was released late 2013 which contained all the basic funtionality. In 2014 we've added some more advanced layouting capabilities, an interactive tour and a few minor improvements here and there.
 
 ### The Team
-Isomatic is an university project by Lisa Borgenheimer, Simon Heimler and Sebastian Huber. 
+Lisa Borgenheimer: B. A. Communication Design, currently studing M. A. Interactive Media Systems. Working as Freelancer and Information Designer for Süddeutsche Zeitung and ZEIT ONLINE.
+
+Simon Heimler: B. A. Interactive Media, currently studing M. S. of Applied Research. Specialized in Mobile and Web Development, Semantic Web Technologies, Content Management and Data Visualization.
+
+Sebastian Huber: B. A. Interactive Media, currently studing M. A. Interactive Media Systems. Working as a Fullstack Webdeveloper.
+
 
 ## Installation
 This project uses 3rd party programs for pependency & build management.
