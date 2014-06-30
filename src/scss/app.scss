@@ -254,21 +254,18 @@ button.tiny, .button.tiny {
     width: 42px;
     height: 44px;
     vertical-align: middle;
-    background-color: #BBBBBB;
+    background-color: #AAA;
     background-reapeat: no-repeat;
     background-position: center center;
-    border: 1px solid #999;
     border-radius: 3px;
   }
 
   .icon:hover {
-    background-color: #999;
-    border: 1px solid #777;
+    background-color: #555;
   }
 
   .active {
     background-color: #333;
-    border: 1px solid #000;
   }
 
   .toolbar-line {
@@ -400,7 +397,12 @@ button.tiny, .button.tiny {
   }
 
   .scrollbar-container {
+
     padding-right: 0;
+
+    h3 {
+      margin-right: 8px;
+    }
 
     .button {
       margin-top: $container-margin;
@@ -699,7 +701,7 @@ button.tiny, .button.tiny {
     .select-type {
       margin-bottom: 5px;
       height: $leftIconSize;
-      background-color: #999;
+      background-color: #AAA;
       border-radius: 3px;
       border: none;
 

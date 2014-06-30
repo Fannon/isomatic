@@ -42,9 +42,9 @@
                     <li>
                         <a id="openExport" href="#export"><img src="img/export.svg">Export</a>
                     </li>
-                    <li class="help">
-                        <a id="trigger-help" href="#help"><img src="img/help.svg" width="16px" height="16px">Help</a>
-                    </li>
+                    <!--<li class="help">-->
+                        <!--<a id="trigger-help" href="#help"><img src="img/help.svg" width="16px" height="16px">Help</a>-->
+                    <!--</li>-->
                 </ul>
             </div>
         </div>
@@ -1059,7 +1059,7 @@
             <h3>Diagram Type</h3>
 
             <div class="ui-container">
-                <h4>Select Type</h4>
+                <h4><span data-tooltip class="has-tip tip-right" title="Select the layout type. This may introduce advanced settings.">Select Type</span></h4>
                 <div id="normal-isotype" class="select-type">
                     <div class="type-title">
                         Normal
@@ -1334,7 +1334,7 @@
         <form>
             <div class="ui-container">
 
-                <h4>Set Scale</h4>
+                <h4><span data-tooltip class="has-tip tip-right" title="Set the Scale how much one icon represents">Set Scale</span></h4>
                 <label>
                     <span data-tooltip class="has-tip tip-right" title="Enter Scale manually">Scale</span>
                 </label>
@@ -1347,14 +1347,13 @@
 
             <input id="round-size" name="roundSize" type="checkbox" {{#if options.roundSize}}checked{{/if}}><label for="round-size">Round Size</label>
 
-
             <label>
-                    <span data-tooltip class="has-tip tip-right" title="Ceil value if Remainder is above">Round Up</span>
+                    <span data-tooltip class="has-tip tip-right" title="Ceil value if remainder is above">Round Up</span>
                 </label>
                 <input id="round-up" name="roundUp" type="text" value="{{options.roundUp}}">
 
                 <label>
-                    <span data-tooltip class="has-tip tip-right" title="Floor value if Remainder is below">Round Down</span>
+                    <span data-tooltip class="has-tip tip-right" title="Floor value if remainder is below">Round Down</span>
                 </label>
                 <input id="round-down" name="roundDown" type="text" value="{{options.roundDown}}">
             </div>

@@ -92,9 +92,9 @@ var isomatic = {};
 
         // Start interactive Tour if not already seen
 
-        if (!$.getCookie('tour-viewed')) {
-            window.location.hash = '#tour';
-        }
+//        if (!$.getCookie('tour-viewed')) {
+//            window.location.hash = '#tour';
+//        }
 
 
     });
