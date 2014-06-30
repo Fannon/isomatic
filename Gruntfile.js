@@ -231,4 +231,8 @@ module.exports = function(grunt) {
         'content:usemin', 'usemin',
         'content:done'
     ]);
+
+    grunt.registerTask('dist', [
+        'build'
+    ]);
 };
