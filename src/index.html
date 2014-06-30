@@ -1034,7 +1034,7 @@
             <form class="custom">
 
                 <div class="ui-container highlightable data-help-pastedata-highlight">
-                    <h4>Paste Data</h4>
+                    <h4><span data-tooltip class="has-tip tip-right" title="Copy'n'Paste the data from spreadsheet applications here.<br> This works with Excel, Numbers and Google Spreadsheets">Paste Data</span></h4>
                     <textarea placeholder="Copy'n'Paste Data here" id="pasted-data"></textarea>
                     <div class="button-group">
                         <a id="import-data" href="#" class="apply tiny button radius">Import</a>
@@ -1126,7 +1126,7 @@
             </div>
 
             <div class="ui-container">
-                <h4>Drag and Drop</h4>
+                <h4><span data-tooltip class="has-tip tip-right" title="Drag and drop the icons from the library <br>to the box right of the label">Drag and Drop</span></h4>
 
                 {{#each iconMapping}}
                 <div id="group-{{@index}}" class="group-container">
@@ -1182,7 +1182,7 @@
                     </div>
 
                     <div class="ui-container">
-                        <h4>Assign colors</h4>
+                        <h4><span data-tooltip class="has-tip tip-right" title="Click on a color to open a color picker. <br>Alternatively enter the HEX Code of the color via the keyboard.">Assign Colors</span></h4>
 
                         {{#each colorMapping}}
                         <legend>{{@key}}</legend>
@@ -1192,7 +1192,7 @@
 
                     <div class="ui-container">
                         <h4>Legend Colors</h4>
-                        <legend>Lines Color</legend>
+                        <legend><span data-tooltip class="has-tip tip-right" title="Color of the lines that seperate the icon blocks">Lines Color</span></legend>
                         <input type="text" id="picker-lines" class="picker" value="{{lineColor}}" style="border-color: {{lineColor}};">
                     </div>
 
@@ -1206,7 +1206,7 @@
             <div class="scrollbar">
                 <form>
                     <div class="ui-container">
-                    <h4>Color Palettes</h4>
+                    <h4><span data-tooltip class="has-tip tip-right" title="Predefined Colorpalettes <br>Click on a palette to apply all colors to your current color mapping">Drag and  Drop</span></h4>
 
                         {{#each palettes}}
                         <legend>{{@key}}</legend>
@@ -1295,7 +1295,7 @@
                 </div>
 
                 <div class="ui-container">
-                    <h4><span data-tooltip class="has-tip tip-right" title="See the icon proportion">Size</span></h4>
+                    <h4><span data-tooltip class="has-tip tip-right" title="Adjust the icon size">Size</span></h4>
 
                     <input id="auto-icon-size" name="autoIconSize" type="checkbox" {{#if options.autoIconSize}}checked{{/if}}><label for="auto-icon-size">Auto Icon Size</label>
 
@@ -1343,9 +1343,9 @@
             </div>
 
             <div class="ui-container">
-            <h4>Size Rounding</h4>
+            <h4><span data-tooltip class="has-tip tip-right" title="If enabled this setting will scale the last icon<br> of a column according to the value of the remainder">Scale last icon</span></h4>
 
-            <input id="round-size" name="roundSize" type="checkbox" {{#if options.roundSize}}checked{{/if}}><label for="round-size">Round Size</label>
+            <input id="round-size" name="roundSize" type="checkbox" {{#if options.roundSize}}checked{{/if}}><label for="round-size">Scale Size of last Icon</label>
 
             <label>
                     <span data-tooltip class="has-tip tip-right" title="Ceil value if remainder is above">Round Up</span>
@@ -1374,7 +1374,7 @@
         <form>
 
             <div class="ui-container">
-                <h4>Legend Settings</h4>
+                <h4><span data-tooltip class="has-tip tip-right" title="Adjust the font and layout of the left and bottom legend">Legend Settings</span></h4>
 
                 <div class="row collapse">
                     <label><img src="img/titleheight.svg">Title FontSize</label>
@@ -1416,23 +1416,21 @@
                     </div>
                 </div>
 
+                <div class="row collapse">
+                    <label>
+                        <span data-tooltip class="has-tip tip-right" title="Choose Font-Family">Font-Family</span>
+                    </label>
+                    <select id="legend-font" name="legendFont" value="{{options.legendFont}}">
+                        {{#each availableFonts }}
+                        <option value="{{this}}">{{@key}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+
                 <input id="draw-column-legend" name="drawColumnLegend" type="checkbox" {{#if options.drawColumnLegend}}checked{{/if}}><label for="draw-column-legend">Draw Column Legend</label>
 
-                <!--<label>Add Topic Description</label>-->
-                <!--<textarea placeholder="Enter Description here.."></textarea>-->
             </div>
 
-            <div class="ui-container">
-                <h4>Font Settings</h4>
-                <label>
-                    <span data-tooltip class="has-tip tip-right" title="Choose Font-Family">Font-Family</span>
-                </label>
-                <select id="legend-font" name="legendFont" value="{{options.legendFont}}">
-                    {{#each availableFonts }}
-                    <option value="{{this}}">{{@key}}</option>
-                    {{/each}}
-                </select>
-            </div>
 
             <div class="button-group">
                 <a id="text-apply" href="#" class="apply tiny button expand radius">Apply</a>

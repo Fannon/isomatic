@@ -21,6 +21,7 @@
 //////////////////////////////////////////
 
 $base-font-size: 12px;
+
 $container-margin: 8px;
 $overlay-small-width: 220px;
 $overlay-big-width: 560px;
@@ -78,25 +79,6 @@ h3.smallTopMenu {
   width: 157px;
 }
 
-
-.top-apply {
-  background-color: #F16515;
-  border-radius: 0 3px 3px 0;
-  padding: 7px 7px 9px 7px;
-  margin-top: 2px;
-  margin-bottom: $container-margin;
-  color: #EEE;
-  font-size: 1em;
-  text-transform: none;
-  float: right;
-}
-
-.top-apply:hover {
-  -webkit-transition: background-color 0.2s;
-  background-color: #86D10F;
-  color: #FFF;
-}
-
 h4 {
   font-size: 1.2em;
   margin: 0 0 10px;
@@ -135,6 +117,14 @@ label {
   content: " [?]";
   color: #217EB6;
   font-size: 0.9em;
+}
+
+.tooltip {
+  background-color: #217EB6;
+  border-radius: 3px;
+}
+.nub {
+  border-color: transparent #217EB6 transparent transparent !important;
 }
 
 input.invalid {
