@@ -408,8 +408,8 @@ button.tiny, .button.tiny {
 
 
   .overlay-container.help{
-//    background: #333;
-    background: #aee3f2;
+    background: #333;
+//    background: #f6fcff;
     width: 412px;
     left: $overlay-big-width;
 
@@ -424,18 +424,26 @@ button.tiny, .button.tiny {
     }
 
     .button {
-      background: #fff;
+      background: #00b1d7;
 //      background: #777;
-      color: #333;
+      color: #fff;
+      border: 2px solid #00b1d7;
       float: left;
-      width: 100px;
-      border: none;
+      width: 110px;
+      margin: 0 0 5px 0;
+
     }
 
-    .active, .button:hover {
-      background: #00b1d7;
+    .active {
+      background: #333;
       color: #ffffff;
-      border: none;
+      border: 2px solid #00b1d7;
+    }
+
+    .button:hover {
+      background: #333;
+      color: #ffffff;
+      border: 2px solid #00b1d7;
     }
 
     .tiny {
@@ -452,7 +460,7 @@ button.tiny, .button.tiny {
       position: absolute;
       left: 0;
       margin-left: 118px;
-      border-left: 1px solid #bbb;
+//      border-left: 1px solid #555;
 
       .slimScrollDiv {
         margin-right: 0px;
@@ -471,8 +479,11 @@ button.tiny, .button.tiny {
         }
 
         .help-right-description {
-          background: #009cbf;
+          background: #333;
 //          background: #0082a5;
+          border-top: 1px solid #00b1d7;
+          border-bottom: 1px solid #00b1d7;
+          border-right: 1px solid #00b1d7;
 
           .help-right-number {
             background: #00b1d7;
@@ -499,10 +510,9 @@ button.tiny, .button.tiny {
     }
 
     .help-nav {
-      background: #fff;
+      background: #00b1d7;
 //      background: #777;
       border-radius: 3px;
-      color: #333333;
       width: 92%;
       height: 40px;
       font-weight: bold;
@@ -513,23 +523,24 @@ button.tiny, .button.tiny {
       .button {
         width: auto;
         margin: 7px 10px 5px;
-        background: #333333;
-        color: #ffffff;
-        border-color: #bbbbbb;
-        border-width: 1px;
-        padding: 5px 12px;
+        background: #333;
+        color: #fff;
+        padding: 4px 12px;
+        border: none;
       }
 
       .button:hover {
         background: #00b1d7;
         color: #FFF;
-        border-color: #333333;
-        border-width: 1px;
       }
 
 
       .help-nav-left {
         float: left;
+
+        .button {
+        background: #00b1d7;
+        }
 
         .help-nav-left-icon {
           background-image: url(../img/previous.svg);
@@ -537,6 +548,7 @@ button.tiny, .button.tiny {
           height: 12px;
           width: 12px;
           margin: 3px 0px;
+          border: none;
         }
 
       }
@@ -544,9 +556,11 @@ button.tiny, .button.tiny {
       .help-nav-center {
         position: absolute;
         margin-left: 132px;
+        border: none;
 
         .button {
-          padding: 8px 12px;
+          padding: 7px 12px;
+          background: #333;
         }
 
       }
@@ -554,6 +568,9 @@ button.tiny, .button.tiny {
       .help-nav-right {
         float: right;
 
+        .button {
+          background: #00b1d7;
+        }
 
         .help-nav-right-icon {
           background-image: url(../img/next.svg);
@@ -561,6 +578,7 @@ button.tiny, .button.tiny {
           height: 12px;
           width: 12px;
           margin: 3px -1px;
+          border: none;
         }
 
       }
@@ -570,13 +588,13 @@ button.tiny, .button.tiny {
 
   .help-section {
 //      background: #007E95;
-      color: #fff;
+      color: #333;
       padding: 0px;
 
       .help-title {
         text-align: left;
         float: left;
-        color: #FFF;
+        color: #fff;
         text-transform: uppercase;
         font-family: fira_sans_regular;
         font-size: 1.1em;
@@ -584,7 +602,7 @@ button.tiny, .button.tiny {
       }
 
       h4 {
-        color: #fff;
+        color: #00b1d7;
         float: left;
         border: none;
         padding: 4px 0;
@@ -593,13 +611,14 @@ button.tiny, .button.tiny {
 
       img {
         float: left;
-        margin: 7px 14px 3px 12px;
-        height: 21px;
+        margin: 5px 14px 3px 12px;
+        height: 20px;
+        fill: #00b1d7;
       }
 
       img.ui-element {
-        margin: 0px 11px 0px 7px;
-        height: 36px;
+        margin: -1px 12px 0px 8px;
+        height: 34px;
       }
 
       .home-help-content {
@@ -608,8 +627,8 @@ button.tiny, .button.tiny {
           width: 370px;
 //          background: #777;
           background: #333;
-          color: #333;
-          border: none;
+          color: #fff;
+          border: 2px solid #00b1d7;
           padding: 0px;
           margin: 0 0 5px 0;
           height: 36px;
@@ -635,8 +654,10 @@ button.tiny, .button.tiny {
         .active, .button:hover {
           background: #00b1d7;
           color: #ffffff;
-          border: none;
+          border: 1px solid #00b1d7;
         }
+
+
 
         .home-help-topic{
 
@@ -651,7 +672,7 @@ button.tiny, .button.tiny {
           height: 12px;
           background-image: url(../img/choose.svg);
           float: right;
-          margin: 12px 10px 3px 5px;
+          margin: 10px 10px 3px 5px;
         }
 
 
