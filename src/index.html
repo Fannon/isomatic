@@ -287,6 +287,53 @@
 <!-- Help Template -->
 <script type="text/html" id="help-template">
 
+    <div id="examples-help" class="help-section">
+        <div class="home-help-content scrollbar-container">
+            <h3>Examples</h3>
+            <div class="scrollbar">
+
+
+
+            </div>
+
+        </div>
+    </div>
+
+    <div id="new-help" class="help-section">
+        <div class="home-help-content scrollbar-container">
+            <h3>New</h3>
+            <div class="scrollbar">
+
+
+
+            </div>
+
+        </div>
+    </div>
+    <div id="import-help" class="help-section">
+
+        <div class="home-help-content scrollbar-container">
+            <h3>Import</h3>
+            <div class="scrollbar">
+
+
+
+            </div>
+
+        </div>
+    </div>
+    <div id="export-help" class="help-section">
+        <div class="home-help-content scrollbar-container">
+            <h3>Export</h3>
+            <div class="scrollbar">
+
+
+
+            </div>
+
+        </div>
+    </div>
+
     <div id="home-help" class="help-section">
         <div class="home-help-content scrollbar-container">
             <h3>Help Overview</h3>
@@ -529,7 +576,7 @@
 
     <div id="icon-help"  class="help-section" style="display: none">
         <h3>Icon Help</h3>
-        <div class="help-content clearfix">
+        <div class="help-content">
             <div class="help-left">
                 <a id="icon-help-mapping" class="help-option-nav tiny button radius active" href="#">Mapping</a>
                 <a id="icon-help-draganddrop" class="help-option-nav tiny button radius" href="#">Drag And Drop</a>
@@ -1034,7 +1081,7 @@
             <form class="custom">
 
                 <div class="ui-container highlightable data-help-pastedata-highlight">
-                    <h4><span data-tooltip class="has-tip tip-right" title="Copy'n'Paste the data from spreadsheet applications here.<br> This works with Excel, Numbers and Google Spreadsheets">Paste Data</span></h4>
+                    <h4>Paste Data</h4>
                     <textarea placeholder="Copy'n'Paste Data here" id="pasted-data"></textarea>
                     <div class="button-group">
                         <a id="import-data" href="#" class="apply tiny button radius">Import</a>
@@ -1058,8 +1105,8 @@
         <form>
             <h3>Diagram Type</h3>
 
-            <div class="ui-container">
-                <h4><span data-tooltip class="has-tip tip-right" title="Select the layout type. This may introduce advanced settings.">Select Type</span></h4>
+            <div class="ui-container highlightable type-help-diagramtypes-highlight">
+                <h4>Select Type</h4>
                 <div id="normal-isotype" class="select-type">
                     <div class="type-title">
                         Normal
@@ -1096,7 +1143,7 @@
             </div>
 
             {{#if advancedOptions}}
-            <div class="ui-container">
+            <div class="ui-container highlightable type-help-additionaloptions-highlight">
                 <h4>Additional Options</h4>
                 <input id="equally-distributed-columns" name="equallyDistributedColumns" type="checkbox" {{#if equallyDistributedColumns}}checked{{/if}} >
                 <label for="equally-distributed-columns">Equally distribute columns</label><br>
@@ -1119,14 +1166,14 @@
     <div class="scrollbar">
         <form>
 
-            <div class="ui-container">
+            <div class="ui-container highlightable icon-help-mapping-highlight">
                 <h4><span data-tooltip class="has-tip tip-right" title="Choose if Icons are mapped to Columns or Rows">Map to</span></h4>
                 <input id="iconize-column" type="radio" name="radio2" value="column"><label for="iconize-column"><img src="img/column.svg"> Column</label>
                 <input id="iconize-row" type="radio" name="radio2" value="row"><label for="iconize-row"><img src="img/row.svg"> Row</label>
             </div>
 
-            <div class="ui-container">
-                <h4><span data-tooltip class="has-tip tip-right" title="Drag and drop the icons from the library <br>to the box right of the label">Drag and Drop</span></h4>
+            <div class="ui-container highlightable icon-help-draganddrop-highlight">
+                <h4>Drag and Drop</h4>
 
                 {{#each iconMapping}}
                 <div id="group-{{@index}}" class="group-container">
@@ -1175,14 +1222,14 @@
         <div class="overlay-left">
             <div class="scrollbar">
                 <form>
-                    <div class="ui-container">
+                    <div class="ui-container highlightable color-help-mapping-highlight">
                         <h4><span data-tooltip class="has-tip tip-right" title="Choose if Colors are mapped to Columns or Rows">Map to</span></h4>
                         <input id="colorize-column" type="radio" name="radio3" value="column"><label for="colorize-column"><img src="img/column.svg"> Column</label>
                         <input id="colorize-row" type="radio" name="radio3" value="row"><label for="colorize-row"><img src="img/row.svg"> Row</label>
                     </div>
 
-                    <div class="ui-container">
-                        <h4><span data-tooltip class="has-tip tip-right" title="Click on a color to open a color picker. <br>Alternatively enter the HEX Code of the color via the keyboard.">Assign Colors</span></h4>
+                    <div class="ui-container highlightable color-help-colorpicker-highlight">
+                        <h4>Assign colors</h4>
 
                         {{#each colorMapping}}
                         <legend>{{@key}}</legend>
@@ -1192,7 +1239,7 @@
 
                     <div class="ui-container">
                         <h4>Legend Colors</h4>
-                        <legend><span data-tooltip class="has-tip tip-right" title="Color of the lines that seperate the icon blocks">Lines Color</span></legend>
+                        <legend>Lines Color</legend>
                         <input type="text" id="picker-lines" class="picker" value="{{lineColor}}" style="border-color: {{lineColor}};">
                     </div>
 
@@ -1205,8 +1252,8 @@
         <div class="overlay-right">
             <div class="scrollbar">
                 <form>
-                    <div class="ui-container">
-                    <h4><span data-tooltip class="has-tip tip-right" title="Predefined Colorpalettes <br>Click on a palette to apply all colors to your current color mapping">Drag and  Drop</span></h4>
+                    <div class="ui-container highlightable color-help-presets-highlight">
+                    <h4>Color Palettes</h4>
 
                         {{#each palettes}}
                         <legend>{{@key}}</legend>
@@ -1295,7 +1342,7 @@
                 </div>
 
                 <div class="ui-container">
-                    <h4><span data-tooltip class="has-tip tip-right" title="Adjust the icon size">Size</span></h4>
+                    <h4><span data-tooltip class="has-tip tip-right" title="See the icon proportion">Size</span></h4>
 
                     <input id="auto-icon-size" name="autoIconSize" type="checkbox" {{#if options.autoIconSize}}checked{{/if}}><label for="auto-icon-size">Auto Icon Size</label>
 
@@ -1334,7 +1381,7 @@
         <form>
             <div class="ui-container">
 
-                <h4><span data-tooltip class="has-tip tip-right" title="Set the Scale how much one icon represents">Set Scale</span></h4>
+                <h4>Set Scale</h4>
                 <label>
                     <span data-tooltip class="has-tip tip-right" title="Enter Scale manually">Scale</span>
                 </label>
@@ -1343,17 +1390,18 @@
             </div>
 
             <div class="ui-container">
-            <h4><span data-tooltip class="has-tip tip-right" title="If enabled this setting will scale the last icon<br> of a column according to the value of the remainder">Scale last icon</span></h4>
+            <h4>Size Rounding</h4>
 
-            <input id="round-size" name="roundSize" type="checkbox" {{#if options.roundSize}}checked{{/if}}><label for="round-size">Scale Size of last Icon</label>
+            <input id="round-size" name="roundSize" type="checkbox" {{#if options.roundSize}}checked{{/if}}><label for="round-size">Round Size</label>
+
 
             <label>
-                    <span data-tooltip class="has-tip tip-right" title="Ceil value if remainder is above">Round Up</span>
+                    <span data-tooltip class="has-tip tip-right" title="Ceil value if Remainder is above">Round Up</span>
                 </label>
                 <input id="round-up" name="roundUp" type="text" value="{{options.roundUp}}">
 
                 <label>
-                    <span data-tooltip class="has-tip tip-right" title="Floor value if remainder is below">Round Down</span>
+                    <span data-tooltip class="has-tip tip-right" title="Floor value if Remainder is below">Round Down</span>
                 </label>
                 <input id="round-down" name="roundDown" type="text" value="{{options.roundDown}}">
             </div>
@@ -1374,7 +1422,7 @@
         <form>
 
             <div class="ui-container">
-                <h4><span data-tooltip class="has-tip tip-right" title="Adjust the font and layout of the left and bottom legend">Legend Settings</span></h4>
+                <h4>Legend Settings</h4>
 
                 <div class="row collapse">
                     <label><img src="img/titleheight.svg">Title FontSize</label>
@@ -1416,21 +1464,23 @@
                     </div>
                 </div>
 
-                <div class="row collapse">
-                    <label>
-                        <span data-tooltip class="has-tip tip-right" title="Choose Font-Family">Font-Family</span>
-                    </label>
-                    <select id="legend-font" name="legendFont" value="{{options.legendFont}}">
-                        {{#each availableFonts }}
-                        <option value="{{this}}">{{@key}}</option>
-                        {{/each}}
-                    </select>
-                </div>
-
                 <input id="draw-column-legend" name="drawColumnLegend" type="checkbox" {{#if options.drawColumnLegend}}checked{{/if}}><label for="draw-column-legend">Draw Column Legend</label>
 
+                <!--<label>Add Topic Description</label>-->
+                <!--<textarea placeholder="Enter Description here.."></textarea>-->
             </div>
 
+            <div class="ui-container">
+                <h4>Font Settings</h4>
+                <label>
+                    <span data-tooltip class="has-tip tip-right" title="Choose Font-Family">Font-Family</span>
+                </label>
+                <select id="legend-font" name="legendFont" value="{{options.legendFont}}">
+                    {{#each availableFonts }}
+                    <option value="{{this}}">{{@key}}</option>
+                    {{/each}}
+                </select>
+            </div>
 
             <div class="button-group">
                 <a id="text-apply" href="#" class="apply tiny button expand radius">Apply</a>
