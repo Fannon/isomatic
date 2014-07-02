@@ -473,17 +473,24 @@ button.tiny, .button.tiny {
 
 
         .help-right-picture {
-          width: 182px;
-          height: 120px;
-          margin-top: 10px;
+//          width: 182px;
+//          height: 120px;
+//          margin-top: 10px;
+//
+          img{
+//            width: 257px;
+//            height: 158px;
+            margin: 0px;
+//
+          }
         }
 
         .help-right-description {
           background: #333;
 //          background: #0082a5;
-          border-top: 1px solid #00b1d7;
-          border-bottom: 1px solid #00b1d7;
-          border-right: 1px solid #00b1d7;
+//          border-top: 1px solid #00b1d7;
+//          border-bottom: 1px solid #00b1d7;
+//          border-right: 1px solid #00b1d7;
 
           .help-right-number {
             background: #00b1d7;
@@ -499,7 +506,7 @@ button.tiny, .button.tiny {
           .help-right-text {
             width: 230px;
             color: #fff;
-            position: absolute;
+//            position: absolute;
             margin-left: 30px;
             padding: 5px 8px;
             line-height: 17px;
@@ -612,8 +619,8 @@ button.tiny, .button.tiny {
       img {
         float: left;
         margin: 5px 14px 3px 12px;
-        height: 20px;
-        fill: #00b1d7;
+//        height: 20px;
+//        fill: #00b1d7;
       }
 
       img.ui-element {
