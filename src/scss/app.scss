@@ -517,7 +517,7 @@ button.tiny, .button.tiny {
     }
 
     .help-nav {
-      background: #00b1d7;
+      background: #666;
 //      background: #777;
       border-radius: 3px;
       width: 92%;
@@ -546,7 +546,7 @@ button.tiny, .button.tiny {
         float: left;
 
         .button {
-        background: #00b1d7;
+        background: #666;
         }
 
         .help-nav-left-icon {
@@ -576,7 +576,7 @@ button.tiny, .button.tiny {
         float: right;
 
         .button {
-          background: #00b1d7;
+          background: #666;
         }
 
         .help-nav-right-icon {
@@ -633,9 +633,9 @@ button.tiny, .button.tiny {
         .button {
           width: 370px;
 //          background: #777;
-          background: #333;
+          background: #666;
           color: #fff;
-          border: 2px solid #00b1d7;
+          border: 1px solid #666;
           padding: 0px;
           margin: 0 0 5px 0;
           height: 36px;
@@ -796,8 +796,8 @@ button.tiny, .button.tiny {
       width: $leftIconSize;
       height: $leftIconSize;
       float: left;
-      margin-right: 10px;
-      margin-bottom: 10px;
+      margin-right: 9px;
+      margin-bottom: 9px;
 
       border: 1px solid #bbb;
     }
