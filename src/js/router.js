@@ -84,6 +84,9 @@
         help: function() {
             this.showHelp();
             this.checkHelp();
+
+            // Init Image Lazy Loading (unveil.js)
+            $("img").unveil();
         },
 
         mainhelp: function() {
