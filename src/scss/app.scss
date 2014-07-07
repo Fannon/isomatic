@@ -770,6 +770,9 @@ button.tiny, .button.tiny {
     .group-id {
       background-color: #EDEDED;
       width: 130px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
       height: $leftIconSize;
       float: left;
       border-top: 1px solid #bbb;
