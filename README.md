@@ -1,6 +1,6 @@
 ## About isomatic
 ### Functionality
-Tired of creating isotype graphics manually? We've created a web application ([www.isomatic.de][1]) that does all the heavy lifting for you and still leaves you with the opportunity to customize it in your favorite vector graphics editor like Adobe Illustrator.
+Tired of creating isotype graphics manually? We've created a web application ([www.isomatic.de][isomatic.de]) that does all the heavy lifting for you and still leaves you with the opportunity to customize it in your favorite vector graphics editor like Adobe Illustrator.
 
 You start by importing your data via copy'n'paste from a spreadsheet application, like Excel or Numbers. The application gives you the choice between several isotype layouts. A broad library contains many custom designed icons and many options to layout and design the graphic. If you seek help, the interactive tour will guide you throughout the whole process.
 
@@ -9,7 +9,7 @@ We started this project in 2013 as students of the University of Applied Science
 Isomatic is a web application that runs in your browser that lets you easily create isotype graphics. The resulting graphics can be downloaded as SVG files which can be imported to several other applications. There are many customization options - but see for yourself at !
 Isomatic is free to use and OpenSource at GitHub!
 
-[isomatic screenshot[2]][1]
+![alt text][screenshot]
 
 
 ### History
@@ -51,5 +51,5 @@ Some 3rd Party Libraries may change in a way that the app can be broken.
 If that happens, insert a specific version number into the bower.json file to revert to an older state
 
 
-[1]: http://isomatic.de "www.isomatic.de"
-[2]: http://isomatic.de/screenshot.png (Screenshot)
+[isomatic.de]: http://isomatic.de "www.isomatic.de"
+[screenshot]: http://isomatic.de/screenshot.png (Screenshot)
