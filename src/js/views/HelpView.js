@@ -28,9 +28,19 @@
 
             var source = $('#help-template').html();
             var template = Handlebars.compile(source);
+
+            var advancedOptions = false;
+            if (isomatic.options.ui.attributes.diagramType !== 'normal') {
+                advancedOptions = true;
+            }
+
+            console.log(advancedOptions);
+
             var html = template({
-                palettes: isomatic.options.internal.colorPalettes
+                palettes: isomatic.options.internal.colorPalettes,
+                advancedOptions: advancedOptions
             });
+
             this.$el.html(html);
 
             // Init Scrollbar

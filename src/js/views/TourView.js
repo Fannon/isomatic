@@ -4,6 +4,11 @@
 (function(isomatic) {
     "use strict";
 
+    /**
+     * Tour View
+     *
+     * @type {*|void|Object}
+     */
     isomatic.views.TourView = Backbone.View.extend( /** @lends TourView.prototype */ {
 
         /**
@@ -21,7 +26,9 @@
 
             var source = $('#tour-template').html();
             var template = Handlebars.compile(source);
+
             var html = template();
+
             this.$el.html(html);
         },
 

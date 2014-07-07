@@ -877,7 +877,18 @@ button.tiny, .button.tiny {
   // Adjustments Overlay
 
   #overlay-adjustments {
+    .row.collapse {
+      margin-bottom: 10px;
 
+      input {
+        margin: 0;
+      }
+
+    }
+    .row.collapse.highlight {
+      border-radius: 3px;
+      padding: 3px;
+    }
   }
 
 
