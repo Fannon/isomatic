@@ -28,6 +28,9 @@ $overlay-big-width: 560px;
 
 $leftIconSize: 40px;
 
+$helpColor: #0BA1CC;
+$submitColor: #9dd61f;
+
 
 //////////////////////////////////////////
 // Typography                           //
@@ -110,21 +113,21 @@ label {
 
 .has-tip:hover {
   border: none;
-  color: #217EB6;
+  color: $helpColor;
 }
 
 .has-tip:after {
   content: " [?]";
-  color: #217EB6;
+  color: $helpColor;
   font-size: 0.9em;
 }
 
 .tooltip {
-  background-color: #217EB6;
+  background-color: $helpColor;
   border-radius: 3px;
 }
 .nub {
-  border-color: transparent #217EB6 transparent transparent !important;
+  border-color: transparent $helpColor transparent transparent !important;
 }
 
 input.invalid {
@@ -188,14 +191,14 @@ button.tiny, .button.tiny {
   }
 
   li.help {
-    background: #00b1d7;
+    background: $helpColor;
     color: #FFF;
     height: 40px;
 
     a#trigger-help {
       padding-left: 17px;
       padding-right: 17px;
-      background: #00b1d7;
+      background: $helpColor;
 
     }
   }
@@ -224,7 +227,7 @@ button.tiny, .button.tiny {
 }
 
 .highlight {
-  border-color: #00b1d7 !important;
+  border-color: $helpColor !important;
   border: 3px solid;
 //  background: #E0F1F6 !important;
   transition: background-color 0.3s;
@@ -374,12 +377,12 @@ button.tiny, .button.tiny {
   .button-group {
 
     a.apply {
-      background-color: #9DD61F;
+      background-color: $submitColor;
       margin: $container-margin 0;
     }
 
     a.apply-right-margin {
-      background-color: #9DD61F;
+      background-color: $submitColor;
       display: block;
       width: auto;
       margin-right: $container-margin;
@@ -418,16 +421,16 @@ button.tiny, .button.tiny {
     }
 
     h3 {
-      background: #00b1d7;
+      background: $helpColor;
       color: #FFF;
-      border-color: #00b1d7;
+      border-color: $helpColor;
     }
 
     .button {
-      background: #00b1d7;
+      background: #666;
 //      background: #777;
       color: #fff;
-      border: 2px solid #00b1d7;
+//      border: 2px solid $helpColor;
       float: left;
       width: 110px;
       margin: 0 0 5px 0;
@@ -435,15 +438,15 @@ button.tiny, .button.tiny {
     }
 
     .active {
-      background: #333;
+      background: $helpColor;
       color: #ffffff;
-      border: 2px solid #00b1d7;
+//      border: 2px solid $helpColor;
     }
 
     .button:hover {
-      background: #333;
+      background: #28B2DA;
       color: #ffffff;
-      border: 2px solid #00b1d7;
+//      border: 2px solid $helpColor;
     }
 
     .tiny {
@@ -467,7 +470,7 @@ button.tiny, .button.tiny {
       }
 
       .help-step {
-        border: 2px solid #00b1d7;
+        border: 2px solid $helpColor;
         margin: 0px 0px 10px 10px;
         border-radius: 3px;
 
@@ -488,12 +491,12 @@ button.tiny, .button.tiny {
         .help-right-description {
           background: #333;
 //          background: #0082a5;
-//          border-top: 1px solid #00b1d7;
-//          border-bottom: 1px solid #00b1d7;
-//          border-right: 1px solid #00b1d7;
+//          border-top: 1px solid $helpColor;
+//          border-bottom: 1px solid $helpColor;
+//          border-right: 1px solid $helpColor;
 
           .help-right-number {
-            background: #00b1d7;
+            background: $helpColor;
             color: #fff;
             width: 30px;
             height: 45px;
@@ -537,7 +540,7 @@ button.tiny, .button.tiny {
       }
 
       .button:hover {
-        background: #00b1d7;
+        background: $helpColor;
         color: #FFF;
       }
 
@@ -594,7 +597,7 @@ button.tiny, .button.tiny {
   }
 
   .help-section {
-//      background: #007E95;
+
       color: #333;
       padding: 0px;
 
@@ -609,7 +612,7 @@ button.tiny, .button.tiny {
       }
 
       h4 {
-        color: #00b1d7;
+        color: #EEE;
         float: left;
         border: none;
         padding: 4px 0;
@@ -620,7 +623,7 @@ button.tiny, .button.tiny {
         float: left;
         margin: 5px 14px 3px 12px;
 //        height: 20px;
-//        fill: #00b1d7;
+//        fill: $helpColor;
       }
 
       img.ui-element {
@@ -632,10 +635,9 @@ button.tiny, .button.tiny {
 
         .button {
           width: 370px;
-//          background: #777;
           background: #666;
           color: #fff;
-          border: 1px solid #666;
+          border: none;
           padding: 0px;
           margin: 0 0 5px 0;
           height: 36px;
@@ -659,9 +661,8 @@ button.tiny, .button.tiny {
         }
 
         .active, .button:hover {
-          background: #00b1d7;
+          background: $helpColor;
           color: #ffffff;
-          border: 1px solid #00b1d7;
         }
 
 
