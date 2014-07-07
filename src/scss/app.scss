@@ -233,6 +233,10 @@ button.tiny, .button.tiny {
   transition: background-color 0.3s;
 }
 
+.colpick {
+  z-index: 8888;
+}
+
 
 // Toolbar
 
@@ -409,10 +413,8 @@ button.tiny, .button.tiny {
   }
 
 
-
   .overlay-container.help{
     background: #333;
-//    background: #f6fcff;
     width: 412px;
     left: $overlay-big-width;
 
@@ -428,9 +430,7 @@ button.tiny, .button.tiny {
 
     .button {
       background: #666;
-//      background: #777;
       color: #fff;
-//      border: 2px solid $helpColor;
       float: left;
       width: 110px;
       margin: 0 0 5px 0;
@@ -440,13 +440,11 @@ button.tiny, .button.tiny {
     .active {
       background: $helpColor;
       color: #ffffff;
-//      border: 2px solid $helpColor;
     }
 
     .button:hover {
       background: #28B2DA;
       color: #ffffff;
-//      border: 2px solid $helpColor;
     }
 
     .tiny {
@@ -463,7 +461,6 @@ button.tiny, .button.tiny {
       position: absolute;
       left: 0;
       margin-left: 118px;
-//      border-left: 1px solid #555;
 
       .slimScrollDiv {
         margin-right: 0px;
@@ -521,7 +518,6 @@ button.tiny, .button.tiny {
 
     .help-nav {
       background: #666;
-//      background: #777;
       border-radius: 3px;
       width: 92%;
       height: 40px;
@@ -774,6 +770,9 @@ button.tiny, .button.tiny {
     .group-id {
       background-color: #EDEDED;
       width: 130px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
       height: $leftIconSize;
       float: left;
       border-top: 1px solid #bbb;
@@ -953,7 +952,6 @@ button.tiny, .button.tiny {
 
 
 // Modal
-
 .reveal-modal {
     padding: 10px;
 
@@ -993,10 +991,8 @@ button.tiny, .button.tiny {
   #export-modal {
 
   }
-
-
-
 }
+
 
 #tour-modal {
   background: #333;

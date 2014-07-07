@@ -236,7 +236,7 @@
         rowMargin: 20,
 
         /** Margin between Columns */
-        columnMargin: 0,
+        columnMargin: 5,
 
         /** Horizontal Margin between Icons */
         iconHorizontalMargin: 5,

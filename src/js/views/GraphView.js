@@ -448,6 +448,9 @@
                     var rowfield = iconsPerRowField[row][rowColumn];
                     var fieldWidth = rowfield * iconWidth;
 
+                    // Add additional margins depending on how many rows it may be right now
+                    fieldWidth += Math.ceil(fieldWidth / columnTotalWidth) * (iconHorizontalMargin + columnMargin);
+
                     if (fieldWidth > columnTotalWidth) {
 
                         var numberOfRows = Math.ceil(fieldWidth / columnTotalWidth);
@@ -524,7 +527,7 @@
                         if (isomatic.options.ui.attributes.diagramType === 'versus' && d.col === 0) {
                             var center = columnPosition + (columnWidth / 2);
                             var xDiff = center - x;
-                            x += 2 * xDiff - iconSize + iconHorizontalMargin - columnMargin;
+                            x += 2 * xDiff - iconSize - iconHorizontalMargin + columnMargin;
                             x -= columnMargin;
                         }
 
