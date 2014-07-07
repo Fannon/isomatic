@@ -288,8 +288,8 @@
 <!-- Help Template -->
 <script type="text/html" id="help-template">
 
-    <div id="examples-help" class="help-section">
-        <div class="home-help-content scrollbar-container">
+    <div id="examples-help" class="help-section" style="display: none">
+        <div class="examples-help-content scrollbar-container">
             <h3>Examples</h3>
             <div class="scrollbar">
 
@@ -300,8 +300,8 @@
         </div>
     </div>
 
-    <div id="new-help" class="help-section">
-        <div class="home-help-content scrollbar-container">
+    <div id="new-help" class="help-section" style="display: none">
+        <div class="new-help-content scrollbar-container">
             <h3>New</h3>
             <div class="scrollbar">
 
@@ -311,9 +311,9 @@
 
         </div>
     </div>
-    <div id="import-help" class="help-section">
+    <div id="import-help" class="help-section" style="display: none">
 
-        <div class="home-help-content scrollbar-container">
+        <div class="import-help-content scrollbar-container">
             <h3>Import</h3>
             <div class="scrollbar">
 
@@ -323,8 +323,8 @@
 
         </div>
     </div>
-    <div id="export-help" class="help-section">
-        <div class="home-help-content scrollbar-container">
+    <div id="export-help" class="help-section" style="display: none">
+        <div class="export-help-content scrollbar-container">
             <h3>Export</h3>
             <div class="scrollbar">
 
@@ -342,30 +342,30 @@
 
                 <div class="home-help-topic"><h4>Introduction</h4></div>
 
-                <div class="button radius">
+                <a href="#examples-help" class="button radius">
                     <img src="img/ui/normal_isotype.svg" style="height:21px; width:40px">
                     <div class="help-title">Examples</div>
                     <div class="home-help-choose"></div>
-                </div>
+                </a>
 
 
                 <div class="home-help-topic"><h4>Preference and future use</h4></div>
 
-                <div class="button radius">
+                <a href="#new-help" class="button radius">
                     <img src="img/ui/new.svg">
                     <div class="help-title">New</div>
                     <div class="home-help-choose"></div>
-                </div>
-                <div class="button radius">
+                </a>
+                <a href="#import-help" class="button radius">
                     <img src="img/ui/import.svg">
                     <div class="help-title">Import</div>
                     <div class="home-help-choose"></div>
-                </div>
-                <div class="button radius">
+                </a>
+                <a href="#export-help" class="button radius">
                     <img src="img/ui/export.svg">
                     <div class="help-title">Export</div>
                     <div class="home-help-choose"></div>
-                </div>
+                </a>
 
 
 
@@ -500,7 +500,9 @@
         <div class="help-content clearfix">
             <div class="help-left">
                 <a id="type-help-diagramtypes" class="help-option-nav tiny button radius active" href="#">Select Type</a>
+                {{#if advancedOptions}}
                 <a id="type-help-additionaloptions" class="help-option-nav tiny button radius" href="#">Additional Options</a>
+                {{/if}}
             </div>
             <div class="help-right scrollbar-container">
                 <div class="scrollbar">

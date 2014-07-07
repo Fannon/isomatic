@@ -12,12 +12,16 @@
 
         routes: {
             "home": "home",
+            "examples-help": "exampleshelp",
             "new": "newGraphic",
+            "new-help": "newhelp",
             "import": "importGraphic",
+            "import-help": "importhelp",
             "export": "exportGraphic",
+            "export-help": "exporthelp",
             "tour": "tour",
             "help": "help",
-            "mainhelp": "mainhelp",
+            "help-overview": "helpoverview",
             "data": "data",
             "type": "type",
             "color": "color",
@@ -37,16 +41,32 @@
             this.checkHelp();
         },
 
+        exampleshelp: function() {
+            this.redirect('examples');
+        },
+
         newGraphic: function() {
             $('#new-modal').foundation('reveal', 'open');
+        },
+
+        newhelp: function() {
+            this.redirect('new');
         },
 
         importGraphic: function() {
             $('#import-modal').foundation('reveal', 'open');
         },
 
+        importhelp: function() {
+            this.redirect('import');
+        },
+
         exportGraphic: function() {
             $('#export-modal').foundation('reveal', 'open');
+        },
+
+        exporthelp: function() {
+            this.redirect('export');
         },
 
         tour: function() {
@@ -89,8 +109,8 @@
             $("img").unveil();
         },
 
-        mainhelp: function() {
-            this.mainHelp();
+        helpoverview: function() {
+            this.redirect('home');
         },
 
         ////////////////////////////////////
@@ -137,13 +157,13 @@
             $('#' + isomatic.options.internal.HelpStatus.location + '-help .help-right-option-container').hide().first().show();
         },
 
-        mainHelp: function() {
+        redirect: function(route) {
             $(".trigger-ui").removeClass('active');
             $(".overlay-container").hide();
             isomatic.options.internal.HelpStatus.location = 'home';
             $("#help-container").show();
             $('.help-section').hide();
-            $('#home-help').show();
+            $('#' + route + '-help').show();
         }
 
     });

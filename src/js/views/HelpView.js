@@ -18,7 +18,11 @@
          * @contructs
          */
         initialize: function(){
+
             this.render();
+
+            // Register Model Event Listeners
+            this.model.on("change:diagramType", this.render, this);
         },
 
         /**
@@ -33,8 +37,6 @@
             if (isomatic.options.ui.attributes.diagramType !== 'normal') {
                 advancedOptions = true;
             }
-
-            console.log(advancedOptions);
 
             var html = template({
                 palettes: isomatic.options.internal.colorPalettes,
@@ -65,6 +67,15 @@
             }
 
         },
+
+        /**
+         * Options.ui Model
+         */
+        model: isomatic.options.ui,
+
+        /**
+         * Adjustment View UI Events
+         */
         events: {
             "click .help-option-nav": "setNavigation"
         },
