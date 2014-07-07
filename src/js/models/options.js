@@ -301,6 +301,12 @@
         /** This stores which column ID maps to which icon */
         iconMap: [
             'persons-girl',
+            'persons-boy',
+            'persons-boy',
+            'persons-boy',
+            'persons-boy',
+            'persons-boy',
+            'persons-boy',
             'persons-boy'
         ],
 
