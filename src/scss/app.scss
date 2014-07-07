@@ -270,31 +270,31 @@ button.tiny, .button.tiny {
   }
 
   #trigger-type {
-    background-image: url(../img/type.svg);
+    background-image: url(../img/ui/type.svg);
   }
 
   #trigger-data {
-    background-image: url(../img/data.svg);
+    background-image: url(../img/ui/data.svg);
   }
 
   #trigger-color {
-    background-image: url(../img/color.svg);
+    background-image: url(../img/ui/color.svg);
   }
 
   #trigger-icon {
-    background-image: url(../img/icon.svg);
+    background-image: url(../img/ui/icon.svg);
   }
 
   #trigger-text {
-    background-image: url(../img/text.svg);
+    background-image: url(../img/ui/text.svg);
   }
 
   #trigger-adjustments {
-    background-image: url(../img/adjustments.svg);
+    background-image: url(../img/ui/adjustments.svg);
   }
 
   #trigger-scale {
-    background-image: url(../img/scale.svg);
+    background-image: url(../img/ui/scale.svg);
   }
 
 }
@@ -308,7 +308,7 @@ button.tiny, .button.tiny {
   margin-left: $leftIconSize;
   padding: 10px 10px 0 0;
   background: #FFF;
-  background-image: url(../img/ruler.svg);
+  background-image: url(../img/ui/ruler.svg);
   background-repeat: no-repeat;
   position: relative;
   box-shadow: 0 0 2px 1px #AAA;
@@ -553,7 +553,7 @@ button.tiny, .button.tiny {
         }
 
         .help-nav-left-icon {
-          background-image: url(../img/previous.svg);
+          background-image: url(../img/ui/previous.svg);
           background-repeat: no-repeat;
           height: 12px;
           width: 12px;
@@ -583,7 +583,7 @@ button.tiny, .button.tiny {
         }
 
         .help-nav-right-icon {
-          background-image: url(../img/next.svg);
+          background-image: url(../img/ui/next.svg);
           background-repeat: no-repeat;
           height: 12px;
           width: 12px;
@@ -678,7 +678,7 @@ button.tiny, .button.tiny {
         .home-help-choose {
           width: 12px;
           height: 12px;
-          background-image: url(../img/choose.svg);
+          background-image: url(../img/ui/choose.svg);
           float: right;
           margin: 10px 10px 3px 5px;
         }
