@@ -408,6 +408,7 @@ button.tiny, .button.tiny {
     .slimScrollDiv {
       margin-right: $container-margin;
       padding-right: 16px;
+      margin-right: 7px;
     }
 
   }
@@ -456,8 +457,10 @@ button.tiny, .button.tiny {
       float:left;
     }
 
+
     .help-right {
       width: 285px;
+      height: 450px;
       position: absolute;
       left: 0;
       margin-left: 118px;
@@ -630,7 +633,7 @@ button.tiny, .button.tiny {
       .home-help-content {
 
         .button {
-          width: 370px;
+          width: 375px;
           background: #666;
           color: #fff;
           border: none;
