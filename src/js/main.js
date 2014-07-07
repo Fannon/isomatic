@@ -74,6 +74,9 @@ var isomatic = {};
         // Init Foundation JavaScript
         $(document).foundation();
 
+        // Init Image Lazy Loading (unveil.js)
+        $("img").unveil();
+
         // Register ugly Hack
         $('.trigger-ui').on('click', function(el) {
             isomatic.uglyHack(el.currentTarget);
