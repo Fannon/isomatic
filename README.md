@@ -9,7 +9,7 @@ We started this project in 2013 as students of the University of Applied Science
 Isomatic is a web application that runs in your browser that lets you easily create isotype graphics. The resulting graphics can be downloaded as SVG files which can be imported to several other applications. There are many customization options - but see for yourself at !
 Isomatic is free to use and OpenSource at GitHub!
 
-[![isomatic screenshot[2]][1]
+[isomatic screenshot[2]][1]
 
 
 ### History
