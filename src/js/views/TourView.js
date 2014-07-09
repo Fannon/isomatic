@@ -45,9 +45,9 @@
 
         skipTour: function() {
             if ($.getCookie('tour-viewed') === false || $.getCookie('tour-viewed') === "false") {
-                $.createCookie('tour-viewed', "true", 365);
+//                $.createCookie('tour-viewed', "true", 365);
             } else {
-                $.createCookie('tour-viewed', "false", 365);
+//                $.createCookie('tour-viewed', "false", 365);
             }
         },
 

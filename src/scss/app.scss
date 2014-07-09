@@ -418,6 +418,8 @@ button.tiny, .button.tiny {
     background: #333;
     width: 412px;
     left: $overlay-big-width;
+    opacity: 0.98;
+
 
     h1 {
       color: #fff;
@@ -460,19 +462,27 @@ button.tiny, .button.tiny {
 
     .help-right {
       width: 285px;
-      height: 450px;
       position: absolute;
       left: 0;
       margin-left: 118px;
 
+
+
       .slimScrollDiv {
         margin-right: 0px;
+        height: 450px !important;
+
+        .scrollbar {
+          height: 450px !important;
+        }
       }
+
 
       .help-step {
         border: 2px solid $helpColor;
-        margin: 0px 0px 10px 10px;
+        margin: 0px 0px 12px 10px;
         border-radius: 3px;
+
 
 
         .help-right-picture {
@@ -484,12 +494,13 @@ button.tiny, .button.tiny {
 //            width: 257px;
 //            height: 158px;
             margin: 0px;
+            opacity: 0.97;
 //
           }
         }
 
         .help-right-description {
-          background: #333;
+          background: $helpColor;
 //          background: #0082a5;
 //          border-top: 1px solid $helpColor;
 //          border-bottom: 1px solid $helpColor;
@@ -507,11 +518,12 @@ button.tiny, .button.tiny {
           }
 
           .help-right-text {
-            width: 230px;
+            background: #333;
+            width: 225px;
             color: #fff;
 //            position: absolute;
             margin-left: 30px;
-            padding: 5px 8px;
+            padding: 6px 9px;
             line-height: 17px;
 
           }
@@ -522,12 +534,12 @@ button.tiny, .button.tiny {
     .help-nav {
       background: #666;
       border-radius: 3px;
-      width: 92%;
+      width: 96%;
       height: 40px;
       font-weight: bold;
       position: absolute;
       bottom: 7px;
-      right: 25px;
+//      right: 23px;
 
       .button {
         width: auto;
@@ -608,6 +620,10 @@ button.tiny, .button.tiny {
         font-family: fira_sans_regular;
         font-size: 1.1em;
         padding: 11px 0 0 0;
+      }
+
+      h3 {
+        margin-right: 0px;
       }
 
       h4 {
