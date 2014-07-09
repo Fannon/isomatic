@@ -199,8 +199,12 @@ button.tiny, .button.tiny {
       padding-left: 17px;
       padding-right: 17px;
       background: $helpColor;
-
     }
+
+    a#trigger-help:hover {
+      background: #28B2DA;
+    }
+
   }
 
 
@@ -418,7 +422,7 @@ button.tiny, .button.tiny {
     background: #333;
     width: 412px;
     left: $overlay-big-width;
-    opacity: 0.98;
+    opacity: 0.97;
 
 
     h1 {
@@ -486,25 +490,14 @@ button.tiny, .button.tiny {
 
 
         .help-right-picture {
-//          width: 182px;
-//          height: 120px;
-//          margin-top: 10px;
-//
+
           img{
-//            width: 257px;
-//            height: 158px;
             margin: 0px;
-            opacity: 0.97;
-//
           }
         }
 
         .help-right-description {
           background: $helpColor;
-//          background: #0082a5;
-//          border-top: 1px solid $helpColor;
-//          border-bottom: 1px solid $helpColor;
-//          border-right: 1px solid $helpColor;
 
           .help-right-number {
             background: $helpColor;
@@ -514,14 +507,12 @@ button.tiny, .button.tiny {
             float: left;
             padding: 10px;
             font-size: 20px;
-
           }
 
           .help-right-text {
             background: #333;
             width: 225px;
             color: #fff;
-//            position: absolute;
             margin-left: 30px;
             padding: 6px 9px;
             line-height: 17px;
@@ -539,7 +530,6 @@ button.tiny, .button.tiny {
       font-weight: bold;
       position: absolute;
       bottom: 7px;
-//      right: 23px;
 
       .button {
         width: auto;
@@ -582,6 +572,9 @@ button.tiny, .button.tiny {
         .button {
           padding: 7px 12px;
           background: #333;
+        }
+        .button:hover {
+          background: #444;
         }
 
       }
@@ -921,6 +914,29 @@ button.tiny, .button.tiny {
 
   #overlay-text {
 
+    .ui-container {
+      padding-bottom: 0px;
+    }
+
+    .highlightgroup {
+      margin-bottom: 10px;
+    }
+
+    .highlightgroup.highlight {
+      padding: 3px;
+      border-radius: 3px;
+    }
+
+    .last {
+
+      input {
+        margin-bottom: 1px;
+      }
+    }
+
+    .first {
+      margin-top: 1px;
+    }
   }
 
 
@@ -1041,10 +1057,8 @@ button.tiny, .button.tiny {
   }
 
   .button:hover{
-    background: #333;
-    border-color: #0099CC;
-    border-width: 1px;
-    color: #fff;
+    background: #DDD;
+
   }
 
   .ui-container {
