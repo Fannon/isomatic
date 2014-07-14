@@ -145,14 +145,14 @@
             "Signal": ["333333","00AAB5", "C9E000", "ED4200", "FF8400", "B516B5"],
             "Rainbow": ["0A7B83","2AA876","FFD265","F19C65","CE4D45", "7D4DAB"],
             "VioletBlue": ["d437d4", "8c3a8c", "293054", "225ea8", "1d91c0", "41b6c4","7fcdbb"],
-            "ColorBrewer Set1": ["e41a1c","377eb8","4daf4a","984ea3","ff7f00","ffff33","a65628","f781bf","999999"],
-            "ColorBrewer Paired": ["b15928", "ffff99", "6a3d9a", "cab2d6", "ff7f00", "fdbf6f", "e31a1c", "fb9a99", "33a02c", "b2df8a", "1f78b4", "a6cee3"],
-            "ColorBrewer Pastel": ["fbb4ae","b3cde3","ccebc5","decbe4","fed9a6","ffffcc","e5d8bd","fddaec","f2f2f2"],
-            "ColorBrewer Blues": ["08306b", "08519c", "2171b5", "4292c6", "6baed6", "9ecae1", "c6dbef", "deebf7", "f7fbff"] ,
-            "ColorBrewer YIGnBu": ["081d58", "253494", "225ea8", "1d91c0", "41b6c4", "7fcdbb", "c7e9b4", "edf8b1", "ffffd9"],
-            "ColorBrewer YIGn": ["004529", "006837", "238443", "41ab5d", "78c679", "addd8e", "d9f0a3", "f7fcb9", "ffffe5"],
-            "ColorBrewer RdPu": ["49006a", "7a0177", "ae017e", "dd3497", "f768a1", "fa9fb5", "fcc5c0", "fde0dd", "fff7f3"],
-            "ColorBrewer RdBu": ["053061", "2166ac", "4393c3", "92c5de", "d1e5f0", "f7f7f7", "fddbc7", "f4a582", "d6604d", "b2182b", "67001f"]
+            "ColorBrewerSet1": ["e41a1c","377eb8","4daf4a","984ea3","ff7f00","ffff33","a65628","f781bf","999999"],
+            "ColorBrewerPaired": ["b15928", "ffff99", "6a3d9a", "cab2d6", "ff7f00", "fdbf6f", "e31a1c", "fb9a99", "33a02c", "b2df8a", "1f78b4", "a6cee3"],
+            "ColorBrewerPastel": ["fbb4ae","b3cde3","ccebc5","decbe4","fed9a6","ffffcc","e5d8bd","fddaec","f2f2f2"],
+            "ColorBrewerBlues": ["08306b", "08519c", "2171b5", "4292c6", "6baed6", "9ecae1", "c6dbef", "deebf7", "f7fbff"] ,
+            "ColorBrewerYIGnBu": ["081d58", "253494", "225ea8", "1d91c0", "41b6c4", "7fcdbb", "c7e9b4", "edf8b1", "ffffd9"],
+            "ColorBrewerYIGn": ["004529", "006837", "238443", "41ab5d", "78c679", "addd8e", "d9f0a3", "f7fcb9", "ffffe5"],
+            "ColorBrewerRdPu": ["49006a", "7a0177", "ae017e", "dd3497", "f768a1", "fa9fb5", "fcc5c0", "fde0dd", "fff7f3"],
+            "ColorBrewerRdBu": ["053061", "2166ac", "4393c3", "92c5de", "d1e5f0", "f7f7f7", "fddbc7", "f4a582", "d6604d", "b2182b", "67001f"]
         },
 
         /**
