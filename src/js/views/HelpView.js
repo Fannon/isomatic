@@ -79,7 +79,6 @@
             $('.highlightable').removeClass('highlight');
             $('.' + id + '-highlight').addClass('highlight');
         }
-
     });
 
 }(isomatic));

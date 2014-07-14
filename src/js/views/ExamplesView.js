@@ -16,7 +16,7 @@
          * @contructs
          */
         initialize: function(){
-            this.render();
+            // Delayed Render, triggered via the router!
         },
 
         /** Render Export View */
@@ -53,6 +53,8 @@
                 isomatic.data.raw.set(example.data);
 
                 isomatic.refreshData();
+
+                $('#examples-modal').foundation('reveal', 'close');
             } else {
                 console.log('Error loading Example!');
             }

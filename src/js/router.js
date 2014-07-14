@@ -71,6 +71,7 @@
         },
 
         examples: function() {
+            isomatic.views.examplesView.render();
             $('#examples-modal').foundation('reveal', 'open');
         },
 
@@ -109,9 +110,6 @@
         help: function() {
             this.showHelp();
             this.checkHelp();
-
-            // Init Image Lazy Loading (unveil.js)
-            $("img").unveil();
         },
 
         helpoverview: function() {
@@ -150,6 +148,9 @@
         },
 
         checkHelp: function() {
+            // Init Image Lazy Loading (unveil.js)
+            $("img").unveil();
+
             $('.help-section').hide();
             $('#help-container').hide();
             $('.highlightable').removeClass('highlight');

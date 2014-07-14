@@ -43,7 +43,7 @@
                         <a id="openExport" href="#export"><img src="img/ui/export.svg">Export</a>
                     </li>
                     <li>
-                        <a href="#examples"><img src="img/ui/examples.svg">Examples</a>
+                        <a href="#examples"><img src="img/ui/new.svg">Examples</a>
                     </li>
                     <li class="help">
                         <a id="trigger-help" href="#help"><img src="img/ui/help.svg" width="16px" height="16px">Help</a>
@@ -91,7 +91,14 @@
                 <!-- Icon Settings -->
                 <div id="icon-container" class="overlay-container scrollbar-container" style="display: none">
                     <div id="overlay-icon">
-                        <h3>Icon Settings</h3>
+                        <div class="header clearfix">
+                            <div class="title">Icon Settings</div>
+                            <div class="close">
+                                <a href="#home">
+                                    <div class="close-image"></div>
+                                </a>
+                            </div>
+                        </div>
                         <div id="icon-left-container" class="overlay-left scrollbar-container"></div>
                         <div id="icon-right-container" class="overlay-right scrollbar-container"></div>
                     </div>
@@ -120,9 +127,20 @@
         <div id="message-box"></div>
 
         <div id="footer" class="">
-            2014 | Open Source @ <a href="https://github.com/Fannon/isomatic" target="_blank">Github</a>
-            | A Project by: <a href="http://www.lisaborgenheimer.com" target="_blank">Lisa Borgenheimer</a>, <a href="http://www.fannon.de" target="_blank">Simon
-            Heimler</a> and <a>Sebastian Huber</a> </div>
+
+            <div class="team-logo">
+                <img class="team" src="img/ui/team.svg" width="64px" height="25px" alt="isomatic team"/>
+            </div>
+
+            <div class="team-desc">
+                2014 | Open Source @ <a href="https://github.com/Fannon/isomatic" target="_blank">Github</a>
+                | A Project by:
+                Sebastian Huber,
+                <a href="http://www.lisaborgenheimer.com" target="_blank">Lisa Borgenheimer</a> and
+                <a href="http://www.fannon.de" target="_blank">SimonHeimler</a>
+            </div>
+
+        </div>
 
     </div>
 
@@ -273,24 +291,18 @@
 <script type="text/template" id="examples-template">
     <h3>Examples</h3>
     <p>
-        Click on an example to load it. <br>
-        <strong>Warning:</strong> This overwrites all current settings and the loaded data!
+        Click on an example image to load it. <strong>Warning:</strong> This overwrites all current settings and the loaded data!
     </p>
 
-    {{#each examples}}
-    <h4>{{this.title}}</h4>
     <div class="example-row">
-        <div class="example-box">
-            <a href="#examples"><img id="example-{{this.id}}" src="img/examples/{{this.id}}.png" alt="{{this.id}}" class="example-thumb"/></a>
+        {{#each examples}}
+
+        <div class="example-screenshot">
+            <h4>{{this.title}}</h4>
+            <a href="#home"><img id="example-{{this.id}}" src="img/examples/{{this.id}}.png" alt="{{this.id}}" class="example-thumb"/></a>
         </div>
-        <div class="example-box">
-            <img id="example-{{this.id}}" src="img/examples/{{this.id}}Data.png" alt="{{this.id}} DataSet" class="example-thumb"/>
-        </div>
-        <div class="clearfix"></div>
+        {{/each}}
     </div>
-
-
-    {{/each}}
 
     <a class="close-reveal-modal">&#215;</a>
 </script>
@@ -323,17 +335,17 @@
 
     <div id="home-help" class="help-section">
         <div class="home-help-content scrollbar-container">
-            <h3>Help Overview</h3>
+            <div class="header clearfix">
+                <div class="title">Help Overview</div>
+                <div class="close">
+                    <a href="#home">
+                        <div class="close-image"></div>
+                    </a>
+                </div>
+            </div>
             <div class="scrollbar">
 
                 <div class="home-help-topic"><h4>Introduction</h4></div>
-
-                <a href="#examples-help" class="button radius">
-                    <img src="img/ui/normal_isotype.svg" style="height:21px; width:40px">
-                    <div class="help-title">Examples</div>
-                    <div class="home-help-choose"></div>
-                </a>
-
 
                 <div class="home-help-topic"><h4>Preference and future use</h4></div>
 
@@ -352,8 +364,6 @@
                     <div class="help-title">Export</div>
                     <div class="home-help-choose"></div>
                 </a>
-
-
 
                 <div class="home-help-topic"><h4>isomatic settings</h4></div>
 
@@ -399,8 +409,16 @@
 
     </div>
 
-    <div id="examples-help" class="help-section" style="display: none">
-        <h3>Examples</h3>
+    <div id="new-help" class="help-section" style="display: none">
+        <div class="header clearfix">
+            <div class="title">New Help</div>
+            <div class="close">
+                <a href="#home">
+                    <div class="close-image"></div>
+                </a>
+            </div>
+        </div>
+
         <div class="clearfix">
             <div class="help-content">
                 <div class="help-left">
@@ -410,37 +428,10 @@
 
             </div>
         </div>
+
         <div class="help-nav">
             <div class="help-nav-left">
                 <a class="tiny button radius" href="#help-overview">
-                    <div class="help-nav-left-icon"></div>
-                </a>
-            </div>
-            <div class="help-nav-center">
-                <a class="tiny button radius" href="#help-overview">Help Overview</a>
-            </div>
-            <div class="help-nav-right">
-                <a class="tiny button radius" href="#new-help">
-                    <div class="help-nav-right-icon"></div>
-                </a>
-            </div>
-        </div>
-    </div>
-
-    <div id="new-help" class="help-section" style="display: none">
-        <h3>New</h3>
-        <div class="clearfix">
-            <div class="help-content">
-                <div class="help-left">
-                </div>
-                <div class="help-right scrollbar-container">
-                </div>
-
-            </div>
-        </div>
-        <div class="help-nav">
-            <div class="help-nav-left">
-                <a class="tiny button radius" href="#examples-help">
                     <div class="help-nav-left-icon"></div>
                 </a>
             </div>
@@ -456,7 +447,15 @@
     </div>
 
     <div id="import-help" class="help-section" style="display: none">
-        <h3>Import</h3>
+        <div class="header clearfix">
+            <div class="title">Import Help</div>
+            <div class="close">
+                <a href="#home">
+                    <div class="close-image"></div>
+                </a>
+            </div>
+        </div>
+
         <div class="clearfix">
             <div class="help-content">
                 <div class="help-left">
@@ -466,6 +465,7 @@
 
             </div>
         </div>
+
         <div class="help-nav">
             <div class="help-nav-left">
                 <a class="tiny button radius" href="#new-help">
@@ -484,7 +484,15 @@
     </div>
 
     <div id="export-help" class="help-section" style="display: none">
-        <h3>Export</h3>
+        <div class="header clearfix">
+            <div class="title">Export Help</div>
+            <div class="close">
+                <a href="#home">
+                    <div class="close-image"></div>
+                </a>
+            </div>
+        </div>
+
         <div class="clearfix">
             <div class="help-content">
                 <div class="help-left">
@@ -494,6 +502,7 @@
 
             </div>
         </div>
+
         <div class="help-nav">
             <div class="help-nav-left">
                 <a class="tiny button radius" href="#import-help">
@@ -512,7 +521,15 @@
     </div>
 
     <div id="data-help"  class="help-section" style="display: none">
-        <h3>Data Help</h3>
+        <div class="header clearfix">
+            <div class="title">Data Help</div>
+            <div class="close">
+                <a href="#help">
+                    <div class="close-image"></div>
+                </a>
+            </div>
+        </div>
+
         <div class="clearfix">
             <div class="help-content">
                 <div class="help-left">
@@ -523,7 +540,7 @@
                     <div class="scrollbar">
                         <div id="data-help-pastedata-container" class="help-right-option-container">
                             <div class="help-step">
-                                <div class="help-right-picture clearfix"><img src="img/tour/DataImport.png" width="257px" height="158px"></div>
+                                <div class="help-right-picture clearfix"><img src="img/tour/loading.png" data-src="img/tour/DataImport.png" width="257px" height="158px"></div>
                                 <div class="help-right-description clearfix">
                                     <div class="help-right-number">
                                         1
@@ -594,7 +611,15 @@
     </div>
 
     <div id="type-help"  class="help-section" style="display: none">
-        <h3>Type Help</h3>
+        <div class="header clearfix">
+            <div class="title">Type Help</div>
+            <div class="close">
+                <a href="#home">
+                    <div class="close-image"></div>
+                </a>
+            </div>
+        </div>
+
         <div class="help-content clearfix">
             <div class="help-left">
                 <a id="type-help-diagramtypes" class="help-option-nav tiny button radius active" href="#">Select Type</a>
@@ -678,7 +703,15 @@
     </div>
 
     <div id="icon-help"  class="help-section" style="display: none">
-        <h3>Icon Help</h3>
+        <div class="header clearfix">
+            <div class="title">Icon Help</div>
+            <div class="close">
+                <a href="#home">
+                    <div class="close-image"></div>
+                </a>
+            </div>
+        </div>
+
         <div class="help-content">
             <div class="help-left">
                 <a id="icon-help-mapping" class="help-option-nav tiny button radius active" href="#">Mapping</a>
@@ -687,83 +720,83 @@
             </div>
             <div class="help-right scrollbar-container">
                 <div class="scrollbar">
-                <div id="icon-help-mapping-container" class="help-right-option-container">
-                    <div class="help-step">
-                        <div class="help-right-picture"></div>
-                        <div class="help-right-description clearfix">
-                            <div class="help-right-number">
-                                1
+                    <div id="icon-help-mapping-container" class="help-right-option-container">
+                        <div class="help-step">
+                            <div class="help-right-picture"></div>
+                            <div class="help-right-description clearfix">
+                                <div class="help-right-number">
+                                    1
+                                </div>
+                                <div class="help-right-text">
+                                    Choose between Row or Collumn to place your icons to the right position.
+                                </div>
                             </div>
-                            <div class="help-right-text">
-                                Choose between Row or Collumn to place your icons to the right position.
+                        </div>
+
+                        <div class="help-step">
+                            <div class="help-right-description clearfix">
+                                <div class="help-right-number">
+                                    2
+                                </div>
+                                <div class="help-right-text">
+                                    It is usefull to set row/collumn like the color settings (see instructions "Color Settings").
+                                </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="help-step">
-                        <div class="help-right-description clearfix">
-                            <div class="help-right-number">
-                                2
+                    <div id="icon-help-draganddrop-container" class="help-right-option-container" style="display:none">
+                        <div class="help-step">
+                            <div class="help-right-picture"></div>
+                            <div class="help-right-description clearfix">
+                                <div class="help-right-number">
+                                    1
+                                </div>
+                                <div class="help-right-text">
+                                    You can see your available rows or collumns below.
+                               </div>
                             </div>
-                            <div class="help-right-text">
-                                It is usefull to set row/collumn like the color settings (see instructions "Color Settings").
+                        </div>
+
+                        <div class="help-step">
+                            <div class="help-right-picture clearfix"><img src="img/tour/DADIcon.png"></div>
+                            <div class="help-right-description clearfix">
+                                <div class="help-right-number">
+                                    2
+                                </div>
+                                <div class="help-right-text">
+                                    Place the icons via Drag and Drop onto the available rows or collums in your data set.
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div id="icon-help-presets-container" class="help-right-option-container" style="display:none">
+                        <div class="help-step">
+                            <div class="help-right-picture"></div>
+                            <div class="help-right-description clearfix">
+                                <div class="help-right-number">
+                                    1
+                                </div>
+                                <div class="help-right-text">
+                                    Choose the suitable icon for your imported data and categories.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="help-step">
+                            <div class="help-right-description clearfix">
+                                <div class="help-right-number">
+                                    2
+                                </div>
+                                <div class="help-right-text">
+                                    All icons are specially created for isomatic and can be commercially used for all your isotype graphics.
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-
-                <div id="icon-help-draganddrop-container" class="help-right-option-container" style="display:none">
-                    <div class="help-step">
-                        <div class="help-right-picture"></div>
-                        <div class="help-right-description clearfix">
-                            <div class="help-right-number">
-                                1
-                            </div>
-                            <div class="help-right-text">
-                                You can see your available rows or collumns below.
-                           </div>
-                        </div>
-                    </div>
-
-                    <div class="help-step">
-                        <div class="help-right-picture clearfix"><img src="img/tour/DADIcon.png"></div>
-                        <div class="help-right-description clearfix">
-                            <div class="help-right-number">
-                                2
-                            </div>
-                            <div class="help-right-text">
-                                Place the icons via Drag and Drop onto the available rows or collums in your data set.
-
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
-                <div id="icon-help-presets-container" class="help-right-option-container" style="display:none">
-                    <div class="help-step">
-                        <div class="help-right-picture"></div>
-                        <div class="help-right-description clearfix">
-                            <div class="help-right-number">
-                                1
-                            </div>
-                            <div class="help-right-text">
-                                Choose the suitable icon for your imported data and categories.
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="help-step">
-                        <div class="help-right-description clearfix">
-                            <div class="help-right-number">
-                                2
-                            </div>
-                            <div class="help-right-text">
-                                All icons are specially created for isomatic and can be commercially used for all your isotype graphics.
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 </div>
             </div>
         </div>
@@ -786,7 +819,15 @@
     </div>
 
     <div id="color-help"  class="help-section" style="display: none">
-        <h3>Color Help</h3>
+        <div class="header clearfix">
+            <div class="title">Color Help</div>
+            <div class="close">
+                <a href="#home">
+                    <div class="close-image"></div>
+                </a>
+            </div>
+        </div>
+
         <div class="help-content clearfix">
             <div class="help-left">
                 <a id="color-help-mapping" class="help-option-nav tiny button radius active" href="#">Mapping</a>
@@ -795,83 +836,83 @@
             </div>
             <div class="help-right scrollbar-container">
                 <div class="scrollbar">
-                <div id="color-help-mapping-container" class="help-right-option-container">
-                    <div class="help-step">
-                        <div class="help-right-picture"></div>
-                        <div class="help-right-description clearfix">
-                            <div class="help-right-number">
-                                1
+                    <div id="color-help-mapping-container" class="help-right-option-container">
+                        <div class="help-step">
+                            <div class="help-right-picture"></div>
+                            <div class="help-right-description clearfix">
+                                <div class="help-right-number">
+                                    1
+                                </div>
+                                <div class="help-right-text">
+                                    Choose between Row or Collumn to place the colors to the right position. You can see your available rows or collumns below.
+                                </div>
                             </div>
-                            <div class="help-right-text">
-                                Choose between Row or Collumn to place the colors to the right position. You can see your available rows or collumns below.
+                        </div>
+
+                        <div class="help-step">
+                            <div class="help-right-picture"></div>
+                            <div class="help-right-description clearfix">
+                                <div class="help-right-number">
+                                    2
+                                </div>
+                                <div class="help-right-text">
+                                    It is usefull to set row/collumn like the icon settings (see instructions "Icon Settings")
+                                </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="help-step">
-                        <div class="help-right-picture"></div>
-                        <div class="help-right-description clearfix">
-                            <div class="help-right-number">
-                                2
-                            </div>
-                            <div class="help-right-text">
-                                It is usefull to set row/collumn like the icon settings (see instructions "Icon Settings")
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="color-help-colorpicker-container" class="help-right-option-container" style="display:none">
-                    <div class="help-step">
-                        <div class="help-right-picture"></div>
-                        <div class="help-right-description clearfix">
-                            <div class="help-right-number">
-                                1
-                            </div>
-                            <div class="help-right-text">
-                                It is possible to color your icons manually. You can see all available categories, which can be set with various colors.
+                    <div id="color-help-colorpicker-container" class="help-right-option-container" style="display:none">
+                        <div class="help-step">
+                            <div class="help-right-picture"></div>
+                            <div class="help-right-description clearfix">
+                                <div class="help-right-number">
+                                    1
+                                </div>
+                                <div class="help-right-text">
+                                    It is possible to color your icons manually. You can see all available categories, which can be set with various colors.
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="help-step">
-                        <div class="help-right-picture clearfix"><img src="img/tour/ColorpickerColor.png"></div>
-                        <div class="help-right-description clearfix">
-                            <div class="help-right-number">
-                                2
-                            </div>
-                            <div class="help-right-text">
-                                If you like to modify the colors you can change them with the integrated colorpicker.
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="color-help-presets-container" class="help-right-option-container" style="display:none">
-                    <div class="help-step">
-                        <div class="help-right-picture"></div>
-                        <div class="help-right-description clearfix">
-                            <div class="help-right-number">
-                                1
-                            </div>
-                            <div class="help-right-text">
-                                Select a defined colorpalette to color all categories of you data set automatically.
+                        <div class="help-step">
+                            <div class="help-right-picture"></div>
+                            <div class="help-right-description clearfix">
+                                <div class="help-right-number">
+                                    2
+                                </div>
+                                <div class="help-right-text">
+                                    If you like to modify the colors you can change them with the integrated colorpicker.
+                                </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="help-step">
-                        <div class="help-right-picture"></div>
-                        <div class="help-right-description clearfix">
-                            <div class="help-right-number">
-                                2
+                    <div id="color-help-presets-container" class="help-right-option-container" style="display:none">
+                        <div class="help-step">
+                            <div class="help-right-picture"></div>
+                            <div class="help-right-description clearfix">
+                                <div class="help-right-number">
+                                    1
+                                </div>
+                                <div class="help-right-text">
+                                    Select a defined colorpalette to color all categories of you data set automatically.
+                                </div>
                             </div>
-                            <div class="help-right-text">
-                                You are also alowed to change them individually by clicking on it (see "Colorpicker").
+                        </div>
+
+                        <div class="help-step">
+                            <div class="help-right-picture"></div>
+                            <div class="help-right-description clearfix">
+                                <div class="help-right-number">
+                                    2
+                                </div>
+                                <div class="help-right-text">
+                                    You are also alowed to change them individually by clicking on it (see "Colorpicker").
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
                 </div>
             </div>
         </div>
@@ -894,7 +935,15 @@
     </div>
 
     <div id="adjustments-help"  class="help-section" style="display: none">
-        <h3>Adjustments Help</h3>
+        <div class="header clearfix">
+            <div class="title">Adjustments Help</div>
+            <div class="close">
+                <a href="#home">
+                    <div class="close-image"></div>
+                </a>
+            </div>
+        </div>
+
         <div class="help-content clearfix">
             <div class="help-left">
                 <a id="adjustments-help-outermargin" class="help-option-nav tiny button radius active" href="#">Outer Margin</a>
@@ -910,90 +959,90 @@
             </div>
             <div class="help-right scrollbar-container">
                 <div class="scrollbar">
-                <div id="adjustments-help-outermargin-container" class="help-right-option-container">
-                    <div class="help-step">
-                        <div class="help-right-picture clearfix"><img src="img/tour/OuterMargin.png"></div>
-                        <div class="help-right-description clearfix">
-                            <div class="help-right-number">
-                                1
-                            </div>
-                            <div class="help-right-text">
-                                The outer margin can be changed individually by changing the value.
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="adjustments-help-horizontalmargin-container" class="help-right-option-container" style="display:none">
-                    <div class="help-step">
-                        <div class="help-right-picture clearfix"><img src="img/tour/HorizontalMargin.png"> </div>
-                        <div class="help-right-description clearfix">
-                            <div class="help-right-number">
-                                1
-                            </div>
-                            <div class="help-right-text">
-                                To perfect the graphic you can manage the horizontal space between your icons by shifting the value.
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                    <div id="adjustments-help-verticalmargin-container" class="help-right-option-container" style="display:none">
+                    <div id="adjustments-help-outermargin-container" class="help-right-option-container">
                         <div class="help-step">
-                            <div class="help-right-picture clearfix"><img src="img/tour/VerticalMargin.png"></div>
+                            <div class="help-right-picture"></div>
                             <div class="help-right-description clearfix">
                                 <div class="help-right-number">
                                     1
                                 </div>
                                 <div class="help-right-text">
-                                    You can also define the vertical margin between your icons maybe for visual clustering.
+                                    The outer margin can be changed individually by changing the value.
                                 </div>
                             </div>
                         </div>
                     </div>
 
-
-                    <div id="adjustments-help-rowmargin-container" class="help-right-option-container" style="display:none">
-                    <div class="help-step">
-                        <div class="help-right-picture clearfix"><img src="img/tour/RowMargin.png"></div>
-                        <div class="help-right-description clearfix">
-                            <div class="help-right-number">
-                                1
-                            </div>
-                            <div class="help-right-text">
-                                The row margin can be used to clarify and split off visually every single category of your isotype graphic.
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                    <div id="adjustments-help-columnmargin-container" class="help-right-option-container" style="display:none">
+                    <div id="adjustments-help-horizontalmargin-container" class="help-right-option-container" style="display:none">
                         <div class="help-step">
-                            <div class="help-right-picture clearfix"><img src="img/tour/ColumnMargin.png"></div>
+                            <div class="help-right-picture"></div>
                             <div class="help-right-description clearfix">
                                 <div class="help-right-number">
                                     1
                                 </div>
                                 <div class="help-right-text">
-                                  By changing the value your column margin is increasing or decreasing.
+                                    To perfect the graphic you can manage the horizontal space between your icons by shifting the value.
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                <div id="adjustments-help-iconsize-container" class="help-right-option-container" style="display:none">
-                    <div class="help-step">
-                        <div class="help-right-picture clearfix"><img src="img/tour/IconSize.png"></div>
-                        <div class="help-right-description clearfix">
-                            <div class="help-right-number">
-                                1
+                        <div id="adjustments-help-verticalmargin-container" class="help-right-option-container" style="display:none">
+                            <div class="help-step">
+                                <div class="help-right-picture"></div>
+                                <div class="help-right-description clearfix">
+                                    <div class="help-right-number">
+                                        1
+                                    </div>
+                                    <div class="help-right-text">
+                                        You can also define the vertical margin between your icons maybe for visual clustering.
+                                    </div>
+                                </div>
                             </div>
-                            <div class="help-right-text">
-                                isomatic is calculating the perfect icon size for your canvas, but you can manipulate it by de-activating the "Auto Icon Size".
+                        </div>
+
+
+                        <div id="adjustments-help-rowmargin-container" class="help-right-option-container" style="display:none">
+                        <div class="help-step">
+                            <div class="help-right-picture"></div>
+                            <div class="help-right-description clearfix">
+                                <div class="help-right-number">
+                                    1
+                                </div>
+                                <div class="help-right-text">
+                                    The row margin can be used to clarify and split off visually every single category of your isotype graphic.
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+
+                        <div id="adjustments-help-columnmargin-container" class="help-right-option-container" style="display:none">
+                            <div class="help-step">
+                                <div class="help-right-picture"></div>
+                                <div class="help-right-description clearfix">
+                                    <div class="help-right-number">
+                                        1
+                                    </div>
+                                    <div class="help-right-text">
+                                      By changing the value your column margin is increasing or decreasing.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    <div id="adjustments-help-iconsize-container" class="help-right-option-container" style="display:none">
+                        <div class="help-step">
+                            <div class="help-right-picture"></div>
+                            <div class="help-right-description clearfix">
+                                <div class="help-right-number">
+                                    1
+                                </div>
+                                <div class="help-right-text">
+                                    isomatic is calculating the perfect icon size for your canvas, but you can manipulate it by de-activating the "Auto Icon Size".
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1017,7 +1066,15 @@
     </div>
 
     <div id="scale-help"  class="help-section" style="display: none">
-        <h3>Scale Help</h3>
+        <div class="header clearfix">
+            <div class="title">Scale Help</div>
+            <div class="close">
+                <a href="#home">
+                    <div class="close-image"></div>
+                </a>
+            </div>
+        </div>
+
         <div class="help-content clearfix">
             <div class="help-left">
                 <a id="scale-help-setscale" class="help-option-nav tiny button radius active" href="#">Set Scale</a>
@@ -1025,89 +1082,7 @@
             </div>
             <div class="help-right scrollbar-container">
                 <div class="scrollbar">
-                <div id="scale-help-setscale-container" class="help-right-option-container">
-                    <div class="help-step">
-                        <div class="help-right-picture"></div>
-                        <div class="help-right-description clearfix">
-                            <div class="help-right-number">
-                                1
-                            </div>
-                            <div class="help-right-text">
-                                Drei Chinesen mit dem Kontrabass
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="help-step">
-                        <div class="help-right-picture"></div>
-                        <div class="help-right-description clearfix">
-                            <div class="help-right-number">
-                                2
-                            </div>
-                            <div class="help-right-text">
-                                Drei Chinesen mit dem Kontrabass
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="scale-help-sizerounding-container" class="help-right-option-container" style="display:none">
-                    <div class="help-step">
-                        <div class="help-right-picture"></div>
-                        <div class="help-right-description clearfix">
-                            <div class="help-right-number">
-                                1
-                            </div>
-                            <div class="help-right-text">
-                                Drei Chinesen mit dem Kontrabass
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="help-step">
-                        <div class="help-right-picture"></div>
-                        <div class="help-right-description clearfix">
-                            <div class="help-right-number">
-                                2
-                            </div>
-                            <div class="help-right-text">
-                                Drei Chinesen mit dem Kontrabass
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="help-nav">
-            <div class="help-nav-left">
-                <a class="tiny button radius" href="#adjustments">
-                    <div class="help-nav-left-icon"></div>
-                </a>
-            </div>
-            <div class="help-nav-center">
-                <a class="tiny button radius" href="#help-overview">Help Overview</a>
-            </div>
-            <div class="help-nav-right">
-                <a class="tiny button radius" href="#text">
-                    <div class="help-nav-right-icon"></div>
-                </a>
-            </div>
-        </div>
-    </div>
-
-    <div id="text-help"  class="help-section" style="display: none">
-        <h3>Text Help</h3>
-        <div class="help-content clearfix">
-            <div class="help-left">
-                <a id="text-help-fontsettings" class="help-option-nav tiny button radius active" href="#">Font Settings</a>
-                <a id="text-help-legendsettings" class="help-option-nav tiny button radius" href="#">Legend Settings</a>
-            </div>
-            <div class="help-right scrollbar-container">
-                <div class="scrollbar">
-
-                    <div id="text-help-fontsettings-container" class="help-right-option-container" style="display:none">
+                    <div id="scale-help-setscale-container" class="help-right-option-container">
                         <div class="help-step">
                             <div class="help-right-picture"></div>
                             <div class="help-right-description clearfix">
@@ -1133,33 +1108,119 @@
                         </div>
                     </div>
 
-
-                <div id="text-help-legendsettings-container" class="help-right-option-container">
-                    <div class="help-step">
-                        <div class="help-right-picture"></div>
-                        <div class="help-right-description clearfix">
-                            <div class="help-right-number">
-                                1
-                            </div>
-                            <div class="help-right-text">
-                                Drei Chinesen mit dem Kontrabass
+                    <div id="scale-help-sizerounding-container" class="help-right-option-container" style="display:none">
+                        <div class="help-step">
+                            <div class="help-right-picture"></div>
+                            <div class="help-right-description clearfix">
+                                <div class="help-right-number">
+                                    1
+                                </div>
+                                <div class="help-right-text">
+                                    Drei Chinesen mit dem Kontrabass
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="help-step">
-                        <div class="help-right-picture"></div>
-                        <div class="help-right-description clearfix">
-                            <div class="help-right-number">
-                                2
-                            </div>
-                            <div class="help-right-text">
-                                Drei Chinesen mit dem Kontrabass
+                        <div class="help-step">
+                            <div class="help-right-picture"></div>
+                            <div class="help-right-description clearfix">
+                                <div class="help-right-number">
+                                    2
+                                </div>
+                                <div class="help-right-text">
+                                    Drei Chinesen mit dem Kontrabass
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
 
+        <div class="help-nav">
+            <div class="help-nav-left">
+                <a class="tiny button radius" href="#adjustments">
+                    <div class="help-nav-left-icon"></div>
+                </a>
+            </div>
+            <div class="help-nav-center">
+                <a class="tiny button radius" href="#help-overview">Help Overview</a>
+            </div>
+            <div class="help-nav-right">
+                <a class="tiny button radius" href="#text">
+                    <div class="help-nav-right-icon"></div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div id="text-help"  class="help-section" style="display: none">
+        <div class="header clearfix">
+            <div class="title">Text Help</div>
+            <div class="close">
+                <a href="#home">
+                    <div class="close-image"></div>
+                </a>
+            </div>
+        </div>
+
+        <div class="help-content clearfix">
+            <div class="help-left">
+                <a id="text-help-fontsettings" class="help-option-nav tiny button radius active" href="#">Font Settings</a>
+                <a id="text-help-legendsettings" class="help-option-nav tiny button radius" href="#">Legend Settings</a>
+            </div>
+            <div class="help-right scrollbar-container">
+                <div class="scrollbar">
+                    <div id="text-help-fontsettings-container" class="help-right-option-container" style="display:none">
+                        <div class="help-step">
+                            <div class="help-right-picture"></div>
+                            <div class="help-right-description clearfix">
+                                <div class="help-right-number">
+                                    1
+                                </div>
+                                <div class="help-right-text">
+                                    Drei Chinesen mit dem Kontrabass
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="help-step">
+                            <div class="help-right-picture"></div>
+                            <div class="help-right-description clearfix">
+                                <div class="help-right-number">
+                                    2
+                                </div>
+                                <div class="help-right-text">
+                                    Drei Chinesen mit dem Kontrabass
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="text-help-legendsettings-container" class="help-right-option-container">
+                        <div class="help-step">
+                            <div class="help-right-picture"></div>
+                            <div class="help-right-description clearfix">
+                                <div class="help-right-number">
+                                    1
+                                </div>
+                                <div class="help-right-text">
+                                    Drei Chinesen mit dem Kontrabass
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="help-step">
+                            <div class="help-right-picture"></div>
+                            <div class="help-right-description clearfix">
+                                <div class="help-right-number">
+                                    2
+                                </div>
+                                <div class="help-right-text">
+                                    Drei Chinesen mit dem Kontrabass
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1187,13 +1248,17 @@
 <!-- Data Template -->
 <script type="text/template" id="data-template">
     <div id="overlay-data">
-
-        <h3>Data Import</h3>
+        <div class="header clearfix">
+            <div class="title">Data Import</div>
+            <div class="close">
+                <a href="#home">
+                    <div class="close-image"></div>
+                </a>
+            </div>
+        </div>
 
         <div class="scrollbar">
-
             <form class="custom">
-
                 <div class="ui-container highlightable data-help-pastedata-highlight">
                     <h4>Paste Data</h4>
                     <textarea placeholder="Copy'n'Paste Data here" id="pasted-data"></textarea>
@@ -1201,23 +1266,27 @@
                         <a id="import-data" href="#" class="apply tiny button radius">Import</a>
                     </div>
                 </div>
-
                 <div class="ui-container highlightable data-help-datapreview-highlight">
                     <h4>Data Preview:</h4>
                     <table id="dataTable"></table>
                 </div>
-
             </form>
         </div>
     </div>
-
 </script>
 
 <!-- Type Template -->
 <script type="text/template" id="type-template">
     <div id="overlay-type">
         <form>
-            <h3>Diagram Type</h3>
+            <div class="header full clearfix">
+                <div class="title">Diagram Type</div>
+                <div class="close">
+                    <a href="#home">
+                        <div class="close-image"></div>
+                    </a>
+                </div>
+            </div>
 
             <div class="ui-container highlightable type-help-diagramtypes-highlight">
                 <h4>Select Type</h4>
@@ -1330,8 +1399,14 @@
 <!-- Color Template -->
 <script type="text/template" id="color-template">
     <div id="overlay-color">
-
-        <h3>Color Settings</h3>
+        <div class="header clearfix">
+            <div class="title">Color Settings</div>
+            <div class="close">
+                <a href="#home">
+                    <div class="close-image"></div>
+                </a>
+            </div>
+        </div>
 
         <div class="overlay-left">
             <div class="scrollbar">
@@ -1389,8 +1464,14 @@
 <!-- Adjustments Template -->
 <script type="text/template" id="adjustments-template">
     <div id="overlay-adjustments">
-
-        <h3>Adjustments</h3>
+        <div class="header clearfix">
+            <div class="title">Adjustments</div>
+            <div class="close">
+                <a href="#home">
+                    <div class="close-image"></div>
+                </a>
+            </div>
+        </div>
 
         <form>
 
@@ -1486,11 +1567,14 @@
 <!-- Scale Template -->
 <script type="text/template" id="scale-template">
     <div id="overlay-scale">
-        <h3>Scale Settings</h3>
-
-        <!--<h3 class="smallTopMenu">Scale Settings</h3>-->
-        <!--<a id="scale-apply" href="#" class="top-apply">Apply</a>-->
-        <!--<div class="clearfix"></div>-->
+        <div class="header full clearfix">
+            <div class="title">Scale Settings</div>
+            <div class="close">
+                <a href="#home">
+                    <div class="close-image"></div>
+                </a>
+            </div>
+        </div>
 
         <form>
             <div class="ui-container highlightable scale-help-setscale-highlight">
@@ -1531,75 +1615,81 @@
 <!-- Text Template -->
 <script type="text/template" id="text-template">
     <div id="overlay-text">
-        <h3>Text Settings</h3>
+        <div class="header full clearfix">
+            <div class="title">Text Settings</div>
+            <div class="close">
+                <a href="#home">
+                    <div class="close-image"></div>
+                </a>
+            </div>
+        </div>
 
         <form>
+            <div class="ui-container">
+                <h4>Legend Settings</h4>
 
-                <div class="ui-container">
-                    <h4>Legend Settings</h4>
-
-                    <div class="highlightgroup highlightable text-help-fontsettings-highlight">
-                    <div class="row collapse">
-                        <label><img src="img/ui/titleheight.svg">Title Size</label>
-                        <div class="small-10 columns">
-                            <input id="legend-title-height" name="legendTitleHeight" type="text" value="{{ options.legendTitleHeight }}">
-                        </div>
-                        <div class="small-2 columns">
-                            <span class="postfix radius">px</span>
-                        </div>
+                <div class="highlightgroup highlightable text-help-fontsettings-highlight">
+                <div class="row collapse">
+                    <label><img src="img/ui/titleheight.svg">Title Size</label>
+                    <div class="small-10 columns">
+                        <input id="legend-title-height" name="legendTitleHeight" type="text" value="{{ options.legendTitleHeight }}">
                     </div>
-
-                    <div class="row collapse">
-                        <label><img src="img/ui/titleheight.svg">Left Legend Size</label>
-                        <div class="small-10 columns">
-                            <input id="left-legend-fontsize" name="leftLegendFontSize" type="text" value="{{ options.leftLegendFontSize }}">
-                        </div>
-                        <div class="small-2 columns">
-                            <span class="postfix radius">px</span>
-                        </div>
+                    <div class="small-2 columns">
+                        <span class="postfix radius">px</span>
                     </div>
-
-                    <div class="row collapse last">
-                        <label><img src="img/ui/titleheight.svg">Bottom Legend Size</label>
-                        <div class="small-10 columns">
-                            <input id="bottom-legend-fontsize" name="bottomLegendFontSize" type="text" value="{{ options.bottomLegendFontSize }}">
-                        </div>
-                        <div class="small-2 columns">
-                            <span class="postfix radius">px</span>
-                        </div>
-                    </div>
-                    </div>
-
-                    <div class="highlightgroup highlightable text-help-legendsettings-highlight">
-                    <div class="row collapse first">
-                        <label><img src="img/ui/rowlegend.svg">Left Legend Width</label>
-                        <div class="small-10 columns">
-                            <input id="legend-width" name="legendWidth" type="text" value="{{ options.legendWidth }}">
-                        </div>
-                        <div class="small-2 columns">
-                            <span class="postfix radius">px</span>
-                        </div>
-                    </div>
-
-
-                    <input id="draw-column-legend" name="drawColumnLegend" type="checkbox" {{#if options.drawColumnLegend}}checked{{/if}}><label for="draw-column-legend">Draw Column Legend</label>
-                    </div>
-                    <!--<label>Add Topic Description</label>-->
-                    <!--<textarea placeholder="Enter Description here.."></textarea>-->
                 </div>
 
-                <div class="ui-container">
-                    <h4>Font Settings</h4>
-                    <label>
-                        <span data-tooltip class="has-tip tip-right" title="Choose Font-Family">Font-Family</span>
-                    </label>
-                    <select id="legend-font" name="legendFont" value="{{options.legendFont}}">
-                        {{#each availableFonts }}
-                        <option value="{{this}}">{{@key}}</option>
-                        {{/each}}
-                    </select>
+                <div class="row collapse">
+                    <label><img src="img/ui/titleheight.svg">Left Legend Size</label>
+                    <div class="small-10 columns">
+                        <input id="left-legend-fontsize" name="leftLegendFontSize" type="text" value="{{ options.leftLegendFontSize }}">
+                    </div>
+                    <div class="small-2 columns">
+                        <span class="postfix radius">px</span>
+                    </div>
                 </div>
-            </form>
+
+                <div class="row collapse last">
+                    <label><img src="img/ui/titleheight.svg">Bottom Legend Size</label>
+                    <div class="small-10 columns">
+                        <input id="bottom-legend-fontsize" name="bottomLegendFontSize" type="text" value="{{ options.bottomLegendFontSize }}">
+                    </div>
+                    <div class="small-2 columns">
+                        <span class="postfix radius">px</span>
+                    </div>
+                </div>
+                </div>
+
+                <div class="highlightgroup highlightable text-help-legendsettings-highlight">
+                <div class="row collapse first">
+                    <label><img src="img/ui/rowlegend.svg">Left Legend Width</label>
+                    <div class="small-10 columns">
+                        <input id="legend-width" name="legendWidth" type="text" value="{{ options.legendWidth }}">
+                    </div>
+                    <div class="small-2 columns">
+                        <span class="postfix radius">px</span>
+                    </div>
+                </div>
+
+
+                <input id="draw-column-legend" name="drawColumnLegend" type="checkbox" {{#if options.drawColumnLegend}}checked{{/if}}><label for="draw-column-legend">Draw Column Legend</label>
+                </div>
+                <!--<label>Add Topic Description</label>-->
+                <!--<textarea placeholder="Enter Description here.."></textarea>-->
+            </div>
+
+            <div class="ui-container">
+                <h4>Font Settings</h4>
+                <label>
+                    <span data-tooltip class="has-tip tip-right" title="Choose Font-Family">Font-Family</span>
+                </label>
+                <select id="legend-font" name="legendFont" value="{{options.legendFont}}">
+                    {{#each availableFonts }}
+                    <option value="{{this}}">{{@key}}</option>
+                    {{/each}}
+                </select>
+            </div>
+        </form>
 
         <div class="button-group">
             <a id="text-apply" href="#" class="apply tiny button expand radius">Apply</a>

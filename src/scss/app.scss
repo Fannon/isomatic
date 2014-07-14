@@ -71,7 +71,7 @@ h3.smallTopMenu {
   background-color: #333;
   border-radius: 3px 0 0 3px;
   padding: 5px 7px 2px 7px;
-  color: #EEE;
+  color: #ffffff;
   margin-bottom: $container-margin;
   font-size: 1.2em;
   text-transform: uppercase;
@@ -382,6 +382,39 @@ button.tiny, .button.tiny {
 
   }
 
+  .header {
+    border-radius: 3px;
+    font-size: 1.2em;
+    margin-bottom: 8px;
+    padding: 5px 7px 2px;
+    text-transform: uppercase;
+    color: #ffffff;
+    background: #333;
+    line-height: 1.4;
+    margin-top: 0.2rem;
+    margin-right: 8px;
+
+    .title {
+      float: left;
+    }
+    .close {
+      float: right;
+      margin: 2px 3px 0 0;
+
+      .close-image {
+        height: 12px;
+        width: 12px;
+        background-image: url(../img/ui/close.svg);
+        background-repeat: no-repeat;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .header.full {
+    width: 100%;
+  }
+
   .button-group {
 
     a.apply {
@@ -433,6 +466,11 @@ button.tiny, .button.tiny {
       background: $helpColor;
       color: #FFF;
       border-color: $helpColor;
+    }
+
+    .header {
+      background: none repeat scroll 0 0 #0ba1cc;
+      width: 100%;
     }
 
     .button {
@@ -634,8 +672,6 @@ button.tiny, .button.tiny {
       img {
         float: left;
         margin: 5px 14px 3px 12px;
-//        height: 20px;
-//        fill: $helpColor;
       }
 
       img.ui-element {
@@ -981,11 +1017,17 @@ button.tiny, .button.tiny {
 // Footer
 
 #footer {
-  margin: 15px 0 0 0;
-  padding: 3px;
+  width: 64%;
+  text-align: center;
+  margin: 8px auto 0 auto;
+  padding: 4px;
   font-size: 0.85em;
   color: #777;
-  border-top: 1px solid #BBB;
+
+  .team-logo {
+    border-bottom: 1px dashed #CCC;
+    margin-bottom: 4px;
+  }
 }
 
 
@@ -1035,6 +1077,7 @@ button.tiny, .button.tiny {
 
   background: #333;
   color: #DDD;
+  width: 728px;
 
   h3 {
     background: $helpColor;
@@ -1042,21 +1085,22 @@ button.tiny, .button.tiny {
 
   h4 {
     color: #FFF;
-    border-bottom: 1px solid #444;
+    border: none;
+    margin-bottom: 8px;
   }
 
   .example-row {
-    clear: both;
-    margin-bottom: 8px;
+    text-align: center;
+    margin: 8px auto;
+  }
+
+  .example-screenshot {
+    text-align: center;
+    margin: 4px;
+    display: inline-block;
     background: #444;
     border-radius: 3px;
     padding: 8px;
-  }
-
-  .example-box {
-    width: 48%;
-    float: left;
-    margin-right: 2%;
   }
 }
 

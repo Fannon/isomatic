@@ -92,10 +92,14 @@ var isomatic = {};
         });
 
         //  Start interactive Tour if not already seen
-
         if (!$.getCookie('tour-viewed')) {
             window.location.hash = '#tour';
         }
+
+        // Go to home if modal is closed:
+        $(document).on('close.fndtn.reveal', '[data-reveal]', function () {
+            window.location.hash = '#home';
+        });
 
     });
 
