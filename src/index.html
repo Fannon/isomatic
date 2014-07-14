@@ -231,8 +231,8 @@
             <input id="aspect-ratio-height" type="text" value="{{ options.graphHeight }}">
         </div>
 
-        <a id="new-graphic-apply" href="#" class="tiny button radius">New Graphic</a>
-        <a id="new-canvas-apply" href="#" class="tiny button radius">Change Canvas Aspect Ratio</a>
+        <a id="new-graphic-apply" class="tiny button radius">New Graphic</a>
+        <a id="new-canvas-apply" class="tiny button radius">Change Canvas Aspect Ratio</a>
 
     </form>
     <a class="close-reveal-modal">&#215;</a>
@@ -251,12 +251,12 @@
 
         <div id="import-errors" data-alert class="alert-box warning radius" style="display: none">
             <div></div>
-            <a href="#" class="close">&times;</a>
+            <a class="close">&times;</a>
         </div>
 
         <div id="import-success" data-alert class="alert-box info radius" style="display: none">
             <div>Sucessfully imported File.</div>
-            <a href="#" class="close">&times;</a>
+            <a class="close">&times;</a>
         </div>
     </div>
     <a class="close-reveal-modal">&#215;</a>
@@ -327,7 +327,6 @@
         <a id='close-tour' href="#home" class="tiny button radius">Close</a>
 
     </form>
-    <!--<a class="close-reveal-modal">&#215;</a>-->
 </script>
 
 <!-- Help Template -->
@@ -533,8 +532,8 @@
         <div class="clearfix">
             <div class="help-content">
                 <div class="help-left">
-                    <a id="data-help-pastedata" class="help-option-nav tiny button radius active" href="#">Paste Data</a>
-                    <a id="data-help-datapreview" class="help-option-nav tiny button radius" href="#">Data Preview</a>
+                    <div id="data-help-pastedata" class="help-option-nav tiny button radius active">Paste Data</div>
+                    <div id="data-help-datapreview" class="help-option-nav tiny button radius">Data Preview</div>
                 </div>
                 <div class="help-right scrollbar-container">
                     <div class="scrollbar">
@@ -622,9 +621,9 @@
 
         <div class="help-content clearfix">
             <div class="help-left">
-                <a id="type-help-diagramtypes" class="help-option-nav tiny button radius active" href="#">Select Type</a>
+                <div id="type-help-diagramtypes" class="help-option-nav tiny button radius active">Select Type</div>
                 {{#if advancedOptions}}
-                <a id="type-help-additionaloptions" class="help-option-nav tiny button radius" href="#">Additional Options</a>
+                <div id="type-help-additionaloptions" class="help-option-nav tiny button radius">Additional Options</div>
                 {{/if}}
             </div>
             <div class="help-right scrollbar-container">
@@ -714,9 +713,9 @@
 
         <div class="help-content">
             <div class="help-left">
-                <a id="icon-help-mapping" class="help-option-nav tiny button radius active" href="#">Mapping</a>
-                <a id="icon-help-draganddrop" class="help-option-nav tiny button radius" href="#">Drag And Drop</a>
-                <a id="icon-help-presets" class="help-option-nav tiny button radius" href="#">Presets</a>
+                <div id="icon-help-mapping" class="help-option-nav tiny button radius active">Mapping</div>
+                <div id="icon-help-draganddrop" class="help-option-nav tiny button radius">Drag And Drop</div>
+                <div id="icon-help-presets" class="help-option-nav tiny button radius">Presets</div>
             </div>
             <div class="help-right scrollbar-container">
                 <div class="scrollbar">
@@ -830,9 +829,9 @@
 
         <div class="help-content clearfix">
             <div class="help-left">
-                <a id="color-help-mapping" class="help-option-nav tiny button radius active" href="#">Mapping</a>
-                <a id="color-help-colorpicker" class="help-option-nav tiny button radius" href="#">Colorpicker</a>
-                <a id="color-help-presets" class="help-option-nav tiny button radius" href="#">Presets</a>
+                <div id="color-help-mapping" class="help-option-nav tiny button radius active">Mapping</div>
+                <div id="color-help-colorpicker" class="help-option-nav tiny button radius">Colorpicker</div>
+                <div id="color-help-presets" class="help-option-nav tiny button radius">Presets</div>
             </div>
             <div class="help-right scrollbar-container">
                 <div class="scrollbar">
@@ -946,16 +945,16 @@
 
         <div class="help-content clearfix">
             <div class="help-left">
-                <a id="adjustments-help-outermargin" class="help-option-nav tiny button radius active" href="#">Outer Margin</a>
-                <a id="adjustments-help-horizontalmargin" class="help-option-nav tiny button radius" href="#">Horizontal Margin</a>
+                <div id="adjustments-help-outermargin" class="help-option-nav tiny button radius active">Outer Margin</div>
+                <div id="adjustments-help-horizontalmargin" class="help-option-nav tiny button radius">Horizontal Margin</div>
                 {{#if advancedOptions}}
-                <a id="adjustments-help-verticalmargin" class="help-option-nav tiny button radius" href="#">Vertical Margin</a>
+                <div id="adjustments-help-verticalmargin" class="help-option-nav tiny button radius">Vertical Margin</div>
                 {{/if}}
-                <a id="adjustments-help-rowmargin" class="help-option-nav tiny button radius" href="#">Row Margin</a>
+                <div id="adjustments-help-rowmargin" class="help-option-nav tiny button radius">Row Margin</div>
                 {{#if advancedOptions}}
-                <a id="adjustments-help-columnmargin" class="help-option-nav tiny button radius" href="#">Column Margin</a>
+                <div id="adjustments-help-columnmargin" class="help-option-nav tiny button radius">Column Margin</div>
                 {{/if}}
-                <a id="adjustments-help-iconsize" class="help-option-nav tiny button radius" href="#">Icon Size</a>
+                <div id="adjustments-help-iconsize" class="help-option-nav tiny button radius">Icon Size</div>
             </div>
             <div class="help-right scrollbar-container">
                 <div class="scrollbar">
@@ -1077,8 +1076,8 @@
 
         <div class="help-content clearfix">
             <div class="help-left">
-                <a id="scale-help-setscale" class="help-option-nav tiny button radius active" href="#">Set Scale</a>
-                <a id="scale-help-sizerounding" class="help-option-nav tiny button radius" href="#">Size Rounding</a>
+                <div id="scale-help-setscale" class="help-option-nav tiny button radius active">Set Scale</div>
+                <div id="scale-help-sizerounding" class="help-option-nav tiny button radius">Size Rounding</div>
             </div>
             <div class="help-right scrollbar-container">
                 <div class="scrollbar">
@@ -1166,8 +1165,8 @@
 
         <div class="help-content clearfix">
             <div class="help-left">
-                <a id="text-help-fontsettings" class="help-option-nav tiny button radius active" href="#">Font Settings</a>
-                <a id="text-help-legendsettings" class="help-option-nav tiny button radius" href="#">Legend Settings</a>
+                <div id="text-help-fontsettings" class="help-option-nav tiny button radius active">Font Settings</div>
+                <div id="text-help-legendsettings" class="help-option-nav tiny button radius">Legend Settings</div>
             </div>
             <div class="help-right scrollbar-container">
                 <div class="scrollbar">
@@ -1263,7 +1262,7 @@
                     <h4>Paste Data</h4>
                     <textarea placeholder="Copy'n'Paste Data here" id="pasted-data"></textarea>
                     <div class="button-group">
-                        <a id="import-data" href="#" class="apply tiny button radius">Import</a>
+                        <div id="import-data" class="apply tiny button radius">Import</div>
                     </div>
                 </div>
                 <div class="ui-container highlightable data-help-datapreview-highlight">
@@ -1295,9 +1294,9 @@
                         Normal
                     </div>
                     <div class="type-image">
-                        <a>
+                        <div>
                             <img src="img/ui/normal_isotype.svg">
-                        </a>
+                        </div>
                     </div>
                 </div>
 
@@ -1306,9 +1305,9 @@
                         Versus
                     </div>
                     <div class="type-image">
-                        <a>
+                        <div>
                             <img src="img/ui/versus_isotype.svg">
-                        </a>
+                        </div>
                     </div>
                 </div>
 
@@ -1317,9 +1316,9 @@
                         Compare
                     </div>
                     <div class="type-image">
-                        <a>
+                        <div>
                             <img src="img/ui/compare_isotype.svg">
-                        </a>
+                        </div>
                     </div>
                 </div>
 
@@ -1368,7 +1367,7 @@
             </div>
 
             <div class="button-group">
-                <a id="icon-apply" href="#" class="apply tiny button expand radius">Apply</a>
+                <div id="icon-apply" class="apply tiny button expand radius">Apply</div>
             </div>
 
         </form>
@@ -1433,7 +1432,7 @@
                     </div>
 
                     <div class="button-group">
-                        <a id="color-apply" href="#" class="apply tiny button expand radius">Apply</a>
+                        <div id="color-apply" class="apply tiny button expand radius">Apply</div>
                     </div>
                 </form>
             </div>
@@ -1556,7 +1555,7 @@
             </div>
 
             <div class="button-group">
-                <a id="adjustments-apply" href="#" class="apply-right-margin tiny button expand radius">Apply</a>
+                <div id="adjustments-apply" class="apply-right-margin tiny button expand radius">Apply</div>
             </div>
 
         </form>
@@ -1606,7 +1605,7 @@
         </form>
 
         <div class="button-group">
-            <a id="scale-apply" href="#" class="apply tiny button expand radius">Apply</a>
+            <div id="scale-apply" class="apply tiny button expand radius">Apply</div>
         </div>
 
     </div>
@@ -1692,7 +1691,7 @@
         </form>
 
         <div class="button-group">
-            <a id="text-apply" href="#" class="apply tiny button expand radius">Apply</a>
+            <div id="text-apply" class="apply tiny button expand radius">Apply</div>
         </div>
     </div>
 </script>
