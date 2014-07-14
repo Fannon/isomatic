@@ -16,7 +16,7 @@
          * @contructs
          */
         initialize: function(){
-            this.render();
+            // Delayed Render, triggered via the router!
         },
 
         /** Render Export View */

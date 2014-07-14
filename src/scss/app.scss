@@ -1050,12 +1050,13 @@ button.tiny, .button.tiny {
     background: #444;
     border-radius: 3px;
     padding: 8px;
+    text-align: center;
   }
 
   .example-box {
     width: 48%;
     float: left;
-    margin-right: 2%;
+    margin-right: 8px;
   }
 }
 
