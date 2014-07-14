@@ -428,12 +428,12 @@ button.tiny, .button.tiny {
 
   .button-group {
 
-    a.apply {
+    div.apply {
       background-color: $submitColor;
       margin: $container-margin 0;
     }
 
-    a.apply-right-margin {
+    div.apply-right-margin {
       background-color: $submitColor;
       display: block;
       width: auto;
