@@ -34,7 +34,6 @@
 
 
         events: {
-            'click [type="checkbox"]': "skipTour",
             "click #start-tour": "startTour",
             "click #close-tour": "closeTour"
         },
@@ -43,19 +42,13 @@
          * Applies the currently calculated Aspect Ratio to the Graphic Canvas
          */
 
-        skipTour: function() {
-            if ($.getCookie('tour-viewed') === false || $.getCookie('tour-viewed') === "false") {
-//                $.createCookie('tour-viewed', "true", 365);
-            } else {
-//                $.createCookie('tour-viewed', "false", 365);
-            }
-        },
-
         startTour: function() {
+            $.createCookie('tour-viewed', "true", 365);
             $('#tour-modal').foundation('reveal', 'close');
         },
 
         closeTour: function() {
+            $.createCookie('tour-viewed', "true", 365);
             $('#tour-modal').foundation('reveal', 'close');
         }
 

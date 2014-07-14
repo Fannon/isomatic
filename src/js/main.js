@@ -90,12 +90,11 @@ var isomatic = {};
             isomatic.uglyHack(el.currentTarget, isomatic.options.internal.HelpStatus.location);
         });
 
-//        Start interactive Tour if not already seen
+        //  Start interactive Tour if not already seen
 
         if (!$.getCookie('tour-viewed')) {
             window.location.hash = '#tour';
         }
-
 
     });
 

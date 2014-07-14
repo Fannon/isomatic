@@ -1032,14 +1032,10 @@ button.tiny, .button.tiny {
 #tour-modal {
   background: #333;
   color: #fff;
-  line-height: 15px;
-
 
   #start-tour {
     background: #0099CC;
     color: #fff;
-    border: 1px solid #0099CC;
-    height: 29px;
 
     img {
       margin-right: 5px;
@@ -1049,11 +1045,16 @@ button.tiny, .button.tiny {
 
   }
 
-   .button {
-    background: #BBB;
-    color: #333;
-    float: right;
-    margin-left: 5px;
+  #close-tour {
+    height: 29px;
+    line-height: 16px;
+  }
+
+  .button {
+  background: #BBB;
+  color: #333;
+  float: right;
+  margin-left: 5px;
   }
 
   .button:hover{

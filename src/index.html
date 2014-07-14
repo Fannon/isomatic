@@ -275,10 +275,8 @@
 
         </div>
 
-
         <a id='start-tour' href="#help" class="tiny button radius"><img src="img/ui/help.svg" width="16px" height="16px">Start Tour</a>
         <a id='close-tour' href="#home" class="tiny button radius">Close</a>
-        <input id="skip-tour" type="checkbox"><label for="skip-tour">Don´t show this again</label>
 
     </form>
     <!--<a class="close-reveal-modal">&#215;</a>-->
@@ -286,53 +284,6 @@
 
 <!-- Help Template -->
 <script type="text/html" id="help-template">
-
-    <div id="examples-help" class="help-section" style="display: none">
-        <div class="examples-help-content scrollbar-container">
-            <h3>Examples</h3>
-            <div class="scrollbar">
-
-
-
-            </div>
-
-        </div>
-    </div>
-
-    <div id="new-help" class="help-section" style="display: none">
-        <div class="new-help-content scrollbar-container">
-            <h3>New</h3>
-            <div class="scrollbar">
-
-
-
-            </div>
-
-        </div>
-    </div>
-    <div id="import-help" class="help-section" style="display: none">
-
-        <div class="import-help-content scrollbar-container">
-            <h3>Import</h3>
-            <div class="scrollbar">
-
-
-
-            </div>
-
-        </div>
-    </div>
-    <div id="export-help" class="help-section" style="display: none">
-        <div class="export-help-content scrollbar-container">
-            <h3>Export</h3>
-            <div class="scrollbar">
-
-
-
-            </div>
-
-        </div>
-    </div>
 
     <div id="home-help" class="help-section">
         <div class="home-help-content scrollbar-container">
@@ -412,6 +363,118 @@
 
     </div>
 
+    <div id="examples-help" class="help-section" style="display: none">
+        <h3>Examples</h3>
+        <div class="clearfix">
+            <div class="help-content">
+                <div class="help-left">
+                </div>
+                <div class="help-right scrollbar-container">
+                </div>
+
+            </div>
+        </div>
+        <div class="help-nav">
+            <div class="help-nav-left">
+                <a class="tiny button radius" href="#help-overview">
+                    <div class="help-nav-left-icon"></div>
+                </a>
+            </div>
+            <div class="help-nav-center">
+                <a class="tiny button radius" href="#help-overview">Help Overview</a>
+            </div>
+            <div class="help-nav-right">
+                <a class="tiny button radius" href="#new-help">
+                    <div class="help-nav-right-icon"></div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div id="new-help" class="help-section" style="display: none">
+        <h3>New</h3>
+        <div class="clearfix">
+            <div class="help-content">
+                <div class="help-left">
+                </div>
+                <div class="help-right scrollbar-container">
+                </div>
+
+            </div>
+        </div>
+        <div class="help-nav">
+            <div class="help-nav-left">
+                <a class="tiny button radius" href="#examples-help">
+                    <div class="help-nav-left-icon"></div>
+                </a>
+            </div>
+            <div class="help-nav-center">
+                <a class="tiny button radius" href="#help-overview">Help Overview</a>
+            </div>
+            <div class="help-nav-right">
+                <a class="tiny button radius" href="#import-help">
+                    <div class="help-nav-right-icon"></div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div id="import-help" class="help-section" style="display: none">
+        <h3>Import</h3>
+        <div class="clearfix">
+            <div class="help-content">
+                <div class="help-left">
+                </div>
+                <div class="help-right scrollbar-container">
+                </div>
+
+            </div>
+        </div>
+        <div class="help-nav">
+            <div class="help-nav-left">
+                <a class="tiny button radius" href="#new-help">
+                    <div class="help-nav-left-icon"></div>
+                </a>
+            </div>
+            <div class="help-nav-center">
+                <a class="tiny button radius" href="#help-overview">Help Overview</a>
+            </div>
+            <div class="help-nav-right">
+                <a class="tiny button radius" href="#export-help">
+                    <div class="help-nav-right-icon"></div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div id="export-help" class="help-section" style="display: none">
+        <h3>Export</h3>
+        <div class="clearfix">
+            <div class="help-content">
+                <div class="help-left">
+                </div>
+                <div class="help-right scrollbar-container">
+                </div>
+
+            </div>
+        </div>
+        <div class="help-nav">
+            <div class="help-nav-left">
+                <a class="tiny button radius" href="#import-help">
+                    <div class="help-nav-left-icon"></div>
+                </a>
+            </div>
+            <div class="help-nav-center">
+                <a class="tiny button radius" href="#help-overview">Help Overview</a>
+            </div>
+            <div class="help-nav-right">
+                <a class="tiny button radius" href="#data">
+                    <div class="help-nav-right-icon"></div>
+                </a>
+            </div>
+        </div>
+    </div>
+
     <div id="data-help"  class="help-section" style="display: none">
         <h3>Data Help</h3>
         <div class="clearfix">
@@ -479,12 +542,12 @@
 
         <div class="help-nav">
             <div class="help-nav-left">
-                <a class="tiny button radius" href="#home">
+                <a class="tiny button radius" href="#export-help">
                     <div class="help-nav-left-icon"></div>
                 </a>
             </div>
             <div class="help-nav-center">
-                <a class="tiny button radius" href="#mainhelp">Help Overview</a>
+                <a class="tiny button radius" href="#help-overview">Help Overview</a>
             </div>
             <div class="help-nav-right">
                 <a class="tiny button radius" href="#type">
@@ -568,7 +631,7 @@
                 </a>
             </div>
             <div class="help-nav-center">
-                <a class="tiny button radius" href="#mainhelp">Help Overview</a>
+                <a class="tiny button radius" href="#help-overview">Help Overview</a>
             </div>
             <div class="help-nav-right">
                 <a class="tiny button radius" href="#icon">
@@ -676,7 +739,7 @@
                 </a>
             </div>
             <div class="help-nav-center">
-                <a class="tiny button radius" href="#mainhelp">Help Overview</a>
+                <a class="tiny button radius" href="#help-overview">Help Overview</a>
             </div>
             <div class="help-nav-right">
                 <a class="tiny button radius" href="#color">
@@ -784,7 +847,7 @@
                 </a>
             </div>
             <div class="help-nav-center">
-                <a class="tiny button radius" href="#mainhelp">Help Overview</a>
+                <a class="tiny button radius" href="#help-overview">Help Overview</a>
             </div>
             <div class="help-nav-right">
                 <a class="tiny button radius" href="#adjustments">
@@ -906,7 +969,7 @@
                 </a>
             </div>
             <div class="help-nav-center">
-                <a class="tiny button radius" href="#mainhelp">Help Overview</a>
+                <a class="tiny button radius" href="#help-overview">Help Overview</a>
             </div>
             <div class="help-nav-right">
                 <a class="tiny button radius" href="#scale">
@@ -988,7 +1051,7 @@
                 </a>
             </div>
             <div class="help-nav-center">
-                <a class="tiny button radius" href="#mainhelp">Help Overview</a>
+                <a class="tiny button radius" href="#help-overview">Help Overview</a>
             </div>
             <div class="help-nav-right">
                 <a class="tiny button radius" href="#text">
@@ -1072,10 +1135,12 @@
                 </a>
             </div>
             <div class="help-nav-center">
-                <a class="tiny button radius" href="#mainhelp">Help Overview</a>
+                <a class="tiny button radius" href="#help-overview">Help Overview</a>
             </div>
             <div class="help-nav-right">
-                <!--<a class="tiny button radius" href="#">>>>></a>-->
+                <a class="tiny button radius" href="#help-overview">
+                    <div class="help-nav-right-icon"></div>
+                </a>
             </div>
         </div>
     </div>
