@@ -50,6 +50,7 @@ var isomatic = {};
         views.newView         = new views.NewView({el: $("#new-modal")});
         views.importView      = new views.ImportView({el: $("#import-modal")});
         views.exportView      = new views.ExportView({el: $("#export-modal")});
+        views.examplesView    = new views.ExamplesView({el: $("#examples-modal")});
         views.tourView        = new views.TourView({el: $("#tour-modal")});
 
         views.dataView        = new views.DataView({el: $("#data-container")});

@@ -19,6 +19,7 @@
             "import-help": "importhelp",
             "export": "exportGraphic",
             "export-help": "exporthelp",
+            "examples": "examples",
             "tour": "tour",
             "help": "help",
             "help-overview": "helpoverview",
@@ -67,6 +68,10 @@
 
         exporthelp: function() {
             this.redirect('export');
+        },
+
+        examples: function() {
+            $('#examples-modal').foundation('reveal', 'open');
         },
 
         tour: function() {
