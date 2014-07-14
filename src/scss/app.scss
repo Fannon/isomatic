@@ -1016,11 +1016,17 @@ button.tiny, .button.tiny {
 // Footer
 
 #footer {
-  margin: 15px 0 0 0;
-  padding: 3px;
+  width: 64%;
+  text-align: center;
+  margin: 8px auto 0 auto;
+  padding: 4px;
   font-size: 0.85em;
   color: #777;
-  border-top: 1px solid #BBB;
+
+  .team-logo {
+    border-bottom: 1px dashed #CCC;
+    margin-bottom: 4px;
+  }
 }
 
 
@@ -1070,6 +1076,7 @@ button.tiny, .button.tiny {
 
   background: #333;
   color: #DDD;
+  width: 728px;
 
   h3 {
     background: $helpColor;
@@ -1077,22 +1084,22 @@ button.tiny, .button.tiny {
 
   h4 {
     color: #FFF;
-    border-bottom: 1px solid #444;
+    border: none;
+    margin-bottom: 8px;
   }
 
   .example-row {
-    clear: both;
-    margin-bottom: 8px;
+    text-align: center;
+    margin: 8px auto;
+  }
+
+  .example-screenshot {
+    text-align: center;
+    margin: 4px;
+    display: inline-block;
     background: #444;
     border-radius: 3px;
     padding: 8px;
-    text-align: center;
-  }
-
-  .example-box {
-    width: 48%;
-    float: left;
-    margin-right: 8px;
   }
 }
 

@@ -127,9 +127,20 @@
         <div id="message-box"></div>
 
         <div id="footer" class="">
-            2014 | Open Source @ <a href="https://github.com/Fannon/isomatic" target="_blank">Github</a>
-            | A Project by: <a href="http://www.lisaborgenheimer.com" target="_blank">Lisa Borgenheimer</a>, <a href="http://www.fannon.de" target="_blank">Simon
-            Heimler</a> and <a>Sebastian Huber</a> </div>
+
+            <div class="team-logo">
+                <img class="team" src="img/ui/team.svg" width="64px" height="25px" alt="isomatic team"/>
+            </div>
+
+            <div class="team-desc">
+                2014 | Open Source @ <a href="https://github.com/Fannon/isomatic" target="_blank">Github</a>
+                | A Project by:
+                Sebastian Huber,
+                <a href="http://www.lisaborgenheimer.com" target="_blank">Lisa Borgenheimer</a> and
+                <a href="http://www.fannon.de" target="_blank">SimonHeimler</a>
+            </div>
+
+        </div>
 
     </div>
 
@@ -283,18 +294,15 @@
         Click on an example image to load it. <strong>Warning:</strong> This overwrites all current settings and the loaded data!
     </p>
 
-    {{#each examples}}
-    <h4>{{this.title}}</h4>
     <div class="example-row">
-        <div class="example-box">
+        {{#each examples}}
+
+        <div class="example-screenshot">
+            <h4>{{this.title}}</h4>
             <a href="#home"><img id="example-{{this.id}}" src="img/examples/{{this.id}}.png" alt="{{this.id}}" class="example-thumb"/></a>
         </div>
-        <div class="example-box">
-            <img id="example-{{this.id}}" src="img/examples/{{this.id}}Data.png" alt="{{this.id}} DataSet" class="example-thumb"/>
-        </div>
-        <div class="clearfix"></div>
+        {{/each}}
     </div>
-    {{/each}}
 
     <a class="close-reveal-modal">&#215;</a>
 </script>
