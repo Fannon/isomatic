@@ -87,8 +87,6 @@
 
             var isValid = this.model.set(state, {validate: true});
 
-            console.log(isValid);
-
             if (isValid) {
                 isomatic.refreshLayout();
             }
