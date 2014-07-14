@@ -542,8 +542,12 @@ button.tiny, .button.tiny {
 
         .help-right-picture {
 
+          overflow: hidden;
+
           img{
             margin: 0px;
+            width: 257px;
+            height: 158px;
           }
         }
 

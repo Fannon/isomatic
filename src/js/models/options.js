@@ -142,13 +142,13 @@
          * @type {Object}
          */
         colorPalettes: {
-            "Complementary1": [ "333333", "12c4a6", "FF0055", "8c1f43", "237567"],
-            "Complementary2": ["333333", "00BDD1", "FF7E00", "D98866", "754552"],
             "Signal1": ["333333","009DE0", "E80073", "FFB103", "BCAA99"],
-            "Signal2": ["333333","00AAB5", "C9E000", "ED4200", "AAAAAA"],
-            "Rainbow": ["0A7B83","2AA876","FFD265","F19C65","CE4D45"],
-            "VioletBlue": ["d437d4", "8c3a8c", "293054", "225ea8", "1d91c0", "41b6c4","7fcdbb"]
-
+            "Signal2": ["333333","00AAB5", "C9E000", "ED4200", "FF8400", "B516B5"],
+            "Rainbow": ["0A7B83","2AA876","FFD265","F19C65","CE4D45", "7D4DAB"],
+            "VioletBlue": ["d437d4", "8c3a8c", "293054", "225ea8", "1d91c0", "41b6c4","7fcdbb"],
+            "ColorBrewer Set1": ["e41a1c","377eb8","4daf4a","984ea3","ff7f00","ffff33","a65628","f781bf","999999"],
+            "ColorBrewer Paired": ["a6cee3","1f78b4","b2df8a","33a02c","fb9a99","e31a1c","fdbf6f","ff7f00","cab2d6","6a3d9a","ffff99","b15928"],
+            "ColorBrewer Pastel": ["fbb4ae","b3cde3","ccebc5","decbe4","fed9a6","ffffcc","e5d8bd","fddaec","f2f2f2"]
         },
 
         /**

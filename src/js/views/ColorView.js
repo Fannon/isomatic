@@ -33,8 +33,6 @@
          */
         render: function(){
 
-//            console.info('ColorView.render();');
-
             var colorMap = isomatic.options.ui.attributes.colorMap;
 
             var source = $('#color-template').html();
@@ -44,24 +42,26 @@
             var colorMapping = {};
             var i = 0;
             if (isomatic.options.ui.attributes.colorize === 'row') {
+
                 for (i = 0; i < isomatic.data.meta.attributes.rows.length; i++) {
 
                     // If no Color is currently mapped, use default Color
                     if (colorMap[i] === undefined) {
-                        colorMapping[i] = isomatic.options.internal.defaultColor;
+                        colorMapping[isomatic.data.meta.attributes.rows[i]] = isomatic.options.internal.defaultColor;
+                    } else {
+                        colorMapping[isomatic.data.meta.attributes.rows[i]] = colorMap[i];
                     }
-
-                    colorMapping[isomatic.data.meta.attributes.rows[i]] = colorMap[i];
                 }
+
             } else {
                 for (i = 0; i < isomatic.data.meta.attributes.columns.length; i++) {
 
                     // If no Color is currently mapped, use default Color
                     if (colorMap[i] === undefined) {
-                        colorMapping[i] = isomatic.options.internal.defaultColor;
+                        colorMapping[isomatic.data.meta.attributes.rows[i]] = isomatic.options.internal.defaultColor;
+                    } else {
+                        colorMapping[isomatic.data.meta.attributes.columns[i]] = colorMap[i];
                     }
-
-                    colorMapping[isomatic.data.meta.attributes.columns[i]] = colorMap[i];
                 }
             }
 
@@ -167,6 +167,11 @@
         selectColorpalette: function(event) {
 
             var selectedColorPalette = event.currentTarget.id.split('-')[1];
+
+            console.log(this.model.attributes.colorMap);
+            console.log(isomatic.options.internal.colorPalettes[selectedColorPalette]);
+            console.log(selectedColorPalette);
+
             this.model.set({
                 colorMap: isomatic.options.internal.colorPalettes[selectedColorPalette]
             });
