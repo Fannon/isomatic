@@ -131,7 +131,7 @@
         <div id="new-modal" class="tiny reveal-modal" data-reveal></div>
         <div id="import-modal" class="tiny reveal-modal" data-reveal></div>
         <div id="export-modal" class="tiny reveal-modal" data-reveal></div>
-        <div id="examples-modal" class="tiny reveal-modal" data-reveal></div>
+        <div id="examples-modal" class="medium reveal-modal" data-reveal></div>
         <div id="tour-modal" class="tiny reveal-modal" data-reveal></div>
     </div>
 
@@ -279,7 +279,17 @@
 
     {{#each examples}}
     <h4>{{this.title}}</h4>
-    <a href="#examples"><img id="example-{{this.id}}" src="img/examples/{{this.id}}.png" alt="{{this.id}}" class="example-thumb"/></a>
+    <div class="example-row">
+        <div class="example-box">
+            <a href="#examples"><img id="example-{{this.id}}" src="img/examples/{{this.id}}.png" alt="{{this.id}}" class="example-thumb"/></a>
+        </div>
+        <div class="example-box">
+            <img id="example-{{this.id}}" src="img/examples/{{this.id}}Data.png" alt="{{this.id}} DataSet" class="example-thumb"/>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+
+
     {{/each}}
 
     <a class="close-reveal-modal">&#215;</a>
@@ -290,10 +300,15 @@
     <h3>Welcome to isomatic</h3>
     <form>
         <div class="ui-container clearfix">
+            <img src="img/ui/normal_isotype.svg" width="80px"><br><br>
+            Tired of creating isotype graphics manually?
+            <b>isomatic</b> does all the heavy lifting for you and still leaves you with the opportunity to customize
+            the graphic in your favorite vector graphics editor like Adobe Illustrator. <br><br>
 
-        <img src="img/ui/normal_isotype.svg" width="80px"><br><br>
-        Tired of creating isotype graphics manually? <b>isomatic</b> does all the heavy lifting for you and still leaves you with the opportunity to customize the graphic in your favorite vector graphics editor like Adobe Illustrator. <br><br> You start by importing your data via copy'n'paste from a spreadsheet application, like Excel or Numbers. The application gives you the choice between several isotype layouts. A broad library contains many custom designed icons and many options to layout and design the graphic. If you seek help, the interactive tour will guide you throughout the whole process.
-
+            You start by importing your data via copy'n'paste from a spreadsheet application, like Excel or Numbers.
+            The application gives you the choice between several isotype layouts.
+            A broad library contains many custom designed icons and many options to layout and design the graphic.
+            If you seek help, the interactive tour will guide you throughout the whole process.
         </div>
 
         <a id='start-tour' href="#help" class="tiny button radius"><img src="img/ui/help.svg" width="16px" height="16px">Start Tour</a>

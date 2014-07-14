@@ -48,8 +48,10 @@
 
             if (isomatic.options.examples[targetExample]) {
                 var example = isomatic.options.examples[targetExample];
-                isomatic.options.ui.attributes = example.options;
-                isomatic.data.raw.attributes = example.data;
+
+                isomatic.options.ui.set(example.options);
+                isomatic.data.raw.set(example.data);
+
                 isomatic.refreshData();
             } else {
                 console.log('Error loading Example!');

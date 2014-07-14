@@ -342,7 +342,6 @@ button.tiny, .button.tiny {
 
 
 // Overlays
-
 #overlay {
 
   height: auto;
@@ -455,6 +454,10 @@ button.tiny, .button.tiny {
     }
 
     .tiny {
+      padding: 0.625rem 0rem 0.6875rem;
+    }
+
+    .medium {
       padding: 0.625rem 0rem 0.6875rem;
     }
 
@@ -902,7 +905,6 @@ button.tiny, .button.tiny {
     }
   }
 
-
   // Scale Overlay
 
   #overlay-scale {
@@ -1028,6 +1030,34 @@ button.tiny, .button.tiny {
   }
 }
 
+#examples-modal {
+
+  background: #333;
+  color: #DDD;
+
+  h3 {
+    background: $helpColor;
+  }
+
+  h4 {
+    color: #FFF;
+    border-bottom: 1px solid #444;
+  }
+
+  .example-row {
+    clear: both;
+    margin-bottom: 8px;
+    background: #444;
+    border-radius: 3px;
+    padding: 8px;
+  }
+
+  .example-box {
+    width: 48%;
+    float: left;
+    margin-right: 2%;
+  }
+}
 
 #tour-modal {
   background: #333;
