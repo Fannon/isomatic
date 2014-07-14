@@ -68,7 +68,6 @@
         },
 
         setNavigation: function(e) {
-            console.log("setNavigation");
             var id = e.currentTarget.id;
             $('.help-option-nav').removeClass("active");
             $('#' + id).addClass("active");

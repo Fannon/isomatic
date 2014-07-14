@@ -108,11 +108,16 @@
         },
 
         help: function() {
-            this.showHelp();
-            this.checkHelp();
+            if (isomatic.options.internal.HelpStatus.location === 'home') {
+                this.redirect('home');
+            } else {
+                this.showHelp();
+                this.checkHelp();
+            }
         },
 
         helpoverview: function() {
+            $('#graph').removeClass('move-right');
             this.redirect('home');
         },
 
@@ -161,6 +166,8 @@
             }
             $('#' + isomatic.options.internal.HelpStatus.location + '-help .help-option-nav').removeClass('active').first().addClass('active');
             $('#' + isomatic.options.internal.HelpStatus.location + '-help .help-right-option-container').hide().first().show();
+
+            window.location = '#' + isomatic.options.internal.HelpStatus.location;
         },
 
         redirect: function(route) {
