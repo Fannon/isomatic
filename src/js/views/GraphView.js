@@ -865,7 +865,7 @@
                     .attr("x", 0)
                     .attr("y", -3) // TODO: Hard coded Layout Fix
                     .attr("class", "legend")
-                    .text("Warning: No Mapping for the Columns!")
+                    .text("Warning: Columns are not mapped")
                     .attr("font-family", legendFont)
                     .attr("fill", "#999999")
                 ;

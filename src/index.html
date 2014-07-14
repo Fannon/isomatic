@@ -231,8 +231,8 @@
             <input id="aspect-ratio-height" type="text" value="{{ options.graphHeight }}">
         </div>
 
-        <a id="new-graphic-apply" href="#" class="tiny button radius">New Graphic</a>
-        <a id="new-canvas-apply" href="#" class="tiny button radius">Change Canvas Aspect Ratio</a>
+        <a id="new-graphic-apply" class="tiny button radius">New Graphic</a>
+        <a id="new-canvas-apply" class="tiny button radius">Change Canvas Aspect Ratio</a>
 
     </form>
     <a class="close-reveal-modal">&#215;</a>
@@ -251,12 +251,12 @@
 
         <div id="import-errors" data-alert class="alert-box warning radius" style="display: none">
             <div></div>
-            <a href="#" class="close">&times;</a>
+            <a class="close">&times;</a>
         </div>
 
         <div id="import-success" data-alert class="alert-box info radius" style="display: none">
             <div>Sucessfully imported File.</div>
-            <a href="#" class="close">&times;</a>
+            <a class="close">&times;</a>
         </div>
     </div>
     <a class="close-reveal-modal">&#215;</a>
@@ -327,7 +327,6 @@
         <a id='close-tour' href="#home" class="tiny button radius">Close</a>
 
     </form>
-    <!--<a class="close-reveal-modal">&#215;</a>-->
 </script>
 
 <!-- Help Template -->
@@ -531,8 +530,8 @@
         <div class="clearfix">
             <div class="help-content">
                 <div class="help-left">
-                    <a id="data-help-pastedata" class="help-option-nav tiny button radius active" href="#">Paste Data</a>
-                    <a id="data-help-datapreview" class="help-option-nav tiny button radius" href="#">Data Preview</a>
+                    <div id="data-help-pastedata" class="help-option-nav tiny button radius active">Paste Data</div>
+                    <div id="data-help-datapreview" class="help-option-nav tiny button radius">Data Preview</div>
                 </div>
                 <div class="help-right scrollbar-container">
                     <div class="scrollbar">
@@ -544,7 +543,7 @@
                                         1
                                     </div>
                                     <div class="help-right-text">
-                                        Copy and Paste your data into isomatic.
+                                        Copy and Paste your data into the "paste data" textarea.
                                     </div>
                                 </div>
                             </div>
@@ -555,7 +554,7 @@
                                         2
                                     </div>
                                     <div class="help-right-text">
-                                        Data can be dragged from Excel, JSON or CSV sources.
+                                        Data can be imported from various spreadsheet applications like Excel, Numbers, Google Spreadsheets.
                                     </div>
                                 </div>
                             </div>
@@ -566,7 +565,7 @@
                                         3
                                     </div>
                                     <div class="help-right-text">
-                                        Click “Import” to see your imported data below in "Data preview".
+                                        Click “Import” to load your data into isomatic and get a preview.
                                     </div>
                                 </div>
                             </div>
@@ -620,9 +619,9 @@
 
         <div class="help-content clearfix">
             <div class="help-left">
-                <a id="type-help-diagramtypes" class="help-option-nav tiny button radius active" href="#">Select Type</a>
+                <div id="type-help-diagramtypes" class="help-option-nav tiny button radius active">Select Type</div>
                 {{#if advancedOptions}}
-                <a id="type-help-additionaloptions" class="help-option-nav tiny button radius" href="#">Additional Options</a>
+                <div id="type-help-additionaloptions" class="help-option-nav tiny button radius">Additional Options</div>
                 {{/if}}
             </div>
             <div class="help-right scrollbar-container">
@@ -635,7 +634,9 @@
                                 1
                             </div>
                             <div class="help-right-text">
-                                You can choose between different isotype layouts. We designed the most widespread types for isotype graphics like the ranked/normal, versus or compare layouting.
+                                You can choose between different isotype layouts.
+                                We designed the most widespread types for isotype graphics like the ranked/normal,
+                                versus or compare layouting.
                             </div>
                         </div>
                     </div>
@@ -647,7 +648,8 @@
                                 2
                             </div>
                             <div class="help-right-text">
-                                To see what´s possible with isomatic, just take a look at "Help/Examples".
+                                To see what´s possible with isomatic, just take a look at the <a
+                                    href="#examples">Examples</a>.
                             </div>
                         </div>
                     </div>
@@ -661,7 +663,8 @@
                                 1
                             </div>
                             <div class="help-right-text">
-                                If you like to distribute the columns equally, just activate the first option to assign the icons on the canvas.
+                                If you like to distribute the columns equally,
+                                just activate the first option to assign the icons on the canvas.
                             </div>
                         </div>
                     </div>
@@ -673,7 +676,8 @@
                                 2
                             </div>
                             <div class="help-right-text">
-                                You can additionally align your layout with horizontal or vertical lines. <br>It can be used to visual and intensify the separation of your categories.
+                                You can additionally align your layout with horizontal or vertical lines. <br>
+                                It can be used to visual and intensify the separation of your categories.
                             </div>
                         </div>
                     </div>
@@ -712,9 +716,8 @@
 
         <div class="help-content">
             <div class="help-left">
-                <a id="icon-help-mapping" class="help-option-nav tiny button radius active" href="#">Mapping</a>
-                <a id="icon-help-draganddrop" class="help-option-nav tiny button radius" href="#">Drag And Drop</a>
-                <a id="icon-help-presets" class="help-option-nav tiny button radius" href="#">Presets</a>
+                <div id="icon-help-mapping" class="help-option-nav tiny button radius active">Mapping</div>
+                <div id="icon-help-draganddrop" class="help-option-nav tiny button radius">Drag And Drop</div>
             </div>
             <div class="help-right scrollbar-container">
                 <div class="scrollbar">
@@ -726,7 +729,7 @@
                                     1
                                 </div>
                                 <div class="help-right-text">
-                                    Choose between Row or Collumn to place your icons to the right position.
+                                    Choose if the icons should be mapped to the Columns or Rows of your dataset.
                                 </div>
                             </div>
                         </div>
@@ -737,7 +740,7 @@
                                     2
                                 </div>
                                 <div class="help-right-text">
-                                    It is usefull to set row/collumn like the color settings (see instructions "Color Settings").
+                                    The correct selection depends of course on your dataset and the way you want to visualize it.
                                 </div>
                             </div>
                         </div>
@@ -751,7 +754,7 @@
                                     1
                                 </div>
                                 <div class="help-right-text">
-                                    You can see your available rows or collumns below.
+                                    You can see a list of your available rows or columns with their labels.
                                </div>
                             </div>
                         </div>
@@ -763,38 +766,13 @@
                                     2
                                 </div>
                                 <div class="help-right-text">
-                                    Place the icons via Drag and Drop onto the available rows or collums in your data set.
-
+                                    The correct selection depends of course on your dataset and the way you want to visualize it.
                                 </div>
                             </div>
                         </div>
 
                     </div>
 
-                    <div id="icon-help-presets-container" class="help-right-option-container" style="display:none">
-                        <div class="help-step">
-                            <div class="help-right-picture"></div>
-                            <div class="help-right-description clearfix">
-                                <div class="help-right-number">
-                                    1
-                                </div>
-                                <div class="help-right-text">
-                                    Choose the suitable icon for your imported data and categories.
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="help-step">
-                            <div class="help-right-description clearfix">
-                                <div class="help-right-number">
-                                    2
-                                </div>
-                                <div class="help-right-text">
-                                    All icons are specially created for isomatic and can be commercially used for all your isotype graphics.
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -828,9 +806,9 @@
 
         <div class="help-content clearfix">
             <div class="help-left">
-                <a id="color-help-mapping" class="help-option-nav tiny button radius active" href="#">Mapping</a>
-                <a id="color-help-colorpicker" class="help-option-nav tiny button radius" href="#">Colorpicker</a>
-                <a id="color-help-presets" class="help-option-nav tiny button radius" href="#">Presets</a>
+                <div id="color-help-mapping" class="help-option-nav tiny button radius active">Mapping</div>
+                <div id="color-help-colorpicker" class="help-option-nav tiny button radius">Colorpicker</div>
+                <div id="color-help-presets" class="help-option-nav tiny button radius">Presets</div>
             </div>
             <div class="help-right scrollbar-container">
                 <div class="scrollbar">
@@ -842,7 +820,7 @@
                                     1
                                 </div>
                                 <div class="help-right-text">
-                                    Choose between Row or Collumn to place the colors to the right position. You can see your available rows or collumns below.
+                                    Choose if the colors should be applied to the columns or rows of your dataset.
                                 </div>
                             </div>
                         </div>
@@ -854,7 +832,7 @@
                                     2
                                 </div>
                                 <div class="help-right-text">
-                                    It is usefull to set row/collumn like the icon settings (see instructions "Icon Settings")
+                                    The correct selection depends of course on your dataset and the way you want to visualize it.
                                 </div>
                             </div>
                         </div>
@@ -868,7 +846,8 @@
                                     1
                                 </div>
                                 <div class="help-right-text">
-                                    It is possible to color your icons manually. You can see all available categories, which can be set with various colors.
+                                    It is possible to color your icons manually.
+                                    Click on the color field below the column/row label and select your color via the colorpicker.
                                 </div>
                             </div>
                         </div>
@@ -894,7 +873,8 @@
                                     1
                                 </div>
                                 <div class="help-right-text">
-                                    Select a defined colorpalette to color all categories of you data set automatically.
+                                    There are a few default colorpalettes supplied.
+                                    Select one to color all categories of you data set automatically.
                                 </div>
                             </div>
                         </div>
@@ -906,7 +886,7 @@
                                     2
                                 </div>
                                 <div class="help-right-text">
-                                    You are also alowed to change them individually by clicking on it (see "Colorpicker").
+                                    You can of course alter the colors after you have loaded them from an pallette (see "Colorpicker").
                                 </div>
                             </div>
                         </div>
@@ -944,16 +924,16 @@
 
         <div class="help-content clearfix">
             <div class="help-left">
-                <a id="adjustments-help-outermargin" class="help-option-nav tiny button radius active" href="#">Outer Margin</a>
-                <a id="adjustments-help-horizontalmargin" class="help-option-nav tiny button radius" href="#">Horizontal Margin</a>
+                <div id="adjustments-help-outermargin" class="help-option-nav tiny button radius active">Outer Margin</div>
+                <div id="adjustments-help-horizontalmargin" class="help-option-nav tiny button radius">Horizontal Margin</div>
                 {{#if advancedOptions}}
-                <a id="adjustments-help-verticalmargin" class="help-option-nav tiny button radius" href="#">Vertical Margin</a>
+                <div id="adjustments-help-verticalmargin" class="help-option-nav tiny button radius">Vertical Margin</div>
                 {{/if}}
-                <a id="adjustments-help-rowmargin" class="help-option-nav tiny button radius" href="#">Row Margin</a>
+                <div id="adjustments-help-rowmargin" class="help-option-nav tiny button radius">Row Margin</div>
                 {{#if advancedOptions}}
-                <a id="adjustments-help-columnmargin" class="help-option-nav tiny button radius" href="#">Column Margin</a>
+                <div id="adjustments-help-columnmargin" class="help-option-nav tiny button radius">Column Margin</div>
                 {{/if}}
-                <a id="adjustments-help-iconsize" class="help-option-nav tiny button radius" href="#">Icon Size</a>
+                <div id="adjustments-help-iconsize" class="help-option-nav tiny button radius">Icon Size</div>
             </div>
             <div class="help-right scrollbar-container">
                 <div class="scrollbar">
@@ -1075,8 +1055,8 @@
 
         <div class="help-content clearfix">
             <div class="help-left">
-                <a id="scale-help-setscale" class="help-option-nav tiny button radius active" href="#">Set Scale</a>
-                <a id="scale-help-sizerounding" class="help-option-nav tiny button radius" href="#">Size Rounding</a>
+                <div id="scale-help-setscale" class="help-option-nav tiny button radius active">Set Scale</div>
+                <div id="scale-help-sizerounding" class="help-option-nav tiny button radius">Size Rounding</div>
             </div>
             <div class="help-right scrollbar-container">
                 <div class="scrollbar">
@@ -1164,8 +1144,8 @@
 
         <div class="help-content clearfix">
             <div class="help-left">
-                <a id="text-help-fontsettings" class="help-option-nav tiny button radius active" href="#">Font Settings</a>
-                <a id="text-help-legendsettings" class="help-option-nav tiny button radius" href="#">Legend Settings</a>
+                <div id="text-help-fontsettings" class="help-option-nav tiny button radius active">Font Settings</div>
+                <div id="text-help-legendsettings" class="help-option-nav tiny button radius">Legend Settings</div>
             </div>
             <div class="help-right scrollbar-container">
                 <div class="scrollbar">
@@ -1261,7 +1241,7 @@
                     <h4>Paste Data</h4>
                     <textarea placeholder="Copy'n'Paste Data here" id="pasted-data"></textarea>
                     <div class="button-group">
-                        <a id="import-data" href="#" class="apply tiny button radius">Import</a>
+                        <div id="import-data" class="apply tiny button radius">Import</div>
                     </div>
                 </div>
                 <div class="ui-container highlightable data-help-datapreview-highlight">
@@ -1293,9 +1273,9 @@
                         Normal
                     </div>
                     <div class="type-image">
-                        <a>
+                        <div>
                             <img src="img/ui/normal_isotype.svg">
-                        </a>
+                        </div>
                     </div>
                 </div>
 
@@ -1304,9 +1284,9 @@
                         Versus
                     </div>
                     <div class="type-image">
-                        <a>
+                        <div>
                             <img src="img/ui/versus_isotype.svg">
-                        </a>
+                        </div>
                     </div>
                 </div>
 
@@ -1315,9 +1295,9 @@
                         Compare
                     </div>
                     <div class="type-image">
-                        <a>
+                        <div>
                             <img src="img/ui/compare_isotype.svg">
-                        </a>
+                        </div>
                     </div>
                 </div>
 
@@ -1366,7 +1346,7 @@
             </div>
 
             <div class="button-group">
-                <a id="icon-apply" href="#" class="apply tiny button expand radius">Apply</a>
+                <div id="icon-apply" class="apply tiny button expand radius">Apply</div>
             </div>
 
         </form>
@@ -1431,7 +1411,7 @@
                     </div>
 
                     <div class="button-group">
-                        <a id="color-apply" href="#" class="apply tiny button expand radius">Apply</a>
+                        <div id="color-apply" class="apply tiny button expand radius">Apply</div>
                     </div>
                 </form>
             </div>
@@ -1554,7 +1534,7 @@
             </div>
 
             <div class="button-group">
-                <a id="adjustments-apply" href="#" class="apply-right-margin tiny button expand radius">Apply</a>
+                <div id="adjustments-apply" class="apply-right-margin tiny button expand radius">Apply</div>
             </div>
 
         </form>
@@ -1604,7 +1584,7 @@
         </form>
 
         <div class="button-group">
-            <a id="scale-apply" href="#" class="apply tiny button expand radius">Apply</a>
+            <div id="scale-apply" class="apply tiny button expand radius">Apply</div>
         </div>
 
     </div>
@@ -1690,7 +1670,7 @@
         </form>
 
         <div class="button-group">
-            <a id="text-apply" href="#" class="apply tiny button expand radius">Apply</a>
+            <div id="text-apply" class="apply tiny button expand radius">Apply</div>
         </div>
     </div>
 </script>

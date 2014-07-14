@@ -108,8 +108,9 @@
         },
 
         help: function() {
-            if (isomatic.options.internal.HelpStatus.location === 'home') {
-                this.redirect('home');
+            if (isomatic.options.internal.HelpStatus.location === 'home' && isomatic.options.internal.HelpStatus.active === false) {
+                isomatic.options.internal.HelpStatus.active = true;
+                window.location = '#help-overview';
             } else {
                 this.showHelp();
                 this.checkHelp();

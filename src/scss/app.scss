@@ -89,6 +89,17 @@ h4 {
   text-transform: uppercase;
 }
 
+a, a:visited {
+  color: #AAA;
+}
+a:hover {
+  color: $helpColor;
+}
+
+a.button {
+  color: #FFF;
+}
+
 p {
   font-size: 0.9rem;
 }
@@ -417,12 +428,12 @@ button.tiny, .button.tiny {
 
   .button-group {
 
-    a.apply {
+    div.apply {
       background-color: $submitColor;
       margin: $container-margin 0;
     }
 
-    a.apply-right-margin {
+    div.apply-right-margin {
       background-color: $submitColor;
       display: block;
       width: auto;
@@ -455,8 +466,6 @@ button.tiny, .button.tiny {
     background: #333;
     width: 412px;
     left: $overlay-big-width;
-    opacity: 0.97;
-
 
     h1 {
       color: #fff;
@@ -533,8 +542,12 @@ button.tiny, .button.tiny {
 
         .help-right-picture {
 
+          overflow: hidden;
+
           img{
             margin: 0px;
+            width: 257px;
+            height: 158px;
           }
         }
 
@@ -919,7 +932,6 @@ button.tiny, .button.tiny {
     .active {
       background: #333;
       border-color: #333;
-      box-shadow: 0 0 2px 1px #AAA;
     }
 
   }
@@ -1028,6 +1040,10 @@ button.tiny, .button.tiny {
     border-bottom: 1px dashed #CCC;
     margin-bottom: 4px;
   }
+
+  .team-logo img:hover {
+    opacity: 0.85;
+  }
 }
 
 
@@ -1077,7 +1093,6 @@ button.tiny, .button.tiny {
 
   background: #333;
   color: #DDD;
-  width: 728px;
 
   h3 {
     background: $helpColor;

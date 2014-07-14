@@ -142,13 +142,17 @@
          * @type {Object}
          */
         colorPalettes: {
-            "Complementary1": [ "333333", "12c4a6", "FF0055", "8c1f43", "237567"],
-            "Complementary2": ["333333", "00BDD1", "FF7E00", "D98866", "754552"],
-            "Signal1": ["333333","009DE0", "E80073", "FFB103", "BCAA99"],
-            "Signal2": ["333333","00AAB5", "C9E000", "ED4200", "AAAAAA"],
-            "Rainbow": ["0A7B83","2AA876","FFD265","F19C65","CE4D45"],
-            "VioletBlue": ["d437d4", "8c3a8c", "293054", "225ea8", "1d91c0", "41b6c4","7fcdbb"]
-
+            "Signal": ["333333","00AAB5", "C9E000", "ED4200", "FF8400", "B516B5"],
+            "Rainbow": ["0A7B83","2AA876","FFD265","F19C65","CE4D45", "7D4DAB"],
+            "VioletBlue": ["d437d4", "8c3a8c", "293054", "225ea8", "1d91c0", "41b6c4","7fcdbb"],
+            "ColorBrewerSet1": ["e41a1c","377eb8","4daf4a","984ea3","ff7f00","ffff33","a65628","f781bf","999999"],
+            "ColorBrewerPaired": ["b15928", "ffff99", "6a3d9a", "cab2d6", "ff7f00", "fdbf6f", "e31a1c", "fb9a99", "33a02c", "b2df8a", "1f78b4", "a6cee3"],
+            "ColorBrewerPastel": ["fbb4ae","b3cde3","ccebc5","decbe4","fed9a6","ffffcc","e5d8bd","fddaec","f2f2f2"],
+            "ColorBrewerBlues": ["08306b", "08519c", "2171b5", "4292c6", "6baed6", "9ecae1", "c6dbef", "deebf7", "f7fbff"] ,
+            "ColorBrewerYIGnBu": ["081d58", "253494", "225ea8", "1d91c0", "41b6c4", "7fcdbb", "c7e9b4", "edf8b1", "ffffd9"],
+            "ColorBrewerYIGn": ["004529", "006837", "238443", "41ab5d", "78c679", "addd8e", "d9f0a3", "f7fcb9", "ffffe5"],
+            "ColorBrewerRdPu": ["49006a", "7a0177", "ae017e", "dd3497", "f768a1", "fa9fb5", "fcc5c0", "fde0dd", "fff7f3"],
+            "ColorBrewerRdBu": ["053061", "2166ac", "4393c3", "92c5de", "d1e5f0", "f7f7f7", "fddbc7", "f4a582", "d6604d", "b2182b", "67001f"]
         },
 
         /**
@@ -354,6 +358,11 @@
             "title": "Social Media Usage",
             "data": {"data":[{"Social Media Users":"Facebook","Users":"901000000"},{"Social Media Users":"Twitter","Users":"555000000"},{"Social Media Users":"Google+","Users":"170000000"},{"Social Media Users":"LinkedIn","Users":"150000000"},{"Social Media Users":"Pinterest","Users":"11700000"}],"pastedData":""},
             "options": {"aspectRatio": 1.7777777777777777, "graphWidth": 960, "graphHeight": 540, "diagramType": "normal", "outerMargin": "20", "rowMargin": "20", "columnMargin": 0, "iconHorizontalMargin": "5", "iconVerticalMargin": 0, "equallyDistributedColumns": true, "breakRow": false, "roundSize": false, "roundDown": "0.3", "roundUp": "0.8", "autoIconSize": true, "iconSize": 40.556, "calculatedIconSize": 40.556, "scale": "50000000", "iconize": "row", "colorize": "row", "colorMap": ["054995", "64C6EE", "DD4C39", "0479AD"], "iconMap": ["social_networks-facebook", "social_networks-twitter", "social_networks-googleplus", "social_networks-linkedin", "social_networks-pinterest"], "legendFont": "Frutiger, \"Frutiger Linotype\", Univers, Calibri, \"Gill Sans\", \"Gill Sans MT\", \"Myriad Pro\", Myriad, \"DejaVu Sans Condensed\", \"Liberation Sans\", \"Nimbus Sans L\", Tahoma, Geneva, \"Helvetica Neue\", Helvetica, Arial, sans-serif", "legendFontSize": 12, "legendWidth": "100", "legendTitleHeight": "32", "leftLegendFontSize": "14", "bottomLegendFontSize": "12", "drawColumnLegend": true, "drawLines": true, "drawVerticalLines": true, "drawHorizontalLines": false, "lineColor": "CCCCCC"}
+        },
+        "FamilyIncomes": {
+            "title": "Family Incomes",
+            "data": {"data":[{"Family incomes in percent":"Couples","less than 1.300":"3","1.300 - 2.600":"31","2.600 - 4.500":"46","4.500 or more":"19"},{"Family incomes in percent":"Life partnerships","less than 1.300":"7","1.300 - 2.600":"42","2.600 - 4.500":"39","4.500 or more":"11"},{"Family incomes in percent":"Single Mothers","less than 1.300":"44","1.300 - 2.600":"48","2.600 - 4.500":"8","4.500 or more":"1"},{"Family incomes in percent":"Single Fathers","less than 1.300":"24","1.300 - 2.600":"50","2.600 - 4.500":"20","4.500 or more":"5"}],"pastedData":""},
+            "options": {"aspectRatio":1.7777777777777777,"graphWidth":960,"graphHeight":540,"diagramType":"compare","outerMargin":"20","rowMargin":"20","columnMargin":"5","iconHorizontalMargin":"-16","iconVerticalMargin":"5","equallyDistributedColumns":true,"breakRow":false,"roundSize":false,"roundDown":0.3,"roundUp":0.8,"autoIconSize":true,"iconSize":32,"calculatedIconSize":32,"scale":2,"iconize":"row","colorize":"column","colorMap":["333333","00AAB5","C9E000","ED4200"],"iconMap":["persons-man","persons-man","persons-man","persons-man"],"legendFont":"Frutiger, \"Frutiger Linotype\", Univers, Calibri, \"Gill Sans\", \"Gill Sans MT\", \"Myriad Pro\", Myriad, \"DejaVu Sans Condensed\", \"Liberation Sans\", \"Nimbus Sans L\", Tahoma, Geneva, \"Helvetica Neue\", Helvetica, Arial, sans-serif","legendFontSize":12,"legendWidth":"120","legendTitleHeight":"26","leftLegendFontSize":"14","bottomLegendFontSize":"12","drawColumnLegend":true,"drawLines":true,"drawVerticalLines":false,"drawHorizontalLines":false,"lineColor":"CCCCCC"}
         }
     };
 
