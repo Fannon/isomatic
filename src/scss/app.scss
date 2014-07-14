@@ -89,6 +89,17 @@ h4 {
   text-transform: uppercase;
 }
 
+a, a:visited {
+  color: #AAA;
+}
+a:hover {
+  color: $helpColor;
+}
+
+a.button {
+  color: #FFF;
+}
+
 p {
   font-size: 0.9rem;
 }
@@ -1027,6 +1038,10 @@ button.tiny, .button.tiny {
   .team-logo {
     border-bottom: 1px dashed #CCC;
     margin-bottom: 4px;
+  }
+
+  .team-logo img:hover {
+    opacity: 0.85;
   }
 }
 
