@@ -53,6 +53,8 @@
                 isomatic.data.raw.set(example.data);
 
                 isomatic.refreshData();
+
+                $('#examples-modal').foundation('reveal', 'close');
             } else {
                 console.log('Error loading Example!');
             }

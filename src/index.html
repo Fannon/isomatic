@@ -273,23 +273,20 @@
 <script type="text/template" id="examples-template">
     <h3>Examples</h3>
     <p>
-        Click on an example to load it. <br>
-        <strong>Warning:</strong> This overwrites all current settings and the loaded data!
+        Click on an example image to load it. <strong>Warning:</strong> This overwrites all current settings and the loaded data!
     </p>
 
     {{#each examples}}
     <h4>{{this.title}}</h4>
     <div class="example-row">
         <div class="example-box">
-            <a href="#examples"><img id="example-{{this.id}}" src="img/examples/{{this.id}}.png" alt="{{this.id}}" class="example-thumb"/></a>
+            <a href="#home"><img id="example-{{this.id}}" src="img/examples/{{this.id}}.png" alt="{{this.id}}" class="example-thumb"/></a>
         </div>
         <div class="example-box">
             <img id="example-{{this.id}}" src="img/examples/{{this.id}}Data.png" alt="{{this.id}} DataSet" class="example-thumb"/>
         </div>
         <div class="clearfix"></div>
     </div>
-
-
     {{/each}}
 
     <a class="close-reveal-modal">&#215;</a>
