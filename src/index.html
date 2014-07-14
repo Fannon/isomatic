@@ -42,6 +42,9 @@
                     <li>
                         <a id="openExport" href="#export"><img src="img/ui/export.svg">Export</a>
                     </li>
+                    <li>
+                        <a href="#examples"><img src="img/ui/new.svg">Examples</a>
+                    </li>
                     <li class="help">
                         <a id="trigger-help" href="#help"><img src="img/ui/help.svg" width="16px" height="16px">Help</a>
                     </li>
@@ -128,6 +131,7 @@
         <div id="new-modal" class="tiny reveal-modal" data-reveal></div>
         <div id="import-modal" class="tiny reveal-modal" data-reveal></div>
         <div id="export-modal" class="tiny reveal-modal" data-reveal></div>
+        <div id="examples-modal" class="tiny reveal-modal" data-reveal></div>
         <div id="tour-modal" class="tiny reveal-modal" data-reveal></div>
     </div>
 
@@ -168,6 +172,7 @@
 <script src="js/views/NewView.js"></script>
 <script src="js/views/ImportView.js"></script>
 <script src="js/views/ExportView.js"></script>
+<script src="js/views/ExamplesView.js"></script>
 <script src="js/views/TourView.js"></script>
 
 <script src="js/views/DataView.js"></script>
@@ -261,6 +266,22 @@
 
         <div id='start-export' class="tiny button radius">Download</div>
     </form>
+    <a class="close-reveal-modal">&#215;</a>
+</script>
+
+<!-- Examples Template -->
+<script type="text/template" id="examples-template">
+    <h3>Examples</h3>
+    <p>
+        Click on an example to load it. <br>
+        <strong>Warning:</strong> This overwrites all current settings and the loaded data!
+    </p>
+
+    {{#each examples}}
+    <h4>{{this.title}}</h4>
+    <a href="#examples"><img id="example-{{this.id}}" src="img/examples/{{this.id}}.png" alt="{{this.id}}" class="example-thumb"/></a>
+    {{/each}}
+
     <a class="close-reveal-modal">&#215;</a>
 </script>
 

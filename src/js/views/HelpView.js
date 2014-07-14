@@ -18,11 +18,7 @@
          * @contructs
          */
         initialize: function(){
-
             this.render();
-
-            // Register Model Event Listeners
-            this.model.on("change:diagramType", this.render, this);
         },
 
         /**
@@ -67,15 +63,6 @@
             }
 
         },
-
-        /**
-         * Options.ui Model
-         */
-        model: isomatic.options.ui,
-
-        /**
-         * Adjustment View UI Events
-         */
         events: {
             "click .help-option-nav": "setNavigation"
         },

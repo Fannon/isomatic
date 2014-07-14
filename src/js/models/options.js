@@ -103,30 +103,6 @@
          * @type {Array}
          */
         exampleData: [
-//            {
-//                "The usage of social networks (in relation to a persons income)":"Facebook",
-//                "Low Income":"165050000",
-//                "Medium Income":"395000777",
-//                "High Income":"135000000"
-//            },
-//            {
-//                "The usage of social networks (in relation to a persons income)":"Twitter",
-//                "Low Income":"278050000",
-//                "Medium Income":"198007700",
-//                "High Income":"88000555"
-//            },
-//            {
-//                "The usage of social networks (in relation to a persons income)":"Google+",
-//                "Low Income":"459370000",
-//                "Medium Income":"159200000",
-//                "High Income":"129000000"
-//            },
-//            {
-//                "The usage of social networks (in relation to a persons income)":"LinkedIn",
-//                "Low Income":"102500000",
-//                "Medium Income":"80500770",
-//                "High Income":"30006000"
-//            }
             {
                 "Usage of free reshipment (percentage of 1.000 respondents)":"Nearly Always",
                 "Female":"3",
@@ -363,10 +339,23 @@
 
         lineColor: 'CCCCCC'
 
-
     };
 
-
+    isomatic.options.examples = {
+        "FreeShipment": {
+            "title": "Usage of free shipment",
+            "data": {
+                "data": isomatic.options.internal.exampleData,
+                "pastedData": ""
+            },
+            "options":isomatic.options.preset
+        },
+        "SocialMedia": {
+            "title": "Social Media Usage",
+            "data": {"data":[{"Social Media Users":"Facebook","Users":"901000000"},{"Social Media Users":"Twitter","Users":"555000000"},{"Social Media Users":"Google+","Users":"170000000"},{"Social Media Users":"LinkedIn","Users":"150000000"},{"Social Media Users":"Pinterest","Users":"11700000"}],"pastedData":""},
+            "options": {"aspectRatio": 1.7777777777777777, "graphWidth": 960, "graphHeight": 540, "diagramType": "normal", "outerMargin": "20", "rowMargin": "20", "columnMargin": 0, "iconHorizontalMargin": "5", "iconVerticalMargin": 0, "equallyDistributedColumns": true, "breakRow": false, "roundSize": false, "roundDown": "0.3", "roundUp": "0.8", "autoIconSize": true, "iconSize": 40.556, "calculatedIconSize": 40.556, "scale": "50000000", "iconize": "row", "colorize": "row", "colorMap": ["054995", "64C6EE", "DD4C39", "0479AD"], "iconMap": ["social_networks-facebook", "social_networks-twitter", "social_networks-googleplus", "social_networks-linkedin", "social_networks-pinterest"], "legendFont": "Frutiger, \"Frutiger Linotype\", Univers, Calibri, \"Gill Sans\", \"Gill Sans MT\", \"Myriad Pro\", Myriad, \"DejaVu Sans Condensed\", \"Liberation Sans\", \"Nimbus Sans L\", Tahoma, Geneva, \"Helvetica Neue\", Helvetica, Arial, sans-serif", "legendFontSize": 12, "legendWidth": "100", "legendTitleHeight": "32", "leftLegendFontSize": "14", "bottomLegendFontSize": "12", "drawColumnLegend": true, "drawLines": true, "drawVerticalLines": true, "drawHorizontalLines": false, "lineColor": "CCCCCC"}
+        }
+    };
 
 
     ///////////////////////////////////////
