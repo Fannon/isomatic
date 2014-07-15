@@ -945,7 +945,7 @@
                                     1
                                 </div>
                                 <div class="help-right-text">
-                                    The outer margin can be changed individually by changing the value.
+                                    The <strong>outer margin</strong> defines the distance from the actual graphic to the canvas.
                                 </div>
                             </div>
                         </div>
@@ -959,7 +959,7 @@
                                     1
                                 </div>
                                 <div class="help-right-text">
-                                    To perfect the graphic you can manage the horizontal space between your icons by shifting the value.
+                                    Adjust the horizontal space between your icons by changing this value.
                                 </div>
                             </div>
                         </div>
@@ -973,7 +973,7 @@
                                         1
                                     </div>
                                     <div class="help-right-text">
-                                        You can also define the vertical margin between your icons maybe for visual clustering.
+                                        Adjust the vertical space between your icons.
                                     </div>
                                 </div>
                             </div>
@@ -988,7 +988,8 @@
                                     1
                                 </div>
                                 <div class="help-right-text">
-                                    The row margin can be used to clarify and split off visually every single category of your isotype graphic.
+                                    Adjusts the horizontal space between icon rows.
+                                    If this is smaller than the Icon Horizontal Margin, it will be ignored.
                                 </div>
                             </div>
                         </div>
@@ -1002,7 +1003,8 @@
                                         1
                                     </div>
                                     <div class="help-right-text">
-                                      By changing the value your column margin is increasing or decreasing.
+                                        Adjusts the vertical space between icon rows.
+                                        If this is smaller than the Icon Vertical Margin, it will be ignored.
                                     </div>
                                 </div>
                             </div>
@@ -1016,7 +1018,9 @@
                                     1
                                 </div>
                                 <div class="help-right-text">
-                                    isomatic is calculating the perfect icon size for your canvas, but you can manipulate it by de-activating the "Auto Icon Size".
+                                    The icon size can be adjusted automatically if "<strong>Auto Icon Size</strong>" is checked.
+                                    This will calculate sane defaults that may be what you need or not.<br>
+                                    By unchecking this option you can set the size manually.
                                 </div>
                             </div>
                         </div>
@@ -1068,7 +1072,8 @@
                                     1
                                 </div>
                                 <div class="help-right-text">
-                                    isomatic set an automatic scale for your isotype graphic.
+                                    The <strong>scale</strong> is initially auto calculated. <br>
+                                    Here you can change it manually
                                 </div>
                             </div>
                         </div>
@@ -1080,7 +1085,8 @@
                                     2
                                 </div>
                                 <div class="help-right-text">
-                                    You define how inaccurate or accurate your dataset will be visualized on the canvas.
+                                    The <strong>scale</strong> also defines how inaccurate or accurate your dataset
+                                    will be visualized on the canvas.
                                 </div>
                             </div>
                         </div>
@@ -1094,7 +1100,9 @@
                                     1
                                 </div>
                                 <div class="help-right-text">
-                                    Drei Chinesen mit dem Kontrabass
+                                    Enable the <strong>Round Size</strong> Checkbox to scale the last icon according to the remainding value.
+                                    <br><br>
+                                    This increases the accuracy of the infographic.
                                 </div>
                             </div>
                         </div>
@@ -1106,7 +1114,19 @@
                                     2
                                 </div>
                                 <div class="help-right-text">
-                                    Drei Chinesen mit dem Kontrabass
+                                    <strong>RoundUp</strong> defines at which point the sizing will ignore the difference and simply round fully up.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="help-step">
+                            <div class="help-right-picture"></div>
+                            <div class="help-right-description clearfix">
+                                <div class="help-right-number">
+                                    2
+                                </div>
+                                <div class="help-right-text">
+                                    <strong>RoundDown</strong> defines at which point the sizing will ignore the difference and simply round fully down.
                                 </div>
                             </div>
                         </div>
@@ -1144,11 +1164,13 @@
 
         <div class="help-content clearfix">
             <div class="help-left">
-                <div id="text-help-fontsettings" class="help-option-nav tiny button radius active">Font Settings</div>
-                <div id="text-help-legendsettings" class="help-option-nav tiny button radius">Legend Settings</div>
+                <div id="text-help-fontsettings" class="help-option-nav tiny button radius active">Text Settings</div>
+                <div id="text-help-legendsettings" class="help-option-nav tiny button radius active">Legend Settings</div>
             </div>
+
             <div class="help-right scrollbar-container">
                 <div class="scrollbar">
+
                     <div id="text-help-fontsettings-container" class="help-right-option-container" style="display:none">
                         <div class="help-step">
                             <div class="help-right-picture"></div>
@@ -1157,7 +1179,7 @@
                                     1
                                 </div>
                                 <div class="help-right-text">
-                                    Drei Chinesen mit dem Kontrabass
+                                    In this section you can change the font size of the legend.
                                 </div>
                             </div>
                         </div>
@@ -1169,12 +1191,29 @@
                                     2
                                 </div>
                                 <div class="help-right-text">
-                                    Drei Chinesen mit dem Kontrabass
+                                    This defines the with of the left legend.
+                                    If your legend text overlaps with the visualization set this to higher value.
                                 </div>
                             </div>
                         </div>
+
+                        <div class="help-step">
+                            <div class="help-right-picture"></div>
+                            <div class="help-right-description clearfix">
+                                <div class="help-right-number">
+                                    3
+                                </div>
+                                <div class="help-right-text">
+                                    This defines the with of the left legend.
+                                    If your legend text overlaps with the visualization set this to higher value.
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
-                    <div id="text-help-legendsettings-container" class="help-right-option-container">
+
+
+                    <div id="text-help-legendsettings-container" class="help-right-option-container" style="display:none">
                         <div class="help-step">
                             <div class="help-right-picture"></div>
                             <div class="help-right-description clearfix">
@@ -1182,7 +1221,8 @@
                                     1
                                 </div>
                                 <div class="help-right-text">
-                                    Drei Chinesen mit dem Kontrabass
+                                    This defines the with of the left legend.
+                                    If your legend text overlaps with the visualization set this to higher value.
                                 </div>
                             </div>
                         </div>
@@ -1194,11 +1234,13 @@
                                     2
                                 </div>
                                 <div class="help-right-text">
-                                    Drei Chinesen mit dem Kontrabass
+                                    <strong>Draw Column Legend</strong> defines if the Column Legend should be drawn at all.
                                 </div>
                             </div>
                         </div>
+
                     </div>
+
                 </div>
             </div>
         </div>
@@ -1594,7 +1636,7 @@
 <script type="text/template" id="text-template">
     <div id="overlay-text">
         <div class="header full clearfix">
-            <div class="title">Text Settings</div>
+            <div class="title">Legend Settings</div>
             <div class="close">
                 <a href="#home">
                     <div class="close-image"></div>
@@ -1603,10 +1645,9 @@
         </div>
 
         <form>
-            <div class="ui-container">
-                <h4>Legend Settings</h4>
+            <div class="ui-container highlightgroup highlightable text-help-fontsettings-highlight">
+                <h4>Text Settings</h4>
 
-                <div class="highlightgroup highlightable text-help-fontsettings-highlight">
                 <div class="row collapse">
                     <label><img src="img/ui/titleheight.svg">Title Size</label>
                     <div class="small-10 columns">
@@ -1636,9 +1677,24 @@
                         <span class="postfix radius">px</span>
                     </div>
                 </div>
-                </div>
 
-                <div class="highlightgroup highlightable text-help-legendsettings-highlight">
+                <br>
+
+                <label>
+                    <span data-tooltip class="has-tip tip-right" title="Choose Font-Family">Font-Family</span>
+                </label>
+                <select id="legend-font" name="legendFont" value="{{options.legendFont}}">
+                    {{#each availableFonts }}
+                    <option value="{{this}}">{{@key}}</option>
+                    {{/each}}
+                </select>
+
+
+            </div>
+
+            <div class="ui-container highlightgroup highlightable text-help-legendsettings-highlight">
+                <h4>Legend Settings</h4>
+
                 <div class="row collapse first">
                     <label><img src="img/ui/rowlegend.svg">Left Legend Width</label>
                     <div class="small-10 columns">
@@ -1649,24 +1705,10 @@
                     </div>
                 </div>
 
-
                 <input id="draw-column-legend" name="drawColumnLegend" type="checkbox" {{#if options.drawColumnLegend}}checked{{/if}}><label for="draw-column-legend">Draw Column Legend</label>
-                </div>
-                <!--<label>Add Topic Description</label>-->
-                <!--<textarea placeholder="Enter Description here.."></textarea>-->
+
             </div>
 
-            <div class="ui-container">
-                <h4>Font Settings</h4>
-                <label>
-                    <span data-tooltip class="has-tip tip-right" title="Choose Font-Family">Font-Family</span>
-                </label>
-                <select id="legend-font" name="legendFont" value="{{options.legendFont}}">
-                    {{#each availableFonts }}
-                    <option value="{{this}}">{{@key}}</option>
-                    {{/each}}
-                </select>
-            </div>
         </form>
 
         <div class="button-group">
