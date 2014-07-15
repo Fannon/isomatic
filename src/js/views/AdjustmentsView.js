@@ -36,8 +36,6 @@
          */
         render: function(){
 
-//            console.info('AdjustmentsView.render();');
-
             var source = $('#adjustments-template').html();
             var template = Handlebars.compile(source);
 
@@ -83,6 +81,10 @@
             "keydown input": "keyDown"
         },
 
+        /**
+         * Register the enter key in input fields
+         * @param e
+         */
         keyDown: function(e) {
             if (e.which === 13) {
                 e.preventDefault();
@@ -113,6 +115,9 @@
 
         },
 
+        /**
+         * Activate the automatic icon size
+         */
         activateIconSize: function() {
             if ($('#auto-icon-size').prop('checked')) {
                 $('#icon-size').prop("disabled", true);

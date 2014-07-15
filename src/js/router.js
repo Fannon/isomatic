@@ -108,6 +108,7 @@
         },
 
         help: function() {
+            // Look if help was activated from the homescreen
             if (isomatic.options.internal.HelpStatus.location === 'home' && isomatic.options.internal.HelpStatus.active === false) {
                 isomatic.options.internal.HelpStatus.active = true;
                 window.location = '#help-overview';
@@ -145,6 +146,9 @@
 
         },
 
+        /**
+         * Toggles the help active state
+         */
         showHelp: function() {
             if (isomatic.options.internal.HelpStatus.active) {
                 isomatic.options.internal.HelpStatus.active = false;
@@ -153,13 +157,19 @@
             }
         },
 
+        /**
+         * Toggles the help container and set window.location
+         */
         checkHelp: function() {
             // Init Image Lazy Loading (unveil.js)
             $("img").unveil();
 
+            // Remove all help container and highlights from the DOM
             $('.help-section').hide();
             $('#help-container').hide();
             $('.highlightable').removeClass('highlight');
+
+            // Show the help container of the current location and the highlight of the first option
             if (isomatic.options.internal.HelpStatus.active === true) {
                 $('#help-container').show();
                 $('#' + isomatic.options.internal.HelpStatus.location + '-help').show();
@@ -168,9 +178,14 @@
             $('#' + isomatic.options.internal.HelpStatus.location + '-help .help-option-nav').removeClass('active').first().addClass('active');
             $('#' + isomatic.options.internal.HelpStatus.location + '-help .help-right-option-container').hide().first().show();
 
+            // Set window URL
             window.location = '#' + isomatic.options.internal.HelpStatus.location;
         },
 
+        /**
+         * Show help container without location taps (e.g. import)
+         * @param route
+         */
         redirect: function(route) {
             $(".trigger-ui").removeClass('active');
             $(".overlay-container").hide();

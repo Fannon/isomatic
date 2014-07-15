@@ -19,8 +19,6 @@
         /** Render New Graphic View */
         render: function(){
 
-//            console.info('NewView.render();');
-
             var source = $('#new-template').html();
             var template = Handlebars.compile(source);
             var html = template({

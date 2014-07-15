@@ -67,7 +67,12 @@
             "click .help-option-nav": "setNavigation"
         },
 
+        /**
+         * Change highlighted option within the help
+         * @param e
+         */
         setNavigation: function(e) {
+            // Remove old help and show new help
             var id = e.currentTarget.id;
             $('.help-option-nav').removeClass("active");
             $('#' + id).addClass("active");
