@@ -1,19 +1,17 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 17.0.2, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg version="1.1" id="Ebene_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 width="22px" height="14px" viewBox="0 0 22 14" enable-background="new 0 0 22 14" xml:space="preserve">
-<g>
-	<g>
-		<line fill="none" stroke="#686766" stroke-miterlimit="10" x1="10.73" y1="3.694" x2="10.73" y2="10.306"/>
-		<g>
-			<polygon fill="#686766" points="9.035,5.686 10.73,3.99 12.426,5.686 12.426,4.247 10.73,2.551 9.035,4.247 			"/>
-		</g>
-		<g>
-			<polygon fill="#686766" points="9.035,8.314 10.73,10.01 12.426,8.314 12.426,9.753 10.73,11.449 9.035,9.753 			"/>
-		</g>
-	</g>
-</g>
-<rect x="3.73" fill="#686766" width="14" height="2"/>
-<rect x="3.73" y="12" fill="#686766" width="14" height="2"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="22" height="14" viewBox="0 0 22 14" style="enable-background:new 0 0 22 14">
+ <g>
+  <g>
+   <line x1="10.7" y1="3.7" x2="10.7" y2="10.3" style="fill:none;stroke-miterlimit:10;stroke:#686766"/>
+   <g>
+    <polygon points="9.035,5.686 10.73,3.99 12.426,5.686 12.426,4.247 10.73,2.551 9.035,4.247 			" style="fill:#686766"/>
+   </g>
+   <g>
+    <polygon points="9.035,8.314 10.73,10.01 12.426,8.314 12.426,9.753 10.73,11.449 9.035,9.753 			" style="fill:#686766"/>
+   </g>
+  </g>
+ </g>
+ <g style="fill:#686766">
+  <rect x="3.7" width="14" height="2"/>
+  <rect x="3.7" y="12" width="14" height="2"/>
+ </g>
 </svg>
