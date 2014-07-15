@@ -43,6 +43,10 @@
             "click .example-thumb": "loadExample"
         },
 
+        /**
+         * Load the example options and data from a selected preset
+         * @param el
+         */
         loadExample: function(el) {
             var targetExample = el.target.alt;
 

@@ -26,6 +26,10 @@
             $('.select-type').removeClass('active');
             $('#' + currentType + '-isotype').addClass('active');
         },
+
+        /**
+         * Render Type View
+         */
         render: function(){
 
             var advancedOptions = false;
@@ -69,18 +73,27 @@
             this.initialize();
         },
 
+        /**
+         * Selects the column distribution
+         */
         selectColumnDistribution: function() {
             var checked = $('#equally-distributed-columns').prop('checked');
             isomatic.options.ui.set('equallyDistributedColumns', checked);
             isomatic.refreshLayout();
         },
 
+        /**
+         * Selects the drawing of the horizontal lines
+         */
         selectDrawHorizontalLines: function() {
             var checked = $('#draw-horizontal-lines').prop('checked');
             isomatic.options.ui.set('drawHorizontalLines', checked);
             isomatic.refreshLayout();
         },
 
+        /**
+         * Selects the drawing of the vertical lines
+         */
         selectDrawVerticalLines: function() {
             var checked = $('#draw-vertical-lines').prop('checked');
             isomatic.options.ui.set('drawVerticalLines', checked);

@@ -66,6 +66,10 @@
             "keydown input": "keyDown"
         },
 
+        /**
+         * Register the enter key in input fields
+         * @param e
+         */
         keyDown: function(e) {
             if (e.which === 13) {
                 e.preventDefault();

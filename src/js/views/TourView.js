@@ -32,22 +32,15 @@
             this.$el.html(html);
         },
 
-
         events: {
-            "click #start-tour": "startTour",
-            "click #close-tour": "closeTour"
+            "click #start-tour": "tourModal",
+            "click #close-tour": "tourModal"
         },
 
         /**
-         * Applies the currently calculated Aspect Ratio to the Graphic Canvas
+         * Close the tour popup and set a cookie
          */
-
-        startTour: function() {
-            $.createCookie('tour-viewed', "true", 365);
-            $('#tour-modal').foundation('reveal', 'close');
-        },
-
-        closeTour: function() {
+        tourModal: function() {
             $.createCookie('tour-viewed', "true", 365);
             $('#tour-modal').foundation('reveal', 'close');
         }

@@ -35,8 +35,11 @@
         /** Currently selected Export-Format. Defaults to SVG Export */
         selectedFormat: 'svg',
 
+        /**
+         * Select an isotype format
+         * @param e
+         */
         selectFormat: function(e) {
-
             var type = e.currentTarget.id;
             $('.select-format').addClass('disabled');
             $(e.currentTarget).removeClass('disabled');
@@ -51,6 +54,9 @@
 
         },
 
+        /**
+         * Start the export of a svg and/or json
+         */
         startExport: function() {
             if (this.selectedFormat === 'svg') {
                 this.exportSVG();

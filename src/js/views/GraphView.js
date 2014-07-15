@@ -326,6 +326,9 @@
 
         },
 
+        /**
+         * Draw the icons with or without rounding
+         */
         drawSizeIsotype: function() {
             console.log('drawSizeIsotype');
 
@@ -558,7 +561,7 @@
                 ;
 
 
-            /////////////////////////////////////////
+            //////////////////////////////////////////
             // Draw Legend Lines                    //
             //////////////////////////////////////////
 
@@ -845,7 +848,7 @@
 
             if (!isomatic.options.ui.attributes.drawColumnLegend) {
 
-                // Dont draw any Column Legend
+                // Don't draw any Column Legend
 //                console.log('Not drawing Column Legend');
 
 
@@ -856,10 +859,10 @@
                 // => Can't generate a Column Legend without Mapping
 
                 var noColumnLegend = this.svg.append("g")
-                        .attr("class", "no-column-legend")
-                        .style("text-anchor", "start")
-                        .attr("transform", "translate(" + outerMargin + ", " + (graphHeight - outerMargin) + ")")
-                    ;
+                    .attr("class", "no-column-legend")
+                    .style("text-anchor", "start")
+                    .attr("transform", "translate(" + outerMargin + ", " + (graphHeight - outerMargin) + ")")
+                ;
 
                 noColumnLegend.append("text")
                     .attr("x", 0)
@@ -875,19 +878,19 @@
                 // Column Mapping available
 
                 var columnsLegend = this.svg.append("g")
-                        .attr("class", "column-legend")
-                        .attr("width", legendWidth)
-                        .attr("height", columnLegendHeight)
-                        .selectAll("g")
-                        .data(isomatic.data.meta.attributes.columns)
-                        .enter()
-                        .append("g")
-                        .attr("transform", function(d, i) {
-                            var x = i * (legendWidth + columnLegendHeight) + outerMargin ;
-                            var y = (graphHeight - outerMargin - columnLegendHeight);
-                            return "translate(" + x + "," + y + ")";
-                        })
-                    ;
+                    .attr("class", "column-legend")
+                    .attr("width", legendWidth)
+                    .attr("height", columnLegendHeight)
+                    .selectAll("g")
+                    .data(isomatic.data.meta.attributes.columns)
+                    .enter()
+                    .append("g")
+                    .attr("transform", function(d, i) {
+                        var x = i * (legendWidth + columnLegendHeight) + outerMargin ;
+                        var y = (graphHeight - outerMargin - columnLegendHeight);
+                        return "translate(" + x + "," + y + ")";
+                    })
+                ;
 
                 if (colorize === 'column' && iconize === 'row') {
                     columnsLegend.append("rect")

@@ -26,9 +26,11 @@
             this.model.on("change:roundDown", this.render, this);
 
         },
-        render: function(){
 
-//            console.info('ScaleView.render();');
+        /**
+         * Render Scale View
+         */
+        render: function(){
 
             var source = $('#scale-template').html();
             var template = Handlebars.compile(source);
@@ -48,6 +50,10 @@
             "keydown input": "keyDown"
         },
 
+        /**
+         * Register the enter key in input fields
+         * @param e
+         */
         keyDown: function(e) {
             if (e.which === 13) {
                 e.preventDefault();
