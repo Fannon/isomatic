@@ -136,9 +136,10 @@ label {
 .tooltip {
   background-color: $helpColor;
   border-radius: 3px;
-}
-.nub {
-  border-color: transparent $helpColor transparent transparent !important;
+
+  &.tip-right>.nub {
+    border-color: transparent $helpColor transparent transparent;
+  }
 }
 
 input.invalid {
@@ -243,10 +244,7 @@ button.tiny, .button.tiny {
 }
 
 .highlight {
-  border-color: $helpColor !important;
-  border: 3px solid;
-//  background: #E0F1F6 !important;
-  transition: background-color 0.3s;
+  border: 3px solid $helpColor;
 }
 
 .colpick {
@@ -478,7 +476,7 @@ button.tiny, .button.tiny {
     }
 
     .header {
-      background: none repeat scroll 0 0 #0ba1cc;
+      background: none repeat scroll 0 0 $helpColor;
       width: 100%;
     }
 
