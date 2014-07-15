@@ -1,16 +1,12 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 17.0.2, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg version="1.1" id="Ebene_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 width="22px" height="14px" viewBox="0 0 22 14" enable-background="new 0 0 22 14" xml:space="preserve">
-<g>
-	<g>
-		<line fill="none" stroke="#686766" stroke-miterlimit="10" x1="12.266" y1="6.062" x2="14.993" y2="3.335"/>
-		<g>
-			<polygon fill="#686766" points="14.783,5.942 14.784,3.544 12.386,3.545 13.404,2.527 15.801,2.527 15.801,4.924 			"/>
-		</g>
-	</g>
-</g>
-<rect x="4.328" y="6.629" fill="#686766" width="7.371" height="7.371"/>
-<polyline fill="none" stroke="#686766" stroke-miterlimit="10" points="17.889,7 17.889,0.527 11.416,0.527 "/>
+<svg xmlns="http://www.w3.org/2000/svg" width="22" height="14" viewBox="0 0 22 14" style="enable-background:new 0 0 22 14">
+ <g>
+  <g>
+   <line x1="12.3" y1="6" x2="15" y2="3.3" style="fill:none;stroke-miterlimit:10;stroke:#686766"/>
+   <g>
+    <polygon points="14.783,5.942 14.784,3.544 12.386,3.545 13.404,2.527 15.801,2.527 15.801,4.924 			" style="fill:#686766"/>
+   </g>
+  </g>
+ </g>
+ <rect x="4.3" y="6.6" width="7.4" height="7.4" style="fill:#686766"/>
+ <polyline points="17.889,7 17.889,0.527 11.416,0.527 " style="fill:none;stroke-miterlimit:10;stroke:#686766"/>
 </svg>

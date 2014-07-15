@@ -159,14 +159,28 @@ button.tiny, .button.tiny {
 //////////////////////////////////////////
 
 
+
 // Navbar
 
 #nav-container {
   margin: 0px auto;
   width: 1010px;
 
+
+  #logo {
+    float: left;
+  }
+
+  #sub-title {
+    float: left;
+    margin: 9px 0 0 8px;
+    font-size: 11px;
+    line-height: 12px;
+    color: #CCC;
+  }
+
   #title img {
-    margin-top: -3px;
+    margin-top: -2px;
   }
 
   #navigation-create {
@@ -214,12 +228,7 @@ button.tiny, .button.tiny {
       background: $helpColor;
     }
 
-    a#trigger-help:hover {
-      background: #28B2DA;
-    }
-
   }
-
 
 }
 
@@ -245,6 +254,9 @@ button.tiny, .button.tiny {
 
 .highlight {
   border: 3px solid $helpColor;
+  border-radius: 3px;
+  padding: 5px;
+  transition: none;
 }
 
 .colpick {
@@ -406,6 +418,7 @@ button.tiny, .button.tiny {
     .title {
       float: left;
     }
+
     .close {
       float: right;
       margin: 2px 3px 0 0;
@@ -971,11 +984,6 @@ button.tiny, .button.tiny {
 
     .highlightgroup {
       margin-bottom: 10px;
-    }
-
-    .highlightgroup.highlight {
-      padding: 3px;
-      border-radius: 3px;
     }
 
     .last {

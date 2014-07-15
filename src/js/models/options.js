@@ -280,14 +280,14 @@
 
         /** This stores which column ID maps to which icon */
         iconMap: [
-            'persons-man1',
-            'persons-man2',
-            'persons-man2',
-            'persons-man2',
-            'persons-man2',
-            'persons-man2',
-            'persons-man2',
-            'persons-man2'
+            'persons-woman2',
+            'persons-man4',
+            'persons-man4',
+            'persons-man4',
+            'persons-man4',
+            'persons-man4',
+            'persons-man4',
+            'persons-man4'
         ],
 
 
