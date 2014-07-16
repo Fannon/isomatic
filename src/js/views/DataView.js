@@ -110,8 +110,6 @@
 
                 // TODO: Handle points and commas
 
-                console.log(parsedData);
-
                 this.model.set({
                     data: parsedData
                 });
