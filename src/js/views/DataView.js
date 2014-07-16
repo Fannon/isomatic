@@ -34,8 +34,6 @@
          */
         render: function() {
 
-//            console.info('DataView.render();');
-
             var source = $('#data-template').html();
             var template = Handlebars.compile(source);
             var html = template({
@@ -100,16 +98,20 @@
          */
         submitData: function() {
 
-//            console.log('DataView::submitData();');
-
             var pastedData = $('#pasted-data').val();
 
             // TODO: Validation:
+
             if (!pastedData || pastedData === '') {
                 console.warn('Validation not passed');
             } else {
 
                 var parsedData = d3.tsv.parse(pastedData);
+
+                // TODO: Handle points and commas
+
+                console.log(parsedData);
+
                 this.model.set({
                     data: parsedData
                 });
@@ -189,8 +191,6 @@
          * Fills up the ColorMap and IconMap Array if they are not sufficient
          */
         analyze: function() {
-
-//            console.log('DataView.analyze(data);');
 
             var values          = [];
             var rowValues       = [];
@@ -315,7 +315,7 @@
          */
         calculateRecommendedScale: function() {
 
-            var scale      = 0;
+            var scale      = 1;
             var scaleArray = isomatic.options.internal.scaleArray;
             var scaleTemp  = isomatic.data.meta.attributes.maxRowValues / isomatic.options.internal.desiredmaxIconsPerRow;
 
@@ -331,7 +331,10 @@
                 }
             }
 
-//            console.log('-> Calculated Scale: ' + scale + ' from ' + scaleTemp);
+            // If no scale could be calculated or the scale is too small, use 1:1
+            if (!scale) {
+                scale = 1;
+            }
 
             ///////////////////////////////////////
             // Update Option Model               //
@@ -341,9 +344,6 @@
                 scale: scale
             });
         }
-
-
-
 
         });
 

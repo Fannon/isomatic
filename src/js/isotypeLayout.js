@@ -67,7 +67,7 @@ d3.layout.isotype = function() {
 
                 if(currentRow.hasOwnProperty(obj)){
 
-                    var v = currentRow[obj];
+                    var v = parseFloat(currentRow[obj]);
 
                     if (columnCounter > 0) {
 
@@ -120,6 +120,7 @@ d3.layout.isotype = function() {
             }
 
         }
+
         return processedData;
     }
 
@@ -132,7 +133,14 @@ d3.layout.isotype = function() {
      * @returns {Function}
      */
     isotype.scale = function(n) {
-        scale = n;
+
+        scale = parseFloat(n);
+
+        // TODO: Error Handling?
+        if (!scale || scale === 0 || isNaN(scale) ) {
+            console.error('No valid scale! ' + scale);
+        }
+
         return isotype;
     };
 
