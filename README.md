@@ -52,4 +52,4 @@ If that happens, insert a specific version number into the bower.json file to re
 
 
 [isomatic.de]: http://isomatic.de "www.isomatic.de"
-[screenshot]: http://isomatic.de/screenshot.png (Screenshot of isomatic)
+[screenshot]: http://isomatic.de/screenshot.png?v002 (Screenshot of isomatic)
