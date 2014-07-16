@@ -529,6 +529,33 @@ button.tiny, .button.tiny {
       padding: 0.625rem 0rem 0.6875rem;
     }
 
+    .help-center.picture {
+      margin: 0 auto;
+      margin-bottom: 7px;
+      margin-top: 5px;
+      width: 300px;
+      border: 2px solid $helpColor;
+      border-radius: 3px;
+
+      img {
+        margin: 0;
+      }
+
+    }
+
+    .help-center.text {
+      width: 320px;
+      padding: 3px;
+      margin: 0 auto;
+      color: #fff;
+      text-align: center;
+      line-height: 17px;
+
+      b {
+        color: $helpColor;
+      }
+    }
+
     .help-left {
       width: 110px;
       float:left;
