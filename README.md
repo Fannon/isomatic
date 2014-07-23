@@ -23,7 +23,8 @@ Simon Heimler: B. A. Interactive Media, currently studing M. S. of Applied Resea
 Sebastian Huber: B. A. Interactive Media, currently studing M. A. Interactive Media Systems. Working as a Fullstack Webdeveloper.
 
 
-## Installation
+## Manual Build
+**This is only for developer and advanced users!**
 This project uses 3rd party programs for pependency & build management.
 To get this project running follow these steps:
 Dont forget to prepend sudo if using linux or mac.
