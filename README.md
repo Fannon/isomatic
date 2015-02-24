@@ -6,8 +6,9 @@ You start by importing your data via copy'n'paste from a spreadsheet application
 
 We started this project in 2013 as students of the University of Applied Sciences in Augsburg and released it as OpenSource.
 
-Isomatic is a web application that runs in your browser that lets you easily create isotype graphics. The resulting graphics can be downloaded as SVG files which can be imported to several other applications. There are many customization options - but see for yourself at !
-Isomatic is free to use and OpenSource at GitHub!
+Isomatic is a web application that runs in your browser that lets you easily create isotype graphics. The resulting graphics can be downloaded as SVG files which can be imported to several other applications. There are many customization options - but see for yourself at [www.isomatic.de][isomatic.de]!
+
+There's a [screencast on YouTube](https://www.youtube.com/watch?v=oZGs0WdSB2g) showcasing isomatic.
 
 ![alt text][screenshot]
 
@@ -23,7 +24,8 @@ Simon Heimler: B. A. Interactive Media, currently studing M. S. of Applied Resea
 Sebastian Huber: B. A. Interactive Media, currently studing M. A. Interactive Media Systems. Working as a Fullstack Webdeveloper.
 
 
-## Installation
+## Manual Build
+**This is only for developer and advanced users!**
 This project uses 3rd party programs for pependency & build management.
 To get this project running follow these steps:
 Dont forget to prepend sudo if using linux or mac.
