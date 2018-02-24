@@ -1,0 +1,1726 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="utf-8">
+
+    <title>isomatic</title>
+
+    <meta name="description" content="isomatic is an online isotype graphic generator">
+
+    <link rel="stylesheet" href="css/app.min.css"/>
+
+    <script src="js/header.min.js"></script>
+
+</head>
+
+<body>
+
+    <!-- #################################### -->
+    <!-- # Application Base Frame           # -->
+    <!-- #################################### -->
+
+    <nav class="top-bar" data-topbar>
+        <div id="nav-container">
+            <div id="title" class="left">
+                <a id="logo" href="#home"><img src="img/ui/logo.svg"></a>
+
+                <div id="sub-title">the automatic<br>isotype-tool</div>
+            </div>
+
+            <div id="navigation-create" class="right">
+                <ul>
+                    <li>
+                        <a href="#new"><img src="img/ui/new.svg">New</a>
+                    </li>
+                    <li>
+                        <a id="openImport" href="#import"><img src="img/ui/import.svg">Import</a>
+                    </li>
+                    <li>
+                        <a id="openExport" href="#export"><img src="img/ui/export.svg">Export</a>
+                    </li>
+                    <li>
+                        <a href="#examples"><img src="img/ui/examples.svg">Examples</a>
+                    </li>
+                    <li class="help">
+                        <a id="trigger-help" href="#help"><img src="img/ui/help.svg" style="width: 18px;">Help</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+
+        <div id="toolbar">
+
+            <a href="#data" class="icon trigger-ui" id="trigger-data"></a>
+
+            <div class="toolbar-line"></div>
+
+            <a href="#type" class="icon trigger-ui" id="trigger-type"></a>
+
+            <div class="toolbar-line"></div>
+
+            <a href="#icon" class="icon trigger-ui" id="trigger-icon"></a>
+            <a href="#color" class="icon trigger-ui" id="trigger-color"></a>
+            <a href="#adjustments" class="icon trigger-ui" id="trigger-adjustments"></a>
+
+            <div class="toolbar-line"></div>
+
+            <a href="#scale" class="icon trigger-ui" id="trigger-scale"></a>
+            <a href="#text" class="icon trigger-ui" id="trigger-text"></a>
+
+        </div>
+
+        <div id="display">
+
+            <div id="graph-container"></div>
+
+            <div id="overlay">
+
+                <!-- Data Settings Container -->
+                <div id="data-container" class="overlay-container scrollbar-container" style="display: none"></div>
+
+                <!-- Type Settings -->
+                <div id="type-container" class="overlay-container" style="display: none"></div>
+
+                <!-- Icon Settings -->
+                <div id="icon-container" class="overlay-container scrollbar-container" style="display: none">
+                    <div id="overlay-icon">
+                        <div class="header clearfix">
+                            <div class="title">Icon Settings</div>
+                            <div class="close">
+                                <a href="#home">
+                                    <div class="close-image"></div>
+                                </a>
+                            </div>
+                        </div>
+                        <div id="icon-left-container" class="overlay-left scrollbar-container"></div>
+                        <div id="icon-right-container" class="overlay-right scrollbar-container"></div>
+                    </div>
+                </div>
+
+                <!-- Color Settings -->
+                <div id="color-container" class="overlay-container scrollbar-container" style="display: none"></div>
+
+                <!-- Adjustments -->
+                <div id="adjustments-container" class="overlay-container scrollbar-container" style="display: none"></div>
+
+                <!-- Scale Settings -->
+                <div id="scale-container" class="overlay-container" style="display: none"></div>
+
+                <!-- Text Settings -->
+                <div id="text-container" class="overlay-container" style="display: none"></div>
+
+                <!-- Help -->
+                <div id="help-container" class="overlay-container help" style="display: none"></div>
+
+
+            </div>
+
+        </div>
+
+        <div id="message-box"></div>
+
+        <div id="footer" class="">
+
+            <div class="team-logo">
+                <img class="team" src="img/ui/team.svg" width="64px" height="25px" alt="isomatic team"/>
+            </div>
+
+            <div class="team-desc">
+                2014 | Open Source @ <a href="https://github.com/Fannon/isomatic" target="_blank">Github</a>
+                | A Project by:
+                Sebastian Huber,
+                <a href="http://www.lisaborgenheimer.com" target="_blank">Lisa Borgenheimer</a> and
+                <a href="http://www.fannon.de" target="_blank">SimonHeimler</a>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Modals -->
+    <div id="modal-container">
+        <div id="new-modal" class="tiny reveal-modal" data-reveal></div>
+        <div id="import-modal" class="tiny reveal-modal" data-reveal></div>
+        <div id="export-modal" class="tiny reveal-modal" data-reveal></div>
+        <div id="examples-modal" class="medium reveal-modal" data-reveal></div>
+        <div id="tour-modal" class="tiny reveal-modal" data-reveal></div>
+    </div>
+
+</body>
+
+
+<!-- #################################### -->
+<!-- # JavaScript Section               # -->
+<!-- #################################### -->
+
+<script src="js/app.min.js"></script>
+
+
+<!-- #################################### -->
+<!-- # Template Section                 # -->
+<!-- #################################### -->
+
+<!-- New Graphic Template -->
+<script type="text/template" id="new-template">
+    <h3>New Graphic</h3>
+    <form>
+        <div class="ui-container">
+            <h4>Enter Aspect Ratio</h4>
+            <label for="aspect-ratio">Aspect-Ratio:</label>
+            <input id="aspect-ratio" name="aspectRatio" type="text" value="{{ options.aspectRatio }}">
+        </div>
+
+        <div class="ui-container">
+            <h4>Alternative: Enter Width/Height</h4>
+
+            <label for="aspect-ratio-width">Width</label>
+            <input id="aspect-ratio-width" type="text" value="{{ options.graphWidth }}">
+
+            <label for="aspect-ratio-height">Height</label>
+            <input id="aspect-ratio-height" type="text" value="{{ options.graphHeight }}">
+        </div>
+
+        <a id="new-graphic-apply" class="tiny button radius">New Graphic</a>
+        <a id="new-canvas-apply" class="tiny button radius">Change Canvas Aspect Ratio</a>
+
+    </form>
+    <a class="close-reveal-modal">&#215;</a>
+</script>
+
+<!-- Import Template -->
+<script type="text/template" id="import-template">
+    <h3>Import Data</h3>
+
+    <div class="ui-container">
+        <br>
+        <form>
+            <label for="imported-file">Upload SVG or JSON File:</label>
+            <input type="file" id="imported-file">
+        </form>
+
+        <div id="import-errors" data-alert class="alert-box warning radius" style="display: none">
+            <div></div>
+            <a class="close">&times;</a>
+        </div>
+
+        <div id="import-success" data-alert class="alert-box info radius" style="display: none">
+            <div>Sucessfully imported File.</div>
+            <a class="close">&times;</a>
+        </div>
+    </div>
+    <a class="close-reveal-modal">&#215;</a>
+</script>
+
+<!-- Export Template -->
+<script type="text/template" id="export-template">
+    <h3>Export Graphic / Data</h3>
+
+    <form>
+        <div class="ui-container">
+            <h4>Choose Export Format:</h4>
+            <p>
+                <button id="format-svg" type=button class="tiny button radius select-format">SVG (Graphic)</button>
+                <button id="format-json" type=button class="tiny button radius select-format disabled">JSON (Raw Data)</button>
+            </p>
+
+        </div>
+
+        <div class="ui-container">
+            <h4>Include:</h4>
+            <input id="export-data" type="checkbox" checked><label for="export-data">Data</label>
+            <input id="export-options" type="checkbox" checked><label for="export-options">Options</label>
+        </div>
+
+        <div id='start-export' class="tiny button radius">Download</div>
+    </form>
+    <a class="close-reveal-modal">&#215;</a>
+</script>
+
+<!-- Examples Template -->
+<script type="text/template" id="examples-template">
+    <h3>Examples</h3>
+    <p>
+        Click on an example image to load it. <strong>Warning:</strong> This overwrites all current settings and the loaded data!
+    </p>
+
+    <div class="example-row">
+        {{#each examples}}
+
+        <div class="example-screenshot">
+            <h4>{{this.title}}</h4>
+            <a href="#home"><img id="example-{{this.id}}" src="img/examples/{{this.id}}.png" alt="{{this.id}}" class="example-thumb"/></a>
+        </div>
+        {{/each}}
+    </div>
+
+    <a class="close-reveal-modal">&#215;</a>
+</script>
+
+<!-- Tour Modal Template -->
+<script type="text/template" id="tour-template">
+    <h3>Welcome to isomatic</h3>
+    <form>
+        <div class="ui-container clearfix">
+            <img src="img/ui/normal_isotype.svg" width="80px"><br><br>
+            Tired of creating isotype graphics manually?
+            <b>isomatic</b> does all the heavy lifting for you and still leaves you with the opportunity to customize
+            the graphic in your favorite vector graphics editor like Adobe Illustrator. <br><br>
+
+            You start by importing your data via copy'n'paste from a spreadsheet application, like Excel or Numbers.
+            <b>isomatic</b> gives you the choice between several isotype layouts.
+            A broad library contains many custom designed icons and many options to layout and design the graphic.
+            If you seek help, the interactive tour will guide you throughout the whole process.
+        </div>
+
+        <a id='start-tour' href="#help" class="tiny button radius"><img src="img/ui/help.svg" width="16px" height="16px">Start Tour</a>
+        <a id='close-tour' href="#home" class="tiny button radius">Close</a>
+
+    </form>
+</script>
+
+<!-- Help Template -->
+<script type="text/html" id="help-template">
+
+
+    <!--Help Overview-->
+
+    <div id="home-help" class="help-section">
+        <div class="home-help-content scrollbar-container">
+            <div class="header clearfix">
+                <div class="title">Help Overview</div>
+                <div class="close">
+                    <a href="#home">
+                        <div class="close-image"></div>
+                    </a>
+                </div>
+            </div>
+            <div class="scrollbar">
+
+                <div class="home-help-topic"><h4>Preference and future use</h4></div>
+
+                <a href="#new-help" class="button radius">
+                    <img src="img/ui/new.svg">
+                    <div class="help-title">New</div>
+                    <div class="home-help-choose"></div>
+                </a>
+                <a href="#import-help" class="button radius">
+                    <img src="img/ui/import.svg">
+                    <div class="help-title">Import</div>
+                    <div class="home-help-choose"></div>
+                </a>
+                <a href="#export-help" class="button radius">
+                    <img src="img/ui/export.svg">
+                    <div class="help-title">Export</div>
+                    <div class="home-help-choose"></div>
+                </a>
+
+                <div class="home-help-topic"><h4>isomatic settings</h4></div>
+
+                <a href="#data" class="button radius">
+                    <img class="ui-element" src="img/ui/data.svg">
+                    <div class="help-title">Data</div>
+                    <div class="home-help-choose"></div>
+                </a>
+                <a href="#type" class="button radius">
+                    <img class="ui-element" src="img/ui/type.svg">
+                    <div class="help-title">Type</div>
+                    <div class="home-help-choose"></div>
+                </a>
+                <a href="#icon" class="button radius">
+                    <img class="ui-element" src="img/ui/icon.svg">
+                    <div class="help-title">Icon</div>
+                    <div class="home-help-choose"></div>
+                </a>
+                <a href="#color" class="button radius">
+                    <img class="ui-element" src="img/ui/color.svg">
+                    <div class="help-title">Color</div>
+                    <div class="home-help-choose"></div>
+                </a>
+                <a href="#adjustments" class="button radius">
+                    <img class="ui-element" src="img/ui/adjustments.svg">
+                    <div class="help-title">Adjustments</div>
+                    <div class="home-help-choose"></div>
+                </a>
+                <a href="#scale" class="button radius">
+                    <img class="ui-element" src="img/ui/scale.svg">
+                    <div class="help-title">Scale</div>
+                    <div class="home-help-choose"></div>
+                </a>
+                <a href="#text" class="button radius">
+                    <img class="ui-element" src="img/ui/text.svg">
+                    <div class="help-title">Text</div>
+                    <div class="home-help-choose"></div>
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!--New Help-->
+
+    <div id="new-help" class="help-section" style="display: none">
+        <div class="header clearfix">
+            <div class="title">New Help</div>
+            <div class="close">
+                <a href="#help">
+                    <div class="close-image"></div>
+                </a>
+            </div>
+        </div>
+
+        <div class="clearfix">
+            <div class="help-content">
+                <div class="help-center picture clearfix">
+                    <img src="img/tour/AspectRatio.png">
+                </div>
+                <div class="help-center text">
+                    Either you change the aspect ratio of the canvas and <b>isomatic</b> calculates the width and the height of the grid. <br>
+                    Or <b>isomatic</b> adjusts the aspect ratio automaticaly in relation to the current size of the canvas.
+                </div>
+
+            </div>
+        </div>
+
+        <div class="help-nav">
+            <div class="help-nav-left">
+                <a class="tiny button radius" href="#help-overview">
+                    <div class="help-nav-left-icon"></div>
+                </a>
+            </div>
+            <div class="help-nav-center">
+                <a class="tiny button radius" href="#help-overview">Help Overview</a>
+            </div>
+            <div class="help-nav-right">
+                <a class="tiny button radius" href="#import-help">
+                    <div class="help-nav-right-icon"></div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+    <!--Import Help-->
+
+    <div id="import-help" class="help-section" style="display: none">
+        <div class="header clearfix">
+            <div class="title">Import Help</div>
+            <div class="close">
+                <a href="#help">
+                    <div class="close-image"></div>
+                </a>
+            </div>
+        </div>
+
+        <div class="clearfix">
+            <div class="help-content">
+                <div class="help-center picture clearfix">
+                    <img src="img/tour/Import.png">
+                </div>
+                <div class="help-center text">
+                    Only SVG files, which were adjusted, rendered and exported in <b>isomatic</b>, can be imported later on.
+                    Additional changes outside, for example in Adobe Illustrator etc., can’t be imported by <b>isomatic</b> (deleted options and data).
+                </div>
+
+            </div>
+        </div>
+
+        <div class="help-nav">
+            <div class="help-nav-left">
+                <a class="tiny button radius" href="#new-help">
+                    <div class="help-nav-left-icon"></div>
+                </a>
+            </div>
+            <div class="help-nav-center">
+                <a class="tiny button radius" href="#help-overview">Help Overview</a>
+            </div>
+            <div class="help-nav-right">
+                <a class="tiny button radius" href="#export-help">
+                    <div class="help-nav-right-icon"></div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+    <!--Export Help-->
+
+    <div id="export-help" class="help-section" style="display: none">
+        <div class="header clearfix">
+            <div class="title">Export Help</div>
+            <div class="close">
+                <a href="#help">
+                    <div class="close-image"></div>
+                </a>
+            </div>
+        </div>
+
+        <div class="clearfix">
+            <div class="help-content">
+                <div class="help-center picture clearfix">
+                    <img src="img/tour/Export.png">
+                </div>
+                <div class="help-center text">
+                    Keep your generated SVG safe to preserve the possibility of changes in <b>isomatic</b> afterwards. <br>
+                    The exported file can include all options and data inputs generated by this application.
+                </div>
+
+            </div>
+        </div>
+
+        <div class="help-nav">
+            <div class="help-nav-left">
+                <a class="tiny button radius" href="#import-help">
+                    <div class="help-nav-left-icon"></div>
+                </a>
+            </div>
+            <div class="help-nav-center">
+                <a class="tiny button radius" href="#help-overview">Help Overview</a>
+            </div>
+            <div class="help-nav-right">
+                <a class="tiny button radius" href="#data">
+                    <div class="help-nav-right-icon"></div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+    <!--Data Help-->
+
+    <div id="data-help"  class="help-section" style="display: none">
+        <div class="header clearfix">
+            <div class="title">Data Help</div>
+            <div class="close">
+                <a href="#help">
+                    <div class="close-image"></div>
+                </a>
+            </div>
+        </div>
+
+        <div class="clearfix">
+            <div class="help-content">
+                <div class="help-left">
+                    <div id="data-help-pastedata" class="help-option-nav tiny button radius active">Paste Data</div>
+                    <div id="data-help-datapreview" class="help-option-nav tiny button radius">Data Preview</div>
+                </div>
+                <div class="help-right scrollbar-container">
+                    <div class="scrollbar">
+                        <div id="data-help-pastedata-container" class="help-right-option-container">
+                            <div class="help-step">
+                                <div class="help-right-picture clearfix"><img src="img/tour/loading.png" data-src="img/tour/DataImport.png" width="257px" height="158px"></div>
+                                <div class="help-right-description clearfix">
+                                    <div class="help-right-number">
+                                        1
+                                    </div>
+                                    <div class="help-right-text">
+                                        Copy and Paste your data into the "paste data" textarea.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="help-step">
+                                <div class="help-right-description clearfix">
+                                    <div class="help-right-number">
+                                        2
+                                    </div>
+                                    <div class="help-right-text">
+                                        Data can be imported from various spreadsheet applications like Excel, Numbers, Google Spreadsheets.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="help-step">
+                                <div class="help-right-picture"></div>
+                                <div class="help-right-description clearfix">
+                                    <div class="help-right-number">
+                                        3
+                                    </div>
+                                    <div class="help-right-text">
+                                        Click “Import” to load your data into isomatic and get a preview.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="data-help-datapreview-container" class="help-right-option-container" style="display:none">
+                            <div class="help-step">
+                                <div class="help-right-picture"></div>
+                                <div class="help-right-description clearfix">
+                                    <div class="help-right-number">
+                                        1
+                                    </div>
+                                    <div class="help-right-text">
+                                        Check if everything is fitted perfect – If not, just follow the instructions in "Paste Data".
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="help-nav">
+            <div class="help-nav-left">
+                <a class="tiny button radius" href="#export-help">
+                    <div class="help-nav-left-icon"></div>
+                </a>
+            </div>
+            <div class="help-nav-center">
+                <a class="tiny button radius" href="#help-overview">Help Overview</a>
+            </div>
+            <div class="help-nav-right">
+                <a class="tiny button radius" href="#type">
+                    <div class="help-nav-right-icon"></div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+    <!--Type Help-->
+
+    <div id="type-help"  class="help-section" style="display: none">
+        <div class="header clearfix">
+            <div class="title">Type Help</div>
+            <div class="close">
+                <a href="#help">
+                    <div class="close-image"></div>
+                </a>
+            </div>
+        </div>
+
+        <div class="help-content clearfix">
+            <div class="help-left">
+                <div id="type-help-diagramtypes" class="help-option-nav tiny button radius active">Select Type</div>
+                {{#if advancedOptions}}
+                <div id="type-help-additionaloptions" class="help-option-nav tiny button radius">Additional Options</div>
+                {{/if}}
+            </div>
+            <div class="help-right scrollbar-container">
+                <div class="scrollbar">
+                <div id="type-help-diagramtypes-container" class="help-right-option-container">
+                    <div class="help-step">
+                        <div class="help-right-picture clearfix"><img src="img/tour/IsotypeLayout.png" width="257px" height="158px"></div>
+                        <div class="help-right-description clearfix">
+                            <div class="help-right-number">
+                                1
+                            </div>
+                            <div class="help-right-text">
+                                You can choose between different isotype layouts.
+                                We designed the most widespread types for isotype graphics like the ranked/normal,
+                                versus or compare layouting.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="help-step">
+                        <div class="help-right-picture"></div>
+                        <div class="help-right-description clearfix">
+                            <div class="help-right-number">
+                                2
+                            </div>
+                            <div class="help-right-text">
+                                To see what´s possible with isomatic, just take a look at the <a
+                                    href="#examples">Examples</a>.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="type-help-additionaloptions-container" class="help-right-option-container" style="display:none">
+                    <div class="help-step">
+                        <div class="help-right-picture clearfix"><img src="img/tour/TypeEqually.png" width="257px" height="158px"></div>
+                        <div class="help-right-description clearfix">
+                            <div class="help-right-number">
+                                1
+                            </div>
+                            <div class="help-right-text">
+                                If you like to distribute the columns equally,
+                                just activate the first option to assign the icons on the canvas.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="help-step">
+                        <div class="help-right-picture clearfix"><img src="img/tour/TypeLines.png" width="257px" height="158px"></div>
+                        <div class="help-right-description clearfix">
+                            <div class="help-right-number">
+                                2
+                            </div>
+                            <div class="help-right-text">
+                                You can additionally align your layout with horizontal or vertical lines. <br>
+                                It can be used to visual and intensify the separation of your categories.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="help-nav">
+            <div class="help-nav-left">
+                <a class="tiny button radius" href="#data">
+                    <div class="help-nav-left-icon"></div>
+                </a>
+            </div>
+            <div class="help-nav-center">
+                <a class="tiny button radius" href="#help-overview">Help Overview</a>
+            </div>
+            <div class="help-nav-right">
+                <a class="tiny button radius" href="#icon">
+                    <div class="help-nav-right-icon"></div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+    <!--Icon Help-->
+
+    <div id="icon-help"  class="help-section" style="display: none">
+        <div class="header clearfix">
+            <div class="title">Icon Help</div>
+            <div class="close">
+                <a href="#help">
+                    <div class="close-image"></div>
+                </a>
+            </div>
+        </div>
+
+        <div class="help-content">
+            <div class="help-left">
+                <div id="icon-help-mapping" class="help-option-nav tiny button radius active">Mapping</div>
+                <div id="icon-help-draganddrop" class="help-option-nav tiny button radius">Drag And Drop</div>
+            </div>
+            <div class="help-right scrollbar-container">
+                <div class="scrollbar">
+                    <div id="icon-help-mapping-container" class="help-right-option-container">
+                        <div class="help-step">
+                            <div class="help-right-picture"></div>
+                            <div class="help-right-description clearfix">
+                                <div class="help-right-number">
+                                    1
+                                </div>
+                                <div class="help-right-text">
+                                    Choose if the icons should be mapped to the Columns or Rows of your dataset.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="help-step">
+                            <div class="help-right-description clearfix">
+                                <div class="help-right-number">
+                                    2
+                                </div>
+                                <div class="help-right-text">
+                                    The correct selection depends of course on your dataset and the way you want to visualize it.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="icon-help-draganddrop-container" class="help-right-option-container" style="display:none">
+                        <div class="help-step">
+                            <div class="help-right-picture"></div>
+                            <div class="help-right-description clearfix">
+                                <div class="help-right-number">
+                                    1
+                                </div>
+                                <div class="help-right-text">
+                                    You can see a list of your available rows or columns with their labels.
+                               </div>
+                            </div>
+                        </div>
+
+                        <div class="help-step">
+                            <div class="help-right-picture clearfix"><img src="img/tour/DADIcon.png"></div>
+                            <div class="help-right-description clearfix">
+                                <div class="help-right-number">
+                                    2
+                                </div>
+                                <div class="help-right-text">
+                                    The correct selection depends of course on your dataset and the way you want to visualize it.
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="help-nav">
+            <div class="help-nav-left">
+                <a class="tiny button radius" href="#type">
+                    <div class="help-nav-left-icon"></div>
+                </a>
+            </div>
+            <div class="help-nav-center">
+                <a class="tiny button radius" href="#help-overview">Help Overview</a>
+            </div>
+            <div class="help-nav-right">
+                <a class="tiny button radius" href="#color">
+                    <div class="help-nav-right-icon"></div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+    <!--Color Help-->
+
+    <div id="color-help"  class="help-section" style="display: none">
+        <div class="header clearfix">
+            <div class="title">Color Help</div>
+            <div class="close">
+                <a href="#help">
+                    <div class="close-image"></div>
+                </a>
+            </div>
+        </div>
+
+        <div class="help-content clearfix">
+            <div class="help-left">
+                <div id="color-help-mapping" class="help-option-nav tiny button radius active">Mapping</div>
+                <div id="color-help-colorpicker" class="help-option-nav tiny button radius">Colorpicker</div>
+                <div id="color-help-presets" class="help-option-nav tiny button radius">Presets</div>
+            </div>
+            <div class="help-right scrollbar-container">
+                <div class="scrollbar">
+                    <div id="color-help-mapping-container" class="help-right-option-container">
+                        <div class="help-step">
+                            <div class="help-right-picture"></div>
+                            <div class="help-right-description clearfix">
+                                <div class="help-right-number">
+                                    1
+                                </div>
+                                <div class="help-right-text">
+                                    Choose if the colors should be applied to the columns or rows of your dataset.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="help-step">
+                            <div class="help-right-picture"></div>
+                            <div class="help-right-description clearfix">
+                                <div class="help-right-number">
+                                    2
+                                </div>
+                                <div class="help-right-text">
+                                    The correct selection depends of course on your dataset and the way you want to visualize it.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="color-help-colorpicker-container" class="help-right-option-container" style="display:none">
+                        <div class="help-step">
+                            <div class="help-right-picture"></div>
+                            <div class="help-right-description clearfix">
+                                <div class="help-right-number">
+                                    1
+                                </div>
+                                <div class="help-right-text">
+                                    It is possible to color your icons manually.
+                                    Click on the color field below the column/row label and select your color via the colorpicker.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="help-step">
+                            <div class="help-right-picture clearfix"><img src="img/tour/ColorpickerColor.png"></div>
+                            <div class="help-right-description clearfix">
+                                <div class="help-right-number">
+                                    2
+                                </div>
+                                <div class="help-right-text">
+                                    If you like to modify the colors you can change them with the integrated colorpicker.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="color-help-presets-container" class="help-right-option-container" style="display:none">
+                        <div class="help-step">
+                            <div class="help-right-picture"></div>
+                            <div class="help-right-description clearfix">
+                                <div class="help-right-number">
+                                    1
+                                </div>
+                                <div class="help-right-text">
+                                    There are a few default colorpalettes supplied.
+                                    Select one to color all categories of you data set automatically.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="help-step">
+                            <div class="help-right-picture"></div>
+                            <div class="help-right-description clearfix">
+                                <div class="help-right-number">
+                                    2
+                                </div>
+                                <div class="help-right-text">
+                                    You can of course alter the colors after you have loaded them from an pallette (see "Colorpicker").
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="help-nav">
+            <div class="help-nav-left">
+                <a class="tiny button radius" href="#icon">
+                    <div class="help-nav-left-icon"></div>
+                </a>
+            </div>
+            <div class="help-nav-center">
+                <a class="tiny button radius" href="#help-overview">Help Overview</a>
+            </div>
+            <div class="help-nav-right">
+                <a class="tiny button radius" href="#adjustments">
+                    <div class="help-nav-right-icon"></div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+    <!--Adjustments Help-->
+
+    <div id="adjustments-help"  class="help-section" style="display: none">
+        <div class="header clearfix">
+            <div class="title">Adjustments Help</div>
+            <div class="close">
+                <a href="#help">
+                    <div class="close-image"></div>
+                </a>
+            </div>
+        </div>
+
+        <div class="help-content clearfix">
+            <div class="help-left">
+                <div id="adjustments-help-outermargin" class="help-option-nav tiny button radius active">Outer Margin</div>
+                <div id="adjustments-help-horizontalmargin" class="help-option-nav tiny button radius">Horizontal Margin</div>
+                {{#if advancedOptions}}
+                <div id="adjustments-help-verticalmargin" class="help-option-nav tiny button radius">Vertical Margin</div>
+                {{/if}}
+                <div id="adjustments-help-rowmargin" class="help-option-nav tiny button radius">Row Margin</div>
+                {{#if advancedOptions}}
+                <div id="adjustments-help-columnmargin" class="help-option-nav tiny button radius">Column Margin</div>
+                {{/if}}
+                <div id="adjustments-help-iconsize" class="help-option-nav tiny button radius">Icon Size</div>
+            </div>
+            <div class="help-right scrollbar-container">
+                <div class="scrollbar">
+                    <div id="adjustments-help-outermargin-container" class="help-right-option-container">
+                        <div class="help-step">
+                            <div class="help-right-picture clearfix"><img src="img/tour/OuterMargin.png"></div>
+                            <div class="help-right-description clearfix">
+                                <div class="help-right-number">
+                                    1
+                                </div>
+                                <div class="help-right-text">
+                                    The <strong>outer margin</strong> defines the distance from the actual graphic to the canvas.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="adjustments-help-horizontalmargin-container" class="help-right-option-container" style="display:none">
+                        <div class="help-step">
+                            <div class="help-right-picture clearfix"><img src="img/tour/HorizontalMargin.png"></div>
+                            <div class="help-right-description clearfix">
+                                <div class="help-right-number">
+                                    1
+                                </div>
+                                <div class="help-right-text">
+                                    Adjust the horizontal space between your icons by changing this value.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                        <div id="adjustments-help-verticalmargin-container" class="help-right-option-container" style="display:none">
+                            <div class="help-step">
+                                <div class="help-right-picture clearfix"><img src="img/tour/VerticalMargin.png"></div>
+                                <div class="help-right-description clearfix">
+                                    <div class="help-right-number">
+                                        1
+                                    </div>
+                                    <div class="help-right-text">
+                                        Adjust the vertical space between your icons.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div id="adjustments-help-rowmargin-container" class="help-right-option-container" style="display:none">
+                        <div class="help-step">
+                            <div class="help-right-picture clearfix"><img src="img/tour/RowMargin.png"></div>
+                            <div class="help-right-description clearfix">
+                                <div class="help-right-number">
+                                    1
+                                </div>
+                                <div class="help-right-text">
+                                    Adjusts the horizontal space between icon rows.
+                                    If this is smaller than the Icon Horizontal Margin, it will be ignored.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                        <div id="adjustments-help-columnmargin-container" class="help-right-option-container" style="display:none">
+                            <div class="help-step">
+                                <div class="help-right-picture clearfix"><img src="img/tour/ColumnMargin.png"></div>
+                                <div class="help-right-description clearfix">
+                                    <div class="help-right-number">
+                                        1
+                                    </div>
+                                    <div class="help-right-text">
+                                        Adjusts the vertical space between icon rows.
+                                        If this is smaller than the Icon Vertical Margin, it will be ignored.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    <div id="adjustments-help-iconsize-container" class="help-right-option-container" style="display:none">
+                        <div class="help-step">
+                            <div class="help-right-picture clearfix"><img src="img/tour/IconSize.png"></div>
+                            <div class="help-right-description clearfix">
+                                <div class="help-right-number">
+                                    1
+                                </div>
+                                <div class="help-right-text">
+                                    The icon size can be adjusted automatically if "<strong>Auto Icon Size</strong>" is checked.
+                                    This will calculate sane defaults that may be what you need or not.<br>
+                                    By unchecking this option you can set the size manually.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="help-nav">
+            <div class="help-nav-left">
+                <a class="tiny button radius" href="#color">
+                    <div class="help-nav-left-icon"></div>
+                </a>
+            </div>
+            <div class="help-nav-center">
+                <a class="tiny button radius" href="#help-overview">Help Overview</a>
+            </div>
+            <div class="help-nav-right">
+                <a class="tiny button radius" href="#scale">
+                    <div class="help-nav-right-icon"></div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+    <!--Scale Help-->
+
+    <div id="scale-help"  class="help-section" style="display: none">
+        <div class="header clearfix">
+            <div class="title">Scale Help</div>
+            <div class="close">
+                <a href="#help">
+                    <div class="close-image"></div>
+                </a>
+            </div>
+        </div>
+
+        <div class="help-content clearfix">
+            <div class="help-left">
+                <div id="scale-help-setscale" class="help-option-nav tiny button radius active">Set Scale</div>
+                <div id="scale-help-sizerounding" class="help-option-nav tiny button radius">Size Rounding</div>
+            </div>
+            <div class="help-right scrollbar-container">
+                <div class="scrollbar">
+                    <div id="scale-help-setscale-container" class="help-right-option-container">
+                        <div class="help-step">
+                            <div class="help-right-picture"></div>
+                            <div class="help-right-description clearfix">
+                                <div class="help-right-number">
+                                    1
+                                </div>
+                                <div class="help-right-text">
+                                    The <strong>scale</strong> is initially auto calculated. <br>
+                                    Here you can change it manually
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="help-step">
+                            <div class="help-right-picture"></div>
+                            <div class="help-right-description clearfix">
+                                <div class="help-right-number">
+                                    2
+                                </div>
+                                <div class="help-right-text">
+                                    The <strong>scale</strong> also defines how inaccurate or accurate your dataset
+                                    will be visualized on the canvas.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="scale-help-sizerounding-container" class="help-right-option-container" style="display:none">
+                        <div class="help-step">
+                            <div class="help-right-picture clearfix"><img src="img/tour/RoundSize.png"></div>
+                            <div class="help-right-description clearfix">
+                                <div class="help-right-number">
+                                    1
+                                </div>
+                                <div class="help-right-text">
+                                    Enable the <strong>Round Size</strong> Checkbox to scale the last icon according to the remainding value.
+                                    <br><br>
+                                    This increases the accuracy of the infographic.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="help-step">
+                            <div class="help-right-picture"></div>
+                            <div class="help-right-description clearfix">
+                                <div class="help-right-number">
+                                    2
+                                </div>
+                                <div class="help-right-text">
+                                    <strong>RoundUp</strong> defines at which point the sizing will ignore the difference and simply round fully up.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="help-step">
+                            <div class="help-right-picture"></div>
+                            <div class="help-right-description clearfix">
+                                <div class="help-right-number">
+                                    2
+                                </div>
+                                <div class="help-right-text">
+                                    <strong>RoundDown</strong> defines at which point the sizing will ignore the difference and simply round fully down.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="help-nav">
+            <div class="help-nav-left">
+                <a class="tiny button radius" href="#adjustments">
+                    <div class="help-nav-left-icon"></div>
+                </a>
+            </div>
+            <div class="help-nav-center">
+                <a class="tiny button radius" href="#help-overview">Help Overview</a>
+            </div>
+            <div class="help-nav-right">
+                <a class="tiny button radius" href="#text">
+                    <div class="help-nav-right-icon"></div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+    <!--Text Help-->
+
+    <div id="text-help"  class="help-section" style="display: none">
+        <div class="header clearfix">
+            <div class="title">Text Help</div>
+            <div class="close">
+                <a href="#help">
+                    <div class="close-image"></div>
+                </a>
+            </div>
+        </div>
+
+        <div class="help-content clearfix">
+            <div class="help-left">
+                <div id="text-help-fontsettings" class="help-option-nav tiny button radius active">Text Settings</div>
+                <div id="text-help-legendsettings" class="help-option-nav tiny button radius active">Legend Settings</div>
+            </div>
+
+            <div class="help-right scrollbar-container">
+                <div class="scrollbar">
+
+                    <div id="text-help-fontsettings-container" class="help-right-option-container" style="display:none">
+                        <div class="help-step">
+                            <div class="help-right-picture"></div>
+                            <div class="help-right-description clearfix">
+                                <div class="help-right-number">
+                                    1
+                                </div>
+                                <div class="help-right-text">
+                                    In this section you can change the font size of the legend.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="help-step">
+                            <div class="help-right-picture"></div>
+                            <div class="help-right-description clearfix">
+                                <div class="help-right-number">
+                                    2
+                                </div>
+                                <div class="help-right-text">
+                                    This defines the width of the left legend.
+                                    If your legend text overlaps with the visualization set this to higher value.
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <div id="text-help-legendsettings-container" class="help-right-option-container" style="display:none">
+                        <div class="help-step">
+                            <div class="help-right-picture clearfix"><img src="img/tour/LegendSettings.png"></div>
+                            <div class="help-right-description clearfix">
+                                <div class="help-right-number">
+                                    1
+                                </div>
+                                <div class="help-right-text">
+                                    This defines the width of the left legend.
+                                    If your legend text overlaps with the visualization set this to higher value.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="help-step">
+                            <div class="help-right-picture"></div>
+                            <div class="help-right-description clearfix">
+                                <div class="help-right-number">
+                                    2
+                                </div>
+                                <div class="help-right-text">
+                                    <strong>Draw Column Legend</strong> defines if the Column Legend should be drawn at all.
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="help-nav">
+            <div class="help-nav-left">
+                <a class="tiny button radius" href="#scale">
+                    <div class="help-nav-left-icon"></div>
+                </a>
+            </div>
+            <div class="help-nav-center">
+                <a class="tiny button radius" href="#help-overview">Help Overview</a>
+            </div>
+            <div class="help-nav-right">
+                <a class="tiny button radius" href="#help-overview">
+                    <div class="help-nav-right-icon"></div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+</script>
+
+
+<!-- Data Template -->
+<script type="text/template" id="data-template">
+    <div id="overlay-data">
+        <div class="header clearfix">
+            <div class="title">Data Import</div>
+            <div class="close">
+                <a href="#home">
+                    <div class="close-image"></div>
+                </a>
+            </div>
+        </div>
+
+        <div class="scrollbar">
+            <form class="custom">
+                <div class="ui-container highlightable data-help-pastedata-highlight">
+                    <h4>Paste Data</h4>
+                    <textarea placeholder="Copy'n'Paste Data here" id="pasted-data"></textarea>
+
+                    <div class="help-text">Currently isomatic doesn't support fractional digits. Please round your values.</div>
+                    <div class="button-group">
+                        <div id="import-data" class="apply tiny button radius">Import</div>
+                    </div>
+                </div>
+                <div class="ui-container highlightable data-help-datapreview-highlight">
+                    <h4>Data Preview:</h4>
+                    <table id="dataTable"></table>
+                </div>
+            </form>
+        </div>
+    </div>
+</script>
+
+<!-- Type Template -->
+<script type="text/template" id="type-template">
+    <div id="overlay-type">
+        <form>
+            <div class="header full clearfix">
+                <div class="title">Diagram Type</div>
+                <div class="close">
+                    <a href="#home">
+                        <div class="close-image"></div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="ui-container highlightable type-help-diagramtypes-highlight">
+                <h4>Select Type</h4>
+                <div id="normal-isotype" class="select-type">
+                    <div class="type-title">
+                        Normal
+                    </div>
+                    <div class="type-image">
+                        <div>
+                            <img src="img/ui/normal_isotype.svg">
+                        </div>
+                    </div>
+                </div>
+
+                <div id="versus-isotype" class="select-type">
+                    <div class="type-title">
+                        Versus
+                    </div>
+                    <div class="type-image">
+                        <div>
+                            <img src="img/ui/versus_isotype.svg">
+                        </div>
+                    </div>
+                </div>
+
+                <div id="compare-isotype" class="select-type">
+                    <div class="type-title">
+                        Compare
+                    </div>
+                    <div class="type-image">
+                        <div>
+                            <img src="img/ui/compare_isotype.svg">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            {{#if advancedOptions}}
+            <div class="ui-container highlightable type-help-additionaloptions-highlight">
+                <h4>Additional Options</h4>
+                <input id="equally-distributed-columns" name="equallyDistributedColumns" type="checkbox" {{#if equallyDistributedColumns}}checked{{/if}} >
+                <label for="equally-distributed-columns">Equally distribute columns</label><br>
+
+                <input id="draw-horizontal-lines" name="drawHorizontalLines" type="checkbox" {{#if drawHorizontalLines}}checked{{/if}} >
+                <label for="draw-horizontal-lines">Draw horizontal lines</label><br>
+
+                <input id="draw-vertical-lines" name="drawVerticalLines" type="checkbox" {{#if drawVerticalLines}}checked{{/if}} >
+                <label for="draw-vertical-lines">Draw vertical lines</label>
+
+            </div>
+            {{/if}}
+
+        </form>
+    </div>
+</script>
+
+<!-- Icon Chooser Template -->
+<script type="text/template" id="icon-left-template">
+    <div class="scrollbar">
+        <form>
+
+            <div class="ui-container highlightable icon-help-mapping-highlight">
+                <h4><span data-tooltip class="has-tip tip-right" title="Choose if Icons are mapped to Columns or Rows">Map to</span></h4>
+                <input id="iconize-column" type="radio" name="radio2" value="column"><label for="iconize-column"><img src="img/ui/column.svg"> Column</label>
+                <input id="iconize-row" type="radio" name="radio2" value="row"><label for="iconize-row"><img src="img/ui/row.svg"> Row</label>
+            </div>
+
+            <div class="ui-container highlightable icon-help-draganddrop-highlight">
+                <h4>Drag and Drop</h4>
+
+                {{#each iconMapping}}
+                <div id="group-{{@index}}" class="group-container">
+                    <div class="group-id">{{@key}}</div>
+                    <div id="mapping-{{this.id}}" class="group-icon" svg-content="{{this.svg}}"></div>
+                </div>
+                {{/each}}
+
+            </div>
+
+            <div class="button-group">
+                <div id="icon-apply" class="apply tiny button expand radius">Apply</div>
+            </div>
+
+        </form>
+    </div>
+</script>
+
+<!-- Icon Library  Template -->
+<script type="text/template" id="icon-right-template">
+    <div class="scrollbar">
+        <div class="ui-container clearfix highlightable icon-help-presets-highlight">
+            <h4>Icon Library</h4>
+
+            {{#each iconLibrary}}
+            <div class="category clearfix">
+                <legend>{{this.name}}</legend>
+                {{#each this.icons}}
+
+                <div class="category-border">
+                    <div id="library-{{this.id}}" class="category-icon" draggable="true" svg-content="{{this.svg}}"></div>
+                </div>
+                {{/each}}
+            </div>
+            {{/each}}
+        </div>
+    </div>
+</script>
+
+<!-- Color Template -->
+<script type="text/template" id="color-template">
+    <div id="overlay-color">
+        <div class="header clearfix">
+            <div class="title">Color Settings</div>
+            <div class="close">
+                <a href="#home">
+                    <div class="close-image"></div>
+                </a>
+            </div>
+        </div>
+
+        <div class="overlay-left">
+            <div class="scrollbar">
+                <form>
+                    <div class="ui-container highlightable color-help-mapping-highlight">
+                        <h4><span data-tooltip class="has-tip tip-right" title="Choose if Colors are mapped to Columns or Rows">Map to</span></h4>
+                        <input id="colorize-column" type="radio" name="radio3" value="column"><label for="colorize-column"><img src="img/ui/column.svg"> Column</label>
+                        <input id="colorize-row" type="radio" name="radio3" value="row"><label for="colorize-row"><img src="img/ui/row.svg"> Row</label>
+                    </div>
+
+                    <div class="ui-container highlightable color-help-colorpicker-highlight">
+                        <h4>Assign colors</h4>
+
+                        {{#each colorMapping}}
+                        <legend>{{@key}}</legend>
+                        <input type="text" id="picker-{{@index}}" class="picker pick-icon-color" value="{{this}}" style="border-color: {{this}};">
+                        {{/each}}
+                    </div>
+
+                    <div class="ui-container">
+                        <h4>Legend Colors</h4>
+                        <legend>Lines Color</legend>
+                        <input type="text" id="picker-lines" class="picker" value="{{lineColor}}" style="border-color: {{lineColor}};">
+                    </div>
+
+                    <div class="button-group">
+                        <div id="color-apply" class="apply tiny button expand radius">Apply</div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="overlay-right">
+            <div class="scrollbar">
+                <form>
+                    <div class="ui-container highlightable color-help-presets-highlight">
+                    <h4>Color Palettes</h4>
+
+                        {{#each palettes}}
+                        <legend>{{@key}}</legend>
+                        <div id="colorpalette-{{@key}}" class="colorpalette">
+                            {{#each this}}
+                            <div class="colorbox" style="background-color: #{{this}}" title="{{this}}"></div>
+                            {{/each}}
+                        </div>
+                        {{/each}}
+
+                        <div class="clearfix"></div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</script>
+
+<!-- Adjustments Template -->
+<script type="text/template" id="adjustments-template">
+    <div id="overlay-adjustments">
+        <div class="header clearfix">
+            <div class="title">Adjustments</div>
+            <div class="close">
+                <a href="#home">
+                    <div class="close-image"></div>
+                </a>
+            </div>
+        </div>
+
+        <form>
+
+            <div class="scrollbar">
+
+                <div class="ui-container">
+                    <h4><span data-tooltip class="has-tip tip-right" title="Change the general offsets">Margin</span></h4>
+
+                    <div class="row collapse highlightable adjustments-help-outermargin-highlight">
+                        <label><img src="img/ui/outermarign.svg">Outer Margin</label>
+                        <div class="small-10 columns">
+                            <input id="outer-margin" name="outerMargin" type="text" value="{{ options.outerMargin }}">
+                        </div>
+                        <div class="small-2 columns">
+                            <span class="postfix radius">px</span>
+                        </div>
+                    </div>
+
+                    <div class="row collapse highlightable adjustments-help-horizontalmargin-highlight">
+                        <label><img src="img/ui/horizontalmargin.svg">Icon Horizontal Margin</label>
+                        <div class="small-10 columns">
+                            <input id="icon-horizontal-margin" name="iconHorizontalMargin" type="text" value="{{ options.iconHorizontalMargin }}">
+                        </div>
+                        <div class="small-2 columns">
+                            <span class="postfix radius">px</span>
+                        </div>
+                    </div>
+
+                    {{#if advancedOptions}}
+                    <div class="row collapse highlightable adjustments-help-verticalmargin-highlight">
+                        <label><img src="img/ui/verticalmargin.svg">Icon Vertical Margin</label>
+                        <div class="small-10 columns">
+                            <input id="icon-vertical-margin" name="iconVerticalMargin" type="text" value="{{ options.iconVerticalMargin }}">
+                        </div>
+                        <div class="small-2 columns">
+                            <span class="postfix radius">px</span>
+                        </div>
+                    </div>
+                    {{/if}}
+
+                    <div class="row collapse highlightable adjustments-help-rowmargin-highlight">
+                        <label><img src="img/ui/rowmargin.svg">Row Margin</label>
+                        <div class="small-10 columns">
+                            <input id="row-margin" name="rowMargin" type="text" type="text" value="{{ options.rowMargin }}">
+                        </div>
+                        <div class="small-2 columns">
+                            <span class="postfix radius">px</span>
+                        </div>
+                    </div>
+
+                    {{#if advancedOptions}}
+                    <div class="row collapse highlightable adjustments-help-columnmargin-highlight">
+                        <label><img src="img/ui/columnmargin.svg">Column Margin</label>
+                        <div class="small-10 columns">
+                            <input id="column-margin" name="columnMargin" type="text" value="{{ options.columnMargin }}">
+                        </div>
+                        <div class="small-2 columns">
+                            <span class="postfix radius">px</span>
+                        </div>
+                    </div>
+                    {{/if}}
+
+                </div>
+
+                <div class="ui-container highlightable adjustments-help-iconsize-highlight">
+                    <h4><span data-tooltip class="has-tip tip-right" title="See the icon proportion">Size</span></h4>
+
+                    <input id="auto-icon-size" name="autoIconSize" type="checkbox" {{#if options.autoIconSize}}checked{{/if}}><label for="auto-icon-size">Auto Icon Size</label>
+
+
+                    <div class="row collapse">
+                        <label><img src="img/ui/iconsize.svg">Icon Size</label>
+                        <div class="small-10 columns">
+                            <input id="icon-size" name="iconSize" type="text" value="{{ options.iconSize }}" {{#if options.autoIconSize}}disabled{{/if}}>
+                        </div>
+                        <div class="small-2 columns">
+                            <span class="postfix radius">px</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="button-group">
+                <div id="adjustments-apply" class="apply-right-margin tiny button expand radius">Apply</div>
+            </div>
+
+        </form>
+
+    </div>
+</script>
+
+<!-- Scale Template -->
+<script type="text/template" id="scale-template">
+    <div id="overlay-scale">
+        <div class="header full clearfix">
+            <div class="title">Scale Settings</div>
+            <div class="close">
+                <a href="#home">
+                    <div class="close-image"></div>
+                </a>
+            </div>
+        </div>
+
+        <form>
+            <div class="ui-container highlightable scale-help-setscale-highlight">
+
+                <h4>Set Scale</h4>
+                <label>
+                    <span data-tooltip class="has-tip tip-right" title="Enter Scale manually">Scale</span>
+                </label>
+                <input id="scale" name="scale" type="text" value="{{options.scale}}">
+
+            </div>
+
+            <div class="ui-container highlightable scale-help-sizerounding-highlight">
+            <h4>Size Rounding</h4>
+
+            <input id="round-size" name="roundSize" type="checkbox" {{#if options.roundSize}}checked{{/if}}><label for="round-size">Round Size</label>
+
+
+            <label>
+                    <span data-tooltip class="has-tip tip-right" title="Ceil value if Remainder is above">Round Up</span>
+                </label>
+                <input id="round-up" name="roundUp" type="text" value="{{options.roundUp}}">
+
+                <label>
+                    <span data-tooltip class="has-tip tip-right" title="Floor value if Remainder is below">Round Down</span>
+                </label>
+                <input id="round-down" name="roundDown" type="text" value="{{options.roundDown}}">
+            </div>
+        </form>
+
+        <div class="button-group">
+            <div id="scale-apply" class="apply tiny button expand radius">Apply</div>
+        </div>
+
+    </div>
+</script>
+
+<!-- Text Template -->
+<script type="text/template" id="text-template">
+    <div id="overlay-text">
+        <div class="header full clearfix">
+            <div class="title">Legend Settings</div>
+            <div class="close">
+                <a href="#home">
+                    <div class="close-image"></div>
+                </a>
+            </div>
+        </div>
+
+        <form>
+            <div class="ui-container highlightgroup highlightable text-help-fontsettings-highlight">
+                <h4>Text Settings</h4>
+
+                <div class="row collapse">
+                    <label><img src="img/ui/titleheight.svg">Title Size</label>
+                    <div class="small-10 columns">
+                        <input id="legend-title-height" name="legendTitleHeight" type="text" value="{{ options.legendTitleHeight }}">
+                    </div>
+                    <div class="small-2 columns">
+                        <span class="postfix radius">px</span>
+                    </div>
+                </div>
+
+                <div class="row collapse">
+                    <label><img src="img/ui/titleheight.svg">Left Legend Size</label>
+                    <div class="small-10 columns">
+                        <input id="left-legend-fontsize" name="leftLegendFontSize" type="text" value="{{ options.leftLegendFontSize }}">
+                    </div>
+                    <div class="small-2 columns">
+                        <span class="postfix radius">px</span>
+                    </div>
+                </div>
+
+                <div class="row collapse last">
+                    <label><img src="img/ui/titleheight.svg">Bottom Legend Size</label>
+                    <div class="small-10 columns">
+                        <input id="bottom-legend-fontsize" name="bottomLegendFontSize" type="text" value="{{ options.bottomLegendFontSize }}">
+                    </div>
+                    <div class="small-2 columns">
+                        <span class="postfix radius">px</span>
+                    </div>
+                </div>
+
+                <br>
+
+                <label>
+                    <span data-tooltip class="has-tip tip-right" title="Choose Font-Family">Font-Family</span>
+                </label>
+                <select id="legend-font" name="legendFont" value="{{options.legendFont}}">
+                    {{#each availableFonts }}
+                    <option value="{{this}}">{{@key}}</option>
+                    {{/each}}
+                </select>
+
+
+            </div>
+
+            <div class="ui-container highlightgroup highlightable text-help-legendsettings-highlight">
+                <h4>Legend Settings</h4>
+
+                <div class="row collapse first">
+                    <label><img src="img/ui/rowlegend.svg">Left Legend Width</label>
+                    <div class="small-10 columns">
+                        <input id="legend-width" name="legendWidth" type="text" value="{{ options.legendWidth }}">
+                    </div>
+                    <div class="small-2 columns">
+                        <span class="postfix radius">px</span>
+                    </div>
+                </div>
+
+                <input id="draw-column-legend" name="drawColumnLegend" type="checkbox" {{#if options.drawColumnLegend}}checked{{/if}}><label for="draw-column-legend">Draw Column Legend</label>
+
+            </div>
+
+        </form>
+
+        <div class="button-group">
+            <div id="text-apply" class="apply tiny button expand radius">Apply</div>
+        </div>
+    </div>
+</script>
+
+<!-- #################################### -->
+<!-- # Google Analytics                 # -->
+<!-- #################################### -->
+
+<script>
+    (function(i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r;
+    i[r] = i[r] || function() {
+        (i[r].q = i[r].q || []).push(arguments)
+    }, i[r].l = 1 * new Date();
+    a = s.createElement(o),
+    m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m)
+})(window, document, 'script', 'http://www.google-analytics.com/analytics.js', 'ga');
+
+ga('create', 'UA-3720145-16', 'isomatic.de');
+ga('send', 'pageview');
+
+</script>
+
+</html>
+
